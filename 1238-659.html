@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 659 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 659 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-658.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-660.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'A name...what sort of name should the city have?'</p><p>During the time that I spent wandering around aimlessly in the winding corridors of the castle and deeply ruminating over the topics that I had just recently been discussing with Jin, I found myself stopping in front of a wooden door.</p><p>"That was fast."</p><p>I had arrived at my next destination before I knew it.</p><p>Reaching out for the doorknob, I yanked the door open.</p><p>"You're here."</p><p>I was greeted by the sight of Angelica sitting at the far end of the room with a couple more people.</p><p>Silug, and Suriol.</p><p>"Yeah."</p><p>I closed the door behind me and walked into the room. Finding a sofa to sit on, I sat down and shifted my attention back to Angelica.</p><p>"What did you call me for?"</p><p>"I'm going to cancel the contract with Silug."</p><p>Angelica went straight to the point and told me her intentions.</p><p>My brows jumped up at her words.</p><p>"You what?"</p><p>"I'm going to cancel the contract with Silug."</p><p>Angelica repeated in a serious tone.</p><p>My brows furrowed when I took note of her tone as I leaned forward a bit.</p><p>"Can you tell me why you want to break the contract with Silug?"</p><p>"Because there's no longer a need for the two of us to be contracted anymore."</p><p>"Ah."</p><p>Indeed, now that I thought about it, Angelica and Silug no longer needed to be contracted together.</p><p>With Immorra conquered and with me no longer fearing Silug's betrayal, there was no need to keep him contracted with Angelica.</p><p>'Plus, I think the reason she doesn't want to be chained by him anymore is because she's now stronger than he is.'</p><p>He was essentially of no use to her anymore.</p><p>Plus, if he died or anything happened to him, Angelica would be the one to bear the brunt of his death.</p><p>It became clear to me that she no longer wanted to bear such a liability.</p><p>"Sure, I don't see why you shouldn't break the contract."</p><p>I gave her the go ahead.</p><p>That being said, she didn't really need to ask me for the contract break. Our relationship was different from that of the past. I trusted that she wouldn't betray me, so I didn't think there was a need for her to ask for my permission.</p><p>Still, the fact that she asked for my permission showed that she respected my opinion.</p><p>"What are you doing here?"</p><p>My attention then shifted toward Suriol who was standing a bit further away from Angelica and watching everything quietly.</p><p>Turning his head to look at me, he replied.</p><p> "I've come to assist her with the termination of the contract. Since they are both willing to break the contract, and since it is written in the contract that if both parties come to a mutual agreement to annul the contract, breaking the contract should not present any difficulties at all."</p><p>"My sole purpose in being here is to guarantee that everything proceeds in an orderly fashion. When one of the parties unexpectedly withdraws their consent to the annulment, there is a small chance that both parties will suffer a backlash as a result of this action. I'm here to make sure this doesn't happen."</p><p>He responded curtly and extremely formally which threw me back a bit. For a moment I thought he was a butler.</p><p>Before I could ask him anything else, he shifted his focus to Angelica, who nodded her head back at him with a solemn expression.</p><p>"I'm ready."</p><p>"Take out your contract."</p><p>Suddenly, a contract flew through the air after Angelica waved her hand in the air. It landed directly in front of her and Silug, who were facing each other but standing on opposite sides of the room.</p><p>'Neither party will harm the other during the duration of the contract.'</p><p>'Neither party will compel the other to do something they do not wish to do.'</p><p>Sitting down from where I was, I curiously examined the scroll containing words written in a demon tongue.</p><p>I had seen it before, but it had been a while, so I had forgotten what was written on the paper.</p><p>Regardless, my focus was suddenly drawn away from the scroll and back to Angelica and Silug, who were glowing with a dark purple color that slowly spread throughout the entire room.</p><p>"...A pity."</p><p>I raised my hand in the air to touch the demonic energy that was lingering in the air to see if I could control it, but I was disappointed to discover that it simply passed through my body, unlike psyons, which circulated like water around my body.</p><p>In contrast to psyons, demonic particles had a much greater thickness and moved at a much slower pace. However, despite their diminutive size, they were significantly bigger than psyons.</p><p>Their difference was the same as that between tennis balls and golf balls.</p><p>"We're done."</p><p>The process of breaching the contract as a whole didn't take very long as it was over before I knew it.</p><p>The demonic energy that had been seeping into Silug's body began to dissipate almost immediately after the contract was broken, and at the same time, a slight deflation occurred in his muscles.</p><p>"Fortunately, you didn't consume any devil fruits or things that could've caused your bloodline to thicken up. You won't suffer any backlash from this, although your strength has decreased a tiny bit."</p><p>The words spoken by Suriol caused Silug's face to become more gloomy as he stared at his shrunken muscles while the aura that surrounded his body writhed.</p><p>"Don't worry too much."</p><p>I went up to him with a warm smile on my face and extended a hand to pat him on the shoulder. I tried to reassure him while keeping an eye on Suriol, who was standing there expressionless.</p><p>The more I looked at him, the more he reminded me of a butler.</p><p>"I just reaped a bountiful harvest from the demon treasury, so you don't need to worry about regaining your strength."</p><p>As expected, the moment those words came out of my mouth, Suriol's face twitched.</p><p>I laughed to myself as I reflected on all the gains I had made in the treasury. There were a large number of strange herbs that I knew would be useful for Silug.</p><p>Upon giving him the herbs I acquired, there was no question that there would be a significant shift in his level of strength.</p><p>'By the time I come back, he'll most probably be &lt;SS&gt; ranked, or even higher.'</p><p>I didn't even need to consider how frightening Silug and the other orcs would become now that we've reclaimed the planet and gained access to numerous resources.</p><p>It appeared that I was not the only one who was excited, as Silug's expression also became animated.</p><p>"Is what you've said true?"</p><p>"Why wouldn't it?"</p><p>I retreated a bit to put some distance between Silug and I.</p><p>"I have no reason to lie in this situation. In addition, you should know how many herbs the demons must have stored in their vaults. Since I have no use for them, I see no reason why I shouldn't give them to you."</p><p>"Thank you."</p><p>Silug showed his appreciation by bending his head in a respectful manner.</p><p>'Now should be the time.'</p><p>I gazed at Silug with a serious expression on my face. I then waved my hand in the air and passed down a scroll to Silug.</p><p>"If you're thankful, sign it."</p><p>"What's this?"</p><p>"A mana contract. Although I said that I would give you the herbs, there is a condition for it."</p><p>Silug unfolded the contract and slowly read the contents, which were written in demonic language.</p><p>I continued speaking while he carefully read the contents.</p><p>"The condition is that you sign the contract and become my ally. When the time comes, I will need you, and your people to help me fight a large war against the demons. It will be a terrifying war, and I will need all the resources I can muster to fight it. You included. I under━"</p><p>"Okay."</p><p>Silug grabbed the contract and infused his aura into it, cutting me off in the middle of my sentence. The scroll that he held in his hand suddenly glowed and broke apart into thousands of particles as it shattered through the air.</p><p>The particles slowly floated toward mine and Silug's directions, and I felt another connection established inside of my body.</p><p>I looked at Silug with a surprised look.</p><p>"Why did you sign the contract so fast?"</p><p>He didn't even properly read through the terms that were written in the contract before signing it.</p><p>'I know orcs are rash, but isn't this a bit excessive?'</p><p>"Without you, none of us would've been alive until now. I would be more than glad to become your ally."</p><p>I was stunned by Silug's words.</p><p>A thin smile soon formed on my lips as I patted Silug on the shoulder.</p><p>"You're right I did."</p><p>'Looks like I didn't make the wrong choice in coming here.'</p><p>I was now a little bit closer to my plans. With the city slowly building and the orcs in my command, everything that needed to be done was finally done.</p><p>As I looked around and stretched my back, I looked at Angelica and said, "I guess we're done here. Looks like we will be going back to earth soon."</p><p>"Yes."</p><p>Angelica gave her standard icy reply as she sat down and closed her eyes shortly after. She projected the air of someone who did not wish to have their calm disturbed.</p><p>I shrugged my shoulders and prepared to get out of the room.</p><p>Right as I was about to exit the room, I unexpectedly heard Suriol's voice calling out for me.</p><p>"Wait."</p><p>My feet came to a pause, and I turned around.</p><p>"Is there anything?"</p><p>"...Yes."</p><p>Suriol looked at me from the other end of the room. Crossing his arms together, he drummed his fingers over his right arm and asked.</p><p>"Regarding the Prince ranked core, how long do you think it will take you to get it?"</p><p>'So it's about that.'</p><p>Somewhat expecting his question, I replied.</p><p>"No less more than four earth years, so at most forty years, and at best, fifteen years."</p><p>Suriol closed his eyes and proceeded to lower his head before mumbling in a soft voice.</p><p>"Okay, I think can wait."</p><p>"Hm?"</p><p>When I looked over at Suriol, I cocked my head to the side.</p><p>"Are you perhaps in a rush?"</p><p>"...I'm losing my strength."</p><p>Suriol's murmur reached my ear and my eyes sharpened.</p><p>'Losing strength?'</p><p>Could it perhaps have anything to do with his core? His next words instantly shed light on the matter.</p><p>"My core took greater damage than I anticipated during our battle. I fear that I will die if I do not receive a Prince ranked core within the next decade."</p><p>"Hmm."</p><p>As soon as my mood changed for the worse, my brows immediately knitted together into a tight frown.</p><p>'This is a bit problematic.'</p><p>A decade...that was about a year on earth. Would I really be able to defeat a Prince ranked demon in a year's time?</p><p>...I didn't think so.</p><p>I could put up a decent fight against one, but killing it? I really wasn't sure. It was all going to depend on what I did in the future, but as of right now, I was seriously skeptical about whether or not this was even remotely possible.</p><p>I raised my head to look at Suriol.</p><p>"Is there a way to buy more time? From the way I see things, defeating a Prince ranked demon within a decade seems a bit unrealistic."</p><p>The look on Suriol's face darkened, and he dipped his head in a manner that suggested he had accepted the reality of his situation.</p><p>My expression was just as dark as his.</p><p>'Damn it.'</p><p>Considering that a contract was binding us at the moment, if he were to pass away before I was even able to give him the Prince ranked core, I would suffer from the backlash of not completing the contract.</p><p>Although I did include a clause in the contract that stated it would be null and void in the event that one of the parties passed away due to circumstances that were unrelated to the other, the fact that I was the one who broke his core meant that this issue was in fact connected to me.</p><p>'Great, just great.'</p><p>While I waited for Suriol to respond, all I could do was mutter a silent curse at myself.</p><p>Just as the mood turned completely gloomy, Angelica opened her eyes and broke the silence. Her expression turned extremely complicated.</p><p>"There is a way."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-658.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-660.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 805 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 805 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-804.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-806.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Things were quiet in Immorra. As they had been for quite a while now.</p><p>The time for the impending war was about to come.</p><p>Everyone was sure of it, as they had been warned beforehand. The city streets of Immorra were filled with a palpable sense of unease, and individuals clad in armor were seen roaming the area.</p><p>"Are you ready? The portal should be opening anytime now."</p><p>Emma turned to Amanda, who had been keeping a low profile while standing next to her. She was standing still, staring silently over the vast area of land that was in front of her while her bow was firmly held in her hand.</p><p>How long had it been since she'd last seen him?</p><p>He had promised her he'd visit every week, which was about ten weeks in here, but…</p><p>'Liar.'</p><p>He had only come once in the past and never returned since.</p><p>She was obviously aware that he was most likely busy and that he did not have the time to visit, or perhaps there were other circumstances that prevented him from returning, but even so...</p><p>She still couldn't help but feel a little indignant over the situation.</p><p>It had been years since she had last seen him, and she missed him.</p><p>"Don't worry, we'll meet him soon enough. When we get there, you can scold him or beat him to your heart's content however you see fit."</p><p>"Mhm."</p><p>Amanda nodded her head at Emma's words.</p><p>Indeed, she was going to be seeing him soon…</p><p>She wasn't sure whether she'd beat him, or scold him like Emma was saying, but she was certainly not going to let this slide once everything was over.</p><p>"It looks like the two of you are ready."</p><p>Right then, Jin appeared in the distance.</p><p>He was wearing a black coat and had his hands in his pockets as he walked calmly toward them. A cigarette was wedged between his lips, and as he inhaled, smoke drifted out into the air.</p><p>Pinching the cigarette with his fingers, Jin let out a puff and flicked it away.</p><p>"Are the two of you ready?"</p><p>"We've prepared as much as we could've."</p><p>Emma responded while her hand softly caressed the hilts of her short swords that were resting on her hips.</p><p>"I've made quite some progress, but… well, I'm not exactly where I want to be."</p><p>"Oh."</p><p>Jin nodded his head and turned his head to look at Amanda.</p><p>"What about you?"</p><p>"Same."</p><p>She answered, biting her lips.</p><p>Her progress over the last five years has been nothing short of phenomenal.</p><p>Counting the time she spent in Immorra, she was about 28 this year, and in that time, she managed to go all the way to &lt;S+&gt; rank.</p><p>Her progress was staggering.</p><p>She was at the same level as Monica was when she was her age, which was an accomplishment that was once thought to be nearly impossible to achieve.</p><p>Having said that, the mana at the moment was quite a bit denser than it was back then, making her progress a lot faster than before, but despite this, she was unquestionably a level above those who were the same age as her.</p><p>In fact, she felt close to reaching &lt;SS-&gt; rank too.</p><p>She was just a step away from it, and she could feel it.</p><p>But that was where the problem lay.</p><p>Her age.</p><p>She…</p><p>She was still too young, and with that, she knew that she was still not good enough to be considered someone strong enough to leave a mark on the war.</p><p>Simply put, she was not satisfied with what she had achieved.</p><p>She wanted more.</p><p>"There are more people coming."</p><p>One by one, more and more people started to fill the land. There were a lot of familiar faces. Ones that Amanda knew very well and was familiar with.</p><p>"It looks like everyone has improved a lot, especially the orcs."</p><p>Pointed out by Emma, Amanda's eyes squinted, and her gaze fell on a group of orcs in the distance.</p><p>She was taken aback by the pressure that was emanating from their bodies. It was completely different from anything else she had ever experienced.</p><p>'It's true; they've improved a lot.'</p><p>…and not just by a small margin.</p><p>"It appears like this place truly was useful for their improvement."</p><p>Jin remarked, seemingly impressed by what he saw.</p><p>After the orcs had made their appearance, it was the turn of the dwarves, and they roared while wearing cumbersome suits that covered their entire bodies like some kind of futuristic mech.</p><p>With each step that they took, an imprint would be left behind on the ground, and while they were holding onto large artifacts that resembled guns, they began to assemble in the area that surrounded them slowly.</p><p>The elves were the very last to arrive, and in place of their customary ornate attire, they wore leather armor with intricate purple rune decorations that intermittently appeared and vanished.</p><p>"It looks like every—"</p><p>Emma was never given the opportunity to complete her sentence.</p><p>'Uh? Eh?'</p><p>At precisely the moment that Amanda's attention was drawn to the elves, the world abruptly began to spin and went completely white.</p><p>She didn't have much of an idea what was going on, but she didn't have much time to think about it as her entire body started to spin.</p><p>"Huuaaa"</p><p>Thump!</p><p>Before she realized it, she felt her body land on something hard, and she took a deep breath. Instantly, her lungs filled up with air, and her mind cleared up once again.</p><p>After she came to, she noticed that her body had begun to sink. She reached her hand behind her to pull herself up, and as she did so, she felt a rough texture, and her hand began to sink as well.</p><p>"Uh? Where am I?"</p><p>When she looked around, she was stunned to see that she was in a desert like landscape.</p><p>Sand dunes dominated her peripheral vision, and a blood-red sun hung in the sky above her. The sky was a dark gray color, and the air was very dry.</p><p>She was surrounded by sand.</p><p>"What's going on?"</p><p>As she looked around her in disbelief, a plethora of questions started to run through her head. Despite all the questions she had, she managed to keep her composure and slowly help herself up.</p><p>When she looked around, she saw that she was the only one present in the desolate world.</p><p>…Or so she thought.</p><p>"Hm, there's someone else over there?"</p><p>She hesitated.</p><p>With her sharp eyes, she was able to catch a glimpse of a figure in the distance.</p><p>They had human features and appeared to be wandering around without a destination. They appeared to be a male, but their face was old and wrinkled, and their eyes were sunken in... as if they hadn't eaten anything for a very considerable amount of time.</p><p>He had both hands on the ground, and his back was hunched as he took hesitant steps forward while wandering around aimlessly.</p><p>He seemed desperate for help.</p><p>'Could it be a trap?'</p><p>Amanda pondered while she kept her gaze fixed on the person off in the distance.</p><p>He wasn't very strong, but she never evaluated someone based on how strong they appeared on the surface.</p><p>She had learned her lesson the hard way.</p><p>Answers were what she needed at the moment, and the human over there might have been able to give her the answers that she was looking for, but after giving the matter some thought for a while, Amanda shook her head and decided against approaching the human.</p><p>'It's too risky.'</p><p>In this unfamiliar world, Amanda knew better than to trust anyone.</p><p>The only one she could trust was herself, and thus, turning her gaze away from the human, she ran in the opposite direction.</p><p>One way or another, she was going to find her answers.</p><p> Swoosh!</p><p>As her form faded into the distance, the surrounding area went back to its previous state of utter silence.</p><p>A split second after Amanda's figure vanished, the human who Amanda had been looking at before halted, and his eyes landed on the spot where Amanda had gone.</p><p>Crack. Crack.</p><p>A series of cracking sounds erupted out of nowhere, and the figure suddenly began to mutate, transforming into the appearance of a tall and menacing demon.</p><p>"Hmm, and here I thought my disguise was perfect."</p><p>His words seemed to carry some sense of disappointment; however, the smile that was on his face made it seem otherwise.</p><p>"She's quite the sharp one."</p><p>He commented again, turning his gaze away from her and looking around him and feeling the thousands of different lives around him.</p><p>The smile on his face depended, and the world around him started to twist.</p><p>Swoosh! Swoosh! Swooosh!</p><p>The demon didn't even bother to turn around to look at the over a thousand figures that had suddenly materialized behind him before issuing his command.</p><p>"Go on…"</p><p>He softly said.</p><p>"…have all the fun that you want."</p><p>With a broad smile, he continued.</p><p>"Welcome them to the Pillar of Wrath."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-804.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-806.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 558 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 558 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-557.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-559.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"That..."</p><p>Feeling Edward's gaze on me and staring at Amanda who was closely staring at me, I was left speechless and silently glared in Amanda's direction.</p><p>'Do something.'</p><p>I urged her with my eyes.</p><p>Turning around, Amanda looked at her father.</p><p>"Yes?"</p><p>"Ehhh..."</p><p>Alternating his gaze between Amanda and I, Edward looked to be at a loss for words. He eventually managed to speak.</p><p>"A..are you trying to take revenge for what happened this morning?"</p><p>Unexpectedly, and much to my confusion, Edward talked about something else entirely.</p><p>I glanced at Amanda who gazed at me from the corner of her eyes, and brushed her hair behind her ear.</p><p>"You finally understand?"</p><p>"Ugh."</p><p>A difficult look appeared on Edward's face. Soon, his shoulders slumped.</p><p>"Alright, I'm sorry."</p><p>After that, he proceeded to walk all the way toward the elevator.</p><p>The sudden turn of events left me dumbfounded as I pointed in his direction.</p><p>"What's up with him?"</p><p>"...Nothing."</p><p>Amanda gazed at her father's back.</p><p>"Mh~"</p><p>Stretching her body a bit she hummed in joy.</p><p>"Let's just say I took a little revenge for what he did this morning."</p><p>"At my expense?"</p><p>Without answering, Amanda flashed a small smile.</p><p>Taking a small step forward, she followed her father toward the elevator.</p><p>"I'll see you soon."</p><p>She whispered as she got into the elevator. The elevator doors soon started to close, and the last thing I heard was Edward's faint whispering voice.</p><p>"Hey, Amanda, that was a prank, right? There's nothing really going on between you two, right?"</p><p>"Maybe?"</p><p>"Ey, Amanda. This is not f—"</p><p>Clank—!</p><p>***</p><p>"This should be all."</p><p>With a satisfied smile on his face, Kevin clapped his hands together. In front of him were two large bags filled to the brim with goods.</p><p>With a wave of his hands, the two bags magically disappeared.</p><p>After that, Kevin tapped the air with his finger. A translucent blue screen formed in front of him.</p><p>[Quest.]</p><p>Information : Stop the Demon King from consuming this planet.</p><p>Location : Cassaria.</p><p>Goal : Stop the demon corruption of the planet.</p><p>Rank : &lt;A-&gt; +</p><p>Requirement for transportation : &lt;A&gt; ranked core.</p><p>Total people : Three.</p><p>Reward : [Demon King Ascension + 1 year.] [Minor realm rank up.] [Synchronisation + 15%]</p><p>Penalty : [Demon King Ascension - 1 year.]</p><p>===</p><p>"...I hope I'm not too late."</p><p>He had been delaying this quest for quite a while now, and he was finally going to embark on this new trip.</p><p>"Phew."</p><p>He let out a sigh of relief.</p><p>"Fortunately, it doesn't look like the delay has caused the mission to become harder."</p><p>Kevin feared that his delay in the mission would've increased the mission's difficulty.</p><p>Fortunately, it turned out to be a needless worry since the system prompt remained the same.</p><p>"I better get going."</p><p>Turning his wrist to glance at his watch, Kevin headed out of the door.</p><p>"Ah, right."</p><p>When he was about to leave, his feet slowed. As he turned around, he glanced at a picture frame positioned on top of one of his desks.</p><p>There were two people in the picture. Both bear a striking resemblance to Kevin.</p><p>Moving to the picture frame, he slowly caressed it and his face softened.</p><p>"Mom, Dad, I'll be leaving for a bit now..."</p><p>The faint sound of his voice echoed through the room.</p><p>"...It's going to be a dangerous mission. One that might force me to leave this place for quite a long time, but strangely enough, I don't think there will be much trouble. I've got two reliable people coming with me..."</p><p>A faint smile spread across his face as he scratched the side of his nose.</p><p> "They both are weird in their own way, but I trust them, so...I'll be coming back soon." </p><p>Touching the frame, Kevin slowly closed his eyes.</p><p>"I hope you don't miss me too much while I'm gone."</p><p>***</p><p>"Haaa…"</p><p>After parking my car and getting out, I gazed at the distant warehouse.</p><p>Closing the car door and heading there, I sighed.</p><p>'What a headache.'</p><p>The mere thought of what had happened not too long ago caused my head to hurt.</p><p>Recalling Edward's last words, I involuntarily let out another sigh.</p><p>"He definitely suspects that something happened..."</p><p>This was going to be troublesome.</p><p>Beep—!</p><p>By pressing my hand against the wall, the metallic door that led to the warehouse automatically opened.</p><p>"Who are you guys again?"</p><p>I heard a familiar voice in the distance as I entered the warehouse. It was shortly after followed by more voices.</p><p>"Oh god."</p><p>"Just how bad must your memory be if you can't even remember what someone told you ten minutes ago?"</p><p>"Hein, do something."</p><p>"Me? What am I supposed to do?"</p><p>"I don't know, maybe try knocking your shield against his head. That should knock some sense into him."</p><p>"…But it'll get dirty."</p><p>As I was far, I couldn't quite understand what they were arguing about. But without a doubt, it was probably something annoying.</p><p>Walking toward the main lobby and opening the door, I spoke up.</p><p>"What's going on?"</p><p>My words immediately ended the argument, and everyone turned their attention to me.</p><p>"Ren!"</p><p>"You're finally here!"</p><p>"Finally!"</p><p>To my surprise, the moment I arrived, the rest of the group rushed toward me with bright looks on their faces. They looked like children who had just found their parents.</p><p>'What's going on?'</p><p>Their reaction instantly raised alarm bells inside my head. When had any one of them ever greeted me like this?</p><p>There was definitely something fishy about the situation.</p><p>"Ren I've been trying to contact you since last night. Why didn't you answer my calls?"</p><p>Smallsnake was the first to complain, looking rather haggard. Staring at him, my eyes flashed with pity.</p><p>'He must have gone through a lot.'</p><p>"Did you just pity me?"</p><p>"Just your imagination."</p><p>After taking out my phone and checking it, my brows raised slightly. This was because I had noticed that I had over 20 missing calls.</p><p>"Ah, you're right. You really did call me several times."</p><p>"You think?"</p><p>Smallsnake rubbed his forehead.</p><p>"I know that you're busy with a lot of stuff, but what do you think will happen during an emergency if you don't answer?"</p><p>Scratching the side of my head, I apologized.</p><p>"…You're right."</p><p>To be honest, I had never experienced stuff like this in the past as I always tended to check my phone.</p><p>Yesterday was the only exception, and for so much to happen on the exact day that I did not check my phone, I could only blame my bad luck.</p><p>Really.</p><p>"I'll make sure to pay close attention to your call next time."</p><p>After putting the phone away, I looked around the room. I wanted to see exactly what was causing Smallsnake to be so distressed.</p><p>My confusion grew as I looked around and saw nothing.</p><p>"Mhh, what is the emergency? Everything looks fin—"</p><p>My eyes locked in a certain direction halfway through my sentence, and I suddenly stopped speaking.</p><p>"Lightning Dragon?</p><p>It was there that I spotted a familiar face. With his long hair falling down his shoulder and signature yellow eyes, Lightning Dragon leaned against one of the tables.</p><p>Similarly spotting me, he greeted.</p><p>"Yo."</p><p>"…Yeah, I just arri—"</p><p>"Hold on."</p><p>I was cut off by Smallsnake, who alternated his gaze with Lightning Dragon and me.</p><p>It was then that he looked straight into my eyes.</p><p>"He actually remembers you?"</p><p>"Hm? Yeah."</p><p>What kind of question was that?</p><p>Of course he remembered me. It'd be weird if he didn't recognize me.</p><p>"Ah!"</p><p>But it was at that moment that I suddenly recalled something.</p><p>Raising my hand to cover my forehead, I gazed at the others and finally understood what was happening.</p><p>A wry smile spread across my face as I turned my attention back to Smallsnake.</p><p>"He has memory problems."</p><p>"No shit."</p><p>Smallsnake answered as he glared in my direction.</p><p>Shifting my head a little I silently muttered.</p><p>"...kind of rude."</p><p>"As if you were never rude..."</p><p>Smallsnake grumbled with his arms closed.</p><p>"I don't think you understand how much trouble he caused the moment he walked in."</p><p>"...I don't."</p><p>I wasn't exactly there to see it. However, Smallsnake's words sounded rather ominous as I suddenly felt an ominous promotion.</p><p>Glaring in lightning Dragon's direction, Smallsnake raised his voice.</p><p>"The first thing he did as soon as he came into the warehouse was attack us!"</p><p>"Attack you?"</p><p>I dumbfoundedly stared at Lightning Dragon.</p><p>'Seriously?'</p><p>"Yes! Not just me, but everyone else in here!"</p><p>'Oh god.</p><p>While staring in Lightning Dragon's direction, I couldn't help but feel a massive migraine coming my way.</p><p>Taking a deep breath, I looked at Smallsnake.</p><p>"Everyone seems to be fine at the moment. It was probably a short fight, right?"</p><p>"Do you see Leopold and Angelica anywhere?"</p><p>Smallsnake suddenly asked.</p><p>Glancing around the room, I shook my head.</p><p>"Now that I think about it, I don't see either of them."</p><p>"Obviously not! The two of them are injured upstairs. What's with the monster you brought?"</p><p>Smallsnake stared at Lightning Dragon with lingering fear in his eyes.</p><p>The same could be said for the remaining others in the room. He was clearly reminiscing the vents that happened not too long ago.</p><p>"Hm? What about Han Yufei?"</p><p>Then I noticed one person was missing. It was Han Yufei. "</p><p>"Him?"</p><p>Famously known as the babysitter of the group[, Smallsnake was quick to answer.</p><p>"He's gone to the place you told him to go. He should be back by noon."</p><p>"Ah, I see."</p><p>'He's a lot faster than I expected.'</p><p>After I gave him the Gravar-style location, he immediately rushed there without wasting a moment.</p><p>As expected of him. He was efficient.</p><p>Scratching the back of my head, my eyes became serious.</p><p>"How badly injured are Angelica and Leopold?"</p><p>"Fortunately, not by much."</p><p>Smallsnake sighed in relief.</p><p>"We were somehow able to calm him down after one of us shouted your name. From there we were able to figure one thing."</p><p>"Oh?"</p><p>My curiosity was piqued.</p><p>"What did you figure out?"</p><p>"...That everything is your fault."</p><p>"Oy."</p><p>"No need to deny the truth."</p><p>After staring at Smallsnake for a few seconds, I shook my head.</p><p>"...All right, fine."</p><p>It was indeed my fault. When I decided to have him come directly to me, I probably should have thought more carefully.</p><p>'Maybe I should've written in the letter 'Don't beat people up'. Not sure...'</p><p>"Let me handle the situation from now on."</p><p>In any case, I was glad the situation didn't escalate any further. Given Lightning Dragon's strength, he could've most likely beat everyone present apart from maybe Angelica who strangely seemed to have lost.</p><p>'I'll have to check up on that.'</p><p>After patting Smallsnake on the shoulder, I walked toward Lightning Dragon.</p><p>"Lightning Drago—."</p><p>"It's Liam."</p><p>Lightning Dragon suddenly interrupted me.</p><p>I was taken aback for a moment.</p><p>"Scuse me?"</p><p>"I'm Liam, not Lightning Dragon."</p><p>"Ah, right."</p><p>Indeed. Lightning Dragon was just a made-up nickname for the arena.</p><p>Now that he was no longer there, there was no need for me to call him by his nickname.</p><p>Stopping in front of him, I pointed toward myself.</p><p>"You remember me, right?"</p><p>"I do."</p><p>Liam's answer was fast and quick. Surprising me and the others in the room.</p><p>"That's great."</p><p>I nodded my head in satisfaction. I was glad he remembered me. Now things would be much easier.</p><p>Unfortunately, my joy was a bit premature, as his next words almost knocked me over.</p><p>"I do remember who you are, but I don't know why I'm here."</p><p>"...Seriously?"</p><p>"Yeah."</p><p>My lips smacked together.</p><p>I had already lost count of how many times I wanted to facepalm my face by now.</p><p>Turning around, I waved my hand at Liam and urged him to follow.</p><p>"Follow me for now. I'll tell you the details soon. I think I know of a way to solve your memory problems."</p><p>"...Ehh, okay."</p><p>Nodding his head, Liam complied and followed me into my office.</p><p>Just as I was about to leave the lobby, I turned to look at Smallsnake.</p><p>"Ah right, before I forget, a couple of people will come soon. Notify me when they come."</p><p>"Who is c—"</p><p>I had already left before Smallsnake could finish his words.</p><p>I was in a bit of a hurry. Solving Liam's memory problems was the current priority.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-557.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-559.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

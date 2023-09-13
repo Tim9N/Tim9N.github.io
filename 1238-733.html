@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 733 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 733 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-732.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-734.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The circumstances surrounding the three Grandmasters became widely known throughout the entirety of the world. Everyone, whether they were children or adults, was in some way presented with the news.</p><p>It was that viral.</p><p>Almost everyone…</p><p>"Shit, I fucked up again."</p><p>Melissa readjusted her glasses while clicking her tongue in annoyance. In front of her were a few test tubes that were releasing a gas that had no discernible odor.</p><p>She looked at Rosie.</p><p>"How many failed samples does that make?"</p><p>"About a hundred."</p><p>"The cost?"</p><p>"Over one hundred million U."</p><p>"I see…"</p><p>Melissa gave a subdued nod of her head as her hand made its way toward her chest, and she clenched her clothes. Her heart was hurting.</p><p>"What's our current budget?"</p><p>"We're almost out."</p><p>"I see…"</p><p>Melissa proceeded to sit down on a nearby stool.</p><p>She couldn't feel her legs.</p><p>With quivering lips, she weakly looked toward Rosie.</p><p>"Say… how much do you think I'd get if I sold my body?"</p><p>"You what?"</p><p>The expression on Rosie's face went through a series of abrupt changes as she was rendered speechless.</p><p>"Useless."</p><p>Melissa turned her head away from her and continued to gaze at the test tubes in front of her. She was close. She could feel it.</p><p>'So long as I get the formula right…'</p><p>"Tsk."</p><p>She clicked her tongue once more and took out her phone.</p><p>The first thing that she did was look over her research funds and determine the precise amount that was still available to her.</p><p>[3,563,000U]</p><p>Her lips quivered at the sum.</p><p>"M,maybe I should really sell my body."</p><p>Ding―!</p><p>At that precise moment, her phone started to ring. Melissa picked up the phone while frowning and responded to the call.</p><p>"Yes?"</p><p>[Mrs. Hall, there's a guest that wants to meet you downstairs.]</p><p>"Does he have an appointment?"</p><p>[No.]</p><p>"Then kick him out."</p><p>She hung up the phone shortly after that.</p><p>Massaging her head, she leaned her elbow against the table.</p><p>"I think I should start by cutting down the staff."</p><p>She'd already told them beforehand not to disturb her with trivial matters. The fact that they called her for something as useless as that annoyed her.</p><p>"…I wouldn't do that if I were you."</p><p>Her ears were startled by a sudden whisper, and she leaped to her feet in surprise.</p><p>"Huh?! Who the fuck are you?!"</p><p>As soon as she turned around, she saw a young man with dark hair and blue eyes. He appeared to be about her age and had a smile on his face.</p><p>For some reason, Melissa found herself annoyed. Why was she feeling so aggravated by the smile that was plastered on his face?</p><p>It made no sense since she'd never seen him before. Having said that, she did not have time to ruminate on it as she immediately stood up and moved backward.</p><p>An artifact quickly appeared in her hand and she pointed it in his direction.</p><p>"Who are you, and how did you get here?"</p><p>***</p><p>This was worth it.</p><p>It had been quite a long time since I'd seen Melissa this panicked, and I couldn't help but feel some sort of sense of accomplishment from it.</p><p>'I should've recorded it…'</p><p>"I'll ask you again, who the fuck are you?!"</p><p>Melissa's voice brought me back to reality. Looking at her, I raised both hands.</p><p>"Let's calm down for a good minute. I mean no har… don't look at me like that."</p><p>"Seriously?"</p><p>Melissa's face said it all. It was as if she was staring at an idiot.</p><p>"Do you actually expect me to believe your words when you suddenly broke into my lab without anyone knowing?"</p><p>"Ehm."</p><p>I scratched the back of my head.</p><p>She had a point.</p><p>"Okay, fair enough, but I truly don't mean any harm. If I did, I would've already done something to you by now."</p><p>"Good point."</p><p>Melissa lowered the artifact in her hand. It resembled a gun, but it was far from one. It didn't have any bullets and curved at weird angles.</p><p>She looked behind me and pointed.</p><p>"What did you do to her?"</p><p>I turned around to look at her assistant, who was standing behind me. She appeared to be completely motionless and without any expression at the moment. When I looked at her, memories from the past came flooding back to me, and my heart chilled.</p><p>"Don't worry about her, she's fine."</p><p>"She doesn't look fine."</p><p>"She's fine."</p><p>I could release her if I wanted to, but I wasn't going to.</p><p>It may have been a long time ago, but I wasn't one to forget the past. Even if they belonged to another world.</p><p>Who was she to make fun of my name?!</p><p>"Haa.."</p><p>Melissa sighed before sitting down.</p><p>"Fucking hell."</p><p> As usual, she threw out a curse, and I smiled.</p><p>"Are you finally willing to listen to me?"</p><p>She threw a glare at me.</p><p>"Do I have a choice?"</p><p>"You do."</p><p>I nodded in a serious manner.</p><p>"If I do, then I don-"</p><p>"It's just that you need to ask my permission for the choice."</p><p>"…"</p><p>Her glare grew more terrifying, but I paid no mind to it. I was seriously enjoying myself at the moment.</p><p>Finding a stool, I sat down.</p><p>"Alright, let's get down to business."</p><p>To be honest, I had no idea why I was currently talking to Melissa nor had any idea why I was proposing a deal with her.</p><p>However, according to Matthew, if I wanted to find out more about the current situation, then I had no choice but to interact with her.</p><p>"From what I've heard, you seem to lack money, right?"</p><p>"Yes."</p><p>Melissa sighed while raising her glasses a little.</p><p>"I'm impressed by your stalking skills."</p><p>I smiled and paid no mind to her comments. Demonic Melissa was worse than her.</p><p>"I'll keep this short. I'll give you several important recipes and formulas in exchange for a small percentage of the profits."</p><p>"How much is a little?"</p><p>"Like five percent."</p><p>"That little?"</p><p>Melissa seemed rather surprised by the offer, and to be honest, I would be too, but it didn't really matter to me.</p><p>I was in no need of money.</p><p>The opportunity to engage further with her was the sole factor in my decision to accept a share of the profits. If it turned out that she was one of the clues I needed to get out of here, then doing this was necessary.</p><p>I looked at her.</p><p>"You seem to trust my words quite a bit."</p><p>"No?"</p><p>She threw me the same look as before. My mouth twitched a little.</p><p>"Since I have no choice, then I might as well accept your words. Let me make this clear, I don't trust you at all."</p><p>"Fair enough."</p><p>She made a good point.</p><p>I massaged my forehead a bit, then stood up and walked towards her.</p><p>"What are you doing?"</p><p>Melissa immediately stood up and moved back.</p><p>I rolled my eyes at her actions.</p><p>"Don't worry, I already have a girlfriend."</p><p>"…That doesn't mean shit."</p><p>She covered her body with her arms.</p><p>"…"</p><p>I ignored her and extended my finger toward her head. She tried to resist, but how could she? The gap in our strength was astronomical.</p><p>When my finger finally made contact with her forehead, she immediately lost consciousness. After that, a flood of information poured into my head as I shared several of my memories with her. They were the ones containing the recipes and potions I'd promised her.</p><p>'That should do it.'</p><p>I took my finger away from her head and tried to absorb the information that I had managed to get from her memories.</p><p>'It might take a while for me to absorb everything.'</p><p>Sitting down, I crossed my arms and went through each of them carefully. The chip inside my head quickly got to work, and over a thousand different bubbles flashed within my head.</p><p>My head throbbed, but I remained composed.</p><p>I had no idea how long I had been like this, but I soon heard Melissa's startled voice coming from in front of me, and my eyes opened.</p><p>"Is the information you've given me real?"</p><p>Her eyes had a strange glow in them as she gazed at me.</p><p>It was now my turn to take a step back.</p><p>"It is…"</p><p>"Are you fucking kidding me? Where have you been my whole life?!"</p><p>Her eyes glowed even more. She was practically salivating at this point, and I felt the back of my head tingle.</p><p>I took a couple more steps back.</p><p>"Let's have some boundaries."</p><p>"Fuck off."</p><p>Rolling her eyes, she turned away from me and dashed toward a certain section of her lab. When I saw that, I let out a sigh of relief, but my mood quickly changed for the worse.</p><p>'I think I have an idea of what the clue is…'</p><p>My face twisted a little at the thought.</p><p>My feelings were all over the place as I watched Melissa, who was smiling and laughing as she happily took out her notes and flipped through them. If my guess was correct, then…</p><p>"This is bad."</p><p>I let out a soft breath and turned toward the entrance of the lab.</p><p>When I saw that Melissa was completely focused on what she was doing, I knew there was no point in trying to talk to her anymore. I accomplished the purpose of my visit regardless.</p><p>'I really hope I'm overthinking things...'</p><p>As I approached the door, I reached out to grab the handle; however, just as I was about to do so, the door unexpectedly opened, and I saw a familiar face appear in the space before me.</p><p>The figure froze in place as soon as it caught sight of me, but not long after that, his haughty voice resounded out loud while a murderous aura emanated from his body.</p><p>"Who are you?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-732.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-734.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

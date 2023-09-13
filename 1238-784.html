@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 784 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 784 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-783.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-785.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Demon Domain, Kuzma City]</p><p>"Attack!"</p><p>"Charge forward!"</p><p>"Raise your shields and charge!"</p><p>The orcs charged forward, their roars echoing through the air as they attempted to breach the demon city.</p><p>Rumble! Rumble!</p><p>The sound of their footsteps reverberated across the ground as they ran toward the towering walls. The walls themselves were fortified with layers of thick stone, with towers and battlements dotting the top, bristling with weapons and soldiers.</p><p>The orcs brandished their weapons - crude axes, spears, and swords - and began pounding against the walls with all their might.</p><p>Clank! Clank!</p><p>The sound of metal on stone rang out as they smashed their weapons against the unyielding surface, hoping to make a crack in the demon's defenses.</p><p>The demons atop the wall retaliated with volleys of different spells and arrows, raining down on the orcs like a deadly hailstorm. The twang of bowstrings mixed with the screams of dying orcs as they fell to the ground below, their bodies broken and lifeless.</p><p>"Argh!"</p><p>"Akh!"</p><p>"Continue to charge!"</p><p>But the orcs were undeterred, their sheer numbers giving them unrelenting momentum as they continued to throw themselves against the walls, stepping over their fallen comrades.</p><p>"Charge!"</p><p>They had no regard for their own safety, only a fierce determination to break through the defenses and conquer the city.</p><p>As the battle raged on, the orcs tried everything in their power to breach the city's walls.</p><p>They brought forward battering rams, hoping to smash through the gates, but the demons were ready for them.</p><p>The rams were met with a rain of flaming arrows, igniting the wooden frames and sending them crashing to the ground.</p><p>Boom―! Boom―! The walls of the city shook every time the orcs rammed against them, but as if they were made out of the sturdiest of materials, they didn't budge an inch.</p><p>"Continu-ahgh!"</p><p>The orcs continued to ram the walls, but it proved to be a futile endeavor.</p><p>Not only were they unable to break through the walls, but with each passing second, they suffered an increasing number of casualties as well.</p><p>"Khhh…khhh… This is not good."</p><p>Brutus muttered, overlooking the entire battlefield from afar.</p><p>He wielded a massive war axe in the palm of his hand. Because it was so heavy, the ground beneath the axe began to slope downward.</p><p>Brutus took his time as he brought the axe up to rest on his shoulders, all the while keeping his eyes fixed on the walls off in the distance.</p><p>"Commander…"</p><p>Right then, a voice rang next to his ears. When he turned his head, his eyes focused on a lanky Orcen warrior.</p><p>"What is it… strategist."</p><p>"About that…"</p><p>The strategist caressed his hands and glanced at the walls in the distance.</p><p> Right as he realized how serious the circumstance was, he turned his attention back to Brutus and shared his thoughts with him.</p><p>"If possible, could you do something about the…"</p><p>"That's impossible."</p><p>He was abruptly refused before he even had a chance to state the nature of his request. The face of the strategist turned pale, and just as he was about to continue speaking, he was abruptly cut off in the middle of his sentence.</p><p>"But why!? If you-"</p><p>"I said that's impossible."</p><p>Brutus shook his head once more, his gaze turning ferocious.</p><p>The strategist immediately flinched at the gaze and hastily lowered his head.</p><p>He knew that he was out of line…</p><p>"Do you think I want to stand here and do nothing?"</p><p>Brutus said all of a sudden, and the strategist raised his head.</p><p>"Yes?"</p><p>"Strategist, you should know me better than anyone by now. Do you really think I'm someone who would just stand idly and do nothing while my brethren suffer?"</p><p>"N,no."</p><p>The strategist shook his head, processing those words extremely carefully.</p><p>"…Then you should know that if I'm not acting, it's not because I don't want to, but because something is preventing me from acting."</p><p>"Preventing you?"</p><p>The strategist at last gave off the impression of having comprehended something, and he hurriedly turned his head to look at the city off in the distance.</p><p>"Is there something that's preventing you from moving? … Could it be."</p><p>A sudden thought occurred to the strategist, and his expression paled.</p><p>"That's correct."</p><p>Brutus smiled to himself as he nodded his head, content that the strategist had finally grasped the concept behind his passivity.</p><p>"…If I were to act right now, I'd attract the attention of the Prince Kuzma. If that were to happen, and the two of us were to fight, what do you think would happen to the battlefield?"</p><p>A battle between Brutus and Prince Kuzma… not only would the after effects of their battle reach the entire battlefield, but the losses that would be sustained because of it would be immense. Far greater than what it was at the moment.</p><p>"I… I didn't think of that."</p><p>The strategist hung his head in embarrassment.</p><p>He was given the title of strategist for this conflict; however, in reality, he was not nearly as intelligent as the strategist who represented the other races. He was head and shoulders above those of his own race, but when measured against the others, he came up short.</p><p>Something like this… he should've seen through it from the very beginning.</p><p>He had failed as a strategist.</p><p>"It's alright."</p><p>Right then, Brutus patted him on the shoulder. Although he maintained a fierce expression, the level of ferocity in it was noticeably less intense.</p><p>"The situation is still not impossible for us to reverse."</p><p>"You mean…"</p><p>The eyes of the strategist lit up with excitement, and he quickly raised his head. He was met with Brutus's slight nod.</p><p>"Yes, there's a way for us to win the war. It's not completely over."</p><p>The words spoken by Brutus stoked the fire that was already present in the mind of the strategist, and he immediately began running through all of the various possibilities in his head.</p><p>After a short while, he raised his head in surprise.</p><p>There was also a noticeable shock and unwillingness to it.</p><p>"Commander!"</p><p>"You've figured it out? If you did, go ahead and carry out the plan."</p><p>When Brutus looked at him with a knowing look, the strategist's expression changed into something strange.</p><p>In the end, he let out a sigh.</p><p>"…I understand."</p><p>The strategist spun around with his shoulders hunched and walked briskly in the direction of one of the tents that they had erected in advance.</p><p>Brutus's expression underwent a change immediately after the strategist turned around and left.</p><p>He inhaled deeply before murmuring something to himself in a low voice.</p><p>"This is the only way…"</p><p>***</p><p>[Demon Domain, Plintus City]</p><p>"Have you managed to take away everything?"</p><p>When I looked around and noticed that the once-full treasury was now completely bare, I felt rather satisfied.</p><p>Even though almost half of the resources we gathered couldn't be used by us because they were infused with demonic energy, we still collected all of them, and while it was true that most of them couldn't use the items laced with demonic energy, it wasn't true for me.</p><p>'…I guess it wasn't a bad idea to ingest demonic blood.'</p><p>With the Nectar partially solving my mental problems, I was now able to handle the demonic energy a lot more smoothly, and with that, I was also able to steadily use the demon fruits and resources that I got from the demons without worrying about the repercussions.</p><p>I still had to be careful, though.</p><p>Just because most of my mental problems were solved by the Nectar, I wasn't unaffected by the effects of the devil's fruits.</p><p>I only had one portion left of the Nectar, and all it did was clear up what problems that I already had.</p><p>After eating another piece of demon fruit, the problems with the voices and the metal would come back.</p><p>The Nectar was not something that counteracted their effect in its entirety; rather, it only counteracted the effect that was already present. In the event that something came up later, it wouldn't be able to do anything.</p><p>'It's like if I stab myself. A potion will heal me of all the problems, but if I keep stabbing myself, then the problems will just come back.'</p><p>The Nectar was, in a way, just a partial solution to the bigger problem.</p><p>And unfortunately, unlike potions, I had a finite supply of it.</p><p>"Still, I've made good progress."</p><p>My strength was increasing all the time, and with the arrival of this fresh supply of resources, I was confident that it would continue to rise even further.</p><p>Jezebeth's level…</p><p>While I still wasn't close, I felt myself growing closer to it.</p><p>He wasn't a wall that I couldn't see the end of anymore.</p><p>…Given a bit more time, I knew that I had a good shot at fighting against him.</p><p>―Ren, there's something.</p><p>My ear suddenly filled with the sound of Ryan's voice, and I immediately lowered my head to check on my watch.</p><p>Raising my wrist, I spoke.</p><p>"What's going on?"</p><p>―It's best if I show you.</p><p>His enigmatic words confused me even more, and my curiosity started to pique.</p><p>All of a sudden, my wrist trembled.</p><p>"Huh?"</p><p>Ding―!</p><p>And a notification suddenly popped up on my screen. Looking at the message that had appeared on my wrist, my eyes opened up in surprise.</p><p>[Official Request for Backup.]</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-783.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-785.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

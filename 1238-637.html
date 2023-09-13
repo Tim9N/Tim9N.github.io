@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 637 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 637 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-636.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-638.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"It's been a while since I've last seen you smile."</p><p>Amanda approached me after I came out of the room. Her face was unusually serious.</p><p>I turned to look at her while cocking my head.</p><p>"You think so?"</p><p>I never really noticed myself if I had to be honest...but it wasn't as though I was surprised by this development. There wasn't much to smile about.</p><p>Also, having had another attack just a couple of minutes ago, I couldn't really bring myself to smile.</p><p>"Here."</p><p>Amanda placed her hands on the edges of my lips and pulled them upwards.</p><p>"Much better."</p><p>She returned a smile herself.</p><p>Her smile was stunning. Enough to make anyone fall into a daze with just a glance. Well, anyone but me. I was pretty much used to her smiles by now. Well, for the most part. I wasn't exactly totally immune.</p><p>"Wwwamhat are you doing?"</p><p>It was hard to speak when she had her hands on my lips, pulling them up.</p><p>"Helping you smile."</p><p>"...What dwoes that have anything to do with the situation?"</p><p>"It doesn't."</p><p>Amanda let go of my lips.</p><p>"It's just that you look a lot better if you smiled a little more often."</p><p>Cocking my head even further, I eventually nodded my head.</p><p>"Well, sure, I'll try to smile more."</p><p>This wasn't too hard of a request. Not like smiling was that hard.</p><p>I smiled.</p><p>"Happy?"</p><p>"For what?"</p><p>"I'm smiling, aren't I?"</p><p>Amanda's brows furrowed.</p><p>"...No?"</p><p>"Hm?"</p><p>Amanda's reaction took me back.</p><p>"What are you talking about?"</p><p>Was she playing a prank on me? I could clearly feel myself smiling.</p><p>"Are you playing around with me?"</p><p>Amanda asked, inching closer to me.</p><p>I shook my head.</p><p>"That was what I was about to ask you."</p><p>Amanda's face hardened.</p><p>Her reaction took me aback.</p><p>"Hey, what's wrong?"</p><p>"Here."</p><p>Rather than answering me, she took out a pocket mirror and handed it to me.</p><p>I took it from her hand and looked at it.</p><p>"...No way."</p><p>Reflected on it was my face.</p><p>Jet black hair, deep blue eyes...at first glance, there didn't seem to be anything wrong with it.</p><p>At first glance, though.</p><p>Upon closer inspection, I realized something.</p><p>'Why am I not smiling?'</p><p>My expression...</p><p>It was stiff.</p><p>Although I felt myself smiling, I did not have a smile on my face.</p><p>'Just what in the...'</p><p>I closed the pocket mirror and handed it back to Amanda.</p><p>"Thanks."</p><p>"Ren, what's going on?"</p><p>Amanda took the pocket mirror back and looked at me with a worried look.</p><p>I waved my hand in reassurance.</p><p>"It's nothing to worry about. Just a little side-effect of practicing a certain art. I will be able to smile soon."</p><p>...That was a lie.</p><p>Most likely, this came as a result of the previous attack I had.</p><p>'For now, it's better if I just play this off as something like a side-effect of an art I'm practicing.'</p><p>"If you say so..."</p><p>Amanda nodded her head, her face still filled with doubt and concern. Obviously, she didn't buy my excuse, but as expected of her, she didn't push for an answer.</p><p>"You hungry?"</p><p>I rubbed my stomach and attempted to change the conversation.</p><p>"A bit."</p><p>"How about we go eat then?"</p><p>"I wouldn't mind that."</p><p>"Great."</p><p>I stretched my back a bit and gestured to Amanda with my hand.</p><p>"Come, let's go eat."</p><p>"Mhm."</p><p>***</p><p>Because of the light breeze that was blowing across the grassland, the blades of grass that previously stood upright bent in a prostrating fashion.</p><p>Three figures flashed across the grassy field as their feet left behind shallow footprints. They moved in such a covert manner that they left no trace of their presence.</p><p>"How much longer do we have to move?"</p><p>There were a total of three shadows, and one of them was Melissa. Her breathing had become labored as she worked hard to keep up with Jin and Emma.</p><p>"...Slow the fuck down! I'm going to die at the rate we're going!"</p><p>It wasn't until she started swearing that Jin and Emma finally slowed down and gave her some time to recover.</p><p> "Haa..haa..haaa...have some mercy. I'm about to die over here."</p><p>She quickly fell back on the grass and supported her body with her extended hands.</p><p>The first one to complain was Emma, who grumbled.</p><p>"You can't really blame us for going too fast. You were the one that insisted on following us."</p><p>"That's because I didn't know you guys were going to run for five hours straight!"</p><p>Melissa had a hard time breathing as her hands leaned on her knees and she took deep breaths to try and steady herself. The two were moving at such a rapid pace that it was impossible for her to keep up with them. Despite the fact that she wasn't exactly a weak person herself—with her current rank being at &lt;B&gt;—she was still a lot weaker than the two of them who were in the &lt;S&gt; rank range.</p><p>She was exhausted, and if not for them finally stopping, she would've already started puking on the ground.</p><p>'Fuck, I should've never agreed to follow them.'</p><p>Melissa held onto her stomach and slumped back on the grass.</p><p>Her goal was clear, find the herb that she wanted. Following Jin and Emma seemed to be the best option, but that proved to be a grave mistake on her end.</p><p>Raising her head to stare at both Emma and Jin, Melissa stared at the dark sky and waved her hand.</p><p>"Take a rest you two, I won't be able to move for at least ten minutes. You might as well rest as well."</p><p>"But I'm fine. Not tired at all. "</p><p>"Me too."</p><p>Emma and Jin responded as they exchanged glances for a moment. Melissa clenched her teeth tightly.</p><p>'...Am I out of shape?'</p><p>She lightly pinched her stomach and then lowered her head and allowed her hair to fall to the side of her face. Pondering over something, she asked.</p><p>"By the way, are you sure we're going in the right direction?"</p><p>"Positive."</p><p>Jin answered while he looked toward the distance.</p><p>"According to the orcs, this is the direction of where the demons should be co-uh?"</p><p>Jin's speech halted.</p><p>It was then that his eyes suddenly squinted, and his expression changed. He quickly turned around and his figure vanished from the spot.</p><p>"Hide, quick!"</p><p>"Wha-"</p><p>"No time for that."</p><p>After grabbing Melissa by the arm and yanking her away, Emma turned around and followed Jin from behind. They saw a large boulder off in the distance and hid behind it.</p><p>Immediately after that, Jin stepped forward. Pressing his foot into the ground, Melissa felt a slight fluctuation in the air. His sudden actions aroused her curiosity as she looked around, wondering what he had done.</p><p>But just as she was about to say something, she noticed something in the far distance. Her mouth instantly shut and her expression mimicked that of Jin and Emma.</p><p>"...Well, shit."</p><p>***</p><p>"Everything is ready."</p><p>I met up with Randur after I received a direct message from him.</p><p>We were standing in front of a circular room surrounded by four thick metal pillars on one of the castle's lower levels. The room was filled with an eerie humming sound, and each of the four metallic pillars had some strange glowing runes on the sides.</p><p>I could feel thin threads of mana covering my fingertips when I extended my hand. The feeling reminded me of the numbness that occured when one's hand falls asleep.</p><p>"This is amazing."</p><p>I quietly mumbled in amazement as I looked at the structure in front of me.</p><p>"So this is a mana chamber?"</p><p>"It indeed is."</p><p>Jomnuk walked from the rear while carrying a towel covered in black stains.</p><p>He wiped his hands and patted one of the large metallic pillars.</p><p>"There are a total of four pillars, as is evident. These pillars convert the mana that has been imprisoned within the core, and then slowly release it within the chamber. Compared to simply shattering the core to release the mana it contains, the chamber will gradually release the mana at a rate that can be calmly absorbed."</p><p>"This will make things a lot easier for you and anyone that wishes to enter. Not only is it more efficient, but you will be able to stay for longer periods of time without needing to switch the cores."</p><p>He moved toward a panel situated toward the side of the room.</p><p>"Also, since everyone's rate of absorption is different, you can adjust the mana release rate based on someone's rank. For you, it would be around &lt;S+&gt; rank..."</p><p>He pressed one of the keys in front of the panel.</p><p>The space vibrated slightly while an oozing mechanical sound reverberated throughout the air. The runes that surrounded the pillars began emitting a brighter glow, and there was a discernible thickening of the air within the chamber.</p><p>'Amazing...'</p><p>"Alright, try it out."</p><p>Jomnuk gestured at me with his hand.</p><p>I stared at him for a moment before nodding my head and complying.</p><p>"Hm?"</p><p>As soon as I stepped foot inside the room, I was taken aback by the sudden reemergence of a sensation that was very familiar to me but which I had not experienced in a bit, well, at least not to this extent. Unknowingly, the pores on my body started to open up, and I began eagerly sucking in the mana that was floating around in the air.</p><p>"This is incredible."</p><p>I turned my head to look at Jomnuk and Randur, who were smiling at me with proud smirks on their faces.</p><p>"What did I tell you?"</p><p>Randur began tapping at his chest.</p><p>"Just leave things to us and we'll get things done."</p><p>"Right."</p><p>I nodded my head at their words.</p><p>In less than a week after I made the request, they had already constructed a mana chamber that I could use for my training. The speed was astonishingly quick, which was incredibly helpful for me at this very moment. Especially with the shadow of the impending war hanging over our heads.</p><p>"Huuuu..."</p><p>My body jerked with excitement, and as it did so, murky air came out of my mouth. Clearly, the abundant mana that was all around me had begun to stimulate the pores on my body.</p><p>I bitterly looked at Randur and Jomnuk, who grinned wryly at each other as they exchanged glances.</p><p>Randur was the first one to speak as he waved his hand and bid me goodbye.</p><p>"We will leave you alone. Our time is almost up, so we'll take care of a few things and return to say goodbye."</p><p>"Alright. Let me know when you guys will be leaving."</p><p>"Sure thing."</p><p>"Good luck with your breakthrough."</p><p>I waved them goodbye and sat down on the ground. Taking another deep breath, I closed my eyes and focused on the mana around me.</p><p>Everything around me gradually became still, and millions of different colored particles appeared within my vision. Their presence triggered something in my mind, causing the muscles on my body to twitch.</p><p>I felt a wave of rare excitement wash over me.</p><p>'I can feel it...I can definitely break through to &lt;SS-&gt; rank soon.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-636.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-638.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

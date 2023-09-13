@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 550 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 550 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-549.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-551.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"So this is the martial manual?"</p><p>As I slowly opened the pages of the book in front of me, I stared carefully at the words on the pages. It was then that I noticed that it wasn't only filled with words, but images as well.</p><p>In each image was a depiction of a different stance.</p><p>[Body hardening] [Mind Spirit Connection] [Martial body]</p><p>Pointing at them, I raised my head to look at Han Yufei.</p><p>"I've already seen what martial body does, and I already have an idea of what body hardening is. What about Mind Spirit Connection? What is that?"</p><p>"Mind Spirit Connection?"</p><p>Leaning forward, Han Yufei pointed at a certain illustration that depicted a person sitting cross-legged with their arms linked together right towards the abdomen area.</p><p>"By mastering the martial manual, your mind will become more connected to your body. To sum it up in modern terms, it will improve your ability to connect with your brain, thereby enabling you to react more quickly."</p><p>"Ah, I see..."</p><p>Listening to his words, I came to a sudden understanding.</p><p>'In short, my reaction time will drastically increase once I reach a certain point of my mastery. That's pretty useful.'</p><p>This skill perfectly complemented Eyes of Chronos.</p><p>Even though it wouldn't solve my problem of being unable to move at the same rate as my eyes were seeing things, it could still prove to be a life-saving skill in the future.</p><p>"Not bad."</p><p>Flipping through the pages of the manual for the next minute, I eventually closed it.</p><p>"Alright. This is good."</p><p>It was exactly what I wanted. In fact, even better.</p><p>Putting the book away, I took out a key from my dimensional space and opened the drawer next to me.</p><p>Opening the drawer, I took out a small file. Taking out the file and scanning through its contents, I nodded in satisfaction.</p><p>'As expected of Smallsnake. He has done his task beautifully.'</p><p>Done checking the files, I slid the papers onto the desk. Toward Han Yufei who pointed at them and asked.</p><p>"This?"</p><p>"My other end of the deal."</p><p>"You mean..."</p><p>"Yeah."</p><p>With a nod of my head, I opened the file in front of Han Yufei.</p><p>"The location of the five-star sword art that I promised."</p><p>Han Yufei's eyes immediately widened after this as he dragged the file toward him. For the next couple of minutes, he carefully looked through the information on the files.</p><p>As time passed, the greater the surprise on his face.</p><p>"This is the place where the sword art is located?"</p><p>"It is."</p><p>I nodded my head.</p><p>"It's not exactly in the human domain, however, considering that the relationship between us and the other races has improved, you won't have to worry too much about secretly entering their territory."</p><p>The location where the Gravar style was located was actually in the Orcen domain.</p><p>A place that was located not far off from one of the four great cities.</p><p>"It is going to be quite difficult to collect."</p><p>Han Yufei muttered after a while as he continued to observe the files in front of him.</p><p>With a shrug of my shoulders, I replied.</p><p>"It's a five-star sword art. What do you expect?"</p><p>If five-star sword arts were so easy to get, everyone would have them.</p><p>'Actually, now that I think about it, collecting the Keiki style was quite easy.'</p><p>The same could be argued for the Levisha style...</p><p>The only thing that was hard about them was the fact that they were extremely hidden. Other than that, in terms of difficulty, they really weren't much.</p><p>Could this be a coincidence? I didn't know.</p><p> Regardless. </p><p>"Well, like I've said before, the relationship between us and the other races is much better. Furthermore, now that we have portals, it should pose no trouble for you to go there and come back within the day."</p><p>Had it been in the past, the task would've been incredibly hard.</p><p>Nevertheless, times had changed. We now had portals, and entering the Orcen territory was no longer stuff of the past.</p><p>"True..."</p><p>Han Yufei also seemed to have realized this as his brows relaxed.</p><p>Closing the paper down, he slowly stood up from his seat.</p><p>"I'll send this back to my clan. If we truly can find the five-star sword art, then I will have no problem agreeing to what you previously asked."</p><p>"Alright."</p><p>Leaning back on my chair, I faintly smiled.</p><p>"Just remember to not piss off the orcs on your way to collecting the sword art, and you should be fine."</p><p>"Will do."</p><p>Pressing his hands on the armrest of the chair, Han Yufei put the files away and stood up. After that, he cupped his fist in my direction.</p><p>"Many thanks for your help."</p><p>"No problem."</p><p>I replied while waving my hand.</p><p>The both of us had benefited from this deal, and the Gravar style was quite useless to me anyway.</p><p>"I will be taking my leave."</p><p>Cupping his hands one more time, Han Yufei turned around and headed for the door.</p><p>Staring at his back, I suddenly recalled something as my face changed.</p><p>"Wait."</p><p>I called out.</p><p>Halting his movements, Han Yufei slowly turned around. He had a rather confused look on his face.</p><p>In no way bothered by this, my face became extremely solemn.</p><p>"...Yes?"</p><p>Han Yufei asked as his face similarly turned serious. My sudden shift in demenour must have caught him off-guard.</p><p>"You..."</p><p>Deeply staring into his eyes, I opened my mouth and asked.</p><p>"How high is your charm?"</p><p>***</p><p>"Does anybody in the class know why one must coat their weapons with mana?"</p><p>Kevin's voice echoed throughout a large auditorium that was filled with over a hundred students who were all attentively listening to his lecture.</p><p>'This brings back memories...'</p><p>A smile would involuntarily plaster Kevin's face every time he reminded himself of his student days back in the past.</p><p>"Anyone?"</p><p>Scanning the classroom with his eyes, they soon paused toward a certain student. He had a rather thin frame, with an oval cut and circular thin-framed glasses.</p><p>"Jackson."</p><p>Kevin called out as he recognized him instantly.</p><p>How could he not when he was the brightest student in his class?</p><p>Although he wasn't as adept at physical training compared to the others, in terms of brains, he was a step ahead of the others.</p><p>"Ye...yes."</p><p>Upon rising from his seat, all eyes fell on the student who hid his face in front of the book in his hands. Opening his mouth, he started to speak with a slight stutter in his voice.</p><p>"T..o an..swer Professor Voss's question. Users coat their man—"</p><p>"Wait a second, wait a second."</p><p>Halfway through his sentence, Kevin couldn't help but interrupt him as his brows furrowed tightly.</p><p>Feeling Kevin's gaze paused on him, Jackson's face paled slightly.</p><p>"Eh? Ah?"</p><p>Taking a serious look at him, Kevin asked.</p><p>"What did you just call me?"</p><p>"...Eh?"</p><p>Jackson's face paled even more at the question as his hands started to shake. However, as he felt Kevin's stern gaze fall on him, he weakly opened his mouth and replied.</p><p>"I..it's Professor Voss."</p><p>"Professor Voss?"</p><p>The frown on Kevin's face deepened.</p><p>'Is that some sort of nickname that the students have created for me? But what exactly is a Voss?'</p><p>After a while, he shook his head. Turning his attention back to Jackson, Kevin signaled him to sit back down.</p><p>"Sit back down for now."</p><p>"Ye...yes!"</p><p>Following Kevin's instructions, Jackson quickly sat back down on his seat.</p><p>Once he sat down, Kevin's eyes swept toward all of the students before he raised his voice.</p><p>"I don't know if this is a common thing among you guys, but I would like it for all of you to refrain from making strange nicknames for me. I have a name."</p><p>Turning around, Kevin took a piece of chalk and walked toward the blackboard at the very end of the classroom. Something that was rarely used in this day and age.</p><p>'I may have been too nice to my students. So much so that they've started taking liberties with me. I need to quickly change this.'</p><p>When Kevin arrived at the blackboard, he scribbled something down.</p><p>Tap. Tap.</p><p>Once he was done writing, Kevin pointed at the board.</p><p>"Make sure you remember my name. It is not Voss, or whatever you guys have made up. It's Cringe Lord, or to be precise, Professor Lord."</p><p>Putting down the chalk, he looked at the students who all wore a dumbfounded expressions on their faces.</p><p>"Make sure you remember that."</p><p>***</p><p>The next day.</p><p>As the sun poured directly down on my body, I squinted my eyes and carefully surveyed my surroundings.</p><p>Then, lowering my head to glance at my watch and check the location, I muttered.</p><p>"If I'm not wrong, this should be the place."</p><p>Checking one more time to see that I was in the right place, I eventually let out a sigh of relief and sat down on one of the benches in the park that I was in.</p><p>Not so far from where I was sitting, I could hear the sound of water gushing echoing throughout the air as a fountain stood not far from where I was. The water glistened under the sunlight.</p><p>Riing—! Riing—!</p><p>It was at that moment that my phone vibrated inside of my pocket.</p><p>'Again?'</p><p>With a sigh, I took out my phone. Upon unlocking my phone, I was bombarded with a series of text messages and missed call logs.</p><p>===[Kevin Voss]===</p><p>Kevin : I will kill you!!!!!</p><p>[—You have missed a call—]</p><p>Kevin : Answer my calls you scum! I know what you did! You don't have to pretend that you don't know!</p><p>[—You have missed a call—]</p><p>[—You have missed a call—]</p><p>Kevin : Don't ignore me!</p><p>Kevin : You lied to me about the skill not working!</p><p>[—You have missed a call—]</p><p>Kevin : I swear to god. You will pay for what you did!!!</p><p>===[Kevin Voss]===</p><p>"What a drama queen."</p><p>Putting my phone away and turning off the ringer, I leaned back on the bench and relaxed.</p><p>Rather than laughing, my expression turned serious.</p><p>'As expected. For one to figure out whether their memories have been manipulated or not, the environment around them is very important.'</p><p>Leaving aside the fact that Kevin deserved this, I had another goal in changing his name.</p><p>I wanted to test the limits of this skill.</p><p>In order to determine whether the person under the influence of the skill would notice that their memories had been altered instead of rejecting reality wholeheartedly, I had Kevin be my lab rat.</p><p>Needless to say, the experiment proved successful.</p><p>'Instead of still believing that his name is Cringe Lord, once Kevin realized that things were wrong, he was able to quickly determine that his mind had been altered instead of denying reality...'</p><p>This was useful information, and...</p><p>Leaning back on my chair, the edges of my lips curled up a bit.</p><p>'As expected, this might be the skill that the other me used in order to alter my memories.'</p><p>I had a hunch when I selected it, but upon seeing the result of the experiment, this seemed more and more plausible.</p><p>"So beautiful."</p><p>"Is she a celebrity?"</p><p>"Wow."</p><p>Suddenly, jolted out of my thoughts, I saw a crowd gathering as people gazed into the distance. In their line of sight, I saw a familiar face.</p><p>A soft smile spread on my face once I recognized the figure.</p><p>"She's here..."</p><p>With a black skirt that nearly reached her knees paired with black leggings, and wearing a soft white turtleneck shirt to complement her glossy black hair tied in a ponytail behind her back, Amanda walked gracefully through the park grounds as her appearance caught everyone's attention.</p><p>This was especially so for the males who couldn't help but blush at her sight.</p><p>As Amanda halted her steps in the middle of the park, she took a moment to take in the surroundings. In addition to her quiet and collected demeanor, her manner further enhanced her image to those around her as some of the people around her unknowingly found their heads tilt toward her direction as they walked.</p><p>"...So beautiful."</p><p>"Who is she?"</p><p>But it was at that moment, that time seemed to have stopped for everyone around her gaze paused in my direction and a smile blossomed on her face. It was a smile that seemed to dazzle the whole world as everyone around her dropped whatever they were doing and just stared at her. Fully immersed in her smile.</p><p>Not long after, the crisp and pleasant sound of her voice echoed throughout the air.</p><p>"Ren."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-549.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-551.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 625 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 625 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-624.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-626.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>It was approximately 2 A.M. in Ashton city.</p><p>Darkness had already engulfed the entire city, with the city lights being the only source of light amidst the dark world.</p><p>In a certain high rise building.</p><p>Ding—!</p><p>The elevator doors quietly opened revealing two crimson red eyes that shone in the darkness.</p><p>"What a mess..."</p><p>Kevin raised his hand to clean his blood-stained face as his hushed, chilly voice echoed around the room.</p><p>A dozen or so corpses were exposed behind him as he exited the elevator.</p><p>He was greeted by a silent, dim hallway with a sizable wooden door at the opposite end. Additionally, there was a marble reception desk just next to the door, but it was empty right now.</p><p>While he walked, the cameras that were pointed in different areas around the hall exploded before they could get within his range.</p><p>Tap. Tap. Tap.</p><p>The sound of his rhythmic footsteps echoed inside the hallway.</p><p>He soon stopped in front of the door.</p><p>Knock—! Knock—!</p><p>He knocked on the door twice.</p><p>No one responded.</p><p>Knock—!</p><p>Kevin knocked on the door again.</p><p>"Huh? Who is it?"</p><p>A confused voice echoed from the other side of the door.</p><p>"Rowana? Why was I not notified of anyone coming here?"</p><p>"T..there shouldn't be anyone."</p><p>Kevin heard a female voice coming from the same room.</p><p>'Rowana. That must be the name of his secretary.'</p><p>Kevin thought to himself, reaching out for the door with his hand.</p><p>Then, with a flick of his wrist, he unlocked the door to reveal a posh office.</p><p>A large marble desk sat at the end of the office space with large windows that enabled one to overlook the city from above. There were tall bookshelves on the side of the room, all filled to the brim with books, in color order. The room's newly polished oak floor was covered with a rug, and the corner contained several stone statues.</p><p>The place looked extremely fancy, but that wasn't what took Kevin's attention.</p><p>At the moment, his eyes were drawn toward the half-naked women that stood beside a tall man with short brown hair and mean shaped brows. His clothes and hair were a mess, a clear indication of what had been happening moments prior to his arrival.</p><p>Both of them were staring at Kevin with startled, and shocked looks.</p><p>"What are you doing here?!"</p><p>Gathering his bearings, the tall man glared in Kevin's direction. His body started to glow in a yellow light.</p><p>It was right as their eyes met that the man's face changed.</p><p>"Wa...wait, I recognize you. You're Kevin Voss."</p><p>It didn't take much for the man to recognize Kevin. There was practically not a single person in the human domain that didn't know who he was.</p><p>He was that famous.</p><p>The man's shoulders relaxed when he recognized Kevin.</p><p>"May I ask you why you're here?"</p><p>He, alongside the woman that was next to him started to fix their clothes.</p><p>Kevin glanced at the two of them for a moment. He then raised his hand and swiped in the direction of where the woman was.</p><p>Thump—!</p><p>With just a single movement, the woman's head decapitated and fell to the ground.</p><p>"W..what are you doing!?"</p><p>It took a moment for the brown haired man to understand what had just happened as his mouth hung open.</p><p>"Y...y...you.."</p><p>The brown-haired man moved his head back up to look at Kevin while taking his eyes away from his secretary's head, which lay severed on the floor.</p><p>Opening and closing his mouth, he struggled to find the courage to say any words.</p><p>"...You think I don't know?"</p><p>It was Kevin's icy voice that broke the silence in the room.</p><p>A dark red glow formed behind him, slowly rising from behind him like an enormous wave.</p><p>"W..what are you talking about?"</p><p>The brown haired man stuttered and took a step back.</p><p>Taking a look at the dead secretary, Kevin didn't say anything and extended his hand toward his right side.</p><p>"Uek!"</p><p>With a clench of his hand, a muffled groan echoed out. A dark figure emerged in Kevin's hand.</p><p>"I applaud you for your effort in trying to sneak attack me, but I've long seen this coming."</p><p> He then turned his head to focus on the brown haired man whose face had paled considerably. </p><p>"It's a shame that things had to end this way."</p><p>"Wait, wait, wai—!"</p><p>Crack—!</p><p>A bone-breaking sound reverberated throughout the room and the demon's body lifelessly fell on Kevin's hand. Then, reaching out with his hand, Kevin pierced through the demon's right arm and took out a core.</p><p>"Nooo!"</p><p>The brown haired man screamed at the top of his lungs when he saw the core in Kevin's hand.</p><p>A powerful force surged from within his body and his figure appeared in front of Kevin.</p><p>He was so fast that it looked as if he had teleported.</p><p>Crash—!</p><p>Sadly, his speed was insufficient. With the hand that was free, Kevin flicked his fingers and struck the man with the brown hair square in the forehead, sending his body flying and shattering the glass window in the process.</p><p>Glass shards fell all over the room when the glass broke, some even whistling past Kevin's face.</p><p>Time seemed to slow down for Kevin as his eyes and the brown haired man's eyes locked in that little second when the glass broke and the man plummeted out the window.</p><p>In that short moment, Kevin was able to catch a glimpse of several emotions on the man's face. From hatred, to helplessness, and sadness...</p><p>Kevin was able to see it all.</p><p>Nonetheless.</p><p>Crack!</p><p>He crushed the core in his hand and the man's body twisted.</p><p>Time accelerated once more, and the man's silhouette vanished. Kevin then heard frantic shouts coming from below the structure, followed by a low thumping sound.</p><p>Thump!</p><p>Police sirens echoed not long after.</p><p>"How many does that make? Eight? Nine?...How many have I killed?"</p><p>Kevin walked toward the damaged window, unconcerned about what was going on below. He didn't stop until his feet were almost at the window's edge.</p><p>"Huuu.."</p><p>Kevin inhaled deeply as he caught a glimpse of Ashton city from above and let the image sink into his brain. He made sure to engrave every little detail of the city into his mind.</p><p>His figure slowly began to blend with the night before disappearing as he raised his head to look at the shining moon in the sky.</p><p>"...Stil not enough."</p><p>***</p><p>Thump! Thump! Thump!</p><p>The earth trembled as sharp, hefty weapons smacked against it.</p><p>Thousands upon thousands of orcs, standing in various legions of over 5000 orcs apiece, were the cause of the trembling. Their features were hidden by the worn-out metal armor that covered every inch of their bodies.</p><p>Their physical presence emanated a terrible pressure that was ominous in nature, enveloping the surroundings around them, and scaring any living organism that was within meters of their presence.</p><p>"Are you ready?"</p><p>A thunderous voice echoed across the plain, shutting any form of noise coming from the orcs.</p><p>All eyes focused on an orc standing at the forefront.</p><p>Just his presence alone was enough to make a legion tremble in fear, commanding the respect of the thousands of orcs present on the grass plain.</p><p>Large red runes with a reddish glow could be seen on the orc's naked body, which blended with the dark green color that emanated from him. The red runes would flash up like scalding hot lava with each and every breath Silug took, further raising his presence across the battlefield.</p><p>Silug scanned the entire battlefield with his huge axe lodged on the ground next to him.</p><p>A serious and solemn look spread across his face as he memorized the faces of all the orcs around him.</p><p>He could sense an ever-increasing presence behind him that threatened to force the combined pressure from all of the orcs together back, as it became stronger with each passing second.</p><p>The situation was rather grim, but he wasn't one to give up.</p><p>They had come so far and he wasn't one to give up until the end. Focusing his attention on a certain direction, he shouted.</p><p>"Load the weapons!"</p><p>Huge constructions began to wheel out into his sight, as the legions started to move around them.</p><p>Silug turned around to stare at the horde of demons that were slowly approaching his spot. He then focused his attention back on the weapons that were slowly being wheeled his way and he raised his hand.</p><p>"Stop!"</p><p>He shouted.</p><p>The structures stopped moving right as his words echoed.</p><p>"Load the weapons!"</p><p>Silug shouted soon after, and enormous boulders began to load on the structures. The boulders were so large that it took over a thousand orcs to carry them.</p><p>It was important to point out that the boulders weren't made of any regular old stone. Instead, they were made by combining a number of different materials, which produced projectiles that were extraordinarily thick and hard. They were strong enough to resist being broken by someone like Silug.</p><p>The weapons took two minutes to fully load in total, and by the time they were finished, the demons had already reached them.</p><p>Without wasting a single second, Silug glared at the approaching demons and shouted.</p><p>"Shoot!"</p><p>Rumble! Rumble!</p><p>The ground trembled after his orders and snap! The boulders disappeared from everyone's sight. What followed after were several sharp, whistling sounds.</p><p>Xiuuuuuuuuu! Xiuuuuuuuuu! Xiuuuuuuuuu!</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-624.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-626.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

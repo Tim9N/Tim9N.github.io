@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 526 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 526 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-525.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-527.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Your excellency, if I may ask…"</p><p>Taking a knee on the ground before Duke Azonech, the demon paused halfway through his sentence, waiting for the Duke's confirmation.</p><p>He got it soon enough.</p><p>"...You may ask."</p><p>"Thank you."</p><p>The servant thanked the Duke. Secretly, he tried his best to stop himself from smiling.</p><p>'As expected of the Duke, he does not suspect anything.'</p><p>In reality, he wasn't merely asking out of curiosity. He was asking so that he could report what was going to the other Duke.</p><p>It was a secret order that he had received before he had left.</p><p>By doing this, he was treading a thin line, but as soon as he remembered the rewards promised to him by the other Duke, all of his fear dissipated.</p><p>It was simply too tempting.</p><p>With his head lowered, he proceeded to ask something that he had been curious about.</p><p>"Why did you tell that human to keep the Overlord alive?"</p><p>It was well known that the current Overlord was close to breaking through to the next level. What the servant was curious about was why the Duke didn't have any intentions of killing him directly.</p><p>His question was answered not long after.</p><p>"It's because I'm planning on giving him a contract."</p><p>Upon hearing those words, the servant looked surprised.</p><p>But it soon replaced it with a look of understanding.</p><p>"….Understood your excellency."</p><p>Everything quickly puzzled itself together inside of the servant's mind as he made sure to remember everything.</p><p>The Duke's plan was rather simple. He was planning on taking the Blood Prince to his side. Everything was starting to make sense to the demon as he came up with one conclusion.</p><p>'He wants to be the sole owner of the arena.'</p><p>In spite of this, he immediately began to sweat profusely after coming to such a conclusion.</p><p>His command over the Blood Prince would inevitably give him more power than the other Duke thus forcing him to give him control over the arena.</p><p>As his thoughts paused there, the demon felt cold chills run down his spine.</p><p>'As expected of Duke Azenoch, ruthless as ever.'</p><p>Unfortunately for the Duke, what he didn't know was that the demon he shared this information with worked for the other Duke. He was simply crippling himself.</p><p>"Do you have any other questions to ask?"</p><p>Jolting him out of his thoughts was the Duke's voice that reverberated throughout the whole room.</p><p>Lowering his head further, the servant quickly shook his head.</p><p>"…No your excellency."</p><p>'This is enough. The Duke will certainly reward me after I tell him this.'</p><p>Thinking such thoughts, he tried his best to suppress his excitement.</p><p>"Good."</p><p>But it was then that a powerful force suddenly permeated the air, causing the servant to feel a rush of energy.</p><p>"Ughk."</p><p>With a pained groan, he suddenly found himself stuck on the ground, unable to lift his head due to the sheer pressure that was bearing down on him from above</p><p>"W…what?!"</p><p>As he had difficulty breathing, the servant murmured in distress.</p><p>"Wh..why aare you doing this to me?"</p><p>Responding to him, the Duke's cold voice echoed throughout the room.</p><p>"Did you think for a second that you would live after hearing what I said just now?"</p><p>The servant's eyes opened up.</p><p>'He knew!'</p><p>How was this possible? He had taken all possible precautions to hide this fact, how was it possible for the Duke to know this?</p><p>"Your excellency!"</p><p>He screamed.</p><p>"I won't tell anyone—"</p><p>"You've grown a little impudent recently,, haven't you? Asking me this and that, you think I don't know?"</p><p>The Duke's face sunk as the pressure coming out of his body rose even more. Rendering the servant helpless.</p><p>He could only lay down on the ground, like a helpless prey that had been caught by its predator.</p><p>Opening his mouth, he tried to beg his case. But it didn't seem as though the Duke was interested as he long stopped looking at him.</p><p>Regardless, the servant continued begging.</p><p>"Your…excellency, please, I can…exp—"</p><p>"Enough. I won't kill you now."</p><p>After hearing those words, the servant's face relaxed a bit.</p><p>But that didn't last for long as his face hardened completely not long after.</p><p>"If I kill you now, that bastard will find out that something is wrong…"</p><p>***</p><p>At the same time.</p><p>"This is not bad."</p><p>Gazing at the room in front of me, I looked around the place.</p><p>Among the many decorations in the room before me, it had a bed big enough for me to fit in, sofas, paintings, and all types of decorations.</p><p>This was my new room.</p><p>It should've been given to me before, but it was only now that they had decided to give it to me.</p><p>Quite the lazy bunch.</p><p>The first thing I did upon entering my room was head straight for the bed.</p><p>Of course, as I did, I made sure to keep note of every little detail of the room.</p><p>'This place is probably heavily surveilled, so I need to keep low for now.'</p><p>The leak in the conversation I had with SilverMoon not too long ago was confirmation of this.</p><p>Fortunately for me, I had done most of my preparations beforehand.</p><p>All I had to do was carry them out at the moment.</p><p>'Just a little bit more…'</p><p>Upon laying down on the bed and covering my eyes with my arm, I slowly started to relax.</p><p>It would have been normal for me to start training at this point, but since I had forced my way to &lt;A+&gt; rank, I needed time to stabilize my body.</p><p>One couldn't just force a breakthrough and expect their bodies to be okay with it. The only reason why I was mostly okay was because of my constitution which had changed due to the seed of limit.</p><p>Had it been anyone else, they would've been in a tougher spot.</p><p>As I relaxed on the bed with my arm covering my face, I thought of something.</p><p>'I should also be going to get my resources.'</p><p>A fundamental rule of the arena was that the winner would take all of the loser's possessions, including their resources. It essentially crippled the loser of the fight, but these were the rules.</p><p>On another note, despite taking other contestants' resources, I found most of them to be useless.</p><p>...and if I had to be honest, I really didn't hold any interest in any of their resources. Having just consumed some, my body couldn't keep up.</p><p>It would probably be quite a while since I would be able to use resources to once again break through.</p><p>"Oh well…"</p><p>I was still planning on collecting Lightning Dragon's resources. It wasn't because I wanted them, but because I wanted to meet him.</p><p>There were a couple of things that I needed to say to him.</p><p>A couple of very important things.</p><p>***</p><p>"Should I, or should I not?"</p><p>Biting his nails, Kevin gazed at the phone in his hands. He was currently in a tough predicament.</p><p>As he held the phone with one hand, staring at himself reflected on the screen, Kevin's thumb hovered over a small green button on the screen.</p><p>[You have to look through the rain to see the rainbow.]</p><p>"I have a feeling that things won't go well if I send this…"</p><p>Kevin began to fear each and every new post he sent as he recalled his past incident with Ren.</p><p>'Go away, don't talk to me, what is this cringe? Blocked.'</p><p>"Ugh."</p><p>Kevin let out a distressed sound.</p><p>"Damn it, Ren."</p><p>In the first place, he couldn't be blamed for sending his previous post.</p><p>Each time he posted something on the web, he would receive a lot of money.</p><p>Like a lot of money. At least a couple million U per post.</p><p>This was only to be expected. With the amount of fame he had due to his past achievements, he had a lot of followers. And they were growing each and every day.</p><p>He had almost reached a point where he had more followers than most high-profile celebrities.</p><p>And it was only natural for him to get sponsorship and endorsement deals from famous brands.</p><p>Given how much money resources cost him, it wasn't something he could give up so easily.</p><p>Furthermore, as he was always busy, rather than handling these sorts of things himself, he decided to hire someone to do it for him.</p><p>"Ugh."</p><p>Checking his post one more time, Kevin's face distorted.</p><p>[You have to look through the rain to see the rainbow.]</p><p>Especially with the new quote. He wasn't sure whether it would be good or not...</p><p>But, just thinking of Ren possibly coming back and making fun of him again…</p><p>"Yeah, let's not."</p><p>He quickly closed his phone and put it away. No matter how much money he was going to lose, he was not going to repeat the same mistake again.</p><p>Never.</p><p>As he raised his hand, he wiped away the corner of his eyes.</p><p>It was a bit itchy.</p><p>'My money...'</p><p>"Haaa..."</p><p>Letting out a long and exhausted sigh, Kevin waved his hand in the air.</p><p>A series of texts formed in front of him. Tracing his hand over the text, it soon paused on a specific mission.</p><p>"There doesn't seem to be a time limit, but I should hurry up..."</p><p>Lowering his hand, he fell into thought as he muttered.</p><p>"I've already broken through to &lt;A- &gt; rank, so all I have to do is wait for Ren to come back, but when exactly is that going to be?"</p><p>Had it not been for the people vouching for him, Kevin would have already gone out to look for him after almost five months of him going missing.</p><p>That said.</p><p>It wasn't like he had spent the past five months doing nothing.</p><p>In fact, Kevin had been busier than he had ever been in the past.</p><p>Especially with everything that was going on at the Union at the moment. In addition to diving into dungeons almost every day, he had also met several high-ranking demons along the way, forcing him to fight them with his life on the line.</p><p>They were pretty big incidents that were reported all over the human domain.</p><p>Several scars still adorned his body, reminding him of his experiences.</p><p>'I should probably have them healed before Emma comes back.'</p><p>Regarding Emma...</p><p>It had been quite some time since he last saw her and if it hadn't been for her father personally assuring him that she was fine, Kevin would've already panicked.</p><p>That wasn't exactly the only reason.</p><p>After having had a long conversation with her a while back, Kevin understood that whatever Emma was doing, it was for the sake of improving herself.</p><p>Although she didn't say it outright, Kevin knew that she didn't want to be seen as a burden, or some precious vase that needed to be protected by everyone.</p><p>She too had her own pride, and Kevin respected that.</p><p>"What time is it?"</p><p>Jolting himself out of his thoughts, Kevin suddenly checked the time, 6:30 A.M.</p><p>"...Shit, I'm late for class."</p><p>Hurrying out of his room, Kevin took his jacket and put it on.</p><p>In addition to him working with the Union, Kevin was in fact still a professor at the Lock. That had not changed.</p><p>He did get an offer to quit, but he had refused.</p><p>He actually quite enjoyed teaching.</p><p> Well...</p><p>For the most part.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-525.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-527.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

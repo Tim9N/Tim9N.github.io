@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 755 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 755 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-754.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-756.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The world was eerily quiet. The sky was a brilliant shade of blue, and there was a sense of calm permeating every part of the world.</p><p>The grass that covered the surface of the land leaned over as a light breeze moved past it, ruffling the hair of a particular figure that quietly sat over the grass.</p><p>While he was sitting on the grass, his figure seemed to melt into the background, giving the impression that he was a part of the natural world.</p><p>He had always enjoyed this type of atmosphere. It reminded him of his home world when everything was still peaceful and he was just a child.</p><p>Only in such worlds would he feel a sense of peace.</p><p>It was unfortunate that he didn't get to enjoy such sense for very long when all of a sudden...</p><p>"Hm?"</p><p>His figure shook, and his eyes gradually opened to reveal two crimson pupils. At the mere opening of his eyelids, the world around him gradually lost its color and appeared to come to a halt.</p><p>Turning his head, his gaze peered through the world, coming to a stop in a certain direction.</p><p>"The curse…"</p><p>His little mumble caused the surroundings to shake, and he gradually stood up. Lowering his head to stare at his hands, his white brows came together tightly as his usually calm expression stilled completely.</p><p>"…It's gone."</p><p>Rumble―! Rumble―!</p><p>It had been a while since Jezebeth felt his composure falter. However, as he felt the link between him and Ren disappear, he knew that the curse he had placed on his body a while back had been removed.</p><p>"How is this possible?"</p><p>He wasn't one to let emotions get the best of him, but at the moment, Jezebeth found himself experiencing such emotions as his chest slowly heaved up.</p><p>"This shouldn't be possible. I've made sure that the cu―"</p><p>He stopped himself mid-sentence.</p><p>As he opened his eyes, his vision sharpened as he peered through the space he was in, focusing on a planet in the far distance. It was an azure colored planet he was all too familiar with.</p><p>His eyes gradually opened up in shock.</p><p>"He's gone?"</p><p>Jezebeth remained immobile, dumbfounded by the sudden occurrence, as his hair was blown forward by a second breeze.</p><p>"Why… Why can't I sense Kevin?"</p><p>Jezebeth closed his eyes and tried to sense Kevin's presence. As someone who also wielded the power of the laws, Jezebeth could sense him anytime he wanted. It was also why Kevin never really went away from Earth.</p><p>If he did, Jezebeth would know.</p><p>Unfortunately, he also had the means to return to Earth before he could ever reach him. Otherwise, he would have finished him off by now.</p><p>"Gone."</p><p>Jezebeth reopened his eyes and was taken aback by the abrupt situation. No matter how hard he looked, Kevin was nowhere to be found.</p><p>"How… is this possible?"</p><p>Was he somehow able to find a way to hide away from him? That… it was the only thing that could explain the current situation.</p><p>"No…"</p><p>It was right when Jezebeth felt that he had gotten an idea of what had happened that his body turned stiff.</p><p>"Why… Why can I suddenly feel him?"</p><p>He couldn't feel Kevin, but he could feel Ren...</p><p>How was this possible?</p><p>A certain thought suddenly occurred in his mind, and his face finally showed signs of change.</p><p>"Ha... hah…"</p><p>He was in such a state of shock that he soon found himself chuckling. Covering his mouth with his hand, he bent over slightly.</p><p>"This… don't tell me he actually… I was right, wasn't I?"</p><p>The more he thought about it, the more the realization of the matter hit him. He already had a hunch beforehand, but it had never been clear.</p><p>Now, however… He was sure.</p><p>Kevin had transferred his powers over to Ren.</p><p>"Hahaha…to think he'd go that far…"</p><p>Jezebeth continued to laugh. His laugh was neither loud nor quiet, but it spread through every inch of the world, and birds scattered away into the air.</p><p>"I can't believe he'd do that…"</p><p>Jezebeth's mind was filled with complex emotions as he stopped laughing. He was neither angry nor pleased with the current circumstance. In fact, he felt rather… sad.</p><p>His already lonely life had just gotten lonelier.</p><p>"A pity… I wanted to at least say goodbye to him."</p><p>Although they were never friends and always at each other's throats, Jezebeth never despised him.</p><p>He understood his motives and never really took his actions to heart. At the end of the day, they were just two people who had conflicting interests.</p><p>That was all there was to it…</p><p>"It… really is a pity."</p><p>Jezebeth stared blankly at the sky before him. For some inexplicable reason, he found it to be less colorful than he'd previously thought. Perhaps, this was a perfect reflection of his own state of mind.</p><p>Clink―! Clink―! Clink―!</p><p>As he extended his hand forward, a number of metallic fragments appeared in his grasp, and Jezebeth stared at them with a complicated look.</p><p>Everyone he knew was slowly leaving, and these shards were the only things left of his parents. It had saved his life a while back. Back when the Protectors tried to cleanse his race.</p><p>Had it not been for these shards… he probably would've never been alive. One could say that the only reason his race had ever gotten a chance to rise was because of these shards that once made up a small cube.</p><p>To this day, he had no idea where this cube came from, and the only thing he knew about it was that it had once fallen from the sky, landing directly over where his parents were.</p><p>…At least, that was what he had been told.</p><p>He had been too young back then. He wasn't entirely sure of the origins of the cube, but he didn't really care…</p><p>'I'll find out once I get my hands on the records.'</p><p>The Records…</p><p>All answers were within the records. So long as he got his hands on them… He'll get all the answers he's ever hoped for.</p><p>"Soon."</p><p>He clenched his hand, and the shards disappeared into thin air.</p><p>He took a few deep breaths as he kept his gaze fixed on the planet in the far distance. In the next breath, a small portal opened up from beside him, and a small figure walked out of it.</p><p>"What is it?"</p><p>His tone didn't sound very respectful. Rather, it was anything but respectful, but Jezebeth didn't mind. In fact, he rather liked the way he spoke to him.</p><p>Jezebeth stared toward the sky.</p><p>"How long have we known each other?"</p><p>"…About two earth years?"</p><p>The figure replied, his tone sounding somewhat confused by the sudden question.</p><p>"What's with the question?"</p><p>"Just curious."</p><p>Jezebeth replied with a smile.</p><p>'Two years… huh…'</p><p>Time seemed to fly a lot faster than he had originally thought. He felt a little lonely at Kevin's death, but… he wasn't completely alone. There had been someone keeping him company for the past few years, and he didn't quite dislike his company.</p><p>In fact, he rather enjoyed it.</p><p>…A pity that they had only known each other for a meager two years.</p><p>"Is there something else that you need from me? You didn't call me just to ask me how long we've known each other, right?"</p><p>The man's tone of voice contained a hint of exasperation in it, and Jezebeth found himself laughing in response.</p><p>I suppose that he finally understood 'his' gaze to some extent back then.</p><p>"No… It's just that…" Jezebeth shook his head and continued to stare at the sky. A smile soon formed on his lips. "…It looks like you'll get your wish granted sooner than I originally anticipated."</p><p>"Huh?"</p><p>Jezebeth extended his hand forward, and the planet began to shake violently.</p><p>Rumble―!</p><p>The ground broke apart, and molten rock erupted from cracks and fissures in the planet's crust. The clouds in the sky began to disperse, and the elevation of the mountains increased.</p><p>Rumble―! Rumble―!The world underwent drastic changes within the space of a few seconds, and it didn't take long before the calm and serene scenery that had been there moments before vanished.</p><p>Jezebeth slowly brought his hand to a close as he stared at the landscape with compassionate eyes, and then...</p><p>Everything vanished into thin air.</p><p>The world turned completely dark, and silence reigned over Jezebeth's surroundings.</p><p>In the distance, one could see white specks scattered all over the darkness while a bright orb stood before Jezebeth.</p><p>Staring at it, he took a deep breath. He had a rather complicated look on his face at the moment.</p><p>"I didn't think the time would come so soon…"</p><p>He motioned with his hand, and the orb moved toward him.</p><p>"…I thought I had a bit more time to enjoy this scenery, but this is good enough. With him gone… Everything's changed."</p><p>Gently stopping over Jezebeth's palm, a powerful wave spread from the orb's body. It scattered across the surroundings, distorting the space he was in.</p><p>All it took was a simple wave of Jezebeth's hand to make the distortion disappear.</p><p>He turned to look toward his right.</p><p>"Are you alright?"</p><p>"…Ah, yes."</p><p>"That's good."</p><p>Jezebeth flashed a grin as he moved the orb closer to his mouth and then proceeded to swallow it. The instant that the orb made contact with his tongue, the surrounding area came to a complete and utter standstill, and Jezebeth's skin began to radiate a dazzling white light from its surface.</p><p>After Jezebeth had closed his eyes, the light faded away, having initially illuminated a large portion of the space that encompassed him.</p><p>…At that moment, Jezebeth's hair grew by an inch, and the muscles all throughout his body expanded ever-so-slightly. An ethereal aura encircled his entire being.</p><p>Opening his eyes again, the crimson that had been present in his pupils began to fade away, and a coloration with a distinct purplish-red hue took its place.</p><p>"Haaa…"</p><p>Turbid air escaped from his mouth as he exhaled.</p><p>Staring toward his right and left hands, he finally let out a satisfied smile.</p><p>"I've finally done it…"</p><p> He slowly clenched and unclenched his fist. He felt a tremendous power run down his body.</p><p>Turning his head to the left, he took another deep breath.</p><p>"I am… complete."</p><p>His eyes glowed with a brilliant hue that illuminated a considerable portion of his surrounding area. A fissure quickly manifested itself in the region directly in front of him, revealing the image of a planet.</p><p>It was completely green, and a white barrier surrounded the world.</p><p>Jezebeth took a step through the opening while he kept his gaze fixed on the planet. But just as he moved, he recalled something and turned around while motioning with his hand.</p><p>"Come, Brian."</p><p>He smiled in the calmest of ways.</p><p>"...Come see for yourself why they call me the Demon King"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-754.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-756.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

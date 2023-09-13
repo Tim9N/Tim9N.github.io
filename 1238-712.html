@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 712 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 712 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-711.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-713.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"What's going on in here?"</p><p>When I got back from my trip, I was greeted by a thick cloud of smoke.</p><p>"Did the mansion catch fire?"</p><p>…but how was that possible?</p><p>Looking at Amanda, both of us made a dash for the main hall in an attempt to locate the source of the smoke.</p><p>Arriving at the large wooden door, I smacked it open.</p><p>Clank—!</p><p>"What's going on in h—eh?"</p><p> In the middle of my sentence, I had to pause in order to rub both of my eyes. I just wanted to make sure that I wasn't interpreting what I was seeing incorrectly.</p><p>'I'm not high, am I?'</p><p>"I'm almost out human. Give me another pack."</p><p>"I've already given you two."</p><p>"What about it? Can't you see that I'm already almost done?"</p><p>"Smoking harms."</p><p>Bang—!</p><p>"Damn it human! Don't fucking test me!"</p><p>"Test you for what? You haven't even paid me anything for the packs!"</p><p>"Ah, so it was about the money! Why didn't you say so? I'll reward you handsomely for another pack, so hurry up and give it to me."</p><p>"No. I only have one left, and that's for me."</p><p>"Damn you human!"</p><p>Bang—!</p><p>The table fell apart, and the Duchess got to her feet immediately. The anger visible on her face was accompanied by a heaving motion in her chest.</p><p>In her mouth was a half lit cigarette.</p><p>"Didn't you just say that you'd sell it to me? You a swindler?"</p><p>"When did I say I was ever going to sell it to you? I just pointed out the fact that you took two packs from me for free."</p><p>"Bastard!"</p><p>She cursed again.</p><p>"Do you have any idea as to who I am?"</p><p>"I don't care."</p><p>"I'll fight you!"</p><p>'What in the world happened during the time Amanda and I were out?'</p><p>I pinched the middle of my brows.</p><p>The room was a complete disaster, and the scattered pieces of what appeared to be chairs, in conjunction with the conversation that I had overheard, helped me get an understanding of what was happening.</p><p>...It's just that I found it hard to believe.</p><p>'I can't believe this is what I return to...'</p><p>Before stepping in between the two of them, I let out an internal sigh. Despite how entertaining it was, I had no choice but to put an end to this.</p><p>There were more important things at hand.</p><p>"Bastard, are you going to sell it to me or not?"</p><p>"No."</p><p>"You fuck—"</p><p>"Let's stop this for a moment."</p><p>'Ah, maybe I shouldn't have interfered.'</p><p>After being suddenly glared at by the two of them, I was at a loss of what to make out of the situation. It was, if anything, a fairly burdensome situation.</p><p>I still raised my hands and tried to calm them down.</p><p>"Relax for now. I more or else understand the problem. When I have time, I'll get you as many packs as you want."</p><p>Thankfully, it appeared that the solution was fairly straightforward. Everything would get back to normal as long as the Duchess was pleased with the outcome.</p><p>"Really?"</p><p>The Duchess's eyes lit up and she became noticeably less angry as a result. As soon as I saw this, I let out a sigh of relief and glanced over at Jin for a split second.</p><p>'Since when did he start smoking?'</p><p>It caught me off guard, but I quickly shoved the thought to the back of my mind and focused my attention back on the Duchess.</p><p>"Cigarettes, aside. I've already completed what I set out to do."</p><p>"Huh?"</p><p>When the Duchess heard what I had to say, her expression changed to one of surprise.</p><p>"You've finished already? This quick?"</p><p>"Yeah, I've already completed everything on my end."</p><p>The Duchess looked at me with a suspicious expression on her face. She then took the finished cigarette out of her mouth and flicked it in Jin's direction before replacing it.</p><p>This caused him to narrow his eyes at her, but if anything, this was the response that she had hoped for, thus her expression changed to a happy one.</p><p>Clearing her throat, she looked back at me.</p><p>"Don't get me wrong, it's not like I don't believe you. It's just that I still didn't receive any news from my side, so I find it rather hard to believe you."</p><p>"That's understandable."</p><p>I smiled, but I didn't go into further detail. Whether or not I took the time to explain it to her, she would eventually figure it out on her own, regardless.</p><p>"Alright then. Onto the next step."</p><p>I happily clapped my hands and stared at the Duchess.</p><p>When I extended my hand in her direction, she immediately retreated one step.</p><p>"What are you doing?"</p><p>"Don't worry. I'm not going to hurt you, we've already signed a contract."</p><p>My words didn't seem to hold any effect on the Duchess as she still stepped back.</p><p>"Even so, what are you doing? Why do you want to suddenly touch me?"</p><p>"You'll soon find out. Don't worry about it."</p><p>"Sto—hgkh."</p><p>Channeling my demonic energy and mana, the Duchess froze on the spot, and my hand soon came into contact with her head. After a moment, a bright white glow appeared on my fingertips, and I activated [Memory Manipulation].</p><p>My vision suddenly became hazy, and what appeared to be millions upon millions of spheres of varying hues filled the space in front of my eyes.</p><p>I glanced through them very quickly before reaching out with my hand and having several of them fly in the direction in which I was standing.</p><p>"This is it."</p><p>After seizing one of the orbs and inspecting the contents contained within, I channeled my mana, causing a layer of dark threads to begin covering the orb, which I then tossed to the side.</p><p>"Next."</p><p>Over the next few minutes, I looked around for any orbs that might have contained recollections of the others and myself, and I covered them before discarding them.</p><p>When I was finished, there were one hundred pitch-black spheres floating around me. I had long since lost track of time and was thus unaware of how long I had been doing this.</p><p>I had to erase any memory she had of the others and myself completely from her mind. It was something that needed to be done in order to make sure that everything worked perfectly, and it was imperative that it be done.</p><p>…I needed a genuine reaction.</p><p>"This should be all."</p><p>When I waved my hand, the spheres moved away from each other and dispersed. With another wave of my hand, my vision shifted, and I suddenly found myself back in the hall.</p><p>Thump—!</p><p>Priscilla's body fell next to me. Jin was able to grab hold of her just in time and place her safely on the ground.</p><p>After gazing at her for a brief moment, he turned his attention back to me.</p><p>"What did you do?"</p><p>I looked at him strangely.</p><p>"You worried about her?"</p><p>"No."</p><p>"Then..."</p><p>"Just answer."</p><p>I sighed and waved my hand.</p><p>"Don't worry about it. I just made her forget about us for now. I'll return her memories later."</p><p>"I see."</p><p>Jin nodded, then picked up the blunt that had been left on the ground. He flicked his hand, and it vanished into thin air.</p><p>"I assume you also want to erase all evidence of us ever coming into contact with her, right?"</p><p>I smiled at Jin.</p><p>"You sure pick things up fast."</p><p>As I looked around, I pointed out all of the blunts that had been thrown around. There were quite a lot of them.</p><p>'Just how much did the two smoke?'</p><p>"Get rid of all of them."</p><p>"What about the mess?"</p><p>He pointed at the broken chairs and tables.</p><p>"Good question…"</p><p>After pondering for a moment, I eventually waved my hand.</p><p>"Leave it be. When she wakes up, she'll come to think that she did it out of rage over what happened today with Duke Ukhan."</p><p>Normally, I would have thought that this was a poor attempt at an explanation, but after catching a glimpse of the real her, I had a sneaking suspicion that she was indeed the type of demon to do this.</p><p>Jin seemed to think the same as he nodded his head in understanding.</p><p>"Ah, fair. It indeed seems plausible."</p><p>He soon found himself chuckling while looking around him.</p><p>The corner of my lips twisted upwards.</p><p>It was rare to see Jin act like this. He usually tended to be extremely serious.</p><p>"You seem to get along with her quite well."</p><p>"You think?"</p><p>Moving one of the tables, Jin picked up a blunt and showed it to me.</p><p>"She gets along with this more than me."</p><p>"Right…"</p><p>My brows furrowed the moment I looked at the blunt.</p><p>"You know… it's best if you stop smoking."</p><p>"Why? It's not like it can kill me."</p><p>"Right…"</p><p>'Indeed, in this day and age, smoking does not kill.'</p><p>The problem was that about half of my memories were completely fabricated, and despite my best efforts, I was unable to fully differentiate between those memories and the real world.</p><p>Thus, I felt a natural sense of rejection toward smoking.</p><p>It was just nasty.</p><p>"Do whatever. Just don't smoke next to me."</p><p>I relented in the end. It was ultimately his decision to smoke, and I had no real influence over his behavior in that regard.</p><p>'I should start dealing with the rest.'</p><p>I stared out the window. Toward the sun, which didn't seem to have moved more than an inch since I had last seen it.</p><p>Turning around, I headed for the door.</p><p>"Where are you going?"</p><p>Jin's voice echoed from behind.</p><p>I answered without looking back at him.</p><p>"She's not the only person that knows about our existence."</p><p>Aside from her, there were a number of other demons who were aware of our existence, which was something that I couldn't allow for this to work.</p><p>I had to remove their memories as well.</p><p>I was, thankfully, already prepared.</p><p>'According to the Duchess, there aren't many who know of my existence. Just five, so just a couple of hours worth of work.'</p><p>In accordance with one of the terms of the agreement, she was required to disclose to me the names of everyone who was aware of my existence.</p><p>It was a clause I had placed in the contract just for this.</p><p>[From the moment the contract is signed, both parties will disclose how many entities are aware of the existence of the contract and the other party.]</p><p>'It's nice to be prepared.'</p><p>I smiled in satisfaction while lazily stretching my shoulder.</p><p>Clank—!</p><p>I opened the door and left the hall.</p><p>"Just a bit more."</p><p>...A bit more before I could finally rest.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-711.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-713.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

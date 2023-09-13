@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 501 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 501 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-500.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-502.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Crack. Crack. Crack.</p><p>Gazing at the expanding cracks above me, I remained motionless.</p><p>I could feel my strength sap away from my body, and all my heightened senses returned to what they were before.</p><p>Not quite.</p><p>My strength was indeed shrinking, but it soon stopped at &lt;A&gt; rank.</p><p>"I've broken through..."</p><p>I muttered in a low tone.</p><p>Normally I would've been happy with this development, but at the moment, that was the furthest thing I was feeling.</p><p>All sorts of different thoughts emerged inside of my mind as I looked back at the fight I had not too long ago.</p><p>"Old friend, he said..."</p><p>I already understood this the first time, but...</p><p>The Demon King could also remember the things that had happened in the past. He is also a regressor, wasn't he? But how is that possible? ...and are there more regressors?</p><p>I wasn't sure anymore.</p><p>But if there was one thing I was sure of at the moment, it was that what the other me told me wasn't a lie.</p><p>Knowing this a lot of things that happened in the past started to make more sense.</p><p>But it also brought rise to more questions.</p><p>"What are you going to do now?"</p><p>It was then that a soft voice echoed beside me. The voice was very similar to mine.</p><p>Without turning back, I answered.</p><p>"I don't know."</p><p>With everything that had happened in the last couple of hours, my mind was in a bit of a mess.</p><p>Especially after learning the reality of the situation.</p><p>Lowering my head to stare at my hands, I opened my mouth.</p><p>"This strength..."</p><p>"It's not permanent."</p><p>The voice cut me off.</p><p>Clank. Clank. Clank.</p><p>Following the sound of footsteps was a rattling sound.</p><p>Coming to a stop beside me, a figure with white hair raised his head and stared at the expanding cracks in the distance.</p><p>He had a lost look in his eyes.</p><p>"That strength you just witnessed is only a fragment of my old strength, and it's not something that you should use carelessly. With your current body, I would say that you would only be able to use it for at most five seconds."</p><p>"Five seconds?"</p><p>But didn't I just use it for a lot longer than that?</p><p>"It's because I lent you a helping hand. But it was only a one-time thing."</p><p>"Mhh.."</p><p>My forehead creased. I didn't really understand what he was trying to say. But regardless, I nodded my head.</p><p>It was then the other me spoke up.</p><p>"Check your status window."</p><p>"My status window?"</p><p>"Yes, check it."</p><p>He insisted.</p><p>Though confused, I did as he asked. He was clearly trying to show me something.</p><p>'Status.'</p><p>===Status===</p><p>Name : Ren Dover</p><p>Rank : A</p><p>Strength : A</p><p>Agility : A +</p><p>Stamina : A -</p><p>Intelligence : A</p><p>Mana capacity : A -</p><p>Luck : A +</p><p>Charm : B +</p><p>--&gt; Profession :</p><p>[Swordsmanship lvl.5]</p><p>The degree of understanding of the sword has evolved to the next level. User will find it easier to understand previously harder concepts.</p><p>Staring at my status screen, I didn't really notice anything different. Well, my stats were indeed higher, but that was it.</p><p>Raising my head, I spoke up.</p><p>"Is there something that I'm supposed to see?"</p><p>"Check your skills."</p><p>The other Ren replied.</p><p>My forehead creased even more. But I did as he asked.</p><p>--&gt; Skills :</p><p>[[G] Monarch's indifference]</p><p>A skill that enables users to erase all emotions, and act as a supreme monarch that only calculates the best option regardless of circumstance.</p><p>[[D] The one]</p><p>A skill that enables the user to instill fear into the opponents' minds resulting in them feeling like they were standing before a sovereign that overlooked everything. The skill may work on individuals who are one rank higher than them, however, if the difference between the two parties is greater than two ranks, the skill effect diminishes.</p><p>[[A] Eyes of Chronos]</p><p>Upon using this skill, the user will be able to see everything in slow motion. The more mana is used, the slower the time will be in their eyes.</p><p>[[?] ????]</p><p>?????????????????????????????</p><p>Skill can only be used for five seconds. Cool down; three months.</p><p>"Huh?"</p><p>It was then that I finally noticed it.</p><p>A new skill.</p><p>"Why is there no name?"</p><p>I questioningly looked at the other me. Apart from a few sentences below, all I could see were question marks.</p><p>What was this?</p><p>"Is this—"</p><p>"It's as you think. It's what you've just used."</p><p>My brows furrowed.</p><p>Was kind of getting pissed by all of the interruptions, but I decided to let it go after I realized that I often did the same thing.</p><p>"I see."</p><p>I then calmly nodded my head.</p><p>It didn't take me long to accept the reality of the situation. Staring at my status window, I caressed my chin and pointed at a certain area.</p><p>"Why is the cooldown so long?"</p><p>Never before had I ever had a skill that had a cooldown. Let alone, one this long. Was it because I was still too weak to use it?</p><p>"It's exactly what you're thinking. You're still too weak. At least not now. Your mind and body can't control that strength. You will only die if you use that power carelessly."</p><p>"...Right."</p><p>This sort of made sense.</p><p>During that brief moment when my power was activated, I could feel that it was something that belonged to me yet at the same time didn't.</p><p>It would probably take me years to master that power.</p><p>"The stronger I become, the less the cooldown and more time I can use the skill, right?"</p><p>"That's right."</p><p>Crack. Crack.</p><p>The cracks in the sky started to expand even more rapidly.</p><p>[Ren.]</p><p>Just then, a voice entered my head. It was Angelica.</p><p>[Ren, can you hear me.]</p><p>She sounded rather panicked.</p><p>The edges of my lips curled upwards.</p><p>'I'm alright.'</p><p>So she wasn't as apathetic as she looked outwardly. Or was she just afraid that I would die eventually leading to her death...</p><p>Tsk.</p><p>[The dungeon is about to break, are you not going to leave?]</p><p>"Leave, huh?"</p><p>Fixing my eyes at the expanding cracks in the distance, I closed my eyes.</p><p>Feeling the cool breeze, I eventually shook my head.</p><p>'I won't be leaving.'</p><p>[What!?]</p><p>Angelica's voice raised a few pitches. I felt this even more as it was right inside of my head.</p><p>[You're not leaving? Do you have any idea what you're doing? If you stay here, you will be going to the Demon World! The Demon World!]</p><p>'I know...'</p><p>[If you know, why are you even doing this? It's suic...]</p><p>Angelica stopped herself mid-sentence. Clearly, she must've remembered the strength that I had previously displayed.</p><p>Well, I no longer had that strength anymore.</p><p>But she didn't need to know this.</p><p>'Do me a favor, Angelica. Tell my parents and the others that I will be going for a while. Not much, about half a year or a bit more, not really too sure, but I won't be gone for too long.'</p><p>[Half a year?]</p><p>'Yeah...'</p><p>[But how can you come back?]</p><p>I smiled and turned my head toward my right.</p><p>'Don't worry about it. I've got my means.'</p><p>I wasn't expecting this trip to be a long one.</p><p>Only about half a year if things went according to plan. But there were things I needed to get done now.</p><p>Leaving sucked, but this was probably for the best.</p><p>I needed some time to myself. Time to sort out my thoughts.</p><p>[I see...]</p><p>Fortunately, it didn't seem like Angelica was the type of person to insist. After I expressed my feelings about staying back in the dungeon, she didn't continue asking and just accepted the situation.</p><p>[You said half a year, correct?]</p><p>'That's right.'</p><p>If possible, I wanted to stay less, but who knows...</p><p>[...Okay. I will tell them this.]</p><p>'Thanks.'</p><p>[Hmph.]</p><p>Angelica snorted.</p><p>I could already paint a picture of her crossing her arms together and turning her head away to express her displeasure.</p><p>I almost laughed.</p><p>[I'll be leaving now. If you come a bit later, don't blame me for what your family does to you.]</p><p>'Alright, alright.'</p><p>Following her words, the connection between us cut, and the smile on my face faded.</p><p>After a while, I eventually murmured.</p><p>"A pity we're still not contracted."</p><p>Had we been contracted, I would've been able to talk to her even if I was in the human domain. Perhaps I could've even talked to my parents.</p><p>Almost felt tempted to stop her and sign a contract.</p><p>"You made the right decision."</p><p>Just then, Ren spoke. His next words shocked me quite a bit.</p><p>"I will use this half a year to train you."</p><p>"Train?"</p><p>Staring at him, our eyes met, and he calmly nodded his head.</p><p>"You must've felt it, haven't you? ...The difference between you and Jezebeth."</p><p>Opening my mouth, I eventually closed it.</p><p>I then lowered my head and secretly clenched my fist.</p><p>"Yes..."</p><p>Despite having his strength considerably reduced due to the fact that he had only sent his clone, I could still feel how big the gap between the two of us was.</p><p>Quite frankly, I wasn't sure if I could ever beat him even if I reached a similar level to him in the future.</p><p>"Don't worry."</p><p>Ren spoke. His voice was very calm. It felt as though this was within his estimation.</p><p>"You may not be able to beat him now, but you will definitely be able to beat him in the future. Especially if you have me training you."</p><p>Gazing at his eyes and seeing my reflection in them, I sighed.</p><p>"I understand..."</p><p>Looking up at the sky and massaging the back of my neck, my eyes became sharp.</p><p>"I'll say this right here and right now, but I don't trust you at all. Even if you're going to help me train and become stronger, don't expect me to become your dog."</p><p>If this was his goal in training me, then tough luck.</p><p>There was no way I was going to trust him that easily. This was especially so after I learned of his past, and everything that he had pulled on me in the past.</p><p>He may try to help me out, but that didn't mean that he was on my side.</p><p>I needed to keep this in mind.</p><p>"Heh."</p><p>Ren chuckled.</p><p>"It doesn't matter if you trust me or not. I don't really care. But don't worry. It is within my best interest if you get stronger, so don't think too much."</p><p>Squinting my eyes, I stared at the other me for a good minute.</p><p>I could tell that he was trying to use me for his goal, but so was I. If whatever he was doing was within my best interest, I didn't see the need to refuse.</p><p>Our relationship was one of mutual interest. As long as our actions held the best interest of each other, we were good.</p><p>I eventually nodded my head.</p><p>"...Alright."</p><p> Crash—! </p><p>It was then that a loud shattering sound reverberated throughout the whole dungeon, and everything started to fall apart.</p><p>***</p><p>A/N : Yes, there will be another chapter later.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-500.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-502.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

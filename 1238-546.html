@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 546 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 546 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-545.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-547.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Ugh."</p><p>A groan escaped from my mouth as I thought about asking Octavious for help.</p><p>'Out of all individuals, it had to be him?'</p><p>Just my luck.</p><p>Glancing Douglas's way, I sighed before asking.</p><p>"…How sure are you that he can help?"</p><p>"I'm fairly confident."</p><p>Caressing his beard, Douglas's slowly said.</p><p>"He also seems to have had a problem with his soul, so if there is anyone you should ask, it should be him."</p><p>"Ugh."</p><p>Letting out another groan, I leaned back on the chair and sighed.</p><p>'It doesn't look like I have another option.'</p><p>Things had just turned a lot more problematic…</p><p>To be honest, I didn't really want to see him. However, because this was one of my top priorities at the moment, I really didn't have much choice.</p><p>Somehow, and someway, I had to meet him.</p><p>'This is the only way I can finally regain my memories before reincarnation, and dispel my other self's influence.'</p><p>Although just a hypothesis for now. After my soul healed completely, I believed all my memories of the future would disappear, and my old ones would reappear.</p><p>Not only that, but I would also know which feelings of mine were real and which ones were fake.</p><p>"I think I've answered your question. Do you need something else?"</p><p>Jolting me out of my thoughts was Douglas's voice. Turning to look at him, I thought for a moment before answering.</p><p>"…Remember how you told me you would allow me to take anything from the Cube?"</p><p>"Ahhh."</p><p>Douglas looked at me with a sudden look of understanding.</p><p>"I see what you're aiming for."</p><p>Taking a small tablet from his table, Douglas stroked his beard before pressing it to activate the hologram.</p><p>Following his actions, a series of different items present themselves before me. Extending his hand, Douglas smiled.</p><p>"Here is the catalog of what we have stored inside of the Cube, choose whatever you want."</p><p>Looking at Douglas, I squinted my eyes while studying the catalog.</p><p>"Am I allowed to pick an &lt;S&gt; ranked skill?"</p><p>"Hmm…"</p><p>In response to my gaze, the hand that caressed his beard froze slightly. With a rather complicated look on his face, he eventually nodded his head.</p><p>"…I did say that you could take anything you wanted, so I guess I should keep my word. Take whatever you want."</p><p>Pausing for a moment, his face became sterner.</p><p>"But let me remind you, Ren. You shouldn't choose a skill just because of its rank. Choose a skill that you need the most at the moment."</p><p>"Okay."</p><p>Firmly nodding my head, I started to scroll the catalog.</p><p>Just like Douglas said, I couldn't be too greedy. That said, now that I had his approval, I wasn't going to be courteous with my choice either.</p><p>Since I was allowed to take an &lt;S&gt; ranked skill, I wasn't going to shy away from it. If it proved to be useful, I was definitely going to take it.</p><p>Pressing the [Skill] section, I quickly got to work.</p><p>'Let's see…'</p><p>***</p><p>"Let's go."</p><p>In a slick suit, Edward calmly waited at the house's entrance for Amanda who was currently changing.</p><p>'This is it.'</p><p>Today was an important day. After leaving for four years, Edward was finally going to return to his guild.</p><p>There was no doubt that his appearance would shake the entire human domain.</p><p>Clank.</p><p>It was at this moment that the door to Amanda's room suddenly opened.</p><p>In a beautiful formal dress that accentuated her curves, Amanda walked towards her father.</p><p>With a smile on his face, Edward asked.</p><p>"Do you have everything ready?"</p><p>"Yes."</p><p>Amanda nodded her head with a serious look.</p><p>"Have fun you two."</p><p>From the other side of the apartment, a cheerful voice echoed as Natasha stared at them with a warm smile.</p><p>"Don't come back too late, I will get lonely."</p><p>"We won't."</p><p>Taking a step to the side, Edward opened the apartment door and allowed Amanda to leave first.</p><p>"Thank you."</p><p>As soon as she walked out, he waved at Natasha one more time before closing the door.</p><p>"I'll see you later."</p><p>"Don't come back too late!"</p><p>Clank—!</p><p>"Let's go."</p><p>After closing the door, he walked towards the elevator in the distance. In place of his former cheerful demeanor, he adopted an imposing one.</p><p>Now that he had left his apartment, he was no longer Edward Stern, but the guild master of the Demon Hunter guild. He had to adopt the right demeanor to suit his position.</p><p>This was especially so given the current situation at the Demon Hunter guild.</p><p>He had only been briefed a little bit by Natasha, but the more he heard the more displeased he was.</p><p>People seemed to have forgotten what made the Demon Hunter Guild the world's top guild.</p><p>'It's fine. I'll quickly make them understand once I return.'</p><p>Clenching his fist tightly, Edward entered the elevator with his daughter.</p><p>"Hm, dad?"</p><p>Snapping Edward out of his thoughts was Amanda's voice. Edward's face immediately softened.</p><p>"What is it, Amanda? You can ask me anything."</p><p>Lowering her head a little, Amanda asked in a rather hushed tone.</p><p>"I didn't really hear it properly yesterday, but how did you meet Ren?"</p><p>"Huh?"</p><p>Her words instantly caused Edward to feel an ominous premonition as he warily asked.</p><p>"Why are you asking about him?"</p><p>"…I'm just curious."</p><p>Amanda said as her face remained stoic.</p><p>Furrowing his brows tightly, Edward carefully looked at his daughter. Staring back at him, and seeing her stubbornness, he eventually relented and started talking to her about his experiences with Ren back in the Demon world.</p><p>"We met when I was inside of the arena. If I don't recall incorrectly, he went to meet me because…"</p><p>And so, Edward began to recount to Amanda his experience with Ren in the demon world throughout their trip to the guild.</p><p>From how he met him, to what happened after and how he saved him.</p><p>Throughout the entire time, Amanda had an attentive look on her face as she listened to every single one of his words.</p><p> Her eyes twinkled strangely as Edward spoke, but Edward wasn't sure what it meant, so he could only continue speaking. </p><p>That said, something about that twinkle irked him off.</p><p>"So are you saying that Ren managed to defeat a Duke-ranked demon?"</p><p>"I think so…"</p><p>Scratching the back of his neck, Edward furrowed his brows.</p><p>"When it happened, I was locked inside of a cell, so I don't know exactly what happened, but it appears as though he really did manage to do it."</p><p>"I see…"</p><p>Lowering her head, although brief, Edward saw Amanda's face flash with worry.</p><p>"Don—"</p><p>Just as he was about to say something, he suddenly heard a loud shout in the distance.</p><p>"Guild master!"</p><p>In the aftermath of the shout, Edward suddenly found himself the focus of everyone's attention as a large building appeared nearby.</p><p>Turning his eyes away from his daughter, Edward, and locking his sight towards the building in the distance, Edward muttered.</p><p>"Looks like we're here."</p><p>***</p><p>Clank—!</p><p>"Are you done?"</p><p>"Yeah."</p><p>Glancing Kevin's way, I nodded my head and headed his way.</p><p>"Did you just come back from choosing a skill?"</p><p>"Yup."</p><p>"What skill did you choose?"</p><p>"An &lt;S&gt; ranked one."</p><p>Kevin's face twitched.</p><p>"…You can do that?"</p><p>As I approached Kevin, I patted his shoulder.</p><p>"You're too humble Kevin. All you had to do was just ask."</p><p>"Ugh."</p><p>A distraught look appeared on Kevin's face as his shoulders slumped down.</p><p>Raising his head a little, he glanced my way and softly whispered.</p><p>"Let me see the skill you chose…"</p><p>"You sure?"</p><p>I asked as I turned to look his way.</p><p>A small change took place in Kevin's face as he took a step back. A look of heavy caution flashed across his face.</p><p>"I suddenly have a feeling that you're up to something. How about you just tell me what the skill is? You don't need to test it against me."</p><p>"Don't worry about it."</p><p>Extending my head toward his head, I softly smiled.</p><p>"Come, Kevin, let me show you my new skill."</p><p>"Hold up."</p><p>"Nope."</p><p>By the time Kevin could do anything, I had already pressed my hands against his head. It was at this point that my face became serious.</p><p>"Stop moving."</p><p>"How about no?"</p><p>Shrugging my shoulders, I replied.</p><p>"Because I'm about to use the skill. Don't blame me if something bad happened."</p><p>"Ugh."</p><p>Letting out a groan, Kevin's face twisted as he eventually gave in.</p><p>"Alright, fine."</p><p>"Good."</p><p>At that instant, I channeled my mana before he could regret his decision, and a faint hue started to sprout out of my hand as he watched.</p><p>Staring directly into Kevin's eyes, I solemnly said.</p><p>"It shouldn't hurt, but just in case, be prepared to experience some pain. Also, make sure to leave your mind unguarded."</p><p>"Leave my mind—huek!"</p><p>In the blink of an eye, I had already activated my skill, and Kevin's eyes went white as his body started spasming.</p><p>My expression changed a little when I saw this, but I continued to use the skill. It was too late for me to stop.</p><p>'This shouldn't be enough to kill him...'</p><p>There was no way, right?</p><p>Fortunately, my worries were unfounded. Kevin was much more durable than I thought as I soon let go of his head, and his eyes regained some clarity.</p><p>"Haaa…haaa…."</p><p>Supporting himself with his knees, his heavy breathing echoed throughout the corridor.</p><p>"You…"</p><p>As he raised his head, he glared at me as his voice grew groggy.</p><p>"What did you do to me?"</p><p>Instead of answering him, I squinted my eyes and carefully scrutinized his body.</p><p>"Oy, what did you do to m—"</p><p>Cutting him off, I asked.</p><p>"What's your name?"</p><p>"Huh?"</p><p>Raising his brows, Kevin looked at me strangely.</p><p>"What's my name? Why are you asking? shouldn't you already know?"</p><p>"Just answer it."</p><p>"…Okay?"</p><p>With an extremely confused look on his face, Kevin opened his mouth and answered.</p><p>"Cringe lord."</p><p>"Hmm…"</p><p>Placing my hand to cover my mouth, I tried my best to stop my body from trembling as I shook my head and murmured in disappointment.</p><p>"It looks like I've failed."</p><p>"You failed?"</p><p>"Yeah. My skill didn't work."</p><p>"Really?"</p><p>Cocking his head a little, Kevin's brows furrowed tightly.</p><p>"…This is the first time that I've ever heard of a skill not working. Are you really sure that it didn't work?"</p><p>"Just to make sure, what's your name?"</p><p>I asked again.</p><p>To which, Kevin answered immediately.</p><p>"Cringed Lord."</p><p>Pausing for a moment, his head snapped up to look at me.</p><p>"Wait, why are you even asking for my name?"</p><p>"Nope, doesn't seem like it worked."</p><p>Ignoring his words, I shook my head.</p><p>Then, turning around, I slumped my shoulders down and exaggeratedly sighed.</p><p>"I guess I still haven't gotten the hang of my new skill. I'll have to experiment with it more."</p><p>It was while I was talking that I finally felt a hand pat me on the shoulder. It was Kevin. He had a supportive smile on his face.</p><p>"It's alright Ren, maybe it actually worked and there is a slight delay. Only time will tell."</p><p>"Yeah."</p><p>Nodding my head, I gratefully looked at Kevin.</p><p>"Thank you, Cringe Lord."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-545.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-547.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

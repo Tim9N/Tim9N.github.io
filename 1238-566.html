@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 566 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 566 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-565.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-567.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Jin carefully moved around the room, feeling the hard texture of the walls. At the moment, he was searching for anything that could help him escape.</p><p>He had no trouble seeing through the darkness, thanks to his extensive training in the darkness, and it was because of this that he also had no trouble moving around the small room.</p><p>In fact, he was almost like a fish inside of a pond.</p><p>"Hmm "</p><p>As he raised his head, he noticed a small hole above him.</p><p>He was instantly able to tell what it was as he looked down at his clothes which were covered in filth.</p><p>'Should I perhaps wait until when they open up again and take a chance from there?'</p><p>Jin thought to himself as he carefully observed the tube.</p><p>"That won't work."</p><p>He soon shook his head.</p><p>The whole was a bit too small for him to fit in and even if he managed to somehow deal damage to the person above, it would only serve to anger them which in this situation would prove fatal.</p><p>"...Just what am I supposed to do?"</p><p>Moving toward a certain section of the room, Jin placed his finger on a certain area of the wall where he felt a slightly wet sensation.</p><p>Without further ado, he brought it to his mouth and drank.</p><p>'I'm glad all of my training is paying off.'</p><p>Jin thought as he tasted the water in his mouth. From a glance, he could tell that it was water and not poison as it did not release any strange smell that he was familiar with.</p><p>Of course, that wasn't the only reason why Jin could tell it wasn't poisonous because there were several other clues that indicated to him that the liquid was drinkable.</p><p>One such example was the fact that it left no trace on the wall behind it as typically, with strong poisons, it would leave corrosive lines on the hard rock. Further adding onto that, the moss around it did not decay but seemed to rather thrive on it.</p><p>That alone was already an indication that it was unlikely that the liquid was poisonous. Regardless, Jin didn't really care as his body was immune to poisons.</p><p>With the amounts of poisons he had tasted in his lifelines, he wasn't afraid of any of them.</p><p>Given his profession, this was a must. What sort of assassin could not withstand poison?</p><p>This place.</p><p>...It was like the back of his house.</p><p>Bang—!</p><p>It was at that moment that Jin suddenly heard a muffled banging sound coming from the other side of the room he was in.</p><p>"Hm?"</p><p>He immediately became startled.</p><p>"What was that?"</p><p>Bringing his ear close to the wall, he tried to see if he could hear the sound again.</p><p>Bang—!</p><p>Once again Jin was able to hear the same muffled banging sound. It felt as though someone was punching the wall with full force.</p><p>'Are there other people here?'</p><p>Was he perhaps not the only one that was trapped in this place but there were in fact others too?</p><p>The thought suddenly reanimated his mind as he carefully placed both hands on the wall to better hear the sound.</p><p>Bang—!</p><p>Bang—!</p><p>Bang—!</p><p>Over the next few minutes, Kevin would continuously hear the same banging sound coming from the wall.</p><p>Keeping track of the intervals between each punch, Jin slowly took a step back.</p><p>"Eight seconds delay for every sound."</p><p>Sometimes a little bit less and sometimes a little bit more, but that was more or less the time interval between each punch.</p><p>Counting down from eight, Jin's brows furrowed.</p><p>"It stopped?"</p><p>Waiting another couple of seconds to see if the sound was going to appear again, he soon realized that whoever was the one responsible for making the sound had stopped.</p><p>"...This might be a gamble, but it's worth a shot."</p><p>Jin was quick to come up with a decision.</p><p>Clenching his hand into a fist, he pushed the wall as hard as he could.</p><p>Bang—!</p><p>***</p><p>"Akh."</p><p>Screaming out in pain, my knees buckled and I kneeled on both knees to the ground.</p><p>"Fuck! it hurts like hell."</p><p>Drip—! Drip—!</p><p>With blood dripping down on the ground, I heavily panted for breath as I closed my eyes and repeated the same breathing technique from before.</p><p>This was an essential thing that I needed to do.</p><p>It wouldn't matter how hard I pounded the wall if my breathing was incorrect as incorrect breathing would give me no benefits and would make everything that I had done senseless.</p><p>Gulp—!</p><p> Swallowing another mouthful of saliva, my head turned toward the direction of where the water dripping sound came from. </p><p>While licking the top and bottom of my lips, I forced myself to stop thinking about the water.</p><p>The more I thought about it, the thirstier I felt.</p><p>'Fuck.'</p><p>I once again cursed as I felt my mind go numb.</p><p>Just as I was about to despair over my circumstances, my ears pricked up a muffled banging sound coming from the right side.</p><p>Bang—!</p><p>"Hm?"</p><p>My head snapped in the direction of where the sound came from as I slowly stood up and walked toward the side of the wall.</p><p>Pressing my ear on the side of the wall, I tried to hear the sound again.</p><p>Bang—!</p><p>...and I wasn't left disappointed.</p><p>Exactly a couple of seconds after I pressed my ear against the side of the wall, I heard the same muffled sound coming from the distance.</p><p>My eyes lit up when I heard this.</p><p>"Is there someone close by?"</p><p>The joy did not last for long, however as I quickly grew a little apprehensive.</p><p>'What if the one that is making the noises is one of the people responsible for trapping me here and was just toying with me?'</p><p>This was a very real possibility that I couldn't exclude as my excitement dyed down a lot.</p><p>Bang—!</p><p>Even then.</p><p>Moving back from my spot, I tensed my back and once again punched the wall.</p><p>Bang—!</p><p>However improbable it was, this was my only hope at the moment. While I still had energy, I repeated the same breathing technique.</p><p>"Huuu..."</p><p>***</p><p>Bang—!</p><p>Smashing his fist against the wall, Jin merely frowned at the pain. With how sturdy his body was, he only received minor pain when punching the wall.</p><p>"One, two, three..."</p><p>Counting down to eight, Jin prepared to punch the wall once more, however, just as he was about to punch, he suddenly heard another muffled banging sound coming from the other side of the room.</p><p>Bang—!</p><p>A thin smile spread across his face as he heard the sound.</p><p>'It looks like he heard me.'</p><p>Thinking of something, Jin didn't immediately punch the wall like the last time he did. With a rather complex look on his face, he took a small stance and murmured to himself.</p><p>"...Hopefully whoever it is that's on the other side, they know morse code."</p><p>Then, without wasting a single second, he punched the wall in short and long time intervals.</p><p>Ba..Baang..Bang..Bang...</p><p>***</p><p>Ba..Baang..Bang..Bang...</p><p>"Hm?"</p><p>Right as my fist was about to hit the wall once again, my hand suddenly froze as my eyes opened wide.</p><p>"This pattern..."</p><p>Ban...Bang!..Baaa!..Bag...</p><p>I soon covered my mouth with my hand as the chip inside of my head started to run at full throttle.</p><p>It wasn't long before I realized something.</p><p>'It's Morse code.'</p><p>This type of long and short standardized sequence pattern...It closely resembled Morse code.</p><p>'Let's not get ahead of ourselves.'</p><p>I was currently on another planet. What were the chances of a demon knowing Morse code?</p><p>Unless...</p><p>Halting my thoughts there, I proceeded to listen to the wall.</p><p>Baaa...Bang!..Baaa!..Bag...</p><p>(Dark Room)</p><p>With the aid of the chip I was able to instantly make out the message, and my head snapped upwards.</p><p>"...Human."</p><p>This confirmed it.</p><p>Whoever was communicating with me at the moment was a human, and they were in a similar situation to mine.</p><p>I had no doubt about this as I crossed my arms together and fell into thought.</p><p>"It's most likely Jin."</p><p>I mumbled to myself after a while.</p><p>This was the conclusion I came up with after contemplating it for a while.</p><p>My train of thought wasn't complicated. Rather, it was simple.</p><p>We were currently on a planet where no humans should exist.</p><p>Confirming that the other person was human and that during the time the portal expanded Jin was resting on top of my shoulders, this was the only logical conclusion I could think of.</p><p>'There is no doubt that the person on the other side of the wall is Jin.'</p><p>I once again reaffirmed to myself.</p><p>It could also be Kevin, but at the time he seemed to have entered the portal without any problems, making the validity of this theory rather low.</p><p>The moment I realized that Jin was possibly the person behind the other room, the chip inside of my head started to run at full throttle once more.</p><p>I was currently trying to formulate a message.</p><p>Within seconds I was already done as my hand clenched into a fist.</p><p>"Here goes nothing."</p><p>Ba..Baaang.baaang..bang</p><p>(Jin?)</p><p>I stepped away from the wall after getting my message across. While I waited for an answer, my heart raced uncontrollably, and the pain in my knuckles became negligible.</p><p>If Jin was truly the person behind the wall, then there was perhaps some hope in this situation.</p><p>Ban…bang! Bang! Bang! Ba…</p><p>(Who are you?)</p><p>My eyes lit up.</p><p>"It's really him!"</p><p>Unable to contain my excitement I moved toward the wall and punched it again.</p><p>Bang! Baa…bang! Baang!</p><p>(It's me Ren!)</p><p>Ban! Baa…bang! Baa…!</p><p>(Is this a prank?)</p><p>"A prank?"</p><p>It took a moment for my mind to register what he was trying to say, and I quickly started sweating bullets.</p><p>"Shit...Shit.."</p><p>Bang! Baa…bang! Baang!</p><p>(Not a prank. Something went wrong. Believe me.)</p><p>Bang! Baa…</p><p>(Ok.)</p><p>"Thank go—Ugh."</p><p>It was at that moment that my vision suddenly grew blurry and I stumbled a couple of steps.</p><p>Pressing my hand against the wall, I felt a nauseating feeling wash over me as my knees buckled.</p><p>"Shit, I've lost too much blood."</p><p>It didn't take me a moment to understand what was happening to me as I felt the blood slip down from my knuckles.</p><p>Sliding down and leaning my back against the wall, I smacked my lips together.</p><p>"This is bad…"</p><p>Drip—! Drip—!</p><p>The dripping sound of the water in the distance never sounded as enticing as it did now...</p><p>Struggling to use my head, I weakly raised my hand up. Using the last bit of energy inside of my body, I banged my fist against the side of the wall.</p><p>Bang! Baa…bang! Baang! Bang! Baa…bang! Baang!</p><p>(Dark room. Water. Drinkable?)</p><p>This was all I could write in my current state.</p><p>But it should do.</p><p>Considering he had said he was also in a dark room, perhaps he knew whether the liquid flowing down the wall was drinkable...If he had one.</p><p>If not…</p><p>I could only risk it.</p><p>Bang! Baaa!</p><p>(Yes.)</p><p>It wasn't long before Jin's answer arrived, and my eyes rekindled with hope.</p><p>"Thank god…"</p><p>Then, as though my energy had returned to me, I clenched the wall and propped my body up before stumbling across the room.</p><p>"W..water."</p><p>I weakly mumbled to myself as I arrived at the wall.</p><p>Pressing my hand against that side of the wall, I stuck my tongue out.</p><p>"...Ah."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-565.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-567.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

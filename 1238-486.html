@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 486 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 486 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-485.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-487.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Click—! Click—! Click—!</p><p> The clicking sound of the camera's shutter echoed throughout a large auditorium filled to the brim with people. </p><p>"Do you have anything to say regarding the current allegations?"</p><p>"Are you really 876?"</p><p>"Why did you frame Aaron Rhinestone?"</p><p>"Is Aaron innocent?"</p><p>Standing in front of the seats were a series of reporters who asked an endless amount of questions.</p><p>All of their attention was currently drawn toward the center of the room, or to be more precisely, toward my direction as I sat behind a large table. A few inches away from my mouth was a small microphone.</p><p>Sitting beside me was Douglas.</p><p>"Seems like you're quite the popular one?" Douglas joked as a small smile hung on his lips.</p><p>Briefly glancing in his direction, I shrugged my shoulders</p><p>"Guess I am."</p><p>Nothing I could do about it.</p><p>My charm was just that high.</p><p>Douglas helplessly shook his head.</p><p>"...You never change."</p><p>"Eh."</p><p>I once again shrugged my shoulders.</p><p>Just as I was about to say something else, the room instantly quieted down.</p><p>"By the way—"</p><p>Clank—!</p><p>Following this, Octavious Hall entered the room. His entire presence enshrouded the whole room, making it hard for the reporters to muster any courage to speak.</p><p>Even I was overwhelmed by his presence for a brief moment.</p><p>'It looks like he's made a small breakthrough.'</p><p>My eyes narrowed.</p><p>I could feel it. He was a few years away from reaching &lt;SSS-&gt; rank.</p><p>Glancing around the room for a couple of seconds, Octavious soon moved towards the table in the middle of the room and proceeded to sit down next to Douglas.</p><p>Once he sat down, he crossed his arms and remained silent.</p><p>"..."</p><p>For a brief moment of time, silence ensued. His overwhelming aura made it hard for the reporters to keep themselves composed.</p><p>However, this did not last for long as the reporters soon jumped back up from their seats and started to ask questions.</p><p>"Octavius Hall, what have you got to say regarding the allegations thrown out?"</p><p>"Evidence points out that the leak is indeed true."</p><p>"Why is this happening?"</p><p>With all the attention drawn towards him, Octavious suddenly raised his hand and muttered.</p><p>"Quiet."</p><p>Though his voice was quiet, it traveled through the ears of everyone present and all the reporters suddenly found themselves seated in their seats with their backs drenched in sweat.</p><p>Snapping out of it, the reporters glanced at each other. From the looks on their faces, it felt as though they were all wondering the same thing.</p><p>'What in the world just happened?'</p><p>Ignoring the commotion, Octavious opened his mouth. The moment he opened his mouth, everyone's focus once again turned to him.</p><p>"I'm sure everyone here has questions regarding the current allegations thrown at us. Many of you are wondering what is going on, and whether they are true or not..."</p><p>Octavious suddenly paused. Closing his eyes for a brief moment, the temperature of the room dropped a couple of degrees.</p><p>Opening his eyes again, he once again opened his mouth.</p><p>"And the answer to that i—"</p><p>"It's true."</p><p>However, right as he was about to finish his sentence, I directly cut him off. From where I was seated, I could feel his gaze suddenly land on me.</p><p>Ignoring Octavious, and with a nonchalant look on my face, I lazily looked at the reporters in front of me.</p><p>"Most of the stuff that was leaked is true."</p><p>"..."</p><p>For a short moment of time, none of the reporters were able to utter a word as they all stared at me with a look filled with looks of shock.</p><p>Beside me, I could feel Octavious's energy fluctuate slightly. Not sure about Douglas as his energy remained calm.</p><p>Everyone was quick to recompose themselves, especially the reporters.</p><p>Instantly everyone stood up and fervently started to ask questions.</p><p>Click—! Click—! Click—!</p><p>The cameras started flashing as the reporters started speaking over each other.</p><p>"Did you just say that all the leaks were true?"</p><p>"Can you once again repeat your statement?"</p><p>"Are you saying that you're really 876? And that the stuff that was leaked was true?"</p><p>"Were the crimes reported by the Union really true?"</p><p>Because everyone was speaking over each other, it was hard to make out any of the questions they were asking.</p><p>Lowering my head, and massaging my forehead, I softly mumbled.</p><p>"....How annoying "</p><p>'How in the world am I supposed to answer the questions if you are all speaking at once?'</p><p>Feeling Douglas's gaze from my right side, he once again shook his head.</p><p>Turning his head to glance at the reporters, he lowered his hand.</p><p>"Quiet please."</p><p>As he said those words, a trace of mana extended out from his hand, and all the reporters stopped speaking. Once silence returned in the room, Douglas looked at all the reporters in the room.</p><p>"If anyone has any questions to ask, please do so in an orderly manner. If you all ask questions at the same time, it will be impossible for us to hear what you are trying to ask."</p><p>Pausing, Douglas's eyes squinted.</p><p>"Am I being clear?" He sternly asked.</p><p>"..."</p><p>All the reporters silently nodded their heads.</p><p>"Good."</p><p>With a satisfied smile, Douglas turned to look at me.</p><p>"You can continue."</p><p>"Thanks."</p><p>Thanking Douglas, I turned my attention back toward the reporters and cameras.</p><p>"I'll make this quick, so listen carefully."</p><p>***</p><p>At the same time, inside of a small private room.</p><p>[I'm sure everyone here has questions regarding the current allegations thrown at us. Many of you are wondering what is going on, and whether they are true or not.]</p><p>Seated on a small sofa, and staring at a holographic image in front of them, Donna leaned her body forward. Worry flashed across her eyes.</p><p>"What are you so worried about, Donna?"</p><p>Seated next to her was Monica.</p><p>Extending her hand, she grabbed a handful of popcorn and shoved them down her mouth.</p><p>"Munch...Munch...are you worried about what's going to happen to Ren? ...Munch, if so, you don't have to worry, I've already given him the files."</p><p>"That's not it."</p><p>Donna shook her head.</p><p>"That's not what I'm worried about."</p><p>"Oh? ..Munch."</p><p>Gulp—!</p><p>Swallowing the popcorn in her mouth. Monica turned to look at Donna.</p><p>"Then what are you worried about?"</p><p>"Haa..."</p><p>Sighing out loud, Donna covered her forehead.</p><p>"I'm worried about what Ren is going to say. You know very well his mouth is just as unfiltered as yours."</p><p>"Eyyy..."</p><p>Monica's eyes squinted at Donna's subtle diss.</p><p>Lowering her hand, she grabbed another handful of the popcorn.</p><p>"...I think you're overthinking things."</p><p>Halfway through her sentence, Monica stuffed her mouth with another handful of popcorn.</p><p>"Munch...Munch...It's not going to be that bad."</p><p>Turning to glance in Monica's way, Donna lowered her head and softly mumbled.</p><p>"I wish so too..."</p><p>She really did.</p><p>However, knowing Ren for how long she did, she knew that this could only be a pipe dream for her. Especially after her talk with him on the phone yesterday.</p><p>At the moment she could only wish that he wouldn't go overboard.</p><p>["I'll make this quick, so listen carefully."]</p><p>It was then that Ren's voice suddenly echoed through the speakers of the projection.</p><p>Turning their attention back toward the holographic projection, Monica and Donna suddenly noticed that the atmosphere around Ren had started to change. His previous nonchalant look was gone, and what replaced it was a serious one.</p><p>Seating a couple of seats beside him, Octavious Hall's brows furrowed.</p><p>"I want you all to understand one thing..."</p><p>Ren slowly said as his eyes remained fixed on the cameras in front of him.</p><p>"...I don't care about any of you."</p><p>Though soft, his words rang in the ears of everyone watching and listening like powerful thunderclaps inside of a raging storm.</p><p>Lowering his head, Ren's voice deepened.</p><p>"My performance at the Conference was for me, not for you."</p><p>"I am not your Hero, nor the 'hope' that many of you are making me out to be. If I had to put it bluntly, don't mistake my previous deeds as me trying to be your savior."</p><p>"As I've said before, I couldn't care any less about any of you."</p><p>Pointing his finger on the table, Ren leaned his body forward.</p><p>"You come here, demanding answers from me, as though I have suddenly betrayed all of your expectations and shit, hah."</p><p>Ren suddenly scoffed.</p><p>Raising his hand and brushing his hair back, he glanced at the camera and muttered.</p><p>"It makes me sick."</p><p>"..."</p><p>Silence.</p><p>As Ren's words echoed through the auditorium, absolute silence enveloped the area as no one dared to utter a single word.</p><p>Or rather.</p><p>They couldn't.</p><p>How could they answer Ren's sudden words? I</p><p>Be it Douglas, Octavious, or any of the reporters.</p><p>Everyone was just listening to Ren's words with a myriad of different expressions.</p><p>"Let me repeat this once again. I'm not your Hero, nor am I your hope. If you feel betrayed by the sudden revelations that I am 876, then tough luck, I quite frankly don't care about what you think."</p><p>"In the first place, it is you who put your expectations on me. Did I ever ask you to put your expectations on me?"</p><p>Ren shook his head.</p><p>"I didn't think so."</p><p>Pausing for a brief moment, Ren turned to glance in Octavious's direction. Meeting his eyes for a brief moment, he once again started to speak.</p><p>"The same cannot be said about the Union. They are an organization dedicated to protecting you. They are the ones you should be placing your hopes into."</p><p>Ren's eyes suddenly narrowed.</p><p>"However, just because they are an organization that is set to protect you, it doesn't mean that they also care about you."</p><p>Tapping on his watch, a black holographic image materialized in front of Ren.</p><p>Extending his hand he pressed on the holographic screen and a recording suddenly started to play.</p><p>[Despite the fact that 876 saved you, we really can't do anything about the situation. On one hand, sign a treaty to bring peace to the human domain and stop the Monolith from terrorizing the human domain for a few years and let us recuperate, and on the other hand sacrifice some unknown &lt;D&gt; rank talent that we know nothing about.]</p><p>As the recording played, everyone in the room was able to hear a conversation between two individuals. Both of whom were female.</p><p>[Yes, we are grateful for what he did, however, as the Union, we are set to prioritize the lives of the many over one. It might come back and bite us in the future, however, this is the type of organization we are.]</p><p>[———, what is done is done. Even though I have voted against the decision, the other heads all unanimously voted for 876 to be eliminated. In the end, he wasn't worth the sacrifice.]</p><p>The recordings lasted for a little over a minute, and once it reached its end, Ren tapped on his watch and turned off the holographic function.</p><p>"..."</p><p>The silence from before continued to prevail over the auditorium.</p><p>"This conversation was a conversation between two of the heads of the Union. I won't say their names, but you can probably figure out from their voices who they are."</p><p>As Ren was talking, he suddenly felt a small mana ripple spread from beside him. It didn't take a genius to understand who it belonged to.</p><p>Since they were in front of everyone, Ren knew that Octavious couldn't do anything.</p><p>Therefore, without mining Octavious, he continued.</p><p>"As you've all seen, this is how the Union thinks. They are an organization that won't think twice about sacrificing you if it leads to the 'better good' of humanity. No matter how much you've helped them in the past, if they believe you are not worth it, they won't think twice about throwing you away."</p><p>"In this case, they chose to sacrifice me..."</p><p>Turning his head, Ren gazed in Octavious's direction. Once their eyes met, a soft smile appeared on his face.</p><p>"...876."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-485.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-487.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

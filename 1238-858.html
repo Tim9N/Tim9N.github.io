@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 858 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 858 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-857.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-859.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>There was something faint in front of my darkened vision.</p><p>In the beginning, there was only a sliver of light in the amber color, but as time went on, it grew larger and larger. The darkness that had been surrounding the world around me was quickly overcome by that faint light that grew so bright that it dispelled all the darkness around me.</p><p>Within the faint light, I felt something embrace my entire body and bask it in a gentle warmth.</p><p>It felt good. Really good. So much so that I wanted to bask in it forever, but with a sudden twitch, the white world shattered, and my eyelids opened.</p><p>The sight of the extremely tall wooden shelves, which reached the ceiling and appeared to go on forever, obscured my field of vision. My immediate environment was characterized by a predominance of silence, and there was an eerie sense of calm that pervaded the atmosphere.</p><p>Blinking my eyes, I gradually sat up and looked around me.</p><p>The world… it was covered with books and shelves that seemed to stretch endlessly.</p><p>I bent my head forward and focused on my hands, clenching and unclenching them as I did so. My previous wounds had healed completely, and I was beginning to experience a sense of wholeness once more.</p><p>Pressing my hands on the wooden floor, the floor creaked at my movements, and I carefully stood up and looked around me. Eventually, my gaze settled on a small patio in the distance.</p><p>It sat on top of a lush green floor, and a book covered in golden runes sat atop the altar.</p><p>It took me only a moment to figure out what the book was, and it seemed as if my feet were acting on their own when they began to head in the direction of the patio.</p><p>It took just a single step to reach it, and when I did, I suddenly stopped. My mouth parted open, but no sound came out.</p><p>"It took you a while."</p><p>A familiar voice reached my ears. One that I thought I'd never hear again, and when I looked in front of me, I saw someone whom I thought I'd never see again.</p><p>From the moment I laid eyes on him, I knew that it was him. Not some projection or hallucination created by the records.</p><p>I could just feel it with the powers that lingered in my body, and my chest stung a little. I still forced myself to smile.</p><p>"Was I late?"</p><p>"Very."</p><p>I smiled genuinely this time and moved to the patio, where he saw me. I sat myself down on the seat opposite him and enjoyed the scenery around me.</p><p>"How are you…"</p><p>"How am I alive?"</p><p>He finished the question for me, and without looking at him, I nodded my head.</p><p>"Yeah…"</p><p>"It's not that I'm alive," he answered, similarly staring at the world around the patio. "I'm just in the place where I was born. I'm neither dead nor alive, just a projection of the remaining power that lingers over the records."</p><p>"I see."</p><p>Understanding a bit of what he said, I found myself nodding my head. When I turned my head and met his crimson colored eyes, I shifted my attention toward the book that sat atop the altar.</p><p>"Are those the records?"</p><p>With a complicated look on his face, he nodded his head.</p><p>"Yes."</p><p>The book was encircled by golden runes and words that moved and swirled around it as if they were in a vortex. The glow that encircled it was not particularly strong, but as I continued to stare at it, I suddenly felt a calling coming from it.</p><p>"Go on."</p><p>When I heard his voice, I turned to look at him once more, and he smiled faintly at me.</p><p>"The moment your hands are on the book, you will be elevated to the position of Overseer, and you will have access to every aspect of the universe. You will be responsible for maintaining order throughout the universe and preventing future occurrences of events similar to Jezebeth from taking place..."</p><p>Overhearing his words, I felt my brows knit.</p><p>"That sounds rather troublesome."</p><p>"It is."</p><p>He didn't even bother denying it as he nodded his head. I wanted to shake my head at his antics, but I recalled something.</p><p>"What happened to everyone back on earth?"</p><p>From the moment I defeated Jezebeth, I found myself in this world. I still had no idea what had happened to the others back on Earth. Were they fine? Did everything get resolved? Did something happen to them?</p><p>"Don't worry about them."</p><p>Kevin reassured, pointing at the Records.</p><p>"If you're curious, then take the records. All the questions you have will be answered the moment you become the new Overseer"</p><p>Following what he was pointing at, my gaze fell on the book in the middle of the altar. With each passing second, it glowed brighter, and the whispers that surrounded my ears became progressively louder. Calling for me to reach out to them.</p><p>Staring back at Kevin one more time, I saw him nod at me, and I pursed my lips.</p><p>Turning my attention away from him, I stopped right before the records. Immediately, the gentle whispers that reached my ears stopped, and I stretched my hand.</p><p>Coming into contact with the book, a bright light flooded my entire vision, and golden runes and scribbles floated all around me. The world around me started to shake, and the tall libraries in the distance stretched in every direction.</p><p>Paying no mind to what was happening around me, I slowly opened the book, and everything turned white after that.</p><p>That was when I saw it...</p><p>The truth.</p><p>***</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>Pak!</p><p>Silence predominated over the surroundings as Ren closed the book in his hands. In that brief moment when he opened the book and closed the book, Kevin watched Ren's face undergo a series of changes as he displayed all sorts of emotions.</p><p>Anger, sorrow, happiness… he displayed every possible emotion until, eventually, his gaze became extremely calm.</p><p>That lasted until he closed the book. A matter of seconds, Kevin sat there with his gaze fixed on him.</p><p>"What have you seen?" he asked, curious to understand what made Ren react the way that he did.</p><p>Closing his eyes, Ren turned his head, and their gazes met. He smiled softly at him.</p><p>"I saw… what I needed to see."</p><p>Ren didn't change much after taking in the records, but there was definitely something different about him. It was as if he were there, yet not.</p><p>"What did you see?"</p><p>"Mhm."</p><p> Ren's answer confused Kevin as he tried to pry further, but all he was met with was the same soft smile from before. </p><p>Extending his hand forward, Ren opened up his palm to reveal several shards in his hand.</p><p>Clank. Clank. Clank.</p><p>The shards floated on top of his palm and gradually gathered together as a bright white glow encircled each one of them.</p><p>"Life truly is funny. I had a sneaking suspicion, but I never thought it was like this… I finally understand the real meaning behind the world you showed me… and why I never existed, to begin with."</p><p>Kevin tried his best to understand what Ren was saying, but what he heard completely confused him. It was clear to him that whatever Ren was talking about was something that was well outside of the scope of his knowledge.</p><p>"I used to think that there used to be a beginning to something, but never did I imagine that my own precognition of time was wrong. Time… it's a measurement we created in order to measure a beginning and an end, but what if there was never a beginning to begin with? What if it was just… there."</p><p>The more he spoke, the more Kevin became confused, but he continued to listen. There was something about his words that entranced him, and the more he listened, the more he felt like he grasped onto something.</p><p>WIIIING—!</p><p>It was a sudden white glow that jolted him out of his thoughts, and when he came to, he saw a small metallic box levitating on top of Ren's palm. A thick black mist encircled the cube and pulsed in a feeble manner as it floated there.</p><p>"What's that?"</p><p>"This…"</p><p>Staring at the box, Ren smiled.</p><p>"You can say this is the continuation of everything."</p><p>He paused.</p><p>"...The beginning of a very long book. One I personally created and am a part of..."</p><p>While he was looking at the box perched on the top of his palm, the box began to shake suddenly. After a short while, a crack appeared in the area that was adjacent to the box, and Ren carefully tossed the box so that it fell into the crack.</p><p>His actions perplexed Kevin, who looked back at Ren in bewilderment, but all he received in response was a perplexed look followed by a sigh.</p><p>"If it's like this…"</p><p>Shaking his head, Ren pursed his lips and turned to face him. Staring at each other for a moment, Ren waved his hand, and their surroundings started to shift. The patio collapsed, and so did the shelves that disappeared from their surroundings.</p><p>What replaced them was a long and narrow corridor with a bright light at the end.</p><p>"Should we go back?"</p><p>"Back? …to where?"</p><p>"Where else?"</p><p>Taking a step forward, Ren ushered him forward with his hand.</p><p>"Home."</p><p>***</p><p>[In a distant world, unknown.]</p><p>The sun rose over the rolling hills of their small farm, and two demons walked hand in hand through the lush green fields, taking in the serene beauty of their world.</p><p>The tall grass swayed in the gentle breeze, and wildflowers dotted the landscape with bright bursts of color.</p><p>Tak! Tak! Tak!</p><p>Together, the couple tended to their crops with care, planting new seeds and harvesting ripe vegetables from the earth.</p><p>They worked in perfect harmony, each complementing the other's strengths and weaknesses. One had a gentle touch with the plants, coaxing them to grow and thrive, while the other was solid and sturdy, able to till the soil and lift heavy loads with ease.</p><p>As they worked, the couple chatted and laughed, enjoying each other's company in the peaceful surroundings. The warmth of the sun on their skin and the fresh scent of the earth invigorated their spirits, reminding them of life's simple pleasures.</p><p>Such was life for them...</p><p>In the distance, a small group of demon children played games and chased each other through the fields.</p><p>The sound of their laughter and the rustling of the grass added to the idyllic scene, making it feel like a moment frozen in time where nothing else mattered but the beauty of the world and the joy of family.</p><p>It was so peaceful...</p><p>That peace... however, did not last for very long.</p><p>"What's that?"</p><p>Noticing something, the woman dropped whatever she was doing and looked up at the sky. There she could see a small black object that was streaking down from the sky and heading in their direction.</p><p>As soon as she realized what was happening, she started to freak out and turned to look at her partner, who was also staring up at the sky. She was on the verge of calling out for him when, all of a sudden, a silver streak tore through the air and slammed into the land next to where they were standing.</p><p>WIIIIIIIIIING—!</p><p>There wasn't much of an explosion. Falling onto the ground with a low thump, the couple looked at each other in wonder.</p><p>"S,should we go check it?"</p><p>The husband proposed, staring into the distance with deep apprehension. Only when the female nodded her head did the two of them move, and when they approached the location where the object fell, they were shocked to see a metallic box on the ground.</p><p>Though faint, a black hue seeped into the ground from the body of the box. It went unnoticed by the two demons, who were unable to detect it.</p><p>"What is this?"</p><p>"Don't touch it!"</p><p>Seeing the box, the male tried to approach it but was promptly stopped by his wife, who stared at the box with deep apprehension.</p><p>"We don't know what the box is… it's best if we handle this carefully, especially when…"</p><p>Turning her head, she looked at the children that were playing in the distance and looked back toward her husband, who seemed to have understood her intentions as he nodded his head.</p><p>Unbeknownst to them, in the distance, a child sat on top of a rock and stared at the two of them with two eyes that were tinged in utter darkness.</p><p>"So that's how it is…"</p><p>As he looked at the couple off in the distance, and more specifically at the box that was standing beneath them, the child's eyes rippled as he watched.</p><p>At that moment, he finally understood something. The reason for his existence. The reason for what he went through and everything… The reason for his obsession with the truth.</p><p>A mixture of emotions clouded the child's face. Anger, sorrow, happiness, pity… they altered in sequences before, eventually, a smile appeared on the child's face.</p><p>He had only ever had one goal since coming into power, and that was finding the reason behind his existence. He had grown obsessed with it, and finally, he understood.</p><p>He understood why he existed.</p><p>It wasn't a mistake.</p><p>…and that was all he needed to know.</p><p>"T, thank you…"</p><p>The gloom that had crept into the child's eye vanished, and in its place was an innocent look as the child turned to look to his left and right in bewilderment.</p><p>"Ah? Where am I?"</p><p>"Hahahahah "</p><p>It was the subtle giggles from behind that gathered his attention and turning his head, the child saw several children waving at him.</p><p>"Come!"</p><p>They called out for him. Their smiles were innocent and filled with playfulness.</p><p>"Come and play with us… Jezebeth!"</p><p>Placing his little hands on the rock and hopping off of it, the child, Jezebeth, waved back at them and shouted.</p><p>"I'm coming!"</p><p>[The Author's POV] – End.</p><p>Main Story End.</p><p>Epilogue yet to come.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-857.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-859.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

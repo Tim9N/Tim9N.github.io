@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 650 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 650 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-649.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-651.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>I focused my attention on Suriol, who was currently emanating an inexplicable power from his body as he stood in the sky.</p><p>While I had my attention fixed on Suriol, I felt an immediate and significant shift take place within my body. Unbeknownst to me, a hazy tinge began to emanate from my body, and simultaneously, a sizable tear formed directly above my head.</p><p>Cra...crack!</p><p>What I was about to do now wasn't something I had ever done before, nor was I confident in performing.</p><p>In fact, I was currently taking a significant risk.</p><p>There were five distinct movements that comprised the Keiki style. Each movement was distinct from the previous one, and the level of complexity steadily increased from one to the next as the sequence progressed.</p><p>Prior to his passing, Grandmaster Keiki had only completed the fifth movement. That was his very last movement.</p><p>In the past, I had mentioned the possibility of there being a sixth movement to the Keiki style. One that Grandmaster Keiki, who had long since passed away, had not been able to find before his eventual death.</p><p>Over the course of the past few years, I had done everything in my power to try to feel that final sixth movement, but I could never, for the life of me, feel myself unearthing that movement.</p><p>I tried everything I could think of, but it was all to no avail.</p><p>It seemed as though it wasn't something I could perform with my set of skills.</p><p>I was still far too weak to sense it.</p><p>Of course, that was until I caught a glimpse of it.</p><p>'The memories of my other self is what is making this possible.'</p><p>It was during that brief period of time that I was able to witness the full extent of my other self's power, and it was from there that I caught a glimpse of the sixth movement.</p><p>There were many other things that I saw back then, but the sixth movement was the thing that stuck with me during that time.</p><p>I didn't really understand it back then, as I was still too weak, but things were different now.</p><p>Now that I had broken through to &lt;SS-&gt; rank, as if all the pieces of the puzzle had been placed in the right order, it finally clicked inside of my mind and an image appeared within my darkened mind.</p><p>It was a single sword.</p><p>One bright and tangible sword that had a translucent sheen to it and appeared to hold some kind of unexplained power. One that appeared to be capable of turning the world on its axis with a single blow.</p><p>It was a sword with unfathomable power.</p><p>Still...</p><p>I could sense that the sword was not something that I could still wield with the strength that I possessed at this time.</p><p>It seemed so close, yet so far...</p><p>...I wanted to spend more time dwelling over that sword and study it better before using it, but, as I stared at Suriol who was currently taking the same fighting style as the other me, I knew that this was the only shot I had at victory.</p><p>'I can only beat him this way.'</p><p>The other me was simply too strong.</p><p>He was a being that I didn't think I could ever match up with in my entire life.</p><p>'Maybe, this weird sword is the only way that I can beat him.'</p><p>Suriol's ability only expanded toward what my body experienced while my other self took over.</p><p>Even though he had most likely caught a glimpse of the sixth movement from my recollections, it was impossible for him to perform because it was not something that could be accomplished with a mere glance.</p><p>If he had absorbed the memories of my alternate self, it would have been possible, but he had absorbed my memories, and I had no real knowledge of it.</p><p>Nonetheless, his fighting experience and his movements were the same as my alternate self. Thus, I knew that something that performing the sixth movement was the only way for me to win.</p><p>As I carefully pointed my finger in Suriol's direction, the image of the sword that had been floating around in my head started to become clearer, and the tear that had been standing directly above me started to gradually expand.</p><p>As a yellow tip began to surface from behind the crack, the vegetation that was located outside of the area of the land that had been leveled began to sway in the direction of the tip as if it had been attracted to it.</p><p>"What is this? ...No, wait, what are you doing?!"</p><p>Suriol's shocked voice could be heard from above as he stared at the large tip of the sword protruding from the small crack that had just appeared directly above my head.</p><p>Instantaneously, he attempted to attack me, but the pressure from the sword above me completely obliterated any and all attacks that were headed in my direction.</p><p>"No, what's going on!?"</p><p>As waves of energy began to spread throughout the entire world, the clouds in the sky began to separate, and a domineering aura began to descend upon the world.</p><p>As time went on, a sword began to emerge from the fissure, and the pressure that was squeezing the world to its very core gradually became more intense.</p><p>"Pfftt..."</p><p>I coughed up a mouthful of blood at the exact moment that the tip of the sword emerged from the crack and revealed a portion of its translucent body.</p><p>My body shook erratically while I tried to remain standing on the ground, and the sword flickered in and out of existence.</p><p>Suriol, who was bracing himself for my sudden attack had a sudden change in expression as the look of fright on his face quickly faded and he regained his composure.</p><p>"...So that's what it was, your body can't keep up with whatever you're trying to do."</p><p>I could feel the relief in his voice as he said those words. Clearly, he had been given a fright by my sudden actions.</p><p>"Alright then, I'll take your actions as a refusal of my previous offer."</p><p>Following that, he gradually extended his hand and opened the palm of his hand. A pitch-black spherical ball began to form directly in front of his palm as the world around him began to gradually lose its color.</p><p>As if the world around him was merging with him, everything within his immediate surroundings began to warp as an energy that was on a level comparable to the tip of the sword began to spread across the world.</p><p>Cracka! Cracka!</p><p>The sky began to crackle with lightning as the ground below was set ablaze, and the demons that were trying to aid their fallen comrades beneath scurried away as quickly as they could.</p><p>'...This is worse than I had expected.'</p><p>I cursed when I realized just how powerful the move that Suriol was about to perform was.</p><p>In addition to this realization, it dawned on me just how powerful the move that I was attempting to perform actually was. I could hear a small cracking sound coming from the bones in my body while at the same time that I could also feel the muscle fibers in my body steadily snapping.</p><p>'Actually, it isn't about the strength of the move, but my knowledge of it.'</p><p>At that very moment, I was attempting to carry out a move that I had never practiced before and with which I had only recently become acquainted with.</p><p>I was essentially trying to run without knowing how to walk.</p><p>I was out of my mind for even trying this move, but...</p><p>"Khh... t-his is the only way."</p><p>It was the only way for me to win this fight.</p><p>Because of this, I chose to disregard the stress that my body was going through and instead maintain a singular concentration on the sword that was forming directly above my head.</p><p>Unknowingly, my body began to levitate in the air as my feet no longer touched the ground.</p><p>"Khhh..."</p><p>Rumble! Rumble!</p><p>The world shook as two energies secretly clashed against each other, causing my head to swell with heat and every part of my body to throb with agonizing pain.</p><p>"Haaa..haaa..."</p><p>As the pain that I was experiencing left me gasping for air and my eyes began to sting, tears began to form in the corners of my eyes.</p><p>My life, which had been tormented by nothing but pain, was once again subjected to inhuman like pain as blood poured down my wounds, and the tip that was hanging above my head finally revealed its body in all of its majesties as two gigantic ripples spread out in the sky, destroying everything within the immediate surroundings.</p><p>As I moved my hand forward in a gentle motion, the wounds on the rest of my body began to stretch, and the bones in my hand began to shatter.</p><p>Yet, as I glared at Suriol who was gazing back at me with a maniacal look, I clenched my teeth and continued to press forward.</p><p>"Fucking, go!"</p><p>At my shout, half of the sword poked out from the crack as the world around me lost its color and everything distorted.</p><p>***</p><p>"This is my last warning, human! Give up and submit, and I will spare you. If you choose to attack, I will kill you and all the humans that you brought with you!"</p><p>As he stared at the blade that was aimed squarely at him, Suriol's eyes narrowed and hardened into a fierce glare.</p><p>Suriol felt a chill run down his spine as he stared at the tip of the sword that was aimed in his direction. At the same time, he furiously circled the demonic energy that was contained within his body as he prepared to unleash his most powerful move.</p><p>'Death.'</p><p>That was what came into Suriol's mind as he stared at the enormous sword that stood in front of him.</p><p>Just by giving it a simple look, he was able to sense a penetrating force directed toward himself. At the same time, he unknowingly swallowed a mouthful of saliva out of anxiety.</p><p>'How can he unleash such an attack?'</p><p>Suriol thought to himself as he furiously continued to circulate the demonic energy inside of his body.</p><p>The purple-black sphere that was floating in front of his palm began to grow in size over the course of a short period of time, and it wasn't long before it ballooned up to the size of a small sun.</p><p>The power that was emanating from his attack was just as menacing as the one that Ren was preparing to unleash.</p><p>"Pfftt..."</p><p>Nevertheless, just like Ren, the move that Suriol performed took a significant toll on his body, as evidenced by the fact that he spewed a mouthful of blood and staggered around in the air as his eyes turned white for a brief moment.</p><p>Crack!</p><p>Suriol's right peck made a subtle cracking sound at the exact moment he spat out a mouthful of blood.</p><p>His eyes widened as the sound reached his ears, and his face stiffened in horror.</p><p>"No!!!!!"</p><p>Suddenly, Suriol let out a piercing scream as he stared at his hand, which was covered in his own blood.</p><p>"No! No! No!"</p><p>Suriol continued to scream in his air as his eyes became completely bloodshot while he glared at Ren with obvious intent to kill him. It appeared as though he had completely lost control of his mind.</p><p>"How dare you! It's all your fault!"</p><p>Prince rank.</p><p>The highest rank that a demon could achieve outside of the King rank, which was considered to be impossible to achieve, with only one precedent in the past.</p><p>Jezebeth, the current Demon King.</p><p>Attaining a higher rank automatically confers a higher status, and once one reaches the Prince rank, they have achieved the highest status possible.</p><p>One could be forgiven for assuming that demons holding ranks lower than prince/princess, such as a duke, also enjoyed a high status. That was accurate the majority of the time; however, there were a few exceptions.</p><p>One of the exceptions to this rule was the clan that the demon belonged to; the more powerful the clan, the greater the number of Duke-ranked demons that lived within it. The more common Duke ranked demons were, the lower the position they held within the clan.</p><p>Another exception was if the demon had committed a crime, such as eating the core of another demon.</p><p>Suriol, who belonged to the most powerful clan, the clan of envy, and who had previously consumed multiple demon cores in an effort to break through to the Duke rank, was sadly one who fell into this category.</p><p>All of this stemmed from his desperation to reach Duke rank back in the past.</p><p>It was this sin of his that led to him being trapped in such a run down planet known as Immorra, and it was also his Duke rank strength that prevented the demons from directly killing him.</p><p>Despite this, after more than sixty years of living on this planet, Suriol's greatest desire was to depart from this location once and for all.</p><p>All he needed to do to get out of this place was to break through to Prince rank.</p><p>Once he broke through to Prince rank, there would be no one to stop him.</p><p>He was close. So very close.</p><p>Yet...</p><p>'Crack'</p><p>A simple cracking sound was all he heard, but it was the sound that signaled the end of his hopes and dreams as the Prince rank, which he had been so close to attaining just a few moments earlier, suddenly moved out of his reach.</p><p>When Suriol's demonic energy began to spiral out of control and his eyes began to bleed black blood, the sphere in front of him condensed and the world around him twisted.</p><p>In all honesty, it was only natural for Suriol to lose his mind. After all, it had taken him more than a century to get to this point.</p><p>Who wouldn't react the same way if they were put in the same position as him?</p><p>As Suriol pushed his hand forward with great force and sent the ball toward Ren's location, he wore a look of insanity on his face. At the same time, the wings that were located behind his back rapidly expanded.</p><p>"Ahhhhhhh!"</p><p>Suriol let out another crazed scream as he ferociously glared in Ren's direction.</p><p>"Die! Die! Die! Die!"</p><p>In response to Suriol's sudden outburst, Ren remained calm as he tried his best to suppress the agonizing pain and the constant fractures that appeared all over the bones in his body.</p><p>The moment that he heard Suriol's roar, and felt the attack head his way, Ren's body had already reached a point where almost every bone of his body had fractured and the muscles on the upper part of his body had raptured.</p><p>"D..damn it."</p><p>Unfortunately, when Suriol launched his attack, the sword that was hovering above his head was still only half exposed, and he was well aware that he had long since reached the point where he could go no further.</p><p> "Agkhhh!"</p><p>Consequently, with another scream, Ren pushed his hand forward, and the tear from which the sword was emerging slowly closed, thereby severing the sword in half and leaving behind an exposed portion of the other half.</p><p>Still, it was enough.</p><p>Ren extended his hand while tightly clenching his teeth together at the same time. He then raised his head to stare at the oncoming assault, and while doing so, he murmured in a low tone.</p><p>"Go!"</p><p>As soon as he finished speaking those words, the sword that had been hovering above his head vanished in an instant, and the world was immediately engulfed in an eerie silence as all living beings on the planet held their breath in anxiety.</p><p>As everything came to a sudden halt, Ren's sword reappeared in front of the purplish black sphere, its tip gently touching the edge of the spherical ball of energy as it did so.</p><p>After that, the entire world became completely gray as gentle ripples spread outward from the point of contact between the two attacks. These ripples added to and subtracted from the world's coloration with each succeeding ripple, twisting the world's visual from gray to normal in a repeating fashion.</p><p>This went on for what seemed like an eternity until all of a sudden, a gigantic red cloud appeared in the sky.</p><p>It was like something out of a nightmare.</p><p>BOOOOM!</p><p>A terrifying explosion that sounded like it was going to break the world in half reverberated all over the world.</p><p>Ren's vision turned black and the world trembled.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-649.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-651.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

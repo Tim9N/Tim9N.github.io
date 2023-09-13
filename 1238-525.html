@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 525 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 525 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-524.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-526.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Why didn't you kill him?"</p><p>An eerie voice echoed across a small room.</p><p>With my head lowered, I replied.</p><p>"Did I have to kill him? ...If so, I do apologize for my actions."</p><p>In the two days since my fight with Lightning Dragon, I had essentially recovered from all of my wounds. Some parts of my body were still sore, but that was just about it.</p><p>Regarding where I was...</p><p>It was Duke Anozech's private area.</p><p>"No, you don't have to be sorry."</p><p>In the aftermath of my fight with Lightning Dragon, it seemed that I had finally caught the Duke's attention.</p><p>Which was something that I desired from the very beginning.</p><p>He was instrumental in my inevitable escape.</p><p>"...Rather, you did me a favor by not killing him."</p><p>Lifting my head slightly, I raised my brow.</p><p>My head lowered once more when I saw the look on his face.</p><p>"Is that so? …then I'm flattered."</p><p>"...I'm starting to like you more and more."</p><p>The Duke said. I could tell he was pleased by the sound of his voice.</p><p>A faint smile spread across my face as I thanked the Duke.</p><p>"Thank you."</p><p>'Keep thinking that...'</p><p>It was only out of courtesy that I thanked the Duke.</p><p>While it was obvious I had never planned on killing Lightning Dragon, I was okay with him misunderstanding my intent.</p><p>After all, who would refuse free goodwill?</p><p>A little while later, Duke Anozech spoke again.</p><p>"I've recently gotten a report that you've allied yourself with the second-ranked in the Duke bracket, with the goal of killing the current Overlord, is that right?"</p><p>As soon as I heard his words, I pretended to be shocked before quickly burying it.</p><p>'As expected, the arena is heavily monitored.'</p><p>"Don't worry, I won't do anything to you. It's not against the rules."</p><p>The Duke reassured, evidently acknowledging my reaction.</p><p>My head lowered further.</p><p>"Nothing truly escapes you, your excellency."</p><p>In spite of saying that, I was rather surprised.</p><p>For my chat with SilverMoon to be discovered so easily by the Duke. It made one wonder how deep their surveillance system was.</p><p>'I need to tread more carefully...'</p><p>My awareness of this only heightened my guard regarding my future plans.</p><p>That said, this wasn't something that I had not expected.</p><p>Rather, this worked in my favor.</p><p>The Duke's next words proved me correct.</p><p>"...Do you want to fight the next Overlord?"</p><p>Raising my head, I replied without any hints of hesitation.</p><p>"Yes."</p><p>In spite of my quick response, the Duke's face remained the same.</p><p>My hatred for Edward was always obvious, I never tried to hide it. As a result, the Duke probably didn't find it surprising that I wanted to fight him.</p><p>"Are you that eager to fight the Blood Prince?"</p><p>"I indeed am, your excellency."</p><p>"Hmm..."</p><p>Seemingly falling into deep thought, the Duke mused for a moment before he opened his mouth again and asked again.</p><p>"You've observed how the current Overlord fights, right?"</p><p>"Yes, I have."</p><p>"Then what do you think your chances of beating him are?"</p><p>I paused and thought.</p><p>After a while, I answered.</p><p>"About fifty percent. If he's hiding something, then more."</p><p>"Fifty percent, huh?"</p><p>Turning around, Duke Anozech interlocked his hands behind his back.</p><p>"...That's pretty high, don't you think?"</p><p>Instead of answering, I decided to pose the Duke a different question.</p><p>"Then what do you think, your excellency? What are the chances of me beating the current Overlord?"</p><p>"You?"</p><p>As the Duke fell into thought again, he raised three fingers in the air.</p><p>My brows creased when I saw them.</p><p>"Thirty percent?"</p><p>"....Thirty percent."</p><p>The Duke repeated in a dead-pan tone.</p><p>I proceeded to clench my teeth. In a way, it was made possible to see from the outside.</p><p>But I didn't say anything. I just continued staring at the three fingers in the air.</p><p>Lowering his hand, Duke Azenoch smiled.</p><p>"You think that I'm wrong?"</p><p>"Yes."</p><p>I nodded without hesitation.</p><p>"I think that your–"</p><p>"Stop."</p><p>A cold touch at the back of my neck interrupted my speech as the Duke's voice echoed throughout the room, stopping whatever was aimed at the back of my neck.</p><p>Cold sweat dripped down on my body as I felt the cold touch at the back of my neck.</p><p>'I would've probably died had it not been for the Duke...'</p><p>With the hair at the back of my neck still standing, I slowly turned my head.</p><p>It was then that I met eyes with another demon. His features were different compared to the Duke who looked more like a human. In a butler's attire, the demon behind me glared at me with blood red eyes.</p><p>"Watch how you speak to the Duke "</p><p>He warned, after slowly removing his hand from the back of my neck.</p><p>After that, he lowered his head to the Duke and apologized.</p><p>"I apologize for the inconvenience, your excellency."</p><p>"It's alright."</p><p>The Duke casually waved his hand before turning his attention back to me. Meanwhile, the demon quickly retreated from the spot where he had previously stood and quickly disappeared.</p><p>"Don't mind him."</p><p>Walking up to me, Duke Anozech's eyes lingered on the spot where his servant used to stand.</p><p>"Back to our discussion. I said that your chances of beating the Overlord are thirty percent, do you agree or not?"</p><p>"No."</p><p>I still shook my head.</p><p>"Hmm?"</p><p>The Duke's face changed a little.</p><p>But before he could say anything else, I continued.</p><p>"I still have a couple of cards up my sleeves."</p><p>Upon hearing those words, the Duke's face relaxed and a smile returned to his face.</p><p>"You still have a couple of cards up your sleeve?"</p><p>"That is correct."</p><p>"...How intriguing."</p><p>There was a brief pause in the conversation. After a while, Duke Anozech asked.</p><p>"How would you like to become the next Overlord?"</p><p>'Bingo.'</p><p>Showing a surprised look on my face, I kept my head lowered.</p><p>"...This, are you really sure?"</p><p>"Heh."</p><p>The Duke let out a short chuckle.</p><p>Walking toward his desk, he took out a small device from one of the drawers of his desk.</p><p>"I'll help you out."</p><p>He then proceeded to toss the device in my direction.</p><p>"Here."</p><p>"...Thank you."</p><p>Catching the device, I started to examine it.</p><p>'It looks like a small remote controller.'</p><p>With just a simple glance, I was able to tell what it was. It was the device that was supposed to stop the mana flow of the person wearing the 'Supressor'.</p><p>In an effort to appear clueless, I flipped it around repeatedly and closely examined it.</p><p>After a good minute of the same thing, lowering the hand that held the device, I looked at the Duke.</p><p>"Ehm, what's this."</p><p>The Duke smiled.</p><p>"That..."</p><p>Extending his hand, he proceeded to point at the device in my hand.</p><p>"...Is the device that will turn that thirty percent, into a one hundred percent."</p><p>"One hundred percent?"</p><p>Lowering my hand, I stared at the device in my hand with an absentminded look on my face.</p><p>Raising my head again, I asked.</p><p>"If I use this I will be able to win the match?"</p><p>"That is correct."</p><p>The Duke smiled.</p><p>"All you have to do is press that device in the most critical conditions, and the rest will be easy. Just make sure to take advantage of the situation."</p><p>"I see..."</p><p>With a simple nod, I put the device away.</p><p>The Duke's smile grew bigger when he saw this. As he asked, he had a satisfied look on his face.</p><p>"Is there anything you wish from me?"</p><p>"Excuse me?"</p><p>I raised my head to stare at the Duke.</p><p>He continued.</p><p>"It is only right that I reward you for your efforts. So tell me what you want?"</p><p>"...What I want?"</p><p>Lowering my head, I pretended to fall into deep thought.</p><p>In reality, I already knew what I wanted.</p><p>It was something that I had been aiming for from the very beginning after all.</p><p> I slowly opened my mouth. </p><p>"If I win..."</p><p>Lifting my head, I met the Duke's eyes.</p><p>"...I want to have a fight against you."</p><p>***</p><p>"Ugh.."</p><p>Waking his groggy mind up, Liam blinked a couple of times.</p><p>What met his sight was a familiar sight. It was the sight of his room's ceiling. One that he had seen for the past couple of years.</p><p>"Did I fall asleep?"</p><p>He managed to mutter after a while.</p><p>"What happened?"</p><p>In an attempt to recall what had happened, his mind went blank for a few minutes.</p><p>His eyes which were filled with vitality a moment ago started to become dull.</p><p>As he reflected on his blank memories, he made sure to clearly express his disappointment.</p><p>"...Are my memories acting up again?"</p><p>It was always like this.</p><p>Whenever something happened, regardless of how big or small it was, he would always end up forgetting the next day.</p><p>This was a consequence of the art he practiced. It was the price he paid in exchange for power, but he was slowly starting to regret his decision.</p><p>Ever since practicing it, his life had only gotten duller.</p><p>"I guess I probably fell aslee-hm?</p><p>Halting mid-sentence, it was then that his mind was suddenly flooded with memories.</p><p>His head recoiled back as his eyes opened widely.</p><p>"I can remember!"</p><p>He joyfully screamed out loud.</p><p>For the first time in a very long time, he could finally remember what had happened the previous day!</p><p>It was inevitable for him to become excited after realization.</p><p>After all, this had never happened to him before.</p><p>"Huuu..."</p><p>But he didn't let the excitement get the best of him.</p><p>Taking a deep breath to calm himself down, he carefully inspected his body as he opened and closed his eyes. An expression of wry relief appeared on his face after he realized he had not died.</p><p>"So I'm not dead, huh?"</p><p>It appeared as though his opponent had spared him during the last moment of the fight.</p><p>Sitting up straight, he proceeded to look at his hands as he once again muttered.</p><p>"I can remember..."</p><p>The fight, he could remember it.</p><p>This was the first time in a long time that Liam ever remembered one of his fights.</p><p>He could remember everything.</p><p>From how the fight panned out, to the feelings he felt throughout it.</p><p>Especially his loss...</p><p>"So this is how it feels to lose..."</p><p>During that moment, he clenched his clothes with one hand as he felt a sharp pain rise in his chest.</p><p>The corner of his lips pulled upwards as he muttered through his clenched teeth.</p><p>"...It's a pretty darn awful feeling."</p><p>This pain in his chest.</p><p>This sense of dissatisfaction and frustration.</p><p>He couldn't quite put how he felt into words, but...</p><p>"It was fun."</p><p>A relieved smile spread across his face.</p><p>The feeling that he believed he had long lost had finally risen up inside of his body for the first time in a long time, and before he knew it, he felt a warm sensation by the side of his cheeks.</p><p>"It's been so long..."</p><p>He mumbled before closing his eyes and clenching his teeth.</p><p>But...</p><p>"I don't like it."</p><p>It was only after he felt it again that Liam realized how painful losing was.</p><p>He didn't like it one bit. He finally started to remember the reason why he pursued strength so much in the past.</p><p>It was because of this bitter and cruel feeling.</p><p>And a feeling that only appeared whenever he lost.</p><p>"Fuck..."</p><p>Clenching his teeth, he leaned back on his bed and covered his eyes with his arm.</p><p>"...I really wanted to win."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-524.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-526.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

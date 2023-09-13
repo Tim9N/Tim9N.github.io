@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 807 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 807 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-806.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-808.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Rumble―! Rumble―!</p><p>As Ren rose from his seat, the world began to exhibit signs of collapse. His eyes alternated between crimson and dull gray as his black hair gradually turned white.</p><p>"You… what?"</p><p>Jezebeth, also stunned by the abrupt change, rose from his seat and stared at Ren with an expression of bewilderment.</p><p>"Why are you here? How is this…"</p><p>He fumbled over his words as he stared directly at Ren. None of it made sense to him at the moment.</p><p>He was certain from the moment he sat down with him that he wasn't conversing with the Ren he knew but rather with the other version of him. The inferior version of him.</p><p>He wasn't supposed to be here.</p><p>With Kevin gone, nothing prevented him from vanishing without a trace.</p><p>So…</p><p>So why was he still here?</p><p>"What have you done? Where is…"</p><p>It was unusual for Jezebeth to be this flustered, but the sudden situation made it difficult for him to articulate himself appropriately. His mind was flooded with various questions, making it difficult for him to complete a sentence.</p><p>"Aha…"</p><p>But he wasn't the demon race's leader for nothing. After a brief moment of fluster, he regained his composure, and his gaze grew extremely icy.</p><p>"Answer me this…"</p><p>He looked around him.</p><p>"…If you're the one that's here, does that mean that you've absorbed the other version of you? Does he still even exist?"</p><p>Jezebeth made sure to look directly at Ren when asking the question. He wanted to know the answer. No, he needed to know the answer.</p><p>There was something unsettling about the situation, and he didn't like the feeling.</p><p> "Does he still exist?" </p><p>Ren's mouth eventually opened, with a trace of a rare smile appearing on it.</p><p>"…You'll see soon enough."</p><p>That wasn't the answer Jezebeth wanted.</p><p>***</p><p>"Welcome to the Pillar of Gluttony."</p><p>A majestic voice echoed in the air, stretching endlessly and reaching the ears of all those within its range.</p><p>"What's going on?"</p><p>"Where am I?"</p><p>When the people who had just materialized in this world turned their heads toward the sky, the direction from which they perceived the voice to have originated, they did so with expressions of bewilderment on their faces.</p><p>"What is this place... and what's going on?"</p><p>"This... weren't we just in Immorra? When did we get here?"</p><p>A fiery orange ball hung low on the horizon, and it cast long shadows that were twisted in all directions across the wasteland.</p><p>Within the confines of the Pillar of Gluttony was a world that was desolate and uninhabitable, with scorched and cracked ground stretching out for miles in all directions.</p><p>The atmosphere was thick with a crimson haze that made it difficult to see beyond the horizon and gave everything an eerie glow.</p><p>The few trees that were left stood starkly against the sky, their leaves having withered and fallen off for quite some time.</p><p>Swoosh―! Swoosh―!</p><p>Groups of demons and monsters emerged from beneath several rocky hills.Their twisted and gnarled forms writhed in the dim light of the red sun, casting eerie shadows across the jagged terrain.</p><p>Leading the group was a towering demon, its blackened skin rippling with muscles as it wielded a jagged, fiery sword. Its eyes gleamed with a dangerous light, and its snarling maw dripped with saliva as it surveyed the surrounding landscape.</p><p>Beside the demon, a pack of wretched wolf like beasts skittered out of the hill, their sharp claws and jagged teeth bared in hunger. Their fur was matted and oily, and their eyes glowed with crimson light as they hungrily scanned the land beneath them.</p><p>Following them, a group of winged fiends took to the air, their leathery wings casting shadows as they soared overhead.</p><p>"Creaak!"</p><p>"Creaaak!"</p><p>Their screeches filled the air, and their eyes glittered at the sight of the people beneath them as several demons appeared beside them.</p><p>The hills trembled as the leading demon shouted and raised his sword.</p><p>"Attack!"</p><p>"Watch out!"</p><p>A newcomer yelled out as he swung his sword at the first demon that lunged at him.</p><p>"I will kill yo―uh?"</p><p>But just as he swung, he noticed something strange.</p><p>Swoosh―! His sword cut through the air at a speed that a person with normal vision could see. It seemed as though it were moving in slow motion the whole time.</p><p>"Whhhaaaat?"</p><p>Everything started to move in slow motion for him, and the weight of his eyelids grew increasingly heavy. His physical strength suddenly vanished, and he staggered forward ineffectually as a result.</p><p>Crrrrr―!</p><p>It was faint, but right before he drew his last breath, he felt his stomach rumble.</p><p>Thump!</p><p>He wasn't the only one like this. Many others tried to draw their weapons, but for some reason, they felt the task becoming increasingly arduous.</p><p>It was as if their entire body had lost all energy, and what replaced it was an insatiable hunger.</p><p>Spurt―! Spurt―! Spurt―!</p><p>Blood gushed out onto the ground as the demons tore their bodies in two using their claws and mutilated everything else in the area.</p><p>As blood continued to pool in the parched land, it didn't take long for the situation to start turning into a one sided massacre.</p><p>"Heelp!"</p><p>Spurt―!</p><p>Cried a panicked voice, only for them to die shortly after. A hand emerging from the other side of their body.</p><p>Clank―!</p><p>Not all hope was lost, however.</p><p>"Ukh."</p><p>Some were still able to react despite the dire circumstances and were able to halt the demons' advance.</p><p>In particular, a group of three—one human, one elf, and an orc—huddled together in one of the corners of the land.</p><p>Even though the situation affected everyone in the group, they were able to defend themselves against the demon's attacks thanks to the orc, who tanked all of the hits.</p><p>Clank―!!</p><p>"Khhh…"</p><p>The orc, who was positioned in the front, took a deep breath as he continued to absorb the onslaught of attacks coming from four demons.</p><p>Xiu! Xiu! Xiu!</p><p>Arrows flew in a whirlwind behind him, impaling the demons that were in front of him, and the orc charged to the right, where three large hounds were attacking.</p><p>If it wasn't already obvious, demons weren't the only creatures that appeared in this unknown world.</p><p>There were also monsters present, and they made their presence known rather quickly.</p><p>"Huaar!"</p><p>They were roughly the same size as the orc, and as soon as they attacked, they completely overpowered the orc with their sharp claws and teeth.</p><p>"Argh."</p><p>The orc was bitten on the shoulder by one of the hounds, and green blood spurted out onto the ground. As if that wasn't bad enough, the other two hounds went for the orc's legs, and a crunching sound resounded throughout the area.</p><p>Cr..Crack!</p><p>The orc fell on one knee with a "Thump!", and desperation flashed across his features.</p><p>"Uarkhh!"</p><p>When one of the hounds opened its mouth, the orc saw his own blood dripping from its massive teeth.</p><p>He fixed his eyes intently on the scene, trying to make an impression of what he believed would be his final view. However, just at that moment, something zipped by him, and a number of "Thump's" resounded through the air.</p><p>Thump! Thump! Thump!</p><p>"Huh? What happened?"</p><p>The orc was taken aback to find a human being standing in front of him when he came to his senses. He had a sword slung over his shoulder, and his long, dark hair fell down his back as he rubbed his stomach.</p><p>"Why do I feel so hungry all of a sudden? …Hm, I'm usually never this hungry, but I feel hungrier today than usual… how weird…"</p><p>The group of four quickly regained their composure after overhearing his mutterings.</p><p>The four of them immediately took out several potions, and their injuries healed. They were about to express their gratitude when they were startled to see that the pupils in his eyes had suddenly dilated and turned a piercing shade of yellow.</p><p>His eyes narrowed, and a sly grin formed on the corners of his mouth.</p><p>"Hm... I sense a powerful presence nearby... Stronger than me."</p><p>The man said, licking his lips in what seemed to be anticipation.</p><p>"Perhaps it's the big boss? But it seems like they're already engaged in a battle with several other strong opponents. Is it really my place to intervene?"</p><p>The group of four exchanged a worried glance.</p><p>This human didn't seem entirely sane.</p><p>The man appeared momentarily absorbed in thought as he scratched the back of his head with a troubled expression. Then, he abruptly smacked his palm with his fist and spoke with a determined tone.</p><p>"Screw it, I'm going in."</p><p>He unsheathed his sword.</p><p>"It's not every day I get to face someone so strong. I'll first ask them politely, and if they refuse, I'll just knock them out... It's not every day you get to fight someone so strong."</p><p>He declared, nodding his head confidently.</p><p>Swoosh―!!</p><p>Without another word, the human's form blurred, and he disappeared from sight, leaving the four battle-weary warriors standing there in stunned silence.</p><p>They exchanged another look, then silently decided it was best not to get involved with someone who had clearly lost his mind.</p><p>As the group of four moved on to continue their battle, they couldn't help but wonder if he truly would do what he said he would do.</p><p>There was no way he was that crazy, right?</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-806.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-808.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

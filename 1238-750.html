@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 750 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 750 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-749.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-751.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Don't let yourself be led astray. Choose the right side… Don't let yourself be led astray. Choose the right side… Don't let yourself be led astray. Choose the right side... Hah."</p><p>I laughed when I thought back on those words.</p><p>'Was she threatening me?'</p><p>It sure as hell sounded like one. It didn't matter much to me anyway. Whether it was a threat or not, I already knew which side I was on.</p><p>There was no need for her to remind me.</p><p>Walking around the empty streets in front of me, I mused back on the words Sister Viviana told me. There was quite a bit of information that I learned.</p><p>"So Waylan's wife used to work at the orphanage, huh…"</p><p>But most importantly, I came to learn of a very strange fact.</p><p>The fact that Waylan's wife formerly held a position at this orphanage was interesting. It clarified why he continued to come here after such a long time, but what remained unclear to me was whether or not they were connected to the so-called Protector.</p><p>'A pity I don't really know much about Waylan.'</p><p>Emma was the only person he ever mentioned in any of his conversations. Other than that, I didn't really know that much about him.</p><p>In addition to that, it wasn't really within my rights to inquire about his wife or his past at all. It wasn't any of my business.</p><p>'Things are different now, though.'</p><p>When my thoughts paused thus far, I took out my phone and dialed a number.</p><p>―How can I help you?</p><p>I smiled the moment I heard the voice coming from the speaker of the phone.</p><p>It was very polite. A stark contrast to how it was a while back.</p><p>"It's nice to hear your voice again, Jerome. I have to say, you've done a good job so far."</p><p>―Haha, it is only right that I do this much.</p><p>The smile on my face grew larger when I heard his words.</p><p>'I did the right thing by getting them on my side.'</p><p>They saved me a lot of trouble.</p><p>―Ehm… Is there a reason why you've called me?</p><p>"Hm, yes."</p><p>I paused and looked behind me, at where the orphanage was. Although it was quite a distance away from where I was standing, I was still able to make out the details.</p><p>Thinking about my time over there, the smile I previously had on my face faded.</p><p>"Search everything regarding the orphanage I sent you previously... Ashton City Community Orphanage."</p><p>As if the instruction wasn't clear enough, I repeated the full name of the orphanage.</p><p>I felt as though I was close. Close to finding what Kevin was trying to show me, and closer to finding the key to the identity of this Protector.</p><p>So long as I figured out what was up with this orphanage and who this Protector was…</p><p>'I'll finally be able to get out of here.'</p><p>"Tell me the date of its founding, its founders, how it was twenty years ago, just any information that you can find about them. Useless or not useless. I want everything."</p><p>I paused.</p><p>"Don't miss anything. Regardless of how trivial it is. It's very important that I know everything about the place."</p><p>***</p><p>The Roshfield family had a rather sizable main residence. The home could be considered one of the largest in the city with more than ten bedrooms, twelve bathrooms, and a total floor space of more than 76,000 square feet.</p><p>Inside the mansion, beside a large oval wooden table.</p><p>"Hear this, dad."</p><p>Emma pointed her fork at her father while still chewing on her food with her mouth open.</p><p>"Chew with your mouth closed."</p><p>"Shut up."</p><p>Amanda sat next to her, chewing her food with her mouth closed and only consuming small portions of the food in front of her.</p><p>She was considerably more refined than Emma, and if there was one thing she couldn't stand about Emma, it was the fact that she chewed with her mouth open.</p><p>She hated the sound.</p><p>"Why are you always hounding me about that?"</p><p>"Because it's disgusting."</p><p>Emma rolled her eyes.</p><p>"Whatever."</p><p>Having said that, she complied with Amanda's request and started eating her food with her mouth close.</p><p>Swallowing her food, she looked at her father and continued.</p><p>"As I was saying… believe it or not, someone actually said that Amanda is not fitted for the sword."</p><p>"Oh?"</p><p>Oliver's brows raised, and he looked at Amanda.</p><p>"Is what she said true?"</p><p>Amanda nodded her head but did not respond. After chewing and swallowing her food, she wiped her mouth with her napkin, and then she finally spoke.</p><p>"Yes, it's true."</p><p>"That's rather surprising."</p><p>Oliver sliced the piece of steak in front of him.</p><p>"…Did anything come out of that statement?"</p><p>"No, not really."</p><p>Emma answered for Amanda.</p><p> "Amanda said she still doesn't believe him. That's also the reason why I brought her here today."</p><p>Oliver smiled while bringing the slice of steak to his mouth.</p><p>"You wanted to confirm with me whether I agreed with that statement or not?"</p><p>Chewing on the steak, he cleaned his mouth with the napkin on his lap.</p><p>"Then you don't need to mind those words, Amanda. Do what you feel is right. Back then, I said you were fitted for the sword because I believe that you are indeed talented in that aspect… Your results have shown me that my words are right. You're indeed quite talented for the sword if you consider your progress."</p><p>If someone had to rank people based on rank, then Amanda could be considered at the top of the human race. She alongside a couple of others.</p><p>Jin Horton and Emma being examples.</p><p>"You've gotten to where you are with the sword, and if you were to change now, you'd have to start all over again…"</p><p>He paused and put the fork down.</p><p>"…It's not worth it."</p><p>***</p><p>The night's breeze, which was rather brisk, blew her hair in all directions, scattering it all over her face. Amanda supported herself by placing her hands on a metal handrail and raising her eyes to the moon in the distance.</p><p>It brought peace to her mind.</p><p>'It's not worth it.'</p><p>Amanda gave the words that Oliver had shared with her during the meal a lot of careful thought.</p><p>'You've gotten to where you are with the sword, and if you were to change now, you'd have to start all over again…'</p><p>"His words make sense."</p><p>The more she mused on those words, the more she felt that they were right.</p><p>As he said, if she were to truly change her weapon, then she'd have to start all over again. By then, everyone she had left behind would catch up to her.</p><p>She wasn't too sure if that was the right move.</p><p>"What to do…"</p><p>The decision should've been an obvious one. However, when she thought about who had said those words, Amanda couldn't help but find herself hesitating.</p><p>If his strength was similar to hers… then she might've scoffed at him. However, this wasn't the case.</p><p>She was unable to fathom the depths of his true powers. She had no chance of ever catching up to him, and Oliver, the one who told her to use the sword, had no chance of defeating him either.</p><p>It was only logical that she listened to him.</p><p>"But which weapon should I change to?"</p><p>That... he never specified.</p><p>All she could remember was him telling her that she wasn't fitted for the sword. He never actually elaborated on his words…</p><p>"Ugh."</p><p>Amanda found herself massaging her head.</p><p>Thinking about him, whose name she still didn't know, she felt her head throb.</p><p>That being said…</p><p>Thinking at the time she'd spent today, training with 'him'. She unconsciously felt her lips curl.</p><p>"I guess… it wasn't bad."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-749.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-751.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

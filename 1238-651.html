@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 651 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 651 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-650.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-652.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Unbelievable. What kind of sword is that? ...I can feel my body trembling all over."</p><p>Liam stared at the fight that was happening in the distance with a light breath. His eyes were shining an ominous yellow hue as his body shook.</p><p>Unlike the others that were next to him, he could see everything, and it was exactly because he could see everything that his body shuddered.</p><p>'So...strong.'</p><p>The power that was radiating from the distance was unbelievably powerful, and Liam couldn't take his eyes away from the scene that was unfolding right before his very eyes. It was as if he was in a trace.</p><p> "Looks like they are about to attack, get back!"</p><p>It was Leopold's voice that brought Liam back to reality as he caught sight of the gigantic half sword that was raised above Ren's head and continued to move forward.</p><p>"Watch out!"</p><p>Liam and the others were quite far from where Ren stood. At least several dozen kilometers away from him, yet, the residual energy that was coming out from the fight that was happening between the two was strong enough to send the people standing above the castle flying back.</p><p>Raising his hand and positioning his body forward, Liam's clothes fiercely flapped as his gaze continued to linger toward the fight in the distance.</p><p>"...Is this the power of an &lt;SS&gt; ranked individual?"</p><p>Liam could never have imagined in his wildest dreams that Ren would experience such a dramatic increase in power simply by moving up a single rank.</p><p>As his eyes began to sparkle, he could feel his heart beating furiously.</p><p>He was very excited.</p><p>The power that Ren exhibited excited him to no end.</p><p>"Maybe...I should also breakthrough."</p><p>Liam was seriously contemplating whether or not to break through to the next rank, taking into account the likelihood that he could do so if he so desired.</p><p>It was inevitable that it would still be a few months before he was able to successfully breakthrough, as he was still not exactly there yet.</p><p>However, the primary reason for this was that breaking through had never been his primary objective as he had focused on improving his martial arts instead of his rank.</p><p>Liam, however, was unable to keep his composure as he stared at Ren's figure as he floated through the air like some sort of war god.</p><p>'I want to break through.'</p><p>It was at this point that he finally came to a decision, and he chose to spend the next couple of months working his way up to the next rank.</p><p>'...I can't wait.'</p><p>"Watch it!"</p><p>Once more, Leopold's frantic voice echoed out loud as another surge of power spread throughout every inch of the land in the vicinity of the castle and the surroundings began to shake.</p><p>An even more ferocious gust of wind ripped through their vicinity as Angelica grabbed hold of Ryan to prevent him from getting hit by the airborne debris that carried large boulders and rocks.</p><p>"Ahhh!"</p><p>"Watch it."</p><p>Immorra trembled.</p><p>A sudden and enormous shadow appeared all over the world as a gigantic, purplish-black energy sphere that looked like it could have replaced the sun suddenly descended toward where Ren was standing.</p><p>Under everyone's anxious gazes, they saw a black figure slowly raise his head as he pressed his hand forward in the direction of the large sphere. The half finished sword that was hovering above his head suddenly disappeared as the world suddenly turned quiet.</p><p>In that brief moment, Ren's eyes were lifeless, like a god that was overlooking the entire world.</p><p>When Liam looked into Ren's lifeless eyes, he had the unsettling sensation that he was staring straight into the abyss of his own death. It was frightening.</p><p>It was then that it happened.</p><p>As everything came to a sudden halt, Ren's sword reappeared in front of the purplish black sphere, its tip gently touching the edge of the spherical ball of energy as it did so.</p><p>The world then turned completely gray as soft ripples spread from the point of contact between the two attacks, adding and removing color from the world with each subsequent ripple.</p><p>This went on for what seemed like an eternity until all of a sudden, a gigantic red cloud appeared in the sky. It was like something out of a nightmare. At the same time, a terrifying explosion that sounded like it was going to break the world in half reverberated all over the world.</p><p>BOOOOM!</p><p>As if the world was crumbling, the deafening explosion spread throughout the entire land as the world distorted and everything started crumbling down.</p><p>"Fuck! This is too much!"</p><p>"Fuck, Ren!"</p><p>"Shit!"</p><p>The people who were standing atop the castle became terrified as they hurled a string of curses and thrust their hands forward to form a massive shield that encompassed the entire castle structure.</p><p>Even so, as more and more people put their hands up and tried to thicken the defensive system of the castle, the expressions of the many people present didn't look too good as they knew that it would probably not be enough to mitigate the power that came from the aftermath of the attacks.</p><p>...and they were right.</p><p>Everything took place in a split second, but the moment the barrier was erected, the residual energy that had been left over from the attack suddenly erupted and traveled all the way to the castle, where it collided head-on with the barrier that had been erected by the others.</p><p>As soon as the residual energy made contact with the shield, everyone, including Jin, Emma, Amanda, Angelica, Han Yufei, Leopold, and the rest of them, spat out blood at the same time that their faces instantly turned a sickly white color.</p><p>"Shit, what kind of power is this?!"</p><p>Jin let out a loud curse as he covered his mouth with his hand, and blood dripped through the spaces between his fingers as he did so. The rest of the people weren't faring much better either; their bodies were violently trembling, and blood leaked from their noses and mouths.</p><p>At this precise instant, Jin, who had his hand pressing against the barrier, jerked his head back and looked at Liam with bloodshot eyes.</p><p>"You! What are you doing? Help out!"</p><p>"Oh, right."</p><p>After being called out, Liam was finally able to pull himself together and get a grip on the situation. As he looked at the barrier that was trembling, he waved his hand, and mana erupted from the tips of his fingers.</p><p>Instantaneously, the barrier that had been violently shaking a few moments ago stopped shaking altogether, and as things began to steady themselves, it also began to thicken up.</p><p>Everyone looked at Liam with baffled looks on their faces as Jin's mouth quivered.</p><p>"Y..you, if you could've done that from the beginning, why didn't you?"</p><p>"...I was too absorbed with the fight that I forgot."</p><p>Indeed, the fight had taken all of his attention. So much so that he only protected himself and forgot about the others.</p><p>Fortunately, he was able to remedy the situation in time and managed to successfully support the barrier.</p><p>Jin was left speechless by his reply. Before he could say anything else, the world stopped shaking and everything settled.</p><p>Everything in front of the castle was obscured by a massive dust cloud that blanketed the entire planet.</p><p>At that precise instant, all of the individuals stopped channeling their mana, and the barrier that had been covering the castle began to gradually vanish.</p><p>With a swipe of Liam's hand, the dust in the air vanished as a gust of wind blew and scattered everything away, revealing the state of the battlefield.</p><p>"Hiss..."</p><p>When everyone looked at the land, they all took a deep breath as they saw that it had been completely ripped apart and shredded.</p><p>The area around the castle had been completely stripped of all vegetation, and all that was left was a scorched landscape that looked very similar to the surface of the moon or Mars.</p><p>It was a total wasteland.</p><p>Everyone could feel a slight heat radiating from the ground, and there was a lingering smell of sulfur in the air. Steam was rising up from the ground at the same time, twisting the view of the land ever so slightly.</p><p>In spite of this, nobody seemed to care as they all looked off into the distance, where a figure sat atop a rock covered in blood and with wounds all over his body. His hands were propped up on his raised knees, and his dark hair was pushed forward as they covered his eyes.</p><p>If one looked carefully, one could see steam beginning to rise from his body, which was exposed through the gaps in his tattered clothes.</p><p>Under him was the mangled carcass of a demon, which had been ripped in two, exposing its core, which was fractured in several places.</p><p>At this precise instant, everyone felt their breath leave their bodies as the image of Ren etched itself firmly into the consciousness of each and every person present.</p><p>It then slowly sunk into their mind.</p><p>On this very day, Ren conquered Immorra.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-650.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-652.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

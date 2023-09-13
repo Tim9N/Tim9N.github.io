@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 609 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 609 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-608.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-610.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'He's changed a lot since the last time I saw him.'</p><p>Donna quietly thought to herself as her gaze fixed on Ren who was seated a few tables ahead of her.</p><p>Even she felt pressured at the time he revealed his strength in front of everyone.</p><p>The power he displayed...</p><p>It was frightening.</p><p>'I knew he was talented, but I didn't think it was to this point.'</p><p>One could not come close to describing the rate of his progress. It was simply, frightening. To the point where both Monica and Kevin were left behind.</p><p>She was more shocked to find that not much time had elapsed since she had taught him at the Lock.</p><p>About six years.</p><p>In about that period of time, he had transformed from a typical &lt;G&gt; ranking student to someone whose strength had surpassed hers.</p><p>'How monstrous.'</p><p>She mumbled to herself once more.</p><p>In the past, she thought that Monica was the most talented human she knew, but it was clear to her that there was someone else that was above her.</p><p>It was none other than Ren.</p><p>'His strength isn't the only thing that changed about him, his demenour also seemed to have changed.'</p><p>When Donna looked at him more closely, she saw that he was different from how he had been in the past.</p><p>Around him, there was a somewhat melancholy vibe. One that left Donna feeling uneasy. It was sufficient to make her face turn grave.</p><p>'...Just what happened during the few years that I haven't seen him?'</p><p>He wasn't exactly cheerful, but he sure as heck wasn't like how he was now.</p><p>It kind of worried her a little.</p><p>'I should probably talk to him after this is over.'</p><p>Thus, she made her mind up to talk to him after the meeting was over. It had been a couple of years since they had come to contact with each other, might as well catch up a little.</p><p>***</p><p>Bang—!</p><p>My fist smashed against the side of the bathroom wall, and fine miniature crevices extended all the way toward the ceiling of the bathroom.</p><p>The meeting had ended a couple of minutes ago. As expected, Octavious ranked first, and Maximus who was previously ranked third was now ranked second.</p><p>But that wasn't what resulted in my rage.</p><p>"Rank 18? Seriously?! ...After all that hard work?"</p><p>I gritted my teeth as a burst of rage erupted from deep within my body.</p><p>I was upset with my slow improvement rather than my poor ranking. I had been working hard for the past two years. Really hard.</p><p>During that period, I went through a phase of relative strength increase, helped by the air's increasing mana density and the merging with the strength of my former self.</p><p>My efforts paid off, and I was able to advance to &lt;S+&gt; level in just two years. I was just a little shy of reaching &lt;SS-&gt; rank.</p><p>But...</p><p>"Too slow!"</p><p>I muttered through my clenched teeth.</p><p>Two years.</p><p>That was how much time I had left before my other self would take over or the curse that was in me would activate.</p><p>Two fucking years. That was how long I had to live.</p><p>The rate at which I was progressing was slow. Too fucking slow.</p><p>"...I miscalculated."</p><p>I didn't come to the meeting and exposed my strength on a whim. Rather, I did it with a goal in mind.</p><p>The meeting today was important to me for a certain purpose.</p><p>The Monolith and the Union's cease-fire was set to expire the following month, and I would only have a chance to influence the situation and participate if I had a high enough ranking.</p><p>I had previously anticipated that I would already be &lt;SS-&gt; rank by the time the meeting started, however, I had severely underestimated just how hard it was to break through to the next level.</p><p>In the end, I only ended up ranking 18th, which was far beneath the rank I wanted it to be.</p><p>Bang—!</p><p>"Damn it."</p><p>The thought sent me into another fit of rage.</p><p>I only stopped when I felt a wet sensation running down my nose. I saw a noticeable red stain on my hand when I wiped the area with my arm.</p><p>'Blood...'</p><p>My left arm spasmed a little and my vision blurred. This lasted for a good minute before stopping.</p><p>"Not again..."</p><p>I lowered my head and stared at my trembling hand.</p><p>"Fuck."</p><p>A curse silently left my mouth while more blood dropped down from my nose.</p><p>Wiping the blood with my arm, I raised my head to stare at my reflection.</p><p>"What's wrong, nervous?"</p><p>My ears picked up a recognizable voice as my reflection moved independently.</p><p>Slowly, my face sank.</p><p>"Huuuu…"</p><p>Taking another deep breath I was able to calm myself down and washed my face with some water.</p><p>My sudden outburst came as a result of his personality merging with mine.</p><p>It was starting to be increasingly difficult for me to contain my emotions.</p><p>"You not going to say anything?"</p><p>My hands paused on my face while water dripped down toward the sink. Slowly raising my head, I glared at the mirror, or to be more precise, my reflection.</p><p>Our eyes met.</p><p>"Are you still hung up on what happened to Smallsnake? Two years have already passed, move on. Why even bother with the Monolith?"</p><p>I closed the valve without saying anything. Only then did I open my mouth to speak.</p><p>"…If you expect me to give you my body after what you've done, you can only give up."</p><p>"Oh?"</p><p>The eyebrows of my reflection raised.</p><p>"Do you think I mind if I have to wait a few more years? The seal Jezebeth placed on you will put an end to things even if I don't take control of your body and do it myself. You've lost no matter what you do."</p><p>"Right..."</p><p>I gripped the side of the sink with all my strength.</p><p>Cra..crack…</p><p>Cracks slowly started to form on the porcelain sink.</p><p>"…About Smallsnake, what makes you so sure that I was the one behind it? It could just be you blaming me for your incompetence."</p><p>Hearing his words, my head slowly raised.</p><p>"You think I'm stupid?"</p><p>I asked while calmly staring at the mirror.</p><p>My voice became icier as I drew nearer to the mirror.</p><p>"Sure, I did have a fault in his death, but do you seriously think that I wouldn't know this was something you devised? I may be stupid at times, but I'm not mentally challenged."</p><p>I tightened the grip on the sink as I recalled the events of two years ago.</p><p>"I could sense it at the time...Jezebeth sustained damage. He may have not been a clone, but he wasn't exactly in top shape."</p><p>"Not only that, but his injuries worsened shortly after Kevin destroyed the core. Even if he didn't show it, I could tell. I may have not been able to defeat him, but I sure as heck would have been able to delay him...Enough to buy Smallsnake some time, had you lent me your strength."</p><p>Even now, the events that transpired back then haunted me.</p><p>Thinking of all the things I could've done to prevent such a situation from happening felt agonizing.</p><p>"Additionally, there is no way you could have overlooked Jezebeth's unexpected appearance. You aren't this negligent. His appearance was unquestionably something you wanted to occur."</p><p>"You were aware that he would show up, but despite this, you weren't concerned for my safety because you also knew that he was hurt. This shows that you had something planned and that something was Smallsnake's demise."</p><p>He may not have known that this was the last loop, but I sure as heck knew that he had enough power to confront Jezebeth.</p><p>Furthermore, from the enigmatic words he said after his memories stopped playing, I knew that he wasn't planning to end the loop just yet.</p><p>I raised my head to glare at the mirror.</p><p>"…You may not have set your targets on Smallsnake in particular, but without a doubt, you wanted someone involved to die."</p><p>Without saying anything, he just looked at me.</p><p>The silence persisted for a little bit before he opened his mouth to speak.</p><p>"You're right, I could've helped you and avoided his death. In a way, you can say that I did plan for this."</p><p>My heart tightened when I heard his words.</p><p>'I knew it.'</p><p>"As I never attempted to conceal it in the first place, there is no use in lying about it now. Jezebeth's imminent presence and everyone's appearance on the planet were things that I was aware would happen."</p><p>"Even if I may not be able to completely anticipate what will happen, major factors like that are indeed something that can be predicted, and from there, changing little things to make them go your way isn't exactly too hard. Why do you think you were able to see the memories for as long as you did? ...and why do you think you were even allowed to see them?</p><p>"But, I'm sure you know exactly why I did what I did, right?"</p><p>I ground my teeth.</p><p>Nonetheless, he continued speaking.</p><p>"You see, with that shaky resolve you had at the time, there was simply no way for you to defeat Jezebeth. Quite plainly, the likelihood that you would succeed in fighting him was dwindling as you began to stand still. My decisions were driven by need. Smallsnake had to perish in order to enhance your—"</p><p>Bam—!</p><p>I punched the mirror with all my force. The glass shattered and shards fell on the floor.</p><p>The reflection in the mirror vanished.</p><p>Looking around the room my breath felt heavy.</p><p>"I don't have time for this."</p><p>I then turned around and no longer bothered staring at the mirror, or the room which was half destroyed at this point.</p><p>The words my other self said did hold some weight. They weren't necessarily wrong. My resolve back then to defeat Jezebeth was half-hearted.</p><p>Back then it was merely out of necessity. Something that I needed to do for the sake of doing it and stopping the world from being destroyed.</p><p>Now, however, it was personal.</p><p>Jezebeth needed to die.</p><p>...and the same went with the other me.</p><p>They both needed to die, and in the two years I had left, I would make sure I would do everything that was within my powers to make sure it happened.</p><p>Ding—!</p><p>At that moment, my phone rang and I received a message.</p><p>My face softened when I took out my phone and checked the message.</p><p>[You need to work on your fake smile. (▀̿Ĺ̯▀̿ ̿)]</p><p>It was from Amanda.</p><p>"The hell..."</p><p>I almost burst out laughing when I saw the emoji she sent.</p><p>[It wasn't that bad, was it?]</p><p>I didn't think anyone would notice my fake smile. I seriously hoped it wasn't that bad.</p><p>[Image.jpg]</p><p>An image of me appeared on the screen.</p><p>Amanda's text came after.</p><p>[Yes, it was. Enough to make my toes curl in. ಠ_ಠ]</p><p>"Eh..."</p><p>I pinched the screen with my fingers to get a better look at myself.</p><p>'Shit, it really does look terrible.'</p><p>Actually, terrible wouldn't be enough to cover it.</p><p>In the picture she sent, it was glaringly obvious that my smile was fake. No wonder Amanda's toes curled in, the same was happening to me right now.</p><p>[Ugh, I guess you do have a point.]</p><p>[Right? (¬‿¬)]</p><p>"What's with the emojis?"</p><p>[Anyways, when are you coming back? Nola says she misses you. ʕ•ᴥ•ʔ]</p><p>[Give me an hour.]</p><p>I didn't think I would need any more time with that.</p><p>The only thing I needed to do was talk to Waylan and that was it.</p><p>[Okay. Nola said that she will be waiting for you. ( ͡°( ͡° ͜ʖ( ͡° ͜ʖ ͡°)ʖ ͡°) ͡°)]</p><p> "..." </p><p>[Aren't you having way too much fun with the emojis?]</p><p>[Am I? (͡ ͡° ͜ つ ͡͡°)]</p><p>[Yes, yes you are.]</p><p>[What are you going to do about it?(ง'̀-'́)ง ]</p><p>[(╯°□°）╯︵ ┻━┻]</p><p>I sent an emoji of my own.</p><p>"Serves you right..."</p><p>I then turned off my phone and placed it in my pocket.</p><p>Shaking my head, I made my way out of the bathroom. Unknowingly, a thin smile spread across my face.</p><p>I guess not everything was as dark as it seemed...</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-608.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-610.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 555 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 555 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-554.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-556.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"What did you want to talk about?"</p><p>Gazing into the distance from one of the park benches, I sat.</p><p>"Haa..."</p><p>The person next to me, Kevin, sighed and leaned back on the bench.</p><p>"You know, if you had answered my calls, I wouldn't have had to come all the way here."</p><p>"...I was kind of busy, you know?"</p><p>I replied whilst scratching the side of my neck. I actively chose not to use my phone while I was spending time with Amanda, as I thought that it would be rude of me to do so.</p><p>In addition, I was here to understand my feelings properly. Not to play around with my phone.</p><p>"...and, after sending me over a hundred messages just this morning, I wouldn't know if you sent me a message.</p><p>"Whose fault do you think that is?"</p><p>Kevin glared my way.</p><p>His eyebrows shot up as he suddenly recalled something.</p><p>"Now that you've reminded me, fix what you did."</p><p>"Right…"</p><p>Almost forgot that Kevin's memories were still altered.</p><p>"Empty your mind."</p><p>A gentle white hue enshrouded my hands as I extended them towards Kevin.</p><p>I was just about to touch Kevin's head when he backed away and warily glanced my way.</p><p>His reaction made me frown.</p><p>"What are you doing?"</p><p>"…I'm telling you now, you better not pull off another one of your jokes."</p><p>"I won't, I won't."</p><p>Waving my hand, I reached out to grab his head.</p><p>The only reason I even did what I did back then was because I wanted to confirm a couple of things regarding the skill.</p><p>If I used the skill too often, I would end up losing Kevin's trust.</p><p>"Relax a bit. If you do it like last time, you will suffer a bit of pain."</p><p>"I know."</p><p>In a harsh reply, Kevin closed his eyes.</p><p>After that, an intense white light illuminated the area we were in for several seconds. It came as fast as it went, but it was enough to attract the attention of the people around us who looked at us with strange looks.</p><p>'Figures…'</p><p>My grip on Kevin's head soon loosened, and he gradually opened his eyes.</p><p>"How are you feeling?"</p><p>I asked.</p><p>After pulling a small card from his wallet, Kevin glanced at me briefly before ignoring me and staring at it.</p><p>Similarly looking at the card in his hand, I recognized what the card was based on its color.</p><p>"Is that your ID card?"</p><p>I was met with no response.</p><p>As Kevin ignored me, his eyes swept left and right across the card. While he was scrutinizing the card, his face was filled with serious expressions.</p><p>"...everything seems to be in order."</p><p>It was only after a while that he finally put the card down and sighed in relief.</p><p>His reaction made me want to roll my eyes.</p><p>"Am I that untrustworthy?"</p><p>"Yes."</p><p>Kevin nodded his head. Not an ounce of doubt in his tone.</p><p>Stopping for a moment, he looked straight into my eyes before repeating.</p><p>"You are definitely the least trustworthy person that I know."</p><p>"Right..."</p><p>I should probably treat Kevin better.</p><p>Scratching the side of my head, I shook my head and checked the time.</p><p>'Five minutes already passed.'</p><p>"...whatever, please don't tell me that the only reason you called me here is because you wanted me to fix your memories."</p><p>"No."</p><p>A serious look crossed Kevin's face as he shook his head.</p><p>"Ren, there is a problem with the system."</p><p>"Huh?"</p><p>Upon hearing his words, I immediately tensed up.</p><p>A problem with the system? This was a lot more serious than I thought.</p><p>Crossing my arms together, I asked.</p><p>"What exactly happened?"</p><p>"Earlier today, I was trying to configure the coordinates of the planet we're about to go to, but the system suddenly stopped working as I got a string of error messages, and I even lost contact with the system for a moment..."</p><p>"For a moment, you lost connection with the system?"</p><p>Repeating his words, my brows knit even more.</p><p>Leaning my body forward, I covered my mouth with my hand as my brows furrowed tightly.</p><p>"...This is a lot more serious than I thought."</p><p>For Kevin to have lost connection with the system, there was only one thing that came to my mind.</p><p>Turning to face Kevin, I breathed out.</p><p>"Although I'm not sure, I believe that the Demon King has his eye on you, Kevin."</p><p>"The Demon King?"</p><p>Kevin's face tensed immediately when he heard my words.</p><p>His reaction was to be expected. After all, the Demon King was currently the most powerful individual in the entire universe.</p><p>For him to have targeted Kevin...</p><p>There was no doubt that he felt extremely wary.</p><p>"...How do you know this?"</p><p> Kevin suddenly asked as he turned to look at him. </p><p>With my gaze still locked toward the ground, I replied.</p><p>"It's just a hypothesis for now, but I believe the Demon King draws power from the same source as you."</p><p>"In what sense?"</p><p>"…As in that, it is closely related to the Akashic records."</p><p>Having thought deeply about what my other self had told me in the past, I came up with this theory.</p><p>In particular, from how he said that 'Kevin was the only person capable of killing the Demon King.'</p><p>That was the phrase that sparked this hypothesis.</p><p>"In the most likely scenario, the demon King noticed you opening the portal and intervened. Of course, we could assume that something happened to the records, and that's why you lost connection, but I honestly doubt that's what happened."</p><p>There was a brief moment of silence after my words as Kevin stared deeply at the park.</p><p>After a while, he asked.</p><p>"…If that's the case, does that mean that we can't finish the quest?"</p><p>"Mhh…"</p><p>Furrowing my brows, I leaned forward a bit.</p><p>This was more serious than I thought.</p><p>Only four years remained until the demon king descended, so if we couldn't complete the mission, we would be in serious trouble. Even with the mana density increasing by the day, it was simply not enough time.</p><p>"How about this..."</p><p>It was then that I suggested.</p><p>"...I will soon send you the address of my mercenary headquarters. Before we leave, we can run a few tests to see if anything goes wrong. If you feel you're losing connection with the system, I'll knock you out directly and disrupt the connection directly."</p><p>At this point, this was probably the best course of action.</p><p>This was especially true because of the fact that my warehouse was in the middle of nowhere and there was no way that anyone would notice that we were currently setting up a portal there.</p><p>Having said that, we've always planned on setting up the portal there. This was especially so because Smallsnake and the others were there. Their presence would definitely simplify things.</p><p>'This might work.'</p><p>Standing up from my seat and checking the time, I patted Kevin on the shoulder.</p><p>'Ten minutes on the dot.'</p><p>"Come to my place in a few days to see if there are any problems with the system. If there are, we might have to give up on the idea of going there."</p><p>"...Okay."</p><p>Similarly, Kevin stood up after nodding his head and exhaling deeply.</p><p>"I'll leave now. Have fun on your date."</p><p>Immediately after he said those words my head snapped in his direction, but by then, he had already disappeared from my sight.</p><p>As I squinted my eyes, I shrugged my shoulders and headed back to the restaurant.</p><p>"Guess he found out."</p><p>Whatever.</p><p>***</p><p>"What do you think? Will Nola like this?"</p><p>Meeting back with Amanda, we soon decided to take a stroll in the surroundings. From going to different shops to trying food on the street, we went to whatever was in the vicinity, and quite honestly, I really enjoyed my time.</p><p>So much so that in no time, it was already late into the night, and we were standing in front of a large candy shop.</p><p>Currently, my attention was drawn to a large lollipop about the size of Nola's head.</p><p>"That's too big."</p><p>Amanda commented as she looked at the lollipop.</p><p>"True…"</p><p>As I pictured Nola struggling to hold the lollipop in her hand, my interest in the treat was even more piqued.</p><p>"Don't think about it."</p><p>It seemed that Amanda could read my thoughts as she pressed her hand against my shoulder and pointed in a different direction.</p><p>Following her line of sight, I was able to catch a glimpse of a large teddy bear.</p><p>"A teddy bear?"</p><p>My eyes squinted.</p><p>My gaze shifted to Amanda, who kept her expressionless.</p><p>Taking a glance at me, she lowered her head.</p><p>"Why are you looking at me?"</p><p>"…Are you sure this is for Nola?"</p><p>The moment my words left my mouth, Amanda's head slowly turned as her right brow twitched.</p><p>'Bingo.'</p><p>A smile spread across my face as I shook my head.</p><p>'It's hard to believe she's someone who would be hard to understand when her expressions are so easy to understand.'</p><p>"Wait here for a moment, I'll go buy something for Nola."</p><p>"...Okay."</p><p>Amanda replied with a soft whisper as her eyes darted toward the teddy bear once more. She then turned her eyes away from the shop and looked elsewhere.</p><p>Entering the store, I walked up to the clerk. Looking back to see if Amanda was watching and confirming that she wasn't, I pointed at the teddy bears.</p><p>"Can I have two of them please?"</p><p>"The bears?"</p><p>"Yes."</p><p>"Understood."</p><p>Immediately after that, the cashier retrieved the teddy bears and handed them to me.</p><p>"That would be 80U"</p><p>"Here you go."</p><p>With a simple tap of my card, I paid the fee and put the bears inside of my dimensional space. After that, I headed out of the store.</p><p>Spotting Amanda sitting on one of the benches lit up by one of the street lights, I headed her way.</p><p>Similarly spotting me, she softly smiled and asked.</p><p>"Did you manage to get what the bears?"</p><p>"Yeah."</p><p>While sitting on the bench next to her, I leaned back and relaxed. Neither one of us spoke for the next minute as we both stared toward the stars in the sky.</p><p>Amanda broke the silence first.</p><p>"...I had fun today."</p><p>Turning to gaze her way, I didn't answer immediately.</p><p>When I reflected on everything that had happened to me over the past few years, and how rarely I had the opportunity to enjoy myself like this, a sad smile spread across my lips.</p><p>Slowly, I murmured.</p><p>"Me too..."</p><p>***</p><p>A/N : Sorry for the late update. I only realized just now that the timer was set for tomorrow.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-554.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-556.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

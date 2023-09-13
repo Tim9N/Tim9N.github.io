@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 560 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 560 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-559.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-561.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Have a cup of tea."</p><p>As I slid the teacup across the table, I smiled. With a skeptical look on his face, Jin sat opposite me.</p><p>Following that, he pointed to Kevin.</p><p>"What is he doing here?"</p><p>"You don't want me here?"</p><p>Kevin replied as he took a sip of the tea. He had a rather hurt look on his face.</p><p>Jin's eyes squinted as he stared at Kevin. He eventually shook his head.</p><p>"No, never mind."</p><p>After that, he extended his hand and grasped the teacup that I passed to him.</p><p>As he brought the cup to his mouth, he asked.</p><p>"So what have you called me here for?"</p><p>"Let's not get to that first. How about we catch up a bit first? There's no rush."</p><p>I replied as I took a sip of the tea in my hand.</p><p>What a delicious tea it was.</p><p>Furrowing his brows, Jin took a small sip of the tea</p><p>"But I am in a rush."</p><p>Smacking his lips together, he brought the cup away from his mouth and stared at it. His brows tightly knit against each other.</p><p>"What's wrong?"</p><p>I curiously asked.</p><p>Turning his head to look at me, Jin shook his head.</p><p>"Nothing, I just thought that the tea tasted weird."</p><p>"The tea tasted weird?"</p><p>When I turned my head to look at Kevin, he was looking back at me in a similar manner.</p><p>Taking another sip, Kevin looked at Jin.</p><p>"Strange, I don't notice anything weird with the tea."</p><p>Following his actions, I also took a sip of the drink.</p><p>"Me too."</p><p> After smacking my lips together, I looked at Jin.</p><p>"Perhaps it's just you."</p><p>"Mhh…maybe."</p><p>Taking another sip of the drink, Jin frowned again before putting the drink down.</p><p>"I don't like it."</p><p>"…A pity."</p><p>I also put the teacup down.</p><p>Brushing my hair back, I leaned back on the chair I was sitting on. As I pried my lips out, I asked.</p><p>"Anyways, did you think about my previous offer?"</p><p>"The one about going somewhere with you?"</p><p>"Yes."</p><p>I subtly nodded my head.</p><p>Since it had been some time since I had last offered him the deal, there was a chance that his decision had changed.</p><p>I prayed that this was the case.</p><p>"It's still a no."</p><p>However, Jin didn't seem to have changed his mind as he shook his head once more.</p><p>"If you had asked me another time, I might have been able to come, but I am currently extremely busy with clan-related matters."</p><p>"Is that so…"</p><p>Tap. Tap. Tap.</p><p>Tapping the armrest of my chair, I frowned.</p><p>"…Does this have anything to do with Edward's return?"</p><p>When those words left my mouth, Jin's expression changed a little.</p><p>'Bingo.'</p><p>I thought to myself as I took notice of his actions.</p><p>'As expected, he really is worried that Edward might do something.'</p><p>"…What if I can guarantee you that Edward will do nothing until your return? Will you consider my offer then?"</p><p>Jin raised his brow in surprise as he heard my words.</p><p>"Are youw saying you can stop Edwwward from d..oing anything while we're away?"</p><p>"Yes."</p><p>I firmly nodded my head.</p><p>Given the fact that I saved his life, I didn't doubt that he would listen to my simple request.</p><p>"Hmm…"</p><p>Jin's face turned serious as he covered his mouth with his hand.</p><p>For the next couple of seconds, he didn't say anything as he looked lost in his own thoughts.</p><p>Meanwhile, I looked at Kevin who was similarly looking at Jin.</p><p>He was clearly hoping that Jin would accept the proposal, but…</p><p>"I still cwan't."</p><p>Jin once again shook his head.</p><p>Placing both of his hands on the armrest of the chair, he helped himself up.</p><p>"There are a lwot of things that I need to handle at the moment. Even if you somehow are able to stop Edward from acting, I don twink that I will bweable to com—"</p><p>Jin's fumble became more prominent and it didn't take long for him to understand that something was wrong as his eyes opened wide.</p><p>His line of sight instantly fell toward the teacups.</p><p>"Y…you…"</p><p>As he took a knee to the ground, he placed both hands on his throat.</p><p>The look of shock and betrayal on his face as he lifted his head to stare at me was evident.</p><p>"How...cou..ld you d..o this to ..m..e?"</p><p>"My apologies, Jin."</p><p>Pressing my hands on the armrest of the chair, I also stood up.</p><p>I then pointed at Kevin.</p><p>"I would like to start by saying that this is all Kevin's idea."</p><p>"Oy."</p><p>Kevin reached out for my arm and glared at me.</p><p>Staring back at him, I relented.</p><p>"Alright, fine. It was my idea."</p><p>Jin remained silent throughout the entire time, glaring in our direction. If eyes could kill, I'd probably have died many times over by now.</p><p>My heart almost ached for him as I stared at him.</p><p>'What a poor soul.'</p><p>In an effort to meet his eye line, I lowered my body to meet his gaze.</p><p>"My sincere apologies, Jin, but since you kept refusing our offers, we were left with no other choice but to kinda...Keum, excuse me. I meant, give you a helping hand."</p><p>"Believe me, had there been another choice, I wouldn't have done something like this…"</p><p>'Maybe.'</p><p>Extending my hand, I patted Jin on the shoulder.</p><p>"Anyhow, sleep for now. By the time you wake up, you will be on a fun adventure with Kevin and I"</p><p>With a glare that was many times more intense than before, Jin mustered all of his strength to raise his hand before giving me the middle finger.</p><p>"Fuc..k you!"</p><p>Thump—!</p><p>Those were the last words Jin uttered before he passed out.</p><p>"...That was kind of rude."</p><p>Scratching the side of my head, I stood up to look at Kevin.</p><p>"Operation kidnapping Jin complete?"</p><p>"Just stop."</p><p>Pitifully staring at Jin who was passed out on the ground, Kevin sighed.</p><p>Crossing his arms together, he asked.</p><p>"What do we do now?"</p><p>"Go to his driver and tell him that Jin is going to stay with us for a while."</p><p>"What? Why me?"</p><p>I looked at him with an all-knowing look.</p><p>"Do you really need to think about it?"</p><p>If there was one person in the human domain that was thought of as a kind and humble hero, it was Kevin.</p><p>The driver might just believe him if he was the one telling him that Jin would stay with us for a while.</p><p>Of course, those weren't the only preparations I made.</p><p>Tapping onto my bracelet, I tossed Kevin a small UBS drive.</p><p>"Also, give the driver this, and tell them that it's from Jin."</p><p>"What's this?"</p><p>Catching the USB drive, Kevin skeptically looked at it.</p><p>Waving my hand, I urged him out of the room.</p><p>"Just do as I said. We don't have much time."</p><p>"…alright."</p><p>As Kevin clutched the device in his hand, he nodded his head and left the room.</p><p>"I'll go tell the driver now."</p><p>"Good."</p><p>Clank—!</p><p>A sudden silence filled the room as he closed the door behind him.</p><p>Silently mumbling to myself, I stared at Jin still on the floor.</p><p>"I better get to work."</p><p>***</p><p>It had been an hour since then, and we were standing in the middle of my private training grounds.</p><p>"It looks like you spent a lot of money on this place, right?"</p><p>Kevin asked as a dumbfounded look spread across his face.</p><p>"The place looks just as advanced as the training grounds as the Lock and the Union."</p><p>"Well, yeah. That's the whole purpose."</p><p>While staring around the training room, my heart started to bleed.</p><p>As I thought back to the amount of money I spent on this place, tears started to fall by the side of my eyes.</p><p>'I spent way too much money on this.'</p><p>Enough to make me want to regret my decision.</p><p>"...You really have too much money in your hands."</p><p>"Do me a favor and set up the portal for now. I would appreciate it if you didn't remind me of this."</p><p>I snapped at Kevin while pointing toward the middle of the training grounds where there was an empty space.</p><p>"Don't worry about something going wrong. I didn't spend so much money on this place for nothing. If something truly goes wrong, I'll knock you out and bring you out of the place."</p><p>"Alright, I trust you."</p><p>With a nod of his head, Kevin carefully walked toward the center of the training ground before stopping.</p><p>Thinking of something, he turned around to look at me again before pointing in my general direction.</p><p>"Is Jin going to be fine like that?"</p><p>"Him?"</p><p>As I glanced over my right shoulder to see Jin's passed out figure, I waved my hand.</p><p>"There is no need to worry about him. Set up the portal now and stop wasting time."</p><p>"Fine."</p><p>Turning around and nodding his head again, a dark green orb metalized in his hand out of nowhere.</p><p>It was the &lt;A&gt; rank core that was needed in order to set up the portal.</p><p>In a hurry, Kevin brought the orb forward before it vanished magically. An instant later, a white ball the size of a ping pong ball appeared in front of Kevin. Mana started to spiral toward the ping pong ball in the air, distorting the space around Kevin.</p><p>In no time at all, the mana in the air rushed toward Kevin before continuously circling the white ball.</p><p>Within a minute, the spiral had grown to twice Kevin's height, and a portal soon started to form. In the air, the mana density increased with every passing second, and by the time the portal formed, the mana density became extremely thick.</p><p>With sweat trickling down the side of his face, Kevin turned to look at me.</p><p>"Haaa.hhaa...D..one."</p><p>***</p><p>"A portal..."</p><p>Opening his eyes, Jezebeth gazed into the far distance. Peering through space with his eyes, his gaze on a particular planet.</p><p>Earth.</p><p>His brows furrowed as his eyes locked onto his planet. More specifically toward a thin white layer covering the planet.</p><p>Trying to peer through the space around Earth, Jezebeth's energy quickly dissipated.</p><p>"I'm still not strong enough..."</p><p>There was no change in expression as he realized this.</p><p>It was within his expectations. After all, he knew that it would still take him a few more years in order to break the last protective barrier protecting the earth, or more specifically, the layer designed to protect Kevin, the Akashic holder.</p><p>Nevertheless, just because Jezebeth couldn't kill him on earth, it didn't mean that he couldn't kill him elsewhere.</p><p>It was precisely because of this that his mind was extremely alert at this moment.</p><p>After all.</p><p>Kevin was planning to travel to another planet.</p><p>"Hm?"</p><p>While Jezebeth was focusing his gaze on earth, he suddenly noticed something. His brows jumped up in surprise.</p><p>"...Why do I sense five more points concentrated with Akashic laws?"</p><p>At this moment, Jezebeth realized something was amiss.</p><p>Although he couldn't see through the planet barrier, Jezebeth could tell from a glance that Kevin had used the Akashic powers to create five linkage points.</p><p>But exactly for what reason had he done that?</p><p>Jezebeth soon fell into a state of deep contemplation.</p><p>"I understand."</p><p>It didn't take long for Jezebeth to understand what was going on, and the expression on his face darkened.</p><p>"...This must be your backup plan."</p><p>With his hands raised to face the earth, Jezebeth closed his eyes slowly.</p><p>"This might set me back a bit, but..."</p><p>A crack began to appear in the space around him, and the world around him began to twist.</p><p>Crack. Crack. Crack.</p><p>"...It's worth it if it can help me kill you faster."</p><p>***</p><p>A/N : Next chap in a bit.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-559.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-561.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

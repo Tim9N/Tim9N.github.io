@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 480 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 480 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-479.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-481.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Here you go, you are all patched up now."</p><p>Raising my hand which was now bandaged, I thanked the nurse.</p><p>"Thank you."</p><p>Thankfully I was able to coat my hand with some mana, otherwise, the extent of my injury would've been worse.</p><p>'...If only I was an orc.' I thought.</p><p>Unfortunately, because all of my mana was focused on my sword and feet, and given that everything happened in split second, by the time I touched the sword, my bare hand came into contact with the sword, hence the injury.</p><p>Had my skin been as tough as that of an orc, I may have been able to come off unscathed. Sadly it wasn't.</p><p>Unlike orcs, a human's body was not as though. Although it does become stronger with each rank, a real difference would only appear if someone practiced a body-based art, which was something I didn't have.</p><p>An example of this would be Han Yufei's art. An art that specialized in hardening the body, and making it tougher.</p><p>This incident right here hardened my resolve to get that art.</p><p>"It was no big deal."</p><p>The nurse smiled.</p><p>She had short brown hair, with a few wrinkles by the side of her eyes. Even though she was in the later stages of her life, she was still fairly beautiful in her own right.</p><p>Taking my hand, the bandaged one, and turning it around, the nurse reminded me.</p><p>"Your injury is nothing serious. It's just a small cut that should heal in about a day with the ointments I gave you. You can take a potion to heal it in an instant, but that would be a waste."</p><p>"Sure."</p><p>Taking my hand away from the nurse, I turned to look at the kid on the nearby bed.</p><p>He was the same kid that was responsible for this incident.</p><p>"How's his situation?" I asked.</p><p>"Hmmm."</p><p>The nurse's brows creased.</p><p>Standing up from her seat, she slowly walked up next to him and placed her hand on his forehead.</p><p>After a while, she responded.</p><p>"He doesn't seem to be injured on anything, but the mana inside of his body is still unstable. He should have no problem making a full recovery in a couple of days."</p><p>"I see."</p><p>This was a piece of good news.</p><p>However, despite that, I was not happy in the least. That was simply because I found the situation quite odd.</p><p>'Ricardo Mainz, seventeen years old, and ranked 1113. He is amongst the weakest in the class, and has a talent limit of D, which should now be C.'</p><p>That was the information I had on the student before me.</p><p>The more I looked through his information, the more I was sure that there was something fishy going on about the situation.</p><p>He just looked like the perfect target.</p><p>Given his low rank and talent, by simply exploiting his insecurities, I could see how the incident could've been deliberate.</p><p>"Where is the professor?"</p><p>Just then, raising my head and staring at the area around me, I suddenly realized that Professor Thomas was missing.</p><p>Turning my head, I questioningly looked at the nurse.</p><p>"Have you seen him somewhere? I swear he was just here a minute ago."</p><p>"Don't worry about him."</p><p>Taking her hand away from the student's forehead, the nurse went back to her seat.</p><p>"He's currently at the faculty center. He is going there to explain the situation to the higher-ups. He said that he will come back soon."</p><p>"Ah, okay."</p><p>This made sense.</p><p>Since he was the professor in charge and something happened during his watch, he naturally had to go and explain to the elders what happened.</p><p>Still, I was not too pleased with him.</p><p>Had it not been for my intervention, something bad would've happened. Just what in the world was he doing?</p><p>'I think I need to talk to Donna about him.'</p><p>Perhaps I may be overthinking and he was innocent, but I didn't want to take any risks.</p><p>The best course of action right now would be for me to talk to Donna and convince her to have him fired, which shouldn't be too hard considering that he wasn't really that good of a teacher.</p><p>"Alright, I guess it's also time for me to leave."</p><p>Standing up from my seat, I glanced at the student one more time.</p><p>Once I made sure that he was okay, I bid the nurse goodbye.</p><p>"Thank you for your help, I'll take my leave now."</p><p>"Have a good day."</p><p>"Mhm."</p><p>***</p><p>Section B, Donna's office.</p><p>To Tok—!</p><p>"Come in."</p><p>Upon knocking on Donna's office room, and hearing her voice, I opened the door and entered.</p><p>Putting the papers in her hand down, Donna gazed in my direction.</p><p>"What's going on Ren?"</p><p>"We need to talk about Professor Thomas."</p><p>Making myself at home, I proceeded to leisurely sit down on Donna's leather sofa.</p><p>Donna's brows creased when she saw this, but before she could complain, I started speaking.</p><p>"He needs to be fired."</p><p>"Hm?"</p><p>Caught off-guard by my words, Donna's hands came to a pause. Her face quickly became serious.</p><p>"Did you find evidence about his involvement with the Monolith?"</p><p>"No."</p><p>I shook my head.</p><p>"No concrete proof as of yet. However, he needs to be fired for the simple reason that he's a terrible professor."</p><p>"..."</p><p>Without saying anything, Donna's eyes deeply stared into mine. I looked back without blinking my eyes. This persisted for a bit before Donna eventually let out a long sigh.</p><p>"Haaa..."</p><p>Leaning back on her chair, Donna took out her tablet.</p><p>"Ren, I know what you're trying to say, however, if you don't have proof of his involvement in the Monolith, I can't really help you."</p><p>"What? Why?"</p><p>Leaning to the side and opening her drawer, she took out a contract and placed it on the table. She then pointed toward a certain section.</p><p>"Look at the wrongful discharge clause in the contract. We cannot terminate his contract unless we provide a justifiable reason."</p><p>"You do have a reason though."</p><p>Leaning my body forward I grabbed the contract and pulled it my way. After taking a closer look, I put it back down.</p><p>"Shouldn't the fact that he's not a very good teacher be a good enough reason to fire him."</p><p>"...I knew you were going to say that."</p><p>Putting her tablet down, a series of holographic images sprung in the air. On them was a series of different tables and charts.</p><p>"What's this?"</p><p>I curiously asked, as my eyes darted all over them.</p><p>"Hold on."</p><p>Raising her hand, Donna dragged a particular chart in front of her. Checking it for a bit, swiping her finger, the chart flew in my direction.</p><p>"Have a look."</p><p>Raising my hand, the chart stopped in front of me. Removing my glasses, my eyes squinted.</p><p>"This..."</p><p>Upon seeing the numbers on the chart, my eyes widened.</p><p>Lowering my head and staring at Donna who had a wry smile on my face, I blinked my eyes and once again stared at the chart.</p><p>'How is this possible?'</p><p>On the chart was the list of all the students in the second year, all classes included. What the graph depicted was the score the students got for the course [Psyons adaptability in combat and control], and most shockingly was the fact that the class with the highest median was Professor Thomas's class.</p><p>"H...how?"</p><p>I managed to mutter after a while.</p><p>Lifting my head and staring at Donna, I incredulously asked.</p><p>"Is the graph correct? How is it possible for his class to get such scores? I was there when he was teaching. He is a terrible professor."</p><p>"I also don't know."</p><p>Donna also sounded helpless about the situation as she turned off the tablet.</p><p>"Just like you, I've been to his lessons, and I can fully understand where you are coming from. However, the results speak for themselves."</p><p>"Shit..."</p><p>Covering my mouth with my hand, I leaned my body on the chair.</p><p>Once again staring at the chart, I noticed that there was a large disparity between the lower-ranked students in the class compared to the higher-ranked ones.</p><p>It was clear to me that the only reason why the median was so high was because of the higher-ranked students.</p><p>Placing my hand on the armrest, I softly muttered.</p><p>"If it's lik—"</p><p>Before I could finish my sentence, cutting me off was the sound of someone knocking on the door.</p><p>To Tok—!</p><p>Raising my head I looked at Donna. Turning her head, she opened her mouth.</p><p>"Come in."</p><p>Clank—!</p><p>At her voice, opening the door, a familiar figure entered the room. He was none other than Kevin. Once my eyes paused on him, I couldn't help but groan.</p><p>"Oh god."</p><p>"Oy."</p><p>A frown emerged on Kevin's face.</p><p>"What are you doing—!"</p><p>"Don't talk to me."</p><p>I quickly cut Kevin off before he could finish his sentence. I then looked at him with a face filled with disgust.</p><p>"For at least a week, I don't know you, I have never heard of you, and you have never heard of me. We are total strangers, ugh."</p><p>Just thinking about his post still sent shivers down my spine.</p><p>Alternating her head between Kevin and me, Donna leaned her head to the side and curiously asked.</p><p>"What is up with you two?"</p><p>Hearing her voice, my head snapped in her direction.</p><p>"You want to know what happened?"</p><p>"Wait, Ren..."</p><p>Ignoring Kevin and leaning my body to the side and taking my phone out from my pocket, I unlocked my screen and searched for Kevin's post.</p><p>Once I found it, I smacked my phone on the table.</p><p>"Donna, have a look."</p><p>"Sure."</p><p>Taking the phone, Donna looked at the screen. Her face quickly turned strange.</p><p>"Ah, mhhh, Kevin..."</p><p>"...Yes?"</p><p>Putting the phone down, Donna let out a long sigh. Raising her hand, she pointed it toward the door.</p><p>"Please get out of my office."</p><p>"What!? You too?"</p><p>Kevin protested as he raised his hands. Turning my head, and glancing in his direction, I nudged my head in the direction of the door.</p><p>"You heard her, get out."</p><p>"Wha—"</p><p>"Out!"</p><p>"Haa..."</p><p>Slumping his shoulders down, Kevin weakly turned his head before he shook his head and proceeded to make his way out.</p><p>Before he left, he managed to mutter a few last words which I ignored.</p><p>"Just you wait..."</p><p> Clank—!</p><p>The door soon closed and silence once again returned to the office. Taking my phone back and putting it in my pocket, I smiled in satisfaction.</p><p>"Now, where were we, ah! About Thomas, is there really no way we can fire him?"</p><p>Donna shook her head.</p><p>"Not without a probable clause."</p><p>"...Not without a probable clause, huh?"</p><p>Scratching my chin, I once again leaned on the chair. The gears inside of my head started to move.</p><p>"So as long as there is probable cause, he can be fired?"</p><p>"Yes."</p><p>"Alright."</p><p>Placing my hands on the armrests of the chair, I slowly stood up.</p><p>"Donna, grant me access to the camera systems."</p><p>If I looked hard enough, maybe, just maybe, I could find maybe figure out anything suspicious about him.</p><p>Donna furrowed her brows. Brushing her hair to the side, she questioned.</p><p>"The camera systems?"</p><p>"Yes."</p><p>Raising my right hand, I showed her my bandaged hand.</p><p>"Did you not hear about today's incident at the training grounds? The one where one student went berserk?"</p><p>Donna had a sudden look of understanding.</p><p>"...I see what you are trying to do."</p><p>Closing her eyes and thinking for a moment, Donna eventually nodded her head.</p><p>"Okay, there should be no problem with you using the camera system. If you find anything suspicious about Thomas you can report it to me."</p><p>"Thank you."</p><p>A smile finally appeared on my face.</p><p>"Rest assured Donna. Give me time and I will tell you if what happened was really a coincidence or not."</p><p>Even if Thomas was not involved, I had a nagging suspicion that this was an instigated incident.</p><p>Opening her drawer, Donna threw me a small card.</p><p>"Here you go."</p><p>Raising my hand, I caught the cards.</p><p>"Thanks."</p><p>Putting the card away, I quickly thanked Donna before making my way out of her office. However, just as I was about to leave, Donna suddenly said.</p><p>"Ren, be careful please."</p><p>My feet came to a pause. Turning around, I asked.</p><p>"What do you mean?"</p><p>Squinted her eyes a little, and Donna's gaze fell on me. After a while, she shook her head.</p><p>"I don't know. You just seem a little paranoid to me. I'd be careful if I were you."</p><p>Hearing her words, my brows furrowed.</p><p>'Am I really being paranoid? Hmm, maybe.'</p><p>But honestly, I didn't care. There was something about him that ticked me off. I just couldn't explain it.</p><p>Eventually, I nodded my head.</p><p>"Sure."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-479.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-481.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

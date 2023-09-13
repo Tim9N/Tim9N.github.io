@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 701 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 701 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-700.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-702.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Whooooo!"</p><p>The Abyssal Mammoth raised its tusk into the air and let out a ferocious cry, much like the way a trumpet would sound. Simultaneously, its body raised up on its two legs―exposing its fluffy underbelly in the process—with its legs smashing down against the ground when coming down.</p><p>Rumble! Rumble!</p><p>The cave began to shake as a result of the mammoth's violent movements, and the color of the mammoth's eyes shifted to an ominous crimson hue.</p><p>"Not good; it's agitated!"</p><p>"The cave will collapse at this rate!"</p><p>Confronted with an unexpected circumstance, the demons began to panic a little. However, the panic didn't last too long. After all, they were all seasoned veterans.</p><p>It didn't take long before the order was restored, and immediately after, every demon began forming formations and barking orders at each other.</p><p>"Aim for the underbelly! That's its weak point!"</p><p>"Make sure you don't kill it!"</p><p>"Coming!"</p><p>Boom―!</p><p>The cave began to shake once more, and the combatants on both sides—the mammoth and the demons—engaged in a struggle with one another.</p><p>'This is worse than I anticipated..."</p><p>As I turned my head to look at Amanda, I heaved a sigh of exasperation and gazed at her with a frown.</p><p>It wasn't just her; everybody else was affected by it as well. They were getting to the point where they were a real pain to deal with.</p><p>...but I couldn't really blame them, to be honest. It was my choice to bring them along, and I was aware from the very beginning that the more mana, or demonic energy, they used, the more their minds became corrupted by the demonic energy.</p><p>It was also the reason why I avoided using my powers as much as possible.</p><p>Really...</p><p>If there was anyone to blame, it was me.</p><p>Xiu―! Xiuuuu―!</p><p>"Whoooooo!"</p><p>Amanda's arrows tore through the air as she continued to shoot in the direction of the mammoth. They rode through the air like silver bullets, arriving at the beast in a matter of seconds.</p><p>Ca―! Clank!</p><p>Unfortunately, when they collided with the mammoth's hide this time, unlike her first attempt, the arrows were deflected away and sent careening aimlessly toward the ground.</p><p>I wasn't surprised by this.</p><p>After all, there was a significant gap in the level of strength that existed between the Mammoth and Amanda. The simple fact that she had been successful in obtaining a hit in the first place was mind-boggling in itself.</p><p>Of course, it would have never occurred if it had not been caught off guard. But that was the whole point.</p><p>"Are you not going to make a move?"</p><p>Melissa asked, observing the battlefield from beside me.</p><p>"From the looks of things, it will take quite a while for them to get rid of the beast. If you were to help out, I'd help save some time."</p><p>"I guess..."</p><p>I nodded, agreeing with her statement.</p><p>Still, I didn't move from my position and continued to observe from the back. My eyes currently focused on the Duchess.</p><p>"...But you could make the same argument for the Duchess. If she were to make a move, things would turn for the better."</p><p>'After all, she's as strong as the normal me.'</p><p>I chose to omit the last part.</p><p>***</p><p>Clank―!</p><p>"Whooooo!"</p><p>Sparks flew into the air as weapons and claws struck against the hard fur of the mammoth, which further enraged it and caused it to trash around with more ferocity.</p><p>The cave began to shake even more violently, and the stalactites that hung above the ceiling of the cave began to fall like sharp projectiles toward the ground beneath.</p><p>The icicle-shaped formations—which, given the dense nature of the rock that was used to construct the cave, held an incredible amount of weight—came hurtling down toward a series of demons, impaling their bodies from above.</p><p>"Argh!"</p><p>"Watch out!"</p><p>The sight was not a pretty one as dark blood spattered all over the cavern, and the demons didn't even get a chance to scream before getting impaled.</p><p>With some luck, some managed to survive due to the fact that their cores were not damaged, but those were in the minority.</p><p>Simply put, the sheer size of the stalactites made sure that no demon survived, smashing their cores alongside their bodies.</p><p>"How many demons have fallen so far?"</p><p>Priscilla asked, overlooking the entire battlefield from a safe corner of the battlefield.</p><p>Her gaze continued to linger over the mammoth as her eyes her glare became colder with each passing second.</p><p>"So far, we've lost about ten Marquis ranked demons, with several already heavily injured."</p><p>Her uncle replied, seemingly prepared for the question beforehand.</p><p>"Ten already?"</p><p>A frown appeared on Priscilla's pristine features as her brows momentarily moved up.</p><p>...This was more than she had anticipated.</p><p>"If I may add..." Her uncle spoke, his voice brimming with caution. "I believe that the reason for the losses is due to none other than the premature shot that was made at the very beginning. Had it not been for—"</p><p>"Enough!"</p><p>Priscilla cut, her expression remaining the same. The same couldn't be said for her voice as a bone-chilling coldness accompanied her next words.</p><p>"Don't forget our objective. We're not here to coddle them into defeating the beast. We're here to test them. If it were up to me, I'd have killed the beast a while back. I don't need them to be here."</p><p>It might've been troublesome, but the beast was truly nothing for her to be wary of. Sure, if she were alone, it'd prove to be an annoying foe for her...but she wasn't alone, was she?</p><p>Her answer was enough to appease her uncle for a brief moment.</p><p>...Only a brief moment as he once again opened his mouth.</p><p>"Yes, I know, but—"</p><p>"Did the shot miss?"</p><p>Priscilla cut her uncle again; this time, her gaze focused on the hooded figure that had shot the mammoth in the eye.</p><p>The Duchess has made it a point to keep a close eye on the individual ever since they engaged the mammoth with their shot.</p><p>It wasn't out of spite or annoyance. It was more out of interest.</p><p>Priscilla preferred courageous people to cowards. The hooded's figure style was to her liking.</p><p>Of course, although she liked courageous soldiers, it didn't mean she liked reckless ones. Had the individual missed, it would've been a whole different story.</p><p>"Since they didn't miss their shot, they did nothing wrong. For those who died...they were merely not good enough."</p><p>At their level, a soldier had to adapt to any situation that was presented to them.</p><p>With one eye lost, they had gained a good advantage. It was now up to them to exploit that advantage and seal the deal.</p><p>"Aim for its right side! At its belly! That's its weak point!"</p><p>It was a loud shout coming from the distance that once again caught Priscilla's attention as she slowly turned her head.</p><p>'Another hooded figure?'</p><p>It came as a surprise to her when she noticed that the person who had yelled was donning a black hood, the same kind of hood as the one that belonged to the person who had fired the first shot.</p><p>It was obvious that the voice belonged to a woman based on how clear it was, and the instructions that she was giving seemed to be directed toward another hooded figure who had managed to get on the right side of the beast in some miraculous way.</p><p>"Attack its right side, you fuckwit! That's where the mammoth's blind side is!"</p><p>Her words were rather harsh too...</p><p>Priscilla watched as the figure leisurely approached the beast, walked up to it, and then made its way underneath it in the most relaxed way possible.</p><p>Perhaps it was due to the chaos, or the figure's skills, or perhaps both, but much to her surprise, he stood right beneath the mammoth's belly and...</p><p>SHAAA!</p><p>With a straightforward but magnificent thrust of their dagger, they slashed directly at the beast's belly, creating a deep gash from which thick, red blood gushed out.</p><p>It might've been just her imagination, but for a split second, everything came to a sudden stop.</p><p>'...What?'</p><p>Priscilla watched as the battlefield came to a sudden stop as both sides tried to process what had just happened.</p><p>"Whooooooo!"</p><p>It was the loud and agonized wail of the beast that woke everyone up from their stupor as blood began to pour out of the deep gash that had formed under its belly, dying the floor in red.</p><p>It may not have been a crippling injury, but the injury was undoubtedly excruciating, especially as the savagery of the beast increased and the cave started to shake with such intensity that one might think that it was going to collapse at any minute.</p><p>Rumble—! Rumble—!</p><p>No, it was definitely going to collapse at this rate, and Priscilla's right brow raised at the realization.</p><p>'Not good, if the cave collapses it will be quite troublesome...'</p><p>"Duchess, isn't it about time that we interfere? The situation is not good right now. If the cave collapses, we'll risk losing everyone."</p><p>It wasn't just her; her uncle came to the same conclusion as he expressed his concerns about the current situation, which wasn't good.</p><p>"Let alone the demons that were currently fighting the beast; even we would have trouble coming out unscathed if the cave were to collapse."</p><p>Her uncle continued his expression hardening by the second.</p><p>"No, not yet."</p><p>Priscilla shook her head, remaining in the same spot she was in. Her gaze, however, was currently drawn toward a specific area.</p><p>...toward a specific hooded group, or, to be precise, an individual.</p><p>For some strange reason, Priscilla felt something weird about him. She couldn't quite explain it, but... it made her spine tingle.</p><p>At the moment, she couldn't care less about the situation around her as her gaze was firmly stuck in the hodded's figure direction.</p><p>'...I can't sense anything.'</p><p>The more her gaze lingered in their direction, the more she was surprised to realize that she couldn't sense anything from them.</p><p>It baffled her.</p><p>She could count on one hand the people that could hide their presence from her.</p><p>Typically, and in most cases, it was because whoever she was observing had some great skill that made it hard to see how much demonic energy was entering their bodies; however, in some other cases...</p><p>...rare cases.</p><p>It was because of another reason.</p><p>An obvious, yet undesirable one.</p><p>'It can't be that, can it...?'</p><p>"Hm?"</p><p>It was with the sudden sharpening of her gaze that she noticed that the hooded figure had turned its head to meet hers.</p><p>Priscilla did not flinch when their gazes met, and although the hooded figure's concealed features prevented her from seeing their face, she was still able to make out two striking deep blue eyes that seemed to see through her very.</p><p>Now... If she didn't as much as flinch before, she did so now as her arms uncrossed and her mouth parted open.</p><p>'It shouldn't be...'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-700.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-702.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

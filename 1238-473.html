@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 473 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 473 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-472.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-474.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>A maddening scribbling sound rang inside a dark room that was lit up by a pale yellow light coming from a small lamp sitting atop a large wooden desk. </p><p>Sat behind the desk was a male with long dark hair and green eyes. He was none other than Connal Rhinestone, Aaron's father. </p><p>His current state was a mess as his eyes bagged, his clothes were unkempt, and a heavy stench of alcohol permeated throughout the room. </p><p>"...H...how fucking dare they." </p><p>He muttered as his head slumped to the side of the table. </p><p>Bang—! </p><p>Standing up, he banged the table with his fist. </p><p>"Fuckers!"</p><p>He began to shout. </p><p>"How dare they do this to my son!? He is 876?! What bullshit is this!?" </p><p>As he screamed, his voice was filled with resentment. </p><p>The reason for this was because of the actions that the Union had taken after his son's death. </p><p>Instead of giving him his son's body back, the Union handed him to the Monolith and proclaimed him to be the wanted criminal 876. </p><p>The repercussions of such an announcement were extremely powerful, as not even a day after the announcement was made and huge protests began to parade beneath his guild as people started branding him and his guild members as 'Villains.' 'Murderers.' 'Supporters of evil.' </p><p>Their image was completely tarnished and the following day, many of the members proclaimed their resignation, and slowly one by one more and more members started to leave. </p><p>"Fuckk..." </p><p>Connal rolled his head on the table as his fist once again smashed against the table. </p><p>"What sort of bullshit was this? my son was 876? Impossible!"</p><p>Connal had already read about 876.</p><p>This was only natural, after all, the bounty on his head was huge, and it had indeed interested him in the past. </p><p>That being said, having read that, he knew exactly what it was impossible for Aaron to be 876.</p><p>It was clear that the Union was trying to frame his son in order to protect the actual 876, which was none other than the kid Ren Dover. </p><p>Connal would've been stupid to have not made that connection.</p><p>"Haaa..." </p><p>Slumping back down on his chair, Connel powerlessly looked toward the glass window of his office. </p><p>There he managed to catch city of the beautiful city that shone brightly in the night. </p><p>It was beautiful. Or that was at least how it used to look in the past.</p><p>However, now that his son was gone, everything started to become duller for him. </p><p>"A...Aaron." </p><p>A parent's worst nightmare was seeing their own son die before them. </p><p>Especially when it was broadcasted throughout the whole human domain.</p><p>Just recalling the image of his son being split into two, and his body laying down on the floor whilst everyone was cheering pained Connal's heart to no end. </p><p>He couldn't understand it. </p><p>"Why...why...why did this have to happen to my son?" </p><p>Connel mumbled repeatedly as he leaned forward on his desk and grabbed onto his head with both hands. </p><p>"What did we do to deserve all of this?" </p><p>Gulp—! </p><p>Swallowing a mouthful of saliva, Connel's eyes suddenly snapped open. </p><p>"Haa..haaa..." </p><p>His breathing started to become more laborious and sweat tricked down the side of his face. </p><p>Swallowing another mouthful of saliva, he leaned back and opened the drawer next to him.</p><p>Upon opening the drawer, Connel took out a small piece of paper shrouded by a mysterious black hue. </p><p>"...So you've made your mind." </p><p>It was at the exact moment that he took out the paper that a raspy voice suddenly sounded from the other side of the room. </p><p>Instead of being startled, Connel's eyes remained fixed on the paper in front of him. </p><p>Tracing his eyes alongside the paper, he soon raised his head and his eyes paused on a black spectral figure in the corner of the room. </p><p>His bright and red eyes shone in the darkness. </p><p>"You're here," Connel said. </p><p>"Ku ku ku." </p><p>A raspy laugh suddenly resounded throughout the room as the spectral figure took a step forward revealing the features of a black humanoid creature. </p><p>Staring at the contract in Connal's hands, he asked. </p><p>"How about it? Are you interested in signing the contract?" </p><p>"..." </p><p>Connel didn't answer immediately.</p><p>With his eyes still fixed on the creature before him, he opened his mouth and asked. </p><p>"Why should I sign a contract with you?...in terms of strength, you are only a Count ranked demon, while I'm &lt;S+&gt; ranked. Wouldn't I gain more if I signed a contract with another more powerful demon?" </p><p>"...You could." </p><p>Pacing around the room, and sitting on the table, the black humanoid creature suddenly smiled. </p><p>"Let me tell you a story." </p><p>"A story?" </p><p>Connel's brows knit. His voice suddenly deepened. </p><p>"I don't have time for stories." </p><p>"...But I'll bet you will wanna hear this one." </p><p>Ignoring Connel, the dark humanoid creature started to talk. </p><p>"There was once a demon. A young demon. He was just like any other demon out there. Purposeless. Just invading other planets and corrupting the mana of that world into demonic energy."</p><p>The demon suddenly licked his lips and leaned closer to Connel who was staring at him with a serious look. </p><p>As he leaned closer to Connel, the demon whispered. </p><p>"As you know, in order to survive, we must conquer planets and convert the mana into demonic energy. It's the way we can feed ourselves..." </p><p>"Wha—" </p><p>"Ah! Tatatata!" </p><p>Before Connel could speak, the demon placed his finger on his mouth and winked. </p><p>"Let me finish my story." </p><p>An intense pressure suddenly bore down on the room.</p><p>The pressure came from Connel's body, however, the demon simply shrugged it off as he continued. </p><p>"As I was saying, there was once this demon, he was young, and well, he was a demon. Just like any other demon out there he simply conquered planets after planets just to ensure his survival. His existence was, how should I say it?" </p><p>Placing his hand over his chin, a thoughtful look appeared on the demon's face as he crossed his legs. </p><p>"... Purposeless?" </p><p>Snapping his fingers, he looked at Connel. </p><p>"Yeah, that's right. Purposeless. That is the best way I could describe his existence."</p><p>"Asides from conquering planets and surviving, we have no purpose. Because of the Demon King, we can't do anything we want. How should I say it for you humans to understand...ah! It's like going to work twenty-four hours a day without a rest."</p><p>Pausing, the demon once again licked his lips.</p><p>"...Now, what do you think would happen if one day that demon got a purpose?" </p><p>Placing his hands on the desk, he leaned his face closer to Connel's. </p><p>"...What if suddenly out of nowhere that Demon got a purpose? ...Regardless of how big or small it was?"</p><p>"What do you think would happen?" </p><p>"You would try your best to do it..."</p><p>Connel instinctively answered before his body suddenly stiffened. </p><p>"Huh?" </p><p>Unknowingly, he had gotten swept by the demon's words. </p><p>A smile appeared on the demon's face when he saw this. </p><p>"Correct." </p><p>Moving away from the desk, the demon sat down on the chair opposite. </p><p>Raising his hand, he stared at his long and pointy nails.</p><p>"Now, what if I were to tell you that I'm merely a pawn? A small piece of a bigger board at play? What would you do if you were in the same position as me?" </p><p>Lowering his hand, the room suddenly chilled as the demon's smile faded. His shift in demeanor sent chills down Connel's body. </p><p>'W...why am I scared?... H..he's clearly weaker than me.' </p><p>Connel thought as he secretly swallowed a mouthful of saliva. </p><p>Shifting his body back, Connel was just about to reply when the demon answered in an apathetic voice.</p><p>"You would obviously be the best fucking piece out there." </p><p>His glare pierced right through Connel's eyes, and the temperature dropped even more. </p><p>A deadly silence permeated the room as Connel and the demon stared at each other.</p><p>This persisted for a good demon before the demon smiled once again and leaned back on the chair. </p><p>"Sorry about that, I almost lost myself there." </p><p>Waving his hand over his face, he fanned himself. Glancing at Connel from the corner of his eyes, the smile on his face deepened. </p><p>"You're probably wondering why I'm saying this to you, right?" </p><p>"..." </p><p>Without saying anything, Connel nodded his head. </p><p>"What if I told you that alongside me, you were also one of the pieces? ...and what if I told you that what happened to your son was not a coincidence?" </p><p>"Wh...what." </p><p>Opening and closing his mouth, Connel looked at the demon in front of him with a lost look. His heart started to freeze. </p><p>'...Not a coincidence?'</p><p>"W..what are you talking about?" </p><p>"Hehhehee." </p><p>The demon suddenly laughed. </p><p>At the exact moment he laughed, Connel finally lost it and stood up.</p><p>"I've had enough of your crap, speak to me!" </p><p>Bang—! </p><p>Smacking his hand on the table, he glared at the demon in front of him. A tremendous hue suddenly sprang out from his body. </p><p>"Speak to me! What are you talking about!" </p><p>"Hhahahahhahah." </p><p>However, instead of an answer, he was met with even more laughter as the demon smacked the armrest of the chair repeatedly. </p><p>"You!" </p><p>Enraged, Connel raised his hand and a dagger suddenly appeared. He then raised it in the air, ready to slash down at any moment. </p><p>"Wait, hold on, stop, stop." </p><p>However, just as he was about to attack, the demon suddenly stopped and wiped the corner of his eyes. </p><p>Licking his lips, he looked at Connel who looked back at him and threatened. </p><p>"Speak or you will die." </p><p>Rather than looking worried, the demon seemed even more relaxed as he leaned back on his chair.</p><p>"What is there to explain? ...Didn't I already say it before? What happened to your son was not a coincidence?" </p><p>The pressure exuding from Connel further intensified. </p><p>"Who!?" </p><p>He shouted at the top of his lungs as a crazed look flashed across his face. </p><p>"Tell me who is responsible for this!" </p><p>"I can't." </p><p>The demon shook his head. </p><p>"Then die!" </p><p>Connel suddenly slashed in the direction of the demon. Since he wasn't going to answer, he was better off dead. </p><p>Bang—! </p><p>With a powerful blast, the entire area before him broke apart and dust rose in the air. </p><p>"Haaa..haaa...." </p><p>Breathing heavily, Connel stared in the direction of where he had attacked. </p><p>Although he had only used a small fraction of his strength, he was sure that he had killed the demon. After all, the strength gap between &lt;A&gt; and &lt;S&gt; rank was that big. </p><p>However, just when he thought that he had managed to kill him, an amused voice sounded from the back. </p><p>"Oh my, oh my." </p><p>"!" </p><p>Snapping his head in the direction of where the voice came from, to Connal's shock, he found the demon from before standing there with a transparent body. </p><p>"H..how!" Connal muttered incredulously. </p><p>He couldn't believe it. How could he still be alive!? </p><p>"It was a nice attempt." </p><p>Raising his hands in the air, the demon's spectral figure started to become less transparent before his figure once again returned to how it looked before. </p><p>Before Connel could snap out of it and once again attack, the demon spoke. </p><p>"Don't bother trying to kill me. This is merely a projection. A semi-tangible one. Why do you think I was able to bypass your security unnoticed? It's because I'm here, and yet not here at the same time." </p><p>Patting down his body, the demon walked back to where the chair used to be.</p><p>Lowering his head and seeing that it was no longer there, he made a troubled look. </p><p>"Well, look at what you've done! Now I can't even sit..." </p><p>Placing his hands over his hips, he let out a long sigh. </p><p>After a while, shaking his head, he walked up to Connel and placed his hand over his shoulder. </p><p>"What happened to your son was very unfortunate. I am truly sorry for what happened, but.." </p><p>The demon's voice suddenly became colder. </p><p>"Some things just needed to be done. He was an important factor in growing a bigger piece of the board, he was an unfortunate expandable that needed to be used to push the game forward. He was also someone that needed to be used in order to create this exact scenario. A scenario in which the two of us meet." </p><p>"In a way, you can say that our meeting isn't exactly fate." </p><p>Extending his hand, and tapping onto the sheet of paper on the table, the demon kept pushing. </p><p>"You want to find out the real culprit behind your son's death? ...Do you not want to avenge your son's death?" </p><p>"St..stop...stop speaking." </p><p>Hearing the demon's words, Connel's had trouble breathing. Each and every one of his words sounded really enticing to him. </p><p>...But, yet, at the same time, he knew that he would fall right into the demon's trap as soon as he agreed to his words. </p><p>"How will the world view you? Isn't Connel Rhinestone a coward who can't do anything because of the Union? Even if you do decide to take revenge and kill Kevin Voss, and the Union, and the one that framed your son as 876...will that be enough now that you know that there was someone else controlling everything behind the scenes?" </p><p>'Stop. Please stop speaking.' </p><p>He pleaded inside of his mind. However, the demon just kept pushing and pushing and pushing...</p><p>"Are you really just going to be satisfied knowing that the one responsible for destroying your life is still roaming out there, laughing and chatting with his friends, having a merry time.." </p><p>"Ah..ah.." </p><p>Thud—! </p><p>With a low thud, Connel suddenly kneeled on the ground.</p><p>"Ahhh...." </p><p>A deep twisted smile appeared on the demon's face once he saw this. </p><p>Grabbing onto the paper, he waved it in front of Connel as he whispered in a soft voice. </p><p>"Sign this contract if you want to take revenge on the one that caused your life to be a mess." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-472.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-474.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

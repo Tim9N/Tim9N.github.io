@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 610 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 610 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-609.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-611.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"That actually hurt…"</p><p>Monica strolled into a small hallway softly muttering to herself.</p><p>Her feet eventually stopped moving. She lowered her head to examine her shaking hand before carefully clenching it.</p><p>"Didn't they tell him to go easy?"</p><p>His attack, or 'display of strength was a lot stronger than Monica had anticipated.</p><p>Everything was scripted.</p><p>At least, Ren's attack was supposed to be.</p><p>Monica knew from the very beginning that Ren was going to show off a little in order to silence the people. It had to be done so that the reputation of the Union and the Central government wouldn't plummet.</p><p>It was something that was discussed beforehand.</p><p>Ren had kept a far too low profile during the previous few years, which had led to his name losing favor with the general public. The incidents that occurred at the conference were still fresh in many people's minds, so they didn't quickly forget his name, but his lack of notable accomplishments or notoriety after that caused him to lose a lot of his previously obtained fame.</p><p> In a sense, his actions were necessary. They had to be done in order to quickly establish himself as a big name in the human domain. </p><p>"I'm sure everyone will remember his name now…"</p><p>Monica grimaced while she shook her hand.</p><p>"Fuck that hurts."</p><p>She murmured under her breath.</p><p>Ren's growth left even her speechless.</p><p>Despite the fact that she had a strong sense of competition, she had no desire to compete with Ren. No point in competing in a losing battle.</p><p>Without a doubt, he would overtake her sooner or later.</p><p>"Haaa...life is so unfair."</p><p>The thought made her shake her head.</p><p>"I kind of miss those days where Donna and I would beat him and Kevin senseless to help them progress. In just a few years he's already this strong It makes me feel old, and I'm only in my mid-thirties..."</p><p>Age was a sensitive topic for women, and Monica was no exception. She detested knowing that she was getting older.</p><p>"Well, at least I'm not as bad as Donna."</p><p>Mention her age to her, and you'd find yourself stuck on a wall before you know it.</p><p>Tucking her chin under her hand, Monica thought to herself.</p><p>'Thinking about Kevin, he sure has improved quite a lot too.;</p><p>Although not as much as Ren, still an impressive level of growth.</p><p>He was about &lt;S&gt; rank now.</p><p>Compared to Ren, it didn't sound all that spectacular, but it had to be remembered that "S" rankers typically never placed in the top 100. They were typically between 200 and 300.</p><p>Top 100 was solely intended for people who attained a S+ rank.</p><p>This alone demonstrated the numerous contributions he had made throughout the years. Additionally, despite the fact that he was still not quite there in terms of actual rank, his strength was also judged to be in the S+&gt; range. That alone went to show how amazing of a talent he was.</p><p>"Sigh, I truly feel helpless when I think about the two of them."</p><p>Hanging her head low, Monica resumed her steps before she eventually stopped in front of a large wooden door.</p><p>[Vice-President of the Union]</p><p>Seeing the metal engravings on the door, Monica grasped the handle and opened the door. She then leisurely entered the office.</p><p>Clank—!</p><p>A spacious office, roughly the size of a tennis court, welcomed her. A person was seated at a sizable wooden desk near the room's end. He was conversing with someone at the time.</p><p>It took Monica one glance to identify who the individual was.</p><p>"Looks like you're already here, Ren."</p><p>Smiling, Monica closed the door behind her.</p><p>***</p><p>In the midst of my discussion with Waylan, the door behind me burst open, and Monica appeared.</p><p>"Looks like you're already here, Ren."</p><p>"Sure."</p><p>I lazily waved at her before I turned my attention back to Waylan.</p><p>"When is the meeting going to be held?"</p><p>"In less than a week's time."</p><p>Waylan replied in a stern tone, his eyes sparing Monica a single glance.</p><p>"I'll give you the details when the time comes, but you better not be late."</p><p>"I understand."</p><p>I quietly nodded his head.</p><p>Then, seemingly recalling something, I asked.</p><p>"How's the progress with regards to the alliance?"</p><p>Over the previous two years, I had not shown any interest in anything having to do with the outside world, so I was unaware of the current state of the alliance with the other races.</p><p>Now that I was planning on taking action, I was curious as to how things were progressing.</p><p>"It's slow, but there has been some progress."</p><p>Waylan replied in a somewhat helpless tone.</p><p>"Even though the other races seem keen to form an alliance with us, we're still negotiating a few minor things."</p><p>"Such as?"</p><p>"The amount of power and influence our votes will have when making important decisions, the exchange of technology and raw materials…just the boring stuff, you know?"</p><p>"It really does sound boring."</p><p>Monica commented while she sat down on the seat next to me.</p><p>She then reached forward and took a piece of candy out of a tiny glass dish that was laying on Waylan's desk.</p><p>Unwrapping the candy, she tapped on my shoulder and showed me her hand.</p><p>"You'll soon be able to attend such meetings, so allow me to offer you some advice. Pinch your hand in the area between your thumb and index finger. When you're about to nod off, it's a terrific method to wake you up."</p><p>"I see…"</p><p>I slowly nodded my head while he listened to Monica's random ramblings.</p><p>Waylan, on the other hand, only shook his head in frustration. It was obvious from the expression on his face that he was used to this.</p><p>"Alright, I better get going."</p><p>I stood up from my seat once I managed to hear everything that I wanted to hear.</p><p>At the exact moment I stood up, I felt Monica's gaze pause on me.</p><p>"You're already leaving?"</p><p>"Yeah."</p><p>I replied while turning around to face the door.</p><p>"I have an appointment after this, so I won't be able to stay here for long."</p><p>"Well, alright…"</p><p>Monica reclined back in her chair while placing a candy on her tongue.</p><p>"I guess I'll see you next week when you attend the meeting."</p><p>"Will do."</p><p>"Hold on a second Ren."</p><p>Waylan called out for me just as I was about to leave.</p><p>My feet came to a pause.</p><p>"Yes?"</p><p>"I almost forgot to mention this, but Octavious wants to talk to you one of these days. I'm not sure about what he wants to talk to you about, but it seems like it's about something the two of you had previously discussed."</p><p>My brows furrowed when I heard his words. I then nodded my head.</p><p>"Sure, tell him I'll meet him before the meeting in a week's time."</p><p>As soon as I finished speaking, I opened the door and left. I was going to be late if I didn't hurry.</p><p>***</p><p>Clank—!</p><p>Waylan speechlessly stood up as he gazed at Ren's departing back.</p><p>He continued to stand for a couple of seconds before he fell back on his chair and sighed.</p><p>"What am I? Their messenger?"</p><p>He grumbled to himself while clenching his hair with both hands.</p><p>Why couldn't Ren and Octavious just talk to each other like any other human being would? Why did he always have to be the messenger between the two of them?</p><p>This wasn't the first time it happened, as it had been a recurring thing for quite a while now.</p><p>To make matters worse, it wasn't as if he could do anything about the situation.</p><p>As the Union's Vice-President, he was responsible for meeting all of Octavious' and the heads' demands. It was basically his job whether he liked it or not.</p><p>The more he thought about it, the more powerless he felt.</p><p>"…Maybe I should just quit my job."</p><p>A soft whisper escaped his lips.</p><p>"Don't say that."</p><p>Monica spoke after overhearing his comment. She then handed him a candy.</p><p>"Here, have a candy. It'll help you alleviate your mood."</p><p>***</p><p>Clank—!</p><p>I looked to my left and right as I closed the door behind me before heading for the exit of the building.</p><p>It was about time I returned him.</p><p>…Or so I thought.</p><p>"You made me wait long enough."</p><p>A familiar voice echoed from behind, and my feet came to a pause.</p><p>I then slowly turned around</p><p>"Kevin."</p><p>"Been a while."</p><p>I swung around and feigned a smile when I spotted Kevin.</p><p>"How long has it been?"</p><p>"About a year or so? Wanted to meet you when we were at the ceremony, but well…I was a bit too busy."</p><p>"I know, I saw you."</p><p>Kevin's popularity far outstripped mine.</p><p>It was hard for me to not notice him when he was always the center of attention. A far cry from what I was.</p><p>Nevertheless, that was what I wanted, so I wasn't one to complain.</p><p>"So…"</p><p>Looking toward my right and left to check if there was anyone else present nearby, I slowly asked.</p><p>"Is there anything you wanted to say?"</p><p>"Hm?"</p><p>Kevin titled his head.</p><p>"We haven't seen each other for a year. Thought I'd catch up a bit. There's nothing I really want to talk about.</p><p>"Oh."</p><p>I casually replied as an awkward silence permeated the air.</p><p>Neither one of us talked for the next couple of seconds.</p><p>I couldn't quite put my finger on what it was, but there was some strange awkwardness and uneasiness that I couldn't quite shake.</p><p>I dismissed it by assuming that it was because we hadn't seen each other in a year or two as both of us were extremely busy.</p><p>"Ehm…how have you been?"</p><p>Kevin started, scratching the side of his face with an awkward-looking smile.</p><p>"I'm alright, just a bit annoyed."</p><p>"Annoyed?"</p><p>"Yeah, to be honest, I would've rather not revealed my strength."</p><p>The only reason I chose to reveal my strength was for the sake of getting a commanding position when dealing with the matters regarding the Monolith.</p><p>This was something that I couldn't give up on.</p><p>A look of understanding appeared on Kevin's face.</p><p>"As expected. You really did have something in mind when announcing your strength like that."</p><p>"Yeah, if not for that I would've just been like Jin."</p><p>Switching the conversation to Jin, Kevin's brows furrowed a bit.</p><p>"Speaking about him, I wonder why he didn't come here. With his strength the should have no trouble making it to the rankings, same for the guy in your group…the forgetful guy."</p><p>"You mean Liam?"</p><p>"Yeah, him."</p><p>Kevin snapped his finger in remembrance.</p><p>I shrugged my shoulders.</p><p>"Beats me, they must have their motives. Well, at least Jin, Liam just isn't interested in this kind of stuff."</p><p>The rankings weren't exactly accurate.</p><p>There were many people out there that didn't disclose their strengths, such as Liam and Jin in this case.</p><p>Had they disclosed their strength, they would've defiantly knocked a couple of people out of the rankings.</p><p>Especially Liam who was probably going to rank close to me.</p><p>'Now that I think about it, there's a chance he might rank higher than I did. Without a doubt, he has improved a lot over the last few years...'</p><p>I've been exercising like crazy for the past two years, in between spending time with my family and trying to find whatever way I could to find a way to cure my soul.</p><p>From exploring dungeons to engaging in combat with everyone in the mercenary group. Well, I do say everyone, but it was mostly just Liam and Angelica.</p><p>…and it was exactly because I sparred with Liam almost every day that I knew just how frightening his strength was at the moment.</p><p>At times, I wondered why the Akashic records didn't choose him instead of Kevin.</p><p>His talent was simply out of this world.</p><p>"Why are you looking at me like that?"</p><p>I was jolted out of my thoughts by Kevin's voice.</p><p>Blinking a couple of times, I tilted my head.</p><p>"What do you mean?"</p><p>"You were looking at me weirdly just a second ago."</p><p>"Really?"</p><p>Must've done it unconsciously.</p><p>Kevin squinted his eyes for a moment before he shook his head.</p><p>"Nevermind that for now, I'll take my leave now. It was nice talk—"</p><p>"Wait a second."</p><p>I grabbed Kevin's shoulder before he prepared to leave. I suddenly remembered something.</p><p>"Hm?"</p><p>His face conveyed a faint indication of discomfort as he lowered his head to look at my palm pressing against his shoulder. I wasn't really sure whether it was just my imagination because it appeared and vanished as quickly as it came.</p><p>"Yeah?"</p><p>He asked, and I snapped out of it.</p><p>'Must have just been mind. Nothing unusual with how messed up it is at the moment.'</p><p>"…I need a favor."</p><p>I took a deep breath.</p><p>Then, meeting his eyes, I said.</p><p>"Help me set a portal for Immorra."</p><p>***</p><p>A/N : I feel compelled to write this since everyone has been asking and making random facts up as to why I'm not uploading.</p><p>The reason for the lack of updates is simple. I'm not currently at home. I don't have Wi-fi and so I can't really edit my chapters that need wi-fi for me to do.</p><p>I have not stopped writing, it's just that I can't edit (This takes me far longer than writing a chapter and I need connection since I use several writing tools), so when I get back, I'll just release all of the missing chapters in a big mass release.</p><p>Oh, and, I don't know where this rumor comes from, but I don't have a sister.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-609.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-611.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

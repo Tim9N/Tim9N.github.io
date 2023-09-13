@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 531 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 531 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-530.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-532.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'The chip inside of my head? …What is he talking about?'</p><p>I always used the chip inside of my head.</p><p>In the split second that 'Eyes of Chronos' was activated, I wouldn't have been able to think if it weren't for the chip.</p><p>Was there another function of the chip that I did not know about? ...If there was, I wasn't aware of it.</p><p>It was then that the other me spoke. My attention once again shifted.</p><p>'Pay attention one more time.'</p><p>With his words fading, the Duke's body stumbled backward.</p><p>This came as a result of the previous punch.</p><p>As he stabilized his body, there was no longer any look of shock on his face, and in its place was an impassive and unreadable expression.</p><p>In front of the silent audience, he attempted to keep a straight face.</p><p>His figure disappeared once more as he expanded his wings, casting a large shadow over the arena. This time, his movements were clearly different. It was a lot faster than before.</p><p>But…</p><p>Bang-!</p><p>The results were the same.</p><p>"Huaaakk!"</p><p>Casually elbowing the right side, the Duke's body reappeared. It was only a casual elbow, but it was that casual elbow that caused his eyes to widen and his stomach to cave in.</p><p>A glob of spittle flew towards my face, but my face remained unchanged.</p><p>'Did you manage to see?'</p><p>The echo of his voice reverberated throughout my mind.</p><p>Finding it difficult to digest what had happened, it took a while for me to answer back.</p><p>But I eventually did.</p><p>'…I have.'</p><p>While the answer was quite easy, it was the concept that I found difficult to grasp. Or even accept it as something that a human was remotely possible of achieving...</p><p>'Observe everything. From muscle movement to the direction that feet and bodies point, and eye movement. Connecting everything together...'</p><p>Lowering my hand, I pressed my thumb against the hilt of my sword.</p><p>The moment I did that, the Duke once again decided to move.</p><p>But…</p><p>Click-!</p><p>Shifting my body ever so slightly toward the right, a subtle clicking sound resonated throughout the arena.</p><p>Following the sound, the whole arena froze as the Duke's figure once again materialized in front of me.</p><p>A gaping hole appeared on the right side of his chest.</p><p>'...You will be able to predict their movements.'</p><p>Drip. Drip.</p><p>It was only the sound of blood dripping on the ground that echoed throughout the arena.</p><p>Drip. Drip. Drip.</p><p>Trying to comprehend what had happened, the Duke's head rose and fell repeatedly as he stared at his right chest.</p><p>Throughout the silence, my mouth opened.</p><p>"…What a pity."</p><p>***</p><p>A fluke.</p><p>A simple and miraculous fluke.</p><p>'It's the only way to explain it…'</p><p>The Duke thought as he kept denying the reality that was presented before his eyes.</p><p>There was simply no way for someone whose rank was weaker than his to be able to hit him.</p><p>Impossible!</p><p>Although he was suppressed, he was still a Duke-ranked demon.</p><p>A Duke-ranked demon!</p><p>An existence that was supposed to stand at the apex of all worlds. A figure who had the ability to squash Counts with a simple wave of his hand.</p><p>…Or at least that was how things were supposed to be.</p><p>Drip. Drip.</p><p>But, as he heard the sound of his own blood dripping toward the ground, he started to question this notion.</p><p>'How is this possible?'</p><p>His only memory was moving one step before feeling a sharp pain on the right side of his body.</p><p>Raising his hand to cover his wound, Duke Azenoch raised his head.</p><p>"…!"</p><p>From that moment on, he could see all the stares coming from the participants above. They stared at him with obvious shock on their faces.</p><p>But that wasn't all.</p><p>While whispering among themselves, they also displayed a clear sense of disappointment.</p><p>"Is the Duke only this strong?"</p><p>"…Is he really weaker than that human?"</p><p>"He is playing around, right?"</p><p>They tried to be faint with their voices, but as the whispers grew, so did the noise, and their voices were heard by the Duke whose face twisted savagely.</p><p>'Shut up! How dare you!'</p><p>He wanted to shout at the top of his lungs toward the crowd. But out of sheer willpower, he managed to stop himself.</p><p>...The situation was still salvageable.</p><p>As he raised his head to stare at his opponent, the Duke stared deeply into his eyes.</p><p>'Huh?'</p><p>But the moment their eyes met, the Duke suddenly felt a chill run down his body as he subconsciously took a step back.</p><p>There was no avoiding the audience's observation, who became noisier as the performance progressed.</p><p>"Did you see that? The Duke took a step back.'</p><p>"Is the Duke actually scared?"</p><p>"…This is pathetic."</p><p>The Duke heard more and more voices inside of his head with each passing second. All he could hear were voices at this point.</p><p>But despite all of the voices against him, Duke Azenoch's focus was somewhere else.</p><p>Staring at his trembling arms, he stuttered.</p><p>'A…am I scared?'</p><p>That sensation he felt when he looked at him in the eyes...</p><p>Was it really a fluke? ..Or was he just imagining things?</p><p>When he glanced once again at White Reaper, the sensation he felt before vanished the moment his eyes met.</p><p>'…A fluke.'</p><p>The Duke thought to himself.</p><p>Yes.</p><p>It had to be a fluke.</p><p>How could someone that wasn't even Duke rank scare him?</p><p>Impossible.</p><p>'It's probably because of all the voices around me.'</p><p>There was simply no other explanation.</p><p> "Huuu…"</p><p>Taking a deep breath, Duke Azenoch calmed himself down. Drowning out the noise coming from the arena, he slowly started to channel his demonic energy.</p><p>'If Count rank doesn't work, I will just take it up a notch.'</p><p>Slowly adjusting his rank in an unnoticeable way, he took a step forward and his vision warped. Reappearing in front of White Reaper, he extended his hand and clawed his head.</p><p>Compared to before, his movements were incomparably faster.</p><p>Within a split second, his hand was already nearing White Reaper's head. It was so close, just a couple of inches away, but…</p><p>The Duke's face sank as White Reaper managed to avoid the attack by moving his head back by a narrow margin. Even so, he did manage to graze him just a little bit as a red line traced alongside his cheek.</p><p>Swoosh-!</p><p>Feeling something hurl at him from below, the Duke twisted his body. He too was able to avoid the attack.</p><p>At the same time he avoided the attack, he raised his head and proceeded to sweep his leg in a whipping motion, hurtling it towards White Reaper's head.</p><p>Bang-!</p><p>His leg was connected.</p><p>To the Duke's disappointment, his leg came into contact with his arm which was raised to block his head.</p><p>The Duke gritted his teeth and tried again.</p><p>"Huh?"</p><p>However, as he was trying to shift his body, the Duke suddenly found a hand grasping his foot. Without giving him a chance to react, an open palm came toward his head.</p><p>A sense of doom rose within the Duke's mind as he watched the hand reach out for his head.</p><p>Demonic energy erupted from his body as he twisted his body at a strange angle and swung his other foot toward his opponent's head with its back heel.</p><p>As he performed this movement, he made sure to keep his gaze focused on his opponent.</p><p>This led him to notice a slight change in White Reaper's expression, as his lips slowly curled into a grin and his left hand shot toward the side of his head.</p><p>'Fuck!'</p><p>By the time the Duke realized he had been baited into doing such a move, it was already too late.</p><p>Bang-!</p><p>With a loud banging sound, the Duke suddenly felt a hand grasp his other leg. Suddenly, he found himself being thrown up in the air before being thrown down with tremendous force.</p><p>Bang-!</p><p>Crashing into the ground, sand swept into the air as a crater formed beneath him. In addition, the Duke felt a great deal of pain running down his back as he struggled to open his mouth.</p><p>The impact was so powerful that he didn't even have time to groan.</p><p>"Again."</p><p>A voice echoed in his ears. By the time he realized what his words meant, his body had once again been flung toward the air.</p><p>Bang-!</p><p>***</p><p>"It's not him…"</p><p>After staring at the white-haired figure in the middle of the arena for a few moments, Lightning Dragon came to this conclusion.</p><p>'It can't be him.'</p><p>It was hard to describe the scene that he was seeing.</p><p>If he had to use a word, it would have to be a...</p><p>One-sided beat down.</p><p>Bang-! Bang-! Bang-!</p><p>An ear-piercing bang continued to reverberate throughout the arena. It was the sound created by White Reaper repeatedly flinging the Duke's body toward the ground.</p><p>How could Lightning Dragon think otherwise if that was all he heard and saw?</p><p>With each swing of his arms, the Duke's body would come crushing down toward the ground, deepening the already formed crater formed from the first impact.</p><p>The sight.</p><p>It was something that was being deeply engraved in the eyes of all spectators present as an immaculate silence enveloped the arena grounds.</p><p>But that wasn't what concerned Lightning Dragon.</p><p>His concern was that the White Reaper on stage wasn't the one he had fought.</p><p>'His mana control, it's completely different from when we fought. In addition, he moves a lot more efficiently than in the past. Every one of his movements seems to be perfectly calculated, and...hm?'</p><p>His thoughts paused for a second.</p><p>Leaning his body closer, his eyes opened widely as he pressed his hand on the window to get a better look at the fight.</p><p>'Wait…'</p><p>His eyes slowly started to enlarge.</p><p>"That…"</p><p>Opening and closing his mouth, his face paled as he came to a sudden realization.</p><p>'He's standing where he was at the beginning of the fight.'</p><p>No, rather, he was only one step ahead of where he previously stood.</p><p>This…</p><p>Who in the world was this?</p><p>Was he really the White Reaper he had once fought?</p><p>'Impossible.'</p><p>Lightning Dragon shook his head. The undeniable reality in front of him shook him to the core.</p><p>It was at that moment.</p><p>"Enough!"</p><p>He was jolted out of his thoughts by a powerful voice that swept across the entire arena. In response to the voice, a tremendous amount of energy suddenly erupted from the middle of the arena, throwing White Reaper's body back before his figure soon crashed into the other side of the arena.</p><p>Bang-!</p><p>All the spectators clung to their necks in an attempt to breathe under the suffocating pressure.</p><p>Duke Azenoch's body emerged from the deep crater.</p><p>His eyes were a deep shade of red, and his body was all dirtied up and messy.</p><p>Glaring in White Reaper's direction, the aura coming out of his body, slowly kept on increasing.</p><p>It didn't take long for a Duke-ranked pressure to emerge from his body. Some of the demons' bodies burst into pieces after his sudden aura release. It was that oppressive.</p><p>But he didn't seem to care as he slowly moved in the direction of where White Reaper crashed which was at the moment covered by a large cloud of dust.</p><p>With a wave of the Duke's hand, the dust swept and White Reaper's figure reappeared.</p><p>Swooosh-!</p><p>Sitting on the ground with his back up against the arena wall, White Reaper's head was lowered.</p><p>The Duke's body began to tingle with bloodlust as he stared at him.</p><p>He was going in for the kill.</p><p>However, what he didn't notice, along with the rest of the spectators in the arena apart from Lightning Dragon, was the upward pulling of the edges of White Reaper's lips.</p><p>Opening his mouth, he slowly mouthed something.</p><p>'Limit Breaker...'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-530.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-532.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

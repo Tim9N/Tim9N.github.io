@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 542 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 542 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-541.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-543.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>This familiar warmth.</p><p>'It's real. It's not a dream.'</p><p>When Amanda looked into her father's eyes, tears began to trickle down her cheeks.</p><p>"It's okay."</p><p>Wiping the tear away from her cheek, Edward softly smiled at her.</p><p>"It's really me Amanda. I'm back."</p><p>"Ah."</p><p>Amanda let out a weak sound as she hugged her father even tighter. Trying her best to imprint the warmth inside of her mind.</p><p>A while later, Amanda opened her mouth. The frail sound of her voice echoed throughout the room.</p><p>"H..how...how are you here?"</p><p>How was it possible for her father to have returned from the demon world?</p><p>Many had told her that this was an impossible feat. Something that could never be accomplished due to how dangerous the territory was.</p><p>Many times she had wanted to go herself, but knowing how weak she was, she could only silently endure the pain and continue training until she became strong enough to go.</p><p>Yet...</p><p>Feeling her father's warmth, Amanda knew that he was right here with her.</p><p>This was not a dream.</p><p>Softly staring at Amanda, Edward opened his mouth to answer.</p><p>However...</p><p>"Ren Dover! Are you an exhibitionist!? Go and put some clothes this instant!"</p><p>He was stopped by Samantha's enraged shout.</p><p>Turning around, Amanda watched as Ren left the room with a crestfallen look on his face.</p><p>"You think I really did this on purpose? Also, it's not like I'm actually naked, people go to the beach all the time, it makes no difference if they see my chest..."</p><p>As he left, nearly everyone in the room heard his parting words.</p><p>"Heh..."</p><p>Edward chuckled slightly at that moment. With a confused look on her face, she turned her head to look at him.</p><p>"Do you two know each other?"</p><p>Letting go of him, she sat down on the seat next to him.</p><p>Glancing in her direction, Edward had a complicated look on his face as he nodded his head.</p><p>"...You wanted to know why I was able to get out of the demon world, right?"</p><p>"Yes."</p><p>Unknowingly, Amanda's heartbeat started racing as she nodded her head.</p><p>In her mind, she was already formulating a theory about what had happened.</p><p>The words her father said next confirmed her assumptions.</p><p>"It's because of him."</p><p>"He helped me escape from the demon realm."</p><p>'...As expected, it really was him.'</p><p>Instead of being surprised, Amanda's face turned complicated.</p><p>She had already formed an idea once her father appeared the same time he did, but being overwhelmed with emotions, she didn't think too much about the situation.</p><p>However, now that she had calmed down, she was able to understand exactly what had happened.</p><p>Lowering her head, Amanda glanced in the direction of where Ren used to stand, letting her face soften a little. The edges of her lips curled ever so slightly.</p><p>'You truly are...'</p><p>***</p><p>"This is very good."</p><p>With my fork in hand, I chewed my food politely.</p><p>Once I finished eating, I would wipe my mouth carefully with a napkin. I also made sure to keep my back straight and hold the fork properly.</p><p>I wasn't one to eat like this, however, at the moment I felt that I needed to do this.</p><p>For the sake of my life.</p><p>"Keumm...what delicacy this is."</p><p>'What is this weird thing?'</p><p>With a slight cough, I swallowed another mouthful. Along the way, I made sure to compliment the food. Regardless of whether it was good or not.</p><p>Unfortunately...</p><p>"Isn't that ginger you're eating? I don't think you like ginger, don't you?"</p><p>The dining hall echoed with my mother's voice.</p><p>My fork froze in place.</p><p>As I smacked my lips a couple of times in an attempt to get my taste buds to work, I finally tasted the food in my mouth, and from that moment, I had to do my best to stop my tears from falling.</p><p>'I fucked up..'</p><p>Lifting my head a little, my left eye twitched. Nevertheless, I still complemented.</p><p>"Amazing ginger mother. I don't know how you seasoned it, but I think I no longer dislike the taste of ginger."</p><p>"...I didn't do anything to it."</p><p>"Nothing? Then I must compliment you on how well you selected the ingredients. Truly ama—"</p><p>"I ordered them online."</p><p>Scratching the side of my head, I lowered my head and stopped speaking altogether.</p><p>I realized that the less I spoke, the better the situation for me would be.</p><p>...and it proved to be the right decision as the dinner continued smoothly after that.</p><p>The feeling lasted only a short time, as my mom's icy words echoed throughout the room.</p><p>"Is that so? So you met Ren in the demon realm?"</p><p>Feeling her intense gaze from the other side of the dining table, I lowered my head even further.</p><p>'Shit...'</p><p>But it seemed as though fate did not want me to do that as Edward continued talking.</p><p>"Yes, if not for your son, I would've never been able to escape from the demon world."</p><p>"Oh my, what a brave son I have."</p><p>With every word that came out of my mother's mouth, I felt as if a sharp knife was stabbing my heart.</p><p>'Please stop...'</p><p>Lifting my head I little, I pleaded with Edward to stop, but it didn't seem as though he got the message as he continued speaking.</p><p>"In fact, I even fought against your son back in the demon world."</p><p>At his words, the room froze completely as the eyes of several people in the room opened widely.</p><p>'So this is what your goal was!'</p><p>It was also at that moment that I realized that Edward was not feigning ignorance to my earlier signals, but was actually doing it on purpose.</p><p>"You two have fought?"</p><p>My mother asked with a rather surprised tone.</p><p>Feeling her gaze pause on me, I silently glared in Edward's direction.</p><p>'You better stop talking.'</p><p>But unfortunately, my words went to deaf ears as Edward continued speaking. Secretly glancing in Natasha's and Amanda's direction, he put on a hurt look.</p><p>"We have. Your son also beat me quite badly. I was punched multiple times in the face, and he also broke a lot of my bones. Haaa, if not for my sturdy body, your son could've killed me."</p><p>"Oh my!"</p><p>While he was speaking, I suddenly felt Amanda's gaze pause on me.</p><p>Turning my head, our eyes met.</p><p>She didn't say anything, but with a single glance, I could tell what she wanted to ask me.</p><p>'Is what he is saying true?'</p><p>"Ugh..."</p><p>Groaning slightly, I covered my face with my hand and slowly nodded my head.</p><p>Glaring at Edward, I was forced to interject.</p><p>"...I only did it for the sake of helping you."</p><p>A smile spread across Edward's face as he glanced at me.</p><p>"I didn't say you didn't."</p><p>The misunderstanding was finally clarified by Edward as he looked toward the others.</p><p>"In spite of Ren's actions, he did it to save me, so there's no need for you guys to think badly of him."</p><p>Hearing his words, my eyes began to squint.</p><p>'Just why is he acting this way...'</p><p>It somehow felt as though he was having some sort of vendetta against me.</p><p>But it didn't take too long for me to understand the reason for his sudden actions. Following his line of sight, I soon realized why.</p><p>'It's about what happened earlier...'</p><p>He had probably misunderstood the moment I came into the room.</p><p>At least that was what I thought it was.</p><p>"So in order to save you, Ren purposely beat you up? But aren't you supposed to be strong?"</p><p>Once again, my mother's words echoed.</p><p>The smile on Edward's face stiffened a little as he quickly explained.</p><p>"Back then I had my mana sealed and my rank dropped to the same level as Ren. Not only that, but Ren also had a device to stop my man—"</p><p>"Sounds an awful lot like you are making excuses for your loss."</p><p>In the middle of his sentence, Edward was interrupted by Natasha.</p><p>With a slight smile on her face, she glanced in Amanda's direction.</p><p>"There is no need to be embarrassed, we have all seen Ren's capabilities. It wouldn't be strange for you to lose to him, right Amanda?"</p><p>Alternating her gaze between me and Edward, Amanda eventually nodded her head.</p><p>"...Yes."</p><p>"Amanda?"</p><p>Edward pitifully looked at Amanda with a betrayed expression on his face. Despite his reactions, Amanda just ate the food calmly, seemingly unconcerned with his reaction.</p><p>She looked to be lost in her own thoughts.</p><p>...And just like that, the next couple of hours flew by.</p><p>By the time it was 10 P.M, everyone had already eaten their fill and my mother was already back in the kitchen, cleaning up the dishes.</p><p>"Huaamm.."</p><p>Letting out a long yawn, I stood up from my seat.</p><p>Glancing around the place and seeing everyone still busy doing their own thing, I decided to head for my room.</p><p>I was honestly quite tired.</p><p>Stretching my back a little, I walked toward my room. Along the way, I thought about the dinner. If I had to be honest, it was a lot more tiring than my half-year-long trip back to the demon realm.</p><p>In spite of the dangers there, I never felt so tense in my life.</p><p>Like a hawk, my mother watched every move I made with great attention. It felt as though any wrong move would spell the end of me.</p><p>'Remind me to never do this again...'</p><p>Shaking my head, I entered my room and headed for the balcony.</p><p>"Hm?"</p><p>Clank—!</p><p>The moment I opened the balcony door, I was left surprised by the sight of Amanda staring at the nightly sky as her figure basked underneath the moonlight, perfectly highlighting her soft and delicate features.</p><p>My feet came to an abrupt pause.</p><p>"...You're here."</p><p>Turning her head, Amanda glanced in my direction.</p><p>Staring back at her, I walked toward the balcony railings and proceeded to gaze at the city from the balcony.</p><p>A momentary silence followed as we both stared at the city below.</p><p>Breaking the silence, I turned my head to glance at her.</p><p>"You were waiting for me?"</p><p>"Mhm. I was."</p><p>Resting her head in her arms that were crossed on the balcony, Amanda slightly turned her head in my direction.</p><p> "I just put Nola to bed, and since the two rooms are connected, I decided to head for the balcony to enjoy the breeze." </p><p>"I see.."</p><p>Raising my hand, I scratched the side of my eye.</p><p>However, her next words caused my hand to freeze on the spot.</p><p>"Do you nee—"</p><p>"I like you, you know that."</p><p>As if time had stopped, everything around me faded away, and I could only see Amanda's figure at that moment.</p><p>"Wh—</p><p>"Shh.."</p><p>With a slight smile on her face, Amanda pressed her finger to my mouth.</p><p>"There is no need to pretend as though you don't know. I noticed this back when we were at the concert. I wasn't exactly sure back then, but I'm sure now. You know about my feelings for you."</p><p>Taking her finger away from my mouth, Amanda turned to glance at the city below.</p><p>Pressing her hands on the handrail, she leaned her body back.</p><p>"The only reason I'm telling you this is because I'm no longer going to hide the fact that I like you."</p><p>Though faint, a faint blush appeared on her cheeks as the smile on her face deepened a little.</p><p>"I tried. I really did try to stop these feelings from growing. Me with the guild, and you with your own stuff, it is really hard to pursue what we really want to do since we are forced to bear responsibilities that others can't, but..."</p><p>With a slight pause, Amanda turned her head to glance my way again.</p><p>"...You are making it really hard for me to not like you."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-541.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-543.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

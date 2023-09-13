@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 647 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 647 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-646.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-648.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Wait, Ren. I can still fight. I still haven't used my trump card."</p><p>"It doesn't matter. You already had your chance, and honestly..."</p><p>Ren didn't even bother to look at Liam before he shot him.</p><p>"Even if you were to successfully defeat him, the cost would be too great for you to bear. Please return to the castle and allow me to handle the current situation."</p><p>"Tsk."</p><p>After making a clicking sound with his tongue, Liam sheathed his sword, and the hue that had been swirling around his body began to fade.</p><p>When he looked into Ren's eyes, he found that he could not bring himself to disobey his orders. The things that he said weren't totally off base.</p><p>Even though there was a slim chance that he could triumph over the demon that stood in front of him, the price that he would have to pay to defeat that demon would be far too high for him to stomach. In spite of the fact that he often acted on impulse, he was not exactly wishing to die just yet.</p><p>There were a great number of other goals in his mind that he wanted to accomplish before dying. Dying to some unknown Duke ranked demon wasn't on the list.</p><p>'...Like fighting the Demon King.'</p><p>The one demon that was said to be unbeatable.</p><p>Now, dying against him would indeed be fun.</p><p> "Fine, but just this time. There won't be a next time."</p><p>His body then fell to the ground, and he disappeared immediately after.</p><p>In the sky, Ren and the Suriol stared at each other. Ren's eyes appeared rather icy, in contrast to Suriol's, which shone with a watchful intensity.</p><p>Opening his mouth, Suriol asked.</p><p>"Did you just breakthrough?"</p><p>"...I thought that was obvious enough."</p><p>Ren cast a casual glance in the direction of the castle, which was located behind him.</p><p>He didn't feel the need to lie about his most recent breakthrough. To him, it wasn't going to change the outcome of the fight regardless.</p><p>Additionally, the phenomenon that his breakthrough had brought into existence ought to have already been a dead giveaway at that point. Clearly, Suriol was just asking to waste time and get a better read on his strength.</p><p>"I see..."</p><p>Duke Suriol closed his eyes once.</p><p>His wings quickly grew larger, and a powerful force erupted from his body, heading in the direction of Ren like an unstoppable tsunami.</p><p>When confronted with such intense pressure, Ren simply extended his hand forward and swiped to his right, which allowed him to effortlessly slice through the assault as though it was made out of paper.</p><p>"...Not bad."</p><p>The unassuming actions taken by Ren caused Suriol's expression to become solemn.</p><p>Even at that point, Suriol maintained a relatively relaxed posture.</p><p>"...How about we step it up a notch?"</p><p>The second part of his sentence echoed inside Ren's ear from the back as Ren felt the presence of someone standing right behind him. To his surprise, he could still see Duke Soriol's figure standing in the spot where he had previously stood.</p><p>It was obvious that he moved at such a rapid pace that he left behind discernible afterimages of himself.</p><p>Despite this, Ren was able to respond in time as five rings materialized directly behind him, forming a stack that stopped Duke Suriol's impending attack.</p><p>Crack!</p><p>The attack was slowed down as a result of four out of the five rings shattering completely. The final ring also shattered, but by the time it did, Ren had already moved a considerable distance away from where he had been standing before.</p><p>His actions surprised Duke Suriol who looked at Ren with a surprised look.</p><p>"So you've also dodged that?"</p><p>His laid-back demeanor remained consistent the entire time, but his smile was slowly receding.</p><p>When he moved his hand in front of him, the space in front of him shattered, and his hand disappeared, only to reappear in a flash right next to Ren as the void next to him shattered like broken glass.</p><p>"Khh.."</p><p>The sudden unexpected action taken by Suriol caught Ren off guard as he was unable to deflect the blow in time, and as a consequence, he sustained an injury on the back of his neck from which blood began to pour.</p><p>As if that wasn't bad enough, Duke Soriol continued to attack Ren, resulting in cuts appearing all over Ren's body.</p><p>Within a very brief amount of time, Ren's body had already become covered in cuts, and blood had started to leak out of the various wounds and onto the ground.</p><p>Duke Suriol beamed with satisfaction as he took in Ren's predicament and then began speaking.</p><p>"It's useless; just because you've advanced to the next level does not mean you can fight on equal grounds with me. It was over 150 years ago that I was promoted to the Duke rank. Even if you had managed to stabilize the mana within your body, you would not have been able to fight me as our strengths still differed by a large margin."</p><p>In other races, Duke Suriol's rank was roughly equivalent to an &lt;SS+&gt;.</p><p>Compared to Ren, who had just broken through to &lt;SS-&gt; rank, there was still a significant gap in their abilities, and this was what he was attempting to convey to Ren, who was struggling to avoid his attacks.</p><p>If all of that wasn't bad enough, Ren's level of experience paled in comparison to that of Duke Suriol, who had lived for over 500 years. In his head, there wasn't much of a fight left to be had.</p><p>Although he was initially surprised by Ren's appearance, the 'surprise' was where it ended.</p><p>'I'll make sure to torture you a bit more for everything you've done over the past few months. All of my discarded plans and subordinates...'</p><p>As he continued to attack, Duke Soriol experienced a sudden outburst of rage as his attacks grew increasingly vicious. Ren, who could barely avoid his attacks, began to bleed even more blood.</p><p>Everyone on the ground was able to see Ren's lonesome figure floating above them as their hearts began to sink.</p><p>The gap between Duke Soriol and Ren...</p><p>Everyone who was looking up from below could make out every detail perfectly. Instantaneously, the morale of the demons grew stronger, whereas the orcs' morale became weaker.</p><p>The conflict on the battlefield below took a new direction as the demons' attacks started to become more fierce while those on the orc side started to become less intense.</p><p>They were all beginning to feel hopeless about the outcome of the war...</p><p>***</p><p>"Huakk!!"</p><p>After being shot in the head with an arrow, a demon toppled to the ground, sending it crashing down hard against a pack of other demons that were fighting beneath the orcen castle.</p><p>It was at that moment that another arrow formed with a flick of Amanda's bowstring. This arrow was perfectly aimed at the exposed core of the demon, and when it was suddenly released, the arrow shattered the demon's core into millions of different pieces.</p><p>If that wasn't enough, with another flick of her finger, the arrow exploded, and a large explosion resounded throughout the air, completely disintegrating the demons that were beside the fallen demon.</p><p>Booom!</p><p>"Another few down..."</p><p>'How many does that make?'</p><p>Amanda had long lost count of how many demons she had killed at this point. The only thing she could feel was her dwindling mana and the searing pain on her fingertips.</p><p>"It's bleeding."</p><p>Her mouth twitched when she noticed that her fingers were bleeding. Evidently, all that shooting had injured her finger.</p><p>Normally, she wouldn't have a problem because she could simply take out a potion to heal her wounds...unfortunately, the situation didn't allow her to do so as her hand continued to flick her bow strings as demons appeared from all sides.</p><p>Wherever she looked, a new demon appeared, and thus she was forced to swiftly move and twist her body in a way that granted her the ability to lock sight with the demons that were attacking her.</p><p>It was fortunate that she had her skill [Target Lock [S]] activated, as its functions were rather close to an aim bot. She didn't even really need to aim properly to kill a demon with such skill.</p><p>The only downside was the large amount of mana that the skill consumed.</p><p>Thud! Thud! Thud! Thud! Thud!</p><p>As demons continued to descend from the top of the castle and attempt to attack Amanda, her body continued to leap into the air and twist. Her bow let loose three arrows that flew at horrifying speeds. One after the other, the arrows pierced the skulls of three demons, causing them to fall to the ground with great force.</p><p>"Haaa...haaa..."</p><p>Amanda gently touched down on the ground, and then she channeled her mana in such a way that it formed two sharp, mana-based ends at the tail ends of her bow. After that, she twisted her heel and turned around.</p><p>Spurt! Spurt! Spurt!</p><p>As the sky began to rain an increasing number of corpses, a dark bloody rain threatened to soak all of her clothing, greatly alarming Amanda.</p><p>Fortunately, the blood never spilled on her clothes as a thin layer of mana covered her body.</p><p>...as if a clean freak like her would ever want her clothes dirty by blood.</p><p>"Haa...haa..."</p><p>'I can't last much longer.'</p><p>As she felt her vision begin to warp slightly, she immediately severed the head of another demon by cutting it off with the sharp end of her bow as if it were a sword.</p><p>The thin layer of mana around her body was starting to dwindle, and she could feel her breathing becoming rougher with each passing second.</p><p>It had been at least eight hours since she had begun to fight, and it was unavoidable for her to eventually start losing stamina as a result. Instead, the fact that she could fight for as long as she did until now is already an extremely impressive feat in and of itself.</p><p>Even so, everyone had a limit, and Amanda had just about reached hers.</p><p>Xiu!</p><p>Another arrow flew from her bow, and it impaled two demons on its way through their skulls. When she felt another presence behind her, she turned around and flicked her finger once more. However, as soon as she turned around, she was horrified to see that eight demons were diving toward her at extreme speeds.</p><p>'Oh no!'</p><p>At this precise moment, Amanda became fully aware that she was in a precarious situation. When she flicked her hand, an arrow materialized in the middle of her bow. However, as she pulled the string, she realized that the arrow was fading in and out of existence.</p><p>A definitive demonstration that there was insufficient mana to continue sustaining it.</p><p>She was suddenly overcome with a sense of impending doom as the demons sneaked up on her without her even realizing it.</p><p>Amanda clenched her teeth together, causing the arrow that was in her bow to vanish, and then she took a stance, getting ready to engage in hand-to-hand combat with the demons.</p><p>"Die human scum!"</p><p>In the split second, before she came face to face with the demons, she was able to make out a muttering of profanity coming from the direction of the demons as they closed in on her.</p><p>It was obvious that she had garnered the resentment of the demons, especially after the fact that she was responsible for the deaths of so many of their fellow soldiers.</p><p>Amanda took a few steps forward and braced herself for battle against the demons, showing no sign of the slightest bit of fear.</p><p>"Come!...huh?"</p><p>Just as Amanda's bow was about to make contact with the demon's sharp nails, her entire body froze up.</p><p>Boom!</p><p>In the next instant, the eight demons obliterated right before Amanda's very eyes as blood spilled all over he clothes.</p><p>"Huh..."</p><p>Amanda stood there in a daze as she looked toward her right, where she saw a familiar figure standing not so far from her with his fist pointed in her general direction.</p><p>The figure was none other than Han Yufei.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-646.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-648.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

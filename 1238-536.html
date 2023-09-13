@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 536 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 536 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-535.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-537.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>It was only momentary.</p><p>But in that brief moment of time that Duke Adramalech laid eyes on the figure standing in the middle of the room, he suddenly felt an ominous chill run down his body.</p><p>This…</p><p>While it came and went as fast as it came, it had a profound impact on him, causing his guard to rise right away.</p><p>A nervous grin spread across his face as he examined him closely.</p><p>'White hair, blue eyes…human?'</p><p>Duke Adramalech's eyes widened at that moment. He then opened his mouth calmly.</p><p>"…You're white death."</p><p>His white hair, the fact that the events unfolded near the Pride clan's border, and his human status...</p><p>Duke Adramalech instantly came to this conclusion.</p><p>He was White Death.</p><p>Upon coming to this realization, his mind started to race as he also thought of something else.</p><p>"…If you're really white death, then everything makes sense."</p><p>In no time at all, he understood what had truly transpired at the border.</p><p>Raising his head, his eyes met with White Death's.</p><p>"Everything that happened in the border was something you did on purpose to divert my attention from the arena, so you could sneak in and do whatever you wanted..."</p><p>Glancing around the place, his brows knit.</p><p>"Was your goal to enter the treasury and take all of the stuff?"</p><p>His voice contained a trace of uncertainty.</p><p>Although the treasures in the treasury were valuable, they were not something that someone on a Duke level would desire.</p><p>In most cases, that kind of stuff would be too valuable to not be consumed immediately.</p><p>"That's not it..."</p><p>White Death's voice caught the Duke's attention, snapping him out of his thoughts.</p><p>"I don't care about what you've found out. I'll cut straight to the chase."</p><p>Extending his hand, a black sphere suddenly materialized in his hands. The Duke's countenance changed the moment his eyes laid on the sphere.</p><p>With only one glance, he was able to instantly recognize what the object was.</p><p>"...That's Duke Azonech's core."</p><p>'…So it was the truth. He really did kill Azenoch.'</p><p>White Death smiled at the sight.</p><p>"That's correct, I'll give you this in exchange for you helping me get out of this city and keeping everything under wraps."</p><p>Hearing his words, Duke Adramalech became even more guarded.</p><p>In fact, he was also actually a little bit worried.</p><p>'If rumors are true, and he indeed defeated Azonech in two seconds…'</p><p>His body shuddered.</p><p>The reason for his victory, whether Duke Azenoch had been caught off guard or underestimated him, did not change the fact that he had beat a Duke-ranked demon.</p><p>Someone whose strength rivaled him!</p><p>There was no way he was going to make the same mistake.</p><p>Staring at the orb, he warily opened his mouth.</p><p>"You want to propose a deal?"</p><p>"That's correct."</p><p>White death nodded. Extending the hand that was holding the core, he continued.</p><p>"I'll give you this, and in exchange, you will help me get out of this city, alongside two other people."</p><p>"Escape with two people?"</p><p>A frown appeared on the Duke's face as he listened to his words.</p><p>"…Given your strength, you shouldn't have a problem escaping."</p><p>"I wouldn't."</p><p>White Death shook his head.</p><p>"…But it would be a hassle. Let's exclude the barrier that is currently overlooking the entire city, if you and all the other demons come at me at once, I'll have a hard time escaping. Especially since I'm trying to protect a couple of people."</p><p>Pausing for a second, he added.</p><p>"Also, and the main reason, is because I want all the information about me sealed. I don't want other demons hunting me down while I'm trying to leave."</p><p>Swallowing a mouthful of saliva, Duke Adramlech calmly listened.</p><p>Throughout the entire time, his eyes would linger on the orb that he was holding.</p><p>'…It's not a bad deal.'</p><p>To be honest, the deal wasn't actually terrible.</p><p>It was famously known that the likes of Duke Azonech and him didn't get along well. This wasn't because they had an enmity from the past or anything that grand, it simply had to do with the fact that they both desired the entire city and arena for themselves.</p><p>It took a lot of resources for demons to rank up, and although the city and arena provided plenty of resources, it wasn't enough for two Dukes. Hence why the two of them never got along.</p><p>With him now gone, the entire city was now his to rule, and so were the resources.</p><p>Furthermore, if he managed to get ahold of the core…</p><p>Raising his head, he glanced around the treasury.</p><p>Noticing that a lot of the items that were previously here were missing, the frown on his face deepened.</p><p>"It seems like you took quite a lot of the items here. It would've been a—"</p><p>"Shut up."</p><p>Cutting the Duke off, White Death suddenly clenched the core.</p><p>"Im going to make this clear now. This is not a negotiation. It is either you agree with what I said, or I will take matters into my own hand."</p><p>His eyes slowly shifted from blue to grey.</p><p>"Don't mistake my proposal as a sign of weakness. Just like the other Duke, I can kill you if I wanted to. The only reason why I'm proposing the deal in the first place is because of all the problems that will arise from me not doing this. Choose carefully."</p><p>The look on Duke Adramalech's face sank as he listened to what he said.</p><p>Staring at the place on more time, he asked.</p><p>"What did you take?"</p><p>"You value your life less than the items that I took?"</p><p>"…Answer me."</p><p>Duke Adramalech's voice raised.</p><p>Demonic energy started leaking out of his body.</p><p>'He actually threatened me?'</p><p>Duke Adramalech's teeth clenched tightly.</p><p>Given the clan that he was in, the Pride clan, Duke Adramalech would never agree with a deal that was at least equal to or in favor of him.</p><p>Even if it ended up costing his life, he would never agree to a deal that was unfavorable to him.</p><p>'Impossible…'</p><p>Exactly at the moment when Duke Adramalech was about to blow up, he heard the words of White Death.</p><p>"All the martial manuals belonging to the humans, a couple of high ranked herbs, an S ranked artifact and an &lt;A&gt; ranked skill, Shadow servant. These are the items I took. The choice is up to you. Do you want to fight me over these items, and most likely die, or do you want to make a deal with me?"</p><p>The demonic energy that was threading to spill out of the Duke's body stopped. He slowly started to calm down.</p><p>Staring at White Death that was looking straight at him, he proceeded to look around the place.</p><p>He wasn't sure if he was telling the truth or not, nor did he know all of the items that were stored in the Treasury.</p><p>But..</p><p>'I can have all my servants check for me later.'</p><p>What was important at the moment was figuring out whether these items were worth agreeing to a deal or not.</p><p>After a while, glancing at White Death that was still looking at him, he ordered.</p><p>"I'll think about it. Follow me to my office."</p><p>He then turned around the left the treasure.</p><p>***</p><p>"What a mess…"</p><p>Walking through the corridors of the arena, Lightning Dragon shook his head.</p><p>Although everything looked to be the same as it was in the past. It was in fact, far from that.</p><p>There was this weird tension permeating throughout the whole arena, and all the demons were on high alert.</p><p>'…What I don't get is why White Reaper didn't choose to escape.'</p><p>It was only for a short moment, but the moment that he killed the Duke he could've escaped from the place.</p><p>Back then the barrier was still not erect, and he wouldn't have had trouble leaving the place.</p><p>However, such a thing was no longer possible now with the barrier intact.</p><p>To further add to that, Lightning Dragon also felt the presence of another powerful figure inside the arena. It was most probably the other Duke and the only person that could put up a fight against White Reaper.</p><p>Placing his hand underneath his chin, he mumbled out loud.</p><p>"Does he have some sort of goal in staying here?"</p><p>"I do."</p><p>In the moment those words left his mouth, a voice echoed from behind him, startling him.</p><p>"Huh!?"</p><p>Turning around, he was shocked to see White Reaper standing right behind him.</p><p>Staring into his eyes, Lightning Dragon quickly calmed down. With his forehead creased and his eyes focused on the figure opposite him, he eventually asked.</p><p>"…Which White Reaper am I talking to."</p><p>There was a subtle look of surprise on White Reaper's face when he heard his words, but it soon turned into a thin smile as he responded.</p><p>"The same one that fought against you."</p><p>"I see..:"</p><p>Carefully scrutinizing his body, he slowly nodded his head.</p><p>'From the way, the mana is flowing and his demeanor, it looks like he is telling the truth…'</p><p>His guard relaxed the moment he heard those words. He wasn't as wary of this version of White Reaper compared to the other one.</p><p>Just thinking of the other one made the back of his hair stand.</p><p>With his shoulders relaxed and glancing around the place, his brows knit for a bit. He found the fact that no demon had come for him quite odd, nevertheless, he still asked.</p><p>"What are you looking for?"</p><p>"You."</p><p>"Me?"</p><p>Lighting Dragon asked in surprise. Why was he looking for him?</p><p>White Reaper's next words answered his question.</p><p> "I need your help leaving the Demon Realm, and I know that you're the only one that knows of a way out…"</p><p>***</p><p>"…How long has it been since I've been here?"</p><p>Inside a dark cell room, a soft voice echoed out. It belonged to none other than Edward who was still locked up in the cell.</p><p>"Has he won?"</p><p>His soft voice once again echoed throughout the empty cell.</p><p>It had been a couple of days since he had been here, and he had been enduring every day in hopes of Ren accomplishing whatever he had planned.</p><p>He wasn't exactly sure if the plan had worked, however, he knew that something was up.</p><p>Especially since he had not seen a demon enter his cell over the last day.</p><p>Typically they would come to give him food or check up on him, but none of that happened</p><p>Had they perhaps given up on him and decided to just let him starve to death?</p><p>Edward highly doubted it. Especially since the contract was still beside him, and Duke Azonech had not heard his response.</p><p>…this could only mean one thing.</p><p>"Something big definitely happened above…"</p><p>Whether it was good or bad, he still didn't know. However, as he thought of the possibility of possibly escaping this place, a fire lit up inside of Edward's heart. Prompting him to keep enduring this lonely and silent place.</p><p>It was at that moment.</p><p>Clank—</p><p>The door cell finally opened up, and light began to spill into the room.</p><p>Edward's eyes reflexively squinted at the light. It took him a couple of seconds to adjust to the light, and once he did, he was finally able to catch a glimpse of the figure he so desperately wanted to see.</p><p>A little trembling appeared in his mouth as his pent-up emotions started to surface. In an attempt to suppress his emotions, he mumbled.</p><p>"…Took you long enough."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-535.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-537.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

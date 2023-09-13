@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 716 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 716 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-715.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-717.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The words spoken by Prince Arian brought about complete and utter silence in the room. It was so quiet that one might have been able to hear a pin drop.</p><p>The focus of everyone's attention quickly shifted to him, and all he did was smile in response to it. He had long anticipated that his words would elicit such a reaction. And he was all for it.</p><p>"Is this some sort of joke to you?"</p><p>Prince Aton raised his voice and looked intently at Arian. It was common knowledge that Arian took pleasure in pulling such stunts.</p><p>It wouldn't come as a surprise to find out that he may have been pulling one of his typical pranks at the moment.</p><p>Unfortunately, it didn't seem to be the case this time. Rather than looking at them, Prince Arian looked behind him, where Velmout stood.</p><p>Although he was barely holding on, he was still conscious. This was enough for Prince Arian, who started speaking.</p><p>"...I found something rather interesting last night while I was trying to save him."</p><p>As the Duke extended his hand toward him, his body shot in his direction, only stopping when it was a few centimeters away from him.</p><p> Turning his head, Arian looked at the others with a hint of a smile in his eyes.</p><p>"It almost slipped past me. Had it not been for my strength, I would've probably missed it, but..."</p><p>Suddenly, a dark glow materialized on the Prince's hand and encased Velmout like a cacoon. At the same time, the Duke's limbs shot up and straightened out in an unnatural manner.</p><p>"Khg. Uhk."</p><p>Velmout let out a series of groans that could only be described as wretched and agonized, but the Prince paid them no attention and continued with whatever it was he was doing.</p><p>The procedure was completed in a little under two minutes. When Prince Arian withdrew his hand, the Duke helplessly fell to the ground. Unconcerned, he extended his hand to the others, revealing a thin silver thread.</p><p>"What's this?"</p><p>"What in the world?"</p><p>Immediately, everyone's pupils shrank.</p><p>Seeing their reactions, Arian smiled in delight. He had been waiting for this moment ever since the start of the meeting.</p><p>The only reason he hadn't revealed it to them from the very beginning was because he wanted to see their reactions, and seeing exactly how they were reacting, he knew that it was all worth it.</p><p>"I'm sure all of you understand what this means, right?"</p><p>Bringing the thread forth, he casually threw it on the table before looking down at Duke Velmout. While he had lost consciousness, his core was still intact. He'd just need a couple of days to fully recover. His situation wasn't serious.</p><p>It was only through sheer good fortune that he was able to find it. He happened upon the thread completely by accident. It was during the time that he was tending to Velmout's wounds.</p><p>Without his Prince level strength, discovering the thread would have been nearly impossible. It was so small and well-concealed that it might have escaped his notice if it had not been situated near one of his major veins. One could say that his luck was rather good.</p><p>When he looked at Velmout again, any trace of a smile that had previously been on his face vanished completely.</p><p>The thread was an obvious giveaway of what had happened.</p><p>'Someone tried to tamper with his memories.'</p><p>Such skill, while uncommon, wasn't unheard of. This thread that contained faint demonic fluctuations was the best evidence of it.</p><p>"Someone tampered with his memories."</p><p>A voice abruptly spoke, sharing the same thought as Prince Arian, who turned to face the speaker. It was none other than Prince Valling, who appeared as composed as he'd been previously.</p><p>It was his calmness that bothered Prince Arian, but he decided to let it go for now as he nodded his head in agreement.</p><p>"You're right. It's very likely that someone has tampered with his memories. Such power is extremely rare, but once the source is removed, one can easily identify it as such."</p><p>With a nod of the head, his focus shifted to Duke Ukhan and Priscilla. Before continuing, he interlaced his hands and drummed his fingers over his interlocked hands.</p><p>"He probably isn't the only one that's been affected..."</p><p>Following his words, all but Prince Devot turned to face Priscilla. Even Prince Valling turned around to face her.</p><p>Feeling countless gazes fall toward her, Priscilla almost felt her breath stop. Thankfully, in contrast to before, their gazes were not menacing, and this was the reason why she was able to maintain some semblance of composure.</p><p>Looking around her, she looked at her grandfather. Staring at each other for a couple of seconds, he extended his hand in her direction.</p><p>"Don't move."</p><p>"Wait."</p><p>Before her grandfather's hand reached her, a voice interjected. It belonged to none other than the Princess who stood up and walked up to her.</p><p>She looked at Valling.</p><p>"Let me do the test. We can't have you manipulate the results."</p><p>"Go ahead. "</p><p>As cool and collected as ever, he took his hand back and sat still in his chair.</p><p>Princess Rhan didn't want to make things too difficult for him, and so she immediately turned her head to face Priscilla, who stared back at her.</p><p>"Relax your mind."</p><p>She did not put up any resistance, and a force ended up enveloping her entire body. The force penetrated deep into her body, and all of a sudden, her body straightened itself out as she slowly felt herself being lifted into the air.</p><p>"Hmh."</p><p>It was painful, but she was somewhat able to suppress her groan. It felt as though countless needles had punctured her body and traveled through her veins. It was extremely uncomfortable.</p><p>Thankfully, the process lasted no longer than a couple of seconds, and it wasn't long before she felt the Princess let go of her. Immediately after she recovered, she noticed that the entire room was quiet.</p><p>When she looked up, she saw that everyone's attention was concentrated on the thin thread that was floating above the Princess's palm.</p><p>She fiddled with it for a few seconds before tossing it to Prince Valling, who caught it, and then turned her attention to Prince Arian.</p><p>"It looks like your guesses weren't wrong."</p><p>Prince Valling's expression didn't change much, but Priscilla could tell from the way he was reacting to the unexpected information that he was taken aback in some way. It was clear that he had not planned for such an occurrence.</p><p>"Hmmmm."</p><p>Prince Arian crossed his arms and leaned back in his chair, musing to himself. Not until some time later did he look at Prince Devot. There was no trace of a smile in his eyes as he gazed at him.</p><p>Understanding the meaning of his gaze, Prince Devot turned around to look at Duke Ukhan.</p><p>"Let me."</p><p>Prince Aton offered himself up. Standing up, he walked toward the Duke and carried out a similar procedure. It didn't take long before a glow appeared all around the Duke's body, and shortly after that, his body began to fall to the ground.</p><p>The expression on Prince Aton's face did not change as he withdrew his hand from Duke; however, when he extended his hand again, subtle changes appeared as nothing appeared on it.</p><p>...This was enough for everyone to understand something.</p><p>Prince Devot and Duke Ukhan found themselves the center of everyone's attention all of a sudden, as Priscilla and Prince Vallian now found themselves thrust into the background.</p><p>Their expressions were anything but friendly.</p><p>"Surely this isn't a coincidence, right?"</p><p>Prince Serling's gaze was fixed intently in the direction of Prince Devot as he posed the question.</p><p>Prince Devot remained silent as he calmly absorbed their gazes. With the hood covering his face, no one could discern his expression.</p><p>"In light of the upcoming World Decree, I'm not surprised that something like this happened. It all makes sense now that I think about it."</p><p>Prince Arian did the honor of speaking, his voice finding hints of amusement once more. He looked toward Prince Devot.</p><p>"Having won the previous three world decrees, you are well aware that this world decree will be detrimental to you if we join forces to stop you. Since you don't want that to happen, you've devised a plan to eliminate all the successors and blame the house of Sloth in the process."</p><p>"Killing a successor is the same as creating internal problems, as infighting will start in order to determine the next successor. Typically, succession takes a lot of years to nurture, and during that time, you'd be the only winner. While Ukhan is indeed injured, unlike Velmout behind me, his injuries seem a lot lighter. That couldn't be a coincidence, right?"</p><p>Prince Arian smiled.</p><p>"The more I consider it, the more I realize that you are the greatest winner among us all."</p><p>With the house of Sloth eliminated, the House of Envy would indeed be the biggest winner.</p><p>A succession war usually took place over the course of many years and cut down on a lot of resources and personnel in the process. By the time the next world Decree occurred, everyone's forces would have been drastically reduced, except for Prince Devot's.</p><p>"...How ruthless."</p><p>Prince Arian couldn't help but comment as the smile on his face dissipated.</p><p>"You are truly unlucky. If I hadn't discovered the thread, then your plan would have actually been successful. You left Velmout alive in order to obtain an alibi in order to shift the blame to the Duchess..."</p><p>Prince Arian's eyes narrowed.</p><p>"From the gallbladder to her being unharmed while the others were, to the letters..."</p><p>The plan was slowly starting to unravel before his eyes.</p><p>"Duke Ukhan purposely instigated the Duchess into a conflict with him. The purpose behind it was to anger her and give reason to the others to believe that she'd want to form a partnership with them."</p><p>"Then, once the others took the bait, he'd kill them off individually while also using the gall bladder to hide how they died. Of course, hiding wasn't the only intent..."</p><p>"N..no."</p><p>Duke Ukhan spoke up all of a sudden. He was still recovering from the sudden intervention, but he managed to utter a few words.</p><p>"It's...a scheme... I'm innocent..."</p><p>No one paid any attention to him. His words were meaningless to them.</p><p>Prince Arian's words continued.</p><p>"In the process, he purposely left Velmout alive, just barely, before altering his memories so that he could make for the perfect alibi. When all is said and done, he also injured himself, which in turn would make things more suspicious towards the Duchess's side."</p><p>His eyes narrowed as they shifted toward Priscilla.</p><p>"The flaw in all of this came down to the fact that, as Prince Valling suggested, everything was too flawless. It was too perfect... Even without my findings, I would've probably assumed that something was framing the Duchess."</p><p>The hall turned quiet. Thereafter, they all turned to look at Prince Devot.</p><p>"Do you have anything to say?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-715.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-717.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 563 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 563 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-562.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-564.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Crac…Crack!</p><p>Over the expanse of a large grassland, a crack began to form in the very air, causing the grass beneath to bend down prostrately.</p><p>Crash—</p><p>After a short while, the air tore apart, and a large black portal appeared from thin air, spewing out the outline of a figure.</p><p>"Ugh!"</p><p>Upon impact with the ground, Kevin's body slid against the grass, tearing it to shreds.</p><p>Stumbling over repeatedly, he soon came to a stop.</p><p>"Pui!"</p><p>Laying down with his back facing the sky, he spat the grass in his mouth and silently murmured to himself.</p><p>"…That hurt."</p><p>After massaging his head and blinking a couple of times, Kevin's mind instantly came back to reality.</p><p>"Is this Cassaria?"</p><p>Taking a look around him, he found the scenery around him to be surprisingly normal.</p><p>The sky was clear and there was one sun in the sky. The grass was as green as it was on earth, and the air also felt as fresh as it did back on earth.</p><p>It looked no different from earth.</p><p>Furthermore…</p><p>"The gravity is also pretty much the same."</p><p>While jumping in the air, Kevin was surprised to discover that the feeling was similar to that of when he jumped back on earth. Simply put, the gravity here in Cassaria was almost the same.</p><p>"It's better if it's like this."</p><p>This was great news for him as it meant that his movements wouldn't be slowed down by gravity and he could fight in optimal conditions.</p><p>Wiping his forehead, Kevin turned to look at the portal that was behind him. Currently, it was merely fluctuating and showing no signs of change.</p><p>The situation clearly unnerved Kevin, who murmured inwardly.</p><p>"...Is he coming or not?"</p><p>Waiting for the next couple of minutes, Kevin's brows knit tightly.</p><p>"What's taking him so long?"</p><p>Approaching the portal, Kevin's frown tightened.</p><p>Taking a moment to pause in front of the portal, Kevin decided to wait for a bit longer.</p><p>'Did Jin perhaps wake up and is Ren now busy trying to knock him out?'</p><p>If so, it would make sense.</p><p>But...</p><p>"…Did something really happen?"</p><p>After ten more minutes went by without Ren and Jin showing up, Kevin became increasingly concerned.</p><p>To make matters worse, the portal suddenly started to twist and distort.</p><p>When Kevin saw this, he began to really worry.</p><p>"Hold on, what exactly is happening right now?"</p><p>The alarm on his face grew as he tapped in the air and muttered.</p><p>"System."</p><p>[Error]</p><p>[Error]</p><p>[Error]</p><p>[Error]</p><p>[Error]</p><p>Immediately after opening the system, he was met with a streak of long texts all saying the same thing.</p><p>"…Error?"</p><p>Not even a second after his words echoed out the portal in front of him started to fluctuate wildly before suddenly shrinking together and disappearing out of thin air.</p><p>"What the fuck is going on!?"</p><p>Kevin's heart tightened.</p><p>Waving his hand in the air, he quickly looked through the system mission.</p><p>But…</p><p>[Quest.]</p><p>Information : Stop the Demon King from consuming this planet.</p><p>Location : Cassaria.</p><p>Goal : Stop the demon corruption of the planet.</p><p>Rank : &lt;S&gt;</p><p>Requirement for transportation : &lt;A&gt; ranked core.</p><p>Total people : Three.</p><p>Reward : [Demon King Ascension + 1 year.] [Two minor realms rank up.] [Synchronisation + 25%]</p><p>Penalty : Death.</p><p>"What!?"</p><p>Kevin's eyes opened wide in shock.</p><p>"The mission rank increased to &lt;S&gt; rank?!"</p><p>'How is this possible!?'</p><p>Even though this wasn't the first time the difficulty of a mission had changed, it was the first time it had changed so abruptly without any warning. Furthermore, the difficulty of the mission was way above that of his level.</p><p>There was something extremely wrong with the mission.</p><p>Kevin was genuinely shocked at the moment as his mouth opened and closed repeatedly.</p><p>"Something terrible must have happened."</p><p>The impeding sense of doom he felt a few days ago once again was felt by Kevin as he paced around the area he was in.</p><p>His feet soon came to a pause as he recalled something.</p><p>'What about Ren and Jin? Did something happen to them?'</p><p>Kevin's heart sank the moment he thought about them.</p><p>In the event that something truly did happen to them, Kevin would not know how to react since he saw it as his fault for dragging them along.</p><p>"Please be fine."</p><p>After waving his hand again, he pressed the soul linkage interface on the system interface before him.</p><p>"Thank god I have this..."</p><p>Kevin silently murmured to himself as the system interface expanded to show him a large map.</p><p>As a result of this new feature, he was able to tell whether his friends were in danger or not</p><p>…and much to his luck, Kevin was able to see Ren's and Jin's name.</p><p>They appeared to be close to one another, but far from him.</p><p>"Phew."</p><p>Kevin sighed in relief once he saw this.</p><p>"It looks like they are on this planet as well."</p><p>Taking note of the fact that they were on the same planet as him, Kevin felt even more relieved.</p><p>However, his relief did not last for long as his face soon hardened.</p><p>"W..what?"</p><p>He was stunned to see another dot appear on the map as he stared at the interface.</p><p>"How?"</p><p>Almost immediately after, another dot appeared and shortly thereafter another followed. It didn't take long before Kevin was left in a state of utter shock.</p><p>Kevin's whole body started to tremble as his face paled.</p><p>Bringing the interface closer to the interface, his voice shook.</p><p>"H..how did they get here?"</p><p>***</p><p>Taking a moment to restore some of his lost stamina, Jezebeth steadied his body.</p><p>Drip— Drip—</p><p>While clenching his teeth together, he heard the sound of his blood dripping toward the ground. He paid it no mind.</p><p>Slowly he brought himself to the throne on the other side of the room and gracefully sat down.</p><p>"Haaa…"</p><p>A small groan escaped Jezebeth's lips as he slowly closed his eyes to rest.</p><p>"I didn't expect the backlash to be this strong."</p><p>Murmuring to himself, Jezebeth reopened his eyes.</p><p>Cra..Crack!</p><p>With a wave of his hand, a crack formed in the space in front of him, and a figure appeared on the other side. Because of how far he was, the features of the figure were obscure. Regardless, Jezebeth was still able to hear his voice clearly.</p><p>"Y..your majesty!?</p><p>The figure's surprised voice echoed.</p><p>"Magnus."</p><p>Jezebeth acknowledged him by calling his name.</p><p>"I apologize for my behavior. How may I be of service, your majesty."</p><p>Despite being surprised by the sudden call, the individual behind the voice quickly composed himself.</p><p>A faint smile spread across Jezebeth's face when he took notice of this as he slowly opened his mouth.</p><p>"Magnus, how many planets are on the verge of being completely contaminated?"</p><p>"As in nearly corrupted by demonic energy?"</p><p>"Yes."</p><p>"Give me a moment."</p><p>Even though Magnus, the demon summoned by Jezebeth, was surprised by his request, he immediately set to work.</p><p>In the next minute, the halls fell into silence as Jezebeth kept his eyes closed awaiting Magnus's words.</p><p>Jezebeth's intentions at the moment were simple.</p><p>His goal was to figure out which planet Kevin was on. While he was able to stop his backup plan, he wasn't aware of which planet he arrived on.</p><p>In any case, it didn't really matter as Jezebeth was quick to figure out his intentions.</p><p>'In order to set my plans back a bit, you are working to prevent one of the planets under my control from being completely corrupted, right?'</p><p>What other reason would he have to leave for another planet?</p><p>If there was one way to delay his inevitable rise then it was through stopping him from corrupting a planet.</p><p>Jezebeth wasn't stupid and he naturally understood what Kevin was trying to do. Of course, this was also a great chance for him to kill him.</p><p>Ultimately, only when Kevin died would he really be able to win this game he had been playing for so long.</p><p>"I've got the reports over here your majesty."</p><p>Disrupting Jezebeth out of his thoughts was the sound of Magnus's voice.</p><p>Leaning his head on his hand that was propped up on the armrest of the throne, Jezebeth opened his mouth.</p><p>"Speak."</p><p>"As you wish."</p><p>Following his order, Magnus started to speak.</p><p>"As of right now there are a total of fifty eight planets that are being corrupted. Of which, eight are on the verge of being completely corrupted, twenty one are a couple of years from being corrupted and the remainder are still half a decade away."</p><p>"Hm…"</p><p>Listening to the report, Jezebeth's eyes began to squint.</p><p>'…This is going to be more difficult than I thought.'</p><p>Realizing that looking through all fifty eight planets would take too much time, Jezebeth thought for a moment before ordering.</p><p>"Magnus…"</p><p>"Yes, your majesty!?"</p><p>Quick to respond, Magnus's voice raises a few pitches. He was evidently scared of displeasing Jezebeth.</p><p>Not minding his attitude, Jezebeth ordered.</p><p>"Send me an inquiry to all fifty eight planets, asking if there are any humans there. Especially if they had seen any of them arrive recently."</p><p>"Humans?"</p><p>Magnus's confused voice echoed out in the halls.</p><p>Jezebeth's brows knit as his voice deepened.</p><p>"Is there a problem with my request? Can you not do it?"</p><p>A powerful force suddenly sprang out from his body before spewing into the crack in front of him.</p><p>"Khh…no! Not.. at all!"</p><p> Struggling to speak, Magnus quickly tried to appease Jezebeth.</p><p>"Don..t worry…I can ge..t it done."</p><p>Deeply staring at the void, the pressure coming out of Jezebeth's body appeased.</p><p>"Make it quick, I don't have much time."</p><p>"U..understood."</p><p>Following his words, the void in front of Jezebeth distorted before disappearing.</p><p>Silence once again returned to the room as Jezebeth slowly closed his eyes.</p><p>He was trying to take this moment to recover from the wounds he previously sustained.</p><p>Admits the silence, opening his mouth, he silently mumbled.</p><p>"…Just you wait. I'll be coming very soon."</p><p>***</p><p>Darkness.</p><p>That was all I could see at the moment.</p><p>It was a familiar sight.</p><p>One that I had seen many times in the past...but compared to before it was different. This time, feeling the cold hard ground against my back, I knew that I was alive.</p><p>"Khh…I can't move my body."</p><p>I was currently paralyzed and unable to move my muscles.</p><p>"W..here am I?"</p><p>My mind was filled with many questions as I tried to figure out where I was, but as time passed and I struggled to move, I realized that the situation was a lot more dire than I initially thought.</p><p>This was especially so after I realized that my mana was sealed.</p><p>'Shit.'</p><p>My heart started to beat faster as my survival instincts started to kick in.</p><p>Drop—! Drip—!</p><p>At the moment, all I could hear was the repetitive sound of water dripping from the side of where I was laying.</p><p>Was I inside a room? I couldn't tell as all I could see at the moment was a pitch black darkness. I thought of calling out for someone, but upon further thought, I realized that it wasn't a wise idea.</p><p>Keeping quiet was the best course of action.</p><p>"I'm thirsty."</p><p>I mouthed to myself without making any noise as I moved my pinky, which was finally moving after a long time of trying.</p><p>Unfortunately…</p><p>"My bracelet…"</p><p>My eyes dilated as I tried to move my right hand, and it was there that I was shocked to realize that my bracelet was gone.</p><p>'Shit!'</p><p>The realization came as a sudden shock that left my mind blank for a few seconds.</p><p>I couldn't afford to lose the items inside of my dimensional space...</p><p>They were simply too precious!</p><p>'I have to calm down.'</p><p>The panic did not last for long as I clenched my teeth and forced myself to calm down.</p><p>I knew better than anyone that panicking in this situation was only going to be counterproductive.</p><p>"Huuu…"</p><p>Taking a deep breath and calming my nerves, I closed my eyes and summarised my current situation.</p><p>'Let's assess the situation for a moment. Currently, I'm inside an unknown place where my mana is sealed and my bracelet is missing. Furthermore, my entire body is paralyzed, making it difficult for me to move around...'</p><p>The more I thought about my situation, the more my face twisted. I was in a really crappy situation, wasn't I?</p><p>As I stared blankly into the darkness, I was quick to come to a decision.</p><p>'My priority right now should be to finally get my body to move.'</p><p>It would be impossible for me to figure out what was going on without a functioning body.</p><p>Thus...</p><p>Closing my eyes, I focused all of my attention on the muscles of my body.</p><p>'I guess it's time to practice my new martial art.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-562.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-564.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 567 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 567 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-566.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-568.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As I leaned back against the wall, I rested my hand on my raised knee.</p><p>"…Things are a lot more complicated than I originally thought."</p><p>After conversing with Jin for the past couple of minutes, I realized that the situation was not as hopeless as I thought it was.</p><p>Firstly, the mush that was thrown at me a few hours ago was actually food, and Jin also got it at the same time as I did.</p><p>The reason why I knew it was food was because Jin said that it was edible. Likewise, the moss on the wall was apparently also edible.</p><p>It made me realize something.</p><p>'whoever trapped us here does not want to kill us. In fact, it seems as though they have plans for us…'</p><p>Had they actually not cared about us they would've already killed us by now.</p><p>For them to provide us with water and food…they defiantly had a use for us, and Jin also seemed to have understood this.</p><p>The real question was, what use did we have for them?</p><p>'Is this some kind of experiment where we are the experiments or are we more than just lab rats?'</p><p>Despite not knowing at the moment, I knew that I needed to put this on my priority list.</p><p>My future courses of action depended on this.</p><p>"Hmm…"</p><p>My brows furrowed suddenly in the middle of my thoughts.</p><p>"Now that I think about it, is it possible that other people got dragged into this planet as well?"</p><p>There was no explanation for Jin and I's sudden appearance. My last memory before appearing here was seeing the portal expand in front of me.</p><p>After that, my vision grew black and my consciousness slipped.</p><p>By the time I woke up, I found myself in this unfamiliar environment.</p><p>"Jezebeth..."</p><p>A name suddenly slipped out of my mouth. He was the person whom I thought was responsible for all of this.</p><p>This wasn't just a hunch, but my belief that he was responsible for hurling Jin and me into the portal was solid.</p><p>The real question was…</p><p>'Are there any others that got swept into the portal as a result of his actions?'</p><p>If so, then this was more serious than I thought.</p><p>Logically speaking, almost everyone in the mercenary group was strong.</p><p>The key word was almost.</p><p>In contrast to the others, Ryan and Smallsnake did not have any combat skills, and both were extremely weak as well. Around &lt;F&gt; and &lt;G&gt; rank respectively.</p><p>I could only fear for their lives if they suddenly became entangled in this world.</p><p>There was a reason why the mission was judged to be &lt;A&gt; rank.</p><p>"Shit."</p><p>This realization prompted me to get up from the ground. Taking a few deep breaths, I tried to calm myself down.</p><p>"There's no use thinking about this right now. All I can do at the moment is continue training."</p><p>It would be useless to think about the others at the moment since I was trapped here.</p><p>It would only serve to distract my mind.</p><p>Taking a stance, I massaged my knuckles while feeling the crust that formed over them.</p><p>"Although I'm not entirely sure if this is true, I believe that once I reach a certain stage I can break through the walls and reach Jin…Hopefully."</p><p>Bang—!</p><p>After that, I punched the wall with all my might.</p><p>***</p><p>"What in the world am I?"</p><p>A confused look appeared on Liam's face as he scanned his surroundings</p><p>In his hazy memory, he couldn't quite recall what had happened moments prior to showing up here, but the last thing he remembered was being in the same room as Ren as he helped him remember his memories.</p><p>"…So how did I get here?"</p><p>Liam furrowed his brows as he reached out to touch the leaf of the tree next to him.</p><p>"What a weird plant. Did earth ever have plants like this?"</p><p>In addition to its rhombic shape, the leaves on the plant were in a zigzag pattern, which Liam found particularly bizarre.</p><p>Scratching the back of his head, he reached out for one of the leaves and carefully touched them.</p><p>"Weird."</p><p>He muttered as he finally let go of the leaf.</p><p>Thousands of tiny glass-like needles were trying to puncture his skin as he felt the rough texture of the leaf. The toughness of Liam's skin prevented them from penetrating it, but it still nevertheless seemed strange.</p><p>Was there ever a plant like this on earth?</p><p>"...Am I in the demon world?"</p><p>But how was that possible? He clearly remembered leading Ren out of the demon world.</p><p>It was one of the memories that he had helped him recover during the session.</p><p>He quickly shook his head.</p><p>"Since it's impossible that I'm in the demon realm, I must still be on earth and probably got lost on my way back from that ugly looking warehouse."</p><p>The environment was indeed weird for the earth, but since Liam realized just how bad his memory was, he knew that the reason why felt this way was probably because he couldn't recall any of the plants and vegetation in front of him.</p><p>"Oh well."</p><p>With a shrug of his shoulders, he took out his phone.</p><p>"Eh?"</p><p>He was shocked to discover, however, that there was no signal on his phone.</p><p>"Just great."</p><p>He mumbled to himself as he put his phone away.</p><p>"Now what do I do?"</p><p>Taking a look to his left and right, Liam felt helpless in the current situation.</p><p>Without his phone, he was fucked.</p><p>"If only my mem—"</p><p>Halfway through his sentence, he saw a sudden movement toward his right side from the corner of his eye.</p><p>Rustle—!</p><p>A brown furry creature jumped from one of the bushes and headed toward Liam immediately after a rustling sound echoed out.</p><p>Throughout the entire time, Liam showed no reaction as he carefully observed the incoming creature.</p><p>With a simple movement of his hand, he reached out with his hand and grasped whatever was heading in his direction.</p><p>"Kyak!" "Kyak!"</p><p>A sound resembling a monkey's squeaking was heard from the distance.</p><p>"What's this?"</p><p>A curious look crossed Liam's face as he brought the creature closer to his face.</p><p>"Is this how a monkey should look like?"</p><p>There was no doubt that the creature in his hand was related to a monkey. Everything about it was the same, from its body to its fur.</p><p>The only problem was...</p><p>"Why does it have eight eyes? Since when have monkeys on earth gotten eight eyes?"</p><p>Liam's face only became more confused as the monkey in his hand squealed more loudly.</p><p>"Hyak!" "Hyak!" "Hyak!"</p><p>"Well, whatever."</p><p>Having lost interest in the monkey, Liam brought his other hand near its head.</p><p>"Since you attacked me first, don't blame me for what happens next."</p><p>Then, without any warning, Liam flicked his finger toward the monkey's head, causing blood to spill everywhere as the monkey's body vanished.</p><p>"How tiresome."</p><p>Clapping his hands together to get rid of the blood on his hands, Liam proceeded to look around him.</p><p>"Haaa…"</p><p>A long sigh was let out as he walked away from the scene.</p><p>"...I really do hope I find a city soon. I don't want to be stuck in a forest like all the other times in the past."</p><p>Although his memory was short, he could recall many instances in which he got lost inside forests.</p><p>What he was currently experiencing was a simple case of deja vu'</p><p>***</p><p> "I'm getting closer."</p><p>Continuing to stare at the map interface before him, Kevin jumped across different branches.</p><p>Due to the lack of detail on the map, he could only follow the dots to get closer to Melissa and Amanda.</p><p>This proved to be a task that was a lot more difficult than he had imagined as dangerous beasts lurked everywhere. In the event that he wasn't careful enough, he might just end up without a head.</p><p>"Haaa…haaa…It should be near here."</p><p>Standing on top of one of the branches, Kevin leaned forward and supported his body with his knees.</p><p>"Shit…this is a lot..haa..more tiring than I thought."</p><p>Having run for almost two days straight, Kevin was quite frankly exhausted.</p><p>Unfortunately for him, he really didn't have much of a choice.</p><p>He was on a different planet, not a city.</p><p>It took him an extraordinary amount of time just to get to Melissa.</p><p>"...Amanda also seems to have distanced herself quite a bit."</p><p>Taking note of Amanda's dot, Kevin could only sigh to himself before jumping down from the tree branch he was on.</p><p>Thud—</p><p>Softly landing on the ground, he scanned the surrounding in hopes of finding Melissa.</p><p>"According to the map, she should be here, and considering that it's never wrong sh—"</p><p>Stopping himself mid-sentence, Kevin's brows tightened as he noticed something weird.</p><p>Turning his head forward to the right, he felt a weird mana pulse coming from that direction. It was very subtle.</p><p>Subtle enough to make it hard for even someone of the &lt;S&gt; rank to notice. However, as Kevin was currently trying to find Melissa, he was able to quickly take note of the small pulse.</p><p>"What's this?"</p><p>Without thinking too much, Kevin took a step forward and headed to where he felt the pulse, and it was there that he suddenly felt an even weird sensation.</p><p>Halting his steps in front of a certain area, he reached out with his hand.</p><p>It was right at that moment that a ripple appeared in the middle of the air as the scenery in front of him started to distort and the scene changed.</p><p>"What the."</p><p>Kevin's mouth was left to hang open in shock as he stared at the scenery in front of him as he suddenly noticed a large white tent appear in front of him.</p><p>Most shocking was the fact that he could see Melissa joyfully humming something as she boiled something over a pot.</p><p>"This…"</p><p>Unable to find the right words to say, Kevin just dully stood on his spot.</p><p>***</p><p>Clank—!</p><p>Upon hearing a familiar sound, I immediately moved to the right side of the wall and avoided the strange goo that came out after the sound.</p><p>Splash—!</p><p>My stomach churned as I heard the strange sound that came from the goo hitting the ground.</p><p>Holding onto my stomach, my face grimaced as I mumbled.</p><p>"There's no way I'm eating that shit."</p><p>Although I knew from Jin that the food was edible, I still couldn't bring myself to eat it.</p><p>The smell alone was enough of a deterrent.</p><p>"Instead…"</p><p>Reaching out for the moss beside me, I pulled it out and brought it to my mouth.</p><p>"…I'd rather eat the moss."</p><p>Bang…ban…bang! BaBang!</p><p>(Spoiled.)</p><p>Making out the message sent out by Jin, My lips twitched.</p><p>Bang…ban…bang! BaBang..ba! Bang! Ban!.. Ban!</p><p>(Shut up.)</p><p>"How does he even know I didn't even eat it?"</p><p>Clicking my tongue, I sat crossed-legged on the ground.</p><p>"Alright, it's been about two to three days since I've been stuck in this place with Jin, and I still don't know the purpose of this place."</p><p>Every day, it was the same thing.</p><p>At a specific time, both of us would receive food and we would be left alone till then.</p><p>Just what sort of purpose did this room serve?</p><p>Also, if my theory of the others possibly coming to this planet just like Jin and I was true…</p><p>Were there other people in here?</p><p>"I really hope it isn't the case. I'm not sure an—"</p><p>Suddenly, just as I was about to finish my sentence, I heard a rock grinding sound coming from the right side of the room.</p><p>In an instant, light spilled from a small crack around the room and I felt my eyes sting like crazy.</p><p>"Kahk!"</p><p>Covering my eyes with my hand, I stumbled back and fell to the ground.</p><p>"Shit. The fuck is going on?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-566.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-568.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

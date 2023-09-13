@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 578 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 578 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-577.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-579.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"It's as I thought."</p><p>Melissa stood up and walked in my direction.</p><p>When I saw her figure walk up to me, I backed up. I was a little apprehensive about her.</p><p>Recalling the earlier scenes that I wished to forget, I raised both hands and hugged my body.</p><p>"What do you want?"</p><p>"What's with that look? You think I'm going to assault you or something?"</p><p>"Yes."</p><p>I nodded my head.</p><p>"Yes."</p><p>I repeated to make sure she understood.</p><p>"Well, I'm not, so chill out."</p><p>Melissa rolled her eyes.</p><p>Taking out a chair, she sat close to me and showed me the device she used to test my blood.</p><p>Pointing toward a certain section, she spoke.</p><p>"Your blood seems to be contaminated by something extremely concentrated and powerful. It's probably why your mana is sealed."</p><p>Tilting the device in her hand, Melissa had a thoughtful look on her face. Taking off her glasses, Melissa switched them for another pair and tapped on their side.</p><p>There was a small red light that shot from the middle of the glasses and headed for the device in her hand.</p><p>Carefully examining the device in her hand, her face changed after a while.</p><p>"I see…"</p><p>She softly muttered as she put away the device and looked at me.</p><p>"…By chance, did you experience some sort of paralysis effect when you first appeared here?"</p><p>"Eh?"</p><p>Surprised, I looked at Melissa.</p><p>"How did you know?"</p><p>"It's as I suspected."</p><p>Instead of answering me, Melissa stood up from her seat and turned to look at Kevin.</p><p>"Remember what I mentioned to you before?"</p><p>"…Yeah."</p><p>Kevin nodded as he turned to look at me.</p><p>His brows furrowed tightly.</p><p>"Is it the same plants that you mentioned?"</p><p>"Sort of."</p><p>Taking two different plant samples out of her dimensional space, Melissa nodded.</p><p>"There seem to be other compounds mixed in his bloodstream, but in general, the two main ingredients are indeed the ones that I previously discovered."</p><p>"Can you heal him?"</p><p>Kevin asked.</p><p>As she stared at the device in her hand, Melissa shook her head.</p><p>"No, not yet. I'll need some time in order to figure out how to remove the effect of the mixture from his blood."</p><p>"What?"</p><p>As I alternated between Kevin and Melissa, I didn't quite understand what they were trying to do. However, seeing their serious faces, I knew they were trying to help me.</p><p>"How long do you need?"</p><p>Kevin asked, leaning against the side of the wall. His complexion was quite serious.</p><p>"Ehhh…"</p><p>Melissa scratched the back of her head and lifted her glasses.</p><p>"A couple of hours?"</p><p>She muttered after a couple of seconds.</p><p>Her words instantly prompted the others to look at each other with some concern in their eyes.</p><p>Their reactions caught me off-guard as I couldn't help but ask.</p><p>"A couple of hours doesn't seem like much, why the long faces?"</p><p>Were they afraid that the demons would find them?</p><p>'That's impossible.'</p><p>I shook my head.</p><p>At the moment, Melissa and the others had hidden any traces of themselves thanks to some weird gadget that they were wearing.</p><p>This was so that the demons wouldn't notice their sudden appearance in the room.</p><p>Further adding to that, they also seemed to have sealed a bit of their mana, so I doubted that the demons would even notice their appearance. The soundproof barrier that Kevin created also blocked sound from coming out, so there really shouldn't be any reason for them to be worried about time.</p><p>"If you need a couple of hours, then I don't think it will be much it a problem. The room doors won't open until—"</p><p>"That's not it."</p><p>Angelica suddenly cut in. Confused I turned to look at her, and it was then that I noticed her sour expression.</p><p>I immediately had an ominous premonition.</p><p>…and I was right to think so as her next words made my stomach churn.</p><p>"The reason we were forced to come here to you is because the human you last recruited decided to go into the mana compressor by himself and is probably fighting against all the demons on his own. I don't think it will be long before others recognize him and chaos will ensue."</p><p>"Shit."</p><p>I cursed out loud as I covered my face with my hand.</p><p>"It's Liam isn't it?"</p><p>Angelica did not have to clarify who the individual was since his actions made it clear to me.</p><p>It was without a doubt, Liam.</p><p>'This is exactly why I didn't want to bring Liam with me on this planet.'</p><p>Given his terrible memory and thirst for excitement, this was an expected outcome.</p><p>'I should've seen it coming.'</p><p>The moment I realized Smallsnake was here, I should've also realized that Liam would also appear here.</p><p>Standing beside me, Amanda asked.</p><p>"What do we do now?"</p><p>"I'm not too sure."</p><p>I silently muttered as my brows knit.</p><p>"Actually, this situation isn't terrible."</p><p>Suddenly, Kevin's voice rang out.</p><p>While silently mumbling to himself, he walked toward the room's door and gently touched it.</p><p>"Breaking through the door and getting free should be no problem for any of us. For now, before the alarms ring, we should wait here and try our best to get into our best conditions."</p><p>"Ah!"</p><p>Realization dawned on me as I immediately understood Kevin's intentions.</p><p>"You want to take advantage of the chaos to directly go to where the main operating board of the mana compressor is so that we can destroy it."</p><p>"Yes."</p><p>Kevin nodded as his fist gently touched the door of the room.</p><p>"Our priority should be destroying the mana compressor. Once we destroy it, I won't have trouble getting all of us away from this place."</p><p>'Right.'</p><p>For a moment I almost forgot our mission, which was to destroy the mana compressor. We didn't need to escape in the first place, rather, it was the complete opposite, we needed to destroy.</p><p>"Alright."</p><p>Nodding my head in understanding, I sat down on the ground and turned to look at Melissa who was busy sorting out her equipment.</p><p>"I agree with your plan. For now, I'll just wait for Melissa to do her thing. The faster she is, the better the situation."</p><p>Taking note of what I said, Melissa shifted her head slightly and glared at me.</p><p>"What am I? Your dog?"</p><p>"…You only just realized?"</p><p>I looked at her with a strange look.</p><p>"From the magic cards to all the theories I have given you…you should already know what you are by now."</p><p>"Hahaha."</p><p>Melissa covered her mouth as she laughed. The sound of her laughter echoed throughout the room and was extremely pleasing to the ear. Of course, only the sound was pleasant, the vibe was nothing short of pleasant.</p><p>Meanwhile, while Melissa laughed, Amanda appeared behind Melissa.</p><p>Standing up, Melissa pulled her sleeves up and furiously charged in my direction.</p><p>"I'll kill you!"</p><p>"Ah! Help! Attempted homicide!"</p><p>Seeing her charge at me like an enraged bull I stood and hid behind Kevin.</p><p>"Kevin, help me. I'm going to die if you don't do anything."</p><p>"Honestly, at this point, you deserve whatever is coming to you."</p><p>"Well, that's mean."</p><p>"Let go of me, Amanda!"</p><p>Amanda, who had already been expecting the situation, stood behind Melissa and held her by both armpits, stopping her charge.</p><p>"Let go! I won't kill him!"</p><p>In spite of Melissa's curses and shouts, she never let go.</p><p>"I promise I won't kill him! I'm only going to make him stop breathing, forever!"</p><p>'That's the same thing…'</p><p>I thought to myself as I rested my arm on Kevin's shoulder. Turning to glance at him, I softly whispered.</p><p>"She must be in her period…"</p><p>"Just stop."</p><p>***</p><p>Within the mana compressor's peak.</p><p> There was a greenish human figure sitting inside a relatively luxurious room. With long white hair falling behind his back, and wrinkles all over his face, Duke Ikiron slowly opened his eyes, revealing a set of red pupils that menacingly shone within the room. </p><p>"Huuuu…"</p><p>While exhaling, he expelled turbid air.</p><p>Lowering his head to stare at his wrinkled hands, a purplish dark hue manifested on his hands before quickly turning paler and disappearing.</p><p>"I don't have much time left."</p><p>Duke Ikiron stood up, folding his hand into a fist, revealing a lanky figure almost entirely composed of bones.</p><p>There was an obvious frailty to his figure as there was barely any skin on his body. Duke Ikinor shook his head as he stared at his figure in the mirror standing at the opposite end of the room.</p><p>"If only I had more time."</p><p>With a swipe of his hand. A black tunic with golden embroidery materialized on his body.</p><p>"…how unfortunate, had I not been forced to take care of this place, I may have been able to break through."</p><p>Having lived for over 500 years, Duke Ikiron was now on the verge of death.</p><p>His eminent death was due to natural causes. Living past his life expectancy, he didn't have much time left before he would close his eyes for good.</p><p>He could feel His strength disappearing with each day that passed, and right now, he wasn't even confident he could manifest the same strength he used to in the past.</p><p>"Huuu…"</p><p>Taking another deep breath, Duke Ikinor headed for his desk and sat down. There, his eyes paused on a small bracelet and a couple of rings.</p><p>Extending his hand, he held the items close to him and examined them. A black hue sprang forth from his hand as he tried to look through the items, but he soon shook his head.</p><p>"I can't seem to open them—"</p><p>Bang—!</p><p>The door of the room suddenly burst open.</p><p>"What's going on?"</p><p>Duke Ikinor abruptly stood up.</p><p>"How dare you barge into m—"</p><p>"We have an emergency!"</p><p>A demon rushed into the room. There was clear panic on his face as he searched for the Duke.</p><p>"An emergency?"</p><p>Duke Ikinor's rage quickly quelled. Especially after he noticed the panicked complexion of the demons that had just entered.</p><p>He quickly realized that something was going on.</p><p>"What's going on?"</p><p>"An intruder has infiltrated the premises!"</p><p>"…Huh?"</p><p>Duke Ikinor's head recoiled back in surprise.</p><p>"An intruder? Just one?"</p><p>"Yes."</p><p>The demon nodded, prompting Duke Ikinor's face to change once again.</p><p>"Just one? Is he trying to have himself killed?"</p><p>It had to be noted that there were thousands of demons inside the mana compressor, including him, a Duke ranked demon.</p><p>For someone to try to infiltrate the place, alone…he must either be extremely reckless, or strong.</p><p>…but as Duke Ikinor closed his eyes and tried to feel for any strong presence, he couldn't feel anyone that was remotely closed to the Duke ranked level.</p><p>This only meant one thing, the intruder was weaker than him.</p><p>"How bold…"</p><p>As he glared in a particular direction, a powerful aura suddenly erupted from his body.</p><p>"It looks like people have started thinking that I'm an easy target just because I'm close to my death..."</p><p>Turning to face the closest demon, the Duke ordered.</p><p>"Lock the entrances of the compressor. Sound the alarm, and get all the other demons alert. We don't want to suffer too many losses."</p><p>"Understood."</p><p>The demon replied with his back straight.</p><p>"Good."</p><p>Nodding his head, Duke Ikinor stepped forward and vanished from his spot.</p><p>"I'll see exactly who has the balls to mess with me."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-577.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-579.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 602 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 602 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-601.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-603.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Fear.</p><p>An unpleasant and inescapable emotion caused by the threat of danger, pain, or harm.</p><p>It begins with your hair standing up. Next, your palms begin to sweat, and your body experiences a wave of nausea, making it difficult for you to comprehend what lies before you.</p><p>The world feels foggy. Everything that seemed so clear the previous moment becomes blurry, and in an instant, your entire body begins to tremble, and your heart beats so loudly inside of your head that it feels suffocating.</p><p>Fear starts off as an instinctive and primitive response designed to help us avoid dangerous situations.</p><p>…But what would happen when you're in a situation where you can't avoid this so called danger?</p><p>Helplessness.</p><p>That was what they would feel.</p><p>A wave of helplessness would wash over the individual as they find themselves in a situation where they could do nothing.</p><p>"Don't tell me you're planning on leaving right as I arrived?"</p><p>Jezebeth's words echoed inside of my ears, while the hair at the back of my neck stood up.</p><p>Fear was slowly starting to permeate my body.</p><p>"Haaa…haa…"</p><p>Unknowingly, my breathing became heavier.</p><p>As I slowly lifted my head up, my eyes met Jezebeth's, and my heart stopped for a moment.</p><p>'S..shit.'</p><p>I was overcome with a wave of helplessness as his presence completely enveloped my body, stopping me from moving at all.</p><p>"Hm?"</p><p>In the midst of my struggle, Jezebeth frowned.</p><p>Coming a little closer to me, he tilted his head a little.</p><p>"You…"</p><p>He pointed his slender finger in my direction, as his glaring red eyes scrutinized my body up and down.</p><p>My body felt completely naked as his eyes scanned it. It was as if he knew every secret inside my body.</p><p>Gradually, as he continued to stare at me, his eyes dropped and his head shook.</p><p>"…You're not him, again."</p><p>There were hints of disappointment in his voice as he turned his head to look away from me.</p><p>Right as he turned, I was able to hear his soft whisper.</p><p> "He would never make such an expression…"</p><p>Taking a step away from me, he looked around the room and continued to whisper to himself.</p><p>"This is strange…I'm sure I detected his presence before coming here. I don't think I'm wrong."</p><p>For the next couple of seconds, he didn't say anything and just quietly walked around the room with a pensive look on his face.</p><p>Coming to a sudden stop, he turned around to look at me.</p><p>Once again scanning my body, his brows jumped and a thin smile formed on his face.</p><p>"I see…"</p><p>Tap.</p><p>Taking a step closer to me, it didn't take long for him to arrive before me.</p><p>Extending his hand, my vision darkened as his plan covered my face.</p><p>I tried with all my might, staring at the hand that was snatching at my face, but it was all in vain; he stopped me without any effort on his part.</p><p>"Don't move. I'm trying to check something."</p><p>His voice loudly echoed inside of my ears.</p><p>As soon as his words vanished, I experienced an electric shock throughout my body. My body began to tense up in response to what he did, and my eyes rolled to the back of my head.</p><p>I wanted to scream, but it was all futile effort on my end as my mouth was sealed shut. No matter how much I struggled, I couldn't say anything.</p><p>"Mhh! Mhhhhh!"</p><p>The only thing that came out of my mouth were low muffled shouts.</p><p>"Ah, it makes sense now."</p><p>Taking his hand away from my head, Jezebeth once again turned away from me.</p><p>He had a satisfied look on his face.</p><p>"It's just like I predicted. You were the ones that resulted in Magnus's death, and it doesn't look like an accident either. As expected of you…"</p><p>Turning his body around, our eyes met. This time, his smile faded a little.</p><p>"You must be his fake copyright?"</p><p>I felt the restriction in my mouth stop once he said these words, but I didn't say anything and remained quiet.</p><p>Slowly, I began to calm down.</p><p>"Oh?"</p><p>Jezebeth's brow raised at the sudden turn of events.</p><p>"In a way, you're not that different from him. You can say that you bear striking resemblances to this demeanor at times. Even then…"</p><p>Jezebeth shook his head and slowly lifted his head. His face slowly turned rigid.</p><p>"…You've already served your purpose. How about you disappear and let the real you take over? I have no interest in playing around with a fake."</p><p>Although he spoke in a gentle manner, every word he spoke thundered in my head.</p><p>I experienced a sense of helplessness as a result. Even though it pained me to be reminded that I was a fraud, I was gradually accepting this fact. The fact that I was just a replacement.</p><p>I replied with a slow head shake.</p><p>"I'm good."</p><p>"You're good?"</p><p>Jezebeth mumbled while he looked at me with a strange look on his face.</p><p>"Ha."</p><p>Covering his face with his hand, he let out one single burst of dry laugh.</p><p>The laugh didn't last for long, as his complexion crumbled and his voice became deep.</p><p>"…You actually think you have an option?"</p><p>His crimson eyes flashed with a scarlet color that totally enveloped the room as he snapped his head to gaze at me, and a dreadful pressure descended upon the space.</p><p>"Khurk!"</p><p>I instantly dropped on both knees to the ground.</p><p>Clenching my throat with both hands, I slowly raised my head to look at Jezebeth.</p><p>Tap. Tap. Tap.</p><p>His slow and rhythmical footsteps echoed throughout the room before they paused in front of me.</p><p>It was right at that moment that the pressure bearing down on the room stopped.</p><p>"Khuak!"</p><p>Immediately after the pressure disappeared, my body reflexively gagged and a wave of vertigo hit me.</p><p>With both hands on the ground, I began to heavily gasp for air while a single string of saliva dripped to the ground.</p><p>"…My bad."</p><p>Right then, I heard Jezebeth's voice echo beside my ear.</p><p>"I almost forgot about how pathetically weak you are at the moment. For a moment, I thought that you were going to die."</p><p>Then, sitting crossed legged on the ground, Jezebeth placed both of his hands on the ends of his knees.</p><p>"…How about we have a talk? There are lots of things I want to say, and even though you might not be him, he should still be able to hear every single one of the words I say."</p><p>Raising his finger, my head snapped up.</p><p>"How should we start?"</p><p>Lowering his head and pondering for a bit, Jezebeth tapped his head and murmured.</p><p>"My memories still aren't intact you see, so I'm having a hard time remembering certain things. Don't mind me if I remember some things wrongly."</p><p>Casually raising his head, Jezebeth looked at me.</p><p>"…Setting that aside, it doesn't seem like you have much time till he takes over. I'll say a couple of years. Mhh, that sounds quite troublesome."</p><p>Jezebeth covered his mouth with one hand while extending the other toward me until his palm was directly in front of my face.</p><p>At that moment, I caught a whiff of death lingering in the air.</p><p>"What should I do? Should I just kill you before he takes over? There have been several instances when he's brought me quite a bit of trouble…"</p><p>His smooth speech echoed in my thoughts like many whispers, resembling the hissing sound that snakes produce.</p><p>"If I kill you right now, a lot of my problems would go away."</p><p>With every word he spoke, the stronger the hissing sound in my head became, sending me into this weird phase that made it hard for me to keep my focus. Everything around me felt so off balanced.</p><p>"…but I think I've got a better idea."</p><p>It was only after he removed the palm of his hand away from me that the hissing sound stopped and he appeared in my vision once more. He kept the same smile as before on his face.</p><p>'Why did he spare me?'</p><p>I thought to myself as I looked at Jezebeth before me. Although his looks were similar to that of a human, and the way he acted was also similar to how a human acted, I couldn't read his expression nor understand what he was thinking.</p><p>He was a complete enigma in my eyes.</p><p>…and that was what made him especially scary to me.</p><p>"Seeing the confused look on your face, you must be wondering why I did not kill you.</p><p>Seemingly being able to read my thoughts, I was jolted out of them by Jezebeth's voice.</p><p>Wearing the same thin smile on his face, he slowly stood up from his spot.</p><p>Then, he started to walk around me in circles. The sound of his soft footsteps echoed through my ears.</p><p>"The Akashic records are weakening. No, the Akashic records are already weakened."</p><p>Hearing his words, I swallowed a mouthful of saliva.</p><p>Something within my body started to tremble as a result.</p><p>"You may not know this since you don't have the power of the Akashic laws, but with every regression, or time loop, the records weaken."</p><p>"It goes without saying that meddling with time isn't cheap regardless of what type of entity you are. Be it me, you...or the records, meddling with time doesn't come cheaply. Whatever the case, unlike me and you, the records don't use that much energy to reset the universe. Every reset is just a fraction of their power and thus the burden they face is rather low, but what if..."</p><p>Halting his footsteps, Jezebeth turned his head to look at me.</p><p>"…What if the loop happens over and over again? What if it happens so many times that the records slowly start to lose their powers like a fighter running out of stamina, and what if they get so desperate that they start to use even more of their powers to help the one they chose to kill me? The one who threatens their existence?"</p><p>Within my head, I could feel my heart beating loudly as he spoke.</p><p>His words…</p><p>My body began to experience a sudden feeling of dread as I began to comprehend what he was saying.</p><p>"Slowly, as the Akashic records weakened, and as regressions took place, I became aware of the previous regressions within my mind with each new regression that happened. The records could no longer expend any energy in trying to make me forget."</p><p>Raising his hand, a white glow enveloped Jezebeth's hand and his face twisted.</p><p>"This power…it's so addicting."</p><p>Even though he spoke in a low whisper, his words reverberated so powerfully inside the room that it felt as if the room itself was shaking.</p><p>Turning his attention toward me, the glow on Jezebeth's hand disappeared.</p><p>"Judging from your looks, you've already guessed it. This is the last loop. Once 'he' dies, the loop will no longer continue."</p><p>The vibrations inside my body grew more intense with each word he said, and my face began to twist in agony.</p><p>"So back to why I kept you alive..."</p><p>His whispering voice hissed loudly inside of my head, and my view of the surroundings started to twist.</p><p>Even then, I tried my best to keep myself from passing out.</p><p>I wanted to hear what he wanted to say. I wanted to know why he wasn't killing me. I wanted to know what was going inside of his head...and...and...</p><p>"...It's because I don't need to kill you."</p><p>My thoughts blanked, and my eyes blinked several times, unable to comprehend his words.</p><p>Amusement filled Jezebeth's face as his two glaring red eyes stared at me. No, he was staring at the other me.</p><p>"I am aware of your desires. You want to stop the loops. You want the suffering you've experienced to end, right? Then carry it out. Kill yourself right now. Put an end to your never-ending misery and...mmm, hold on."</p><p>Jezebeth halted himself mid-sentence.</p><p>Suddenly placing his hand over his mouth, he frowned.</p><p>"It doesn't look like you can kill yourself just yet. Not unless you devour him."</p><p>While he was pondering, it didn't take long for his brows to relax. The smile also returned to his face.</p><p>Staring in my direction, his smile became even more prominent.</p><p>"Actually, this might be even more fun…"</p><p>This time, I knew he was looking at me, not the other me.</p><p>"You want to live don't you?"</p><p>He suddenly asked while he looked straight into my eyes. Before I could even respond he continued.</p><p>"A part of you wants to die, while another wants to live…"</p><p>A small chuckle escaped Jezebeth's lips.</p><p>"How ironic...You're probably wondering how you'll find a way to escape the influence of your other self while he slowly devours you, and the other you are looking for a way to end me so that he can finally kill himself..."</p><p>The more he talked, the more his eyes glistened.</p><p>His next words made my heart stop.</p><p>"Kill 'him'."</p><p>Wiping away the smile on his face, Jezebeth's face turned incomparably serious, sending chills down my body.</p><p>Slowly, he raised his hand and pointed at me.</p><p>"Kill the 'Akashic holder' and all of this will stop. He dies, and the loop ends. The other you can die while leaving behind the body you are in behind, and you get to keep this body of yours. Doesn't that sound like a nice solution?"</p><p>"As for me? I get to save six years, and finally get ahold of the records."</p><p>After he finished speaking, a harrowing hush filled the space. The air was so fragile that one would have believed it would break. I opened my mouth, but then shut it when I felt his piercing red eyes glare at me, and my body violently trembled inside.</p><p>'This…'</p><p>I was shocked to realize that I couldn't refuse his words. I wanted to reject it, but as soon as I opened my mouth, nothing came out.</p><p>A smile once again cracked on Jezebeth's face when he looked at me.</p><p>"…It looks like you've made your decisio—"</p><p>"Kh."</p><p>Stopping Jezebeth mid-sentence was a soft sound coming from the distance.</p><p>Jezebeth's brows furrowed, and his head turned to look in the direction of where the sound came from.</p><p>My heart dropped as soon as his head turned.</p><p>A figure soared through the air and appeared in front of Jezebeth as he raised his finger and motioned it toward his direction. Right there, I caught sight of Smallsnake hovering in the air in front of him. He was just half awake right now.</p><p>Most likely, he had passed out from the previous pressure Jezebeth exerted.</p><p>Jezebeth's cold voice echoed in the air, causing it to tremble as she stared at Smallsnake levitating in midair.</p><p>"There was someone else in here? That's careless of me."</p><p>A sense of dread washed over me as I looked at Jezebeth who was staring at Smallsnake.</p><p>My attempts to move were thwarted by Jezebeth's pressure, which prevented me from moving.</p><p>I tried to activate all of my skills at the moment, especially the limit breaker skill, but it was useless. No matter how much I tried, nothing seemed to respond to my calls.</p><p>My desperation only grew with time, as I struggled even more.</p><p>'Take my body!'</p><p>'Didn't you want to take my body?'</p><p>My desperation reached the point where I started pleading with my other half, but it was futile. He didn't seem to respond to my calls.</p><p>"N..no.."</p><p>A few words managed to escape from my lips as I stared at Jezebeth.</p><p>"Hm?"</p><p>Overhearing my words, Jezebeth looked at me. No, rather, he was looking at my expression.</p><p>My heart stopped beating.</p><p>"Is this someone you know?"</p><p>He asked while alternating his gaze between Smallsnake and me.</p><p>"I see…"</p><p>He began to murmur in a low voice.</p><p>"If I kill him right now, there's a chance he might hate me, but...does it really matter? Once his other self takes over in a couple of years' time, he will kill himself, so I don't have to worry about him in the near future...plus, he heard things that he shouldn't have heard...it would be annoying if he stayed alive.."</p><p>With every word that he spoke, the dread inside of my body only increased. Shaking my head, I pleaded inside of my mind.</p><p>'Stop him...'</p><p>In the meantime, a thin smile spread across Smallsnake's face as he looked at me. The look on his face...</p><p>It was similar to that of someone who had accepted their fate.</p><p>I couldn't stand it.</p><p>I detested it!</p><p>I loathed it!</p><p>'No!'</p><p>"N..no…no, do—"</p><p>"Too late."</p><p>The next set of actions happened so quickly that I was unable to react at all.</p><p>Crack—!</p><p>With a twist of his fingers, the sound of bones breaking echoed throughout the room, and Smallsnake's figure squeezed together.</p><p>Thump—!</p><p>What followed after was a low thumping sound and a body fell to the ground.</p><p>My vision's colors began to dwindle at that same instant, and everything around me appeared to go numb.</p><p>My mouth slowly opened as my heart, which had been thumping frantically, stopped beating.</p><p>"Ah..."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-601.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-603.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

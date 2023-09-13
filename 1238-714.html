@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 714 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 714 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-713.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-715.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Approximately fifty feet beneath the grand hall was a separate space.</p><p>Typically, discussions between the parties would be held above the surface, in the main hall. Only rarely would the lower level ever be used.</p><p>...and when this occurred, it almost always indicated that something of an extremely grave nature had taken place.</p><p>The atmosphere of the bunker was cold and tense. Ten people surrounded a large oval-shaped table that was lit by a single spotlight that shone down on the table's center point.</p><p>The tension in the room was almost palpable.</p><p>Everyone's attention was directed toward a demon who was dressed in a long black robe and a hood and stood at the opposite end of the table.</p><p>He was, Prince Devot. The current Patriarch of the House of Envy.</p><p>He silently surveyed the room with a look of contempt. As the others looked back at him expressionlessly.</p><p>Behind Prince Devot was another demon, similarly adorning a black hood to cover its features. The demon seemed somewhat out of it, as they held onto the chair to support themselves.</p><p>In spite of that, their gaze was currently focused on Priscilla, who was standing behind her grandfather.</p><p>Their gaze wasn't a friendly one.</p><p>Prince Devot spoke again.</p><p>"Judging from how there's only ten of us, the situation is a lot more serious than anticipated."</p><p>His voice resounded throughout the room as soft, repeated whispers that uncomfortably tickled the ears of those present.</p><p>It caused Priscilla a great of discomfort, but all she could do was remain standing in silence.</p><p>"More serious than anticipated?"</p><p>One of the seated demons spoke, his voice bordering on amusement. Similarly, there was another figure standing behind him, but compared to the one standing behind Prince Devot, he wasn't wearing a hood, and everyone was able to see the state he was in.</p><p>…It wasn't good.</p><p>His skin was as white as paper, and he could hardly keep his eyes open. He appeared to be in a lot of pain. It was likely that he would have collapsed to the ground had it not been for the thin white film that was covering his body.</p><p>It also seemed like he was being forced to stay awake.</p><p>Another demon glared at the demon that spoke.</p><p>"Is there something funny about the situation, Prince Arian?"</p><p>"I do, I do… Prince Serling."</p><p>Prince Arian covered his mouth to hide his smile while addressing Prince Serling.</p><p>"You may not find it amusing, but it's nothing short of amusing to me."</p><p>Unable to hold it in anymore, he started cackling out loud.</p><p>"Kekeke, I never would've expected to..Kek…see a day where you all look so troubled. Such amusement…"</p><p>His laughter lasted for a couple of minutes, during which time none of the demons displayed any reaction to the behavior he was displaying. It was as if they were already used to it.</p><p>"Are you done laughing?"</p><p>Eventually, another demon spoke. He was a burly looking demon with muscles the size of melons. Briefly glancing at Prince Arian, he looked toward Prince Valling of the House of Sloth and paused his gaze on Priscilla.</p><p>His eyes immediately narrowed.</p><p>Catching his gaze, Prince Valling called out.</p><p>"Is something the matter, Prince Aton? You seem to be looking at my successor an awful lot. She's pretty, right?"</p><p>A smile lingered on Prince Valling's face as he addressed Prince Aton. He didn't seem too bothered by the fact that everyone was now looking in his direction.</p><p>…or to be more precise, Priscilla.</p><p>He maintained the same cool demeanor he had been displaying up until this point as he looked around at the others and mocked.</p><p>"Is something the matter? Have you all been charmed by her beauty?"</p><p>"Charm?"</p><p>A voice that was both mellow and crystalline floated through the air. Instantaneously, the two demons who were standing behind Prince Devot and Prince Arian fell into a daze.</p><p>Both of them were instantly brought back to themselves by a wave of Prince Devot's hand, and he then turned to address the person who was responsible for the little stunt.</p><p>"This isn't the time for your little jokes, Princess Rhan."</p><p>With long black hair and a face that could not be described as anything but the word 'beautiful', Princess Rhan, the head of the Charm House, covered her mouth and laughed.</p><p>Her laughter was like the sound of pearls being clinked together. It was crisp and pleasant to the ears.</p><p>"My, I was just trying to respond to the comment made by Prince Valling. While the young lady is indeed beautiful, she still has a long way to go before reaching the point where she can charm everyone in the room."</p><p>Removing her hand from her mouth, the smile on her face disappeared and her eyes squinted.</p><p>"…What I want to know, however, is why she is totally fine?"</p><p>Almost immediately, everyone turned to look at Priscilla, who looked around in confusion.</p><p>"Are you implying that she shouldn't be fine?"</p><p>Directly staring at her, Prince Valling's voice lowered.</p><p>Rhan looked at him, unamused. Her eyes extremely narrow.</p><p>"Don't pretend like you didn't understand my words."</p><p>She cast her gaze in all directions. To be more specific, toward the vacant seats behind a few of the Princes.</p><p>"Something happened last night while we were having our meeting, and out of everyone present, your successor is the only one that is completely unharmed."</p><p>Her normally soft tone suddenly took on an iciness as she turned her head.</p><p>"…Is that a coincidence?"</p><p>"Are you implying that I'm the one responsible for all of this?"</p><p>The smile that had been plastered across Prince Valling's face vanished, and he looked around at the other demons coldly.</p><p>"I was with all of you for the past month. Do you really think I have the ability to go undetected by the lot of you?"</p><p>"That's not it."</p><p>Prince Serling interjected. He was a rather lanky demon with short green hair and the head of the Pride House.</p><p>"We know that it's impossible for you to have done it by yourself…"</p><p>He didn't finish the sentence, but the meaning was crystal clear as everyone's focus once again shifted toward Priscilla who shuddered at their gaze.</p><p>She felt everything turn on her at that moment.</p><p>'Wh-at's going on?'</p><p>Priscilla's mind was a complete mess.</p><p>It all happened so quickly that before she knew it, she had been indirectly accused of killing four Dukes and severely injuring two others.</p><p>How had everything turned out this way? She had no recollection of this ever happening.</p><p>She was being set up.</p><p>"So you're saying that Priscilla is the one responsible for all of this?"</p><p>Prince Valling looked behind him, taking a good look at her. He soon shook his head.</p><p>"That's impossible. I'm well aware of her capabilities."</p><p>He leaned forward and carefully looked at everyone. Seeing their eyes, he knew that their accusations had some ground behind them.</p><p>"I'm sure you guys wouldn't be accusing her without any evidence. Get to the point. Tell me exactly what made you think she's the one behind this."</p><p>"It looks like you've finally caught on."</p><p>Prince Arian beamed a grin. After that, he looked at Prince Devot, who nodded in response, and then both of them turned around to look behind them where two demons stood.</p><p>Prince Arian spoke.</p><p>"While the plan did indeed work and she—oops, I meant the culprit—was somehow able to kill four successors, they were unable to complete their jobs. Two of them still managed to survive."</p><p>Everyone's attention shifted toward the two Dukes.</p><p>Sadly, the only one that seemed to be in a state to move or talk was Duke Ukhan, who lowered his hood to display his pale face. He was currently glaring at Priscilla.</p><p>"You didn't think I'd make it, did you?"</p><p>"What?"</p><p>Priscilla looked all around her, utterly bewildered by the events unfolding in front of her.</p><p>She had the urge to scream out that this was all a setup and that she wasn't responsible for any of it, but she knew that whatever she said, no one would listen to her and that her words would be ignored.</p><p>She had no choice but to remain still and helplessly gaze upon her grandfather, who showed no sign of being shaken by the allegations.</p><p>He turned his attention squarely on Ukhan, who was staring at Priscilla with a look that was filled with killing intent.</p><p>He didn't seem to be acting.</p><p>Opening his mouth, Prince Valling asked.</p><p>"What makes you sure that she's the one who did it? Did you see her do it?"</p><p>As soon as he started speaking, a wisp of his power erupted, and it exerted pressure on the Duke, whose face became even paler.</p><p>Even so, he kept glaring at Priscilla.</p><p>"S-he's the one who did it! I still remember the one who did this to me. He was working with her back during the time we were in the cave! ...H,his power belonged to the House of Sloth!"</p><p>"Oh?"</p><p>Prince Valling's brown raised.</p><p>"So you're saying that the one who did it wasn't Priscilla, but another person?"</p><p>"Y-yes, but—"</p><p>"I don't think you need to elaborate any further."</p><p>Prince Valling cut and shifted his attention toward the others.</p><p> "You've heard him, haven't you? Priscilla clearly was not the one who did this. Until you catch the one that is actually responsible for killing your successors, this is merely speculation on his end."</p><p>"I knew you'd say this."</p><p>Prince Arian smiled. He then looked behind him, toward his successor. The smile on his face grew with amusement.</p><p>"…Did you forget that he's not the only one that survived?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-713.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-715.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

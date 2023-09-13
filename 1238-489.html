@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 489 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 489 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-488.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-490.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[What do you think about the comments in the press conference? Will, there really be a third cataclysm?]</p><p>[I say that this is hearsay. All bullshit fabricated in order to shift our attention away from his crimes.]</p><p>[Then how would you explain the current phenomenon that just happened? The crack in the sky? It is undeniably there. We can't just turn a blind eye to it. Furthermore, there is evidence that proves that Ren Dover has really traveled to the other domains...]</p><p>Click—!</p><p>Turning off my phone, I put it away and continued to walk on the sidewalk of the street. I was currently outside of my house and the blazing sun in the sky made me feel extremely languid; I really didn't feel like doing anything.</p><p>Despite that, I still continued walking.</p><p>My current destination was the Demon Hunter guild. The reason for this was because Amanda granted me access to their top-end training facilities.</p><p>As matters currently stand, I couldn't go back to the Lock.</p><p>With everything that transpired over the last couple of days, I was put on administrative leave for a couple of days; Therefore, I had no choice but to go train at Amanda's guild.</p><p>Along the way, I couldn't help but think, 'I really should tell Smallsnake to invest more money in the headquarters...'</p><p>Just before the press conference, Amanda came to talk to me about the situation with the magic cards, and from the look of it, they will be launching in a couple of days' time.</p><p>With the money that would be coming in from their sales, I planned on creating my own state-of-the-art training facility back in the headquarters.</p><p>Not just for me, but for Smallsnake and the others.</p><p>"I think it's bullshit. Even if the mana density of the world increased, it will still be impossible for normal people like us to reach the top."</p><p>"Does that really matter? If the third cataclysm is coming, would you be better off at your current strength, or at a stronger level?"</p><p> "That's a big if." </p><p>"Still doesn't hurt to become stronger."</p><p>As I neared the guild, I was able to overhear the conversation of some of the people near me. Overhearing their conversations, I shook my head.</p><p>'Just as I expected, everyone is talking about the press conference.'</p><p>Public opinion about what I said at the press conference was divided into two.</p><p>On one side, many people supported what I said as they also agreed with many of my points, while on the other side, people completely despised me for it.</p><p>Not that I cared.</p><p>Like I've said before, I didn't really care about anyone else apart from a select few people. I was only one person after all.</p><p>"Halt! Because of security reasons, we can't allow anyone unknown to enter the guild. Please state your purpose."</p><p>Tall guards wearing black suits and sunglasses blocked my path right at the entrance of the guild.</p><p>Glancing toward my right and left, and seeing people going in and out of the building, I could already tell that they were targeting me. Evidently, they were alarmed by my strength.</p><p>Shaking my head, I brought out a black card from my dimensional space.</p><p>"Here you go."</p><p>'Did Amanda buff up the security because of the magic cards?'</p><p>If so, it was understandable. Given just how much money was involved in its launch, such measures were understandable.</p><p>Lifting his glasses up with one of his fingers, one of the bodyguards checked my card. Upon making sure that there was nothing wrong with it, he took a step to the side. The guard next to him followed suit.</p><p>"You may go in."</p><p>"Thank you."</p><p>Taking my card back, I nodded at the guards and entered the premise of the building.</p><p>Just like in the past, a nice lavender-like smell lingered in the air the moment I entered the building.</p><p>Glancing around me, I was surprised to find that the lobby of the guild was packed with people moving in and out of the building.</p><p>"It's a lot more crowded than usual, is something going on?"</p><p>Squinting my eyes and checking out the place for a bit, I eventually shrugged my shoulders.</p><p>"It's probably none of my business. Let's juts go train."</p><p>Taking one last look at the crowd at the guild lobby, I turned around and headed for the elevators in the distance.</p><p>***</p><p>At the same time, inside a white room that was the length of two Olympic-sized swimming pools.</p><p>Xiu! Xiu! Xiu!</p><p>Splitting the air apart were three translucent blue energy beams.</p><p>In a matter of seconds, the arrows arrived all the way toward the other side of the room and crashed against multiple thick rectangular pillars.</p><p>Bang—!</p><p>A deafening sound spread out from the point of contact between the arrows and the pillars, and thin black smoke rose in the air.</p><p>"Hmmm."</p><p>Squinting her eyes and staring toward the distance, Amanda had an unsatisfied look on her face.</p><p>"What's wrong, young miss?"</p><p>Appearing beside her was her assistant, Maxwell, as he handed her a white towel.</p><p>Taking the towel, Amanda shook her head.</p><p>"I'm still too weak."</p><p>"Weak?"</p><p>Maxwell raised his brow.</p><p>"Correct me if I'm wrong young miss, but aren't you already nearing &lt;B&gt; rank? Considering your age, shouldn't that be an achievement to be proud of?"</p><p>"..."</p><p>Raising her bow and aiming at the target in the distance, Amanda pulled the bow string back. A blue translucent arrow materialized in between her fingers.</p><p>'Achievement to be proud of...'</p><p>Had it been in the past, then maybe. However, as she looked back at Ren, Kevin, and Jin who had all surpassed her, Amanda couldn't bring herself to feel any pride in her strength.</p><p>Also, Amanda did not doubt Ren's words back at the conference.</p><p>A third cataclysm will soon appear, and without a doubt, she was still far too weak to survive it. Her current level of strength was far from enough.</p><p>"I've still got a long way to go."</p><p>Xiu!</p><p>Once her words faded, Amanda once again released the string of her bow, and the arrow on her bow disappeared. The air in front of her distorted, and not even a split second after she released the bow, a thunderous explosion reverberated throughout the room.</p><p>Boom—!</p><p>Following the explosion, a gust of wind began to spread out, resulting in Amanda's hair flailing wildly.</p><p>Staring at the pillar in the distance, Amanda lowered her bow and turned to glance at Maxwell.</p><p>"Has he arrived yet?"</p><p>"Yes, he has," Maxwell replied with a short nod. His face slowly turned serious.</p><p>"I have told him to meet you at your office, however, he insisted on meeting you here. He appears to be in a bit of a rush."</p><p>"Okay."</p><p>Amanda put her bow away and untied her hair, letting them fall over her shoulders.</p><p>"It's better this way."</p><p>***</p><p>"Not bad..."</p><p>The room I was in looked to be about the size of a small football pitch. It was neither too big nor too small. The insides were completely empty, as the bright lights from above illuminated the white room.</p><p>"The room here is created with one of the hardest materials that we have available. It may not be one of our strongest rooms, but considering your strength, this should do just fine. You would need to be at least &lt;S-&gt; rank to leave a scratch on the room."</p><p>An attendant spoke aloud next to me.</p><p>She was giving me a brief overview of the training facility. From time to time I would nod at her words.</p><p>This was my first time here, and thus I needed to be briefed on the rules of the place.</p><p>The lady continued to talk for the next five minutes before she eventually finally left the room.</p><p>"Because you've selected the Self-training room, there is no equipment available for you to use. However, if you wish to use them, you can call me up and I will readily come to your assistance."</p><p>"Thank you."</p><p>"No problem."</p><p>Clank—!</p><p>The door closed and the place finally became quiet.</p><p>"Haaa..."</p><p>Raising my hand, I removed the mask from my face. Since I was now even more popular than before, I had no choice but to wear this wherever I went.</p><p>Not that I wasn't used to it by now.</p><p>"Huuu..."</p><p>Putting my mask away, and moving toward the middle of the room, I decided to sit crossed-legged.</p><p>Tapping on my bracelet, I took out my sword and placed it right in front of me.</p><p>Compared to the last time I had seen it, the sword was now quite a bit longer than before. Not by much, but enough to see a notable difference.</p><p>'Now that I think about it, I've still not tested the sword after breaking the first seal.'</p><p>According to Malvil, the first seal was supposed to break upon me reaching &lt;A-&gt; rank. Lowering my hand, I began to check the effects of the first seal.</p><p>[Seal 1 : The sword will allow the wielder to gather at a much faster rate than normal.</p><p>"This..."</p><p>Staring at the interface in front of me, I had to blink a couple of times to make sure that I wasn't seeing wrongly. Once I was sure that there was nothing with what I was seeing, my mouth dropped a little.</p><p>"This is amazing, isn't it?"</p><p>It may not look like an incredible skill at first, however, given my circumstances and sword art, this was nothing short of miraculous.</p><p>It was then that I had a sudden thought, "With this, wouldn't I be able to perform my movements even faster than before?"</p><p>It would take me a couple of seconds to gather enough mana to perform any of the movements of the Keiki style.</p><p>With this new skill, the time it took for me to gather enough mana to perform the skill would drastically decrease.</p><p>It was basically a game-changer.</p><p>Staring at the sword, my hand started to twitch. For a brief moment, I wanted to test out this new skill, however, I quickly stopped myself.</p><p>'This is not what I'm here for.'</p><p>There was a time and place for things.</p><p>"Huuuu..."</p><p>Taking a deep breath and closing my eyes, I cleared all distracting thoughts inside of my head and proceeded to feel the mana in the air.</p><p>'I've felt the sensation a couple of weeks ago, and now that the mana density of the mana in the air is denser, there should be no trouble for me to finally grasp the final...no, the fifth movement of the Keiki style</p><p>There were only five movements to the Keiki style. Beyond that, Grandmaster Keiki had never been able to grasp the sixth movement.</p><p>Some might say that the Keiki style was a complete art and that there were no possible movements beyond the fifth movement.</p><p>However, I begged to differ.</p><p>There was definitely a sixth movement. One that Grandmaster Keiki couldn't grasp throughout his entire life.</p><p>After practicing this art for as long as I did, I knew for a fact that the fifth limit was not the limit. There was definitely more to the sword art than it showed.</p><p>After grasping the fifth movement, my next goal was to grasp the sixth movement of the Keiki style.</p><p>"Haaa..."</p><p>Exhaling from my mouth, the psyons around me started to vibrate more and more. It wasn't long before only the green-colored psyons remained around me. From time to time, I would be able to see faint yellow-colored particles.</p><p>My eyes brightened when I saw them.</p><p>'Light psyons...'</p><p>The key element needed to grasp the fifth movement of the Keiki style.</p><p>Staring at the yellow-colored particles in the air, I focused all my attention on them. It wasn't long before more and more yellow-colored particles started to form around me.</p><p>Drip. Drip. Drip.</p><p>Sweat started to trickle down the side of my face.</p><p>"Haaa..haa..."</p><p>My breathing started to become more laborious. However, I didn't care. Placing my hand on the ground and grabbing my sword, I stood up and proceeded to take a stance.</p><p>In the process, the light-colored particles around me started to gather in the direction of my sword.</p><p>A bright light soon started to form around the scabbard of my sword as more and more light-colored particles started to gather around the sword. It wasn't long before the light became even brighter and enveloped the entirety of the room.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-488.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-490.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

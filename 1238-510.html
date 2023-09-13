@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 510 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 510 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-509.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-511.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Loud cheers echoed throughout a large arena the size of two football stadiums. With seats filled to the brim, a sea of demons excitedly stared toward the center of the arena.</p><p>[Welcome to today's arena games!]</p><p>A seductive voice echoed throughout the whole arena. Following this, an alluring figure appeared in the middle of the stadium.</p><p>Glossy black hair, a voluptuous figure, and deep red eyes. The demoness's appearance brought forth even more cheers from the crowd.</p><p>Catching a whiff of the bloody scent lingering in the arena, the demoness licked her lips.</p><p>[Now, now.]</p><p>The demoness smiled. Facing the crowd, she gave them a wink.</p><p>[We're not here for me, but we're here for today's games. I'm sure you're all excited to see what we have in store today.]</p><p>Her words seemed to have instantly calmed the crowd down as the noise dropped to a comfortable level. There was still some noise, but it wasn't as loud as it was before.</p><p>[Thank you.]</p><p>The demoness thanked the crowd.</p><p>Turning around, she addressed the other side of the arena.</p><p>[For today's event, we have a little surprise for you all. We have found ourselves a new challenger, and he's a human!]</p><p>Her words instantly reignited the vigor in the crowd's faces.</p><p>"Another challenger?! A human at that? Does he also have the potential to become an Overlord?'"</p><p>"As if. There is only one Overlord. The current Overlord is far too strong for anyone to beat. I doubt he will be able to beat him even if he manages to become an Emperor-level contender."</p><p>"True...But what if?"</p><p>"This is going to be fun!"</p><p>Enjoying the vivaciousness of the crowd the demoness let the noise continue for a while. She eventually raised her hand, and everyone stopped speaking. Thanking them one more time, she continued.</p><p>[I will have to disappoint you all with one piece of news. The challenger will not be participating in the King's bracket, but he will be participating in the Duke bracket.]</p><p>The crowd instantly deflated upon hearing her words.</p><p>In order to ensure fairness in the games of the arena, there were several brackets that classified individuals according to their strengths. The King's bracket was the highest bracket, and it was where &lt;S&gt; ranked individuals fought.</p><p>The Duke bracket was a level lower, and that was where &lt;A&gt; ranked individuals fought.</p><p>After them, there was the Count bracket, Viscount, bracket, and so on...</p><p>It was a fairly organized system made to ensure 'fairness.'</p><p>[I see that many of you are discussing his potential. Don't be quick to get your hopes up. We still haven't seen him fight yet. Who knows...]</p><p>The demoness paused and stared at the crowd.</p><p>[....He might even become the next Emperor-level contender]</p><p>Everyone instantly stopped speaking as they held their breath as soon as they heard her words.</p><p>Within each bracket, there was a ranking. A ranking was gained through beating someone of a higher rank and taking their rank.</p><p>So if a rank thirty beat a rank twelve, the winner would become the new rank twelve while the loser would drop down all the way to rank thirty.</p><p>An Emperor-level contender was someone who had reached the number one rank in their respective bracket.</p><p>This meant that they had to be monsters amongst monsters.</p><p>Only the absolute top could achieve such rank.</p><p>[Can we finally get someone that can overthrow the current Emperor?]</p><p>The demoness continued to hype up the crowd with her words. And the results were showing, as the crowd started to become even livelier.</p><p>Seeing how excited the crowd had become, the demoness secretly smirked to herself.</p><p>Raising her hand, the arena quieted down once more.</p><p>[You know what, why stop at Emperor rank? What about...]</p><p>Before she could even finish her words, the atmosphere became incredibly tense as all the demon's stopped smiling.</p><p>[Overlord rank?]</p><p>The arena instantly erupted into noise.</p><p>The breathing of some of the demons in the stands started to become more laborious as their eyes sparkled with excitement.</p><p>'How simple-minded.'</p><p>She thought as she looked at the crowd. To be honest, she never believed any of the words she said.</p><p>What Overlord?</p><p>It was already hard enough for one to become an Emperor rank contender, Overlord?</p><p>A pipe dream.</p><p>'It's simply impossible.'</p><p>For one to become an Overlord they must first become an Emperor rank, and that was not something anyone could achieve.</p><p>That was something achieved by being the best in a bracket filled with thousands of blood-thirsty contenders.</p><p>How could some random human that appeared out of nowhere achieve such rank? She was merely following the standard script and trying to hype up this new contender.</p><p>Setting aside the difficulty of becoming an Emperor-level contender, the difficulty of becoming an Overlord-ranked contender was even higher!</p><p>There was only one Overlord-ranked contender, and it was a role that could only be gained through defeating the currently existing Overlord. Someone who had defeated the previous Overlord-level contender and had also defeated all of the other Emperor-level contenders at the time.</p><p>To make the fights fair, during the fight between the challenging Emperor rank and Overlord rank, both contestants would be suppressed to the same rank. That said, despite its fairness, nine times out of a hundred, the challenger would always end up losing.</p><p>They may have the same rank, but the skill gap was just that big.</p><p>Gazing at the crowd, the demoness's smile became even brighter.</p><p>'I hope he doesn't lose too badly. That said, he should be up against a weak contender, so the chances of him losing should be low.'</p><p>If he lost too badly, it would reflect badly on her as she spent all of this time trying to hype up the crowd.</p><p>'I'll see through this match whether this new contender really has the chance of becoming the new Overlord.'</p><p>[Enough with the introductions!]</p><p>The demoness suddenly raised her voice and the arena became quiet.</p><p>Extending her hand toward her right, she continued.</p><p>[On our right, we have a contestant that has come in not too long ago, he's an elf, and is currently ranked 773th in the Duke rank. Please welcome, Silver Wing!]</p><p>Following her words, a loud metallic sound reverberated throughout the arena as the tall gates by the end of the arena started to open.</p><p>Claka. Claka. Claka.</p><p>Coming from the other side of the gate was a blonde elf with a rather cold look on his face. His clothes appeared to be worn out, and his hair was a mess. Glaring black circled bagged beneath his eyes, and on his right hand was a small wooden staff.</p><p>As he came out, the cheers coming from the demons intensified.</p><p>"You better win you fucking elf! I've put all my savings on you!"</p><p>"Die you piece of shit!"</p><p>"Hahahaha."</p><p>All sorts of insults and slurs were thrown at the elf standing in the middle of the arena. The elf's expression did not change despite this. It was clear that he was already used to the atmosphere.</p><p>As he walked, he would leave small footprints on the sand-like floor.</p><p>[It looks like everyone is already excited!]</p><p>The demoness smiled brightly as she took her eyes away from the elf.</p><p>Extending her hand toward the left, she once again raised her voice.</p><p>[And finally, on our left side. The new contender that I've been talking about and that everyone has heard about. That's right, it's the human that we've recently found and is currently unranked. Please welcome our new contestant!]</p><p>As the new contestant had still not won any matches, he was still not given a name. He could only be referred to by 'new contestant' for the moment.</p><p>The stadium instantly quieted down.</p><p>Claka. Claka. Claka.</p><p>The only sound that echoed throughout the arena was the sound of the gates opening, and it was then that a figure slowly walked out.</p><p>Snowy white hair, deep blue eyes, and a detached look that made it hard for someone to read his emotions.</p><p>The moment he stepped into the arena, his very presence caused all of the demons that were about to say something to shut up.</p><p>All forms of noise ceased.</p><p>The arena was so quiet you could hear a pin drop</p><p>Tok. Tok.</p><p>The calm and steady sound of his footsteps echoed throughout the whole arena as everyone's attention was focused on him.</p><p>His feet soon came to halt.</p><p>Raising his head, he turned to look at the demoness. He didn't say any words, but his message was clear.</p><p>'Get on with it.'</p><p>[Ah.]</p><p>It was only then that the demoness came to her senses.</p><p>'What just happened?'</p><p>She couldn't quite explain what she had felt, but for a brief moment in time, she felt overwhelmed by the presence the contestant gave out.</p><p>It almost felt suffocating.</p><p>This was a first for her, and she had presented her fair share of matches.</p><p>'Was this a mistake?'</p><p>Taking another glance at the contestant and no longer feeling the same sensation, the demoness quickly came to that conclusion.</p><p>It had to be that.</p><p>She had seen all sorts of experts during her career. Therefore she was quite experienced. She had seen individuals much stronger than the human before her.</p><p>For her to not have felt as much pressure from them as compared to the human before her, who was much weaker than them, the demoness didn't know what to think.</p><p>In the end, she just decided to not believe it.</p><p>[Ehmm...]</p><p>Coughing slightly, the demoness looked toward her left and right. Directly in the direction of the two contestants.</p><p>In the meantime, the demons in the stand also recovered from what had happened previously and started to cheer even more loudly.</p><p>"Fight!"</p><p>"Kill that elf!"</p><p>"Kill that human!"</p><p>"Shit I should've bet more money!"</p><p> Seeing that everything was alright, the demoness raised her hand. The arena once again instantly quieted down. </p><p>Glancing at the crowd, she smiled and lowered her hand.</p><p>[You may fight!]</p><p>Bang—!</p><p>What followed her words was a loud banging sound. It was so fast and unexpected that she was unable to react in time.</p><p>All she felt was a short breeze that blew her hair and clothes back.</p><p>By the time the noise faded, the whole arena had quieted down. Weakly turning her head in the direction of where the sound came from, what met the demoness's sight were two deep blue eyes.</p><p>[Ah.]</p><p>She stumbled back one step.</p><p>'It wasn't my imagination.'</p><p>The pressure that she had previously felt wasn't fake. Lowering her head, she gazed at the elf from before. At the moment, his head was smashed against the ground, and his figure was unmoving.</p><p>Whether he was alive or not, she couldn't tell.</p><p>Gulp—!</p><p>Secretly swallowing a mouthful of saliva, she raised her hand.</p><p>[The...the winner of today's first match is our new contestant!]</p><p>After a brief moment of silence, the arena instantly erupted into loud cheers as they all eyed the white-haired figure below with glistening eyes.</p><p>"Amazing!"</p><p>"What a beautiful match!"</p><p>"He's got Emperor potential!"</p><p>***</p><p>While this was happening.</p><p>With his hands behind his back, a demon gazed at the arena from above. After a while, opening his mouth a deep and powerful voice echoed throughout the space.</p><p>"What information do you have regarding the new contestant?"</p><p>Appearing from behind him was another demon. From the way he carried himself, it was clear that his status was far below the other demons. He was his servant.</p><p>Taking a knee, he answered.</p><p>"Reporting to your excellency. We do not have a lot of information regarding the newcomer. All we know is that he was brought up by a Viscount ranked demon."</p><p>"A Viscount ranked demon?"</p><p>The demon frowned and shook his head.</p><p>"That's hard to believe. Considering his display of power, the likes of a Viscount-ranked demon should not be able to harm him. Is there something else in the report?"</p><p>"There is."</p><p>"Say it."</p><p>"In the report, it said that he was found in the outskirts of the city quite heavily injured. It appeared as though he had come out from a fight."</p><p>"...That makes more sense."</p><p>The demon closed his eyes. After a while, he addressed his servant.</p><p>"What is his cut?"</p><p>"About ten percent of the sales of his matches."</p><p>"I see..."</p><p>Opening his eyes again, he coldly ordered.</p><p>"Have him killed. Don't let others know about his existence."</p><p>"Understood."</p><p>The servant quickly disappeared from his spot, and silence descended on the platform.</p><p>Gazing at the white-haired human from above, the demon smiled.</p><p>"We might have found our next star..."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-509.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-511.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

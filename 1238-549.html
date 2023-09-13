@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 549 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 549 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-548.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-550.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"...So?"</p><p>Following Jin from behind, I looked around me. Even though I wasn't entirely certain where we were, a glance at the room told me we were in a training room.</p><p>Its design was reminiscent of Amanda's training room back in the Demon Hunter guild. Just a simple and clean white room.</p><p>With large windows on each side of the room, the space was about half the size of a football pitch, making it quite a large space to train.</p><p>"Take it."</p><p> As I stood there watching Jin, a sword suddenly swung in my direction. A curious look crossed my face as I instinctively grabbed the sword. </p><p>"What's going on?"</p><p>"Let's spar for a minute."</p><p>Jin replied as he took off his blazer and dropped it on the ground.</p><p>"Wha—"</p><p>Before I could even argue against him, his figure vanished, and an airborne metallic sound rang out as I swung my sword toward the right side of my body.</p><p>Clank—!</p><p>It was at that moment that Jin's figure reappeared. He wore a look of utter seriousness as his eyes fixed themselves on the point of contact between my sword and his daggers.</p><p>Staring at him, I asked.</p><p>"What are you doing?"</p><p>"...Getting a better understanding of our gap."</p><p>Hearing his words, I had a strange thought.</p><p>'Getting a better understanding of our gap? Does he think of me as his rival or something?'</p><p>What?</p><p>"Wai—"</p><p>Immediately following his words, and just as I was about to speak, his figure disappeared. In this instance, he appeared on the other side of my body. There was a noticeable difference in his speed this time. The speed was so fast that I was left shaken for a split second.</p><p>'Fast.'</p><p>To the naked eye, it appeared as if he had teleported.</p><p>Even so, the rank difference between Jin and me was quite big. It wasn't difficult for me to dodge his daggers as all it took was a simple movement of my head.</p><p>Swoosh—!</p><p>Still, feeling the sharpness and speed of the daggers, I immediately grew apprehensive.</p><p>'His mastery of daggers is insane...'</p><p>He probably had a greater master over me with the sword.</p><p>"Tsk."</p><p>A click of his tongue caused Jin's figure to disappear for the third time. In the midst of this movement, I noticed a sharp dagger head pointing straight at me.</p><p>Swooosh—!</p><p>But just like before, I was able to easily dodge his attack. Following the path of the dagger, my brows furrowed a little bit as I opened my mouth and asked.</p><p>"Are you satisfied?"</p><p>Instead of answering, Jin once again disappeared. This time, he reappeared right behind me as I felt the sharp tip of his dagger head for the back of my head.</p><p>'Dangerous...'</p><p>I thought as my eyes sharpened.</p><p>As opposed to his previous attacks, this one felt far more dangerous. In addition to its speed, it felt more terrifying because of its hidden power. It was akin to a move from an &lt;A&gt; rank individual.</p><p>As I rotated my body, I twisted the heel of my foot.</p><p>"Huh?!"</p><p>Upon turning my body, I was struck by a series of black threads that sprung forth from the ground, encircling my entire body and halting my movement.</p><p>'Shit.'</p><p>It was at this movement, that I finally realized the severity of my situation as Jin's dagger continued to head my way. All of this happened within a fraction of a second, and before I knew it, his dagger was only inches away from the back of my head.</p><p>Clenching my teeth, I muttered.</p><p>"Come out."</p><p>Within an instant of saying those words, I saw a black shadowy figure appear in front of me. Immediately after that, Jin's dagger struck its head, and half of the mana inside my body disappeared just like that.</p><p>Jin's face was flushed with surprise as she watched the shadowy figure disappear into thin air.</p><p>Taking advantage of the moment, I distanced myself from him by pressing my foot against the ground.</p><p>As I brushed my hair up, I complained.</p><p>"Oy, oy, you can't just pull such moves without even warning me."</p><p>There was a moment when I thought my head might fall off. Without a doubt, that was his strongest technique.</p><p>"Do your enemies warn you when they attack you?"</p><p>"...No."</p><p>"Then what's the problem?"</p><p>In my attempt to refute his words, I was only able to curse myself inwardly once I realized I was unable to do so.</p><p>'He has a point, damn it.'</p><p>"Although you have a point, you could also argue that I was here to meet a friend. Someone that I didn't think would attack me the moment they saw me."</p><p>"..."</p><p>Without saying anything, Jin put his daggers away.</p><p>I was left a bit surprised by his actions.</p><p>"Wait, didn't you want to spar? If you want, I can still go a couple of rounds."</p><p>"I'm good."</p><p>Jin answered as he picked up his jacket from the ground and put it on.</p><p>"I'm already satisfied with what I've seen."</p><p>Tilting my head to the side, I grew curious.</p><p>"I'm curious. What exactly did you see?"</p><p>"Our gap."</p><p>Jin indifferently answered as he slowly fixed his tie and shirt.</p><p>"...and?"</p><p>"And what?"</p><p>"Our gap, what did you see?"</p><p>Turning his head to glance at my eyes, though faint, the edges of his lips curled up a bit.</p><p>After that, he turned around and headed out of the training ground.</p><p>"Hey wait, you didn't answer."</p><p>From behind, I threw the sword on the ground and followed him. Yet, despite my persistent pestering, he continued to ignore me.</p><p>This continued all the way until we made it to his office.</p><p>"Are you seriously not going to answer me?"</p><p>Sitting down on his sofa and making myself at home, I glared in his direction.</p><p>"It would have been nice for you to at least tell me this much after you suddenly took me to a training ground and assaulted me out of nowhere."</p><p>After putting his gray blazer behind his chair, Jin sat down and asked.</p><p>"So, what is the purpose of your visit?"</p><p>"Are you just going to continue ignoring my words?"</p><p>"Yes."</p><p>Jin nodded his head.</p><p>"...Tsk."</p><p>Clicking my tongue, I leaned back on my chair and crossed my legs. Leaning my head against my hand, I went straight to the point.</p><p>"How long can you be away from the guild?"</p><p>"Hm?"</p><p>A confused look filled Jin's face as he tilted his head to look at me. After a while, he answered.</p><p>"It depends."</p><p>"Let's say, a month. Do you think your guild will let you leave for a month?"</p><p>"A month?"</p><p>With a thoughtful look on his face, Jin shook his head.</p><p>"A month would be too long. I'm currently handling a couple of important deals, so I won't be able to afford such a long break."</p><p>"What sort of deals are they?"</p><p>"Confidential."</p><p>"Mhh..."</p><p>Lowering my head while covering my mouth with my hand, I thought to myself.</p><p>'Should I just kidnap him?'</p><p>This seemed to be the best option at the moment. Although there were alternatives to Jin at the moment, it wasn't so much for his skills that I needed him, but it was more for his profession that would make things a lot easier for Kevin and me.</p><p>Snapping me out of his thoughts was Jin's voice as he asked.</p><p>"Why are you even asking me this?"</p><p>Lifting my head up a little, I honestly replied.</p><p>"Kevin and I will be going on an important mission, and we thought of bringing you with us."</p><p>"A mission?"</p><p>"Yeah."</p><p>I nodded my head.</p><p>"It's quite dangerous, however, it is also a great opportunity for us to train."</p><p>Deeply staring into my eyes, Jin didn't answer as his brows furrowed tightly. After a while, pressing onto the table, a series of holographic images appeared before him.</p><p>Scrolling through the contents, his hand eventually stopped on a particular file. The frown on his face deepened as he looked at the file.</p><p>Pinching his fingers to enlarge the file, Jin opened his mouth and asked.</p><p>"When exactly are you planning on going?"</p><p>"By the end of the week."</p><p>I replied.</p><p>Since I had a lot of things to do before leaving, I decided to leave with Kevin by the end of the week.</p><p>"Mhh..."</p><p>The frown on Jin's face deepened as he heard my words.</p><p>"For a month?"</p><p>"Not sure. It depends on how fast we can finish everything. It might even be less than that, to be honest. Could even be as fast as one day."</p><p>Scratching the side of his neck, Jin closed his eyes and pressed onto the holographic device to shut it down.</p><p>He then shook his head.</p><p>"I don't think I can go."</p><p>"How sure are you of this?"</p><p>"Fairly certain."</p><p>"I see..."</p><p>'Kidnapping it is.'</p><p>"Can I ask why?"</p><p>With a difficult look on his face, Jin answered.</p><p>"To answer truthfully, my grandpa is going to break through any time soon now, and I don't think I can afford to leave."</p><p>"Alright."</p><p>Massaging my forehead, I slowly nodded my head and stood up.</p><p>"...I won't force you to come. However, if you do change your mind, you can call me before the end of the week."</p><p>"Okay."</p><p>Jin replied with a nod.</p><p>Raising my head to wave in his direction, I headed out of his office.</p><p>"It was nice chatting with you, I'll see you later."</p><p>"Sure."</p><p>I then opened his office door and walked straight out.</p><p>Clank—!</p><p>***</p><p>Jin's eyes lingered in the direction of where Ren had left as a heavy silence descended in the room.</p><p>Only after a few moments did Jin let out a sigh.</p><p>"As expected, the gap between us is still huge..."</p><p>On the outside, it looked like he held the advantage throughout the fight, however, only Jin himself knew just how easily Ren had defended his attacks.</p><p>Even the casual manner in which he had defended his attacks gave Jin an indication of the distance between them. Additionally, the last attack he executed was one he devised to win any 1v1 match.</p><p>To have defended against it somehow, Ren...</p><p>'I guess I'll have to train harder.'</p><p>It was a harsh reality, and Jin could only adapt to it.</p><p>Tapping onto the holographic device, Jin got back to work. Scrolly through his emails, his eyes paused on a certain email before he shook his head and leaned back against his chair.</p><p>"What a pity."</p><p>Jin murmured as he covered his eyes with his arm.</p><p>It really was a pity that he couldn't go. The excuse about his grandfather was a lie. The reality was that Edward's sudden appearance alarmed him.</p><p>For all guilds in the human realm, his sudden appearance brought great turmoil, and Jin could already foretell the troubles that were to come in the near future.</p><p>The mere thought of it gave Jin a headache.</p><p>"It's, Haaa..."</p><p>'So annoying.'</p><p>***</p><p>A couple of hours later, Caissa headquarters.</p><p>"Use whatever means possible to check Jin's schedule. Report to me if he has anything important to do over the next month or so."</p><p>"Understood."</p><p>Faced directly with Smallsnake, I inquired about Jin's schedule for the month. Normally, this wouldn't have been possible, but I trusted Smallsnake and Ryan had the means to make it happen.</p><p>Particularly Ryan, who was now very adept at hacking systems.</p><p>As for Jin, his excuse about his grandfather almost breaking through was bullshit. There was no doubt about this.</p><p>Given everything that had happened, it was most likely that he was concerned about Edward's future actions now that he was back. Assuming that was the case, I could just tell Edward to not touch the Starlight guild and after that kidnap Jin without any problems.</p><p>"Is there anything else?"</p><p>A look at Smallsnake snapped me out of my thoughts.</p><p>Taking a moment to think, I shook my head at him.</p><p>"I'm good."</p><p>"Alright."</p><p>As Smallsnake stood from his seat, he waved his hand and left the office in a lazy manner.</p><p>"If you need anything from me, you can just ask me."</p><p>Clank—</p><p>It wasn't long after he left that a tranquil silence engulfed the place. Nevertheless, someone soon knocked on the door, interrupting the silence.</p><p>Knock. Knock.</p><p>"Come in."</p><p>In anticipation of who was about to arrive, a smile spread across my face.</p><p>Clank—!</p><p>"Excuse me."</p><p>On the other side of the door, a familiar figure appeared. In an instant, I recognized him. Why wouldn't I? Recruiting him had been on my mind for quite some time, and I knew that he was the key to improving my physique.</p><p>As I rose from my desk, I smiled.</p><p>"It's been some time since we last met, Han Yufei."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-548.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-550.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

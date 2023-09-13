@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 747 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 747 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-746.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-748.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Swoosh-! Swoosh-!</p><p>A sword streaked through the air, cutting through it in a swift manner and giving rise to a whistling sound. Sweat trickled toward the ground, quickly evaporating the moment it touched it.</p><p>Swoosh―!</p><p>Amanda swung her sword again.</p><p>'You're not fitted for the sword.'</p><p>Her grip on the hilt tightened, and she found herself swinging with even more force as her teeth clenched tightly.</p><p>'Bastard.'</p><p>She wanted to refute his comments. They were denying her efforts and the blood, sweat, and tears she shed to get where she was.</p><p>It was denying her efforts.</p><p>Every time she thought back at his face and the condescending look he gave her as he said those words, Amanda found herself hating him more and more.</p><p>…It's just that.</p><p>'What if his words are true?'</p><p>She stopped swinging the sword and lowered her hand.</p><p>What if, the words he said weren't a lie and were the truth?</p><p>'But how's that possible? There's no one within my age group who is as strong as me. There's no way what he said is true…'</p><p>She was trying to convince herself, but thinking about the strength that he displayed, Amanda found herself starting to doubt herself even more.</p><p>She looked at the sword in her hand.</p><p>'Perhaps…'</p><p>Clank―!</p><p>The door to the training ground suddenly opened, and when Amanda turned her head to see who had entered, her face crumbled.</p><p>It was him.</p><p>***</p><p>'Someone looks a bit hostile.'</p><p>I could feel Amanda's glare from the other end of the room. She didn't look all too pleased with my presence.</p><p>"What are you doing here? This training ground is occupied."</p><p>"Oh, I know."</p><p>I nodded my head and continued to move forward. Amanda was dressed in a form-fitting uniform that accentuated her curves beautifully, and she had her hair pulled back into a ponytail.</p><p>However, even though she looked very alluring at the moment, the thing that caught my attention was the sword that she was holding in her hand.</p><p>"You still haven't changed your weapon?"</p><p>I was hit by a more powerful glare.</p><p>"Who are you to tell me what I should do, and what I shouldn't do?"</p><p>"Haha."</p><p>I found myself laughing at her tone.</p><p>She was being incredibly cute at the moment.</p><p>"Is there something funny?"</p><p>If looks could kill, I'd probably be dead a million times over.</p><p>…Sadly, looks couldn't kill.</p><p>'Hmm, maybe when my charm levels up… That'd be interesting.'</p><p>"No, don't mind me. I just think that your reaction is quite cute."</p><p>I extended my hand, and my sword appeared in my hand.</p><p>Amanda frowned at my words and took several steps back. She had a sudden look of understanding.</p><p>"Is this how it is? Did you purposely say that I'm not fitted to the sword so that I would develop some sort of interest in you?"</p><p>She looked at me in disgust.</p><p>"If that's your goal, then I suggest you give up. I have no interest in a squid looking man like you."</p><p>"Uh?"</p><p>I found myself freezing on the spot.</p><p>"Oh? Did I hit the spot? Were you actually trying to use this chance to flirt with me?"</p><p>The level of disgust on her face increased, but I didn't care. At that moment, I felt something within me snap.</p><p>'D,did she just call me a squid looking man?'</p><p>"Ah."</p><p>I found myself grasping for my chest as I felt something prick it.</p><p>It hurt.</p><p> Me? A squid looking man?</p><p>'No, no, no… I'm sure she's just saying this because she's angry with me.'</p><p>Yeah, it had to be that.</p><p>It could only be that.</p><p>"Huu…"</p><p>I took a deep breath and recovered my composure.</p><p>'Alright, let's not fall for her taunts. She's clearly just angry.'</p><p>I smiled at her and removed my sword from my sheath. Amanda's eyes narrowed when I did so, and she took several steps back.</p><p>"What are you doing? Were you so hurt by my words that you now want to silence me?"</p><p>My mouth twitched, and I shook my head.</p><p>"You're misunderstanding. I'm not trying to do anything of the sort. I'm just going to spar with you and let you understand why I said what I said."</p><p>I took another deep breath.</p><p>"I didn't say what I said back then just to insult you or flirt with you… The reason why I said what I said is because I truly do think that you're not fitted with the sword."</p><p>While she may not realize it just yet since she was too weak, the moment that she broke into &lt;A-&gt; rank, she would definitely come to realize the flaws within her swordsmanship, and by then, it would be far too late for her to fix.</p><p>She may not be the same Amanda from my world―her current personality being a dead giveaway—or perhaps not even be real, but I felt compelled to correct her at the moment.</p><p>'Actually, come to think of it. Who was it that told her to use the sword?'</p><p>It was definitely odd that Edward didn't notice the flaws in Amanda's swordsmanship, but thinking that he wasn't yet &lt;S-&gt; rank, I could only attribute it to the fact that he was simply not yet strong enough to tell.</p><p>"Let's be serious for a moment. Show me what you've got."</p><p>I urged her on by pointing my sword in her direction. She didn't seem convinced regarding the spar, so I pushed further.</p><p>"Come, you're about to spar against someone who's far more powerful than the strongest man in this world. I'm sure you can set aside some misgivings to learn from me, or…"</p><p>I purposely stopped while narrowing my eyes at her.</p><p>"…are you afraid that my words are right?"</p><p>That seemed to have done the trick. Instantly, Amanda unsheathed her sword and aimed it at me.</p><p>Her face was as cold as ice.</p><p>"Fine."</p><p>She stepped toward me and swung at me.</p><p>'Tsk, as expected. She's really not talented with the sword.'</p><p>It was the second time that I sparred with her, and it became even clearer to me that this wasn't it.</p><p>Clank—!</p><p>"Too obvious."</p><p>I slapped the side of the blade, making Amanda lose her balance. Landing softly on the ground, she punched me again.</p><p>Clank—!</p><p>"Too wide."</p><p>Clank—!</p><p>"…Your movements are wrong."</p><p>Clank—!</p><p>"Oof, even my grandma is more flexible than you. Your movements are way too rigid!"</p><p>Clank—!</p><p>"Really?"</p><p>I grew more and more disappointed as time went on, yet at the same time, I found myself enjoying every bit of the time I was spending with her.</p><p>It was really fun.</p><p>I soon lost track of time. It could've been an hour, two hours, or even more, but we just continued to spar on and on and on. It was only after Amanda was completely gassed that we finally stopped.</p><p>"Haa…haaa…"</p><p>Her heavy breaths echoed throughout the training grounds. Though faint, I could see that the edges of her mouth were curled.</p><p>'She must've enjoyed herself. I'm glad.'</p><p>I sat down next to her. No matter how different she was from my Amanda, she was still her.</p><p>"Convinced yet?"</p><p>"Nope."</p><p>She shook her head. Unlike before, her tone wasn't as venomous.</p><p>I massaged my forehead.</p><p>"Ugh, you're really stubborn."</p><p>"Get used to it."</p><p>"Haha."</p><p>I laughed. She was quite the character.</p><p>'Maybe when I come back, I can share my memories with Amanda. I wonder how she'll react?'</p><p>I grinned when I thought that far.</p><p>"Hey."</p><p>"Hm."</p><p>I turned to look at her.</p><p>"What is it?"</p><p>"Why are you smiling like that? Are you thinking about someone?"</p><p>"Oh?"</p><p>I raised my brow. How did she know?</p><p>When I looked at her, I soon found myself smiling.</p><p>"Yes, I was indeed thinking about someone else."</p><p>Her eyes narrowed, but she soon turned her head away.</p><p>"I see."</p><p>"Are you curious as to who I was thinking about?"</p><p>"No."</p><p>Amanda shook her head and stood up.</p><p>"Who you think about is none of my business."</p><p>"Is that so?"</p><p>I also stood up and stretched my back. At the same time, I put my sword away.</p><p>"Well, if you were curious, I was just thinking about my girlfriend."</p><p>Amanda stiffened on the spot, and I found myself smirking.</p><p>"Ho, ho? What's this? Why are you reacting like that? Are you perhaps embarrassed that you realized that I wasn't flirting with you?</p><p>"Like what?"</p><p>Amanda looked at me calmly. She stared at me coldly, and answered.</p><p>"I was just surprised by how someone that looks like you managed to get himself a girlfriend."</p><p>"Oy."</p><p>I glared at her. She really knew how to hit my sore spots.</p><p>"I'll have you know th—"</p><p>Clank—!</p><p>It was all of a sudden, the door of the training room opened, and a familiar figure walked in. She had short auburn hair, and her face was as exquisite as Amanda's.</p><p>"Amanda, there you are. Where were you? I was trying to rea—"</p><p>She stopped halfway through her sentence and looked at me.</p><p>She opened her eyes wide, and pointed at me.</p><p>"That.. that… who is he? Your bo—"</p><p>"No."</p><p>Amanda cut her off before she could finish her sentence.</p><p>"He's just someone who I was sparring with."</p><p>"Oh."</p><p>Emma nodded, not entirely convinced.</p><p>"Were you sparring the whole time?"</p><p>"Yeah."</p><p>"What for?"</p><p>"He said that I'm not fit for the sword."</p><p>"What?!"</p><p>Emma opened her eyes wide and looked at me.</p><p>"Are you serious? Did he actually say that?"</p><p>"Yeah."</p><p>Amanda nodded her head.</p><p>"He seems to think the opposite of your dad."</p><p>'Hm? Is she talking about Waylan?'</p><p>Was he the one who suggested Amanda was a better fit for the sword?</p><p>"Ugh."</p><p>Emma shook her head.</p><p>"And what's the result? Was he right, or was my dad right?"</p><p>Amanda smiled while she looked at me.</p><p>"Well, I don't know yet. So far, I still don't believe him yet, but we can only ask Oliver later."</p><p>I blinked twice.</p><p>'Oliver? Who's Oliver?</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-746.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-748.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

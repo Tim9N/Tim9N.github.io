@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 841 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 841 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-840.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-842.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>In most cases, the protagonist of a story would appear right at the moment when something terrible was about to occur to their loved ones or friends. And just in the nick of time, he'd save them.</p><p>It always ended up like that…</p><p>So, why?</p><p>Bang—!</p><p>Why did that never happen to me?</p><p>Bang—!</p><p>Why was it that I always arrived a tad bit too late?</p><p>Bang—!</p><p>Just a fraction…</p><p>If only I had arrived a couple of seconds earlier…</p><p>just a few seconds…</p><p>Bang—!</p><p>"Why couldn't you wait a few more seconds?"</p><p>My hand moved on its own. I just pulled it back and repeatedly smashed it against the wall of the cave.</p><p>Debris and dust flew everywhere, but I didn't care and just continued to smash the demon's head against the side of the cave.</p><p>In the meantime, power started to flood my body as the laws within it started to increase. I started to use that very same power that was flooding my body.</p><p>I wasn't supposed to use them…</p><p>Every part of my body was tearing apart at the usage of the laws, but I didn't care…</p><p>It was because I kept holding back that such situations were happening, and I couldn't forgive myself for it.</p><p>At the same time, I couldn't forgive them.</p><p>They were just as guilty as I was, and they needed to die.</p><p>As a result, I made the decision to stop holding back and use everything that I had, even if it meant risking my body.</p><p>Everything…</p><p>Thump—!</p><p>Only when there were no more walls did I finally stop and throw the demon to the ground.</p><p>"You… why didn't you wait for a few more seconds?"</p><p>I stepped forward and lowered my head. Staring straight at the demon, my already numb mind became an even number, and whatever color was left of the world started to fade.</p><p>"Tell, me… why?"</p><p>***</p><p>Helplessness.</p><p>The feeling or state of being unable to do anything to help yourself or anyone else. It was a word and an expression that Prince Solbaken had heard many times in his life.</p><p>Over the course of his life, he had been exposed to a number of situations in which he had seen other people give in to the sensation of helplessness, and he had become accustomed to it.</p><p>To the point where he even found a peculiar sense of satisfaction in it.</p><p>On many occasions, just to see that very same expression, he did everything within his power to make their lives miserable and make them beg him for forgiveness.</p><p>The funny thing was…</p><p>They had never done anything wrong to him.</p><p>He simply delighted in seeing the various expressions on their faces and soon became addicted to receiving such reactions from his prey.</p><p>Yes… their prey, as they were nothing but his prey.</p><p>There was a reason why he didn't kill the human child immediately, and it was precisely so that he could see that very expression on his face…</p><p>Oh, and he did get that look.</p><p>In that brief moment, shivers ran down the Prince's spine as he gazed at the young boy who showed such an expression.</p><p>'I want more… I want to see more…'</p><p>That one brief instance was enough to make the Prince want to kill the young boy's other companion, but…</p><p>"Indeed…"</p><p>Bang—!</p><p>Out of nowhere, a dark figure materialized in front of the Prince, their extended hand lashing out and grasping his face.</p><p>Bang—!</p><p>The Prince felt his head crash against something hard, and he groaned in pain, disoriented.</p><p>"Euakh!"</p><p>"...One should indeed pay for their actions."</p><p>The figure spoke, their voice cold and dull.</p><p>Panic surged through the Prince as he realized he was at the mercy of an unknown assailant, and he tried to resist.</p><p>"You fu—ahk!"</p><p>Bang—!</p><p>His head was slammed against the solid rock of the cave once more, the pain searing through him.</p><p>The rock was extremely dense, and the force of the impact knocked the wind out of him.</p><p>The Prince's heart raced as he tried to struggle, but the grip on his face only tightened, and he felt a strange suction force drawing the energy from his body, draining the power that his majesty had bestowed upon him.</p><p>"I-impossible!"</p><p>The Prince gasped, his mind racing with questions.</p><p>'How can this bastard possess such power? Did His Majesty bestow similar powers upon someone else?'</p><p>The Prince's fear deepened as he felt the foreign energy within his body dissipating alarmingly with each successive blow.</p><p>"N,n..no!"</p><p>Bang—!</p><p>Another impact against the cave wall and the Prince's panic intensified.</p><p>He was helpless, unable to break free from the assailant's grip or prevent the loss of his powers. His head throbbed with pain, and he struggled to maintain his composure.</p><p>Bang—!</p><p>The Prince's head was slammed against the wall once more, but this time, the grip on his face loosened, and he stumbled to the hard ground, coughing and gasping for breath.</p><p>"Keugh... Cough.. kahh...!"</p><p>The assailant's presence loomed over him, and he raised his head slowly, his gaze meeting theirs.</p><p>"Ha... haa... haaa... haaaa... Haaaaa..."</p><p>The Prince's breathing became more labored, and he felt a sense of helplessness washing over him. It was the first time he had experienced such vulnerability, unable to do anything as someone stood above him, looking down on him with a cold, unfeeling gaze.</p><p>The Prince's hands moved back, his body trembling as he tried to push himself away from the figure.</p><p>His mind raced with fear and uncertainty, as he realized the gravity of the situation. He was defenseless, stripped of his powers, and at the mercy of his unknown assailant.</p><p> Tap. Tap. Tap. </p><p>The soft sound of a footstep echoed through the cave, and the figure's shadow cast over the Prince. He swallowed hard, his eyes fixed on the figure's cold gaze. His breathing grew shallower, and his chest tightened with fear.</p><p>'So this is how it feels...'</p><p>The Prince thought, his mind a whirlwind of emotions.</p><p>He had always been the one in control... the one with power and authority. But now, he was reduced to such a sorry state by this unknown figure... unable to do anything but watch as his fate hung in the balance.</p><p>Helplessness...</p><p>Something that he had never thought he'd feel engulfed him, and the Prince's heart clenched in fear.</p><p>"Y.. you.. who are you?"</p><p>He struggled to find a way out, but his mind was foggy and his body weakened. He was at the mercy of the unknown assailant, and the reality of his vulnerability hit him hard.</p><p>"..."</p><p>The figure remained silent, their cold gaze never leaving the Prince. The tension in the air was palpable, and the Prince's thoughts raced as he tried to devise a plan to regain control of the situation.</p><p>But his mind was blank, and his body felt heavy with exhaustion.</p><p>"Ha.. ha.."</p><p>The Prince's breathing grew shallower, and his vision blurred. He tried to summon his inner strength, to fight back against the overwhelming sense of helplessness that threatened to consume him.</p><p>And it was right at that moment that he recalled something.</p><p>"That's right… Why didn't I think of that?" Prince Solbaken muttered to himself as he recalled the true purpose of collecting those who had entered the pillar.</p><p>Power...</p><p>The purpose of collecting them was so that he could fuel his power...</p><p>Despite the setback from what had happened moments before, he had still managed to collect enough.</p><p>Vooom—!</p><p>With a sudden burst of energy, the Prince pressed his hands against the ground, and a darkish green hue began to emanate from his body.</p><p>Rumble—! Rumble—!</p><p>The surroundings trembled as rumbling echoes filled the cavern.</p><p>Stalactites above them fell to the ground, shattering upon impact, and green runes spread across every surface. It wasn't just the cavern that was shaking, but the entire pillar itself.</p><p>The runes appeared on the trees, the rocks, the ground, and everything else that covered the entire world within the pillar.</p><p>Power surged into the Prince's body.</p><p>"It's working."</p><p>Prince Solbaken grinned with delight as he felt the power flowing into his body. It was more than he had anticipated, though slightly less than he wanted.</p><p>Nevertheless, it was enough to fuel his plans. His previously helpless expression morphed into one of twisted satisfaction.</p><p>"Yes, this is good."</p><p>He murmured silently, his voice filled with what seemed to be happiness.</p><p>"It's a little less than I wanted, but this is enough… yeah, this is more than enough."</p><p>Power continued to flow into the Prince's body, and his physical form started to change.</p><p>His body inflated, and his power surged dramatically. The cave, which had seemed on the verge of collapse, finally gave way, as walls cracked and everything fell apart.</p><p>Cr... Crack!</p><p>Boom—! Boom—!</p><p>Prince Solbaken exuded a terrifying aura as his expression twisted with newfound power.</p><p>"Yo—"</p><p>But before he could utter another word, a single command stopped him in his tracks.</p><p>"Stop."</p><p>It was just one word—a single word—but the impact was immense.</p><p>Time seemed to freeze at that moment, and the space around the Prince twisted as a familiar force chained him down.</p><p>"Uh? ...This..."</p><p>The Prince tried to struggle to break free, but his efforts were in vain. He could only watch in horror as a figure approached him from above, two eyes looking down at him with such indifference that it made him feel utterly insignificant.</p><p>"No…"</p><p>The Prince muttered, realizing the gravity of the situation. He was completely at the mercy of this unknown figure.</p><p>But how?</p><p>How was this possible?</p><p>He was someone who stood at the pinnacle... so how... how was it possible for him to lose this miserably?</p><p>How!?</p><p>Tap.</p><p>The sound of a single step echoed in the frozen world, and the Prince's body tensed.</p><p>He looked up to see the figure reaching out with a hand, which soon passed through his body, retrieving his core.</p><p>The process was quick, but in the Prince's eyes, it felt like an eternity.</p><p>'No… not like this…'</p><p>Alas… it was too late. Without so much as sparing him a glance, he clenched his fist, and the core shattered apart.</p><p>Crack!</p><p>Everything turned dark after that.</p><p>During the end of his life, all Prince Solbaken felt was helplessness.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-840.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-842.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

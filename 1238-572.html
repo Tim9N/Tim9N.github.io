@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 572 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 572 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-571.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-573.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huuuu…"</p><p>Inhaling deeply, I focused my attention on my muscles. Like a calm well, I immersed myself in my own mind as everything around me disappeared.</p><p>It was important for me to take note of the different nerves used throughout my body as I felt every twitch and movement.</p><p>"To harden my body completely, I must break the microfibres within my muscles and replace them with stronger ones."</p><p>It was just like building muscles.</p><p>A person's muscles become stronger and more durable by breaking the microfibers inside of them through exercise and building them again through recovery.</p><p>As for me, I intentionally destroyed the micro-givers according to Han Yufei's instructions in order to build them back up, stronger and more durable than before.</p><p>By carefully snapping a selected few micro fibers, one would find their body rapidly hardening.</p><p>This method had only one drawback, and that was that it required a high level of concentration.</p><p>I was fortunate to have a high level of concentration after all of my experiences.</p><p>"Huuu"</p><p>Taking another deep breath, I slowly opened my eyes.</p><p>"This is enough for now."</p><p>As I carefully helped myself up with the wall, I ignored the twitching happening all over my body. It was annoying, but at the same time, bearable.</p><p>"How long has it been?"</p><p>I murmured to myself as I glanced around the room. As there was no clock here, I estimated that about one week had passed since I arrived.</p><p>It may have been less or may have been more...I wasn't sure.</p><p>My brows knit at this realization.</p><p>"What's taking Kevin so long?"</p><p>Honestly, Kevin should have already figured out I was with Jin. As he was able to teleport to us, he should have already appeared in front of us by now.</p><p>While he may not know that I knew this, I was very aware of his stalking feature.</p><p>It was something that was within my memories. Yes, I knew not to trust my memories, but I realized that he had gained them after he managed to somehow find me when I was on a date with Amanda.</p><p>It was fairly obvious if I had to be honest. In any case, with that ability, he should've already gotten an idea of where Jin and I were.</p><p>I furrowed my brows even more.</p><p>"…What if he is hesitating thinking that his sudden appearance might put us in danger?"</p><p>Upon reflection, this made sense. Kevin might end up endangering me and himself if he showed up in a delicate situation.</p><p>If this was the case, his caution was understandable.</p><p>Aside from that, there were two other scenarios that I thought of as I pondered over Kevin's possible delay.</p><p>One, he was simply too far away from us and he didn't know about our current circumstances and judged us to be safe, or two, he was looking for the others that have also appeared on the planet.</p><p>But...</p><p>"I really hope this isn't the case."</p><p>The mere thought made my heart skip a beat</p><p> I could only fear for the lives of the others if they were also brought into this world. In contrast to Kevin, Jin, and me, the majority of them were unprepared for this world.</p><p>If they weren't ready, they could find themselves dying at any moment.</p><p>Especially Smallsnake and Ryan...I was really worried about the two.</p><p>"Fuck."</p><p>A curse escaped from my lips as I clenched my teeth.</p><p>'I need to get out of here faster!'</p><p>"Hm?"</p><p>Kriiiii—</p><p>My mind was jolted out of my thoughts when a grinding sound echoed out and the room's doors slowly opened. My eyes quickly closed as I noticed light spilling through the small gap in the door.</p><p>As a result of my previous experience, I was prepared this time as I also covered my eyes with my hand.</p><p>In any case, the sudden situation caught me off guard as I thought to myself.</p><p>'What's going on?'</p><p>My heart grew tense.</p><p>For the doors to suddenly open out of nowhere, there was definitely something up.</p><p>***</p><p>A little bit before.</p><p>As Exilion, one of the demons responsible for overseeing the rooms gazed at the black doors, he identified one room in particular.</p><p>A smile spread across his face as he stared at the room.</p><p>His expression caught Impedius' attention, and he asked</p><p>"Why are you smiling?"</p><p>"Ke ke."</p><p>A chuckle escaped from Exilion's face as he pointed toward the distance. Toward the door, he was previously gazing at.</p><p>"He's about to die."</p><p>"What?"</p><p>Slowly walking toward the door that Exilion was examining, Impedius examined it carefully with a surprised expression. His fingers touched the door for a while before letting go.</p><p>"You're right."</p><p>He then turned to face Exilion.</p><p>"What should we do? Should we let him die?"</p><p>"No."</p><p>The smile on Exilion's face widened as he shook his head.</p><p>Impedius was puzzled by his reaction, so he curiously asked him.</p><p>"So what should we do with him?" It's obvious that he's on the verge of death. Approximately two hours from now, he should die."</p><p>After taking a peek inside, Impedius spotted the individual who appeared to be lifeless lying on the ground. Besides being dehydrated, he also appeared to be starving.</p><p>He was practically useless.</p><p>To Impediuas, such an individual was not worth saving.</p><p>"Do you have any plans for him or something?"</p><p>"I do."</p><p>Exilion replied while walking next to him and carefully touching the door.</p><p>Taking his hand away from the door, he suddenly asked.</p><p>"What is our goal?"</p><p>"…To break the minds of the individuals and make them work for us so that the mana compressor continues working."</p><p>"Correct."</p><p>Exilion replied while he turned to gaze in the direction of the other rooms.</p><p>"That's how we usually do things. We break the minds of the prisoners and make them work for us, but what if…"</p><p>With a sudden pause, he turned to point at two different rooms.</p><p>"…what if the people that are imprisoned know each other?"</p><p>"...Then they might do anything possible in order to help each other. Especially when one of them is on the verge of dying."</p><p>Impedius finished the sentence as he suddenly understood what Exilion was trying to get at.</p><p>Covering his mouth with his hand, Impedius's back hunched forward.</p><p>"Haha."</p><p>A chuckle soon escaped from his lips as the smile on his face became sinister.</p><p>"So are you saying that we should use this human in order to motivate the other humans to work harder?"</p><p>"That's exactly it."</p><p>Matching his smile, the eyes of the two demons shined.</p><p>"Doesn't this sound fun?"</p><p>"It does, it really does."</p><p>Walking up to the nearest cell, Impedius placed his hand over the door.</p><p>"Let's start then."</p><p>"I like your attitude."</p><p>Walking up to another room, Exilion placed his hand over the door and a rock grinding sound echoed out.</p><p>Kriii—!</p><p>Kriii—!</p><p>Soon the doors started to open.</p><p>***</p><p>"What's going on?"</p><p>When Jin left the room, he simply blinked his eyes once or twice to adjust his eyes to the light.</p><p>By now, he had done this so many times that it had become second nature to him.</p><p>"Hm?"</p><p>As Jin surveyed the surroundings, he noticed two familiar figures walking out of rooms that seemed similar to the one where he was trapped in.</p><p>Jin wasn't one to get surprised often, and when he did, he didn't show it, but as he called out their names, his face couldn't help but change.</p><p>'Just what in the world is going on?'</p><p>"Emma? Han Yufei?"</p><p>"This voice, is that Jin?"</p><p>Emma called out as she covered her eyes with her hand.</p><p>"You're also here?"</p><p>"Jin?"</p><p>Unlike Emma, Han Yufei didn't cover his face with his hand, Nevertheless, he still had his eyes closed.</p><p>It was clear that they weren't able to adjust to the sudden shift in lighting like Jin was able to.</p><p>"Emma? Han Yufei?"</p><p>The sound of another familiar voice echoed in Jin's ears as his gaze snapped to the distance, where Ren stood with an incomparably grave expression on his face.</p><p>His eyes were of course also closed at the moment.</p><p>Though he didn't show it on the outside, Jin suddenly felt a sense of superiority as he gazed at Ren.</p><p>'I guess all that training ended up paying off.'</p><p>"This familiar voice, is that you Ren?"</p><p>Emma's voice echoed out once more.</p><p>Turning to gaze in Emma's general direction, Ren solemnly replied.</p><p>"Yes, it's me."</p><p>"Do you know why we're here?"</p><p>"…"</p><p>Ren didn't answer, instead, he turned to gaze toward his right. Where nobody stood.</p><p>"Han Yufei, how did you get here?"</p><p>"…I don't know."</p><p>Answering Ren's question, Han Yufei turned to face his general direction.</p><p>"All I saw was a bright light and I suddenly found myself trapped inside of a dark room."</p><p>"Shit."</p><p>The frown on Ren's face deepened as he cursed out loud.</p><p>"What's wrong?"</p><p>Emma quietly asked as she crossed her arms together. Her reaction honestly surprised Jin as he had originally expected her to throw a tantrum as soon as Ren ignored her. This was how things usually went with the two of them.</p><p>But much to his surprise, this didn't happen.</p><p>The fact that Emma didn't throw a fit really surprised Jin.</p><p>'She's changed.'</p><p>He quietly thought to himself.</p><p>Massaging his eyes repeatedly, Ren slowly opened his eyes. Well, at least attempted to as he soon closed them again.</p><p>"This is bad..."</p><p>He softly whispered as he continued to massage his eyes.</p><p>"...It looks like we're not the only ones who got teleported into this world."</p><p>***</p><p>'It was just as I feared.'</p><p>Trying to calm my nervous heart, I massaged my eyes and stood still as my eyes adjusted to the light.</p><p>'The fact that Emma and Han Yufei are both here confirms it…Jin, Kevin, and I weren't the only ones that go transported in this world.'</p><p>This was an obvious conclusion after taking note of their presence.</p><p>But...</p><p>What I really wanted to know at the moment about the situation was exactly who got teleported here.</p><p>'Last I recalled, Han Yufei wasn't in the mercenary house back when everything happened, and Emma…well, who knows what she was doing.'</p><p>It was certain, however, that she wasn't with us.</p><p>For her to have also shown up...</p><p>"There's something seriously off about the situation."</p><p>The ominous feeling inside of my heart only grew with time.</p><p>Massaging my eyes one more time, I slowly opened them.</p><p>"Ugh."</p><p>As soon as I opened them, a groan escaped my mouth, but I kept them open despite the pain.</p><p>This gave me a clearer understanding of what was around me and allowed me to see the others for the first time.</p><p>Except for Jin, all the others looked bad. Their clothes and hair were a mess. They had a healthy complexion, but it was still paler than usual, and a far cry from their past selves.</p><p>They didn't look terrible, but...</p><p>There was something else that caught my attention.</p><p>A particular room in the distance.</p><p>Seeing everyone outside their own rooms, and noticing there was only one room apart from mine where no one else stood, I felt an ominous feeling.</p><p>Slowly I walked up to the room.</p><p>'I hope it's just a random room..'</p><p>I thought to myself as I walked to the room.</p><p>...I seriously hoped it was that.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-571.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-573.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 627 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 627 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-626.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-628.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Monolith headquarters.</p><p>Hemlock silently peered beneath the building from the broad window of the room in a lovely area at the top of the headquarters that had been restored throughout the years following the incident in the past.</p><p>The one involving a certain numbered individual...</p><p>The room he was in was quite spacious, roughly the size of a dining hall. There was a wide red carpet covering the floor, and several paintings were hung along the walls on either side of the room.</p><p>With his hands behind his back, Hemlock quietly spoke in an audible tone.</p><p>"Jinhao, do you think I'm crazy?"</p><p>"Crazy?"</p><p>Sat on a black sofa in the middle of the room was Mo Jinhao. The Vice-leader of the Monolith.</p><p>His drowsy grey eyes, which were completely devoid of any pupils, flickered as he rested his body back against the sofa.</p><p>"What suddenly brought up this topic? Did something happen? "</p><p>"No, nothing at all."</p><p>Hemlock shook his head before he turned his body around.</p><p>"It's just that I went to see an old buddy of mine, and while I was there, I started to reflect on the choices I've made in the past, but in the end, no matter how much I think about it, I can't see myself being wrong. What I'm doing right now...is the only thing that has any chance of saving the human race. This must have been one of the motivations for you to join the Monolith, right?"</p><p>"No?"</p><p>Mo Jinhao shook his head while looking at Hemlock.</p><p>"The sole reason I decided to become a member of the Monolith was because I desired to continue living. I do not share the same concern you have for the welfare of other people. They can all die for all I care."</p><p>"I see…"</p><p>Hemlock quietly nodded to himself as he listened to Mo Jinhao's words.</p><p>"…So you joined the Monolith because you wanted to survive?"</p><p>Reasonable.</p><p>After all, there was no other way to survive in this harsh world other than to join the demons.</p><p>The people of this world were much too stupid to recognize the harsh reality that was standing right in front of them, despite the fact that it was right before their noses.</p><p>Shaking his head once more, Hemlock changed the topic.</p><p>"How are the preparations for the war?"</p><p>"We're almost ready."</p><p>Mo Jinhao replied.</p><p>"All of our &lt;S&gt; rankers and the elderly are ready for combat. I've also managed to heal myself from the injuries that I sustained a few years back…"</p><p>Mo Jinhao clenched his fists into a ball and spat through his gnashed teeth.</p><p>"…I can't wait to see 876 again. For what he did in the past, You'll see how brutal his death will be."</p><p> The air in the room fluctuated. </p><p>"876?"</p><p>Hemlock's eyes suddenly jumped up a little. Focusing his attention on Jinhao he said.</p><p>"Talking about him, I've already met him back when I was visiting my friend."</p><p>"You did?!"</p><p>Mo Jinhao jumped up from the sofa.</p><p>As a result of his actions, Hemlock lowered his hand in a move to convey to him that he should calm down.</p><p>"Calm down, calm down, I didn't do anything to him. We are still in a truce, there's no way I can touch him at the moment."</p><p>"I understand."</p><p>Mo Jinhao replied as his face calmed down.</p><p>However, it was precisely at this time when Hemlock cocked his head to the side and examined Mo Jinhao's body in great detail.</p><p>"Yes?"</p><p>"Mhhh…"</p><p>Hemlock scratched the bottom of his chin without replying.</p><p>He then mumbled.</p><p>"…If you really want to get your revenge on 876, you might have a tougher time than you think, at the moment he's not the same as he was in th—"</p><p>Knock—!</p><p>There was a sudden knock on the door.</p><p>"Leader, I have an urgent message."</p><p>A terrified and frantic voice sounded right after. Meeting his gaze with Mo Jinhao's, they both simultaneously redirected their sights to the door.</p><p>"Come in."</p><p>Mo Jinhao responded in Hemlock's place, and the door opened to display the features of a young man with short black hair and a lanky figure.</p><p>He was currently perspiring heavily from the side of his face while clinging to a stack of papers that he was carrying in his hands. His face became noticeably paler the instant he walked into the room and his gaze settled on Jinhao and Hemlock.</p><p>He then lowered his head and reported.</p><p>"Emergency report! It has been revealed that a number of contracted individuals have passed away for no apparent reason. After conducting additional studies, we discovered that the demons they had a contract with have since been eliminated, which is the likely cause of their deaths. After looking through the database, it has been determined that the demons who have vanished are the same ones who were accountable for converting the Union members during the most recent gathering that they had."</p><p>The young man said everything in a single breath.</p><p>When he finished and raised his head, he was startled to discover that Jinahao's and Hemlock's expressions were more grave than anyone else's could possibly be.</p><p>"You may leave."</p><p>Before he could say anything else, with a single wave of Jinhao's hand, the young man was thrown out of the room.</p><p>When the doors were finally locked, there was an immediate increase in the level of tension within the room.</p><p>"We have a spy within our ranks."</p><p>Mo Jinhao was the first one to speak, as he expressed his opinion.</p><p>"I believe so too."</p><p>Hemlock gave a nod of approval as he waved his hand and shifted the papers that were lying on the floor in his direction. He then continued to remain quiet while the documents floated up to his hand and were examined by him before he finally spoke again.</p><p>"With the targets being so specific, and with the deaths of the demons that were supposed to not be known by anyone, it is reasonable to assume that there is a spy among us..."</p><p>The tension in the room rose as Hemlock's brows started to furrow even more.</p><p>At this same instant, he had a startling flashback to the words that his "highness" had said to him a couple of years ago, and as a result, his demeanor changed.</p><p>He issued a command by tapping on his watch.</p><p>"Someone call for Everblood. I would like to meet him."</p><p>[Understood.]</p><p>He got a reply not long after he sent the message.</p><p>Mo Jinhao, who was silently sitting back in his chair, inquired.</p><p>"Why did you ask Everblood to come here?"</p><p>"I have my reasons."</p><p>Hemlock replied without saying anything else.</p><p>In the end, seeing how adamant Hemlock was at not speaking, Jinhao could only give up.</p><p>Knock—!</p><p>It wasn't long until someone knocked on the door again, and a raspy voice echoed.</p><p>"Have you called for me?"</p><p>"Come in."</p><p>Hemlock gestured him with his hand.</p><p>As soon as the door was opened, a humanoid entity in black entered the space. The demon, in contrast to everyone else who came into the presence of both Jinhao and Hemlock, seemed to take their presence in stride as he made himself at home.</p><p>"What have you called me here for?"</p><p>He asked while he sat on the sofa opposite to Jinhao.</p><p>His relaxed attitude caused Jinhao to frown. He nevertheless remained quiet. There was a hierarchy, and the demons were always ahead of their contractors in terms of importance.</p><p>It was the sad reality for those who decided to join the demons.</p><p>It was fortunate to know that Hemlock didn't seem to mind Everblood's attitude as he asked.</p><p>"Recent reports have indicated that a considerable number of the spies operating in the human domain have vanished. I was wondering whether you were aware of what was going on there seeing as you are a demon and you are in charge of watching over that area."</p><p>Hemlock was straightforward with his question as he directly asked Everblood the crux of the problem.</p><p>"I do."</p><p>And so was Everblood, who promptly nodded his head.</p><p>Jinhao and Hemlock took a minute to comprehend Everblood's remarks, and when they did, they were surprised.</p><p>"You do?"</p><p>Never did they expect him to reveal it so easily.</p><p>"I do, and I was just about to come to you to inform you of the situation."</p><p>Everblood drummed his fingers on the armrest of the sofa.</p><p>Hemlock who was watching him from the side took a couple of steps forward.</p><p>"Jinhao and I were speculating that there is a spy within our mid—"</p><p>"It's not that."</p><p>Everblood cut Hemlock mid sentence.</p><p>"The real culprit behind everything that is happening has nothing to do with a spy. Rather, the answer is much simpler than you think. "</p><p>With a small pause, Everblood mumbled.</p><p>"Oh?"</p><p>Hemlock raised his brow. He was now curious.</p><p>"Who might this culprit be?"</p><p>Hemlock calmly asked.</p><p>Everblood responded in a direct manner while leaning back in his chair and giving him a sideways glance.</p><p>"The culprit behind everything is none other than Kevin Voss."</p><p>***</p><p>Clank—</p><p>Everblood had been inside the executive room for two hours at this point. Nobody outside the room knew what they were talking about during that period, but judging from how eerie silent and tense the environment was outside the room, it was most likely very sensitive information that they were discussing.</p><p>Everblood emerged from the chamber on his own just when the clock indicated that two hours had gone. As he came out, there was no one else behind him.</p><p>As he exited the chamber, he was greeted with the sight of a lengthy corridor that was only a few feet wide. As he moved forward another step, a figure materialized next to him. Chains were dangling from the arms and legs of the figure in question.</p><p>"It's almost time…"</p><p>A hoarse and cold voice echoed throughout the halls.</p><p>In spite of how loud the voice was, the only one who could hear the voice was Everblood.</p><p>He promptly replied inside of his mind.</p><p>'Only a few weeks left until the truce ends. All of the arrangements over the past few years have been made.'</p><p>"That's good."</p><p>Replied the figure that walked beside him while the long set of chains hanging from his arms and legs scraped the ground behind him.</p><p>"My goal may have changed, and I won't be able to take over my body for a bit, but that no longer matters..."</p><p>The voice became colder, sending shivers down Everblood's spine.</p><p>"…As long as Kevin dies, everything will be solved."</p><p>'Don't worry, I'll make sure to get the job done.'</p><p>Everblood responded in his consciousness as his feet came to a halt in front of a specific room. The door opened with a flick of his wrist, and he entered alongside the enigmatic person.</p><p>Greeting Everblood upon entering the room was a sight that made him smile.</p><p>'…With everything we've prepared, I have no doubt in our chances of completing our goal.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-626.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-628.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

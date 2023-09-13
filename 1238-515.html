@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 515 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 515 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-514.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-516.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>While everyone focused on the empty grounds below, the crowd cheered raucously throughout the arena.</p><p>Everyone's attention was focused on a certain demoness as she stood in the middle of the arena with a bright smile on her face.</p><p>Opening her mouth, she emitted a sweet, seductive voice that filled the arena.</p><p>[For today's match on our left side we have DeathBringer, the current Emperor of the King bracket.]</p><p>As she spoke, the gate on the left side opened, and a demon appeared from the other side of the arena.</p><p>Seeing bat wings splayed across his back and a frame so enormous that it even put some orcs to shame, the crowd became even more enthralled.</p><p>"Kill!"</p><p>"Destroy that elf!"</p><p>"You better make me something you traitor!"</p><p>As he stopped in the middle of the arena, he did not bother to look at the crowd. Despite being a demon, he had no sense of attachment toward them. Rather, he despised them with all his being.</p><p>As he lowered his head to examine his right hand, his eyes lingered on a small black bracelet.</p><p>'Suppressor.'</p><p>It was an artifact created by demons that suppressed the wearer's rank. He had no choice but to wear it since the fight was between two Emperor ranks of different brackets.</p><p>The more he stared at the bracelet, the bigger the scowl on his face became.</p><p>"How fucking dare they..."</p><p>Flap—</p><p>He flapped his wings once, casting a huge shadow on the ground. An evident display of might by him.</p><p>In response to his readiness, the demoness reached across the arena with her right hand. There was an air of excitement in the crowd as her sweet voice swept through the air.</p><p>[And on our right side we have SilverStar, the current Emperor of the Duke bracket, and the challenger!.]</p><p>Slowly, the gates on the right began to rise. Unlike DeathBringer, SilverStar was met with a lot of hostility.</p><p>"Die you eleven scum!"</p><p>"I can't wait for you to die!"</p><p>"You better die, I bet a lot of money on you."</p><p>This was to be expected. Given their pride, the demons would still rather support someone from their own race over someone from another race, regardless of whether that person was a prisoner of war or had committed a hideous crime like ingesting another demon's core.</p><p>As SilverStar walked slowly toward the center of the arena, he ignored the noise from the crowd. At this moment, the only thing that was in his mind was his opponent.</p><p>DeathBringer.</p><p>As soon as he was a few meters away from DeathBringer, his feet stopped. As he stood at the opposite end of DeathBringer, everyone could see their differences in size.</p><p>It felt as though an ant was fighting up against a large monster. Their difference was incomparable.</p><p>While those who bet on SilverStar regretted their decision, those who bet on DeathBringer secretly rejoiced. The difference in size was enough for most people to feel more secure about their choices.</p><p>[Are you two ready?]</p><p>In that moment, the voice of the demoness was heard. The arena grounds instantly became intense as everyone stopped speaking for a moment.</p><p>"Yes."</p><p>"…Yes."</p><p>The two contestants answered at the same time. A satisfied smile spread across the demoness' face as she raised her hand and lowered it.</p><p>[You may begin!]</p><p>In the aftermath of her words, the crowd became even more heated and shouted even louder.</p><p>"Yes!"</p><p>"Fight! Fight! Fight!"</p><p>Crack! Crack!</p><p>As the two figures scrutinized one another closely, cracks began to appear beneath their feet.</p><p>Both figures soon disappeared from their spot.</p><p>Booom—!</p><p>As the two figures disappeared and reappeared in front of each other, an explosive sound echoed throughout the arena. Their figures soon reappeared in the middle of the arena, and everyone was able to catch a glimpse of them.</p><p>As he sought SilverStar, the demon extended his arm in a clawed movement, directly aiming for his head. His attack was fast and fiercesome, leaving little time for SilverStar to react.</p><p>Even then, SilverStar was not an Emperor for nothing.</p><p>Raising his hand his wand pointed at the claw, and several magic circles formed at the tips of each nail, stopping them in place.</p><p>Well, at least for a couple of seconds as cracks soon started to form on the magic circles.</p><p>Crack. Crack. Crack.</p><p>Despite being able to deflect the attack, the circle's power was not sufficient to stop the claw from reaching SilverStar's head, as they broke apart and continued to head for SilverStar's head.</p><p>DeathBringer, however, had lost most of the momentum by the time this had happened, so SilverStar only had to tilt his head to dodge the attack.</p><p>And that was exactly what he did.</p><p>Swooosh—!</p><p>Avoiding the attack, SilverStar pushed his body back as a breeze blew and his hair scattered. With a simple wave of his hand, his hair tied back together behind his back.</p><p>Raising his wand, he aimed it at the demon. A large magic circle formed at the tip of the staff.</p><p>With an elegant tap of his staff, he muttered.</p><p>"Here."</p><p>His voice led to the magic circle transforming into a blue transparent energy beam that headed toward DeathBringer.</p><p>Staring at the incoming attack, DeathBringer snorted.</p><p>"Hmph."</p><p>Fully expanding his wing, a majestic black hue began to form out his body. The entire arena started to tremble.</p><p>His hand was then squeezed into a fist, and the beam headed toward him was directly dispersed in the air, much to the audience's surprise.</p><p>Dealing with SilverStar's attack, he quickly followed up with his own attack. Raising his hand that was clenched into a fist, he squeezed his back muscles and proceeded to throw a casual punch in SilverStar's direction.</p><p>Well, that was at least how it looked to the crowd. The opposite could be said for SilverStar who stared at it with an incredibly solemn look.</p><p>The punch that DeathBringer threw was anything but casual, and only SilverStar could sense the strength underlying it.</p><p>With his hand raised, three magic circles materialized next to him, forming a large shield around him. The punch soon came into contact with the attack.</p><p>Bang—!</p><p>With an enormous explosive sound, the shield started to ripple as SilverStar's gaze turned firm.</p><p>Crack.</p><p>Cracks slowly started to form on the outer shield. Trying to supplement the depleting mana of the shield with his own mana, SilverStar furrowed his brows tightly.</p><p>Crack.</p><p>Even then, the cracks continued to form on the shield. It wasn't long before a glass-shattering sound echoed out, and the first shield broke into pieces.</p><p>"Kh..."</p><p>With a weak groan, SilverStar took a step back and blood started to seep down his nose.</p><p>Gritting his teeth, he continued to persevere.</p><p>Crash—!</p><p>The second barrier collapsed, causing SilverStar's face to pale significantly.</p><p>But it was enough as a smile soon formed on his lips.</p><p>That was because after the second barrier collapsed, the attack finally ceased, leaving behind one last barrier. As SilverStar glanced at DeathBringer, he could hear the spectators' loud chants.</p><p>When SilverStar turned his head to look at the crowd, he could feel their malice-filled eyes and words wishing him nothing but death.</p><p>He was honestly sick of it.</p><p>This useless game where he had to fight other people for the sake of the demon's entertainment had become too much for him to stomach. It took all his willpower to keep a straight face.</p><p>Just the thought made him clench his teeth tightly. However, his anger disappeared as fast as it appeared. Taking a deep breath, he calmed down.</p><p>Raising his head he glanced toward one of the platforms. After a while, a soft smile appeared on his lips.</p><p>'I should start now.'</p><p>He raised the tip of his wand and a magic circle formed in front of him. In the meantime, DeathBringer had already rushed in his direction and was only a couple of meters away from him.</p><p>It was then that something happened.</p><p>The demonic energy that was emanating from DeathBringer's body suddenly halted, and a horrified look appeared on his face as he clenched his left hand.</p><p>This happened so fast that no one was able to notice it. But it was enough time for SilverStar who slowly smirked.</p><p>"Goodbye."</p><p>He muttered before Deathbringer's figure was enveloped by his spell. All the demons in the stand stopped moving and looked at one another as a bright wave of energy shot across the arena.</p><p>***</p><p>A moment after SilverStar released the spell, Lightning Dragon snapped his eyes open. His attention quickly turned toward the arena grounds below and he paused to observe DeathBringer. More specifically, the bracelet that was resting in his hand.</p><p>"Hmmm..."</p><p>As his eyes lingered on the bracelet that rested on Deathbringer, his eyes flashed in a certain hue before they returned to their regular yellow color.</p><p>"I see..."</p><p>He muttered as he turned his head to gaze in a certain direction. To be more precise, toward a specific platform in the distance.</p><p>His languid and lazy eyes sharpened for a brief moment.</p><p> Turning his attention back toward the arena, Lightning Dragon saw SilverStar standing in the middle of the arena with a cold look. On the ground opposite him was a simple bracelet, nothing else. </p><p>It was clear that in that short moment he had turned to look away, the battle had ended.</p><p>After a brief moment of silence, one by one the demons started to protest as they all found the situation ridiculous.</p><p>"Whhhaaa! What is this bullshit!"</p><p>"He cheated!"</p><p>"I will kill you!"</p><p>They weren't angered by SilverStar's performance, but rather, at how easily he had beaten the Emperor-rank contender of the King bracket.</p><p>What kind of sick joke was this?</p><p>For him to completely obliterate DeathBringer, the current Emperor rank of the King bracket, not everyone could accept such a result.</p><p>Lightning Dragon took a few minutes to contemplate the chaos before shrugging his shoulders.</p><p>"Meh."</p><p>Picking up the sword, he sat back on the sofa and closed his eyes. But just as he was about to sleep, he raised his head and glanced at a familiar figure, one that he couldn't quite remember the name of.</p><p>He only remembered the name of people whose names were worth remembering.</p><p>This character trait wasn't something that he did on purpose, but it was just the side-effect of his martial art.</p><p>"Hey."</p><p>Opening his mouth, his words instantly attracted everyone's attention.</p><p>Sensing his gaze pausing on her, SilverMoon stoically replied. But secretly, she was smirking to herself.</p><p>'Are you finally going to submit to us after seeing such a performance?'</p><p>"What is it?"</p><p>"Remind me again..."</p><p>Lowering his head to glance toward the arena, his eyes paused on the figure standing in the middle. Scratching his head, he furrowed his brows tightly.</p><p>"Who is he?"</p><p>***</p><p>Overlooking the arena from above, Duke Anozech lips twisted in a savage smile.</p><p>"What a wonderful performance."</p><p>"I'm glad it was to your liking."</p><p>Standing behind him was the same servant from before. His name was Keroch and he was a Marquis-ranked demon.</p><p>For the past few decades, he had been serving Duke Anozech as his right-hand man.</p><p>Everything that happened below was part of his arrangement.</p><p>Seeing the satisfied look on the Duke's face, Marquis Keroch felt satisfied.</p><p>Raising his head, he hesitated.</p><p>"Your excellency, regarding the Overlord match…"</p><p>"Proceed as we've arrangement."</p><p>Seemingly being able to read his thoughts, the Duke ordered.</p><p>Marquis Keroch lowered his head.</p><p>"As you wish your majesty. We will do as you have instructed."</p><p>Taking a bow, his figure disappeared from the spot, leaving the Duke by himself.</p><p>As he glanced at the arena below, the Duke's eyes remained fixed on SilverStar.</p><p>A figure popped into his mind, and he smiled.</p><p>"Time sure flies fast when you're surrounded by such fun…"</p><p>He then licked his lips.</p><p>"Sadly all fun must come to an end eventually. It's about time we switched the current Overlord."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-514.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-516.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

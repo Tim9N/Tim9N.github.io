@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 487 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 487 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-486.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-488.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>I felt a sudden sense of amusement rise from within me as I stared at Octavious.</p><p>Even though I couldn't tell at first, he really did look like Melissa from up close. Was that possibly the reason for my sudden sense of amusement?</p><p>I couldn't tell.</p><p>Turning my attention back toward the reporters, I continued.</p><p>"You people are probably unaware about what truly transpired before a bounty was put on my head, however, if I had to summarize what happened, I would say..."</p><p>Leaning my body a little, I placed my hand underneath my chin and looked upwards.</p><p>"Hmm, I guess you could say that I did what the Union couldn't do for quite a while, and that's actually doing some damage to the Monolith."</p><p>"..."</p><p>Silence.</p><p>Once again, despite of the words I just said, no one was able to say anything as they just continued staring at me with a dumb look on their face.</p><p>They were apparently still processing what I previously told them.</p><p>Regardless, I continued.</p><p>"To summarize what happened between me and the Union, it would be like this..."</p><p>Raising my hand, I pointed at myself.</p><p>"I, Ren Dover, dealt more damage to the Monolith than the Union ever had in their whole existence. The piece of recording you just listed was proof of that. Why else do you think the Monolith would be so adamant in using me as a counterparty for the Union to sign the truce? Just for the sake of it?"</p><p>I shook my head.</p><p>"No, it's cause I can actually do something about them, unlike the Union who can't seem to be able to do anything at this point."</p><p>Shaking my head, even more fiercely, I let out a sigh.</p><p>"Haa..."</p><p>Then, taking out a potion from my dimensional space, I quickly chugged it down.</p><p>"Hmm?"</p><p>As I was chugging the potion down, I suddenly had a thought.</p><p>'Shit, I'm starting to become like Melissa.'</p><p>Over the past week, I had been taking the potions as though they were water.</p><p>'I need to do something about this.'</p><p>I knew that this couldn't keep going in the future. I needed to find a way to completely dispel my mental traumas.</p><p>Plack—!</p><p>Smacking the potion on the table, I gazed at the reporters.</p><p>"That being said, the reason I'm telling all of you this is not because I want you people to realize just how shitty of an organization the Union is, no, that's far from it."</p><p>Raising my arm, I wiped the side of my mouth.</p><p>"Although I'm still pissed off about what the Union did to me, at the end of the day, I get their decision. Everyone has their priorities."</p><p>"Just like you people aren't my priority, my life isn't their priority. They are an organization designed to think the best for humanity, and back then, with all the information they had at their disposal, sacrificing me was the correct choice. Had I been in their position, I would've probably done the same."</p><p>The faces of the reporters changed when they heard my words, however, I merely shrugged my shoulders when I saw this.</p><p>As much as I wanted to antagonize the Union, I truly did think that their decision wasn't wrong.</p><p>There was simply no way for the Union to know that I had taken the [Seed of limit] in the past. Furthermore, they were also unaware of who I was exactly, during the time I saved Monica and the others.</p><p>I may hold some resentment for their decision, but, I wasn't so blinded by rage to not understand their perspective.</p><p>Though unfortunate, this was the cruel reality.</p><p>"Haaa..."</p><p>I let out a long sigh.</p><p>Supporting my chin with my arm which was propped up on the table, I gazed into the eyes of every reporter present.</p><p>"The same thing could be said to have happened to Aaron. Even though he isn't exactly guilty, he also isn't exactly innocent. I won't get into too much detail about what he's done, however, he was simply used as a scapegoat by the Union in order to let me come back to the human domain. If you compare me, to him, who by the time was already dead, selling him out was the most appropriate decision."</p><p>Lowering my head, I fiddled with the empty potion bottle in front of me.</p><p>"Don't get me wrong. Just because I'm bashing the Union a lot, it doesn't mean I'm against their methods. All I'm trying to do is let everyone know what type of organization the Union is..."</p><p>"An organization that won't think twice about sacrificing you for the benefit of humanity."</p><p>Pausing, I let go of the empty bottle in my hand. Raising my head, I closed my eyes for a brief moment before opening them again.</p><p>"Take this as a warning from someone who's been on the discarded side of the Union, if you want to survive in this world, you must prove your worth."</p><p>This was not a peaceful world.</p><p>It was a world where the strongest survived, and the weakest died. It may have not been apparent now, but, in the very near future, this would become more and more apparent to the people.</p><p>It was best to let the world realize this now before it was too late.</p><p>Leaning my body forward a little, I turned my head in the direction of one of the cameras recording.</p><p>"Prove to the Union that you aren't some expandable. Don't just start blaming the Union or every organization out there for your problems."</p><p>Raising my head, I glanced toward the ceiling of the room and asked.</p><p>"You have seen the crack in the sky, right?</p><p>Because my eyes were currently on the ceiling of the room, I wasn't able to see the reactions of the people present.</p><p>"If you have, then I will let you know more..."</p><p>However, from how quiet everyone was being, I knew that everyone's attention was currently drawn toward me.</p><p>"The crack will continue to expand. The mana density in the world will increase, and so will your talent cap. If previously you had your talent cap to blame for your inability to climb to the top, now you don't."</p><p>"You may have lower resources than some others, but so did some of the current high rankers. You don't want the Union to throw you away? Then you better get stronger, because, in a couple of years' time, the least of your worries aren't going to be the Union nor the Monolith, but it will be the third cataclysm."</p><p>At the exact moment, I mumbled the last words, the eyes of many individuals present in the room started to open widely.</p><p>Their previous silent and impassive expressions changed to that ones filled with shock, as some couldn't stop themselves from standing up.</p><p>Finally, ever since I started speaking, the reporters mustered the courage to speak up.</p><p>"Im...impossible..."</p><p>"It can't be..."</p><p>"You must be lying."</p><p>Voices filled with disbelief echoed throughout the room as the complexion of some of the reporters paled considerably.</p><p>I couldn't blame them though.</p><p>Everyone knew just how catastrophic a cataclysm was. Especially since the second cataclysm only happened eighty years ago.</p><p>Knowing that a third one might happen, people would obviously start fearing for the worst.</p><p>"Some of you might be thinking that all I'm saying is a load of crap, however, I just wanted to let you know that in the few years that I was missing, I was actually in the dwarven domain and the elven domain."</p><p> Turning my head, I glanced at Douglas who looked back at me. After a short pause, Douglas nodded his head. </p><p>"Isn't that right, Douglas?"</p><p>"Yes."</p><p>Instantly, murmurs started to spread throughout the auditorium as the reporters started talking amongst themselves.</p><p>Ignoring it, I continued to speak.</p><p>"As you all know, the other races have gone through what we're currently going through right now. So, listen well when I tell you this, get your shit together, because in a few years' time, this so-called momentary sense of peace that you are all enjoying will be gone, and what you will see will be the true beginning of the end."</p><p>If there was a better time to let the world know about what was about to come soon, now was the best time.</p><p>With the third cataclysm and the Demon King soon arriving, it was time for everyone to wake up from this false sense of peace that they were currently experiencing.</p><p>Even though I was planning on defeating the Demon King, the Demon King wasn't the only enemy out there.</p><p>There was an army of demons behind him.</p><p>If humanity kept progressing at this rate, when the time came that the Demon King arrived on earth, most of them would end up being dead-weight.</p><p>"Shit..."</p><p>Lowering my head and massaging my forehead, I let out a small curse.</p><p>'Even though I just told them that I wasn't going to be their hero, I am literally sounding like one.'</p><p>Letting out another sigh, I brought the microphone closer to me.</p><p>"I think I've said enough. Before any of you jump up to ask me any questions, I'll make it clear now, I've already said what I wanted to say, and I won't be answering any questions. Like I've said before, don't make me out as a Hero just for your sake, if you're looking for one, then I've got the perfect candidate for you."</p><p>Pausing, the edges of my lips curled upwards.</p><p>"...and that's Kevin Voss."</p><p>Covering my mouth with my hand, I had to once again pause as my shoulders trembled a little. For a brief moment, I almost laughed out loud.</p><p>Recomposing myself, I pushed the microphone back.</p><p>"Keum."</p><p>Raising my hand into a fist, I coughed slightly.</p><p>"As I was saying, if you're looking for a push—Keumm, someone to put your hopes into, then you can do that with Kevin. He's the type of guy that will care about random people that he doesn't know."</p><p>As I spoke, I made sure to emphasize the last part.</p><p>Simply put, I wanted to once again make it clear to everyone that I wouldn't get out of my way to save some random stranger's life if it meant that it could endanger my life.</p><p>Just wasn't me.</p><p>Once again staring at the reporters, I turned the microphone and stood up.</p><p>"I guess this is enough for me."</p><p>Glancing at Douglas who was next to me, I softly mumbled.</p><p>"I'll leave the next part to you."</p><p>"Sure," Douglas replied with a calm smile.</p><p>With a slight nod, I glanced in Ocatvious's direction for a brief moment before leaving.</p><p>His face was emotionless just as always, however, I could tell that inside he was very mad. Couldn't blame him, I did after all publically shame the Union in front of the whole world.</p><p>That being said, I didn't regret my words one bit.</p><p>And it wasn't like he could do anything about it. I may have just antagonized him and the half of the world, but I was confident enough to know that the Union wouldn't move regardless of what I did.</p><p>Monica, Douglas, Gervis, and perhaps even the elven queen.</p><p>Those were the individuals who Octavious knew were on my side. The Union simply had nothing to gain from attacking me or my family.</p><p>Furthermore, with me saying all of this publically, if anything did happen to me, the prime suspect would be the Union.</p><p>Their reputation was already bad as it was.</p><p>If they truly did try to silence me, their reputation would fall to a point where they would no longer be able to withstand the backlash.</p><p>"Heh..."</p><p>Leaving the auditorium, the edges of my lips curled upwards.</p><p>'This was satisfying...'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-486.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-488.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

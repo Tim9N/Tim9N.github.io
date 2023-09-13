@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 621 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 621 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-620.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-622.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The area went completely still when it was revealed that I managed to stop the attack with one of my fingers.</p><p>"You…"</p><p>When Silug and the others turned to look at me, I could feel their shock. Everyone in the room was obviously astonished by how I was able to stop his attack with just a single finger—I would have also been astounded if I had been in their shoes.</p><p>It had to be noted that...it wasn't as 'effortless' as it seemed to be on the outside.</p><p>'I think I broke my finger.'</p><p>My body was strong.</p><p>Extremely strong at this point. Especially after I had been training in the martial body art that Han Yufei had given me.</p><p>The durability of my body was still considered inferior to that of an orc, which was much more resilient than my body could possibly be.</p><p>The only reason I was able to stop him was because I had cheated.</p><p>Sort of.</p><p>'…and just when I promised myself to no use mana.'</p><p>In the end, I was forced to use it. Silug's strength was far more terrifying than I had expected.</p><p>I was even starting to think that his strength was on par with that of Liam.</p><p>Well, that was at least what I managed to make out from this short exchange.</p><p>"Alright, let's go again."</p><p>Moving my finger away from his fist I took a couple of steps back.</p><p>'It hurts.'</p><p>I gestured for Silug to come my way with my other hand without showing any signs of pain on my face. In reality, I knew...I knew that my finger was definitely fucked.</p><p>Without saying anything, he nodded his head. Straightening his back and taking a deep breath, he extended his hand in the direction of the other orcs.</p><p>"Bring me my axe."</p><p>His loud voice causes the surroundings to shake.</p><p>His body was emitting an erratic, dark green color. I was astonished to see a crimson tint mixed within the green hue when I took a closer look at him. Taking note of this particular aspect, my eyes flinched wide a little.</p><p>'He's different from before.'</p><p>The aura around him…</p><p>How could it explain it? It was a lot different from before.</p><p>'Bloodlust.'</p><p>The cause of the change in demeanor became clear to me quickly. In the end, it came down to the fact that Silug's body was emitting a strong bloodlust.</p><p>It made me realize that he was finally taking this seriously.</p><p>'No, rather than being serious. He's betting his life on this.'</p><p>The way he was staring at me…</p><p>It gave me the impression that he saw me as one of his biggest foes, one with whom he intended to contend all the way until the end of his life.</p><p>'Interesting.'</p><p>I thought while I began stretching my legs and arms.</p><p>This might turn out a lot more difficult than I had originally anticipated.</p><p>'Well, for as long as I don't use mana that is…'</p><p>The story would be a lot different if I could use my mana. After all, with the aid of [Eyes of Chronos], I didn't fear getting hit by his attacks.</p><p>"Here you go, Chief."</p><p>An orc knelt down in front of Silug and handed him an item that was wrapped in a thick white cloth.</p><p>Grasping it with his arms, Silug brought it up and slowly unveiled the white cloth.</p><p>The air stirred with each unwrap of the cloth.</p><p>Silug posed me a question while he continued to unwrap the white cloth.</p><p>"Are you not going to take out your weapon?"</p><p>"Weapon?"</p><p>I lowered my head and stared at my waist where my sword usually was.</p><p>It wasn't there at the moment.</p><p>Thinking for a moment, I shook my head.</p><p>"No, I'm good for now."</p><p>I was here to test the limits of my body, not my skill with the sword.</p><p>"Are you sure?"</p><p>Silug questioned.</p><p>I confidently nodded my head back.</p><p>"Yes, I'm confident."</p><p>"Okay."</p><p> Silug removed the cover to show a single-sided, ancient, worn-out axe. It didn't appear to be anything noteworthy at first sight. However, as soon as the final piece of cloth was taken off, a menacing atmosphere swept through the square, and the scent of iron lingered in the air. </p><p>Catching a whiff of the smell, my brows knit.</p><p>'It smells like blood.'</p><p>For a weapon to have this sort of smell...It must've killed countless enemies.</p><p>Krr….</p><p>Tracing the axe on the ground; sparks flew in the air until Silug stopped and rested the top of his arm on the bottom end of the axe.</p><p>An oppressive and authoritative pressure slowly started to come out of his body.</p><p>"Are you ready, human?"</p><p>He asked while deeply gazing my way.</p><p>I took a deep breath and closed my eyes.</p><p>[Body Hardening]</p><p>[Mind and Spirit connection]</p><p>My body began to tremble and I felt what felt like an electric current going through it as soon as I activated the two effects.</p><p>The sensation vanished as quickly as it had appeared, but just then, I noticed that my body's muscles were pulsing oddly. And if it wasn't odd enough, my body also experienced another strange sensation.</p><p>This one…</p><p>It was hard to explain, however, it felt as though I could control every single muscle inside of my body with just a thought.</p><p>It felt as though my mind and all the muscles inside of my body were one. I didn't even need to think before my muscles moved in the way that I wanted.</p><p>This was just about as close as I could describe the sensation that I was feeling. It wasn't something that could be explained with mere words.</p><p>Rather, its effect would be more noticeable during battle…which I was about to have.</p><p>"Alright, I'm ready."</p><p>I muttered under my breath as I took another breath.</p><p>Silug vanished from my eyesight exactly as my sentences ended. One could wonder how he was able to move at such speeds with such a big physique as his entire body disappeared from the spot.</p><p>'Swing to my left.'</p><p>Despite his speed, I was able to easily read his movement as I took a step to the side.</p><p>Boom—!</p><p>Exactly as I stepped to the side, Silug appeared in the same spot I was in before. He vertically swung his axe toward the ground.</p><p>The ground entirely crumbled beneath the orcs' full-scale assault, as one might anticipate, and a huge, thunderous sound reverberated across the area.</p><p>The sound was loud enough that anyone within a couple of kilometers could hear it.</p><p>That only applied to the others, however. I was currently in a state where everything around me was numb.</p><p>Sort of when I was in Monarch Indifference, but with my own body in control.</p><p>The loud noise didn't bother me in the least bit as Silug was the only thing that was in my vision.</p><p>'Take a step to the right, and back.'</p><p>Silug followed up with a vertical swing, which was once again easily avoided by me. I felt a little sting in my head when I dodged, but it wasn't anything to be concerned about.</p><p>It was probably the chip which was running at full throttle at the moment.</p><p>'Step to the right again and use your left hand to slap in a downward manner.'</p><p>Following the steps inside of my mind, I raised my left hand and blindly smacked the left side.</p><p>Smack.</p><p>Feeling a cold and flat surface on my hand, Silug's axe came hurtling toward the ground beside me.</p><p>Booom—!</p><p>There was another thunderous explosion.</p><p>Sparing it a glance, I turned my neck and avoided Silug's fist which came whistling against my head.</p><p>'That was close.'</p><p>I thought it was going to land for a brief moment. Thankfully, I was able to dodge, and this was all thanks to the [Mind and spirit connection] which boosted my reflexes to the utmost limit.</p><p>Swooosh—!</p><p>Just like that, Silug kept attacking with his axe while I continuously dodged all of his attacks without any effort.</p><p>"Are you not going to attack?"</p><p>Silug asked, swinging his axe one more time.</p><p>Booom—!</p><p>The ground quaked.</p><p>Halting his movements he glared in my direction.</p><p>"All you have been doing is dodging. Are you incapable of fighting back?"</p><p>"Right..."</p><p>He was right. I was so immersed in testing my new abilities that I had completely forgotten to attack.</p><p>"My apologies, I'll start attacking now."</p><p>Pressing my foot against the ground my vision distorted and Silug appeared right in front of me.</p><p>Tensing my back muscles, and gathering my strength, I punched with everything I got. In response to my attack, Silug tried to raise his axe.</p><p>"Uh?"</p><p>Unfortunately, by the time he attempted to raise his axe, four translucent rings had already formed on the axe's body, temporarily impeding his motions.</p><p>The amount of time was brief, but in a fight like this, every second counted. My punch smacked him square in the cheek as it raced toward his face.</p><p>Silug's face turned a forty five degree angle in the process. Shockingly, his body didn't move a single bit.</p><p>"Not bad..."</p><p>He muttered while he stared at me from the corner of his eyes and turned his head to face me once more.</p><p>"However, if that is the strength of your punches, I'm afraid you won't be able to win."</p><p>He raised his hands again and prepared to swing his axe at me again.</p><p>I could only sigh when I saw this.</p><p>'As expected, although my body's strength is a lot more formidable than it was in the past, it's still nothing to that of an orc.'</p><p>My previous punch...</p><p>Had it landed on a human or anyone else, it would've probably sent them crashing against the ground.</p><p>Unfortunately, I was facing an orc.</p><p>'Alright, let's end this.'</p><p>Realizing that there was no more point in continuing the bout, I waved my hand. A black and ghostly figure emerged from behind Silug like a shadow. Then, with a single kick toward his knee pit, Silug lost balance and his body came tumbling forward. Predicting where he would fall, I coated my leg with mana and kicked him in the head.</p><p>Thump—!</p><p>All of this happened within the span of a couple of seconds.</p><p>By the time everyone realized what was going on, the fight had already ended. Pressing my foot against Silug's stomach, I pointed my finger toward his forehead.</p><p>"You've fought well."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-620.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-622.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

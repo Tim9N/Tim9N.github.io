@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 477 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 477 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-476.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-478.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Haaa..."</p><p>Leaning her head by her arm, Sophia lazily scrolled through her phone and checked her socials.</p><p>Scrolling through the many different posts, her fingers paused on a certain post.</p><p>It was an image of an individual looking toward the sky with a lost look.</p><p>[Shoot for the moon. Even if you miss, you'll land among the stars.]</p><p>"Ugh."</p><p>Her face started to cringe considerably.</p><p>'Why do people like this guy so much? I get that he's kind of handsome, but...ugh.'</p><p>The individual in the photo was quite handsome, however, the lines beneath it were quite cringy. What was worse were the comments beneath his post.</p><p>3,033,025 likes.</p><p>Coraline_Col : You look amazing! Way to go chap!</p><p>MuscleBeast4TheWin : You were spectacular at the tournament. Congrats on your victory.</p><p>Muzzy : Cool!</p><p>The poster was none other than Kevin Voss.</p><p>Being one of the most successful Lock graduates, coupled with his looks, Kevin almost had a cult-like following at the Lock, and outside.</p><p>He was pretty much a celebrity wherever he went, and from time to time he would post an update on social media that would garner tons of views and likes.</p><p>However, to Sophia, whenever he posted, all she could feel was utter cringe.</p><p>Especially when she would read the captions underneath his comment. She really couldn't understand why people would prefer him over Ren.</p><p>What was wrong with them?</p><p>"And here I thought that you weren't a fan of Kevin."</p><p>An arm suddenly struck from behind, grasping Sophia by the neck.</p><p>"Huii!"</p><p>Right as the arm hooked on her neck, Sophia's eyes opened widely as she tried to pull the arm away.</p><p>"Khh...Maria stop!"</p><p>However, regardless of how much strength she put in, she couldn't free herself from its grasp.</p><p>Soon face turned red and she was forced to tap on the arm in defeat.</p><p>"Ma..ria, I can't breath."</p><p>"Hahah, you know I'm just joking."</p><p>Finally letting go of Sophia's neck, a burly girl with short blonde hair and a tanned body slumped on the seat next to her.</p><p>Her name was Maria Lopez and despite her lazy and nonchalant look, she was fairly popular in the class for being one of the most beautiful girls in the school alongside Sophia.</p><p>If not for her fiery nature, she would've probably been a lot more popular. Not only that but she was also ranked amongst the top five in her year.</p><p>With her hands in her pockets and crossing her legs, she teasingly looked at Sophia.</p><p>"You previously told me that Kevin was just a pretty boy, and here you are, staring at him with drool on your mouth."</p><p>"Shut up."</p><p>Sophia rolled her eyes.</p><p>Putting the phone down, she seriously said.</p><p>"You already know that I don't like him at all."</p><p>"Then who do you like?"</p><p>Taking her hands away from her pockets, Maria gazed at one particular student at the front of the class.</p><p>She wasn't the only one in the classroom who had her gaze on him as a large majority of the girls in the classroom had their eyes on him.</p><p>With short brown hair, a chiseled jaw, and outstanding looks, he was Ethan Kodak, the number one ranked in the whole year.</p><p> Following Maria's line of sight, Sophia's face turned strange. </p><p>"Ethan?"</p><p>She then shook her head.</p><p>"No, no way, he has the worst temper of anyone that I have ever seen. He's even worse than you."</p><p>"You're right."</p><p>Maria thought with a nod.</p><p>Placing the palm of her hand on her neck, she glanced around the class before she started to scratch the back of her head.</p><p>"Say, what class do we have today?"</p><p>"Didn't you check?"</p><p>Sophia replied with a bit of annoyance in her voice. However, despite that, she quickly replied.</p><p>"It's [Psyon adaptability in combat and control]."</p><p>"Ah, shit."</p><p>Maria's head slumped back. Her eyes which used to shine with vigor quickly lost them as her body became listless.</p><p>"That class is so boring..."</p><p>She managed to utter after a while.</p><p>"...I don't want to go."</p><p>Raising her head, she looked at Sophia.</p><p>"Hey, can we skip?"</p><p>"No."</p><p>Sophia quickly shot her down. Rejected by Sophia, Maria powerlessly slumped down her chair.</p><p>"Muuu..."</p><p>Ignoring her and taking out her phone, Sophia started scrolling through her social media again.</p><p>Even though their class [Psyons adaptability in combat and control] was supposed to be one of their more important classes, because of the professor they had, almost no one in the class was able to learn anything.</p><p>The way the professor spoke was too monotonous and complex for most people to understand.</p><p>It had gotten to the point that almost no one paid attention to the class. Most of the time, the professor's voice would be drowned out by the chatter of the students in the class.</p><p>"I hope the academy does something about this."</p><p>Sophia muttered out loud, as her thumb scrolled down the screen of her phone.</p><p>"Ugh."</p><p>Once again she scrolled past Kevin's post, causing her face to cringe again.</p><p>Clank—!</p><p>It was then that the door suddenly sprung open.</p><p>The moment the door opened, no one in the classroom even bothered lifting their heads up to look at who had entered the classroom.</p><p>Even Sophia didn't bother to look.</p><p>"Keum..."</p><p>A subtle coughing sound echoed throughout the whole classroom. It was light, but it smoothly traveled through the ears of everyone present.</p><p>Despite that, no one still bothered to pay attention to the person that had entered the classroom.</p><p>"Haaa..."</p><p>Putting her phone away, Sophia slowly raised her head.</p><p>However, at the exact moment she raised her head, a tangible, almost frightening pressure bore down on almost everyone inside the classroom.</p><p>"Ugh?!"</p><p>"What's going on?"</p><p>"What is happening to me?"</p><p>Panic instantly descended upon the classroom, as everyone had difficulty moving or breathing.</p><p>Not everyone felt this way though, as a couple of individuals were able to keep their heads up. Sophia was one of them.</p><p>"Interesting."</p><p>An amused voice rang from next to Sophia as Maria sat up straight and stared at the person standing at the podium of the classroom.</p><p>One by one, everyone raised their heads, and what they were met with were two dull grey eyes hidden beneath some thin-framed glasses.</p><p>A chill ran down everyone's spine the moment their eyes met with the individual's eyes.</p><p>Wearing a black T-shirt and with both of his hands on the podium of the classroom, everyone finally realized that the person in front of them was not their professor, but in fact someone else.</p><p>Someone that almost everyone in the room was able to recognize.</p><p>The most mysterious and famous senior in their academy's history.</p><p>Ren Dover.</p><p>"Looks like everyone finally managed to calm down."</p><p>Upon seeing everyone calm down, cuffing the sleeves of his shirt, Ren's eyes slowly turned a deep shade of blue.</p><p>The pressure that reached down on everyone immediately stopped.</p><p>However, despite that, a deathly silence suffused the room.</p><p>"This was a lot more than I expected."</p><p>Breaking the silence was a sluggish and almost nonchalant voice. Entering the classroom, Thomas arrived before Ren and patted him on the shoulder.</p><p>"Thank you."</p><p>Twisting his head to look at everyone else, he started to introduce the individual who had just come into the classroom.</p><p>"Everyone, let me introduce to you, my new assistant professor. Ren Dover."</p><p>"Ah..."</p><p>The first one to let out a sound was Sophia who quickly covered her mouth with her hands.</p><p>Staring at Ren's figure in the middle of the room, her cheeks couldn't help but redden as her heart leaped out of her chest.</p><p>'It can't be! How is this possible? Could this be the best day of my life?'</p><p>Before she could open her mouth, the classroom erupted into noise as multiple eyes sparkled in excitement.</p><p>"Oh my god! He looks exactly the same as when he was on TV!"</p><p>"Senior what is your current rank!"</p><p>"Were you really bored?"</p><p>Subject to all of the stares in the classroom, Ren's face remained calm.</p><p>It was clear that he had expected such a reaction from the students, and was thus was able to keep his composure.</p><p>Raising his hand, everyone stopped talking.</p><p>"Thank you."</p><p>Ren thanked the classroom with a slight nod.</p><p>Glancing in the professor's direction, he started to introduce himself.</p><p>"Just like the professor previously said. I am here as an assistant professor, so please treat me as such. My name is Ren Dover, I am twenty and hope to be of help to you in the future. Regarding my personal life, I will refrain from answering."</p><p>Much to some's dismay, Ren drew a line between himself and everyone in the room.</p><p>Walking next to the professor, he wordlessly stood next to him.</p><p>"Well said."</p><p>Patting him on the shoulder, Thomas pinched the tip of the nose and pushed his glasses up. He then walked toward the podium where he finally began his lecture.</p><p>"As everyone already knows..."</p><p>***</p><p>The lecture went on to continue for the next two hours.</p><p>Listening to the lecture, my brows wrinkled and relaxed many times as I tried to comprehend the words that the professor was saying.</p><p>Even though I could more or less understand what he was saying, the choice of words that he was using made it extremely hard for me to follow, let alone the students who seemed bored out of their minds.</p><p>"When one conducts the mana in the air, at their resolve they can diverge the mana into different psyons, consequently resulting in the tint that they engender when assailing. The grander someone's authority over psyons, the more sumptuous the tint that revolves around them."</p><p>About halfway through the class, almost everyone stopped paying attention to his words as they all took out their phones and started doing whatever they wished to do.</p><p>Most shockingly was the fact that the professor didn't seem to mind this at all as he just continued to ramble and ramble throughout the whole lecture.</p><p>By the time the lecture was about to end, no one no longer paid any attention to the class as they all looked at the clock at the side of the class.</p><p>Seeing this, my eyes started to squint as I looked at the professor in front of me.</p><p>'I'm starting to understand why Donna is suspicious of him. Is he just a bad at expressing himself or is he a spy?'</p><p>At the moment he didn't string to me as a spy as he just seemed bad at expressing himself.</p><p>The reason why I believed this was because, for one, he wasn't one of the people in my memories that were a spy, and two, the contents of his lecture were actually correct.</p><p>He wasn't misleading the students or anything.</p><p>It was hard for me to follow along, but I did find myself surprised by his knowledge of some of the things he said, as even I had trouble understanding those areas.</p><p>That being said, just because my suspicions were lowered, didn't mean that he was completely off the hook.</p><p>I was still going to pay close attention to him.</p><p>"This is it for today's lecture."</p><p>It was then that the professor spoke up, marking the end of the lecture.</p><p>At the exact moment his words echoed throughout the room, everyone stood up from their seats and started to leave the classroom one by one.</p><p>Staring at the students that were leaving, a simple smile emerged on his face.</p><p>"For the next lecture that we will be holding tomorrow, we will go to Section G for a practical session. So please come with the adequate attire."</p><p>But it seemed as though he was talking to the air as everyone just ignored him and continued to0 leave the classroom.</p><p>Some did try to strike up a conversation with me, but I quickly rejected them. There was a time and place for that.</p><p>"Ren."</p><p>Just when I thought that there would be no one else would come to me, I unexpectedly heard the sound of a familiar voice coming from my right.</p><p>Right as I turned my head to see who it was, a groan escaped from my mouth.</p><p>'Oh, god.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-476.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-478.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 820 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 820 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-819.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-821.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Pillar of Wrath]</p><p>How long had it been since she had gotten stranded over here?</p><p>Staring at the massive dunes ahead of her, she smacked her dry lips.</p><p>She had lost count.</p><p>The desert was scorched by the red sun hanging in the sky, and her feet sank into the sand beneath her.</p><p>"Uek!"</p><p>Swoosh—!</p><p>On occasion, scorpions twice her size would ambush her from beneath the ground, launching themselves at her at high speeds.</p><p>Xiu! Xiu!</p><p>If not for her fast reactions, she would've found herself in a difficult situation more times than she could count.</p><p>Thump! Thump!</p><p>As she twisted her body and pulled on her bowstring, the enormous scorpions lifelessly fell in front of her.</p><p>'I've lost count of the number of scorpions I've killed so far.'</p><p>Amanda pondered while staring at the scorpion's corpse at her feet. It was entirely clad in red armor, which glistened beneath the red sun that hung in the sky.</p><p>By her estimates, their power was comparable to that of a Marquis ranked demon, and its large pincer dripped a black liquid that liquefied the sand when it touched it.</p><p>Tzzzz. Tzzzz.</p><p>Amanda drew a small bottle from her bag and placed it beneath the pincer to collect the liquid that was leaking from it.</p><p>'This might be useful for later.'</p><p>She had already collected several samples along the way, and she would repeat the procedure each time she killed a scorpion. To her delight, the poison was quite effective against the demons. She had already tested it on multiple demons and was ecstatic with the results.</p><p>It was just that… she didn't feel comfortable carrying that much poison with her. Especially since the bottle she would put it in would sizzle at the touch.</p><p>Clank—!</p><p>Amanda tucked away her flask, which was now half-filled with a black, viscous substance, with a satisfied expression.</p><p>While she wasn't comfortable with the idea of carrying that much poison with her, as long as it was in her dimensional space, she felt that it wasn't a big deal.</p><p>She just didn't want it to explode on her the moment she took it out.</p><p>"Now then…"</p><p> She turned her gaze to stare into the distance. </p><p>Her delicate brows furrowed, and she pondered over her next location.</p><p>She was honestly clueless at the moment.</p><p>She was merely just going along on her own whims and was just going around the desert in hopes of finding someone she was familiar with, but that proved to be a harder task than she had anticipated as those that she did meet were either dead or demons.</p><p>It was truly a bothersome sight.</p><p>She may be used to seeing dead bodies by now, but it was still an uncomfortable sight.</p><p>"Hm?"</p><p>Immediately thereafter, Amanda's ears perked up, and she stopped abruptly. She wasn't sure at first, but she believed she had felt a muffled explosion sound emanating from her right side.</p><p>Booom—!</p><p>She wasn't wrong. It was quiet, but she could still sense the muffled sound of the explosion, and her eyes jumped up with a little excitement.</p><p>'Finally.'</p><p>Sound meant that there were people fighting in the distance, which meant that there was a chance that she'd find someone she knew.</p><p>Without wasting a single second, she drew her bow, planted her foot in the sand, and dashed across the sand at incredible speeds.</p><p>Swoosh—!</p><p>It took her only a few seconds to cover hundreds of kilometers, and after what seemed like a minute of running, she arrived in front of a rather large dune.</p><p>Boom—! Boom—!</p><p>Upon her arrival, she was certain that something was happening.</p><p>The muffled sounds transformed into the full-fledged sound of explosions ripping through the air above her.</p><p>"What in the…"</p><p>When Amanda reached the top of the dune, she was astounded by the view that greeted her.</p><p>BOOOOM—!</p><p>"Arghhh!"</p><p>"huak!"</p><p>It was a bloody sight.</p><p>Two parties engaged in a conflict that was bloodier than anything she had ever witnessed, with limbs flying everywhere and red and black intertwined on the surface of the sand, staining it with their colors.</p><p>BOOOOM—!</p><p>The explosions were as loud as ever, and Amanda's gaze fell on the plot of land in the faraway distance.</p><p>She unknowingly swallowed a mouthful of saliva as she gazed over the horizon, where tens of thousands upon tens of thousands of red armors glistened beneath the red sun that hung in the sky.</p><p>She recognized those armors in an instant, but if that wasn't enough…</p><p>"Aaakghh!"</p><p>"H..help!"</p><p>Screams of terror and agony echoed through the air as thousands of scorpions covered the land and thousands of demons roamed the sky.</p><p>If Amanda had one way to describe the current situation, it'd have to be a complete and utter disaster…</p><p>She was able to see thousands of forces that belonged to the alliance. They were steadily losing ground by the second, and they were engaged in a fierce battle to prevent themselves from retreating even further.</p><p>The situation was nothing short of precarious.</p><p>"Aren't they…"</p><p>Amanda's eyes narrowed, and she focused her gaze on a group of individuals in the distance. She was able to identify them without any difficulty, and her demeanor abruptly became very solemn.</p><p>'I need to help them.'</p><p>Their situation… it was anything but good.</p><p>Although they still seemed to be able to hold on for a while, she knew that they needed help urgently.</p><p>Thus, without further ado, she took a deep breath and clenched her bow tightly.</p><p>Even though she was still quite far away from where the main battle was taking place, the distance was sufficient for her. She grabbed onto her bow, curved her back in the opposite direction, and pulled on the string as she did so.</p><p>While she was channeling her mana, a potent hue emanated from her body.</p><p>"There's someone over here!"</p><p>"Get her!"</p><p>This hue caught the attention of several demons who were located a safe distance away, but she did not pay any attention to them.</p><p>Her attention was fixed on what lay in front of her, and as she pulled the string further back, her eyes became perfectly focused on the targets.</p><p>"Huuu…"</p><p>Exhaling, she let go of the string.</p><p>Thunk!</p><p>And with a noise that was eerily similar to bones cracking, the string became taut, and a translucent blue arrow shot through the air.</p><p>Swoosh—!</p><p>The speed of the arrow was neither fast nor slow.</p><p>It was about average, with the majority of the demons below being able to detect it.</p><p>There were some demons below that tried to interfere with the path of the arrow, and some of them even tried to intercept it; however, those who belonged to the four races used whatever means they had available to stop them.</p><p>They could tell at a glance that that was no regular arrow.</p><p>It took a few seconds for the arrow to reach its highest point, and just as it was about to fall back down onto the ground, Amanda's eyes widened, and her mouth parted open as a faint word escaped from her lips.</p><p>"Split."</p><p>The arrow stopped moving in midair almost as soon as the word left her mouth, and shortly after that, a terrifying glow engulfed the entire world from above.</p><p>Xiu! Xiu! Xiu! Xiu! Xiu!</p><p>Like rain, thousands upon thousands of arrows streaked down from above at terrifying speeds.</p><p>The demons became vigilant, but it was already far too late.</p><p>As soon as they became aware of what was happening, the arrows came hurtling down in a series of whistles, impaling hundreds of demons at once and killing a significant portion of them in the process.</p><p>"Akah!"</p><p>"Huak!"</p><p>"Kehe!"</p><p>Screams of agony reverberated through the air as demons fell to the ground with resounding thumps.</p><p>Clink! Clink! Clink!</p><p>It was unfortunate that the same could not be said for scorpions. Unlike the demons, their body armor was able to deflect some of the arrows that were falling upon them.</p><p>In spite of their armor, however, a number of scorpions sustained severe wounds during the sudden rain of arrows, and their march slowed considerably, allowing the members of the Alliance to catch their breath.</p><p>The battle, which seemed so one sided moments prior, suddenly changed, and it was all thanks to one single arrow.</p><p>While they had not gained the upper hand or evened the score, they had gained significant breathing room.</p><p>"Retreat! Organize yourselves!"</p><p>"Use this chance to re-organize the positions! Quick!"</p><p>Those of the four races quickly retreated and formed solid formations after seizing that brief opportunity.</p><p>In the meantime, Amanda had already left the spot she was previously standing on when she shot the arrow.</p><p>She knew all too well that she had attracted a lot of attention and that she was currently the number one target of the demons.</p><p>Even so, she was proud of what she had achieved.</p><p>"Amanda, quick, over here!"</p><p>It was a soft voice that ushered her in a certain direction, and when she turned her head, she managed to spot a familiar flock of orange hair, and her expression softened a little.</p><p>"Monica."</p><p>"Quick."</p><p>Monica urged her, waving her hand at her urgently while looking behind her with a sense of urgency.</p><p>Seeing how serious she was, Amanda rushed to her side without delay. As soon as she arrived in front of her, she noticed the presence of numerous terrifying energies in the vicinity, and her face paled.</p><p>"Quick, we don't have much time. Thanks for buying us time."</p><p>"Mhm."</p><p>Amanda followed Monica from behind, and that was also when she spotted Donna, and Douglas not so far from her.</p><p>The two of them seemed to be waiting for them, and when they showed up, Donna immediately greeted her.</p><p>"It's good that you're here. We need your help."</p><p>"Tell me what I need to do."</p><p>Amanda nodded her head seriously, her expression as cold as a rock.</p><p>"Just support us."</p><p>Monica answered, her gaze fixed on the distance.</p><p>"We're currently trying to hold the main forces of the demons back and stop them from getting to the others. We were struggling a bit before, but with your help, we should be able to last for longer. "</p><p>"I se—!"</p><p>Just as Amanda was about to speak, a demonic figure emerged from beneath one of the dunes in the distance, and almost all of them turned their heads at once, their heart at their throat.</p><p>The demon had short black hair and a large horn protruding from his head. He had a rather large build and carried a heavy sword behind his back.</p><p>Thump!</p><p>Stepping right above the dune, the atmosphere changed almost immediately, and Amanda choked on whatever words she was trying to say moments earlier.</p><p>That…</p><p>That was not an existence she could provoke.</p><p>When she turned her head, it was to her dismay to realize that the three of them were showing similar reactions to hers.</p><p>One of true fear.</p><p>"That…"</p><p>Monica opened her mouth, her lips trembling.</p><p>"We're fucked, aren't we?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-819.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-821.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

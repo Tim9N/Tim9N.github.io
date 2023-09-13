@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 497 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 497 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-496.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-498.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Angelica?"</p><p>Entering the castle, what met my sight was darkness. Tranquility encompassed the surroundings as the area around me was deathly silent.</p><p>What was most odd about the situation was that I couldn't see what was ahead of me.</p><p>It felt as though I was inside of a different dimension. One devoid of any sound and light.</p><p>"Angelica."</p><p>I called out again, my guard on full alert.</p><p>Yet again, I was met with no response. Closing my eyes, I came to a conclusion.</p><p>This situation was without a doubt something planned by the demons.</p><p>Step. Step. Step.</p><p>The clear and regular sound of footsteps echoed through the dark space. A gentle white glow coming out from my body illuminated the area around me.</p><p>Despite that, I still couldn't see anything.</p><p>"Odd..."</p><p>I came to a stop.</p><p>"There's no way the castle is this long."</p><p>For the past ten minutes, I had been walking in a straight line. Having seen the castle from the outside, I knew that it wasn't that long.</p><p>This only meant one thing.</p><p>"I'm inside of an illusion."</p><p>Or at least this was what I thought was the most probable scenario.</p><p>Licking my lips, I fell into thought. Eventually, I sat down crossed-legged and closed my eyes.</p><p>"Since this is an illusion, then there's no point in me moving."</p><p>The fact that I was in an illusion wasn't what worried me.</p><p>What really worried me at the moment was the condition of my real body. If this was an illusion what was actually happening to my real body?</p><p>That said.</p><p>"How am I supposed to get out of this situation?"</p><p>Illusions dealt with the mind, meaning that all the skills I learned except for two, were useless to me.</p><p>'Use Monarch indifference.'</p><p>'If you want strength, use Monarch's Indifference. So far, you've only used a small fraction of its powers.'</p><p>'However, don't get ahead of yourself. You are still not out of the waters just yet...'</p><p>Faint recollections of a conversation I had a while ago started to replay inside my mind.</p><p>Did you predict this? Was this what you meant when you said those words?</p><p>Swooosh—!</p><p>Out of nowhere, the scenery around me started to change.</p><p>"Huh?"</p><p>Caught off-guard, I stood up from my spot. It was then that I realized.</p><p>"It's starting..."</p><p>The real illusion was starting.</p><p>***</p><p>Jet black hair, deep blue eyes, and a height that was around 178 cm.</p><p>...Ren Dover.</p><p>That was the name of the human that made her suffer a humiliating defeat in the past.</p><p>He was also the man that had changed her life, and someone that Angelica couldn't quite describe in words.</p><p>Going from a Baron-ranked demon all the way to a Count-ranked demon in the span of a couple of years. An achievement that she wouldn't have been able to accomplish had it not been for him.</p><p>She could still visibly recall the moment when he promised her that he would help her grow stronger.</p><p>She didn't really believe him in the past, but circumstances forced her to sign the contract.</p><p>Who would've known that he would've managed to keep the promise? In fact, he had even exceeded her expectations by quite a large margin.</p><p>What shocked Angelica the most was not his strength that soared like a meteor, nor the elaborate schemes he would come up with from time to time, but it was his knowledge.</p><p>A knowledge so vast about the world that even shocked her. On such example of such knowledge, was the current circumstance. How was he able to tell that the demons were residing inside of this dungeon? Furthermore, he also seemed to know exactly what they were planning.</p><p>This wasn't something someone like Ren should've known.</p><p>It just didn't make sense to Angelica.</p><p>But.</p><p>There was something that even he didn't know about her...</p><p>Bang—!</p><p>A bright dark purple light flashed, illuminating a dark hall for a split second. What accompanied it was a loud explosion.</p><p>"Cough...cough..."</p><p>Stumbling a couple of steps, Angelica's hair scattered all over her face. And her chest heaved up and down unevenly.</p><p> "We've been looking for you all over the place, but we didn't think you would actually come to us." </p><p>A sinister voice echoed throughout the large and majestic hall of the castle.</p><p>By the side of the hall stood six black pillars that dimly lit the surroundings through a series of torches attached to their bodies.</p><p>Coming out from the shadows, was a black humanoid figure with long black hair that cascaded down his shoulders.</p><p>He wore formal attire reminiscent of the victorian era's clothing with a black top hat on his head, appearing close to the embodiment of elegance. An eye-catching appearance that left a powerful impact on whoever looked at him. On both hands, he wore white gloves, as a calm and noble aura filled with dignity spread out from his body.</p><p>With his eyes locked on Angelica, the edges of his lips curled upwards.</p><p>"Young miss, your mother is looking all over the place for you. I think it's about time you return to the main clan."</p><p>"My mother?"</p><p>"You heard correctly."</p><p>Clenching her teeth, Angelica bit her lips. Recomposing herself and throwing her hair back, she shook her head.</p><p>"That isn't possible."</p><p>The face of the demon before Angelica changed a little. The smile on his face lessened, and his eyes grew more sinister. This only happened for a split moment, however, as he quickly returned to his usual expression.</p><p>Turning his head, the demon's eyes locked on a figure in the distance.</p><p>"...Is it because of him?"</p><p>The figure was none other than Ren.</p><p>He was currently immobile with his eyes closed.</p><p>Surrounding him were two other demons that were in a similar state. The aura of the two demons surrounding Ren was around &lt;A&gt; rank; signifigying that they were both Count ranked demons.</p><p>Fortuantely, it didn't seem as though they could attack him.</p><p>"Is he the reason why you aren't returning to the main clan? ...Or are you afraid of the consequences that your</p><p>The demon in front of Angelica asked.</p><p>Angelica frowned. She then coldly spat.</p><p>"Think whatever you like..."</p><p>"Oh?"</p><p>The demon laughed a little. A terrifying pressure came out of his body, forcing Angelica to take a step back.</p><p>Angelica's countenance slowly started to change as graveness flashed across her eyes.</p><p>"Count Nubulus."</p><p>She muttered underneath her breath.</p><p>Once her words faded, the pressure coming out from the demon came to a stop. Surprise flashed across his face.</p><p>"So you still remember me?"</p><p>"...Yes."</p><p>Angelica slowly nodded her head.</p><p>Of course, she knew him.</p><p>How could she not know him? He was one of her guards back when she used to live in the main clan. The Lust clan.</p><p>Despite having risen so much in strength, Angelica still didn't think she could face him head-on.</p><p>Especially since he was on the verge of breaking through to Marquiss rank. She knew that she was not his match.</p><p>Raising his hand to adjust his gloves, Count Nebulus started to speak. His demenour was a lot more friendly than before.</p><p>"It's been a while since we've last seen each other, young miss."</p><p>He paused and scanned Angelica's body up and down. With a look filled with satisfaction, he started to nod his head.</p><p>"...But if I do have to say so myself, you've grown up beautifully. Not only that but from the fact alone that you've managed to reach Count rank, it is safe to assume that you've inherited your mother's genes."</p><p>There was genuine happiness in his voice.</p><p>The same couldn't be said for Angelica who glared in his direction.</p><p>"Don't mention her."</p><p>"Oh my."</p><p>Count Nubulus made a troubled look.</p><p>"Are you still angry at the fact that your mother sent you to a small sub-branch?"</p><p>Raising his head, Count Nebulus removed the top hat from his head.</p><p>"Youn miss, you have to understand that the reason she did that isn't because she hates you, but because of your failure in completing the mission that we've assigned to you. We spent a lot of resources trying to help you give you the opening back then, yet, you failed."</p><p>Count Nebulus paused. For a split second, Angelica felt his voice become extremely sinister and cold.</p><p>"...You needed to be punished for it."</p><p>Gulp—!</p><p>Angelica unknowingly swallowed a mouth of saliva, as she faltered a little. This did not go unnoticed by Count Nebulus who continued.</p><p>"I was originally very disappointed by your disappearance. So was your mother. However, from the looks of things, it seems as though I may have been overthinking a little. For you to reach such strength in such little time, I'm impressed."</p><p>Bending down on one knee, and placing the top hat beside him, Count Nubulus took his glove off revealing his hand that seemed to have been made out of jade, and extended it in Angelica's direction.</p><p>"Young miss, no, your excellency, would you do me the honors of coming back to the main clan?"</p><p>"Ah..."</p><p>Angelica's body froze.</p><p>Staring at the hand that was reaching out for her, Angelica felt a mixture of different emotions rise from deep within her.</p><p>But out of all the emotions, the one that was the most prevalent was sadness.</p><p>Acceptance.</p><p>This was something that Angelica craved ever since young. She wanted to be accepted by her mother, a figure that should only looked up to in the past.</p><p>Someone that Angelica wanted to be.</p><p>...But that was the past.</p><p>After everything that happened to her, she no longer felt the same sense of attachment and worship that she had for her mother.</p><p>Angelica held no ill feelings toward her mother for throwing her away in the past, but that didn't mean that she held any good feelings toward her as well.</p><p>Now that she was fully grown up, Angelica realized just how the world worked.</p><p>And it was because of this that she realized how lucky she was to have met Ren. Someone who did not treat her as an expandable that would throw her away the moment they made a mistake.</p><p>Therefore.</p><p>Lowering her head and gazing at Count Nebulus's hand that was reaching out for her, she shook her head.</p><p>"I'm sorry, but I cannot."</p><p>"You can't?"</p><p>Count Nebulus raised his head in shock. Lowering his hand, his previous gentlemanly demeanor started to crumble.</p><p>"Did I hear incorrectly? Did you just reject me?"</p><p>"Yes."</p><p>Angelica nodded his head. This time a lot more firmly.</p><p>Picking up the top hat from the ground and placing it back on his head, Count Nebulus slowly stood up. His face twisted sinisterly. Clearly, he still couldn't comprehend Angelica's decision.</p><p>"I don't understand."</p><p>He muttered softly. Meeting Angelica's gaze, he asked.</p><p>"...Why did you reject my offer?"</p><p>"You don't need to know."</p><p>Angelica replied in a cold tone.</p><p>Count Nebulus's eyes grew sharp.</p><p>"I understand."</p><p>Nodding his head, he slowly came to terms with the situation.</p><p>Turning his head to face the human in the distance, he asked.</p><p>"As long as I get rid of him, you will come back, right?"</p><p>Angelica's eyes opened. She quickly shouted.</p><p>"No!"</p><p>But it was already too late. By the time Angelica reacted, Count Nebulus was already upon Ren.</p><p>Raising his hand, his nails elongated and became sharp. Without a second thought, he swiped at Ren. He did not hold back in his attack, as the energy contained in his attack was enough to cause the room to shake.</p><p>"Die!"</p><p>He shouted in a bloodthirsty manner.</p><p>But.</p><p>It was then that something incredibly shocking happened.</p><p>Right as the claw was about to reach Ren, the atmosphere froze altogether. Be it the demons inside of the hall, Count Nebulus, or Angelica.</p><p>No one moved.</p><p>It wasn't that they didn't want to.</p><p>But they couldn't.</p><p>Before anyone could figure out what was going on, Ren's hair slowly started to change.</p><p>They slowly started to become white.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-496.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-498.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

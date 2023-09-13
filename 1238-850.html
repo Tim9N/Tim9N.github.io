@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 850 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 850 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-849.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-851.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Akhhh!"</p><p>Feeling something stab her in the abdominal area, Angelica let out a sharp wail. The pain was unbearable, and when she looked up, she was met with two mercilessly cold eyes that seemed to disregard her completely.</p><p>Such gaze…</p><p>They weren't something she was unfamiliar with. This was how she had been looked at throughout her entire life.</p><p>'Yes… This is how it should be.'</p><p>It was only now that she felt comfortable looking back at her mother.</p><p>What she was seeing was the mother she grew up seeing.</p><p>"You've finally shown your real self."</p><p>"Still talking?"</p><p>"Akgh."</p><p>Feeling something pull at her hair, Angelica felt her body rise from the spot, and her expression distorted out of pain. Still, she tried her best to keep her gaze locked on her mother.</p><p>"The… kh… only reason you even bothered 'caring' about me is because everyone else died, right?"</p><p>In reality, Angelica wasn't the only one that her mother had given birth to. She used to have seven other siblings, all of whom were more talented than her.</p><p>The key word was 'used to'.</p><p>They were no longer here.</p><p>"The only reason… you even cared about me in the first place is because I'm the only one left, right?"</p><p>Her word seemed to have struck a chord with her mother, as Angelica suddenly found herself smacked against one of the pillars once again.</p><p>Bang—!</p><p>She felt the wind get knocked out of her, and an intense pain radiated to her chest. Even so, she didn't let it show on her face as she continued.</p><p>"You're desperate… You're clearly aware that the other elders are trying to covet your position, and without a succ—"</p><p>Bang—!</p><p>She was once again smacked against the pillar. This time, with more force, the pillar crumbled down.</p><p>Rumble—!</p><p>Dust rose within the sturdy halls, and Angelica finally felt her mother let go of her. When everything settled, Angelica struggled to raise her head, but when she did, she was met with two eyes that seemed to disregard her completely, and an open palm slowly reached out for her.</p><p>"Since you don't wish to keep your life, then I don't see why there's a need for you to keep it."</p><p>Something dreadful suddenly manifested on the palm and was directed right at Angelica. In that short instant, Angelica understood that her life was coming to an end, and she closed her eyes.</p><p>Instead of feeling sad, she felt rather liberated.</p><p>She had finally managed to say what she wanted to say to her. Although she wouldn't get to live much longer, she knew that 'he' would settle everything for her soon.</p><p>The energy approached her and slowly crept into her body. Angelica slowly felt her existence crumble apart, but just as she was about to lose consciousness, she managed to hear a couple of faint words from the distance.</p><p>"Stop."</p><p>It was a voice she was familiar with, and when she opened her eyes, she saw Smallsnake staring at them with an expressionless look.</p><p>His current demeanor was a stark contrast to how he usually was, and it reminded Angelica of the time when she first saw him as the strategist.</p><p>He looked like a completely different person.</p><p>"Strategist?"</p><p>The power that was seeping into her body stopped at his voice, and her mother turned her head.</p><p>"Why are you meddling in my matters? You should know that even if His Majesty treasures you… you can't change my decisions."</p><p>"That's not it."</p><p>Smallsnake shook his head, confusing everyone that was within the halls.</p><p>The Princess moved her hand away from Angelica and looked at him with a serious expression.</p><p>"Oh? Then what is it?"</p><p>"It's not that I don't want you to kill her, but the moment that you kill her, the Lust clan will fall into chaos."</p><p>He looked at Angelica.</p><p>"I'm sure you're a lot smarter than that, Princess Lilith. I know you understand perfectly what will happen if she were to die at this moment. Can you really keep all of the elders from revolting against you after her death? Can you really stop them from coveting your seat of honor? I'm not speaking to you as her acquaintance; I'm speaking to you as the Demon King's Strategist."</p><p>All of a sudden, his voice deepened, and while there was no power in it, his words felt very commanding. Almost as if there was no rebuttal.</p><p>"If you kill her, then that's the same as seeding chaos within the Clan of Lust, and I can't be having that at this very moment. Not when his Majesty is about to complete his long and cherished goal."</p><p>His eyes suddenly squinted, and his voice deepened.</p><p>"What do you think will happen when his Majesty comes to learn of your actions later?"</p><p>"Is that a threat?"</p><p>Princess Lilith's gaze turned ferocious at his words. The room started to tremble as power seeped out of her body and she headed toward Smallsnake.</p><p>But even under such pressure, he didn't waver in the slightest and stared at her with a calm gaze.</p><p>At the moment… in Angelica's and everyone else's eyes, he looked powerful.</p><p>"It is a threat."</p><p>He said as his hair fell on top of his face.</p><p>"I thought that was obvious enough."</p><p>"Ha…"</p><p>One could tell at a glance that the Princess was beyond furious at the moment. Her expressions kept changing, and the power that radiated out of her body undulated with a certain ferocity that made it difficult for those within to withstand.</p><p>She eventually managed to calm herself down and nod her head.</p><p>"Very well."</p><p>Taking a deep breath, all of the power that was radiating from her body calmed down, and the entire hall quieted down.</p><p>"Since the strategist has spoken, I'll do as they've asked, but…"</p><p>The hall quieted down at her 'but' and everyone held their breath. Turning her head, Princess Lillith, looked at Angelica.</p><p>"…I'll let her live, but on the condition that her core gets crippled and she births at least one successor for my lineage."</p><p>She turned to look at Smallsnake and smiled.</p><p>"That sounds fair, doesn't it?"</p><p>"That…"</p><p>Opening his mouth, Smallsnake seemed unsure of how to respond. Angelica's expression distorted at that moment.</p><p>She'd rather die than be crippled and give birth to a successor.</p><p>"I won't compromise any further. You choose which option. Either she dies, or I cripple her and have her make me a successor."</p><p>From the tone of her voice, everyone understood that there was no more compromising. Neither option was good, and Angelica gritted her teeth.</p><p>"Don—"</p><p>Her words stopped halfway as the room trembled and everyone felt something akin to dread.</p><p>Cr… Crack!</p><p>Right then, a crack suddenly appeared, and a hazy black figure walked out of it.</p><p>Tap.</p><p>The soft echo of its foot echoed within the hall, and almost everyone within the hall turned to look in the direction of where the figure was.</p><p>The entire room fell silent.</p><p>"..."</p><p>The eyes of a few people lit up the moment the figure came in, and a dreadful aura suddenly enveloped every part of the hall.</p><p>It was so overbearing that it even made Princess Lilith wear a cautious look.</p><p>'Ren…'</p><p>Although he looked different than he usually did, Angelica recognized him immediately and breathed in relief.</p><p>With him here, maybe… maybe things could be resolved.</p><p>***</p><p>Every part of me hurt, and I could feel my body barely hanging in there. Despite that, I transported myself directly to where Angelica and the others were.</p><p>I couldn't allow another situation to occur, and thus, even if it broke my body, I chose to teleport myself to them.</p><p>'I'll let her live, but on the condition that her core gets crippled and she births at least one successor for my lineage.'</p><p>Coming into the room, I heard faint voices.</p><p>'That sounds fair, doesn't it?'</p><p>'I won't compromise any further. You choose which option. Either she dies, or I cripple her and have her make me a successor.'</p><p>The content of the words being spoken gave me an idea of what was happening, and scanning the entire room, my gaze eventually paused on a certain demoness.</p><p>She was beautiful. Devastatingly so, but I wasn't entranced by her beauty. What attracted my attention was the power that radiated from her body.</p><p>I knew who she was in an instant, and my mouth parted open.</p><p>"How about we choose option three?"</p><p>"…and that is?"</p><p>The Princess asked, power radiating from her body. She was surprisingly calm when faced with my sudden appearance.</p><p>Not that it mattered.</p><p>She had to at least have this certain level of composure to be one of the Seven Heads.</p><p>In response to her, I pointed at her, and the space around her started to constrict. Golden runes and words materialized all over her and clamped at her from all sides.</p><p>The golden runes and words were significantly larger and more numerous than they had been during the first battle I had with Prince Murdock, and they proved to be harder to remove than back then.</p><p>My body started to tear at that point, but I bore through the pain and clenched my teeth. I couldn't permit myself to exhibit any sign of weakness.</p><p>Not yet.</p><p>"You die, and I take everyone with me."</p><p>The laws within my body escaped and the world around us started to coat in white.</p><p>"Uh?! What's this?"</p><p>Right after the space around Princess Lillith started to constrict, her entire body turned rigid.</p><p>Her entire expression changed the moment she felt her space restricted, and with one look, I could tell she was even more shocked by the power that was binding her.</p><p>"You… how…"</p><p>Such reaction… It wasn't the first time I saw it. Rather, all six other demons showed similar looks when I exposed the laws within my body.</p><p>"Since you won—"</p><p>I was just about to attack when, all of a sudden, the words that were about to come out of my mouth stopped.</p><p>"Wh… what?"</p><p>A certain figure caught my attention, and I felt my lips quiver.</p><p>'No… it can't be… I must be seeing things…'</p><p>I blinked my eyes once, but he was still there.</p><p>I blinked again.</p><p>He was still there.</p><p>I blinked once again... and he was still there.</p><p>"Ah?"</p><p>No matter how many times I blinked, he was still there, and our gazes met.</p><p>I… I wasn't sure how to react at the moment. The numbness I felt just moments prior started to disappear, and when I turned to look at Angelica, Ava, and Hein, I knew that I wasn't seeing things.</p><p> I hoped I wasn't, and as my lips pursed, I took a deep breath and called out.</p><p>"…Smallsnake?"</p><p>Time seemed to have suddenly frozen, and what broke it was his sudden smile as he nodded his head.</p><p>"Yes?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-849.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-851.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 741 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 741 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-740.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-742.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>After sensing a powerful force being directed toward me from the right side of my body, I quickly retreated away from Amanda.</p><p>Just enough to avoid the sharp end of what looked to be a spear?</p><p>It was difficult for me to tell as I sensed yet another powerful blast heading in the direction of my back. By taking a side step, I was able to avoid the blast and obtain a better understanding of who was attacking me.</p><p>"You dodged that?"</p><p>It was Edward and another man I didn't know of. Almost certainly the Guild Master of the Green Paw or whichever guild it was.</p><p>"K,Kyle, what happened!"</p><p>It wasn't until this very moment that the Guildmaster took notice of the guy I dealt with earlier, and he dashed in his direction.</p><p>'So Kyle was his name…'</p><p>"Amanda, are you okay? Is everything alright? are you fine?"</p><p>Edward did the same and rushed toward Amanda while warily looking at me.</p><p>"Im fine… Im okay."</p><p>Only after he made sure that she was fine did he finally sigh in relief.</p><p>"I'm glad that you're okay."</p><p> Once more, he turned his head to look at me, and I could tell that the expression in his eyes was not one of friendliness.</p><p>I scratched the back of my head.</p><p>'What am I supposed to do?'</p><p>I should be allowed to beat him up, right? …I'm not going to lie, I'm very tempted.</p><p>Back in my world, there were many instances in which I was on the receiving end of a loss, and I'm not going to lie: there were times when I was almost tempted to fight with him directly...</p><p>"You! What have you done to my Kyle!?"</p><p>At that precise moment, I was looking to my right when I noticed a furious shout coming from that direction.</p><p>After that, I saw a flash of something green across my vision, and then the man from before materialized in front of my eyes. His eyes had a brilliant scarlet color to them.</p><p>"I will make you p—ukh!"</p><p>Before he could complete his statement, I interrupted him. I already knew what he would say, so I decided to cut him off before he could finish speaking.</p><p>"You must be the Guild master of the Green Paw Guild, right?"</p><p>"Hm! Hmmmm!"</p><p>He struggled under my grasp. I could feel him exert a strength that was akin to the peak of &lt;A&gt; rank, almost &lt;A+&gt;.</p><p>It wasn't bad, but to me, who was &lt;SS-&gt;, almost &lt;SS&gt;, it really wasn't anything worth taking note of.</p><p>I looked straight at him in the eye.</p><p>"You know, you came a little later than I originally planned."</p><p>He persisted in struggling against my hold on him. I wrinkled my brows and tapped my finger over his body, and he went limp immediately.</p><p>He looked at me with complete disbelief.</p><p>"As I was saying…"</p><p>I carried on while casting a glance at Edward, who flinched ever-so-slightly and was now approaching Amanda. My brow twitched.</p><p>"…Why do you think you were even able to locate me if I didn't purposely show it off for you fools to find me? ...Do you really think I can't hide away from the lot of you if I wanted to?"</p><p>He continued to stare. He was struggling less.</p><p>"No. The reason why I even bothered letting you know of my location is because I needed you guys."</p><p>This world was vast. Far bigger than the world that I belonged to.</p><p>I knew from the moment that I arrived in this world that I would require the assistance of some kind of higher power in order to successfully navigate through it.</p><p>While I wasn't completely unaware of my circumstances back then when I slapped that little man from the Green Paw guild, I already had an idea that he would soon be bringing his guild to me. A chain villain was not to be underestimated.</p><p>It was also why I wasn't surprised by their appearance.</p><p>I squinted my eyes and firmed my grip on his throat.</p><p>"You don't want to die, do you?"</p><p>He shook his head. It took a bit, but he finally calmed down.</p><p>His skin was red, turning purple―most probably due to how hard I was holding―and he had difficulty making eye contact with me.</p><p>I wasn't unfamiliar with this type of gaze.</p><p>"That's good."</p><p>I finally let go of his throat.</p><p>"Cough! Cough!"</p><p>And he started to cough uncontrollably. I remained standing over him until he managed to calm himself down.</p><p>Only then did I speak again.</p><p>"From this moment forth, your Green Paw Guild will listen to my commands. If you so much as oppose me, I'll annihilate your entire guild."</p><p>***</p><p>'The information is wrong… Extremely wrong.'</p><p>Edward felt his heart pounding wildly at his throat as he attempted to maintain composure.</p><p>He started at the young man before him with dread.</p><p>Initially, he believed he could deal with him... Edward was one of the top experts in the world, but as soon as he witnessed Jerome being treated like a child, he abandoned such aspirations. The sight before him shattered all common sense he had.</p><p>He was only a bit more powerful than Jerome, and he didn't think he could defeat Jerome as easily as the younger man did...</p><p>He had a sudden thought.</p><p>'He couldn't have reached…'</p><p>He gave an exasperated sigh and shook his head, putting an end to the ridiculous notion before it had even a chance to form. He didn't want to believe in such nonsense.</p><p>It was impossible</p><p>All he could think of at the moment was how to get Amanda out of there safely.</p><p>He quietly looked at his daughter. Her gaze was fixed on the young man, painted with what seemed to be hatred and disbelief.</p><p>She seemed to be just as startled by his strength as he was.</p><p>"Amanda."</p><p>Edward called out, and she looked up at him.</p><p>His eyes turned complicated when he looked at her. He took a deep breath and clenched his teeth.</p><p>"In a minute, I'll go over to him and fight it out. Do your best to escape in the meantime and—"</p><p>"Seriously?"</p><p>Edward felt the hair on the back of his neck stand on end as a voice pricked his ear. Instinctively, he whirled around and punched in the direction of the voice.</p><p>Boom—!</p><p>A large shockwave swept the surrounding area, and Amanda's clothes fluttered.</p><p>When the wind died down, Edward watched as a hand slowly and gently closed around his fist. He slowly turned his head upward and saw the same man who had been staring at him earlier with a troubled expression on his face.</p><p>"Did you really have to hit me like that?"</p><p>His gaze appeared to be apologetic, and he quickly released his grip on the fist, much to Edward's astonishment.</p><p>Letting out a long sigh, he raised both hands.</p><p>"Believe me or not, I'm not against you guys. How about we settle this peacefully?"</p><p>Edward stared off into the distance at the other members of the Green Claw Guild before turning his attention back to the young man. He nodded his head.</p><p>"…I was just about to suggest the same thing."</p><p>"…"</p><p>The man pinched the middle of his brows.</p><p>"Alright, I'll start off by saying that what happened back in the residence was a misunderstanding."</p><p>He looked toward Amanda.</p><p>"I didn't mean to go to her apartment."</p><p>Edward looked at him oddly. He didn't believe him one bit.</p><p>As if he could read his thoughts, the young man elaborated.</p><p>"If I really wanted to do something, do you think you could've stopped me?"</p><p>As soon as Edward opened his mouth to respond, he realized he had nothing to say. As a matter of fact, the young man probably could have accomplished whatever it was that he intended to do to them if he had really been intent on doing it.</p><p>He was at a level of strength where only a select few could stop him.</p><p>When he thought about everything that had happened up to this point, Edward felt a little more at ease. It's possible that there was a genuine misunderstanding.</p><p>He turned his head to look at the young man, but instead, the young man turned away from him and looked elsewhere. His expression appeared somewhat serious.</p><p>Following his gaze and seeing that he was staring at nothing, Edward become confused.</p><p>"Is there som—"</p><p>"You can come out now. Your presence is fairly obvious."</p><p>Following his voice, the area in the distance began to distort, and shortly thereafter, a man emerged from it.</p><p>Edward's eyes opened widely at the sight of the man. He recognized him immediately.</p><p>"Octavious? When did you get here?"</p><p>Indeed, the man was Octavious. At this moment, he was looking directly at the young man, and he didn't even bother to turn his head to look at Edward.</p><p>"After observing your prowess, it appears that I've overlooked something of great significance. My original plan was to retrieve the three Grandmasters and place you under lockdown, but it looks like I'll have to make some changes to my plans..."</p><p>"Oh?"</p><p>The young man displayed a curious expression and gestured with his hand in the air. Almost immediately after that, a sizable barrier began to envelop the area around them, completely surrounding them within its confines as it did so.</p><p>Octavious stared at the barrier that had enveloped them and his eyes rippled.</p><p>As he closed his eyes, the world around him began to shake, and a formidable and limitless pressure began to emerge from within his body. As he continued to close his eyes, the sensation became increasingly intense.</p><p>"T,this…"</p><p>Under the weight of the pressure, Edward took a few precautionary steps back and looked off into the distance in disbelief.</p><p>His astonishment only grew when he unexpectedly witnessed Octavious take a step into the air and begin to levitate upwards. Because of the way that his back blended in with the sun in the sky, he appeared to be an immortal that had descended upon the world. .</p><p>"I, impossible!"</p><p>At the sight of it, he felt an uncontrollable acceleration in the beating of his heart. It wasn't just him; Amanda and Jerome both looked at Octavious with eyes that were filled with complete and utter shock.</p><p>"I.. I..."</p><p>Jerome, who found himself unable to tear his gaze away from Octavious as he stood in the air, was the first one to speak.</p><p>In his eyes, he looked no different from a god.</p><p>"S…S rank…"</p><p>He managed to mutter before passing out.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-740.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-742.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

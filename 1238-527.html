@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 527 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 527 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-526.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-528.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"This works better."</p><p>"Are you sure?"</p><p>"If you want to deal the most amount of damage, yes. This is the best way."</p><p>"Okay…"</p><p>Things seemed to be rather tense inside of a fairly sized office space, as two figures sat on opposite ends of each other.</p><p>"What about with this one? Would a guild war be more suitable, or should we cripple them financially?"</p><p>"Guild war? That sounds rather fun."</p><p>"…It might backfire."</p><p>"I don't think it will. You can just ask Kevin to help you out. I'm sure he wouldn't have a problem doing so. He's a pushover. Furthermore, you yourself told me that you had to have them gone."</p><p>"True…"</p><p>In this unusual atmosphere, the words that were being spoken between the two individuals would've sent waves around the human domain.</p><p>It was then that.</p><p>Knock. Knock.</p><p>The door suddenly knocked, and a deep voice echoed from the other side of the door.</p><p>"Young miss, may I come in?"</p><p>"Yes."</p><p>Amanda replied.</p><p>Following this, the door opened up and a young man in his thirties walked into the room.</p><p>He was Maxwell, Amanda's assistant.</p><p>The moment Amanda's eyes laid on him, she curiously asked.</p><p>"What brings you here?"</p><p>"…Nothing in particular young miss."</p><p>He curiously looked around the room before his eyes paused on the figure sitting next to Amanda.</p><p>Despite the slight twitch in his mouth as he paused to look at the figure, he quickly continued speaking.</p><p>"The elders wanted to know whether you have come up with a solution for our current predicament."</p><p>"About that…"</p><p>Amanda turned her head to glance at a girl who was sitting next to her. Other than Melissa, who else could it have been?</p><p>Only she would say such words. Well, there was Ren, but he wasn't exactly here.</p><p>Lifting her glasses up with her finger, Melissa didn't reply and scanned the map of Ashton city with her eyes.</p><p>Then, taking her gaze away from the map, she responded.</p><p>"Your best bet would be to financially cripple, Dongtan Guild, Ikarian Guild, and Snowstar Guild. In terms of finance, they are the weakest of the lot, and will go down without putting up much of a fight."</p><p>"I thought so too."</p><p>A nod followed Amanda's response as she pointed at two more guilds.</p><p>"Regarding these two guilds, Wraithless and GoldenCrow would be the best to announce a guild war against. They have the financial power, but are not as strong in terms of members."</p><p>"I agree, that's your best bet."</p><p>Melissa replied with a serious look. There was a glint of excitement in her eyes as she gazed at the map.</p><p>"...My only gripe with this is that they might hire external help to fight in the guild wars, that in itself will be a disadvantage."</p><p>"I agree."</p><p>Amanda's eyes narrowed. Her brows relaxed not long after.</p><p>"But I think this can work for our advantage."</p><p>"It might..."</p><p>In agreement, Melissa plucked lightly at her lips.</p><p>"Especially since they will be individuals that have never worked with each other before."</p><p>"Yes."</p><p>One of the most important factors for ensuring victory in a guild war was coordination and seamless collaboration between all participants.</p><p>It wasn't a 1v1 scenario. It was a large-scale battle that involved thousands and thousands of individuals.</p><p>By hiring external help, they would essentially be giving up control. In particular, this was more pronounced when one hired stronger support.</p><p>Consequently, the stronger they were, the more arrogant they were, making them harder to control.</p><p>And this was a serious problem when guilds hired external help.</p><p>They were, in other words, a double-edged sword.</p><p>"Hehehe…"</p><p>A sudden giggle escaped Melissa's lips.</p><p>'This is fun...'</p><p>Thinking about how many diamond-graded guilds might potentially fall from their plans, Melissa just couldn't help herself.</p><p>The money that would come from their victory...</p><p>A broad grin spread across her face.</p><p>In the meantime, turning her head, Amanda glanced her way. Her face turned odd.</p><p>She then asked.</p><p>"Why are you laughing?"</p><p>"…Nothing much."</p><p>Melissa waved it off. But the smile on her face said otherwise.</p><p>Eventually, under Amanda's gaze, Melissa came clean.</p><p>"Alright, I'm just laughing because this is fun."</p><p>"Fun?"</p><p>"Yeah."</p><p>Melissa's smile deepened. Adjusting the glasses on her face once more, she pressed one of the guilds on the map with her hands.</p><p>"Destroying guilds and all. This is a lot more entertaining than I originally thought. Kind of relives me from a lot of stress."</p><p>As a result of everything that had happened with the magic cards recently, Melissa was overworked and stressed beyond belief.</p><p> In the absence of Amanda's call, she probably would've spent the day in the lab doing the same repetitive tasks. </p><p>To put it simply, it was boring. It got so boring that Melissa increased her potions consumption during that time.</p><p>Fortunately, Amanda had called her.</p><p>It was nice to have a change of pace occasionally.</p><p>"...I see."</p><p>It took Amanda some time to reply. The look on her face as she gazed at Melissa was still odd.</p><p>Melissa's cocked her head a little.</p><p>"What's wrong?"</p><p>The way Amanda was staring at her made her feel weird.</p><p>'What's wrong with her.'</p><p>It was then that Amanda spoke. Her next words caused Melissa's face to harden.</p><p>"It's just that you reminded me of Ren when you were talking about destroying the guilds."</p><p>"Wha..t."</p><p>With her mouth agape, Melissa's body started to shake.</p><p>'Did she just say what I think she just said?'</p><p>Staring at the map in front of her, Melissa had a sudden urge to destroy even more.</p><p>'...I remind her of him?'</p><p>Hell no.</p><p>This was her worst nightmare.</p><p>Her eyes eventually narrowed tightly as her teeth clenched.</p><p>"...Out of all the people you had to compare me to, you chose him?"</p><p>"Sorry."</p><p>Amanda apologized. That said, she didn't seem to be sorry at all. Rather, she had a look filled with pity.</p><p>Melissa's fist clenched.</p><p>"Thanks for ruining my mood."</p><p>Slapping the table, Melissa took out a potion.</p><p>Gulp.</p><p>Carefully staring at it, there was an audible gulp in the room.</p><p>'Shit, I just took it out of habit.'</p><p>Clenching the potion tightly, Melissa grit her teeth as she forced herself to put the potion away.</p><p>She had promised herself to control her potions intake.</p><p>Standing up, she forced a smile.</p><p>"Amanda, if you ever plan on doing something as fun like this again, do call me. I will come in a heartbeat."</p><p>Turning around, Melissa glanced in Maxwell's way before heading for the door.</p><p>"Seriously?"</p><p>Along the way, she whispered in a barely audible voice. She was clearly still salty about Amanda's words.</p><p>"If it was someone who copied someone, it would have been him copying me. In the first place, I'm the one with the twisted personality..."</p><p>In spite of the whispers, Amanda still heard every one of her words.</p><p>'At least she knows...'</p><p>Scratching the side of her cheek, Amanda's eyes lingered toward the area Melissa previously stood. She then shook her head and glanced in Maxwell's way.</p><p>"You've heard everything, you can report this to the elders. Report to me whether they approve of my arrangements or not."</p><p>"Understood."</p><p>Maxwell bowed down politely.</p><p>As Maxwell was about to leave, he thought of something and called Amanda.</p><p>"Young Miss..."</p><p>"Yes?"</p><p>Scratching the tip of his nose, a faint smile spread across his face.</p><p>"I couldn't help but overhear the conversation between the two of you, and I just wanted to add something..."</p><p>Halfway through his sentence, Amanda's head cocked a little as her delicate brow raised.</p><p>"What is it?"</p><p>"...Both of you had the same look on your faces when I entered the room."</p><p>"Hm?"</p><p>Amanda's face stiffened.</p><p>But Maxwell had already left before she could ask him to elaborate.</p><p>Clank—</p><p>With the sound of the door closing, silence enveloped the room.</p><p>Caught off-guard, Amanda didn't know how to reply as she touched her lips and muttered.</p><p>"Did I really look like him?"</p><p>Honestly, she had mixed feelings about this.</p><p>Especially since this was one of his weirdest traits.</p><p>"Haaa…"</p><p>With a long, tired sigh, Amanda opened the drawer next to her and pulled out a small, glowing orb.</p><p>Leaning back in her chair, she gazed at the ceiling while whispering to herself.</p><p>"Father, how are you doing?"</p><p>***</p><p>[And the winner of this match is White Reaper who is now ineligible to fight against the current Overlord!]</p><p>Hearing the demoness's voice, I turned my gaze away from the crowd before staring at a figure in the distance. It was my opponent.</p><p>Upon making sure that he was done for, I proceeded to head back to my room.</p><p>As a result of beating Lightning Dragon and SilverMoon forfeiting, I became the Duke bracket's emperor. In addition, I had just defeated the King bracket's current emperor, qualifying me to fight the Overlord.</p><p>The Blood Prince.</p><p>The battle was hard-fought, but I inevitably became the winner. If I had to be honest, fighting against the King bracket Emperor was a lot easier than Lightning Dragon.</p><p>Lightning Dragon was just a force of nature.</p><p>The strength with which he had fought left me shaken even now.</p><p>Regardless, Lightning Dragon aside, it would soon be my turn to take on the current Overlord. Edward.</p><p>The plan was of course for me to win.</p><p>This was a must.</p><p>'Only by beating can I fight against the Duke…'</p><p>I knew better than anyone else that the Duke's rank would not be suppressed during the fight even though the Duke should theoretically have his rank suppressed.</p><p>"Congratulations on your victory."</p><p>Entering the arena tunnel, I was greeted by a familiar figure. It was Edward.</p><p>My eyes narrowed immediately as soon as I spotted him.</p><p>"What do you want?"</p><p>I asked in a rather cold voice. Of course, this was merely acting on my part.</p><p>With a shrug of his shoulders, Edward glanced my way.</p><p>"I was just congratulating you on your victory."</p><p>"Oh? You only care about that now? What about when I first visited you?"</p><p>A smirk slowly pulled on my lips.</p><p>"Don't tell me that you're only visiting me now because you're afraid."</p><p>Drawing closer, my voice deepened.</p><p>"Afraid of me possibly beating you?"</p><p>'Gotta say, I can probably make a good villain.'</p><p>I thought as I continued spewing third-rate villain quotes. For the sake of it, I threw whatever I could think of.</p><p>"Wash your neck."</p><p>Edward's face changed at my words.</p><p>"I only respect the strong. I don't respect cowardly people who want to leech off of me. That's why I kicked you out."</p><p>'He's not bad either...'</p><p>His quotes were rather cheesy, but this was exactly what I was aiming for as I spat toward my right.</p><p>"Courting death!"</p><p>Scoffing at him, I took a couple of steps forward before placing my hand over his shoulder.</p><p>Firmly gripping his shoulder, I hatefully spat.</p><p>"For your sake, when the two of us meet in the arena, you better lose. I don't want to kill you."</p><p>Just as I began to say the first part of the sentence, I made sure to apply more pressure to my index finger.</p><p>I was trying to convey to him the hidden meaning in my words.</p><p>'You better lose'</p><p>Smack—!</p><p>After smacking my hand away, Edward subtly nodded his head and glared at me coldly.</p><p>"Looks like I was mistaken about you."</p><p>Before I could say anything else, he directly turned around and left.</p><p>Seemingly having lost all interest in me.</p><p>"Just you wait…"</p><p>I spat through my gnashed teeth as I glared in Edward's direction.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-526.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-528.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 493 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 493 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-492.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-494.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Brrr, it's cold."</p><p>Coming out from the portal, Ava hugged her body as she started to shiver. What greeted her sight upon coming out from the portal was a vast flat land of white. Upon closer look, in the distance, she could see three majestic peaks reaching out for the sky.</p><p>'That should be where we should be going.'</p><p>Similarly emerging from the portal, Hein curiously looked around.</p><p>"Is it?"</p><p>Swooosh—!</p><p>A cold breeze suddenly blew, and Hein's hair and clothes blew back.</p><p>"Aren't you cold?"</p><p>Ava asked as she looked at Hein. He was currently wearing a white short-sleeved shirt that exposed his muscular arms, and body. The more she looked at him, the colder Ava felt.</p><p>"Cold?"</p><p>Hein raised his head to glance at his surroundings.</p><p>"...A bit?"</p><p>There was a trace of doubt in his voice, leaving Ava dumbfounded. What is he made of?</p><p>Ava shook her head. She shouldn't be surprised at this point. Everyone in the mercenary group was a weirdo. Herself included.</p><p>"Burp."</p><p>Not even a second after she came to that conclusion, Leopold came out of the portal. In his right hand was a bottle of whiskey.</p><p>"I'm starting to see how Thomas is addicted to this stuff."</p><p>Raising the bottle in his hands and taking down a big gulp of the drink, Leopold's cheeks flushed red.</p><p>"Haaaa..."</p><p>"This..."</p><p>Alternating her gaze between Leopold and Hein, Ava's legs started to weaken. Massaging her forehead, Ava took out her flute and blew on it.</p><p>Tootle too~</p><p>The moment her lips touched the flute, the mana around her started to distort as three red wolves materialized in front of her.</p><p>Without further ado, Ava hopped on top of one of the wolves and shouted.</p><p>"Let's get moving you two. We don't have much time."</p><p>Following her words, the wolf started to move. Hein and Leopold finally recollected themselves when they saw Ava move into the distance.</p><p>"Wait up!"</p><p>"Burp...we're riding wolves? Nice."</p><p>***</p><p>Click—!</p><p>With a subtle clicking sound, multiple heads wearing white masks dropped on the ground in front of me.</p><p>"That's fifteen for me."</p><p>The masks belonged to a species of monsters known as Soulmasks.</p><p>They were essentially a parasitic type of monster that was usually harmless when it wasn't attached to another monster. The key word here was 'attached'. Once they managed to attach themself to their prey, they would take control of their body and increase their power by a lot, making them an especially fearsome monster to face.</p><p>Crack—!</p><p>Walking up to one of the masks, I stabbed it right in the middle, resulting in the mask cracking into two.</p><p>"No core."</p><p>To my disappointment, I found no core inside of the mask. Another goal in entering the dungeon was actually a core.</p><p>If I didn't recall incorrectly, Kevin did say that he needed a &lt;A&gt; ranked core, which could be bought from the market, however, they were extremely expensive. If possible, I would prefer not to spend that much money.</p><p>That said.</p><p>Finding a core was easier said than done. Despite having killed many monsters in my life, not once have I ever found a core.</p><p>Bang—!</p><p>It was then that a powerful blast that shook the surroundings rang out. Multiple rocks fell down from beside me and a black deformed creature appeared a couple of meters away from me.</p><p>Taking a closer look at the creature, I found that it had its chest caved in with white smoke rising out from it.</p><p>In a flash, Angelica appeared in front of the creature. Extending her hand and digging into the creature's body, Angelica scavaged through the body of the creature before she took out a black orb.</p><p>"..."</p><p>For a good minute, I was unable to utter a single word as I stared at the orb in Angelica's hand.</p><p>Opening my mouth, I closed it and lowered my head. Standing up, I decided to distance myself away from Angelica. There were a lot of things that I wanted to say, but I refrained from doing so.</p><p>Right as I took a couple of steps to leave, Angelica's figure surfaced in front of me. Then, much to my surprise, she tossed the core toward me.</p><p>"Here."</p><p>"What's this?"</p><p>Coming to a stop, I looked at Angelica in surprise. Was she really giving the core to me?</p><p>"Are you sure you don't want it?"</p><p>I asked. Still surprised by the fact that she had given me the core.</p><p>"The core is useless to me. You can keep it."</p><p>"...You sure?"</p><p>Somehow, I found it hard to believe this. Even for demons cores were useful.</p><p>Throwing me an annoyed glance, Angelica impatiently extended her hand.</p><p>"If you don't want it, you can give it back to me."</p><p>"That would be rude of me Angelica."</p><p>I quickly put the core away.</p><p>"Since you're being so kind, I must gladly accept your gift."</p><p>As if I would let go of such a precious gift.</p><p>Angelica rolled her eyes. Clearly, she was unamused by my behavior, but I didn't care. So, I just decided to change the conversation.</p><p>"By the way, I've been meaning to ask, how long do you think it will take for you to break through to the next rank, Angelica?"</p><p>"How long?"</p><p>Angelica fell into thought.</p><p>"A year or less."</p><p>"That's shorter than I thought."</p><p>Actually, now that I thought about it, this made sense. Especially since Angelica enjoyed a lot of resources that she got from the Inferno raid.</p><p>Since the dwarves found the stuff from Inferno useless to them, Angelica enjoyed most of the good stuff. Her strength soared since then.</p><p>"It will be faster in the future."</p><p>"Oh? How so?"</p><p>I became intrigued by her words.</p><p>Angelica getting stronger was good news to me.</p><p>"...When the third cataclysm happens."</p><p>"Ah."</p><p>I waved my hand.</p><p>"Nevermind."</p><p>Shouldn't have asked.</p><p>No shit she was going to get stronger then.</p><p>By then, the mana in the air would start to be converted into demonic energy, resulting in a better environment for demons to thrive in.</p><p>Shaking my head, I looked upwards, towards the edge of the cliff in the very distance. We were currently not even halfway up, and the more we climbed, the harder the journey became with all the monsters coming our way.</p><p>Fortunately, there was a small rocky road, allowing us to move up more easily. That said, at a certain point of the journey, the road would eventually disappear, leaving us with no choice but to climb all the way up.</p><p>"Let's get going. We still have a long way to reach the top of the cliff."</p><p>"Alright."</p><p>***</p><p>At the same time.</p><p>"Is this the place you used to work at?"</p><p>"Yes."</p><p>Smallsnake and Ryan walked into a large secluded building, where a large, luxurious garden could be seen the moment they entered the place. The number of hidden cameras and anticrime magic in this place easily surpassed three digits.</p><p>"Welcome to Lost creepers, please follow me inside."</p><p>A middle-aged lady with nicely combed hair guided Smallsnake and Ryan inside.</p><p>The insides of the building had an elegant and refined décor which drastically contrasted the dull-looking exterior of the building.</p><p>Walking through the hallway, Ryan asked.</p><p>"How long did you work here for, Smallsnake?"</p><p>"About two months."</p><p>"Two months? That little?"</p><p>"Yeah..."</p><p>Smallsnake smiled. However, his smile was filled with bitterness.</p><p>"During the time I worked here, I barely got any consumers. It was a really tough time..."</p><p>Because his prices were so high, relative to some other more well-known brokers, almost no one used his services. He did in fact want to set the price lower, however, that wasn't something he could afford to do since he would've been in debt had he done so.</p><p>In fact, his prices were already the lowest he could possibly set them. Had he set them lower, he would've made a loss.</p><p>Given his circumstances, he couldn't afford to be in debt.</p><p>He was already having a hard time feeding himself, had he been in debt, he would've probably have had to sell one of his organs.</p><p>Lowering his head, Smallsnake whispered in an almost inaudible whisper. There were hints of gratefulness in his voice.</p><p>"...Had it not been for Ren, I'm sure I would've had a very hard time feeding myself."</p><p>He truly did owe Ren a lot.</p><p>And this was probably why he never complained about all the problems Ren threw at him.</p><p>"We're here."</p><p>At the woman's voice, Smallsnake snapped out of his daze.</p><p> What met his sight was a large and luxurious room. The way it was decorated reminded Smallsnake of a royal room with paintings and miniature statues placed around the place. </p><p>Smallsnake and Ryan weren't the only people present in the room as there were several other people waiting in line, behind a marble counter where a male with squared framed glasses sat.</p><p>"If you two wish to contact a broker directly, you may wait in line over here."</p><p>The middle-aged lady explained.</p><p>With a simple nod, Smallsnake thanked the lady.</p><p>"Thank you very much."</p><p>"You're welcome."</p><p>Smiling back, the lady tactfully left.</p><p>Once the lady left, Ryan tugged Smallsnake by the hem of his shirt.</p><p>"What do we do now? Do we wait in line?"</p><p>"No."</p><p>Smallsnake shook his head. Taking a step forward, he directly cut the line and headed toward the individual sitting behind the marble counter.</p><p>"So you're looking for information regarding the Interion Gui—"</p><p>The man suddenly stopped mid-sentence and raised his head. His eyes paused on the incoming Smallsnake.</p><p>"What are you doing? There is a line you must follow. Please go back before I call se—"</p><p>"Here."</p><p>Smallsnake placed a small card on the table.</p><p>"Hm?"</p><p>With a confused look, the male with black-framed glasses picked up the card. His face slowly started to change.</p><p>"Codename Smallsnake?"</p><p>"That's me."</p><p>Smallsnake nodded his head, smiling beneath his mask.</p><p>The male stood up and apologized to the person standing opposite him.</p><p>"Excuse me for a second."</p><p>He then turned around and rushed toward the back of the room.</p><p>Ryan looked at Smallsnake in confusion.</p><p>"Why is he reacting like that?"</p><p>Smallsnake smiled.</p><p>"You know when I told you that I worked here for two months?"</p><p>"...Yes."</p><p>"Well, that's only partly true. I've actually still continued to work for them."</p><p>After Smallsnake started to work for Ren, and he managed to stabilize his financial situation, he decided to once again work at his old job.</p><p>This time, however, he had the financial capabilities to operate at a loss, and therefore, that was exactly what he did. He operated at a loss in order to display his capabilities to the public and give rise to his name.</p><p>Recounting this to Ryan, Smallsnake raised his head with pride.</p><p>"..and so, you can say that I'm a pretty big shot around here."</p><p>"Does Ren know?"</p><p>It was then that Ryan suddenly posed a question.</p><p>"Huh..."</p><p>Smallsnake's hand suddenly froze. Scratching his mask, he shook his head.</p><p>"Not really. I started during the eight months that Ren was missing. By the time he came back we were forced to leave the human domain, and I've never had the chance to tell him."</p><p>This was actually half a lie.</p><p>In reality, he couldn't quite bring himself to tell Ren. The reason was because he actually didn't know how to tell Ren.</p><p>The whole reason why he continued to work here again was because he wanted to repay Ren for all the help he had given him in the past. Compared to the other members of the mercenary group, Smallsnake knew that he was quite lacking.</p><p>Simply put, Smallsnake didn't want to get left behind by the others who continued to grow at unprecedented speeds.</p><p>Unlike them, Smallsnake was not born talented. He was barely &lt;F&gt; rank at the moment, and he knew that even with the mana density around the world increasing, he stood no chance of catching up with the others.</p><p>He knew his limitations more than anyone else.</p><p>And so.</p><p>Instead of feeling down, Smallsnake brought it upon himself to increase his influence and connections to better help his mercenary group and friends.</p><p>'I may not be able to help in the frontlines, but I will without a doubt help from behind the scenes.'</p><p>"Oh."</p><p>Ryan had a sudden look of understanding.</p><p>"Smallsnake, it's nice to finally see you again."</p><p>It was then that a loud voice echoed throughout the room as a tall male with a robust body walked up to Smallsnake with a flattering smile. The noise inside of the room suddenly disappeared as everyone stared at the male who had just entered the room.</p><p>At the same time, both Ryan and Smallsnake turned their heads toward the robust male.</p><p>Tiptoeing slightly, Ryan asked.</p><p>"Who's that?"</p><p>Glancing at Ryan from the corner of his eyes, Smallsnake softly replied.</p><p>"He's the Vice-head of Lost creepers."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-492.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-494.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

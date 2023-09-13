@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 767 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 767 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-766.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-768.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>In the skies above Idoania.</p><p>"You don't seem to be worried about what's going on."</p><p>A demon spoke. His attention was drawn to the three elven figures that were positioned directly in front of him.</p><p>There were also six additional demons standing next to him.</p><p>The figures that stood in the sky each possessed a distinctive trait that set them apart from one another.</p><p>Despite the fact that they were doing nothing, their presence completely overpowered those below.</p><p>They…</p><p>They were something that only the Demon King could subdue.</p><p>Their presence was unlike that of any other Prince-ranked demon, and all it took was a simple look from them to send one cowering away.</p><p>They were the seven heads of the Demon Clans.</p><p>Patriarch of the Clan of Envy ― Prince Murdock.</p><p>Patriarch of the Clan of Wrath ― Prince Konjak.</p><p>Patriarch of the Clan of Sloth ― Prince Letvia.</p><p>Patriarch of the Clan of Pride ― Prince Andria.</p><p>Patriarch of the Clan of Greed ― Prince Solbaken.</p><p>Matriarch of the Clan of Lust ― Princess Lillith.</p><p>Matriarch of the Clan of Gluttony ― Princess Adephagia.</p><p>"Are you perhaps just confident in yourselves, or…"</p><p>Lifting his head up toward the sky, Prince Murdock cracked a smile.</p><p>"…Are you perhaps waiting for reinforcements to arrive?"</p><p>As he spoke, the air around the elven leaders became still, and you could see cracks appearing on their faces.</p><p>The trio of elven figures included an elderly man with a long beard and a wooden staff, in addition to two younger elven figures. Both male and female, in separate instances.</p><p>They gazed at the seven demon heads with incomparable seriousness.</p><p>"You think that we're afraid of you?"</p><p>The elderly elven man spoke. He was the Chief Elder of the elves and his power was near the peak of &lt;SSS+&gt; rank.</p><p>Even so…</p><p>As he faced the seven leaders of the Demon Clans, he couldn't help but feel as though he was being suffocated. As though something was clamping at his throat and clenching tightly at his airways, preventing any air from passing through.</p><p>The situation was the same for the two other elves who struggled to keep themselves composed.</p><p>They…</p><p>They were clearly not a match for them.</p><p>They were not the only ones who grasped this concept. The seven heads were well aware of this fact and gave off the impression that they were delighted with the present situation.</p><p>"You aren't afraid of us?"</p><p>Prince Murdock spoke, his voice sounding like the whispers of a snake.</p><p>The faces of the elven leaders changed the moment he spoke in such a tone, and a trace of fear flashed across their eyes.</p><p>They were well aware of who he was.</p><p>It was highly likely that he was the strongest of all the people present, and If there was a justification for why the Clan of Envy was considered to be the strongest of all the demon clans, it was solely because of this one particular demon.</p><p>A mere couple of words from him and the air around them distorted.</p><p>His gaze fell on the Chief Elder, and his eyes were filled with ridicule.</p><p>"…Your expression says otherwise."</p><p>He said, extending his slender finger and pressing it against the air.</p><p>Immediately, the air around them stilled, and the expressions of the three elven figures changed drastically. They felt as if a weight was pressing down on them, suffocating them.</p><p>"Shall we see the extent of your fear?"</p><p>Swoosh―!</p><p>"Hm?"</p><p>A demon materialized right behind him just as he was about to press his hand against the air.</p><p>Prince Murdock stopped himself, and he looked at the demon that had just appeared.</p><p>"Is something the matter?"</p><p>He didn't look displeased by the sudden interruption.</p><p> "Yes."</p><p>The demon replied, casting a glance at the six other heads and the elven heads in the distance before moving toward Prince Murdock.</p><p>As he got closer to him, he uttered something in a low whisper, which caused Prince Murdock's brows to furrow. Pondering for a moment, Prince Murdock relayed the information to the other heads via telepathy after casting a glance in their direction.</p><p>"Do as you fit."</p><p>Prince Konjak, the head of the Pride clan, replied with a disinterested look. In contrast to Prince Murdock, who was a rather handsome figure, he was a burly demon with sideburns. His hair was short, and he sported a single horn.</p><p>"Let the strategist handle the matter."</p><p>It was a woman's voice, and it came straight from Princess Adephagia, the Head of the Gluttony Clan.</p><p>Her form was enormous, even more so than that of Prince Konjak, whose stature towered over those of the other characters, and her eyes, which were obscured by her puffed-up cheeks, were difficult to see.</p><p>She was similarly displaying an expression of disinterest, and all she did was cast a glance at Prince Murdock before continuing.</p><p>"This isn't a matter that needs our attention. Let the strategist handle the matter. He hasn't failed us so far, and his majesty seems to put a lot of trust in him, so let him handle the matter."</p><p>"…Is their opinion the same as what you are thinking?"</p><p>Prince Murdock took a look at the heads next to him. He could feel their gaze on him, and he saw them nod at him, which caused his eyes to flash.</p><p>"I see…"</p><p>He nodded his head and returned his gaze toward the demon that had relayed the message. He was a Prince ranked demon, but he was no different than a bug in his eyes.</p><p>"…You've heard them. Inform them and the strategist of the situation. He should be able to handle the situation."</p><p>"Understood."</p><p>The demon displayed a humble bow while flapping his wings. His form quickly vanished from sight as it dissolved into the atmosphere and became indistinguishable from it.</p><p>Despite his disappearance, Prince Murdock was easily able to follow him with his gaze.</p><p>'Let the strategist handle the matter, huh?'</p><p>Before turning his attention back to the elven leaders, his eyes suddenly lit up with something that no one could identify.</p><p>He then smiled at them and nodded his head as his gaze turned back to the elven leaders.</p><p>"Sorry for that," he said, a smirk playing on his lips. "It looks like the reinforcements that you've been waiting for have finally arrived."</p><p>Not a moment after his words faded, a crack formed in the distance.</p><p>Cr..Crack―!</p><p>***</p><p>It was a magnificent building crafted from silks of a variety of vibrant colors and adorned with intricate gold embroidery. The spacious interior was softly illuminated by flickering torches, which cast a warm glow over the opulent furnishings that were contained within.</p><p>"We're currently pushing back the elves, so it's only right that we send more forces to clean them up before the reinforcements arrive!"</p><p>"We won't have time! By the time they come, it'll already be too late to pull them back!"</p><p>The centerpiece of the tent was a hulking oak table that had been buffed to a mirror-like sheen and was surrounded by an assortment of elaborately carved chairs.</p><p>On the table was a map of the region that had been spread out with various flags and symbols placed on it to indicate where the troops had been moving and where the strategic locations were.</p><p>It was currently surrounded by several demons who seemed to be in deep discussion.</p><p>"I'm telling you, we should attack now and not waste time! Kill them before they get a chance to reverse things!"</p><p>"That'll put us in a bad position."</p><p>The walls of the tent were adorned with seven different types of tapestries, and nearby were shelves that were stocked with leather-bound books and old scrolls.</p><p>There was a cozy, woodsy aroma in the air, thanks to a small brazier in the far corner of the room. There was also a silver tray of refreshments sitting on a nearby side table, which featured a variety of unusual fruits, cheeses, and wines.</p><p>A diminutive figure with black hair that reached the shoulders and a white mask sat at the far end of the table.</p><p>The figure's sharp gaze moved quickly between the map and the various demons that were present in the room. It wasn't the white mask that was on his face that was most striking about him; rather, it was the deep green eyes that shone through behind the mask.</p><p>None of those around him had the courage to look the man in the eyes.</p><p>There was something off about them, and it seemed as though he could see right through them whenever his gaze was directed in their direction.</p><p>The mood was tense, and the person seated at the end of the table drew the attention of everyone's gaze at various points throughout the conversation.</p><p>He seemed to be deep in thought.</p><p>The tent became increasingly silent as time passed, and eventually, the only sounds that could be heard were the scraping of quills on parchment and the wails of those that fell on the battlefield far off into the distance.</p><p>The figure finally opened his mouth.</p><p>"…So you're saying that reinforcements from the orcs and dwarves will be coming shortly?"</p><p>"Yes, strategist."</p><p>One of the demons that were present in the room responded.</p><p>It turned out that he was the same Prince-ranked demon who had communicated the news to the leaders of the Clan, and he was actually one of the bodyguards who had been assigned to the strategist.</p><p>"Hmm…"</p><p>The unexpected news caused the strategist's frown to deepen. In spite of this, he did not seem very anxious about the news.</p><p>He sat down and calmly tapped his finger over the wooden table while at the same time carefully examining the map that was in front of him.</p><p>Tap. Tap. Tap.</p><p>With each tap of his finger, a peculiar unease began to spread throughout the room. In the midst of the silence in the room, the tapping continued and gradually picked up speed, increasing the unease in the room.</p><p>Tap.Tap.Tap.Tap.Tap.Tap.Tap.</p><p>"There's not enough information yet."</p><p>When his finger finally came to a stop, something caught the strategist's attention, and his eyes flashed. Raising himself to his feet, he turned to look at the other demons before turning his gaze away from them.</p><p>He then proceeded to move toward the opening of the tent, where he eventually stopped.</p><p>Everyone followed his movements without saying a single word.</p><p>When he opened the tent, allowing a small gap between the two pieces of fabric, bright sunlight entered the tent and illuminated it. At the same time, the strategist emerged from the tent and raised his head to look far into the horizon.</p><p>Cr…Crack!</p><p>His attention was immediately drawn to five enormous cracks in the sky that continued to grow larger with each passing second.</p><p>The entirety of the battlefield came to a standstill, and the strategist proceeded to slowly place his hand over his mask and remove it, thereby revealing his flawlessly white skin and human face.</p><p>His eyes narrowed as he stared into the distance at the fractures, and he mumbled something to himself.</p><p>"They're slower than I predicted…"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-766.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-768.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

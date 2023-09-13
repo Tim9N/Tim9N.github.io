@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 657 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 657 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-656.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-658.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>It had to be said that the treasury was extremely impressive.</p><p>The room was about the size of a tennis court, and it was lit up by pink crystals that had been embedded into the walls. The room contained a multitude of marble racks, in which a wide variety of items were stored.</p><p>Weapons, herbs, skill books, and a variety of other items worth millions of U laid on top of the racks as I had to take a breath to cool myself down.</p><p>'Jackpot.'</p><p>I was able to sort out my money problems with just one trip.</p><p>For the most part, at least.</p><p>In all likelihood, constructing a city would call for resources that were currently well beyond my reach, and it was possible that the value contained in this treasury wouldn't come close to covering the cost of building the entire city or even accomplishing one-quarter of what I had envisioned.</p><p>Nevertheless, despite this, it was still a step in the right direction.</p><p>"How about we split up? You can go look for whatever you want, while I'll go have a look around as well."</p><p>"Sure."</p><p>After everything was said and done, Amanda and I got down to business and immediately began searching through the sizable treasury that stood before us.</p><p>"Oh, right, make sure you write a log of the items that are stored here."</p><p>I mentioned to Amanda just as we were about to separate.</p><p>"Okay."</p><p>"Good."</p><p>I headed to the furthest marble on the right.</p><p>"Looks like it's all herbs."</p><p>When I finally got to the farthest rack, I was disappointed to see that it was packed with a wide variety of plants for which I had no idea what the appropriate application would be.</p><p>"Melissa might like this."</p><p>I pulled out my phone and snapped a picture of every plant on the rack before me.</p><p>The process of photographing each plant took a total of five minutes, and when I was finished, I swept my hand through the air and gathered everything that was stacked on the racks into my dimensional space.</p><p>'Alright, next rack.'</p><p>Each rack was quite lengthy. Each rack measured approximately fifteen meters in length and featured three distinct rows in total.</p><p>The number of items that could be stored in each rack was nothing short of little; explaining why my expression crumbled when I discovered that the next rack contained even more plants.</p><p>'...Looks like I chose the wrong side.'</p><p>I let out a low grunt and took a photo of each plant individually.</p><p>"Hm?"</p><p>It was when I reached the lower level that I suddenly found my hand pausing as I noticed a small flask hidden behind one of the plants.</p><p>I moved the plants out of the way so that I could get a better look at the flask, which appeared to be made out of some sort of unique glass and held a dark blue liquid within it. The flask was not very large; it was approximately the size of a fingernail, and it had a tiny black lid at the very top.</p><p>A small panel appeared in my vision when I reached out to grab it.</p><p>"What's this?"</p><p>[Poison of the Medheives]</p><p>Rank : S</p><p>Description : A slow-acting poison that enters the system and severs all mana connections in the human body, eventually causing death. The poison may take some time to take effect, but once it does, not even an &lt;SSS-&gt; ranked user will be spared. It is insoluble in any liquid and extremely corrosive.</p><p>"Hiss..."</p><p>I drew a cold breath when I read the description of the small flask in my hand.</p><p>"This..."</p><p>I was without a doubt holding onto a very scary poison.</p><p>"For it to even have an effect on &lt;SSS&gt; ranked individuals...I can't even begin to imagine what it will do to me if I take it."</p><p>I shuddered at the idea of someone trying to poison me with this poison.</p><p>"Fortunately, or should I say, unfortunately, it's insoluble and corrosive, meaning that it is probably impossible to mix this poison in foods and drinks."</p><p>'A bit of a pity.'</p><p>If only it could have been combined with both food and liquid, then it most certainly would have been a very scary tool.</p><p>"Still, it isn't exactly useless. If I coat this poison with my sword and use the Keiki style, I will without a doubt be able to poison anyone that I want."</p><p>Of course, this was granted that I injured them and they lived past fighting against me.</p><p>'Whatever, I'll think of better uses later. For now, I better look at the other stuff that's here.'</p><p>I put the flask in my dimensional space before focusing my attention on the other racks that were near me.</p><p> I had to say, looking for treasures was indeed very fun.</p><p>"Wheeeooo."</p><p>I whistled aloud when I paused my line of sight on two specific skills while scanning the numerous skill books that laid before my very eyes.</p><p>'It has to be these two.'</p><p>『[B] Mana scan』</p><p>A skill that grants the user to send out a pulse of mana and detect nearby beings and objects that contain mana.</p><p>『[S] Chains of salvation』</p><p>Grants the user the ability to condense the mana in the air and create a dense network of chains that can bind a specific target within their field of vision. The skill has a maximum range of five kilometers.</p><p>There were more than one hundred different skill books stacked in the racks in front of me, and if I had to be completely honest, I was extremely tempted into learning all of the skills.</p><p>However, when I thought about the city project that I was planning, I restrained myself and decided to take out the ones that I really needed, which were the two skills that I was holding in my hand at the moment.</p><p>"The rest can be kept inside of the city treasure to be given to those who will benefit the most from the skills."</p><p>Them getting stronger was the same as me getting stronger, so I had no qualms about giving the skills away.</p><p>"Alright, next section."</p><p>After I was finished organizing the skills and saving them all to my phone, I moved on to the next section, which was where the weapons were being kept and began looking through them.</p><p>This section was less exciting than the skill section since I wasn't really in need of any weapons.</p><p>Nonetheless, just because I didn't need anything didn't mean the others didn't either.</p><p>[Shield of Korak]</p><p>Rank : S</p><p>Description : Made from a combination of Ivariol and Sukian, this shield is extremely durable. The shield is extremely light, yet sturdy, and can easily deflect the attacks of &lt;S&gt; rank opponents. Each time a successful attack lands on the shield, mana is drained in proportion to the attack's strength. It is possible to block an opponent's attack whose rank is higher than the holder if the holder has enough mana.</p><p>Skill : Shield wall; grants the ability to increase the surface area of the shield. Limit is twenty meters in length.</p><p>"This will definitely be useful for Hein."</p><p>My eyes were instantly drawn toward a large grey shield.</p><p>The shield's exterior appearance made me think of the shell of a turtle; however, in contrast to a turtle's shell, the shield took on more of a pentagonal shape and was very lightweight.</p><p>I immediately put the shield away and continued to look at the other items in the treasury.</p><p>The minutes turned into hours, and before I knew it, three hours had gone by. During that time period of time, I explored every part of the treasury, took whatever treasures I desired, and kept detailed logs of everything that was found there.</p><p>In addition to that, I took a few treasures that I believed would be of use to the others, but apart from that, I didn't find anything that particularly piqued my interest.</p><p>It didn't really matter to me as I was very happy with the two new skills that I had just picked up.</p><p>Furthermore, I had reached a point where I didn't need as much external help as I had in the past.</p><p>Herbs would no longer be of use to me as the ones that could actually help me barely existed, and weapons...</p><p>Well, there didn't need to be anything said about my sword, which had finally been completely unlocked and reached the &lt;SS&gt; rank.</p><p>[Shattered moon] : This ability enables the user to shatter the sword into a hundred pieces that can be used in any way the user desires and can be controlled through the user's will. The sword can be restored to its original state.</p><p>'Now that I think about it, I still haven't tried my ability yet.'</p><p>I lowered my head to glance at my sword which was resting on the side of my hip. It had been quite a while since I had last used my sword directly.</p><p>I now had knowledge of mana agglomeration and no longer relied on the Keiki style to the same extent that I did in the past; it's unavoidable that I stop using my sword to the same extent that I did in the past.</p><p>'That said, things might be different now.'</p><p>I thrust my hand forward as a bright white glow suddenly began to emanate from the interior of my scabbard.</p><p>It began to shake not long after, and then gradually, my sword was freed from its scabbard and slowly floated up.</p><p>Clank. Clank. Clank.</p><p>The moment the blade's body was fully uncovered after being concealed within the scabbard, it shattered into a hundred separate pieces.</p><p>Like satellites, a hundred different sharp shards floated around my body.</p><p>When I clenched my hand, the shards moved in a fluid manner and formed a long silver line that reminded me of a snake. This line joined together with my floating hilt to form what appeared to be my old sword.</p><p>"Nothing seems out of the ordinary."</p><p>I let out a satisfied smile when I played with m sword and realized that it felt the same as it did in the past.</p><p>I then lowered my sword to face the front and focused my attention on the sword in my hand.</p><p>The moment my hand made contact with my sword, a bright white glow erupted from my palm, and a sound like metal breaking apart resounded throughout the area.</p><p>After that, the sword shattered into a hundred different pieces once more as they began to move forward, forming a long line of shards that were spaced a couple of centimeters apart.</p><p>As I casually swung my sword through the air, a disjointed and puzzled version of my sword that was several times longer than my previous sword suddenly appeared in front of me.</p><p>Swoosh!</p><p>In one swift motion, the sword cut through the air making a nice whistling sound.</p><p>"Great."</p><p>I exclaimed in excitement as I continued to swing the sword in the air and adjusted the length of the sword from time to time by changing the distance at which the shards were separated.</p><p>"This is definitely useful."</p><p>The mana required to use this skill was a lot less than when I used mana agglomeration. This alone was enough to tempt me into once again using my sword.</p><p>"What are you doing?"</p><p>A soft voice jolted me out of my thoughts, and I turned to see Amanda staring at me from behind one of the marble racks.</p><p>At that precise instant, the shards reassembled themselves, and my sword reverted to its normal appearance.</p><p>"Me? I'm just trying my sword's new skill."</p><p>I lifted it up and showed it to her.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-656.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-658.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

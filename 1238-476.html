@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 476 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 476 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-475.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-477.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Sure, yes, okay, we're coming."</p><p>Hanging up the phone, Kevin headed for the entrance of the academy.</p><p>I followed him from behind.</p><p>Glancing around the place, I curiously asked.</p><p>"Where are we going now?"</p><p>"Section B."</p><p>Kevin answered before he turned his head to glance my way.</p><p>"By the way, I forgot to compliment you about the glasses."</p><p>"Oh, these. "</p><p>Raising my hand, I pushed my glasses up a little.</p><p>"Wanted to look the part."</p><p>"...Kind of cringe."</p><p>"Says the guy who is wearing a suit."</p><p>I bluntly replied while pushing my hair back.</p><p>Actually, the reason why I was wearing the glasses wasn't actually because I wanted to look the part.</p><p>Well, a small part was. However, the main reason was something else.</p><p>Connected to the glasses was a small camera that Smallsnake and Ryan could see through.</p><p>From there, whenever I wanted to pick information about someone, they would quickly send me a brief overview of their information.</p><p>Was kind of handy.</p><p>"Wait is that..."</p><p>"It's them."</p><p>"It can't be..."</p><p>Along the way, some of the staff and students that were not in the auditorium managed to recognize us as I could hear faint whispering coming from their direction.</p><p>Some even went as far as taking out their phones and started taking pictures of us from the distance.</p><p>I feigned ignorance to that.</p><p>"We're here."</p><p>Walking for the next ten minutes, we soon stopped in front of a familiar rectangular infrastructure.</p><p>Even after having seen the building countless times in the past, I couldn't help but be amazed by the sheer size of the structure.</p><p>"Let's go."</p><p>Waving his hand toward the guard, Kevin and I entered the building and soon made it all the way toward Donna's office which was on the fifth floor of the structure.</p><p>To Tok—!</p><p>Kevin knocked on the door and Donna's voice echoed soon after.</p><p>"Come in."</p><p>"If you will excuse us."</p><p>Clank—!</p><p>"Welcome you two."</p><p>Upon entering the room, we were greeted by Donna who sat behind her desk. Kevin was the first to greet her.</p><p>"Hey. It's been a while, Donna."</p><p>"Mhm, it's nice seeing you again, Kevin. Did you have any trouble getting here?"</p><p>"Not at all."</p><p>"That's good."</p><p>As the two were talking, I glanced around the place. It had been a while since I had been in Donna's office and it still looked exactly as it did in the past. Small, and comfy.</p><p>"Ren?"</p><p>Snapping me out of it, I suddenly felt someone tap me on the shoulder. It was Kevin.</p><p>"What is it?"</p><p>"Are you not paying attention at all?"</p><p>Kevin rolled his eyes before nudging his head, in Donna's direction.</p><p>"She's saying hit to you."</p><p>Coming to a realization, I lowered my head and greeted Donna.</p><p>"Ah yes, good to see you again."</p><p>"It's good to see you two."</p><p>Donna replied with a smile, not minding my rudeness. She then pressed her hand on the table and passed two papers in our direction.</p><p>"I'll get straight to the point, I need you two to sign these."</p><p>As Donna passed the papers, a stern look appeared on Kevin's face.</p><p>"Mana contracts?"</p><p>"That's right."</p><p>Donna said as she placed two pens next to the papers.</p><p>"This is the academy policy. Each professor, be it an assistant, staff, or regular professor must sign a mana contract. This is for security reasons, I'm sure you know, right?"</p><p>"I see..."</p><p>Convinced by Donna's argument, Kevin sat down on a brown leather chair opposite Donna's desk and picked up a pen.</p><p>Just as he was about to sign, his hand came to a sudden pause.</p><p>"Hold on, if you guys do this, how come the academy still gets infiltrated?"</p><p>This was a valid question.</p><p>If the academy made everyone sign mana contracts, how was it possible for people to infiltrate the academy?</p><p>Well, I already knew the answer to that.</p><p>With a helpless smile on her face, Donna leaned back in her chair.</p><p> "This just tells you how deep-rooted the influence of the Monolith is." </p><p>Before she could follow up, I sat down next to Kevin and did a quick skim of the contract.</p><p>Once I made sure that there was nothing I was against, I signed it and put the pen down.</p><p>"Kevin, I'm sure you know this by now, but a mana contract is not exactly omnipotent."</p><p>Mana contracts, although useful, weren't exactly without flaws.</p><p>There were definitely ways for some people to escape its influence, although, the method was actually extremely complex and it required massive amounts of resources.</p><p>That and the fact that the user would find their lifespan shortening by a large degree due to the fact that their soul would get split in half in the process.</p><p>In short, it was not something that could be done easily, and the fact that the Monolith had managed to infiltrate the Lock despite all of this went to show how big of an organization they were.</p><p>"I guess you're right."</p><p>Lowering his head, Kevin signed the paper and put the pen down.</p><p>"I wasn't thinking straight. I barely signed more than one myself."</p><p>He then passed the contract back to Donna.</p><p>"Here you go."</p><p>"Thank you."</p><p>With a satisfied smile, Donna put the papers away.</p><p>A hologram was then projected in the air.</p><p>"Alright, I will give you a brief rundown on who the individuals you should keep a close watch should be."</p><p>A long list of professors began to show.</p><p>From low-ranked professors to high-ranked ones.</p><p>They all varied in gender, rank, and the level of suspicion that the Lock had of them.</p><p>'So they are the individuals that the Lock suspects of being part of the Monolith.'</p><p>I thought as I stared at the projection. There were quite a few familiar faces amongst the list of professors, however, I never really interacted with them much.</p><p>Not to the point of being surprised by what I was seeing.</p><p>Either way, after a quick skim, I was in fact able to spot a couple of figures whom I knew were in fact spies. I quickly memorized their names and positions.</p><p>'They can be of use to me.'</p><p>"Kevin, you will be a professor while Ren you will be an assistant professor."</p><p>Just then, snapping me out of my thoughts were Donna's words.</p><p>"Hmm? Kevin is a professor?"</p><p>Donna's lips curved upward, then nodded.</p><p>"Ren, you have not even finished your first year at the Lock. Even if you do have the qualifications to be a professor given your strength, unlike Kevin, you don't have a degree."</p><p>"Oh."</p><p>I moved my head a little.</p><p>Actually, I was happy with this arrangement. Since I was an assistant professor, it could only mean that I had less work to do.</p><p>"Looks like you don't have any issues with the arrangement."</p><p>Donna clapped her hands.</p><p>Raising her hand she once again turned her attention toward the holographic projection in front of her and started to brief Kevin and m, on all the individuals we had to be careful of.</p><p>"Okay, now that you two know what your roles are. I will now start giving you details on the people on the list."</p><p>...30 minutes later.</p><p>I left after Donna gave me a proper rundown on the situation, and what I was supposed to do in the next to months.</p><p>To summarize everything, all I needed to do was stick close to one of the targets and be their assistant.</p><p>***</p><p>Demon Hunter Guild.</p><p>"Young Miss? Young Miss?"</p><p>"Hm?"</p><p>Snapping Amanda out of her thoughts was her assistant, Maxwell.</p><p>With a worried look, he asked.</p><p>"Is everything alright, young miss?"</p><p>"Yeah."</p><p>Amanda replied in short. She then lowered her head and stared at the papers in front of her.</p><p>"What were we discussing?"</p><p>"We were discussing the launch of the magic cards system. We have currently mass-produced over a couple of millions of cards, and we're currently sold out in terms of pre-released booking. We're practically ready to launch them, however, what we need at the moment is confirmation to officially launch them."</p><p>"Ah, right."</p><p>Flipping through her notes, Amanda's eyes squinted. After a bit of thought, she replied.</p><p>"Let's start releasing the cards to the market by next week. Amp up security during the time, and make sure that nothing happens to the reserves. Make sure that nothing happens during the transition phase. We can't afford to have our cards robbed. Even if it costs a bit, use the money."</p><p>"Understood."</p><p>Maxwell replied with a nod.</p><p>Closing the folder, Amanda looked up.</p><p>"Is there anything else?"</p><p>"No."</p><p>Maxwell shook his head with a kind smile on his face.</p><p>His reaction caused Amanda to tilt her head.</p><p>"Is there something else you need from me?"</p><p>"No, no."</p><p>Shaking his head, Maxwell took his folder back. Lowering his body, he bit Amanda goodbye before leaving the room.</p><p>Clank—!</p><p>Silence descended in the room once Maxwell left the room.</p><p>Glancing at the door for a couple of seconds, Amanda grabbed her coffee and took a sip. After that, from the corner of her eyes, she glanced at her phone which was resting by the side of the desk.</p><p>Her eyes immediately squinted into slits.</p><p>Extending her hand, she turned her phone over.</p><p>At the exact moment she turned her phone over, displayed on it was the image of a girl taking a selfie with several people behind her.</p><p>Wearing a cute fluffy hat and with her fingers crossed together in a heart shape, the bottom of the image had the captions that said.</p><p>[Back at the Lock! I'm so excited!~]</p><p>Further beneath it was a string of hashtags.</p><p>[#BackHere #Awesome #Lock #NumberOneAcademy!]</p><p>What followed the hashtags was a string of comments.</p><p>1,983,097 likes.</p><p>Georgina Smith : You look amazing bae!</p><p>Evelyn1287 : Waaah, I am so jealous!</p><p>Connor : Please marry me, queen!</p><p>Manor97_98 : Not only are you an idol but you are also a student in the Lock? How perfect can someone get!?</p><p>"Tsk."</p><p>Amanda subconsciously clicked her tongue.</p><p>***</p><p>Thirty minutes before the lecture started.</p><p>"Good morning."</p><p>Entering a small private room, I greeted the professor I was supposed to be assisting.</p><p>Thomas D. Shurle was what he was called. According to Donna, he was one of the people that they suspected of being one of the spies for the Monolith.</p><p>"Hm?"</p><p>But as I entered the room, I was left surprised by the fact that there was no one present.</p><p>Not only that, but the whole room was a mess. With papers covering the whole room, it was quite hard for me to even walk.</p><p>"This place is a mess..."</p><p>I muttered to myself.</p><p>"...Oh, you're finally here."</p><p>"Who!?"</p><p>Startling me, I suddenly heard someone's voice coming from somewhere around the room.</p><p>"Over here."</p><p>Once again hearing his voice, My eyes soon locked toward a certain location in the room.</p><p>With the sound of paper falling to the side, a lanky male with a bowl cut, and black-framed glasses groggily got up. Raising his hand to fix his glasses, he gazed in my direction.</p><p>"You must be the assistant professor I was promised, right?"</p><p>"Y..yeah."</p><p>I replied with a forced smile.</p><p>'Is this guy really a professor?'</p><p>I thought to myself. He looked like a complete mess. Not only were his clothes wrinkled, but there was also a strange odor coming from him.</p><p>Patting his body down, and up. The professor turned to look at the clock by the side of the room.</p><p>"Oh, it looks like class is starting soon."</p><p>With a nonchalant loon on his face, he slowly stood up and stretched his body. Then, reaching out for his desk and grabbing a small folder, he got out of the classroom.</p><p>"..."</p><p>Speechless, I let out a long sigh.</p><p>"Haaa..."</p><p>'He just went up and left without even introducing himself or telling me what I'm supposed to do.'</p><p>From this very moment, I already knew that my short stay here would not be as relaxed as I thought it was going to be.</p><p>Slumping my shoulders, I followed the professor from behind.</p><p>"Professor wait up."</p><p>Catching up to the professor, I found myself in front of a large wooden door with the words [B-09] engraved on the side.</p><p>"Good that you're here."</p><p>Before I could figure out what was going on, the professor looked at me and pointed toward the classroom.</p><p>"Here's your first task as an assistant. Get everyone to stop talking."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-475.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-477.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

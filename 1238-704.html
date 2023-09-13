@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 704 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 704 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-703.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-705.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Duke Ukhan licked his lips as he grasped the hooded figure by the throat. Raising his hand, he reached out for the hood and lowered it.</p><p>When he did so, something unexpected caught his attention.</p><p>"Interesting..."</p><p>His voice bordered on amusement and annoyance.</p><p>Presented in front of him was what seemed to be a male wearing a white mask. It covered his entire face, only exposing his blonde hair.</p><p>The Duke opened his mouth and made sure his voice was loud enough for everyone to hear.</p><p>"I wonder what gave you the confidence to attack a noble in front of everyone?"</p><p>While everyone present was a 'noble', the term could also signify a purer bloodline as compared to the others, with the seven houses placing more emphasis on them.</p><p>At this very moment, Duke Ukhan was using this pretext to find trouble with the person who had just saved Priscilla.</p><p>Had it not been for him...</p><p>"Tsk."</p><p>He clicked his tongue and grasped more tightly.</p><p>"Ukh."</p><p>"What are you doing?"</p><p>Priscilla was unable to maintain her silence at this very moment. She did not know the hooded figure, but he had indeed saved her life moments earlier. She was not the type to repay a debt with ungratefulness.</p><p>"Let him go."</p><p>She took a step forward. This time, her words were not empty threats, and she was truly determined to take action. While she may not have died, he had indeed saved her a lot of trouble. If she did not save him, she'd look like someone who didn't care about those on her side.</p><p>Duke Ukhan looked at her.</p><p>"What's this? I'm sure he hit you. Why are you defending him? Does your pride only amount to this much?"</p><p>"It does."</p><p>She smiled, and her eyes turned hazy.</p><p>"I'm from the Sloth clan. What do I need pride for?"</p><p>"Hah."</p><p>The Duke lightly laughed at her words.</p><p>"You set a very bad example, Duchess..."</p><p>As he tightened his hold on the individual wearing the mask, ruthlessness began to spread across his eyes at that very instant. He was prepared to break his neck.</p><p>Priscilla's face quickly changed when she noticed this, and her figure blurred.</p><p>"Don't you dare!"</p><p>"Sorry, bu―"</p><p>Grip</p><p>The Duke was about to clench his fist when he was suddenly grabbed by the wrist by an unseen hand.</p><p>"Let's settle this peacefully."</p><p>A calm voice sounded not long after.</p><p>"Uh?"</p><p>At that very instant, the entire vibe shifted, and everyone's attention turned to the one responsible for all of this.</p><p>It was another hooded figure.</p><p>"Insolent!"</p><p>A loud shout echoed within the perimeter of the cave.</p><p>Almost immediately after that, the guards that were standing behind the Duke moved. Within a split second, they stood behind the masked figure with their weapons drawn and ready to attack at any moment.</p><p>"Wait."</p><p>They were stopped before they could take action.</p><p>Looking at the hooded figure, Duke Ukhan's eyes glossed over their body.</p><p>'How did he get near me without me noticing? Furthermore, my guards too... He only looks to be a Marquis ranked individual.'</p><p>Different thoughts crossed the Duke's mind at that moment. Opening his mouth, he asked.</p><p>"Who are you?"</p><p>"His friend. "</p><p>He answered, his tone of voice was just as composed as it had been before. Despite the fact that his face was hidden, the duke could feel the figure smiling beneath.</p><p>It irritated him.</p><p>"Hm?"</p><p>When he was about to say something, the guards in front of him began to twitch, and the Duke in front of him raised his head. Staring into the distance, all trace of expression vanished from his face, and he quickly let go of his grip.</p><p>The two bodyguards quickly appeared behind him, and the duke cast a wary glance toward the entrance of the cave before turning his attention back to the hooded man and snatching his hand away from his grip.</p><p>"Haaugh...haaa...haaa..."</p><p>With a low sounding thump, the masked man fell to the ground and heavily gasped for air.</p><p>"You're really lucky."</p><p>The Duke disappeared without elaborating any further, but everyone who'd heard his words clearly understood what they meant. This was especially true for Priscilla, who had a deep understanding of his character.</p><p>She cast a glance into the distance and sighed in relief.</p><p>'Fortunately, the reinforcements arrived on time...'</p><p>She couldn't dare guess what would've happened had they arrived a tad bit later.</p><p>Fixing her hair, she stared at the hooded duo before walking up toward the one that had appeared before the Duke. He seemed to be the leader.</p><p>Arriving before him, she stopped and said,</p><p>"Let's have a talk."</p><p>***</p><p>On an enormous tract of land covered in vegetation, three figures appeared. It was none other than Duke Ukhan himself, accompanied by two of his bodyguards.</p><p>The Duke's expression remained unfazed as he touched down on the plush grass. There was no sign of emotion on his face, and it appeared as though he was deep in his own thoughts.</p><p>He appeared harmless, but the guards behind him shuddered at the sight.</p><p>He eventually brought himself back under control by taking a few deep breaths. After that, he smiled as he faced his two guards.</p><p>"You two know what to do, right?"</p><p>It was a simple question, but the two guards immediately understood what he meant. They quickly nodded their heads.</p><p>"Find everything you can about the people in the cave and kill them if you can. Leave their bodies exposed, and don't bother covering them up. Let the world understand what it means to ally with the wrong people."</p><p>He paused, and his eyes flickered with a dangerous light.</p><p>"...For those that you can't deal with, send me a report. I'll personally get rid of them myself. If there is a time to act, it's now. Especially since the Patriarchs are away dealing with the World Decree matters."</p><p>He raised his head and looked at the two guards. A dangerous and oppressive aura erupted from his body.</p><p>Cocking his head, he smiled.</p><p>"Understood?"</p><p>The two nodded without saying a word and disappeared from the spot.</p><p>His gaze lingered over the spot where the two guards vanished before shifting to the distance. In the direction of the cave where he just came from.</p><p>Opening his mouth, his voice sounded especially chilling.</p><p>"…For the house of envy, all variables need to be eliminated."</p><p>***</p><p>My head feels like a cloud.</p><p>It's like it's floating, yet at the same time sinking.</p><p>I can't really explain it.</p><p>The past few years have numbed me completely.</p><p>Sometimes, I hear voices.</p><p>In my sleep, when I eat, when I walk, when I think.</p><p>It goes on and on and on.</p><p>Not sure when was the last time that I slept properly.</p><p>...I want to be normal again.</p><p>***</p><p>"Sorry for my tardiness; I had to deliver a letter. You don't mind, do you?"</p><p>"No, have some tea."</p><p>A demon dressed in butler attire stood behind me as an emerald green substance poured into a teacup that was in front of me.</p><p>Closely examining it, I determined that it was safe for consumption.</p><p>Shifting my attention away from the cup, I looked ahead to where the Duchess sat. In her hand was the same cup of tea, and she took a small sip.</p><p>"I'd like to finally thank you for what happened today."</p><p>She started. The butler next to me removed the teapot from the table and performed a single bow before departing.</p><p>As I looked at her, I reached for the cup of tea and took a sip from it. My tongue was flooded with a wave of bitterness, and the sensation almost caused my face to change. But I didn't let it show on the surface. I knew my manners.</p><p>I set the tea cup down.</p><p>"It's nothing worth mentioning."</p><p>Following the events of the cave, my group was graciously escorted to the Duchess's mansion. At that moment, everyone was standing behind me. For some strange reason, they didn't bother sitting.</p><p>The Duchess sat her teacup down.</p><p>"It may be nothing worth mentioning to you, but you still saved my life. I'd like to express my gratitude at the very least."</p><p>"Oh? In what way?"</p><p>I caressed my chin and pretended to fall in deep thought.</p><p>"...I'm a bit low on money."</p><p>I cast a glance in her direction from the corner of my eye.</p><p>Making money was the primary objective right from the start, so I didn't waste any time and simply told her what I wanted.</p><p>A bit shameless, but I didn't care.</p><p>"Pretty straightforward, aren't you?"</p><p>"I indeed am."</p><p>I smiled. She probably didn't see it, as the hood still covered my features.</p><p>"How much do you want?"</p><p>"How much can you give me?"</p><p>"Twenty Jor."</p><p>"Is your life only worth that much?"</p><p>"Fifty."</p><p>"One hundred."</p><p>I raised the cup and brought it to my lips. I didn't take a sip. I was just pretending to. It tasted horrible, but I had to look the part.</p><p>"Hmm."</p><p>The Duchess's brows furrowed for a moment. Eventually, she nodded her head.</p><p>"Alright, I can do that."</p><p> Her words brought a smile to my face.</p><p>'Would you look at that? My money problem is now solved.'</p><p>"Great."</p><p>I stood up and rubbed my hands.</p><p>"Alright then. Since we've solved the compensation problem, I think I'd like to go back and have a rest."</p><p>I turned around to look at the others and prepared to leave.</p><p>"Wait."</p><p>Only to have the Duchess call out for me. Somewhat expecting this, I turned to look at her.</p><p>"Is there a problem?"</p><p>"None."</p><p>She shook her head and pointed at the seat.</p><p>"Sit down for a bit. I'd like to discuss a few matters with you… human."</p><p>My heart sank the moment I heard her words, but I didn't show it outwardly. Sitting back down, I leaned back on the wooden framed sofa and asked.</p><p>"What makes you think I'm human?"</p><p>"Simple, really."</p><p>The duchess smiled. It was one that would leave many stunned, but it had no effect on me. After all, I had Amanda.</p><p>She pointed at the cup.</p><p>"If you were a dwarf, you'd have rejected the drink. They tend to prefer alcoholic beverages. If you were an orc, you'd have drunk it all in one go, assuming you'd accept it. Since you didn't do either, I came to the idea that you were neither. It then left me with two possibilities. Human or elf."</p><p>She took a slow sip from the cup before smiling.</p><p>"If you know elves very well, you'd know that they have a special etiquette when drinking. They'd hold the handle with their left hand and pinch with two fingers."</p><p>"...both of which you didn't do."</p><p>Listening to her, I was rather taken aback.</p><p>'There's such a thing?'</p><p>It seemed like I was slightly careless.</p><p>"Although not obvious, it easily gave away the fact that you didn't belong to any of those races."</p><p>"What about demon? Couldn't I just be a demon?"</p><p>Priscilla smiled again.</p><p>"If you were a demon, your bloodline would've been purer. We can easily tell if someone is contracted. It was never an option, to begin with."</p><p>"I see."</p><p>I thoughtfully nodded my head. Her words made sense. Sort of.</p><p>'...How troublesome.'</p><p>I sighed to myself and looked at her.</p><p>"Alright then, let's just say that you're right, and I'm a human. What about it?"</p><p>"You don't know?"</p><p>The duchess looked at me with an odd look, and I started to have a bad feeling.</p><p>"Know what?"</p><p>I asked, my eyes squinting. Was there some sort of unexpected development I was unaware of or something?</p><p>"It looks like you really don't know."</p><p>The duchess shook her head, and my brows furrowed.</p><p>Before I could say anything else, she spoke.</p><p>"Recently, there's been a decree sent down by his majesty. If we were to come into contact with any human, we are to report the issue immediately..."</p><p>Prolonging her last few words, her eyes glossed over me, seemingly awaiting my response. Closing my eyes for a moment, I almost laughed.</p><p>"So that's what you were thinking about..."</p><p>Extending my hand, black scales flickered in and out of existence over my arms.</p><p>Taking a deep breath, I let go of everything.</p><p>The seals that were within my body, the demonic energy that was coursing through my body, and the power I had concealed for a long time. It was a power that was well beyond what I held during my fight back in Immorra.</p><p>Like a volcano, everything erupted at once, and the world around me lost its color. I stared at the Duchess, whose expression was rapidly changing, and I opened my mouth.</p><p>"There seems to be a misunderstanding..."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-703.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-705.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

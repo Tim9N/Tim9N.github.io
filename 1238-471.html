@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 471 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 471 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-470.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-472.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Thank you all for coming, and we hope you enjoyed the show!"</p><p>Doing her signature pose, Sophia waved at the crowd causing them to cheer even more loudly.</p><p>Unfortunately for them, it was already the end of the show, and therefore, giving them one last goodbye, Sophia quickly headed back to the changing rooms with her group.</p><p>Upon entering the changing rooms, Sophia slumped down on her chair and let out a long and tired breath.</p><p>"Haaaa, I'm tired."</p><p>"Tell me about." </p><p>Slumping down on the chair next to her was Penelope, her other group member.</p><p>Taking a wet towel, she covered her eyes with it and leaned her head back.</p><p>"Ugh, my legs are hurting like crazy..."</p><p>"Same."</p><p>Sophia replied in agreement.</p><p>"...but, I'm used to it by now "</p><p>Raising the towel on her face and uncovering her eyes, Penelope skeptically looked at her.</p><p>"Stop pretending, I know that you're not tired at all. You are one of the star students at the Lock, you don't need to be humble."</p><p>Sophia merely smiled in response to Penelope's comment. She then added.</p><p>"Just because I'm a student of the Lock doesn't mean that I'm immune to tiredness."</p><p>"Yeah, yeah."</p><p>Penelope completely dismissed her comment. Sophia shook her head when she saw this.</p><p>In a way, what Penelope was correct.</p><p>Thanks to her training at the Lock that she was now able to keep her stamina in check during her performances.</p><p>She also wasn't wrong when she said that she was one of the star students at the Lock as she was in fact ranked in the top fifty in her year.</p><p>An achievement that was quite considerable.</p><p>"Say, I've always been meaning to ask..."</p><p>Putting the towel down, Penelope suddenly sat up straight and looked at Sophia.</p><p>A frown appeared on her delicate face.</p><p>"Is money still a problem? I know that the Lock costs a lot of money, but if you spend your time with us, won't you fall behind the others in your year?"</p><p>"It's fine."</p><p>Bending down and taking a similar wet towel, Sophia covered her eyes.</p><p>Feeling the cold towel on her face, Sophia smiled in pleasure.</p><p>"Money is not really a problem..."</p><p>This was a bit of a difficult topic for her.</p><p>The main reason why she was an idol in the first place was because of her family's past situation.</p><p>Although they lived comfortably, they weren't particularly rich.</p><p>At least not to the point of being able to pay the Lock's yearly tuition fee which was incredibly expensive.</p><p>Despite making 7 million U per year herself, she was still unable to pay the whole tuition fee.</p><p>Had it not been for her father, she probably wouldn't have been able to attend the Lock.</p><p>Thinking about her father, Sophia felt a mixture of different emotions.</p><p>She couldn't quite explain what happened, but one day while she was still a trainee for her idol group, she came home to find that her tuition for the Lock had already been paid in advance by him.</p><p>Before she could confront him about the situation, she found out that he had gone on a long trip.</p><p>A trip that lasted a whole two years.</p><p>During that time, Sophia panicked a lot as she thought that in order to pay for her tuition fees her father had decided to undertake some extremely dangerous job, and only recently did she finally receive a call from him.</p><p>Though relieved, she was still very angry at him.</p><p>How could he just leave her like that? Without any explanations and making her worried sick for the past two years?</p><p>Unknowingly, Sophia's teeth clenched and she secretly swore to herself.</p><p>'He said that he's coming to visit me today, when he comes I'll let him have a piece of me.'</p><p>"Hey Sophia, what did you think about the girl you brought on stage today? Wasn't she just adorable?"</p><p>It was then that she suddenly heard Penelope's excited voice.</p><p>Raising the towel in her head, she found Penelope's face a couple of inches away from her.</p><p>Sophia quickly moved her back.</p><p>"Wow, move back a little."</p><p>"Don't be like that, Sophia, here have a look."</p><p>Taking out her phone, Penelope showed Sophia an image of the girl that they had taken to the stage.</p><p>Staring at the photo, Penelope squealed in delight.</p><p>"Come on, you can't tell me that's not cute."</p><p>Staring at the photo, Sophia nodded her head.</p><p>"...Sure."</p><p>She couldn't deny it. The girl was indeed quite cute.</p><p>It was then that the other group members huddled up together and stared at the image of the little girl on Penelope's phone.</p><p>"Oh, isn't that the girl from today's performance."</p><p>"I didn't get to see because of all the lights, but she's quite the cute one, huh?"</p><p>"Oh my, how cute. Just look at her cheeks."</p><p>Instantly, a cheerful atmosphere prevaded over the room.</p><p>"Hey, Sophia, why don't you look excited? ...You perhaps thinking of a boy?"</p><p>Out of nowhere, one of the group members suddenly teased.</p><p>Glancing at the girl, Sophia bluntly replied.</p><p>"As if..."</p><p>"There she is, the ice queen is back."</p><p>Penelope commented from the side as she lowered her phone. Her lips curled into a smirk.</p><p>"Say, is there really no one you are interested in, Sophia? With your looks and popularity, I don't doubt the fact that you will be able to find a boyfriend easily."</p><p>"No thank you."</p><p>Sophia quickly rejected. She then added.</p><p>"I don't have time for things like that."</p><p>It wasn't that she didn't want a boyfriend, however, she just didn't have the time for one.</p><p>Setting aside her idol activities, she had to focus on her academy work.</p><p>She barely had any free time for herself, let alone a boyfriend.</p><p>...and.</p><p>Well.</p><p>'None of them are as good as him.'</p><p>Sophia muttered inside of her mind with a longing look on her face.</p><p>Actually, there was one guy that come to her mind when she thought about love, however, he was not someone that someone like her could reach.</p><p>He was someone that shone on a brighter and more important stage than she had ever performed in.</p><p>From the moment she had set her sight on him, Sophia found all of the boys near her dull and boring.</p><p>'It's too bad that he's not someone I can reach.'</p><p>Unfortunately, he was not someone that she could casually talk to.</p><p>Despite her idol status, their achievements were worlds apart from each other.</p><p>The only thing she could do was focus on herself and maybe hope that one day she could reach for him.</p><p>***</p><p>"We're almost there, Leopold."</p><p>Patting Leopold in the back, I urged him to continue forward.</p><p>At the moment we were currently headed backstage to meet Leopold's daughter, Sophia Ray, and the group leader of the idol group.</p><p>This revelation was a pleasant surprise since I could use this as an excuse to help Nola meet them and take photos with them.</p><p>'How convenient.' I thought.</p><p>However, there was one slight problem.</p><p>"What are you so nervous about?"</p><p>"Boss, give me a moment."</p><p>And that problem was none other than Leopold who looked extremely nervous at the prospect of meeting his own daughter.</p><p>This was understandable though.</p><p>He had not met her for almost two years, I'd also be nervous if I were in his shoes.</p><p>Click—! Click—!</p><p>Just then I suddenly heard a familiar clicking sound.</p><p>"Stop that!"</p><p>To no surprise, I found Leopold hunched up, trying to light up a cigarette.</p><p>Dashing in his direction, I snatched the lighter and cigarette from his mouth and pointed at Nola who was currently in Amanda's arms.</p><p>"There's a little girl over here, why in the world are you smoking?"</p><p>"Oh come on boss, you know that they aren't that bad."</p><p>Leopold looked at me with a pleading look.</p><p>Ignoring his pleas, I put the lighter and cigarette away.</p><p>"No means no, let's go."</p><p>"Haaiizzzz..."</p><p>With a long and exaggerated sigh, I managed to drag Leopold all the way toward the changing room of Kimbol.</p><p>Along the way we were stopped multiple times by security, however, prior to coming here, the manager had given Leopold a special card that enabled him private access, and thus, we were able to get through without too much trouble.</p><p>"On second thought, I don't want to go in."</p><p>The moment we arrived at the door, Leopold suddenly started to get cold feet.</p><p>"As if I'm going to let that stop me."</p><p>Grabbing him by the back of his shirt, I proceeded to knock on the door.</p><p>To Tok—!</p><p>Leopold's body instantly stiffened, and I finally let go of his shirt.</p><p>'This guy...'</p><p>Staring at him, I couldn't help but shake my head.</p><p>Never before had I seen Leopold so nervous. Even when he was fighting against a horde of demons, and duergars he didn't look that nervous.</p><p>It was a weird sight if I had to say.</p><p>Clank—!</p><p>It was only after a couple of seconds had passed that the door opened.</p><p>Peaking from the side of the door, was one of the members of the group.</p><p>'Evelyn was her name if I didn't remember wrongly?'</p><p>Wasn't really sure.</p><p>"Yes? How may I help you?"</p><p>"Hello, there."</p><p>Taking a step forward and flashing a brilliant smile, I patted Leopold's shoulder.</p><p>"This guy over here wants to meet his daughter."</p><p>Once those words left my mouth, Evylin's eyes lit up.</p><p>"Ah! You're Sophia's father!"</p><p>Swinging the door open, the insides of the changing room became visible for all of us to see.</p><p>From there, we instantly found multiple eyes staring in our direction. They were the other members of the group.</p><p>"Father?"</p><p>Just then, a familiar voice sounded from the other side of the room.</p><p>Leopold's already stiff body stiffened even more as he forced a smile.</p><p>"S..Sophia dear, it's been a while."</p><p>"It has indeed been a while."</p><p>Sophia's icily said as she looked at Leopold with cold eyes.</p><p>Well, that was at least how it looked on the surface.</p><p>I could tell from a glance that she was merely putting up a front. She definitely looked relieved to see her father.</p><p>Not that he could notice anything since at the moment he was merely a shadow of his normal self.</p><p>Before Leopold could say anything else, Sophia nudged her head in my direction.</p><p>"Who are those people behind you?"</p><p>"Ah."</p><p>Finally snapping out of it, Leopold turned to look in my direction.</p><p>Grabbing me by the shoulders, he dragged me forward.</p><p>"Sophia dear, let me introduce you. This guy over here is my boss."</p><p>"Your boss?"</p><p>With a skeptical look on her face, I suddenly felt Sophia's gaze stare at me from top to bottom.</p><p>This persisted for the next few seconds before she quickly lost interest in me.</p><p>She then proceeded to look in Amanda's and Nola's direction. However, halfway through her sentence, she suddenly stopped.</p><p>"What about t—oh, isn't that the girl from before?"</p><p>It wasn't just her that noticed this as all the other members also finally took notice of Nola as their eyes instantly brightened up.</p><p>"It's really her!"</p><p>"How cute!"</p><p>"Look at her cheeks."</p><p>They all instantly dashed in Nola's direction.</p><p>"Wai—"</p><p>Initially, afraid that Nola would be startled by their sudden actions, I tried to say something.</p><p>However, I quickly stopped the moment I found Nola giggling happily at them.</p><p>"Nevermind."</p><p>Actually, the one that seemed to be the most overwhelmed at the moment seemed to be Amanda.</p><p>"So, Mr, boss, I would like to ask you a few questions."</p><p>At that moment, I suddenly heard Sophia's voice coming from behind me.</p><p>With her legs and arms crossed, she looked at me with a semi-cold look on her face.</p><p>"Yes?"</p><p>"Please sit."</p><p>She pointed at the seat opposite her.</p><p>"Sure."</p><p>Smiling slightly, I did as she asked.</p><p>To be honest, I understood where she was coming from.</p><p>Out of nowhere, her father came back home with a lot of money and suddenly disappeared for a long time. Furthermore, he came back with a ton of money.</p><p>Given his previous job, and income, she would naturally be skeptical about what her father's job was.</p><p>I would've been as well.</p><p>Therefore, sitting down in my seat, I calmly smiled at her.</p><p>"Is there anything you would like to ask?"</p><p>"Mhm."</p><p>Nodding her head, Sophia's brows knit tightly. Biting her lips, she asked.</p><p>"Can you please tell me how much my father owes you?"</p><p>"Owes me?"</p><p>Taken aback, a strange look appeared on my face. Before I could reply, she continued.</p><p>"I may not have enough money now, but I swear I can pay you back in a couple of years an—"</p><p>"Hold on, hold on, hold on."</p><p>I quickly cut her off. I then looked at Leopold and said.</p><p>"I think there has been a misunderstanding here. Leopold doesn't owe me anything."</p><p>Hearing my words, Sophia had an unconvinced look on her face.</p><p>"...Is this true?"</p><p>She asked.</p><p>"Haaa..."</p><p>Seeing how skeptical she was being, I let out a long sigh.</p><p>"I guess I have no choice but to introduce myself properly."</p><p>I tapped my face which soon morphed into that of my regular self. Then, lowering my hoodie, I extended my hand in her direction.</p><p>"Nice to meet you, my name is Re—hm?"</p><p>Midway through my introduction, Sophie's eyes opened widely as her mouth opened and closed repeatedly.</p><p>"W...what!"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-470.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-472.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

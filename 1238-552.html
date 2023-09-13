@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 552 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 552 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-551.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-553.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>It was already late afternoon when we reached the cafe, and the sun was blazing down on us. The extreme heat made it difficult for the two of us to stay outside any longer.</p><p>Amanda and I walked into the cafe, wondering if the heat would stop anytime soon.</p><p>"So, Amanda, what are you going to order?"</p><p>"Just some coffee for now. I'm not hungry yet."</p><p>"I'll do the same.</p><p>As I browsed the menu, I decided to get a simple cold brew.</p><p>Much preferred that over an espresso. Especially given how hot it was outside.</p><p>Looking around the restaurant, I turned back to look at Amanda.</p><p>She was admiring the scenery outside the window with a smile of joy.</p><p>Thinking of something, I let out a bitter sigh. Then, I called out Amanda's name.</p><p>"Hey, Amanda."</p><p>Amanda turned around and faced me.</p><p>"Yes?"</p><p>"…I'll probably leave on another trip quite soon."</p><p>There was an immediate expression of obscurity on Amanda's face as she looked back at me.</p><p>"You're going on a trip after having just come back from one?"</p><p>With a bitter smile on my face, I nodded my head.</p><p>"Yeah, I have no choice."</p><p>"…Is it really important?"</p><p>"It is."</p><p>I nodded my head.</p><p>In view of the fact that completing this task would delay the demon king's ascension by a year, the mission was indeed critical..</p><p>After staring at me for what felt like an eternity, Amanda let out a sigh.</p><p>"…Thank you for telling me."</p><p>I wasn't exactly sure why, but I was relieved to see that she wasn't mad about me suddenly leaving again.</p><p>Closing down the menu in front of her, she asked.</p><p>"Have you told your mother?"</p><p>"Uh…"</p><p>My face instantly hardened.</p><p>Scratching my face, I turned my attention away from Amanda. Following my actions, I could hear an audible sigh coming from Amanda's side.</p><p>"You're planning on telling them that you're leaving right? If you leave once again without any warning, I don't think I'll be able to help you out of the situation."</p><p>"I know."</p><p>I stared at Amanda.</p><p>It did occur to me for a time that it would be better simply to leave without telling them, and hope to return in a day or two given the time difference, but...</p><p>Upon further thought, I realized that this was not a good idea.</p><p>Putting aside that lying to my parents again would be disrespectful to my parents, it would also be arrogant of me to think that I would only be able to spend a short time there.</p><p>Especially since this was quite a difficult mission to complete.</p><p>"I'll have a talk with them after I come back home."</p><p>"That's for the best."</p><p>In an effort to call for a waiter, Amanda raised her hand. Due to her appearance, her sudden actions instantly caught the attention of those around us, and a waiter soon approached our table with a bright smile on my face. Throughout the entire time, he completely ignored my existence.</p><p>"How can I help you?"</p><p>I was left speechless by this.</p><p>"By the way…"</p><p>Seeing my dumbfounded stare, Amanda ordered for me and changed the subject.</p><p>"I'm curious about something."</p><p>There was a slight stutter in her voice as she placed both of her hands on her thighs. In an barely audible tone, she brushed her hair behind her ear and spoke.</p><p>"...Did that Sophia girl contact you recently?"</p><p>In an effort to maintain her composure, she tried to keep a straight look. Unfortunately for her, the reddening of her ears was a dead giveaway to me as my lips curled.</p><p>'Is she jealous of Sophia?'</p><p>How cute.</p><p>Shaking my head, I replied.</p><p>"No, she hasn't contacted me since I left, but she probably already knows this."</p><p>Not that she would've been able to since I was away for the past six months and Leopold had probably told her that.</p><p>That being said, now that I was back, I wasn't as certain it would be the case again.</p><p>"Oh…so she will contact you now that you are back?"</p><p>Grumbling, Amanda stuck out her lips in a small pout. In an effort to make it not obvious that she was jealous, she decided to change the topic.</p><p>"Also, I may not be as strong as you are, but you could ask me to help you sometimes."</p><p>"No, that's…"</p><p>"I'll soon breakthrough to &lt;A-&gt; rank, I'm sure I can be of help."</p><p>Since when had Amanda been so talkative?</p><p>"I'm not asking you to bring me if you can't. I'm just suggesting that maybe you should ask me for help now and then. I've been training a lot, and I have a good reputation in my guild. I'm sure it can be helpful for you. Unlike her..."</p><p>Seeing her throwing a tantrum, I could only laugh silently.</p><p>This side of hers was really cute.</p><p>"Here is your order."</p><p>It was right at this moment that the server finally came with our orders.</p><p>Holding onto a circular black tray, he carefully placed our drinks in front of us.</p><p>"An espresso and a cold brew."</p><p>"Thank you."</p><p>"Thanks."</p><p>Taking the drink, I sipped it quickly. The feeling of refreshment spread throughout my entire body as my face relaxed.</p><p>'Not bad.'</p><p>"This?"</p><p>However, it was at that moment that I heard Amanda's confused voice. As I turned my head, I saw the waiter handing her a bouquet of flowers.</p><p>With a smile on his face, he announced.</p><p>"This over here is courtesy of the gentlemen sitting over there."</p><p>After that, he pointed away from her to where a handsome young man sat quietly spying on her from a distance. He had long black hair, accompanied by brown eyes that seemed to carry hints of wisdom and arrogance within. The clothes he was wearing seemed rather flashy as they all seemed to be from designer brands.</p><p>Once his eyes met Amanda's, his back became straight as a confident smile spread across his face.</p><p>'Oh god.'</p><p>Turning my head to face away from him, I took another sip of the coffee in my hand. As expected of Amanda, it was inevitable for her to attract the attention of some rich youth. She was simply that beautiful.</p><p>"So?"</p><p>But it was at that moment that I was met with Amanda's gaze.</p><p>I turned to glance at her.</p><p>"...So, what?"</p><p>She pointed at the flowers.</p><p>"Not going to say anything about them?"</p><p>"The flowers?"</p><p>I shook my head.</p><p>"Why should I? Are you going to take them?"</p><p>Was she expecting me to get jealous over some flowers?</p><p>As if.</p><p>Taking another sip of my cold brew, I leaned back on my chair. I soon cracked a smirk as I thought about something.</p><p>"…Just so you know, my charm is higher than Han Yufei's."</p><p>His charm was &lt;B&gt; rank. Mine was &lt;B+&gt;.</p><p>'I won.'</p><p>After taking a moment to process what I said, Amanda then rolled her eyes.</p><p>"...And how would you know that?"</p><p>"I've recruited him into my mercenary group."</p><p>"You…"</p><p>I could see Amanda staring blankly at me for at least two seconds, as she struggled to comprehend my words.</p><p>"Excuse me?"</p><p>Her thoughts were interrupted by the waiter pushing the flowers towards her.</p><p>"Will you take them?"</p><p>Before she turned to look at the flowers again, Amanda looked at me with a thoughtful look on her face.</p><p>"You really won't mind me taking the flowers?"</p><p>"Nope."</p><p>I answered while taking another sip of the coffee.</p><p>"It would be troublesome if you rejected the flowers. The guy will most likely bear a grudge or something, and things will get annoying…"</p><p>Just your typical stuff annoying stuff. It was better if she took the flowers.</p><p>While staring at me deeply for some time, Amanda nodded her head. Despite her quickness, her eyes flashed with disappointment, and my body tensed up a little.</p><p>"...Okay."</p><p>After that, she reached out to touch the flowers with her hand. A brightened expression spread across the face of the individual who sent her the flowers as he slowly rose up from his seat. He seemed to be ready to walk over at any minute.</p><p>When I saw this, my brows furrowed. A strange mixture of annoyance and something else washed over me as Amanda was about to reach the flower and the individual was about to walk over.</p><p>Even though I knew she was probably pretending to take the flowers at the moment, I felt a strange sense of discomfort as the image of her taking the flowers imprinted itself inside of my head.</p><p>In the blink of an eye, I had already reached out and grabbed Amanda's wrist before I had even realized what I was feeling. In just a few seconds, the server's face and the individual that was about to walk over changed.</p><p>But I didn't care.</p><p>"Wait."</p><p>"!!"</p><p>I called out, as Amanda turned to look at me with a stunned look on her face.</p><p>"Ren?"</p><p>Amanda called out. Her face is still stained with surprise.</p><p>Looking deeply into her eyes, I firmly gripped her wrist.</p><p>"On second thought, don't take the flowers."</p><p>"But..."</p><p>"I know what I said, and I'm sorry. Don't take the flowers."</p><p>I couldn't explain why I was doing this, but the thought of Amanda taking the flowers irked me.</p><p>'No, who am I fooling…'</p><p>I already knew what I was feeling, I just didn't want to admit it.</p><p> Neither of us spoke for the next couple of seconds as we just stared at one another. </p><p>After a few seconds, Amanda calmly nodded.</p><p>"Okay."</p><p>While she tried to hide it, there was a slight tremor in her voice as her pupils dilated and her lips twitched.</p><p>I could only bitterly sigh at her when I saw this.</p><p>With a calm look on her face, Amanda turned to look at the server and pushed the flowers away.</p><p>Extending her hand in my direction, she proceeded to speak.</p><p>"As you can see, I'm currently on a date with him..."</p><p>Turning around, her eyes paused on the male that was about to head our way and she raised her voice a little.</p><p>"Please tell him that I'm currently taken."</p><p>When the server heard her voice, an awkward look spread across his face as he gazed at the distant male consumer who looked back at him with a twisted look on his face.</p><p>A few seconds later, he stormed off the store, glaring in our direction. Leaving after him was the server who brought the banquet of flowers away with him.</p><p>While staring at them both, I sighed.</p><p>"Great, it looks like someone has been offended."</p><p>"...What are you afraid of?"</p><p>Amanda asked as she softly smiled in my direction.</p><p>Turning to look at her, I replied.</p><p>"I'm not afraid. I'm just saying that it's annoying."</p><p>It didn't take a genius to understand that he was soon going to come back with backup to annoy us.</p><p>'Ugh.'</p><p>Just the thought further irritated me.</p><p>Seemingly amused by my annoyance, Amanda reassured.</p><p>"Don't worry too much."</p><p>"How can I not? Trust me, I can bet all my money that this will happen."</p><p>Instead of answering, Amanda continued to smile.</p><p>"Well, whatever."</p><p>Finished with my rant, I leaned back on my chair and grabbed my drink.</p><p>"I'll deal with them when the time co—"</p><p>"Just so you know, I was going to refuse the flowers."</p><p>Rumbling one more time, I was cut off by a soft whisper. It was very faint, but I was able to hear it clearly. It was then that my hand, which had been holding the drink, suddenly stopped moving.</p><p>Lowering my hand to get a better look at her, Amanda's head lowered as she continued to whisper.</p><p>"...I was never planning on taking the flowers."</p><p>Opening my mouth for a moment, I soon closed it.</p><p>A smile spread across my face.</p><p>"I know."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-551.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-553.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

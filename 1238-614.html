@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 614 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 614 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-613.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-615.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The scenery outside of the window kept shifting as the car continued to move through the streets of Ashton city.</p><p>There was an unusual silence inside the car as it passed each street.</p><p>"Are you okay?"</p><p>The silence was only broken by Amanda's voice, which contained hints of worry.</p><p>"...If you're worried about my safety, you shouldn't be. I'm about to reach &lt;S-&gt; rank soon. I can hold my ow—"</p><p>"That's not it."</p><p>I cut her off before she could continue speaking.</p><p>I then turned my attention in her direction.</p><p>"Your safety isn't what is bothering me. I already know just how strong you are. There's no need for me to protect you."</p><p>Amanda was one of the last people that needed my protection.</p><p>With a big guild backing her up, and her father, who was now &lt;SS-&gt; rank helping her, she was safer than anyone else I knew.</p><p>Not only that, but her strength wasn't anything to scoff at. Even I would have trouble fighting against her if she started attacking me from a long distance.</p><p>She was the worst opponent for me.</p><p>"Then what are you worried about?"</p><p>"My strength."</p><p>I truthfully replied. Lowering my head to gaze at my hands, I quietly whispered.</p><p>"...I need more strength."</p><p>I was strong, yet so weak at the same time.</p><p>If only I could become stronger, faster...</p><p>Sadly, time wasn't on my side. With only two years left, I didn't see much hope in the dark tunnel that I was walking in.</p><p>Nonetheless, I still continued to walk. I had no choice but to.</p><p>"..."</p><p>Amanda didn't say anything after overhearing my words.</p><p>Her gaze was on me, but she didn't say anything. It seemed as though she understood my sentiments.</p><p>The last thing I heard from her throughout the ride back home was her soft whisper.</p><p>"Me too..."</p><p>***</p><p>Union tower, executive floor.</p><p>Octavious overlooked the entirety of Ashton city from the comfort of his own office. Glass windows that stretched from one end of the room to the other allowed him to see everything. From the streets below, the skyscrapers in the distance.</p><p>He stared at the city for what seemed like hours until he raised his head to stare at the large crack that was in the sky.</p><p>"...What am I missing?"</p><p>A low, monotonous voice echoed out.</p><p>Several years had passed since the crack in the sky appeared. During that time, Octavious watched as more and more people broke through to the next rank.</p><p>From Monica reaching the &lt;SS-&gt; rank at the age of thirty two, and several other known figures also breaking through their previous talent limits, Octavious knew that this was the best time to break through.</p><p>Humanity was in a state of prosperity!</p><p>Only one issue remained; in spite of all the time that had elapsed, he was still only at the &lt;SS+&gt; rank. Octavious was a patient man, and in a normal situation, he wouldn't have given a damn about how long it took for him to advance to the next rank.</p><p>However, the situation was different now.</p><p>"I can't feel it."</p><p>The sensation one would feel when they were close to reaching the next level. Octavious couldn't feel it.</p><p>This only meant one thing. He was still far from reaching the next rank.</p><p>"...What did I give up my emotions for?"</p><p>Octavius's languid eyes rippled as he stared at the azure blue sky. Traces of loneliness flashed across his turbid eyes.</p><p>Taking a deep breath, he turned around to face his desk.</p><p>It was then that his eyes paused on a certain frame. On the frame was a little girl with brown hair and green eyes.</p><p>Octavious lowered the frame with his hand to reveal several post-it notes in his handwriting. One he remembered writing a long time ago.</p><p>[Make sure to smile in front of children. Even if you lose your emotions, you should try your best to not let your own daughter down.]</p><p>[Try patting her on the head when she cries. It should appease her, if even for a little bit.]</p><p>[Give her milk when she cries.]</p><p>[I saw that candy makes children happy. Try giving them to her when she's crying.]</p><p>[Make sure to show her some affection even if you can't feel anything for her. It's the least you can do for giving up on your emotions in exchange for more power.]</p><p>He raised the frame back up to hide the post-it notes.</p><p>Even though he couldn't understand them, he felt like they were important. He just didn't know why.</p><p>"Soul...Soul...Soul..."</p><p>He mumbled to himself, taking out a large brown leather book from one of his drawers.</p><p>Placing it on his desk, he started to flip through it. He had an inkling that the reason why he couldn't break through had something to do with his soul.</p><p>***</p><p>The next day.</p><p>"Are you guys ready?"</p><p> We were currently standing in front of a large expanse of grass. Beside me was Kevin who had his hand extended outwardly. </p><p>The mana around him danced and fluctuated in a weird manner.</p><p>He was about to open the portal that led to Immorra.</p><p>"Since I have things to take care of at the Union, I won't be able to accompany you guys, but that shouldn't be a problem. When you people are finished, I'll visit just teleport to you guys and set up a portal."</p><p>"That will do."</p><p>I thankfully nodded my head in Kevin's direction.</p><p>The meeting time was supposed to be in seven human days, which was about seventy days in Immorra.</p><p>By then, Kevin would teleport to us and he would set up a portal. For obvious circumstances, Kevin couldn't come with us.</p><p>The him being too 'busy' was merely an excuse. The real reason he couldn't come was because his presence would definitely arouse Jezebeth's interest and in turn, raise the possibility of him appearing in Immorra which wasn't something I was keen on having.</p><p>"Are you ready?"</p><p>Kevin called out.</p><p>Turning my head to look at the others behind me, I nodded my head. Judging from their looks, they looked ready.</p><p>"Yes, we're ready."</p><p>"Okay."</p><p>Kevin's physique started to radiate a reddish glow. The color grew quickly this time, unlike the previous times he attempted to open the portals, before gently creating a net to enclose a white ball that formed in the middle of his palm.</p><p>"I've learned my lesson from last time."</p><p>Kevin started to speak.</p><p>"In order to avoid leaving any traces of me opening up the portal, I have found a way to use my mana alone instead of …"</p><p>He paused mid sentence and looked at the others.</p><p>After that, his eyes rested on me, and he no longer spoke any further. Nonetheless, I clearly understood what he was trying to say.</p><p>He was most likely trying to refer to the Akashic laws. A power only he and the demon king held.</p><p>"Get ready."</p><p>Extending his other hand, the free one, Kevin took out a large core from out of thin air.</p><p>He then crushed it with his hand.</p><p>Crack!</p><p>Like glass, the core shattered into millions of pieces and a glass shattering sound echoed.</p><p>Following that, a surge of magic erupted from the center and traveled toward the white sphere that was encircled by Kevin's crimson color, like furiously dancing snakes. A wormhole began to form, spiraling around the white core.</p><p>In the process, a gust of air was released and my hair and clothes fluttered wildly.</p><p>I ignored it and looked at the others.</p><p>Everyone was here.</p><p>Ava, Hein, Leopold, Liam, Han Yufei, Ryan, and Angelica.</p><p>Yes, Angleica too.</p><p>To my surprise, Angelica chose to remain with us despite the contract expiring a year ago.</p><p>In all honesty, I never expected her to remain with me after everything that happened, but at the same time, I sort of understood her.</p><p>After all, this was the only place she had left.</p><p>Her relationship with her clan must have suffered greatly as a result of what occurred a few years ago in the dungeon. She would have without a doubt get into trouble if she had gone back. After all, they did suffer tremendous losses back then.</p><p>Thus, it was within her best interest to make another contract with me.</p><p>Compared to the previous contract we signed, it wasn't any different. Perhaps there were fewer restrictions on her, but that was about it.</p><p>The time for the contract was set for two years, for obvious reasons, and she could not betray or think of betraying anyone in the group in the time period set. The same went for me.</p><p>Not that I thought she would actually betray us. But who knew, there was always a chance for everything. I at least knew this much.</p><p>"Are you guys ready?"</p><p>I asked while my eyes swept past everyone present.</p><p>All of them were currently wearing grave expressions on their faces and were paying close attention to the portal. Without them knowing, their faces had already begun to pale when they gazed at the gateway, even though they tried their best not to show it.</p><p>Evidently, they were reminded of what happened two years back.</p><p>I couldn't blame them.</p><p>I too felt a mix of emotions when I stared at the portal, but I was able to quickly squash emotions down once I saw that the portal was about to form.</p><p>"I'll go first."</p><p>I decided to step in first to make sure that nothing was wrong with the portal.</p><p>I looked at the others once more before turning to Kevin, who gave me a short nod. I reciprocated his slow head nod by doing the same.</p><p>After that, without looking back, I entered the portal right after.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-613.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-615.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 708 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 708 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-707.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-709.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[I'm at the location.]</p><p>The abandoned structure far off in the distance captured and held Monica's attention for some time. A fleeting expression of solemnity passed through her eyes as she knelt down and did the best she could to hide her presence.</p><p>'...This is it.'</p><p>This was the place that she was designated after the meeting a day prior.</p><p>In just a few short moments, a battle would erupt, and many would die. Her presence was not yet known to the enemy, and she was only supposed to show up once the enemy showed up in full.</p><p>If they didn't show up, she wouldn't either.</p><p>Closing her eyes, she inwardly prayed.</p><p>'Hopefully...'</p><p>***</p><p>"Monica is in position."</p><p>Donna looked to her left, where a beautiful woman with green hair stood. She was none other than 48th &lt;S&gt; ranked hero, Amber Rose.</p><p>Not far from them was another group of lower ranked members scouting the area ahead. They were the main force in charge of the operation. On the other hand, Amber and she were merely there to ensure that nothing occurred to them. Somewhat like bodyguards in disguise.</p><p>Their presence shouldn't be out of the Monolith's calculation.</p><p>"That's good."</p><p>Amber responded, her tone sounding rather low. It was her attempt at hiding her nervousness.</p><p>"Don't worry."</p><p>Her nervousness didn't slip past Donna. She placed her hand on her shoulder and reassured.</p><p>"We've got the upper hand. We may be walking towards a trap, but the fact that we know that should already be enough of an indication that we aren't going there without a plan. Have faith in the Alliance Master."</p><p>"You're right."</p><p>Amber took a deep breath and stabilized her heartbeat.</p><p>She looked at Donna and asked.</p><p>"...Is he trustworthy?"</p><p>"The Alliance leader?"</p><p>"Yeah..."</p><p>Amber bit her bottom lip.</p><p>"He seems rather young, and there's not much that I know about him. It'd be a lie if I said I wasn't worried."</p><p>"..."</p><p>Donna wordlessly stared at Amber.</p><p>'Is he trustworthy?'</p><p>Donna's mind was just now starting to wrap around how far Kevin had come in such a short amount of time compared to when they first met. From having a rank of around a &lt;D&gt; to now being on par with her.</p><p>...Then there was Ren as well. Nothing needed to be said about his accomplishments, which surprisingly overshadowed Kevin's already absurd ones.</p><p>'Now that I think about it... what kind of monsters did I train? Is my teaching that effective?'</p><p>She shuddered at the thought.</p><p>Perhaps she was a way better instructor than she had expected.</p><p>"We're here."</p><p>Amber's voice brought her out of her delusions. Raising her head, Donna's eyes focused on an enormous beacon that was deeply etched in the ground with four clamps by its side.</p><p>An invisible beam shot out from the beacon, directly shooting into the sky and absorbing the mana around it, releasing small threads of black.</p><p>"Mana Compressor."</p><p>The main target of their excursion. As long as they destroyed it, their mission would be considered completed.</p><p>It was just that...</p><p>[Scouting Report. There appear to be no adversaries.]</p><p>...It was completely deserted.</p><p>There was no one in sight.</p><p>"I feel several presences beneath the ground. There's more than twenty."</p><p>Hearing Amber's murmur, Donna found her body tensing. A subtle hue spread from her amethyst colored eyes.</p><p>"Can you tell their rank?"</p><p>"No."</p><p>Amber shook her head with a tense look. With thin vines secretly spreading from her fingertips, she furrowed her brows tightly.</p><p>"...However, I can feel several threatening auras. About seven of them to be exact. "</p><p>"That many?"</p><p>The unexpected revelation left Donna completely taken aback. The Monolith seemed better prepared than they had initially anticipated.</p><p>Amber retracted her vines from the ground and cast a solemn look in Donna's direction.</p><p>"What do we do now?"</p><p>"I don't know."</p><p>Donna bit her lips while staring at the attack force ahead of her. They were currently pretending to scout the location while, in reality, they were just waiting for their orders.</p><p>Donna briefly furrowed her brows as she turned to face Amber. She finally took a deep breath, and then her eyes grew sharp.</p><p>"Do you know the exact location of all those that are lying in ambush?"</p><p>"More or less."</p><p>It wasn't entirely clear to her whether or not she had tracked down all of the individuals hiding in the ambush. Her vines might not have been able to extend to the spot where a being with a higher rank was possibly hiding.</p><p>She looked at Donna.</p><p>"So what do you want me to do?"</p><p>"Start a direct attack."</p><p>Donna responded in a stern manner. Her amethyst colored eyes shone brighter than before, slowly extending to the area around her.</p><p>"Since we know their location and that they're waiting for us. It's best if we attack directly to have the initiative."</p><p>She looked down at her watch.</p><p>"I'll let the combat team know."</p><p>"Got it."</p><p>Amber tore her gaze away from Donna and fixed it on the opposing combat force that was off in the distance. Seeing their bodies tense, she knew that they'd received the direct orders from Donna, and the vines that were coming out from her fingertips started to thicken.</p><p>Closing her eyes, Amber carefully sensed the auras of her opponents. She couldn't help but feel rather tense at the moment. The feedback she was receiving through the vines led her to believe that there were a significant number of powerful adversaries lurking in the distance.</p><p>'I hope I didn't miss anyone...'</p><p>Making sure she was locked on all the auras, she looked directly at Donna.</p><p>"I'm ready."</p><p>Donna lowered her hand and fixed her gaze toward the distance. Her amethyst eyes exploded with color.</p><p>"Okay, get them out."</p><p>"You got it."</p><p>Amber, obediently carrying out Donna's instructions, channeled all of her mana into the vines, which burst forth from the ground and hurled toward the targets.</p><p>Rumble―! Rumble―!</p><p>The ground began to shake violently, and out of the ground came thick vines that were about the size of three tree trunks. The very tip of them was extremely sharp, and following their appearance, several figures emerged from the ground.</p><p>"We have been discovered!"</p><p>"Engage with the enem―"</p><p>They were the Monolith forces.</p><p>"Stop."</p><p>The sound of Donna's voice quietly spread across the entire battlefield, and the figures that emerged from the ground froze on the spot.</p><p>Click―!</p><p>The ground clicked at her step, and she brushed her black hair back.</p><p>As she opened her eyes wide, the world took on a purplish hue, and her voice took on an extremely alluring quality.</p><p>"Do me a favor and quietly die."</p><p>They were just a couple of words, but the moment they spread, the eyes of many shook.</p><p>A few of the weaker individuals found themselves tempted by her voice, and they brought their weapons directly toward their throats.</p><p>Blood trickled down the side of their neck.</p><p>Boom―! Boom―!</p><p>In the meantime, the assault force and Amber attacked with everything they got. Blood sprayed all over the ground as limbs fell to the ground.</p><p>Boom―!</p><p>The sound of explosions reverberated throughout, drowning out the cries of desperation coming from those who had fallen.</p><p>In the space of just a few seconds, more than half of those who emerged were gone, leaving behind only those that held a considerable amount of power. As they looked at Donna, whose eyes shone brightly as she looked back at them, their faces bleached.</p><p>"Why are you still here?"</p><p>Her sweet voice lingered in the air, halting their movements. It was only for a moment, but it was sufficient for Amber to intervene as thick vines sprouted behind them like spears and targeted their backs.</p><p>"How dare you!?"</p><p>At that precise moment, a high-pitched shriek resounded throughout the space, and a potent aura engulfed the entire region.</p><p>Both Donna and Amber found themselves propelled a great distance away, slamming into the far-off structures as they went.</p><p>Boom―!</p><p>"Ukh."</p><p>While trying to regain her composure, Donna let out a muffled groan. Her vision was obscured by dust and debris which came as a result of her crash.</p><p>After the dust had settled and she was able to see further ahead, she caught a glimpse of an elderly woman with a cane in her hand standing in the air.</p><p>Her presence took over the entire battlefield.</p><p>"I,it's that old witch…"</p><p>Donna muttered while wiping the side of her mouth.</p><p>She instantly recognized the old lady. She was one of the elders of the Monolith and an &lt;SS&gt; ranked entity.</p><p>Just the pressure alone made it difficult for her to stand.</p><p>"It looks like I've underestimated the lot of you."</p><p>Her gaze moved from one person to the next across the battlefield. Soon after that, she tapped the top of her cane into the air, and a circular ring of pressurized energy radiated outward from it, encircling the entire area.</p><p>The pressure that Donna was exposed to increased dramatically and she found herself coughing up blood.</p><p>"Pfttt."</p><p>Her chest hurt and she could no longer keep her head high up.</p><p>…but she didn't need to.</p><p>Swooosh―!</p><p>A whistling sound arose in the air and a terrifying explosion reverberated in the air.</p><p>Boom―!</p><p>Shortly after, a high pitched voice echoed, and Donna cracked a grin... only for it to freeze shortly after.</p><p>"Old Witch number two, it's about time you showed yourself!"</p><p>Old Witch number two?</p><p>***</p><p>Alliance Headquarters.</p><p>Ding―!</p><p>[We have engaged with the enemy]</p><p> Ding―!</p><p>[We have engaged with the enemy]</p><p>Ding―!</p><p>[We have engaged with the enemy]</p><p>Kevin fixated his gaze on his watch, which was ringing nonstop due to the overwhelming number of notifications flooding the interface. His expression didn't change at the sight of the notification.</p><p>He tapped onto his watch and disabled his notifications.</p><p>Shortly after that, he stood up from his seat, pressing his hands against the surface of his desk as he did so. At the same time, he reached for his grey blazer and slung it over his shoulders.</p><p>As he slowly clenched and unclenched his fists, he slowly extended his hand forward, and a viscous white light suddenly burst forth from his hand.</p><p>As he looked at his hands, his face contorted into an expression that suggested he was struggling to make sense of something. Or maybe, come to terms with it.</p><p>"Almost there…"</p><p>After a brief shut of his eyes, his figure became hazy and then vanished from the spot.</p><p>"…Just a little bit more."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-707.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-709.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

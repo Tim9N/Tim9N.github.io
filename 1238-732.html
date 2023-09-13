@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 732 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 732 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-731.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-733.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"The world looks peaceful, doesn't it?"</p><p>While I trailed Matthew from behind, I looked around at everything that was going on around me. The world, as he pointed out, was quite different from the world that I lived in.</p><p>People running around with smiles, no gates or demons to worry about…</p><p>It was extremely peaceful. Enough to make me jealous.</p><p>'Is this how the world would've been if Jezebeth and the demons never existed?'</p><p>It was rather good.</p><p>"You think too much."</p><p> Matthew smirked as he looked at me.</p><p>"True, the world looks peaceful, but that's merely what you're perceiving on the surface. Reality is, the world is a lot less idealistic than you'd imagine."</p><p>He continued forth, and I followed from behind him. He didn't elaborate further, but he seemed to be hinting at something.</p><p>I honestly didn't understand his words. When I looked around me and saw the world, which appeared to be in much better shape than the war-torn world that I was a part of, I had a hard time believing that this world could be as terrible as he hinted at.</p><p>'Merely what you're perceiving on the surface…'</p><p>Was he hinting that something big was happening in the shadows?</p><p>"We're nearly here."</p><p>The first thing that caught my eye in the distance was a familiar skyscraper. It was a building that I had frequented in the past, and its appearance in this world was identical to how it appeared in the world that I belonged to.</p><p>'The Union Tower.'</p><p>"We want justice!"</p><p>I heard faint chants in the distance.</p><p>'At least, that part of the Union Tower didn't change.'</p><p>Be it my world or this world, there'd always be a couple of people protesting there.</p><p>The further we went, the louder they got, and it wasn't long before I had a better grasp of what they were yelling.</p><p>My expression changed a little.</p><p>"Life imprisonment!"</p><p>"Sentence those criminals to the death!"</p><p>"Kill them!"</p><p>Hearing the contents of their words, my brows slowly furrowed, and I looked toward Matthew.</p><p>"What's going on?"</p><p>Were some big time criminals being persecuted?</p><p>The reaction seemed rather extreme.</p><p>"You'll see."</p><p>Matthew merely smiled at my question and continued moving forward.</p><p>Even though his secrecy was driving me a bit crazy, I decided to follow him closely and no longer said a word. I was a patient man.</p><p>"Kill those traitors!"</p><p>"Have them hanged in the streets and make an example of them!"</p><p>"Murderers!"</p><p>Before long, I stood before a large group of people carrying signs and speakers, shouting toward the Union Tower.</p><p>They shouted all sorts of profanities while waving the banners in the sky.</p><p>"We want justice!"</p><p>"We want justice!"</p><p>"We want justice!"</p><p>Their chants spread throughout every nook and cranny of the square beneath the Union Tower. It was so loud that it was starting to grow uncomfortable.</p><p>"We're here."</p><p>Matthew stopped right next to the crowd and stared at the large tower in front.</p><p>I stopped beside him.</p><p>"…Is this what you were trying to show me?"</p><p>The riot?</p><p>Was there something special about it?</p><p>Matthew smiled.</p><p>"Just wait a couple of minutes. You'll get an idea soon enough."</p><p>"Okay."</p><p>I turned to stare at the crowd in hopes of getting any clues, but there didn't seem to be anything as they all just mindlessly screamed toward the tower.</p><p>Thankfully, I didn't have to wait too long to see a change happening.</p><p>"Someone is finally out!"</p><p>"Judgment will finally prevail!"</p><p>"Justice!"</p><p>The doors to the tower opened with a deliberate pace, revealing a stoic figure with languid eyes. The effect of his power was immediate, and everyone in the square became silent as it spread throughout the area.</p><p>'…He's still the same.'</p><p>Be it this world, or the other world. Octavious was still Octavious.</p><p>He never changed.</p><p>"A verdict has been made."</p><p>His calm voice reached the ears of everyone present.</p><p>Absolute silence filled the surroundings as everyone held their breath.</p><p>After observing their demeanor, my interest in the matter increased, and I couldn't help but keep staring at Octavious.</p><p>'Let's see what this verdict is about.'</p><p>He soon continued.</p><p>"After going through all of the evidence, and a lot of discussions, we, the Union, have come to the conclusion that the following three individuals are guilty of the following crimes."</p><p>The moment he extended his hand, three pictures materialized next to him, and my entire face went completely still.</p><p>"Attempted Genocide. Extortion at the highest level. Murder. Kidnapping…"</p><p>The list went on, but I had no time to focus on it as all the noise drowned out from my head.</p><p>With my gaze directed toward the three individuals depicted in the images presented by Octavious, I felt my mind go completely blank.</p><p>"H,how is this possible?"</p><p>It didn't make sense.</p><p>"Toshimoto Keiki, also known as Grandmaster Keiki, sole creator of the Keiki style, and a former honorary member of the Union…"</p><p>"Aaron Levisha, also known as Grandmaster Levisha, sole creator of Levisha style, and a former honorary member of the Union…"</p><p>"Roman Gravcar, also known as Grandmaster Gravar, sole creator of Graver style, and a former honorary member of the Union…"</p><p>Reciting their names slowly, Octavious turned his head to stare at the images next to him before loudly announcing.</p><p>"From this day forth, I hereby declare that the three of them will be sentenced to… death!"</p><p>"Waaahhh!"</p><p>"Wooooooohhh!"</p><p>The stillness that had been engulfing the square was suddenly shattered as the sound of cheers reverberated throughout. People were comforting one another by crying and hugging while they screamed in happiness.</p><p>Some even fainted from joy, while others started praising the Union endlessly.</p><p>My stomach began to churn at the sight, and I looked over at Matthew, who smiled at me like he understood what I was going through.</p><p>"Do you still think that everything looks peaceful?"</p><p>Swallowing my saliva, I slowly shook my head. I was still trying to process what had just happened, but it finally dawned on me that something seriously messed up was happening somewhere in this world.</p><p>How could the people who were deemed to be the Heroes of my world suddenly become such hated criminals?</p><p>…Whatever it was that was happening, was definitely something that Kevin wanted me to understand.</p><p>"What am I supposed to do now?"</p><p>I looked at Matthew cluelessly. The sudden revelation baffled me and left me clueless as to what to do.</p><p>Everything felt so foreign to me.</p><p>"Should I rescue the three of them?"</p><p>I looked toward the images of the three Grandmasters in the distance. Saving them shouldn't be too hard.</p><p>The problem was what I'd have to do after.</p><p>What exactly was I supposed to do after rescuing them?</p><p>Would rescuing them give me clues with regards to how to get back to my world and get a better understanding of what Kevin was trying to show me?</p><p>...Was he perhaps hinting at something? Were the deaths of the three Grandmasters in my world not caused by the demons?</p><p>I swallowed a mouthful of saliva.</p><p>'Why can't he just tell me everything instead of showing me all of this?'</p><p>"Not yet."</p><p>Matthew turned away from me and started to walk away from the square.</p><p>I quickly followed him from behind.</p><p>"Wait up."</p><p>As I moved away from the area, the volume of the noise began to decrease, but I could still occasionally make out the honks of several cars as their passengers celebrated the unexpected news.</p><p>Ashton city was basking in a festive mood.</p><p>I didn't know how to feel as I looked around. Although I had never met the three grandmasters, apart from Keiki's remnant soul, I owed the three of them a lot.</p><p>A lot of my success was attributed to the three of them, and seeing them in this situation made me feel rather complicated.</p><p>'I'm sure he knows something.'</p><p>I stared at Matthew's back.</p><p>He didn't speak much, and just quietly showed me the way.</p><p>For some reason, I had a feeling that he was being mysterious on purpose. As if he had a grudge against me.</p><p>"Where are we going?"</p><p>"You'll know soon enough."</p><p>"This again?"</p><p>I was starting to get annoyed with all of these answers, but what could I do? He was the only person that I could rely on at the moment.</p><p>He was the key to getting back to my world as well as understanding the main principle behind this world.</p><p>For now, I could only suck it up and do as he said.</p><p>"We're here."</p><p>Thankfully, we didn't have to walk around for very long. We were soon standing in front of a large white building.</p><p>"Is this the place?"</p><p>I carefully observed it.</p><p>The building was rather large and square in shape. It wasn't very tall, but it seemed very populated as a lot of people walked in and out of the structure.</p><p>Looking around, my eyes soon fell toward a certain sign at the very top, and my mouth twitched.</p><p>The moment I saw the words imprinted at the top of the building, I almost wanted to turn back and get as far away from the place as possible.</p><p>[Hall Pharmaceuticals]</p><p>"Really?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-731.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-733.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

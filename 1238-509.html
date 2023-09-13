@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 509 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 509 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-508.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-510.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang—!</p><p>Crashing against a tree was a black humanoid figure. The bark of the three flew everywhere, and the figure rolled back a couple of meters.</p><p>Coming to a stop, the demon raised his head and glared in my direction.</p><p>"Uakh! How…dare you!"</p><p>"Just answer a few questions if you don't want to die."</p><p>Walking up to the demon, I placed my foot on top of his head and applied some pressure. His head came into contact with the ground.</p><p>"Khhh."</p><p>Using every ounce of his strength to raise his head, the demon glared my way, but I ignored him and lowered my body to meet his eyes. Along the way, I removed my foot which was pressed against his face.</p><p>He was only a Baron-ranked demon. Therefore, I wasn't too worried about him running away.</p><p>"Hmmm."</p><p>Taking out a black frit from my pocket, I presented it to the demon in front of me.</p><p>"I'll give you this if you start speaking."</p><p>The demon's face changed instantly the moment I took out the core. He was giving me a look filled with greed.</p><p>I secretly smirked when I saw this.</p><p>Having killed as many demons as I did, it was inevitable for me to pick up a couple of devil fruits. Since I had no use for them, I could use them as a good bargaining chip.</p><p>"If you want this core, you better answer my questions properly."</p><p>"...How should I believe you?"</p><p>The demon's voice was rather calm, but I could tell that this was merely a pretense. It was very subtle but there was a tremble in his voice as he spoke.</p><p>'He's scared.'</p><p>"How should you believe me?…Mhh."</p><p>I frowned underneath my mask.</p><p>After a while, I just shrugged my shoulders.</p><p>"You don't really have a choice either way. I can just kill you with a single slap. If you don't answer my questions I'll just go to another demon. Someone will eventually speak, it's not like the questions I'm about to ask are a secret…"</p><p>I slowly raised my hand.</p><p>The demon flinched when he saw this.</p><p>"I will speak! I will speak!"</p><p>He repeatedly shouted.</p><p>There was clear fear in his eyes as he said those words.</p><p>'Good…'</p><p>Lowering my hand, I deeply gazed into the demon's eyes.</p><p>"Alright, I'll make this simple. Tell me what you know about Morian."</p><p>Although what my other self said usually ended up being correct, I still didn't trust him.</p><p>Before making any moves, I wanted to assess the situation for myself.</p><p>My next set of actions would be based on the demon's answers.</p><p>"Marion?"</p><p>"That's right, tell me anything you know about it. Especially about the arena."</p><p>The demon's face changed a bit as he hesitated to speak. I pressed my hand to his throat when I saw this.</p><p>"I don't have much time, make it quick."</p><p>"Khh…yes."</p><p>Giving me a fearful nod, he slowly started to recount everything about the city. From its general layout, to who reigned supreme over there, and how heavily guarded it was.</p><p>He also told me which area to avoid, and what were the most crowded areas. I didn't really pay too much attention to this information.</p><p>I wasn't planning on infiltrating the city in the first place. All that interested me was the arena.</p><p>"…if you're planning to infiltrate the city, give up on the thought. That place is under the surveillance of two Dukes. You will never make it past the entrance without getting yourself killed by them."</p><p>"I see."</p><p>'Everything perfectly coincides with what he said.'</p><p>This reassured me a bit. Turning my attention back you the demon, I continued to ask.</p><p>"What about the arena, what do you know about it?"</p><p>"…the arena?"</p><p>For a brief moment of time, the demon's face changed. It went from a fearful look to one that was filled with excitement.</p><p>My forehead creased.</p><p>Before I could say anything, the demon quickly answered.</p><p>"The arena is the biggest entertainment you can find in Morian, it's the best place demons can go to enjoy themselves. Watching the other races fight and kill each other is the most entertaining thing one can watch. Demons from all over the demon realm come to Morian just to watch the fights and place their bets..."</p><p>As he spoke, the demon seemed to have completely forgotten about his predicament as the excitement in his voice only increased.</p><p>'This isn't that much different from fights on earth.'</p><p>His words reminded me of televised fights back on earth. Their system was pretty much the same.</p><p>"Most recently the arena has become an even bigger attraction! There's this new human that has not lost once! Each and every one of his fights amass—"</p><p>"Did you say human?"</p><p>I cut in.</p><p>I'm sure I didn't hear incorrectly. Could he be referring to Amanda's father?</p><p>Unaware of what I was thinking, the demon nodded his head.</p><p>"Yes, yes, he's incredibly strong, and everyone is already betting on how many matches he has left before he loses. I've personally bet on thirty. Even though his fights are impressive, he is slowly getting tired. I don't think he will last that long."</p><p>"Mhhhh..."</p><p>Lowering my head a bit, I asked.</p><p>"About this human, what is his strength like?"</p><p>The demon tilted his head. Pondering for a bit, he answered.</p><p>"He should be Marquis rank. Some even say that he's close to Duke rank, but no one really knows."</p><p>"I see…"</p><p>I nodded my head and slowly stood up.</p><p>'It's probably him.'</p><p>The fact that he was human and his strength was similar to that of Amanda's father before he left was a good indication to me that this was most probably the case.</p><p>"Is there anything else you would like to ask me?"</p><p>The demon asked.</p><p>Turning my attention back to the demon, I thought for a bit before replying.</p><p>"If by chance a demon caught a human, orc, or any other member of the race, what do they earn from handing them to the arena?"</p><p>"Eh?"</p><p>A strange look appeared on the demon's face as soon as I posed the question, but all it took was a quick glare to stop him from asking unnecessary questions.</p><p>I was still using the same as before. The one that used cores to make it seem as though I was a demon.</p><p>Due to our rank difference, the demon was unable to see through my disguise.</p><p>"If a demon manages to catch a member from the other race, they can give them to the arena and earn a cut from how much the member performs."</p><p>"Oh?"</p><p>'What an interesting system they got here…'</p><p>Instead of having them directly buy the people, they have them fight and give them a cut of how much they make along with their stay in the arena.</p><p>It wasn't a bad deal.</p><p>Especially considering that each event made quite a bit of money for them.</p><p>"Ehm…"</p><p>Snapping me out of my thoughts was the demon's voice. Lowering my head, I glanced at him.</p><p>"What is it?"</p><p>With a crude smile on his face, the demon asked.</p><p>"I've already told you everything, will you—"</p><p>Click—!</p><p>A subtle clicking sound rang through the air and the demon's face rapidly changed.</p><p>"Y…y…"</p><p>Ignoring him, I turned around and left the area. Although the demon was unable to mutter his last words, I already knew what he was trying to say.</p><p>'You lied...'</p><p>"Yes, I lied."</p><p>Not that I ever promised him to keep him alive.</p><p>*</p><p>Walking a bit further away from the area I was previously in, a figure appeared not too far from where I was.</p><p>"So, you satisfied?"</p><p>"I am."</p><p>I gave a short reply.</p><p>The information he had previously given me may have been right, but I just had to make sure for myself. This wasn't the first time that I had done this, but I just couldn't bring myself to truly trust him.</p><p>"What are you going to do now?"</p><p>He asked after a little bit. Raising my head to meet his eyes, I gave a brief reply.</p><p>"I'll carry on as we've previously discussed."</p><p>"Good."</p><p>My footsteps suddenly came to a stop. Tapping on my bracelet, I took out a small sphere that was about the size of an ant.</p><p>"I knew that it would eventually come in handy…"</p><p>Taking out all the most important items that I owned from my dimensional space, I put them inside of the small ball which was another dimensional space.</p><p>The space that it could store was incomparably smaller than compared to my bracelet, but this was the price one had to pay for such a small dimensional space.</p><p>"Done."</p><p>Storing all of my most important items inside of the dimensional space, I let out a satisfied smile and proceeded to head toward the city in the distance.</p><p>*</p><p>The city wasn't actually that far.</p><p>It was about a ten-minute walk from where I previously was. Throughout the journey, I had to make sure to be extra sneaky as demons and monsters lurked everywhere.</p><p>Fortunately for me, I didn't do what I did in the past for nothing. With the commotion my previous actions had caused, the perimeter outside of the city was less dense than it should've been.</p><p>"This is a good spot."</p><p>I stopped right as I was about a couple of kilometers away from the city.</p><p>I was currently standing on top of a large cliff, and from where I was I could see the city in the distance.</p><p>Staring at the city in the distance, I felt this weird sense of intimidation coming from it. Not only that, but I could vividly see demonic energy revolve around the city in the form of a black fog.</p><p>I had a hard time describing the city. It was large. Extremely large. Thick walls the height of a skyscraper covered the whole city, and at the top of the walls, I could catch glimpse of demons patrolling the area.</p><p>The walls were black, and I wasn't exactly sure of what they were made of, but they had this strange sense of intimidation that made one feel insignificant.</p><p>Because the walls were so tall, I couldn't quite see what was behind them, however, there was one building I could see, and the pressure that it gave off intimidated me, and that was despite the fact that I was still quite far from the city.</p><p>The building seemed to be located in the middle of the city, and it appeared to be a large pillar that expanded at the top.</p><p>"That's probably where the Duke-ranked demons reside…"</p><p>Other than that, what could it be?</p><p>"Let's get this done..."</p><p>Letting out a sigh, I looked around me. Then, taking out my spare sword, raised it and stabbed myself.</p><p>Spurt—!</p><p>Blood leaked down on the ground.</p><p>'It hurts…'</p><p>Suppressing the pain, I took a step forward and jumped down the cliff. As I jumped, I made sure to coat my body with a little bit of mana.</p><p>Thump—!</p><p>"Khh…"</p><p>Heavily crashing on the ground, I suppressed my groan once again.</p><p>'Shit…'</p><p>I cursed inside of my mind.</p><p>Dragging my body with my hand, I stopped right next to a tree. Leaning my back against it, I took heavy breaths and reached out for the white mask on my face.</p><p>Crack—!</p><p>I broke it into pieces. Dropping one side of the mask beside me, I put the other half on my face. Just enough to make it obvious that I was a human.</p><p> "This should do..." </p><p>"It would've been easier if you had just lost to a demon."</p><p>Just then, I heard a voice next to my ear.</p><p>"I'd rather do this…"</p><p>This worked just as well. There was no need for me to pretend to lose to a demon.</p><p>Just the thought repulsed me.</p><p>"Suit yourself."</p><p>"I will…"</p><p>Leaning my head back against the tree, I exhaled. My injuries were quite severe at the moment, and if not for the fact that I had coated my body with mana before the fall, I would've never survived.</p><p>Slowly, I closed my eyes and pretended to be passed out.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-508.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-510.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

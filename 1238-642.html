@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 642 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 642 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-641.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-643.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As Liam lifted his head to gaze into the sky, where he saw a magnificent figure floating, he mused to himself.</p><p>'How powerful...'</p><p>Not even Ren would be able to put this kind of pressure on him. At the very least, based on how he felt during his battles with him.</p><p>Both he and Ren never engaged in a full-scale conflict with one another.</p><p>They had reached a point where their strength would cause the destruction of everything in their vicinity. Their training room, which was built using the most durable equipment available to human kind, could no longer withstand the full brunt of their attacks, preventing the two of them from ever going all out.</p><p>That being said, Liam had his eyes, and from there he could measure the force hidden within an individual.</p><p>'I'm afraid he's even stronger than Ren. '</p><p>...and not by a small margin.</p><p>The entirety of the battleground was shrouded in darkness as Liam's vision started to distort at the presence of the demon in front of him.</p><p>Ba...Thump! Ba...Thump!</p><p>Liam could feel his heart beating at his throat as he continued to stare at the enemy before him.</p><p>It also seemed that the demon had taken notice of Liam's presence as he lowered his head and murmured.</p><p>"Who are you?"</p><p>Liam was able to hear the demon's voice clearly despite the chaos that was occurring on the battlefield.</p><p>They sounded to him like soft, sinister whispers.</p><p>Thin blue threads began to crackle around his body, while his eyes took on a yellowish hue. His vision became distorted as everything turned black, leaving behind only white whisps in his vision.</p><p>Each wisp varied in size, with the spot where the previous demon stood being the largest and covering his entire field of vision with a brilliant white hue.</p><p>'... Amazing.'</p><p>Liam thought while staring at the demon. He could feel the back of his neck rise as a result of the power emanating from him.</p><p>Nonetheless, he wasn't scared.</p><p>He had seen his fair share of powerful demons throughout his life, and the demon in front of him was no different from those he had previously encountered.</p><p>'Plus, no one can be compared to him...'</p><p>The prince ranked the demon he had met on the previous planet. The one planet that took away Smallsnake's life...</p><p>When compared to him, the demon that stood in front of him was nothing to write home about.</p><p>He was still extremely powerful, but not to the point where it left him helpless like the Prince ranked demon.</p><p>'I want to see just how much stronger I've become.'</p><p>Liam started removing his sword from its scabbard in a methodical and careful manner as if his face turned extremely serious. His vision gradually returned to normal, and the crackling sound made by the thin white lightning bolts became even more intense.</p><p>Almost immediately after that, Liam's vision started to blur, and the next thing he knew, he was suddenly standing in front of the demon.</p><p>Clank!</p><p>He only threw a straightforward slash, but the demon was able to easily parry it away with his hand.</p><p>The demon cocked his head slightly before launching his own attack, which was directed directly toward Liam's neck and came at a sharp angle.</p><p>'Fast!'</p><p>Liam thought to himself.</p><p>Nevertheless, he had already seen it coming as a white line formed in his blackened line of sight that came as a result of him activating the power of his eyes, and he cocked his head to the side, easily avoiding the demon's attack, much to the surprise of the demon.</p><p>The lightning that was circling Liam's body crackled even more fiercely, and he slashed once more in the direction of the demon's body.</p><p>SHIIING!</p><p>The second attack he launched was significantly swifter and more powerful than the first one he had thrown, and it once more left the demon in a state of bewilderment.</p><p>Clang!</p><p>When Liam's sword made contact with the demon's hands, a powerful metallic ring reverberated through the atmosphere, and pressurized wind gales shot out from the point of contact between the two.</p><p>The demon was pushed back, and Liam once again attacked him.</p><p>***</p><p>Booom! Booom!</p><p>In the background, muffled sounds of explosions could be heard. The attacks were so ferocious and loud that the mana chamber shook as a result of their aftershocks.</p><p>"Ukh..."</p><p>I grit my teeth and suppressed the groan that was about to escape from my mouth.</p><p>'Fuck...fuck...fuck...'</p><p>My entire body seemed to be twitching uncontrollably as I felt a searing heat rising from the depths of my body. As the pores on my body completely opened up and eagerly absorbed the mana in the air, a whirlpool began to form around me in the process.</p><p>My consumption of the herb brought about these effects. It wasn't one that helped me break through specifically but rather helped me increase the rate at which I could absorb the mana that was in the air around me.</p><p>Because I had consumed an excessive amount of herbs in an effort to progress, I was no longer able to keep up with such a method and was instead limited to using this method in order to 'force' myself into the next rank.</p><p>It hurt...</p><p>It fucking hurt...but I could feel myself progressing. Slowly but steadily, I was starting to feel a subtle tingling sensation near the center of my chest.</p><p>"A...almost..."</p><p>***</p><p>Clang!</p><p>The human's sword was once again stopped by Suriol's sharp nails.</p><p>'...He is pretty powerful.'</p><p>Suriol thought as he gazed at the human before him. At this very moment, he felt his sword graze his sharp nails.</p><p>Krrrr!</p><p>The sound that came as a result of the grinding wasn't anything too pleasant.</p><p>Nonetheless, Suriol ignored it and focused his attention on the human's sword. He raised his pinky and tapped the sword's body for an instant. Then, with a low grunt, he flapped his wings and pushed the human far away from him.</p><p>"Ukh!"</p><p>The human flew several meters back before stopping. The hue that was coming out of his eyes glowed an even brighter shade of yellow.</p><p>"You are one strange human."</p><p>Suriol mumbled all of a sudden as he lowered both of his arms.</p><p>The human's face hardened for a moment. Most probably out of confusion.</p><p>Suriol continued.</p><p>"I don't exactly know what your power is, but it seems like you can move your body at speeds which leave even someone like me speechless, and..."</p><p>Suriol's eyes narrowed as his head bobbed up and down while he studied the human carefully.</p><p>More specifically, his eyes.</p><p>"It seems like your eyes are a bit special, I wond--"</p><p>He wasn't even able to finish his sentence before he felt a light breeze brush past him and the human appeared behind him. As if expecting his appearance, Suriol merely turned his head and cocked his head a little where a sharp sword shot past.</p><p> "...An impatient one, I see."</p><p>A leisurely smile spread across his face as he interlocked his hands behind his back.</p><p>He took a step back and spoke.</p><p>"Do you want to know something?"</p><p>The human's sword once again came whistling past his body. This time, Suriol was unable to dodge and he found a part of his wing get torned up a little.</p><p>"...Speak less, fight more. I'm starting to get bored."</p><p>The human's voice echoed inside Suriol's ears. True to his words, he really did sound bored from the tone of his voice.</p><p>Suriol's face stiffened for a moment before he smiled once again.</p><p>"Very well then."</p><p>He clapped his hands once and continued what he was saying.</p><p>"What was I about to say?....Hmm, ah! Right, I was about to tell you which clan I belong to."</p><p>Suriol skilfully avoided the human's sword as the smile on his face turned rather sinister and he licked his lips.</p><p>"I belong to the Clan of Envy..."</p><p>Immediately after he said those words, he tapped the air.</p><p>"Huh?"</p><p>The human exclaimed in surprise following Suriol's actions as he turned his sword. His body came to a sudden stop while Suriol's smile deepened even further.</p><p>"Let's see...let's see...let's see."</p><p>He extended his hand forward and clenched his hand. All of a sudden, the human's sword shattered and purple particles scattered in the air, falling gently against the human's body.</p><p>All of this happened so fast that by the time he realized what had happened, it was already too late.</p><p>Suriol slowly approached the human and asked.</p><p>"Now...shall we see exactly who you envy?"</p><p>***</p><p>'What's going on?"</p><p>Liam looked at the demon standing in front of him with confusion. He remembered fighting against him when all of a sudden, his sword shattered and a series of purple dots landed on his body.</p><p>He did try to avoid them, but it was already too late by the time he realized what had happened.</p><p>'Strangely, I don't feel weird.'</p><p>Whatever the dots were, they didn't seem to be that dangerous.</p><p>Yet, as he gazed in the demon's direction, and more specifically, at his wide smile, Liam had an ominous premonition...and it wasn't long before his premonition became true, as the demon suddenly laughed out loud.</p><p>"...This was a lot easier than I had expected."</p><p>As soon as his laughter ceased, he turned his attention to Liam.</p><p>"Alright, let's see the result of my work."</p><p>All of a sudden, under Liam's gaze, the demon started to morph. His skull started to wiggle, and so did the bones in his body. The whole transformation was rather grotesque, as blood started leaking out and a foul smell pervaded the air.</p><p>The scene...</p><p>It was reminiscent of something one would only see in horror movies. It was disgusting. Especially the foul smell that was lingering in the air.</p><p>It was anything but pleasant.</p><p>'I should probably attack him now...'</p><p>As Liam continued to stare at the demon in front of him, he reflected on the situation.</p><p>If he attacked right now, he would almost certainly come out on top... that is, unless it was some kind of trick or trap.</p><p>...but it didn't look like it to Liam.</p><p>Far from it actually as the demon truly looked vulnerable at the moment. Liam felt his hand twitch as another sword appeared in his hand.</p><p>'If I attack him now, he will get injured for sure.'</p><p>He probably wouldn't die...but he would definitely get injured.</p><p>Liam's foot pressed forward.</p><p>"Ugh.."</p><p>Just as he was about to step again, he stopped himself.</p><p>"Nevermind, that wouldn't be fun."</p><p>He suddenly let out a yawn.</p><p>Scratching the back of his head, Liam shook his head in disappointment.</p><p>"Who am I kidding? This is the first time in a while that I can have some fun, and I'm not about to throw it away."</p><p>Stupid.</p><p>Liam's found the whole situation stupid. Sure, his decision was also stupid, but he quite frankly didn't care.</p><p>If he attacked his opponent now and dealt him some damage, he would without a doubt have a chance at beating him...but he chose not to do so.</p><p>Reason?</p><p>...Because it wasn't fun.</p><p>Then again, stupid as it was, this was Liam's nature, and he perfectly understood how stupid his decision was. Not that he cared.</p><p>Why should he care in the first place?</p><p>His sole purpose for living was to fight against strong opponents. Remove that from the equation, and he would just be an empty shell.</p><p>In the first place, didn't he leave the human domain and go to the demon realm because he was bored?</p><p>What was the point of living if there was no purpose?</p><p>'Since I can't fight against Ren all the time and we're both limited to our environment, it would truly be a waste for me to throw such an opportunity away.'</p><p>Truly.</p><p>"...Well, this is unexpected."</p><p>A familiar voice woke Liam up from his slight daze. His brows immediately furrowed upon hearing the demon's voice.</p><p>"Huh?"</p><p>Lifting his head up, Liam was left stunned by what he saw.</p><p>Deep blue eyes, black hair, rather buff yet lean body...</p><p>'What's going on?'</p><p>Slowly opening his mouth, he called out.</p><p>"Ren?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-641.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-643.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

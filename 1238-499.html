@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 499 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 499 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-498.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-500.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Are you afraid that I will take over your body?"</p><p>His soft voice continued to ring inside of my head.</p><p>"Don't worry.</p><p>Clank. Clank. Clank.</p><p>I heard a familiar rattling sound.</p><p>"Even if I wanted to take over your body, with these chains binding me, there's no way for me to do that."</p><p>Clank!</p><p>Pulling his arm, the rattling stopped and a loud metallic ring echoed through the air.</p><p>"As you can see, no matter what I do, I will always be bound by the chains. I can't take over your body even if I wanted it to..."</p><p>I wanted to deny his words, but I knew.</p><p>I knew that he was telling the truth.</p><p>I couldn't explain it. But, I could tell that he wasn't lying about this.</p><p>Was it because he was me? ...or was this another mind trick? I no longer could tell.</p><p>"You can choose to not believe me, but you don't have time."</p><p>I gazed at the projection.</p><p>He was right. I didn't have much time.</p><p>Staring at the demon that was fast approaching me with his sharp nails aimed at my head, I knew that it was only a matter of seconds now.</p><p>"Use it."</p><p>Ren urged. His voice lowered into a whisper.</p><p>"Use Monarch's indifference. See it for yourself. Your true strength."</p><p>Closing my eyes, I bit the bottom of my lips. Opening them again, and staring at the nail that was only now a couple of inches away from my face...</p><p>My head began to lower.</p><p>Opening my mouth, I muttered.</p><p>"Monarch's indifference."</p><p>.....The world warped and the scenery changed.</p><p>Without even realizing it, I found myself inside the hall of the castle. I then turned my head and found everything around me revolved in slow motion.</p><p>'Eyes of Chronos.'</p><p>I realized that my skill was turned on. Not only that but so was 'The one.'</p><p>All of my skills were activated.</p><p>But most surprising was the fact that I could move in this slowed-down reality. It was an odd and inexplicable sensation that I couldn't describe in words.</p><p>My emotions. They were numb.</p><p>I couldn't feel anything.</p><p>But unlike in the past, I felt in control. It no longer felt like someone was controlling me. I was the one in control this time, not the other me.</p><p>I then raised my finger, and time-warped.</p><p>Cling—!</p><p>"I...Impossible."</p><p>A startled, and terrified voice reached my ears.</p><p>My eyes slowly blinked.</p><p>Turning my head to gaze at my finger, I noticed the sharp nail; reminiscent of a sharp sword, clinging onto it. A powerful wave of demonic energy vailed the body of the nail.</p><p>The pressure that was coming out of it was terrifying.</p><p>Or at least, it was supposed to...</p><p>Meeting his gaze, the only words I could mutter were.</p><p>"...You're weak."</p><p>I then waved my hand.</p><p>Bang—!</p><p>Like swatting a mosquito, the demon's body crashed against one of the pillars in the castle.</p><p>"Kaauauuuh!"</p><p>His agonized scream echoed throughout the place.</p><p>***</p><p>At the same time.</p><p>Levitating atop an open palm was a luminous orb of light that pulsated in an odd manner. Which each throb, the ball of light would release thick and powerful undulations of energy in the air.</p><p>The sheer energy contained within that small orb made one tremble with just a look.</p><p>"Planetary seed..."</p><p>A thick and majestic voice echoed in the air, as two scarlet-blood eyes gazed in the direction of the orb.</p><p>The key to his strength.</p><p>Without it, he would've never been able to become as strong as he currently was.</p><p>Closing his eyes to conceal his two scarlet blood eyes, the Demon King softly brought his hand toward his mouth and consumed the ball of light.</p><p>It was at the exact moment that he swallowed the planetary seed that the area around him started to tremble.</p><p>Rumble—! Rumble—!</p><p>A surge of majestic energy began to spring out from the Demon King's body, extending around the area he was in.</p><p>The shaking amplified as a result.</p><p>But the Demon King remained unfazed. With his eyes closed, a white hue began to circle around his body, covering it like a soft blanket.</p><p>"Haa..."</p><p>Opening his mouth, turbid air began to escape from his mouth, and the shaking stopped.</p><p>Opening his eyes, his two scarlet red eyes shone for a brief moment.</p><p>Bang—!</p><p>With a thunderous noise, the area in front of him exploded into bits.</p><p>Gazing at the area, the Demon King shook his head in dissatisfaction.</p><p>"...Not quite there yet."</p><p>Drumming his fingers over the armrest of the throne, the Demon King rested his cheek on the other hand which was propped up by the other armrest.</p><p>"Hm?"</p><p>It was then that the Demon King felt something.</p><p>Raising his head, the Demon King's eyes became sharp. Closing his eyes for a short moment, he opened them up again and his lips curled upwards.</p><p>"...So you've awakened."</p><p>He then swiped his hand, and a fissure formed in the space in front of me.</p><p>***</p><p>Overwhelming fear.</p><p>A sensation that was so dreadful that it made one feel insignificant.</p><p>Count Nebulous had only ever felt this type of emotion once in his life, and it was back when he met the Demon King for the first time in his life.</p><p>That was the day he understood what true fear was.</p><p>A glance.</p><p>That was all it took for him to choke on the spot, and almost pass out.</p><p>Just a single glance.</p><p>He felt his dignity, elegance, and everything that made him who he was stripped away from him. He thought that he would never experience such feelings again in his life.</p><p>Yet.</p><p>Yet.</p><p>'W...Why? Why is it..happening again?'</p><p>Two dull-grey eyes.</p><p>Eyes that seemed to look down on everything from a far-away and unreachable peak.</p><p>The color of their eyes was different, but the feeling was the same.</p><p>Dread.</p><p>Absolute dread.</p><p>That was all Count Nebulus felt at the moment.</p><p>Bang—!</p><p>He didn't know when...</p><p>But his vision blacked out for a split moment of time and he found his body crashing against one of the pillars of the castle.</p><p>"Kaauauuuh!"</p><p>In the end, that was all he was able to force out of his mouth.</p><p>A radiating and pulsating pain coursed through his back, forcing the air out of his body.</p><p>Stumbling down on the ground, with both knees and hands on the ground, his top hat fell in front of him.</p><p>'What's going on?'</p><p>Count Nebulus was unable to process what was happening.</p><p>Everything happened fast. Too fast for him to properly understand what had happened.</p><p>He slowly raised his head.</p><p>"Ah..."</p><p>He made a weak sound.</p><p>Tok. Tok.</p><p>The clear and regular sound of footsteps echoed out.</p><p>Count Nebulus watched.</p><p>He watched as the white-haired figure stopped in front of his two other clan members that were paralyzed on the spot. They had the same petrified and terrified look on their faces.</p><p>He could see their legs shaking.</p><p>It was clear that they wanted to run away, but they couldn't.</p><p>Without any prior warning, the white-haired figure raised both of his hands.</p><p>"No!"</p><p>Count Nebulus screamed, but it was too late.</p><p>Pressing his fingers on the forehead of each of the two demons, Count Nebulus watched as their eyes slowly turned white and their figures started to disintegrate in the air, scattering like fine dust.</p><p>Dead.</p><p>With just a simple touch of his finger, two Count-ranked demons died just like that.</p><p>How was that possible?</p><p>How could the human that looked to be a little weaker than he was so strong? Regret started to kick in.</p><p>'I should've killed him first.'</p><p>He thought that he was of no threat, but he was wrong.</p><p>He was the real threat.</p><p>"Ahhh...."</p><p>It was from that point on that Count Nebulus lost all of his will to fight.</p><p>'I can't win...'</p><p>He slowly started to accept his incoming death.</p><p>His prior feelings of dread weren't a fruit of his imagination. They were real.</p><p>Tok. Tok.</p><p>But.</p><p>Contrary to his expectations, the white-haired figure ignored him and proceeded to walk toward the very end of the room.</p><p>In the direction of a long flight of stairs blanketed in a carpet of red.</p><p>Count Nebulus watched as he slowly walked up the stairs in a slow and steady manner. The carped may have been able to drown out the tapping sound that arose with each footstep he took, but to Count Nebulous, each footstep he took, still powerfully echoed inside of his head.</p><p>Stopping in front of a machine, the white-haired figure once again extended his hand and touched it.</p><p>A similar scene began to play out.</p><p>Scattering like fine dust, the machine disintegrated into thin air. His white hair fluttered as a gentle wind suddenly blew, carrying the dust away.</p><p>'...Is this my chance?'</p><p>Staring at the exposed back of the white-haired figure, for a split second, Count Nebulus felt tempted to attack.</p><p>But before such thoughts could even develop into something concrete, the white-haired figure spoke up.</p><p>"Come out."</p><p>His detached voice echoed throughout the hall.</p><p>'Come out?'</p><p>Confused, Count Nebulus looked around. Was there someone else here?</p><p>He didn't have to wait for long to get an answer to that question.</p><p>The air suddenly started to tremble, and the space around them started to distort.</p><p>Cr..crack!</p><p>A sound akin to that of glass shattering spread out through the hall as the air fine miniature lines formed in the air.</p><p>But that was not all.</p><p>Crash—!</p><p>Splits second after the crack formed in the air, with a loud crashing noise, a pale white hand reached out from behind the crack.</p><p>Grasping on the side of the air, the arm pulled the air apart expanding the crack even further.</p><p>It wasn't long before a space that was the size of a regular person formed, and a foot reached out from behind the crack.</p><p>Tok.</p><p>The foot slowly touched the ground, but, to Count Nebulus, it felt like a thousand thunderbolts had struck inside of his head at the same time.</p><p>His body swayed as a result.</p><p>'Wh...what is happening?' He wondered as he looked up ahead with even more dread.</p><p>He wasn't the only one that felt this way, as from the corner of his eyes he saw Angelica stumble a couple of steps.</p><p>She was only able to remain standing thanks to the aid of one of the pillars of the hall.</p><p>Stepping out from the void, was a figure with white hair and scarlet red eyes. Wearing a thick black armor that spiked at the ends of the shoulders, and released a mystifying pressure that enshrouded the entire hall, a figure that resembled a human walked out.</p><p> "Ah...aha..." </p><p>'It can't be...'</p><p>With his eyes fixed on the figure in the distance, Count Nubulus found it hard to breathe or even raise his head as it subconsciously lowered.</p><p>No matter how much he wanted to raise it, he couldn't. There was this tangible and invisible pressure that prevented him from doing so.</p><p>He then started to lower his body in a prostrating manner.</p><p>Despite his incredible pride, Count Nebulus couldn't bring himself to raise his body. His blood shook, and he weakly turned his head to get a look at what was happening.</p><p>That was when he saw it.</p><p>Two figures standing on the opposite ends. A set of red eyes, and a set of blue eyes. Both stared at each other without saying a single word.</p><p>From that point on, time seemed to have stopped.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-498.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-500.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

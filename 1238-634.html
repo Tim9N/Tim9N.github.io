@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 634 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 634 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-633.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-635.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"You guys are finally here."</p><p>I approached the familiar figures who appeared from the portal. They were none other than Emma, Melissa, Jin and Amanda.</p><p>"Where exactly are we?"</p><p>Emma was the first person to speak, and she did so while she curiously looking around the room.</p><p>"I barely feel any mana in the air. There are some traces of demonic energy...but there's also a trace of something else...but I'm not exactly sure about what it is."</p><p>"It's aura, and we're currently on a planet called Immorra."</p><p>I replied, giving them a brief introduction of the planet we were on.</p><p>"This was an old Orcen planet that was primarily concerned with agriculture and farming. Because there are many beasts on this planet, most of the food that orcs used to eat come from here."</p><p>"When you say agriculture, do they still do that?"</p><p>Melissa inquired, raising her glasses with a finger. As I shifted my gaze to her, I shook my head.</p><p>"To be honest, I don't know. I will have to ask Silug. He might have an idea of what you're looking for."</p><p>Melissa approached me before I told her about Immorra with a detailed request on a specific property she desired from a plant. I didn't know of any plants with the same properties as the ones she requested at the time, but when I was reminded of my trip to Immorra, I told her that if she came with me, she might be able to find what she was looking for.</p><p>To be honest, the chances were slim, but it was better than nothing.</p><p>Nonetheeless, to my astonishment, she readily agreed, which explained why she was here in the first place.</p><p>Booom!</p><p>The building started to shake once more, startling everyone present.</p><p>I looked up toward the ceiling before looking back at the others.</p><p>"There's a war going on upstairs at the moment, if you're curious as to why the building suddenly shook. It's almost coming to an end, so you don't have to worry too much. What you do have to worry about, is the next war. That one is going to be a tough one."</p><p>Not only would there be a significantly greater number of demons than there were at the moment, but their overall force would also be greater with even more Marquis ranked demons showing up. #</p><p>Also...</p><p>I had a sneaking suspicion that at least a demon of the Duke rank was going to show up, but I couldn't say for certain that this was the case. Silug was the one who broke the news to me, but even he wasn't entirely sure about the information he shared.</p><p> If this turned out to be the case, then I had no choice but to take everything more seriously. The gap between &lt;S+&gt; and &lt;SS-&gt; was much wider than anyone one might think.</p><p>With my current set of skills, I could pose a threat to someone of that rank. That, however, was dependent on my opponent. It was nearly impossible for me to propose a fight if they were ranked higher than simply &lt;SS-&gt;.</p><p>'I need to quickly break through. '</p><p>Once again, I was reminded of how urgently I needed to break through.</p><p>"Here."</p><p>A soft voice snapped me out of my thoughts.</p><p>I turned my head to see Amanda handing me a small black ring.</p><p>My eyes lit up when I saw the ring.</p><p>"Oh, right."</p><p>I grasped the ring from Amanda's hand and tossed it to Randur.</p><p>"Randur, catch."</p><p>"Huh, what?"</p><p>Unprepared, the ring fumbled in his hands. It wasn't until he was finally able to get his hand on the ring that he breathed a sigh of relief and glared at me.</p><p>"What in the world are you doing?"</p><p>I didn't respond and simply motioned with my head.</p><p>"How about you check what's inside before you complain?"</p><p>Randur's brow furrowed.</p><p>Nevertheless, he acted in accordance with my request and examined the contents of the ring. Soon after that, he turned his head to look at me, and his eyebrows immediately began to arch upward.</p><p>"This is definitely a lot of stuff. Just what in the world are you trying to have built? "</p><p>"...A lot of things."</p><p>I smiled at him.</p><p>"I want to first have this castle reinforced with some defensive artifacts, and at the same time want you to help me set up a mana chamber where I can train. With the things inside of the ring, it shouldn't be a problem for you guys to be able to build that stuff. Am I wrong? "</p><p>"No."</p><p>Randur shook his head.</p><p>After that, he passed the ring on to Jomnuk, who was engaged in some light conversation with the other dwarfs that were present.</p><p>"What do we have here?"</p><p>Jomnuk took the ring from Randur's hand.</p><p>When he checked the contents of the ring, he exhibited a response that was comparable to that of Randur's.</p><p>"Interesting. This is a lot of stuff. More than one would actually need to build the things that you've requested. Clearly, you're planning something else."</p><p>Jomnuk tossed the ring in my direction and looked back at Randur.</p><p>"How much time do we have?"</p><p>"If we take into consideration that time here flows ten times faster, twenty days. Within twenty days, we</p><p>can try to build everything that he requested us to build. In the meantime, I'll send a couple of dwares to check out the sorrounding mountains and see the best area to mine."</p><p>Randur replied after he took out a stopwatch from his dimensional sapce.</p><p>He quickly got to work after that.</p><p>After giving commands to the other dwarves in the room, the atmosphere in the room abruptly changed, becoming much livelier as an assortment of tools suddenly materialized out of nowhere and filled the entire space.</p><p>I nodded in satisfaction when I saw just how efficient the dwarves were.</p><p>'It might take a while, but if things go smoothly, it won't be long before I manage to build enough forces to combact against Jezebeth.'</p><p>My fists secretly clenched when I thought of Jezebeth.</p><p>The scene of him killing Smallsnake in front of my eyes was still deeply imprinted into my mind. There was nothing that was going to stop me from killing him.</p><p>Nothing at all.</p><p>"What should we be doing?"</p><p>It was Jin's voice that snapped me out of my thoughts.</p><p>Once I turned my head to look at him and the others, I motioned to them with my hand.</p><p>"Don't worry about that, I've got a couple of rooms prepared for you guys. Just make yourself comfortable for the next couple of days. It would be best if you guys got a good idea of the internal structure of the castle. It will prove a lot more useful than you guys think. "</p><p>I grasped the door handle and pushed the door back.</p><p>Just I was about to leave, I remembered something and turned back to look at them.</p><p>"...Oh, right."</p><p>I massaged my chin and thought.</p><p>'I almost forgot that they're supposed to be here in secret. Should I have Silug shut down a certain part of the castle so that no one apart from me and the others can't enter? '</p><p>***</p><p>Ashton city, Cassia headquarters.</p><p>The room became eerily quiet after everyone entered the portal.</p><p>Kevin was the only one left, and he swept his gaze across the room before settling on one of the panels in the distance.</p><p>It contained Immorra's coordinates, courtesy of him who shared it to the dwarves.</p><p>'I better get going. I'll be seeing Ren in a couple of days anyway. '</p><p>He was going to teleport to Immorra as soon as he was finished with his business. There were a couple of things that he needed to do there.</p><p>Other than that, his workload over the next couple of days would be anything but small.</p><p>Among the things he needed to do for the Union, he needed to kill a couple of more individuals as well as all of the secret branches set up by the Monolith.</p><p>He had to do this in order to ensure that the war would be won without any hiccups.</p><p>Kevin cast his gaze around the room.</p><p>In that time, his eyes paused on all the cameras that were present in the room. Secretly channeling the mana inside of his body, the cameras stopped working and he extended his hand forward where a red book formed.</p><p>He opened the book and read through its contents.</p><p>'Almost there.'</p><p>He closed the book, and a bright white light quickly engulfed the room. The white light spread throughout the room before merging with Kevin.</p><p>Time codex abosrption : [0%———[35%]————100%]</p><p>A notification prompt appeared in his vision.</p><p>Kevin paid no mind to it as he waved his hand and dismissed it.</p><p>Then, casting another gaze at the room, he stopped channeling his mana and the cameras returned to</p><p>normal.</p><p>"Alright, since Ren is busy, I better get going as well. Monica is probably going to nag at me if I come late."</p><p>Kevin grumbled aloud while his shoulders slumped down in defeat.</p><p>Just as he was about to reach the door, Kevin's feet came to a sudden halt and his face changed a little.</p><p>[Ding!]</p><p>[Ding!]</p><p>[Ding!]</p><p>His vision was suddenly filled with a plethora of different notification prompts, which served to alert him. However, it wasn't long before a more substantial notification materialized in front of him, and at that moment, a chilly light flashed in his eyes.</p><p>[The time remnant has set his sights on you.]</p><p>The side of Kevin's cheeks began to clench as he concentrated his eyes on the notification prompt that was in front of him.</p><p>'...So you're finally going to make a move.'</p><p>He had almost forgotten about it because he had been silent for so long, but now that the truce was finally coming to an end and Ren was still in control of his body, the other Ren planned on taking matters into his own hands and acting independently.</p><p>Kevin secretly smiled to himself.</p><p>'So be it, I think it's about time the two of us finally met after such a long time. '</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-633.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-635.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 600 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 600 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-599.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-601.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank!</p><p>A dull metallic sound reverberated throughout the air.</p><p>Kevin clenched his teeth and swung his sword with everything he had as he beat the white core in front of him.</p><p>Though his mind was a mess at the moment, he continued to strike with everything he had as he realized that the situation was serious.</p><p>'Things don't make sense. Why is Ren the only one that is remembering his memories of each regression while I don't?'</p><p>Clank!</p><p>He struck the white core with his sword once more.</p><p>'There is definitely something that I'm missing, and I feel like I'll get my answer right after destroying this core and finishing the mission.'</p><p>Clank!</p><p>Kevin had an inkling that the next synchronization would make things much clearer for him, though it was only a gut feeling at the moment.</p><p>He just knew.</p><p>"Let me help."</p><p>Beside him, Emma took out her short swords and similarly started to hack at the white orb.</p><p>Clank!</p><p>Hitting the white core, the sound it emitted was a lot crispier than his as it rang in the air for a longer period of time.</p><p>"Put more force into it."."</p><p>Kevin murmured while he took a glance at Emma who took a couple of steps back as a result of the recoil from the first attack.</p><p>"...It's a lot tougher than I anticipated."</p><p>She murmured in embarrassment before returning to Kevin and hacking at the white core with her shortswords.</p><p>Cra...Crack.</p><p>While the two continued to attack the core, it wasn't long before fine miniature crevices and cracks started to form around it.</p><p>"We're almost there."</p><p>Emma's eyes lit up when she saw cracks appear on the core. The two of them had been at it for more than ten minutes, and thus she was rightfully excited.</p><p>The core or whatever the thing was, it was extremely durable. More than they had originally anticipated.</p><p>"Yes. We're almost there."</p><p>Nodding his head, Kevin continued to slash with all of his power. He never lost focus once.</p><p>With each passing second, the sense of doom engulfing his body became more intense, prompting him to attack with even more force.</p><p>The cracks on the core only served to make him want to attack it at an even faster speed.</p><p>Ba…Thump! Ba…Thump!</p><p>The sound of his heartbeat accompanied the sound of his sword smashing against the core.</p><p>He could feel it and hear it inside of his mind.</p><p>With each second that passed, the faster his heart sped up and the more anxiety Kevin felt.</p><p>'…He's coming.'</p><p>That was because he knew.</p><p>He knew that death itself was coming.</p><p>Unless he did something to the core now, the only thing that would await him was certain death in the future.</p><p>Cra..Crack!</p><p>More and more cracks began to appear on the core while he and Emma continued to hack at the core, and the more hurried their breathing became.</p><p>"We're almost there."</p><p>"Just a bit more..."</p><p>Crack!</p><p>In no time, pieces of the core began to fall to the side as the core slowly split. The scene was strangely reminiscent of a flower bloom. It was a beautiful sight to watch.</p><p>The eyes of everyone present lit up at the sight, especially Kevin who turned to face Emma and ordered.</p><p>"Emma, continue doing whatever you're doing, I'm about to open the portal."</p><p>His hand raised in the air, and a red hue erupted from his body, engulfing the room.</p><p>'...Thank god I remembered about the core.'</p><p>He had originally planned on leaving right as Ren left, but after realizing that the core was still intact, he took it upon himself to finish the job he was tasked to do.</p><p>After all, the delay of the demon king by one extra year was an extremely important goal.</p><p>Crash!</p><p>An audible glass-shattering noise followed, startling Kevin out of his thoughts.</p><p>A smile soon formed on his face.</p><p>'She did it.'</p><p>That was because he knew.</p><p>He knew that the core had finally shattered.</p><p>***</p><p>Bang—!</p><p>With a thunderous crash, the door came crashing down vertically toward the ground and a large room appeared in Amanda's vision.</p><p>Following Ren from behind, Amanda entered the room.</p><p>The room was about the size of a tennis court, neither too large nor too small. In the room, there were a number of decorations, of which there was a big desk, as well as a number of bookshelves, and several statues.</p><p>The decorations themselves didn't evoke any strong emotions in Amanda, but when she noticed the room's black walls and the golden chandelier that hung from the room's ceiling and softly lit the space, she began to feel a spooky, even menacing sense envelop her.</p><p>She didn't particularly feel comfortable in the room.</p><p>"Where is it?"</p><p>Ren immediately began looking through the desk after entering the room.</p><p>Looking at him from behind, Amanda didn't say anything and looked elsewhere. She was planning on helping him look for the dimensional spaces.</p><p>Four hands were better than two.</p><p> Clank—!</p><p>Opening one of the drawers, Amanda carefully looked at what was inside. Picking up an item that closely resembled a skull, she carefully placed it back and closed the drawer back.</p><p>Taking out a napkin from her dimensional space, she cleaned her hands before she turned to look at Ren.</p><p>"Your dimensional space is in the form of a bracelet, right?"</p><p>"Yes."</p><p>Ren replied while he looked through one of the desk drawers. His complexion was extremely somber and serious. The look of urgency in his eyes was clear for Amanda to see, dispelling any thoughts of bringing the topic up right now.</p><p>"...It's a black bracelet that can easily twist like leather ones. In fact, it is made to look like a leather bracelet. It's also not that thick, about the width of a small ruler."</p><p>"I see."</p><p>Taking a closer look at the room, Amanda nodded to herself as she searched for anything that matched Ren's description.</p><p>She looked through drawers, books, carpets, sofas, and whichever area she thought was possible, but as she continued to look, she was only left disappointed with the outcome.</p><p>'Not here too?'</p><p>Neatly placing one of the pillows on the sofa, Amanda tilted her head slightly before adjusting it properly. It was only after she was satisfied with the positioning that she felt her hand stop twitching.</p><p>"Phew."</p><p>Letting out a sigh of relief, she looked behind her to see what Ren was up to.</p><p>"I think I found them."</p><p>And it was right at the exact moment that she turned around that she saw Ren taking out what seemed to be a couple of small black rings.</p><p>Tapping onto them, Ren's eyes opened a little.</p><p>"This should be Jin's."</p><p>He mumbled out loud, prompting Amanda to drop whatever she was doing.</p><p>'There's no need to look anymore.'</p><p>Walking up to Ren, she asked.</p><p>"Are you sure that it's the one?"</p><p>"Yes."</p><p>Ren nodded while he quickly scanned the ring in his hand. Once he was confident that it was indeed JIn's, he stood up and looked through the other drawers.</p><p>"What are you doing?"</p><p>Amanda asked, confused by his actions. Since he found the dimensional space, shouldn't he be leaving?</p><p>"I'm still looking for mine. It wasn't with the others."</p><p>"Right."</p><p>Finally understanding what Ren was doing, silence enveloped the surroundings as neither of the two spoke.</p><p>The only sound that could be heard was the sound of Ren sliding the drawers of the desk. A complicated look appeared on Amanda's face as she took a look at him.</p><p>In the end, unable to hold herself back anymore, she blurted her thoughts out.</p><p>"Are you planning on leaving again right after we return?"</p><p>"..."</p><p>Ren's hand froze for a short second. His face, which was previously expressionless hardened.</p><p>Sliding the drawer open and taking out what seemed to be a ring, he calmly replied.</p><p>"What made you think that I'd be leaving?"</p><p>"Just a hunch."</p><p>"Oh."</p><p>Ren absentmindedly nodded his head.</p><p>Amanda's eyes squinted at his half-hearted reply. Although she wanted to say something, taking note of Ren's expression, she decided not to say anything and started helping him look through the desk.</p><p>She could clearly see from his expression that there was something he was worried about. Nevertheless, she also understood that the priority right now was looking for his items.</p><p>While Amanda walked next to him and helped him look through the items, raising his head slightly and meeting her eyes, he lowered his head again and pursed his lips.</p><p>While he was looking through the items, he softly whispered something.</p><p>"...It's best if you give up on me."</p><p>"Eh?"</p><p>Amana's hand came to a sudden top. Her heart sank when she heard his voice, in spite of it being very soft.</p><p>Taking a step back, Amanda felt her body turn cold. Despite that, she maintained her calm.</p><p>"W..hat are you saying?"</p><p>"I think I've made myself clear the first time?"</p><p>Ren said as his voice turned cold. Amanda experienced a sudden sharp pain in her chest as a result of his sudden change in tone.</p><p>"...Is it because of the memories? Are you afraid that I'm not going to—"</p><p>"It's not that!"</p><p>Ren cut Amanda off in a loud voice.</p><p>Amanda immediately shut her mouth at his outburst. The pain in her chest only intensified.</p><p>"Haa..."</p><p>With both hands pressed against the desk, Ren lowered his head and whispered.</p><p>"It's not because of that...It's really not."</p><p>Moving a couple of items around, Ren's expression crumbled a little.</p><p>Then, taking a look at Amanda from the corner of his eyes, his face softened a little before he murmured.</p><p>"The reason why I'm telling you to give up on me is because I don't have long left to live."</p><p>"...Ah?"</p><p>A soft sound escaped from Amanda's lips as she stared at Ren with her eyes wide open.</p><p>At this moment, to her, it felt as though the world around her was crumbling apart. Her body didn't even shake...staring at Ren, she was in a state of total paralysis, unable to comprehend his words.</p><p>"You've seen the figure inside of my memories, haven't you?"</p><p>The only thing she could hear while in her state was Ren's frail words.</p><p>"It shouldn't come as a surprise. H..e's the real me. I'm just a byproduct of his desire to end the loop and kill the demon king...I'm...n..not someone that was meant to exist in the first place."</p><p>Amanda's eyes slowly began to blink in response to the words he spoke. She was slowly coming out of her state of shock.</p><p>"...It is faint, but I can feel it. I'm slowly getting devoured by him. I don't know how much time I have left, but...I would say a couple of years at best."</p><p>A bitter and hollow laugh escaped Ren's lips.</p><p>"If you think about it, my existence only really amounts to four years...to dissap—"</p><p>As she leaned closer to Ren, she did not hesitate to take action. Turning his body around, her lips pressed against his and she interrupted him mid-sentence.</p><p>Amanda felt a jolting concoction of emotions run through her body as her lips touched his. It was a hard feeling to describe, but to her, it felt as though a million different emotions burst at once.</p><p>Unfortunately, the sensation was only short-lived. Fully understanding that they were pressed for time, Amanda quietly backed off.</p><p>"...I won't make the same mistake again."</p><p>Amanda quietly murmured while she looked at Ren.</p><p>"You expect me to forget all about you and just move on after everything that happened because you are going to disappear soon?"</p><p>Feelings didn't work like that.</p><p>They weren't something that could be discarded as one wished.</p><p>"If there's one thing that I learned from what happened to my father is that anything can happen when you least expect it. After everything that you've been through and all the times you've almost died or gone away to somewhere dangerous, did you seriously think that I wouldn't know the risk of liking someone like you?"</p><p>Amanda's voice was soft, yet powerful at the same time.</p><p>All of Amanda's feelings came pouring out at this moment as she stared at Ren who was standing opposite her.</p><p>"...If you only have a couple of years left to live, then...it only gives me more reason to stay with y—"</p><p>Opening her mouth again, she stopped herself mid-sentence.</p><p>Staring at Ren who was looking back at her, she lowered her head.</p><p>"I've spoken too much."</p><p>Turning around, a sad smile spread across her face.</p><p>"It's best if I leave. I'm taking too much of your time."</p><p>Without waiting for Ren to say anything, Amanda took a step forward and left the room, leaving Ren behind.</p><p>Once she left the room, turning around a corner, her feet came to a pause.</p><p>Pressing her back against the wall, her body suddenly started to tremble. The corner of Amanda's eyes began to water as she slid down the wall.</p><p>It was only after she was no longer in Ren's sight that her calm facade crumbled and all her pent up emotions came out. Regardless of how strong she was, the news of Ren's inevitable death made her heart feel as though it had been shredded into millions of pieces.</p><p>"I..."</p><p>Mumbling something, her lips trembled.</p><p>"I..can't.."</p><p>Her body continued to tremble as she clutched her chest, and tears began to pour down the side of her cheeks.</p><p>"W..why did things turn out this way?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-599.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-601.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

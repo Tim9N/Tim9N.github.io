@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 707 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 707 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-706.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-708.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huaaam. I'm so bored."</p><p>Monica yawned as she stretched her limbs while leaning against a plain white wall. There were a couple of other people not too far away from her, all minding their own business.</p><p>All of the people present were extremely renowned individuals. They were the special group gathered in secret outside of everyone's knowledge.</p><p>"Feeling bored already, Monica?"</p><p>An aged voice sounded, and Monica's expression changed. With a stiff smile, she looked to her side.</p><p>"Ha… D-Douglas? Fancy seeing you here?"</p><p>"Fancy seeing me here? Shouldn't you already be aware that I was going to be here?"</p><p>"Oh.. ah, right."</p><p>Monica smacked her fist and stuck her tongue out.</p><p>"Seems like I'm getting older. My memory is giving away."</p><p> "Your brain is the only thing that's giving away."</p><p>Another voice interjected.</p><p>This time around, Monica reacted in a manner that was entirely different. She whirled around and glared in the direction of the source of the voice as if she were staring at her worst enemy.</p><p>"Old witch, what are you on about?"</p><p>"Old witch?"</p><p>The voice was taken aback for a moment. But before long, Donna had worked herself up into a rage and was staring angrily at Monica. If there was one thing that she detested more than anything else, it was when other people brought up her age.</p><p>"Don't tell me you're still angry at me for what happened a week ago?"</p><p>"I'm glad you know."</p><p>Monica grumbled while still glaring at Donna.</p><p>With a bitter smile, Douglas looked at Donna and mouthed.</p><p>"What did you do?"</p><p>"Nothing, really." Donna looked back at him and murmured. "I just told her that even if she wore high heels, she'd still be the smallest person attending, so there'd be no point in buying them."</p><p>"Bitch!"</p><p>Monica shouted, glaring even more fiercely at Donna.</p><p>"So what if I'm still the shortest?! It's all about my neck! If I'm a tad bit taller, I won't have to strain my neck to talk to everyone!"</p><p>"Oh, that makes sense."</p><p>Donna found it hard to refute Monica's comment. It indeed seemed rather straining for the neck.</p><p>Looking at Monica, she apologized.</p><p>"Alright, I'm sorry. Please forgive me."</p><p>"Hmph."</p><p>Monica gave Donna a side glance. Attempting to suppress her grin, twitches appeared on her lips.</p><p>It took her a week to think of this explanation, but it was unquestionably time well spent. Seeing Donna, who was far too proud of herself, apologize lifted her mood to an unprecedented high.</p><p>The reality was that Donna was spot on from the very beginning and that she had indeed wanted to wear the shoes to look taller. At least she didn't want to be the shortest person present.</p><p>But when she was called out last week by her, she found herself unable to refute and pretended to be angry to buy herself time to regain her face.</p><p>"I'll forgive you this once."</p><p>Monica sagely nodded at Donna and reminded.</p><p>"I hope there won't be a next time."</p><p>"Alright."</p><p>"…You two never change."</p><p>Douglas gave a kind smile. His smile softened as recollections of the past began to emerge within his mind, and he began to look back on things with a fonder perspective.</p><p>Even after so much time passed, the two of them were the same as ever. It was gratifying to see.</p><p>…but for how long could this continue?</p><p>Looking around him and sweeping his eyes over the people present in the room, Douglas took note of the air of solemnity that was lingering throughout the room.</p><p>Everyone in the room knew that the following mission would be crucial and that many people would be sacrificed in the process. Many of those here will probably never come back, and everyone understood this.</p><p>This was war, after all.</p><p>…It was just a pity. Truly.</p><p>Ci Clank—!</p><p>When the door to the room opened, a figure walked in, and everyone's attention immediately focused on him. Almost instantaneously, there was a shift in mood, and it became even more somber.</p><p>Deep dark hair, crimson red eyes, wide shoulders, and a black suit. Kevin didn't even bother to look at anyone before he started talking as he was making his way toward the center of the room.</p><p>"Since everyone's here. I'll start the briefing."</p><p>Tapping onto the large white table in the middle of the room, a holographic map appeared before everyone.</p><p>Several dots appeared within a certain spot in the human domain.</p><p>Staring at them for a moment, Kevin looked at the others. His face expressionless.</p><p>"Listen to everything that I say carefully, as I won't repeat it again."</p><p>His cold and monotonous voice swept across the room.</p><p>"If you listen to what I tell you. Tomorrow... the Monolith will cease to exist."</p><p>***</p><p>Swoop—!</p><p>Softly landing on top of a stone balcony, I stared at the window on the opposite end and tried to knock. However, just as I was about to knock, my hand trembled and my lips twitched.</p><p>Voices started to flood my mind, and scales started to form on my body.</p><p>'Why are you still struggling? There's two years left before you die; why don't you just give up and enjoy your life before you pass on?'</p><p>'It's easy to feel alone, but it's easier to feel alone. Aren't you alone?'</p><p>'Just let go...'</p><p>"huuu..."</p><p>I had to take a deep breath to calm myself down. The scales diminished at the same time.</p><p>I was already used to the voices.</p><p>Knock—! Knock—!</p><p>"What took you so long?"</p><p>Greeting me was Melissa. Grumbling, she opened the balcony window, and I entered.</p><p>Covering my mouth, I yawned.</p><p>"I wanted to enjoy some of the demon delicacies."</p><p>"And?"</p><p>"They were awful."</p><p>My lips smacked together when I said the last few words. Thinking back at the taste of the tea and cookies, I found myself unable to stop my face from contorting.</p><p>They were really terrible.</p><p>"Anyway, the concoction seemed to work. Have you prepared the rest?"</p><p>I sat on a nearby stool.</p><p>On the large table that was directly across from me were a number of test tubes, each of which contained a dark substance.</p><p>"Yeah."</p><p>Melissa took out one of the test tubes and shook it.</p><p>"The concentration is higher than the one I previously gave you. It should be able to kill anyone around Duke rank if ingested."</p><p>"Nice."</p><p>When I looked at the test tubes, I couldn't help but crack a grin. They were made by utilizing the gall bladder of the Abyssal Mammoth. Melissa and the Duchess worked together to create a potent poison that, when consumed, was capable of killing someone in the Duke realm.</p><p>...Of course, just because it could kill a Duke ranked demon didn't mean that the poison was very useful.</p><p>Despite it being a powerful poison, it only worked upon ingestion and could not be sneaked into food or drinks due to how potent it was. Due to its potency, it was easily detectable by just about anyone.</p><p>The only way it worked was through forceful feeding or some other extremely complicated method.</p><p>Because it didn't immediately shatter one's core, it didn't immediately alert the others to the fact that someone had died, so while it wasn't exactly useful, it still served a purpose.</p><p>"Here's five. This should be enough. I've diluted the farthest one on the right as you've requested."</p><p>Melissa slipped five of these test tubes into my hands, and I thanked her.</p><p>"Thanks."</p><p>I gave them a cursory glance before thinking about the information that the Duchess had provided to me.</p><p>'There are seven major powers within Ka Mankhut. Each belongs to one of the respective major clans. The most powerful clan is obviously the clan of envy, which also happens to be Ukhan's clan. For the past three World Decrees, they have been the ones that have hogged the most benefits.'</p><p>'Among the clans, apart from the seven Princes that run the place, there are seven successors. Two of the seven are Duke Ukhan and me.'</p><p>After giving Melissa one final look, my vision began to blur, and I suddenly found myself outside of the mansion.</p><p>"Ukhg."</p><p>The moment I stepped out of the mansion, my head started to throb intensely, and a groan escaped from my mouth.</p><p>"Hugh...haaa..haa..."</p><p>I grasped my chest and gasped heavily for air.</p><p>...I was finally suffering the consequences of letting go of my seals.</p><p>"Ugkh..."</p><p>I laid down on the grass and looked up. The whispers in my head were becoming stronger by the second, but I paid them no mind.</p><p>The night sky was filled with stars that shone brilliantly against a backdrop of indigo. In the background, I could hear crickets chirping and leaves gently rustling in the breeze. I felt the warmth of the grass on my feet as a cool night breeze blew through the trees.</p><p>The night brought a strange tranquility that I rarely encountered in my daily life back on earth and was a complete contrast to the voices in my head. I took a deep breath and engraved the scenery into my mind.</p><p>"Ukh... w-here is it...?"</p><p>I reached into my dimensional space and pulled out a miniature bottle, which I then studied for approximately one minute. To be more specific, the dark substance that was housed inside of it.</p><p>I did not give it a second thought as I quickly removed the cap and emptied the contents of the container into my mouth.</p><p>Almost instantaneously after the substance entered my mouth, I felt something penetrate deeply into my mind, and everything began to clear up. It was as if the fog in my mind had started to clear up.</p><p>The soft whispers that echoed at the back of my mind, the impulsive and intrusive thoughts I struggled to suppress, and the bad memories that haunted me every single day...</p><p>Just like that.</p><p>Everything became quieter, and I stood there for a moment, unable to comprehend this new normalcy.</p><p>Was this how it felt to be normal?</p><p>…It was a feeling I had long forgotten.</p><p>"Huh..hu…"</p><p>My chest trembled when I took a deep breath.</p><p>Shifting my gaze toward the tube in my hands, I clenched it, shattering it in my hands.</p><p>"It looks like it was the right decision."</p><p>The nectar was truly the one thing that I needed. Everything that had been plaguing me for the past few years was being suppressed, and for once… for once I was feeling normal again.</p><p>"Alright."</p><p>I calmly gazed at the estate behind me and stood up. One dose was not enough; I needed more. If I wanted to become normal again... I needed more.</p><p>To my great relief, I was able to persuade the duchess that the others required the nectar, despite the fact that this was not actually the case.</p><p>"Let's get to work then."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-706.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-708.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

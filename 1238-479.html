@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 479 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 479 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-478.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-480.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Squeek—! Squeek—!</p><p>"Hold still."</p><p>Squeezing the syringe in his hands a couple of times, only till a clear liquid dropped from the body of the needle did Joseph let out a satisfied smile.</p><p>Licking his lips, he walked up to a burned body that was laying down on a rectangular metal plate; the man's hands and feet were bound by metallic latches.</p><p>Rolling his chair forward and arriving before the burned body, Joseph proceeded to put some gloves on.</p><p>Plack—! Plack—!</p><p>Glancing at the man laying down on the table, Joseph started to speak.</p><p>"I know that this is only our twelfth dosage of many, but trust me, what I'm doing is for your best."</p><p>Grabbing onto the man's shoulder which was filled with blisters, Joseph leaned his body closer and brought the syringe next to it.</p><p>"A perfect soldier is one that can perfectly blend with the world we are currently living in. One that can understand the human heart, yet at the same time, not have one. One that can watch the whole world burn before them, yet feel nothing from it."</p><p>Pressing his fingers on the man's arm, Joseph looked up.</p><p>"This might hurt a bit."</p><p>Squeek—!</p><p>He squeezed the tip of the syringe, and the liquid and 876's body started to spasm uncontrollably.</p><p>A rattling sound came out as a result of the latches binding 876, moving up and down. Taking the syringe out of 876's body, Joseph turned around.</p><p>"Don't hate me too much, 876. All I'm doing is breaking you so that one day you don't break."</p><p>***</p><p>"Uahgh!"</p><p>My eyes opened abruptly and my body shot up.</p><p>Lowering my head and staring at my bedsheets which were drenched in sweat, I forcefully opened and closed my eyes.</p><p>"Haa...Haaa...what was that?"</p><p>Clenching my teeth, I leaned back on the bed.</p><p>'Shit, just when I thought they had stopped...'</p><p>The nightmares about my time at the Monolith.</p><p>There used to be a time when I had nightmares every day. As time passed, the nightmares had become a lot less frequent.</p><p>Especially in Issanor.</p><p>Ever since I reunited with the others, I had thought that the nightmares had stopped.</p><p>The last time I had gotten a nightmare regarding my time at the Monolith was about half a year ago.</p><p>Just when I thought I had overcome my inner demons, the nightmare suddenly came again.</p><p>'Was it because of what the professor said yesterday?'</p><p>It could be.</p><p>Having him remind me of the incident and his talk about inner demons may have reignited the memories that I tried so hard to forget.</p><p>"Haaaa..."</p><p>Covering my face with the palm of my head, I let out a long breath.</p><p>Feeling the warm breath on my hand, I slowly got out of bed.</p><p>"What time is it?"</p><p>Taking my phone from the side of the bed, I looked at the time.</p><p>[Tuesday, 4 : 31 A.M.]</p><p>"It's still quite early."</p><p>Unlocking the phone, I sent Smallsnake a message.</p><p>[Smallsnake, when you see this, send me all of the information you know about Thomas D. Shurle, a professor staying in the academy. Don't care about the funds, or anything else, just find whatever you can find on him. Family situation, childhood, friends. Just anything. No matter how big or small the information is.]</p><p> I may just be paranoid, however, the situation yesterday really triggered something from deep within me. </p><p>Was what happened yesterday really a coincidence? I wasn't so sure.</p><p>Putting my phone back, I closed and opened my eyes.</p><p>'I should train.'</p><p>Seeing that I was no longer sleepy, sitting down crossed-legged on the ground, I closed my eyes and started to sense the psyons in the air.</p><p>As I've said before. Even though I was extremely strong amongst those my age, I was a far cry from those that I actually needed to worry about.</p><p>There was no time for me to think about the nightmares.</p><p>All I had to do was train, train, and train.</p><p>"Haaa..."</p><p>The moment I closed my eyes, I sensed millions of different colored particles roaming around me.</p><p>Thanks to the pill that I had taken back in Issanor, my perception of psyons drastically increased. If I had to make a guess, my perception was probably around the same as some &lt;S-&gt; rankers.</p><p>"Huuuuu...."</p><p>Taking a deep breath, my diaphragm moved up and the particles in the air started to move in a more orderly manner.</p><p>Slowly, the particles started to separate, and before long, only green particles started to roam around my body.</p><p>"Hm?"</p><p>Noticing something, my brow suddenly twitched.</p><p>Upon closer look, there weren't only green particles roaming around me.</p><p>There were in fact a couple of yellow-colored ones as well.</p><p>'Light psyons.'</p><p>At their appearance, my heart jumped up a little. That was because their presence only meant one thing.</p><p>I was close to understanding the fifth and final movement of the [Keiki style.]</p><p>***</p><p>8:30 A.M.</p><p>The sun shone brightly from the sky, enveloping the section G grounds.</p><p>Arriving at the grounds, the place was already packed with students. Everyone stood by the side of a small platform.</p><p>Walking next to me was Professor Thomas. Raising his glasses up, he calmly walked toward the middle of the grounds. Along the way, I saw him move a couple of students to the side to pass through.</p><p>"Looks like everyone is here."</p><p>Once he arrived, the chatter instantly stopped.</p><p>I was a bit surprised to see this, however, now that I thought about it, although the professor may not be good at explaining, perhaps the situation was different when put into practical use?</p><p>'Let's observe for now.'</p><p>Glancing at my watch, my brows knit slightly.</p><p>Just moments before I entered the academy, I received a message from Smallsnake. In his message was a small file.</p><p>Name : Thomas D. Shurle.</p><p>Age : 48</p><p>Family : Wife and two daughters.</p><p>.</p><p>Information : Graduated from Charleston Price Academy in the northern district of the human domain. At the age of thirty-nine, he managed to break through to &lt;A+&gt; rank where he stagnated till now. Unable to breakthrough to &lt;S-&gt; rank. He is a professional in mana and psyons control, and hence why he was selected by the Lock as a professor two years ago.</p><p>---Read more---</p><p>'Everything checks out...'</p><p>Taking my eyes away from my watch, I gazed in the direction of the professor who was currently displaying to the students how to coat their weapons with mana.</p><p>"First off, start off by diverging the mana in the air and call out for the preferred psyons. Once you have managed to select the desired psyons, fine-tune them to pursue the flow of your will..."</p><p>Observing him from where I was, he didn't look suspicious at all.</p><p>Furthermore, his background checked out. There was nothing strange about him, yet, something about yesterday's conversation really bugged me.</p><p>I couldn't really explain.</p><p>'Was it really just a coincidence?'</p><p>"Okay, now that I have demonstrated how to do it..."</p><p>At that moment, Thomas's voice rang out.</p><p>Pointing toward the area around him, he continued.</p><p>"I would like for everyone here to start practicing. Space yourselves out, and try coating your weapons with mana."</p><p>Turning around, he looked at me. This time, I felt nothing as I stared him in the eyes.</p><p>"Please watch over the other students. Help them if they have any troubles."</p><p>"Understood."</p><p>Taking my eyes away from him, I glanced at the students who had taken out their weapons and had started channeling their mana.</p><p>Instantly different colored hues started to appear on the bodies of the students. Some were brighter than the others, but generally, most were about equal in size.</p><p>Gazing at everyone around me, secretly, I channeled the mana inside of my body.</p><p>There wasn't a particular reason for this, but it was a habit I had developed back when I was in the forests. Just so that I would be prepared for any situation that arose.</p><p>"Interesting choice of weapon you have there."</p><p>Walking next to a familiar face, my gaze couldn't help but land on the brass knuckles in the individual's hands.</p><p>"Thank you."</p><p>Maria replied with a silly smile on her face. Taking a closer look at her, I couldn't help but think.</p><p>'She's ranked in the top five, huh?'</p><p>After returning home, the first thing I did was memorize the files of each individual in the class, and from there, I was able to find out that the girl next to Sophia was actually someone ranked so high.</p><p>Furthermore, her choice of weapon was quite unique.</p><p>Lowering my head, I pointed at her weapons which were glowing in a purplish-pink hue.</p><p>"Focus on the individual psyons in the air."</p><p>"Yes ."</p><p>With a quick nod, Maria's face quickly turned serious and her eyes closed.</p><p>I smiled in satisfaction when I saw this.</p><p>"Split them into the desired psyons before guiding them toward your weapon. If you don't split them, then you won't achieve anything."</p><p>Taking a deep breath, and listening to my words, the purplish color slowly started to become fainter and fainter, and before long, only the color pink enshrouded Maria's brass knuckles.</p><p>"Good. Now, try condensing the mana into your weapon."</p><p>"...Okay."</p><p>With an extremely serious look on her face, the pink hue around her brass knuckles started to slowly condense.</p><p>"Good, good."</p><p>Seeing her slowly condense her mana, I became more and more satisfied.</p><p>'There's a reason why she is ranked fifth in her year. Her talent is incredible. Not even I was like that in the past.'</p><p>Well, back then I had zero knowledge about mana, so it was understandable. Still, in terms of talent, Maria didn't lag behind the likes of Amanda and Emma.</p><p>Skak—!</p><p>"Ughh!"</p><p>Just then, right as the mana was about to condense around Maria's brass knuckles, it broke apart and Maria let out a sad wail.</p><p>"Damn, I failed."</p><p>Smiling, I patted her on the shoulder.</p><p>"It's alright, had you done it on your first try, I would've called you a monst—"</p><p>Before I could finish, a scream reverberated from the distance. Prompting me to turn my head.</p><p>"Haaaaa!"</p><p>Right as I turned my head, my eyes fixed on a student in the distance where I could see a rampant blue hue enshrouded his whole body.</p><p>With his sword raised in the air, he screamed.</p><p>"I...I can't control it!"</p><p>Everything happened so fast that the people near him were unable to react. Instantly, I activated 'Eyes of Chronos', and time slowed down.</p><p>Time started to slow down, and I was able to get a better view of what was happening.</p><p>Right then, my eyes instantly locked on the figures that were most likely to get hurt by the rampant individual. Of the individuals, I noticed that Sophia was one of them.</p><p>Once I locked my sight onto them, I slowed down the effects of 'Eyes of Chronos' and quickly came to a decision.</p><p>[Third movement of the Keiki style] : Void step</p><p>Touching the sheath of my sword; time that had slowed down for me once again sped up as my body shot in the direction perpendicular to where the student was about attack.</p><p>Within moments, I reappeared close to the student.</p><p>Unfortunately, because I had used the third movement, my blade was out of my sheath.</p><p>With only a split second of time, I quickly let go of the sword and twisted my body to the side.</p><p>Raising my hand and redirecting my mana toward it, my hand came into contact with the sharp end of the blade and time returned to normal.</p><p>Spurt—!</p><p>Blood spurted everywhere as I suddenly felt a sharp pain in my hand.</p><p>I couldn't redirect my mana to my fast enough and by the time the sword fell down on my hand blood had started pouring down my arm.</p><p>"Khhhh!"</p><p>A muffled groan escaped from my mouth as I tried to suppress my scream.</p><p>Grabbing onto the body of the blade, I forcefully lowered it and placed my hand on the other student's head. At the exact moment my hand touched his head, his body slumped down on the ground.</p><p>Thud—!</p><p>Once the student fell down, I finally let go of the sword.</p><p>"Haa...haa..."</p><p>Lowering my head and staring at the student on the ground, unknowingly, my head turned toward the professor of the class.</p><p>Was this also a coincidence?</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-478.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-480.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

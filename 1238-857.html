@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 857 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 857 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-856.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-858.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'I won't bother creating a signal for you. I'm sure you'll know best when using the arrow, but… don't use it unless you're certain it's going to hit… I trust you'll know the exact moment when to release the arrow, and you only have one shot, so… make sure it counts…'</p><p>Standing at the top of the building with her empty bow drawn, Amanda kept reminding herself of the words that Ren had thrown at her just moments before leaving for one of the Pillars.</p><p>Right before her very eyes, a battle of a scale that she couldn't fathom was happening, and all she could do was stare at it with her breath held tightly.</p><p>'How am I supposed to interfere in that?'</p><p>Amanda kept wondering to herself the same thing over and over again as sweat trickled down the side of her face and her grip on the bow tightened.</p><p>BANG—! BANG—! The aftermath of their battle reached all the way where she was, and a strong wind pressure blew past her, scattering her hair away. She had to channel her mana on her feet in order to remain in the same spot, and when everything cleared up, she noticed a sudden change in the battle ahead.</p><p>"Oh, no…"</p><p>Amanda's heart clenched at the sight of Ren getting pummeled by the Demon King, who punched him directly in the face and tore the earth beneath the two.</p><p>Immediately, the circular projections behind her started to line up—from largest to smallest—and her entire body started to tremble.</p><p>She was just about to call forth her arrow when she was once again reminded of Ren's words, and she stopped herself.</p><p>'Not yet…'</p><p>The time wasn't ripe yet, and she knew it.</p><p>BANG—! Seeing Jezebeth punch him again, Amanda flinched but didn't look away and kept her gaze fixed on him. More than ever, she wanted to interfere, but she stopped herself again and silently clenched her teeth.</p><p>With another hit, Amanda watched as the Demon King placed his hand over Ren's face, exposing his back to her. Shortly after, a familiar set of golden runes manifested on his hand.</p><p>The same happened to Ren, whose face became colored in golden runes that slowly moved away from his face and moved to the Demon King's hand. The world around them started to twist.</p><p>Rather quickly, Ren's body started to shrivel up like a mummy, and Amanda could no longer sit still.</p><p>Placing her foot forward, she drew a silent breath, and an arrow manifested on her bow. Immediately after the arrow appeared, soft whispers echoed in the air, and golden runes floated around the area she was in.</p><p>Her bow became increasingly heavy, and Amanda felt her entire body burn at that moment as she watched her hands age. Even so, despite the pain she was experiencing, her gaze was fixed on Jezebeth's exposed back.</p><p>At the same time this was happening, Ren's body started to shrivel up more and more, and right when he seemed to be on the verge of dying, Amanda finally let go of the string.</p><p>TWAAAA—!</p><p>She was unable to recall exactly what occurred after that, but the moment she let go of the string, her bow disintegrated into a fine powder that dispersed in front of her, and the world around her became entirely white.</p><p>What followed after was a strange silence that seemed to envelop the entire world. The world soon regained its color, but…</p><p>It was unfortunate that right as that happened, her world turned white and she felt her body limp forward.</p><p>Thump—!</p><p>***</p><p>TWAAANG—!</p><p>Suddenly, the world went white, and Jezebeth felt a sharp pain in his back. His entire body shook violently, and pain, unlike anything he had ever experienced, coursed through every part of his body.</p><p>"Y,you…"</p><p>When he lowered his head, he saw Ren staring at him while smiling weakly. With both hands on his forearms, a glow emanated from them, and Jezebeth could feel the laws erupting from Ren's body.</p><p>"Akh."</p><p>It seemed as though something was sapping all of the energy from within his body, and he could literally feel himself becoming weaker with each passing second.</p><p>On the other hand, Ren's body started to become fuller and fuller, and gradually he returned to his normal looks.</p><p>'I can't…'</p><p>Feeling everything that he had worked hard for slip before his very eyes, Jezebeth raised his head and smacked his head against his.</p><p>BANG—! It hurt a lot, and his head throbbed, but the pain was negligible compared to what he was feeling at his back.</p><p>Thankfully, his actions weren't for nothing, and he felt the grasp on his hands loosen.</p><p>"Ah… ah!"</p><p>Thump! Thump!</p><p>He stumbled back and separated himself from Ren, falling butt-first against the ground.</p><p>"Haaa… haaa…"</p><p>Taking heavy gulps of air, he tried his best to channel whatever energy he had left inside of his body, but much to his horror, he realized that his tank was completely empty.</p><p>Rustle—! Rustle—! Feeling movement from the direction opposite him, Jezebeth looked up to see Ren wobbling toward him.</p><p>Despite having taken his energy, he too looked rather weak, and with both hands hung low, he moved to where he was.</p><p>Staring at his figure, Jezebeth clenched his teeth and forced himself up.</p><p>Like him, he stumbled forward, and despite everything that he was feeling, he continued to move toward him until they were just about a few meters away from each other.</p><p> BANG—! Neither of the two wasted any seconds, and they both threw a fist at each other. Both hits landed squarely on each other's cheeks, and their heads tilted back. </p><p>That… apparently wasn't enough, as they both retrieved their fists and punched at each other once again.</p><p>BANG—!</p><p>Gone were their powerful attacks that tore the air and destroyed the earth. At the moment, the fight had taken a complete turn as the two of them fought one another with nothing but their bodies.</p><p>From afar, be it demons or those from the four races, everyone looked in their direction as the two of them exchanged moves with one another.</p><p>Despite them being visibly weaker than they were before, none dared to make a single move as they continued to stare at the two of them with their breaths held.</p><p>They knew that the victor of the fight would decide the fate of the war…</p><p>BANG—! BANG—! The two of them were rather evenly matched as they exchanged blow after blow. When Jezebeth landed a hit, so would Ren, and the cycle would repeat.</p><p>Both of them continued to force themselves on the other in spite of the fact that their punches were getting sloppier and slower with the passage of time. However, neither of them seemed to care.</p><p>"Uakh!"</p><p>BANG—! Exchanging blows, the two of them stumbled backward, and just as Jezebeth was about to move again, he suddenly felt his back burst with pain, and his movements halted for a split second.</p><p>That was all Ren needed to rush forward and headbutt him squarely in the face, sending him reeling backward.</p><p>Thump—!</p><p>Falling back on his butt, Jezebeth tried to stand up but found that he no longer had the energy to do so, and as he moved his head up, he saw a foot land squarely on his face, sending his face crashing against the ground.</p><p>"Urkh."</p><p>He… he didn't lift his head up from that moment on as he blankly stared at the sky.</p><p>He wanted to move but couldn't. Almost every part of his body was broken, and the energy in his body had long faded from him.</p><p>He was just an empty shell of his former self, and realizing his own weakness, he couldn't help but clench his teeth in indignation.</p><p>"I… I was so close…"</p><p>He managed to mutter a few words at that moment as he stared at the sky, which had turned blue once more.</p><p>There had always been something about the cloudless blue skies that made him feel at peace. They always reminded him of his home… the place he used to once call home, and where his parents lived.</p><p>He had planned on secluding himself from the world the moment he got his hands on the records and learned of the truth.</p><p>His plan consisted of staying in a world such as this one. A quiet and peaceful one.</p><p>One that reminded him of his home planet, but…</p><p>Thump—!</p><p>A shadow cast over his vision as two deep blue eyes appeared in his vision.</p><p>Staring directly at them, Jezebeth felt everything crumble down, and though he was indignant… he accepted the situation.</p><p>Deep down in his heart, he had always known that failure was a very real possibility, and he had long prepared for it.</p><p>It wasn't in vain as his eyes slowly closed, and the world around him turned quiet.</p><p>There was no regret in his mind, only pity…</p><p>If only…</p><p>He never got to finish that thought. Everything ceased from that very moment, and the existence known as Jezebeth disappeared from the world.</p><p>***</p><p>"I… I… haaa…"</p><p>I found it hard to breathe or speak at this very moment. Almost every part of me was broken, and I could barely keep my eyes focused.</p><p>All that was within my vision was the hazy outline of Jezebeth's body, and with my best efforts, I tried to keep my hand on top of him.</p><p>I could see a multitude of golden scribbles and runes fly in the air, but I was having a hard time keeping conscious.</p><p>Despite that, I continued to keep my hand on Jezebeth's body, and the world around me started to shift. I felt a sinking feeling wash all over me, and my vision suddenly started to shatter.</p><p>In that brief moment, before I completely lost consciousness, I found the scenery around me changing.</p><p>It looked like I was standing in the middle of a patch of green, but I wasn't sure.</p><p>All of a sudden, Jezebeth's body started to disappear, and golden runes floated on top of me. My hand soon touched the ground, and I felt something linger over my fingertips.</p><p>In my best efforts, I was able to catch a glimpse of several metallic shards as well as a faint black mist that lingered over them.</p><p>Reaching out with my hand, I clenched at the shards, and my vision finally turned completely dark.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-856.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-858.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

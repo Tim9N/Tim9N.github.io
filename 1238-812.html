@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 812 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 812 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-811.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-813.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Drip! Drip!</p><p>The rain continued to fall steadily, each droplet creating a ripple as it collided with the surface of the water.</p><p>It was a dreary and ominous atmosphere that surrounded the two figures standing at the edge of the water. Their stillness only added to the sense of foreboding.</p><p>Prince Murdock's warily stared at the figure before his eyes.</p><p>He had never encountered anyone like this before. The stranger's appearance was shrouded in darkness, making it difficult for Murdock to discern any distinguishing features.</p><p>However, the sheer power emanating from the figure was palpable, sending chills down Murdock's spine.</p><p>Despite his wariness, Murdock stood his ground, his expression stoic as he faced the shadowy figure. He spoke in a measured tone, trying to keep his composure.</p><p>"What are you?"</p><p>His voice was firm, but there was a hint of trepidation underlying his words.</p><p>"..."</p><p>The figure remained silent, its dark form seemingly immobile.</p><p>"Not much of a talker, are we?"</p><p>Murdock continued to scrutinize the figure, trying to glean any information he could from its appearance. The stranger appeared to be human in build, but there was all he could make out.</p><p>"I've never heard of a human as strong as you, nor―"</p><p>Drip!</p><p>He was interrupted by the subtle sound of a raindrop hitting the water, which resounded through the air unlike any of the other drops around him. "Swoosh!" In that split second, the shadowy figure vanished from where it was standing.</p><p>"Uh?!"</p><p>Swoosh―</p><p>Murdock's eyes widened in surprise as he felt a sudden force against his cheek. He stumbled backward, narrowly dodging a swift punch aimed at his face.</p><p>"Rather hurried, aren't we?"</p><p>Murdock quipped, trying to regain his composure. As he distanced himself from the shadowy figure, Murdock noticed a cold glint reflecting off a blade being unsheathed.</p><p>The realization hit him like a ton of bricks, but it was too late. Murdock's gaze met with the figure's, and time seemed to come to a standstill.</p><p>The only sound was the raindrops falling around them.</p><p>Drip!</p><p>SHIIIING―! In that moment, Murdock watched in horror as his arm was sliced clean off by the blade. The pain was intense, and he could feel warm blood gushing out of the wound.</p><p>Spurt―!</p><p>Black blood spurted out, staining the water and adding to the eerie atmosphere. Murdock could barely comprehend what had just happened. He looked up at the shadowy figure, whose features were still obscured by the darkness.</p><p>"Arghhh!"</p><p>He eventually succumbed to the agony and let out an agonized scream as a result. He glared at the figure in the shadows while clutching his right hand, and he flapped his wing once.</p><p>The outline of his figure became fuzzy, and then he materialized in front of him.</p><p>His arm, which had disappeared earlier, reappeared, and he reached out his hand with the intention of hitting the shadowy figure in the head.</p><p>Swoosh―!</p><p>Unfortunately, he passed directly through his body, and when he turned around, he saw him standing a few hundred meters away with his sword again pointed at him.</p><p>'Fast.'</p><p>That was all Prince Murdock could think about at that moment.</p><p>Staring at the tip of the sword that was pointed at him, he was just about to take a step forward when he suddenly twisted his body.</p><p>SHIIIIIING―! Right then, a silver streak flew past the area that he was previously in, and when he turned his head, he caught a glimpse of the space behind him.</p><p>It was cracked.</p><p>'So that's how it is.'</p><p>He murmured to himself as he analyzed the movement.</p><p>All it took was a glimpse for him to understand what had happened, and he instantly calmed down. He had faced many skilled opponents before, and he knew that the key to victory was to remain calm and focused.</p><p>"Your mastery o―"</p><p>He started to say, but his expression shifted mid-sentence, and he moved his body to the right, narrowly avoiding the tip of the blade that brushed past his cheek.</p><p>A smile crept up on his face as he glanced at the passing blade. Now that he understood how it worked, he wasn't as worried as before. However, he knew that he couldn't let his guard down.</p><p>SHIIIIIING―!</p><p>That said, the attacks were relentless, coming at him from all sides. Just as another blade passed by his body, he flapped his wings and appeared before the shadowy figure. With his hand outstretched, he aimed his claws at his face.</p><p>Swoosh―!</p><p>Unfortunately for him, the figure ducked down and counterattacked with a punch, aimed directly at his abdominal area.</p><p>Prince Murdock knew that he had to act quickly if he wanted to avoid the blow.</p><p>"Hup!"</p><p>Right as the fist was about to make its way toward his stomach, Prince Murdock twisted his body, and the fist grazed past his back.</p><p>Boom―! Boom―!</p><p>The aftermath of their fight fractured the water beneath them, and thunder began to crackle from the sky above.</p><p>Kracka! Kracka!</p><p>Boom―!</p><p>Finally landing a fist against the shadowy figure, he flapped his wings and appeared right behind him. He didn't waste a second and kicked him down with his leg.</p><p>Splash―!</p><p>The figure crashed against the water, diving deep under it. Prince Murdock followed him down, his figure plummeting into the water beneath, and with one quick scan of the surroundings, he managed to spot him.</p><p>With the aid of his wings, he appeared right in front of the shadowy figure and clenched at his throat with his hand, pushing him further down under the water.</p><p>The water around them distorted as the two plummeted down from above at high speeds and bubbles followed their trails.</p><p>Boom―!</p><p>The two of them crashed deep under the ocean, sand spilling around the area they were in. When the sand settled, Prince Murdock's figure was revealed, standing above the shadowy figure with his hand at his throat.</p><p>He had the upper hand now, and he knew it.</p><p>"Tell me…"</p><p>He spoke, holding tightly onto his neck. He could snap it at any second.</p><p>Despite the situation he was in, the shadowy figure looked at him with a calm look, seemingly unbothered by the predicament he was in.</p><p>This left the Prince unsettled, but he brushed it toward the back of his head as he had many questions he wanted answered.</p><p>"Who are you? What race are you from? Wh―"</p><p>Cruch―!</p><p>The Prince was in the middle of a sentence when he heard a crunching sound and felt intense pain. When he looked down, he saw that a portion of his hand had been bitten off, and his expression quickly morphed.</p><p>"Arghhh!"</p><p>He screamed, bubbles rising from his mouth, and finally let go of his throat. The shadowy figure quickly appeared behind the Prince, and his fist connected against the Prince's back.</p><p> Boom―!</p><p>The impact reverberated through the water as the Prince was thrown back, crashing against a couple of rocks in the distance. The rocks shattered upon impact, sending several fish scattering out of the area.</p><p>The shadowy figure appeared before the Prince once more, brandishing a sword in hand and pointing it back at him.</p><p>'Shit.'</p><p>The Prince muttered under his breath, his pupils dilating as he realized the gravity of the situation.</p><p>SHIIIING―! The shadowy figure struck again with a force and speed that took the Prince by surprise.</p><p>The Prince tried to dodge, but it was too late. He felt a searing pain in his hand as one of his fingers was severed, and black blood diffused into the water.</p><p>The Prince was in shock. 'How is this possible?' he wondered.</p><p>SHIIIING―!</p><p>The figure struck again, and the Prince barely managed to evade the attack.</p><p>He flapped his wings and disappeared from where he was, leaving a long line across the space where he was a moment before.</p><p>'I didn't see wrongly…'</p><p>He muttered under his breath.</p><p>'This is serious.'</p><p>The realization hit him hard ― his opponent's attacks were getting stronger and faster.</p><p>The Prince swallowed hard, his eyes fixed on the shadowy figure. He felt his core palpitate as he realized the extent of his opponent's power.</p><p>He knew he had to take this seriously.</p><p>Fwooom!</p><p>The water trembled as demonic energy suddenly rose from the Prince's body, enveloping the area around him. His black hair fluttered under the water, and his gaze turned utterly calm.</p><p>He studied the figure standing opposite him, closed his eyes for a moment, and then re-opened them. When he did, he caught sight of a familiar back and he opened up his palm and reached out for the back.</p><p>'I got you… '</p><p>He thought, but unfortunately, the figure reacted in time. With that said, the Prince's movements were faster.</p><p>His finger just barely managed to touch its back before the figure shot up like a rocket, leaving the water behind.</p><p>The Prince closed his eyes again, and when he opened them, he was right above the water, directly on top of the shadowy figure hurtling towards him.</p><p>He didn't think much after that and raised his hand. In one simple motion, he clawed down and the shadowy figure split into three pieces.</p><p>Swooosh―!</p><p>The sound of the strike echoed through the air as the pieces fell into the water with a subtle splash.</p><p>"A pity."</p><p>Muttered the Prince, staring at the dissected pieces of the shadowy figure.</p><p>His breath was steady, and the fight had only lasted for a couple of minutes, but in the short period of time, the Prince experienced a sensation that he had never felt in a very long time, with the exception of the times he met with His Majesty.</p><p>'Fear'</p><p>He had come dangerously close to losing this battle, and if not for that last movement of his, he would've found himself in a precarious situation.</p><p>Drip! Drip!</p><p>The only sound that remained was the sound of the rain beside him, occasionally muffled by the thunder in the distance.</p><p>Tearing his gaze away from the water, the Prince frowned as he muttered to himself, "I should report this to his majest―"</p><p>He was interrupted mid-sentence as he sensed a presence behind him. His head snapped behind, and his eyes opened widely as his pupils constricted.</p><p>"H,how?!"</p><p>The Prince exclaimed.</p><p>For the first time in a very long time, the Prince lost his composure as he looked at the shadowy figure that stood in the air behind him.</p><p>The air around him chilled, and the shadowy figure finally opened his mouth, his voice echoing ominously through the air.</p><p>"Give up...I can't die."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-811.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-813.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

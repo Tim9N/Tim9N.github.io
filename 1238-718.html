@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 718 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 718 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-717.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-719.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Tsk."</p><p>Coming out of the Duchess's room, I clicked my tongue.</p><p>'I tried at least.'</p><p>Lowering my head, I looked at the three other tubes in my hand before putting them away.</p><p>Moments prior, I tried to negotiate for a devil fruit, but I was flat out rejected by her.</p><p>In the end, all I could do was leave with my head lowered.</p><p>'I can't be too impatient.'</p><p>I could've negotiated for a devil fruit before, but the Nectar was far more important to me. While I wasn't completely healed, I felt far more refreshed than I had in a very long time.</p><p>I even had a very good night's sleep for once.</p><p>Plus…</p><p>'It's not like there won't be an opportunity later.'</p><p>"You're back?"</p><p>"Yeah."</p><p>As I made my way back to our residence after secretly escaping the estate, I was greeted by the sight of Melissa tinkering with an odd substance. Nothing unusual.</p><p>Already used to this, I found a chair not so far from her and took a seat.</p><p>"Have you found what you've been looking for?"</p><p>"Not really."</p><p>Melissa shook the test tube in front of her and quietly observed it.</p><p>Though faint, I caught sight of a couple of bubbles on top.</p><p>…Just what sort of potion was she making?</p><p>"When are we going to leave?"</p><p>"When the time comes."</p><p>The only way back was through Kevin, so until the designated time, we'd be stuck here for a bit more.</p><p>"Thankfully, I'm already finished with what I needed to do, so I guess we can take it easy until the time is right if that's okay with you?"</p><p>"That's fine with me."</p><p>Melissa nodded her head without a change in expression.</p><p>It seems like she was enjoying her stay here.</p><p>"That's great."</p><p>I stood up from the seat.</p><p>"Since we have time, it's best we make the most out of it. We've got plenty of time."</p><p>I had originally assumed that we'd only have about five months on our trip over here. While it wasn't long, it wasn't short.</p><p>However, I only realized later that I had grossly underestimated something over here, and that was the fact that one day here wasn't actually the same as one day back on earth.</p><p>The length of a day on this world was significantly different from that on earth; consequently, the amount of time we had over here was significantly greater than the five months we had originally intended to stay for.</p><p>"It's perfect."</p><p>With how grim the situation back on Earth was, I originally thought there wasn't enough time, but given the time I had, maybe… just maybe—by the time I returned, I'd be strong enough to defeat Hemlock.</p><p>I made a motion with my hand and pulled out several bottles, each of which contained a substance I was familiar with, then I took several deep breaths.</p><p>"…I can only try."</p><p>While I might not be able to rank up due to the lack of mana in the air... I no longer relied on mana alone. I could use my time to train with my newfound power.</p><p>Demonic energy.</p><p>***</p><p>The bedroom was tastefully decorated, lit up by the bright moon that hung high in the night sky. There was complete silence in the room as the white curtains that led to the balcony ballooned outward like the sails of a ship and moved in an odd wavelike pattern as the breeze blew through them.</p><p>"Pftt…"</p><p>A sudden laughter broke the silence in the room.</p><p>Recalling the face the human made when she rejected his request, Priscilla found herself unable to hold her laughter back.</p><p>'He deserves it for not telling me he'd erase my memories…'</p><p>She was still bitter about it. Even though she did comprehend the reason he acted in the manner that he did, it would have been nice if he had informed her of it in advance.</p><p>Nonetheless, the past was the past, and what was done was already done.</p><p>She had made the right bet in the end.</p><p>'Thankfully, he was on my side.'</p><p>She shuddered at the thought of being on the opposite side of him.</p><p>Not only was his strength extremely terrifying, but so were his schemes.</p><p>All it took him was a single day. In a single day, he managed to do what she had deemed to be impossible.</p><p>When one looked at it from the sloth house point of view, then they were the biggest winners.</p><p>With the other houses busy with the succession war, and the House of Envy being the main target of everyone, the House of Sloth was the one that gained the most from the whole ordeal.</p><p>Not only did they not lose any of their forces, but they were also the house with the greatest advantage during the upcoming World Decree.</p><p>Unlike the others, they weren't infighting.</p><p>"The more I think about it, the scarier this is…"</p><p>The fact that he had managed to fool seven Prince ranked entities was enough to prove just how scary of an individual he was.</p><p>"Huh."</p><p>Priscilla exhaled and gazed at the moon outside. She then brought two fingers to her mouth.</p><p>"Huh?"</p><p>…Only to realize that she had nothing in her hand. Immediately her face changed.</p><p>"Shit, I forgot to ask the other human for another pack."</p><p>***</p><p>A figure restrained by chains hung in the air. The world around him was devoid of any light as darkness restrained every inch of his body.</p><p>He had a lifeless look on his face and the only movement that could be seen was the very slight contraction of his diaphragm.</p><p>A figure appeared before him.</p><p>"It's been a while."</p><p>His features were strikingly similar to that of the chained man. No, rather, they were identical.</p><p>It was none other than Ren.</p><p>Staring at his other self, who showed no reaction to his appearance, Ren calmly sat down in front of him.</p><p> He didn't say anything and just stared at him for an unknown period of time. </p><p>…It was as though he was trying to check if he was still alive or dead.</p><p>He eventually let out a sigh and spoke up.</p><p>"Until when are you going to be like this?"</p><p>"…"</p><p>He received no response. Nonetheless, he continued.</p><p>"I know you want to die, but is that really all there is to it? Do you have no goals that you want to achieve before dying… like, perhaps killing Jezebeth for good?"</p><p>"…"</p><p>"Is it because there's something wrong with your mind?"</p><p>Extending his hand, several tubes appeared.</p><p>Looking straight ahead, he asked.</p><p>"I have something that may potentially help you. I won't ask anything in return, but... if it truly helps you and your sanity returns, will you listen to my request?..."</p><p>Once again he was met with no response.</p><p>'Is this not enough?'</p><p>Ren took a look at the tubes he was holding in his hands. Even though he couldn't be absolutely certain, he had the impression that if he presented this to his other self, he might be able to help him in a way.</p><p>Unfortunately, it didn't seem like it enticed him.</p><p>Or so he thought…</p><p>Ren felt a sudden twitch in his body, and as he did so, he watched as his other self began to move very slowly, and he raised his head up.</p><p>Their eyes met, and soon, his dry lips parted open.</p><p>"It won't work."</p><p>His voice was frail, almost feeble, but Ren managed to hear it.</p><p>"…Will it really not work?"</p><p>"I've tried it before."</p><p>He responded in a dull manner, staring at Ren in an expressionless manner while doing so.</p><p>"…I'm far too broken to be fixed."</p><p>Ren frowned.</p><p>He was cut before he could say anything.</p><p>"I'm fundamentally already broken. I'm not something that can be fixed, and I understand that… I have long understood this, but I just want to be thrown away as all broken things should."</p><p>The frown on Ren's face deepened when he heard his words.</p><p>They weren't pleasant.</p><p>…and it finally made him realize that there really was no way out for him.</p><p>His feeble and cracked voice continued to echo within the void.</p><p>"Death is cold, Ren… You and I both know it. To me, however…"</p><p>"...It's the warmest thing I could ever hope for…"</p><p>Ren bit his lower lips when he heard his words.</p><p>Looking up at him, he asked one last question.</p><p>"Do you have any fears?"</p><p>This was a question he already knew the answer to, but he just wanted to ask anyways, and as expected, he wasn't surprised by the answer.</p><p>"Fear? I've no such emotion…"</p><p>He paused.</p><p>"No, that's a lie. I do have a fear... And that's the fear of not being able to die. I'm currently relieving my fear every day. And that's all on you."</p><p>"I understand."</p><p>Ren put the test tubes away and turned around. He vanished from the void without saying anything else. It was at this moment that Ren gave up on his other self.</p><p>There was no other way for him.</p><p>…and even if there was, it wasn't something that he could do.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-717.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-719.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

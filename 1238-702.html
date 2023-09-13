@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 702 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 702 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-701.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-703.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'We've got her full attention...'</p><p>From afar, I was being viciously glared at by a certain someone. Or at least, that was how it felt as I turned my head away from the duchess and inwardly cursed to myself.</p><p>'I knew it...'</p><p>Considering what the others were doing, it was inevitable that it would happen, but... why is she staring at me?</p><p>What did I even do to prompt her attention?</p><p>I didn't even act once.</p><p>I didn't do anything special; I just sat still and watched the others go about their business. There was nothing I did that would make her pay attention to me instead of the other things going on around us.</p><p>'Is it perhaps my charm?'</p><p>...Hm, that did sound rather probable, but it had to be noted that I was currently wearing a hood, making this possibility invalid for the time being.</p><p>'Well, whatever.'</p><p>I shrugged my shoulders.</p><p>My interest only lasted until that point, at which point I turned my attention back to the enormous beast off in the distance.</p><p>'...More than anything, I'm surprised by Jin's skills.'</p><p>It was surprising that he was able to sneak under the mammoth without being spotted.</p><p>The gap between the two parties was wide, and for him to somehow be able to sneak right under it and deal some damage was nothing to make light of.</p><p>'I suppose that in exchange for their sanity, they were able to acquire a nice boost in their abilities...'</p><p>It was the only plausible explanation for the current situation.</p><p>"Whooooo!"</p><p>Clank! Clank!</p><p>The mammoth and the demons were locked in a fierce struggle; their bodies tangled together as they fought for dominance.</p><p>Sparks flew, and the cave echoed with the sounds of their roars and snarls. The air was thick with the scent of blood.</p><p>Demons tore at the mammoth with their claws and teeth, looking for a vulnerable spot in its thick hide to exploit. In retaliation, the mammoth delivered a devastating blow with its trunk and tusks, which sent the demons flying across the cavern.</p><p>Rumble! Rumble!</p><p>The battle raged on, with neither side willing to give up.</p><p>The demons were driven by their desire for destruction, while the mammoth fought desperately to rid itself of the little flies that were invading its domain.</p><p>As the battle raged on, it seemed as though the outcome was certain. With Jin and Amanda's help in injuring the beast, everything pointed to the demon's side, but...</p><p>...slowly but surely, the mammoth's superior strength began to show in the desperate situation.</p><p>Swooosh!</p><p>The mammoth's strikes were becoming more powerful by the second, wearing down the majority of the demons, and with a raging sound, the trunk of the mammoth began flailing around with more force.</p><p>"Whooooo!"</p><p>One by one, the demons fell. This went on until only a handful remained.</p><p>"Huak!"</p><p>"H-elp!"</p><p>A demon who had crashed nearby extended its hand toward me. Begging for help. Staring at the demon, I flicked my finger, and their figure turned into dust.</p><p>"...This has turned rather problematic."</p><p>Although I had somewhat expected this outcome, it still surprised me to see just how powerful the mammoth was.</p><p>Slowly, I turned my head and focused my eyes on the Duchess, whose pretty face was contorted as she gazed at the faraway beast with an unusually solemn expression.</p><p>"...And you're telling me that she wants to tame this beast?"</p><p>For the love of god, was she out of her mind?</p><p>How in the world was she supposed to tame that monster?</p><p>'And here I thought Melissa was the only cra-"</p><p>"Oy!"</p><p>My face scrunched up at the sudden pain that I felt on the side of my abdomen. When I turned my head, I was met with Melissa's glare.</p><p>"What was that for?"</p><p>"...I just felt like you were insulting me."</p><p>"Huh?"</p><p>My heart froze.</p><p>Was she some sort of esper?</p><p>"So you poked me because you felt like I insulted you?"</p><p>"No."</p><p>Melissa shook her head and turned to observe the conflict in the distance.</p><p>"...I did it because you said it out loud."</p><p>"Huh? I did?"</p><p>Well, that was unexpected.</p><p>Was I so engrossed in my own thoughts that I accidentally spoke out loud? Were the whispers that I constantly heard throughout the day finally getting to me?</p><p>I felt relieved hearing her answer. So long as she wasn't an esper.</p><p>"Damn, for a moment, I thought you were an esper."</p><p>"...So you really were speaking badly about me."</p><p>My entire body tensed up, and Melissa's head turned away from the battlefield.</p><p>The way her head turned caused mine to do the same thing, and as our eyes met, neither one of us spoke for a good minute.</p><p>"Ah..."</p><p>"Ah."</p><p>Well, fuck.</p><p>***</p><p>"I've seen enough."</p><p>Priscilla took her eyes away from the mammoth in the distance.</p><p>Her primary objective was to observe the people in the cave and determine whether or not any of them would make good candidates for her faction. Despite the fact that the vast majority of the demons that were there were rather underwhelming, she did observe a few that showed promise.</p><p>In particular, a specific hooded group.</p><p>Out of all the individuals present, they were the ones that captured her attention the most.</p><p>Appearing behind her was her uncle.</p><p>"Would you like for me to take action?"</p><p>"No, I can handle this myself."</p><p>Dismissing her uncle, Priscilla took a step forward, and her entire body started to glow with a pink hue.</p><p>After that, an armor began to form around her body, perfectly adhering to her body and highlighting every inch of it as it did so.</p><p>As her pink hair moved behind her head in a fluttering motion, a silver rapier materialized on her left hand. She grasped it tightly.</p><p>Priscilla's figure became blurry as she continued to stare at the battlefield, which was becoming more bloody by the second. She then appeared directly above the mammoth.</p><p>Her movements were so quick that even the mammoth had trouble keeping up with them. A beautiful silver curve arced through the air and then sank straight into the mammoth's hide.</p><p>Blood splattered in the air, and the mammoth let out an anguished wail.</p><p>"Awooo!"</p><p>Rumble! Rumble!</p><p>The trashing intensified, and the cave shook even more violently. As several stalactites fell from above and collided with the demons below, more demons died. It was unnecessary to describe the resulting damage.</p><p>"N..nooo!"</p><p>"He-help!"</p><p>The mammoth paid no attention to the events taking place around it; instead, it was completely fixated on Priscilla, who was looking down at it from above. Her red eyes were emotionless and unmoving.</p><p>As they stood face to face, neither of the two behemoths made a sound. Quietly, the two observed one another. The only sound that could be heard was the agonized cries of the demons.</p><p>Then...</p><p>As if in sync with each other, the mammoth raised both of its tusks in the air, and Priscilla's figure blurred.</p><p>Clank!</p><p>She materialized immediately next to the mammoth and thrust her rapier in its direction. Targeting the eyes of the beast with pinpoint accuracy.</p><p>Her actions were lightning fast and coldly calculated. directing one's attack squarely at an area that had already been damaged. As long as her rapier smashed through the eye, the fight would effectively be over.</p><p>...Of course, things weren't as simple as thrusting into the beast's eye. It wasn't a Duke ranked beast for no reason.</p><p>At the precise moment when Priscilla's rapier was about to make contact with one of the beast's eyes, the animal suddenly thrust its tusks in Priscilla's direction with a swift movement of its neck.</p><p>The action took place at such a breakneck speed that the only thing that onlookers were able to make out was a figure hurtling through the cavern at an incredible rate of speed.</p><p>Crash―!</p><p>"Uakh!"</p><p>Priscilla groaned as she was flung against the cavern wall. When she collided with the wall, her pink hair fell onto her face, concealing her attractive features.</p><p>Her crimson eyes glowed with a menacing red gleam as she glared at the mammoth on the opposite end, who was faring much worse than she. Its trunk dangled as fresh blood poured from a large open wound on its upper surface.</p><p>The mammoth wailed mournfully, showcasing just how much pain it was going through.</p><p>Steadily taking a step forward, Priscilla smoothed out her hair before shifting her attention back to the mammoth a fair distance away from her.</p><p>"Had this one not wanted to keep you as a pet, you would've been devoured by me already."</p><p>She scowled. Her hostile tone conveyed unfathomable murderous intent. Injecting demonic energy into her rapier, a pink glow formed, gently coating the blade of the rapier.</p><p>Taking a step forward, she eyed the beast in the distance and slashed.</p><p>The cut was rather straightforward. It appeared unimpressive to those around her. Those with keen eyes, however, thought otherwise. Several couldn't even help but take a step back due to the terror that they'd witnessed in that one simple slash.</p><p>...but more than anyone.</p><p>The one individual that felt the terror of that slash the most was none other than the mammoth, who could only stare blankly at the attack that approached its direction.</p><p>The only thing it could do was stare.</p><p>Stare at what seemed to be the end.</p><p>Spurt―!</p><p>Blood splattered everywhere across the rugged ground. Dying the rocks in a crimson shade.</p><p>Thump―!</p><p>The ground shook, and the mammoth fell to the ground. Silence returned to the cave as everyone's focus was on Priscilla, who slowly sheathed her rapier. Ignoring the stares, and with her gaze still lingering over the mammoth, she calmly fixed her hair and made her way toward the beast.</p><p>"Thank the heavens that I'm in a good mood."</p><p> Priscilla murmured. She soon approached the mammoth on the ground, which was seemingly on its dying breath.</p><p>WHIIING―!</p><p>"Huh?"</p><p>It happened all too suddenly. Just as she was about to get near the beast, something tore through the air at unimaginable speeds. It was so fast that she didn't even have time to realize what was happening. In that brief moment, however, her eyes caught a glimpse of something sharp making its way toward the upper parts of her brows.</p><p>'An ambush!'</p><p>The realization came a tad too late. She realized that by the time she'd managed to get her rapier out, it would already be too late. The speed at which the attack was coming wasn't something that any regular Marquis ranked demon could handle.</p><p>'It's too late...' She thought, clenching her teeth and preparing to concentrate her demonic energy toward her core.</p><p>She had several life-preserving means.</p><p>"Akh!"</p><p>Bam―!</p><p>Unexpectedly, just as she was about to shift her concentration to her core, she felt a massive force hit her in the head, and her body was propelled backward. At the same time, she witnessed the sight of a silver streak pass through the area she'd previously been in.</p><p>Her eyes widened, and it was then that she saw what seemed to be a black spike standing in the area she had been in. It was all torn up, but she knew...</p><p>She knew that it was what had saved her.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-701.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-703.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

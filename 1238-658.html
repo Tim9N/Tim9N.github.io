@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 658 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 658 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-657.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-659.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Nope, this doesn't work as well."</p><p>Melissa ruffled her hair and tossed a test tube into a nearby bin before shifting her focus to a test tube rack that contained five additional test tubes that were arranged in an orderly fashion.</p><p>As she carefully examined each test tube, she leaned her body forward and strained her eyes in order to see more clearly.</p><p> "...Looks like these ones are also failures."</p><p>Melissa observed the test tubes for five minutes before shaking her head in disappointment.</p><p>Her body then slumped down on the chair behind her as she rolled across the floor. Tucking her chin under her hand she mused.</p><p>'I am lacking something. Even after experimenting with the new herbs that grow on this planet, I am still unable to locate the herb with the desired properties.'</p><p>Melissa was the only person who remained in the castle while the others went to the treasuries of this planet and looted everything there was to loot.</p><p>Melissa conducted research and experiments with the plants that she had gathered over the course of her time on the planet while the others were in the process of exploring the treasuries.</p><p>She had access to a wide variety of plants and herbs, but as she investigated their properties, she discovered that the vast majority of them possessed qualities that she did not find desirable.</p><p>At least, for the project, she was currently working on.</p><p>Worse, the herbs the others brought back from the treasuries proved useless to her, as evidenced by the failed test tubes in front of her.</p><p>"...Is this trip going to be in vain?"</p><p>Melissa sighed in disappointment as she shook her head once more.</p><p>Just as she was about to stand up from her chair, the door to the lab opened and a familiar figure walked in.</p><p>"How's the research going?"</p><p>The person was none other than Ren who had just returned from his trip to the treasury.</p><p>"Same as before."</p><p>"As in?"</p><p>"As in nothing happened."</p><p>Melissa didn't even glance at Ren as she continued to sit on her seat and blankly stared at the test tubes in front of her.</p><p>It was only after she felt Ren's presence beside her that she continued speaking.</p><p>"Are you here to give me the plants and herbs that you've collected from the treasury?"</p><p>"Yes, how smart."</p><p>Ren waved his hand in the air and tossed a small ring in Melissa's direction.</p><p>Grabbing the ring, Melissa finally looked up at Ren and smirked.</p><p>"What's this? You finally decided to propose to me?"</p><p>"You wish."</p><p>"No, not really."</p><p>Ren's mouth visibly twitched, and Melissa chuckled softly before gripping the ring in her hand.</p><p>"Thanks."</p><p>She stood up from her seat and walked toward the table that held the test tubes. Propping her body on the table with body hands she opened her palm and gazed at the ring in her hand before mumbling.</p><p>"I hope there's something useful here."</p><p>"Don't worry."</p><p>Ren reassured her from behind as the sound of his footsteps drifted away from her.</p><p>"The plants found within the ring are without a doubt among the best on the planet. If you can't find it there, I doubt you'll be able to find the herb you're looking for anywhere else on the planet."</p><p>"Alright."</p><p>Melissa once again gripped the ring tightly and let out a long, tired breath.</p><p>"I'll try my best to see if I can make do with what you've given me. If I can't find it here, then don't expect me to go to another planet to find the right herb."</p><p>"Aye, there should be no problem."</p><p>Ren's voice grew louder as he approached the end of the room and came to a halt at the door. He gave her another look before saying, "Just do your best. If you can truly solve the mana poisoning issue, we'll have another trump card in our hands."</p><p>Clank!</p><p>The door closed and silence returned to the room.</p><p>"Haa..."</p><p>The silence was broken by Melissa's sigh as she fiddled with the ring in her hands. A thin smile formed on her face as she gazed at the ring in her hand and looked through the contents.</p><p>"I guess I still have a lot of work to do."</p><p>***</p><p>The days continued to pass, and during that time there were discernible changes in the area surrounding the castle.</p><p>"Faster, we don't have much time!"</p><p>"No, not there!"</p><p>"That's wrong!"</p><p>The changes were accompanied by loud shouts that came from the dwarves that stood atop the castle walls and barked orders at the demons and orcs that were working tirelessly each day and night as they moved large boulders with their bare hands.</p><p>The boulders contained precious ores and came directly from the mine that was located not so far away from the castle.</p><p>When the boulders arrived at a specific area beneath the hill where the castle stood, they were deposited near a massive furnace that was at least five times the height of a typical orc and processed the ores into metals that would later be used by the dwarven engineers who stationed themselves in various areas around the outline of the city and constructed strange equipment.</p><p>"What are they doing?"</p><p>The sound of Jin's voice rang from behind me as I stood atop the castle walls and observed the operation below me. At the same time, a gentle breeze ruffled my clothes and pushed my hair back.</p><p>"They're building a camouflage system that will cover the entire city."</p><p>I responded without turning my head back.</p><p>"Are you trying to hide the city?"</p><p>"Yes."</p><p>I calmly nodded my head.</p><p>"I received a warning from Suriol that the demons are most likely suspecting that something is up with the planet."</p><p>"You think so?"</p><p>"I don't think, I'm sure."</p><p>My eyes squinted as my attention shifted toward the large structures the dwarves were building. My mood turned solemn.</p><p>"In the lead up to the war, Suriol divulged our potentially suspicious activities to the demons. According to what Suriol has said, he has remained in communication with them ever since and has regularly updated them on all of his discoveries. Back then, there weren't any problems at all, but..."</p><p>"You've defeated Suriol and communication between him and the demons got cut."</p><p>Jin instantly understood what I was trying to say as he cut in.</p><p>I finally turned my head to gaze at him before nodding my head.</p><p>"Yeah, so there's a high chance that they might send some demons over this planet to scout the situation."</p><p>The camouflage system was of the utmost priority at the moment.</p><p>Without it, most of the plans I had for this planet would go down the drain.</p><p>"Even if we have Suriol tell them that the situation is under control, it is likely that they will still send demons to investigate the planet."</p><p>"If they find that most of the demons have been exterminated and a large portion of the land has been leveled, they will understand what has happened and most likely alert Jezebeth."</p><p>"If that were to happen, then I would most likely have to say goodbye to this planet."</p><p>This was not something that I wanted as I had already invested an astronomical amount of resources in the city that was currently being built around the castle.</p><p>Fortunately, I had come prepared and had already anticipated this sort of scenario from the start.</p><p>Jin cut me off before I could say anything.</p><p>"Alright, I get your plan. I also finally understand why you told me to trash the treasuries."</p><p>As he looked off into the distance, Jin's lips began to curl upward. A light breeze was blowing past his body, and as it did so, it caused his hair to flutter in the air, revealing his emerald green eyes that sparkled like jewels and his chiseled jawline.</p><p>'Handsome bastard.'</p><p>I momentarily felt jealous.</p><p>...Only momentarily.</p><p>"Since there's no chance of stopping the demons from scouting the planet, you're just going to make it seem like the demons lost and that we escaped right after defeating the demons and looting the planet whole. Plus, with the fact that the demons don't care about the ores of the planet, they will probably abandon this planet."</p><p>"That's exactly it."</p><p>A faint smile spread across my lips as I couldn't help myself from complimenting him.</p><p>"You've become sharper."</p><p>He understood everything without me needing to go into heavy detail.</p><p>Jin had truly become a lot sharper than he was in the past. Was this a result of all of the experience he had accumulated managing such a big guild?</p><p>Most likely so.</p><p>"Thanks."</p><p>Jin leaned forward and placed his hands on the battlement's embrasure.</p><p>Taking in the scenery in front of his eyes, he suddenly asked.</p><p>"Have you thought of a name for the city?"</p><p>"A name?"</p><p>His words left me stunned as I blinked my eyes a couple of times.</p><p>'That's right, I have been so busy with everything that I completely forgot the fact that the city has no name.'</p><p>"Hmmm."</p><p>I started musing to myself as I thought of a possible name that I could name the city.</p><p>My head remained blank for the next five minutes as nothing came to my mind.</p><p>"Can't think of a name?"</p><p>"...No, not yet "</p><p>I shook my head after musing over the matter for a couple of more minutes.</p><p>My head was completely blank as I tried to think of all the possible names that I could give the city.</p><p>I did consider naming it something along the lines of Hope City; however, after giving it some more thought, I realized that if I tried to name it that, I would probably get smacked by the others.</p><p>There was also Cassia city, but the very thought caused me to grimace, so yeah, I really couldn't come up with anything.</p><p>In the end, I could only helplessly look at Jin.</p><p>"What are you looking at me for?"</p><p>"Do you have any suggestions?"</p><p>"Suggestions?"</p><p>Jin thoughtfully tucked his hand under his chin as he looked at the sky and leaned back against the battlement.</p><p>A smirk eventually formed on his face as he walked past me and patted me on the shoulder.</p><p>"This shouldn't be something that you should be asking me. It's best if you come up with it yourself."</p><p>"Huh?"</p><p>I leaned my head back as I gazed at Jin.</p><p>"What are you on about?"</p><p>"Are you going to ask for my suggestion for a name for your kid when the time comes?"</p><p>"Aahh?"</p><p>Jin waved his hand before he went back into the castle.</p><p>I gazed at his back in confusion as my eyes blinked repeatedly.</p><p>'...What a strange way to say that you can't think of a name.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-657.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-659.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

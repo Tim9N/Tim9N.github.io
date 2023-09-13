@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 836 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 836 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-835.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-837.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The internal structure of the underground cavern was massive. Ryan couldn't count the handful of times he had taken the wrong path and headed toward a dead end.</p><p>It was starting to get to him.</p><p>"Not this one either."</p><p>Staring at probably what seemed to be like the tenth dead end, Ryan sighed in frustration and glanced at his phone.</p><p>There was a single red dot displayed on the screen, and that was where Ryan was currently headed to.</p><p>That was where Leopold was being held, and while he knew the exact direction of where he was, finding him was starting to prove to be a more difficult task than he had anticipated.</p><p>In a maze, just knowing where someone was, wasn't enough.</p><p>'If only he was somewhere more open.'</p><p>The fact that he was inside a massive underground network made it hard for Ryan to find the correct path, but he wasn't completely hopeless.</p><p>When he reached a new one, his phone would trace his steps so that he could see exactly where he was going and the places he had been in the past. Although he did run into a lot of dead ends, this helped him stay on track and stopped him from going to the same places twice.</p><p>He was steadily making progress, but still...</p><p>"Ugh."</p><p>Ryan groaned out loud.</p><p>'This is so frustrating.'</p><p>Time was of the essence, and he was wasting a lot of time finding the right path.</p><p>When he looked at his body, the demonic energy that had been encircling him had practically disappeared, and he no longer felt like a demon.</p><p>If he were to meet a demon, he'd instantly be found out.</p><p>'How annoying.'</p><p>The situation was anything but pleasant.</p><p>Despite that, Ryan could only grit his teeth and take out another demon core. This one belonged to the second demon he killed.</p><p>Crack!</p><p>Crushing it in the palm of his hand, he repeated the process from before and once again trekked on.</p><p>'No point in complaining… If I don't hurry up, things might turn for the worst. I need to hurry up.'</p><p>*</p><p>'Bingo.'</p><p>Ryan didn't know for how long he had walked, but after a couple more dead ends, he finally found the correct route, and he was shortly exposed to a large opening that was filled with thousands of metallic doors.</p><p>He was still quite a distance away from it, but he was able to see everything properly with the aid of a certain device.</p><p>'Well… shit…'</p><p>Ryan's face fell the moment he noticed the numerous doors.</p><p>Unlike his cell, the area was far more secure, with thousands of different demons patrolling the area. They all emitted intimidating auras, and Ryan knew that even Leopold was no match for them.</p><p>If he were to be caught by them…</p><p>He could only shudder at the thought.</p><p>'It's fine… It's fine… I can do this.'</p><p>Ryan had already thought things through before, and what he was seeing was within his calculations. Scanning around, his eyes paused on a certain door in the distance, and taking a deep breath, he remained where he was.</p><p>He didn't feel that the time was ripe yet and remained where he was for the next couple of hours.</p><p>Ryan wasn't idle for those couple of hours. During that time, he made a concerted effort to eavesdrop on the conversations that were taking place and to assimilate all of the information that he was learning from those around him.</p><p>The endeavor proved extremely useful as he started to get a better idea of how the system over here worked, and what exactly was going on.</p><p>While he wasn't aware of the reason they were gathering prisoners, he knew that none of them were going to be kept there for long as he'd see demons routinely approaching the cell doors and taking out the 'prisoners'.</p><p>The rest of what he heard was rather useless, but that didn't concern him as he had heard enough.</p><p>He was prepared to make a move.</p><p>'I still have some demonic energy covering me, so I should be fine.'</p><p>After confirming that the demonic energy that surrounded his body was still stable, he nodded his head with an unwavering determination.</p><p>He was ready.</p><p>Tap.</p><p>The moment his foot stepped into the area, he felt countless eyes fall on him, and his entire back was drenched.</p><p>Even so, with a stoic face, he continued to move toward where Leopold was being held. He ignored the gazes and continued forward.</p><p>'This seems to be work—'</p><p>"Stop there for a second."</p><p>A loud voice interrupted his thoughts, and Ryan's body froze on the spot. When he turned his head, he almost fell to his knees. Towering over him was a large demon with a bulky build and a mustache.</p><p>His presence was overwhelming, and Ryan had a hard time keeping himself from passing out under his enormous presence.</p><p>He understood at that moment that he wasn't dealing with just any regular demon but someone that seemed to be high up in position.</p><p>"Y,yes?"</p><p>He asked, his composure almost faltering.</p><p>"What are you doing over here?"</p><p>A direct question. One which Ryan already had an answer to.</p><p>"I'm coming here from another sector, and I need to meet one of the 'sources' that we've recently placed."</p><p>'Sources' was one of the terminologies that Ryan picked up while listening in on the demons for the past hour.</p><p>While he wasn't sure of what they meant, he knew that the term referred to those that were taken in by the demons.</p><p>"Which one?"</p><p>Under the scrutinizing gaze of the demon, Ryan could only lower his head and point toward Leopold's gaze.</p><p>"Door 9862? …Hm, last I recall, that's where a human resides. Is that the right place?"</p><p>Lifting his head, Ryan cautiously nodded his head, trying not to seem too eager.</p><p>"Yes, that's exactly where I need to be."</p><p>"Hmm, okay then."</p><p>Surprisingly, the demon was quick to agree and stepped to the side.</p><p>"Since you have work to do, I won't disturb you any further. When you go there, you can just tell them the reason why you're visiting, and they'll let you in. I hope your findings are successful."</p><p>"Thank you."</p><p>Ryan felt rather relieved that things went so smoothly. Things would've been troublesome if the demon had noticed that something was wrong.</p><p>Thankfully, he didn't.</p><p>'Okay, this is good.'</p><p>Fixing his gaze over the door where Leopold resided, Ryan took a deep breath and proceeded forward.</p><p>At the same time he moved, he touched his wrist and tapped on it once.</p><p>***</p><p>"Keep an eye on him; don't make a move yet."</p><p>The commander said expressionlessly.</p><p>When he turned his head, his gaze fixed on a 'demon' moving toward door 9862.</p><p>From the moment that he appeared, he knew that he didn't belong in this sector.</p><p>Even if we ignore the fact that demons of its rank wouldn't show up in such a location, the fact that the demonic energy that covered its body was rather faint was a great indicator that whoever this "demon" was, they were merely pretending to be something else.</p><p>The only reason the commander hadn't stopped the demon right then and there was because he wanted to see what he wanted to do.</p><p>Their goal.</p><p> Since he could tell at a glance what the intruder's strength was, the commander wasn't particularly worried about the 'demon' escaping from him.</p><p>Just in case, he signaled to the other demons to keep a close watch on him. If the pretender tried to do anything, he'd have them killed in an instant.</p><p>"Now then…"</p><p>Crossing his arms together, he quietly observed the pretender while glancing at the demons in the vicinity and signaling them to get ready.</p><p>"…I wonder what they're up to."</p><p>The game of the mouse had begun.</p><p>***</p><p>"Understood. You may enter."</p><p>Clank—!</p><p>Entering Leopold's room was surprisingly easy for Ryan. He didn't even have to say much to convince them to open the door for him and let him in.</p><p>'Are they just stupid or overconfident with themselves?'</p><p>Or was it that his disguise was just that good?</p><p>Hmm, that seemed like the most plausible answer.</p><p>"Leopold."</p><p>Entering the cell, the first thing Ryan did was call out for Leopold. Much to his relief, upon entering the cell, he spotted him instantly and rushed toward him.</p><p>He… he was faring much better than he originally thought.</p><p>"Are you alright?"</p><p>"You're already here?"</p><p>Fiddling with a familiar bracelet, Leopold nodded at him. His hair was unkept, but other than that, he seemed to be doing fine.</p><p>In fact, he looked even better than when the two of them first appeared in this strange world.</p><p>"I was just about to go out to look for you, but it looks like you beat me to it."</p><p>"Liar."</p><p>Ryan immediately called him out for his lies.</p><p>While he indeed had the capability to do so, given that he had given him a similar tooth-like dimensional space, Leopold was by no means the type of person who would proactively look for someone.</p><p>Chances were that he was most likely waiting for him to show up.</p><p>And that…</p><p>That annoyed him.</p><p>"Hurry up, we don't have much time left."</p><p>Tearing his gaze away from him, Ryan turned his attention toward the door. His brows furrowed, and he let out a long breath before looking back at Leopold.</p><p>"You have the thing, right?"</p><p>Staring back at him, Leopold took out a pack of gum and tossed one in his mouth.</p><p>"If you mean 'that', then… yea..mhm.. h."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-835.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-837.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 735 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 735 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-734.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-736.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The Union gave the name 'The Pen' to their incarceration facility. Because the prison was home to some of the most dangerous criminals ever known to humanity, it required the most stringent level of control and security.</p><p>Any one of the people who were locked up had the potential to pose a significant risk to both the national and international security of several countries.</p><p>Because of the obvious dangers involved, the location of the facility was kept a secret, and only a select few individuals were aware of its precise whereabouts.</p><p>"This should be the place…"</p><p>I count myself among the fortunate few in that I was one of those who knew where the location was. The fact that the location was identical to the one in my original world made things a lot easier for me.</p><p>Despite the fact that the two worlds were very similar to one another, with demons and other races no longer invading the planet, the geography of the entire world was very different from the world that I was familiar with.</p><p>The first cataclysm still took place as a result of mana unexpectedly making its way into the world, and Ashton City was also constructed in the same location as it was in my world, but those were the only similarities I could think of when it came to the two worlds.</p><p>Everything else was practically different.</p><p>"I guess this too isn't too different."</p><p>I wasn't really shocked by it, though. After all, it was constructed into Mount Everest itself. The mountain that was once deemed the tallest in the world.</p><p>It was no longer the tallest, but due to its remote location and harsh climate, it was the ideal place to confine the most dangerous criminals.</p><p>"Let's see."</p><p>As I gazed at the mountain that was on the other side of me, an icy wind blew through my clothes. It was a little chilly, but I was able to tolerate it.</p><p>The most annoying part was the thinning oxygen, but I could also bear that to some extent.</p><p>"There it is."</p><p>I cracked a smile after finally locating the entrance to the facility. It was very well hidden, and if not for the fact that I was someone whose strength far surpassed that of what this world's greatest held, I probably would've had a harder time finding it.</p><p>'Let's get this over quickly.'</p><p>My vision began to blur, and the next thing I knew, I was standing in front of a massive metal door located deep within the mountain.</p><p>"Who are you!?"</p><p>"Enemy alert!"</p><p>Two soldiers were waiting for me when I arrived, and as soon as they saw me, they pulled out their weapons and began yelling as loudly as they could.</p><p>After I gave them a quick glance, the two of them froze, and I continued on in a leisurely manner toward the large metallic door.</p><p>The door disintegrated into a fine powder as I lightly pressed my hand against it, revealing the expansive facility that was hidden behind it.</p><p>"Sorry for the intrusion."</p><p>I made my way into the building while giving a curt nod to the two security guards, who were staring at me with frozen expressions.</p><p>***</p><p>Pen, control facility.</p><p>A woman with long, glossy black hair, red eyes, and a straight posture stood with her fierce gaze fixed on the many monitors that were in front of her.</p><p>Those around her didn't dare utter a single word or even breathe.</p><p>They weren't equipped to deal with the kind of pressure that the woman was putting off; it was just too much for them. Every second felt like an eternity for them.</p><p>Hero rank 17, Mia Jannice.</p><p>Regarded as one of the most powerful women in the world, she wasn't someone to be trifled with. If it weren't for the fact that she had to stand and watch over 'The Pen', there was a good chance that she would have been placed higher on the heroes list.</p><p>What was most terrifying about her was her strict and serious disposition.</p><p>She treated everything with the utmost seriousness, and she punished any mistakes, regardless of how serious or minor they were, in the most severe way possible.</p><p>At the moment…</p><p>[Intruder Alert!] [Intruder Alert!] [Intruder Alert!]</p><p>The monitors started to flash red, and the room completely froze.</p><p>"Turn on the camera feeds."</p><p>It was Mia's calm voice that helped everyone get over their initial shock as a large holographic screen appeared in front of them.</p><p>At this precise instant, all of the people present were able to catch a glimpse of a young man with jet-black hair and deep blue eyes moving leisurely around the facility.</p><p>"Mrs. Jannie, the target is currently in Segment A, approaching Segment B!"</p><p>"I can see that."</p><p>Mia's expression remained unchanged as she continued to stare at the holographic display that had been placed in front of her. Her tone remained exactly the same as it had been before. Calm and collected.</p><p>It was as if nothing had happened.</p><p>"Can we get a read on his rank?"</p><p>The facility was outfitted with a number of different pieces of equipment, all of which were designed to determine the ranks of those that passed through it. It was an efficient method for rooting out anyone who attempted to infiltrate the facility while cloaked in a false identity.</p><p>"Negative, the equipment seems to be-Target has breached Segment B! I repeat, the target has breached Segment B!"</p><p>He wasn't able to finish his sentence before his face bleached.</p><p>Everyone held their breath and waited for her order.</p><p>They didn't have to wait for long, as Mia softly closed her eyes before turning around.</p><p>"I'll handle this matter. Stay put and report the situation to me. I more or less have an idea of what his strength is. I will be back shortly."</p><p>Everyone rejoiced at her words and finally calmed down.</p><p>With her taking action, they no longer needed to worry about the situation. Even Octavious, the strongest man in the world, would need to think twice before dealing with her.</p><p>What could an unknown intruder do?</p><p>***</p><p>"Is this the right way?"</p><p>I turned to look to the right, where I noticed a large 'B' etched into the side of the wall. This was the very first time I'd ever been in here, and to be perfectly honest, I had no idea where I was.</p><p>"Excuse me, do you know where the highest security area is?"</p><p>"Surrender yourself!"</p><p>The people here seemed rather rude, too.</p><p>Just then, I felt a powerful shockwave coming from behind me, and I saw a large sword heading my way.</p><p>I lifted my finger, and the blade stopped.</p><p>Clank!</p><p>"H…how is this possible?"</p><p>The man who wielded the blade spoke, his voice tinged with shock.</p><p>"Just stay still."</p><p>Lifting my finger, his body floated towards me, and I pressed my finger against his head.</p><p>My head began to hurt as a deluge of memories began to rush into my consciousness. Thankfully, I had the chip implanted in my brain, and I was thus able to quickly organize the memories in my mind.</p><p>"Section G…"</p><p>That was where I needed to go.</p><p>I finally let go of the man and pursed my lips before turning to look at my surroundings.</p><p>'I should be in Section B at the moment... That's a bit far from where I need to be...'</p><p>I gave my surroundings a second look and went over the memories stored in my head. Raising my foot, I stomped the ground.</p><p>Rumble―!</p><p>My surroundings began to shake, and a large hole formed beneath my feet. Without giving it much thought, I took a step forward and promptly fell into the hole.</p><p>Thump!</p><p>I wasn't sure how long I was in free fall, but it wasn't long before my feet touched the ground again, and when they did, I found myself inside a very isolated facility that was covered in metal all around.</p><p> …It sort of reminded me of the time I was in the Monolith.</p><p>"This should be Section F"</p><p>I figured it out from the large 'F' that was imprinted on the side of the walls.</p><p>The place was divided into sections that ranged from A to G, with G being the lowest and most secure area. From my memories, Section G was placed right next to Section F, which meant that I was very close.</p><p>"It should be this way."</p><p>I pulverized a portion of the wall by pressing my hand against one of its sides. During the course of the process, a number of guards came my way and attempted to stop me; however, I was able to overcome their resistance without too much difficulty.</p><p>I didn't even need to lift a finger to deal with them.</p><p>"This should be it."</p><p>I soon stopped in front of a large door.</p><p>Behind it was Section G.</p><p>I was about to put my hand on the door when I heard a woman's voice coming from behind me. At that moment, I felt as though the weight of the world had been placed upon my entire body.</p><p>"Stop, don't move another muscle."</p><p>"Oh?"</p><p>Feeling the extra weight that I was carrying, my brow raised, and I turned to look toward the culprit.</p><p>It was none other than a woman with long black hair and red eyes. She was rather attractive, but her disposition seemed extremely chilly.</p><p>'From the memories of the guard, she should be the main guard of this place… Hero rank 17? She's ranked even higher than me…'</p><p>That won't do...</p><p>"I suggest you surrender yourself right now. If you do so, I will not be forced to kill you."</p><p>I smiled.</p><p>"You seem to be rather confident in your power?"</p><p>"Should I not be?"</p><p>She said calmly while her black hair started to flutter and my body became even heavier.</p><p>"You're not someone who can deal with me."</p><p>Her hand extended forward, and the surrounding metal scrunched up together. The entire room trembled, and the pressure that she was exhibiting increased even more.</p><p>'Gravitational power?'</p><p>I looked around me in awe. Such power was quite rare.</p><p>"So?"</p><p>I heard her voice once again.</p><p>"...Are you going to surrender?"</p><p>Opening my mouth, I soon closed it and found myself smiling.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-734.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-736.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 607 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 607 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-606.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-608.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Darkness engulfed Ashton's metropolis with the passing of the twelfth hour.</p><p>"Haaa..."</p><p>Melissa stared at the scenery outside and sighed. Her features were beautifully illuminated by the lights coming from above as she sat on a tiny stool.</p><p>"Ashton city looks a lot better at night, don't you think?"</p><p>"...Excuse me?"</p><p>The barista in front of her was taken aback. In spite of the current time in Ashton city, Melissa's orders were absolute, and he was thus forced to work at these hours.</p><p>"Y..yes, it indeed does look more beautiful."</p><p>"The beauty of the lights coming from the buildings is best appreciated at night.</p><p>They dispel the darkness brought on by the night."</p><p>"R..right."</p><p>The barista reluctantly nodded his head.</p><p>If he had to be completely honest, right now, all he wanted was to sleep. Additionally, he found Melissa's comments to be incomprehensible, which made the situation rather uncomfortable for him.</p><p>Regardless, a job was a job, and he could only put on a fake smile and nod his head.</p><p>"Pfff."</p><p>Melissa suddenly let out a small laugh as the cup in her hands loosely hung by the tips of her fingers.</p><p>"...Looks like you find my words boring."</p><p>The barista's face hardened. He had been caught red-handed.</p><p>Melissa laughed in self-depreciation when she saw his expression. She then waved her hand in his direction.</p><p>"Don't worry, you're not fired. I get it, I'm annoying."</p><p>Taking a sip of her drink, she smacked it against the counter.</p><p>"I'm one annoying bitch, so do me a favor. Give me another shot.</p><p>As she raised an eyebrow at the barista, a slight flush developed on the side of her cheeks. At this point, she was acting extremely differently from how she usually did. She was obviously inebriated, as evidenced by her flush and words.</p><p>"I don't think..."</p><p>"No point refusing. If you won't give it to me, I'll just get it myself."</p><p>Melissa stood up from her seat. Sweeping her eyes on the numerous bottles that stood behind the marble counter, her eyes paused toward a certain bottle.</p><p>"1987, Melionette? Sounds fancy."</p><p>Setting her eyes on the target, she tried to jump over the counter.</p><p>"Let's stop here."</p><p>A hand pressed against her shoulder before she could do that.</p><p>"Eh?"</p><p>Melissa turned her head.</p><p>"Emma? Amanda?"</p><p>It surprised her to see Emma and Amanda standing behind her. What were they doing here?</p><p>Emma ignored Melissa while she turned her head to look at Amanda.</p><p>"Looks like you were right, Amanda. She's acting exactly like you said she would."</p><p>"Mhm."</p><p>Amanda quietly nodded her head.</p><p>She was currently wearing a one-piece black dress that perfectly highlighted her physique. It was the same dress she wore at the funeral. The same was for Emma. It was clear from their attires that they didn't have time to change.</p><p>"What do you guys want?"</p><p>Melissa's eyes grew clearer as her thoughts started to slowly calm down.</p><p>"...How did you get in here?"</p><p>Emma flashed a black card.</p><p>Melissa's brows twitched when she saw the card. She could faintly recall giving one to Emma in the past when she was begging her for one.</p><p>Melissa gave her one out of pity. Naturally, she knew about her situation.</p><p>She was starting to regret that decision right now.</p><p>"What's with that look? You think we wouldn't know what you're thinking about after seeing the state you were in after we returned?"</p><p>Moving to the counter, Emma sat down on a stool. Then, looking at the barista, she pointed at the same bottle Melissa was previously looking at.</p><p>"1987, Melionette. A glass each."</p><p>"...Sure."</p><p>The barista nodded after taking a short glance at Amanda and Emma. They looked responsible.</p><p>"I thought you were going to stop me from drinking."</p><p>"Why would we?"</p><p>Emma asked while a small pill appeared in her hand.</p><p>She then handed it to Melissa.</p><p>"Not like I'm worried about getting a hangover with this."</p><p>"...Right."</p><p>Melissa weakly turned her head and sat on a stool beside Emma.</p><p>Amanda followed her example and sat next to her.</p><p>"..."</p><p>"..."</p><p>"..."</p><p>Silence permeated the room as the three women sat serenely next to one another. The stillness was allowed to linger since none of the three of them wanted to speak first.</p><p>"Your drinks."</p><p>The clicking sound of glasses being set down on the counter disturbed the silence.</p><p>Simultaneously, all three girls reached out for their respective glasses and took a sip.</p><p>The silence continued for the next minute.</p><p>"...You can laugh if you want."</p><p>The first one to speak was Melissa. Keeping her gaze on the display of drinks before her, she set her glass on the counter.</p><p>"You've seen my memories. You must find it amusing, I suppose. That Melissa Hall, who appears to be so powerful on the outside, really just wants her father's favor. and the only reason why she acts the way she does is because she has no expectations of others...It must be hilarious, truly..."</p><p>Melissa took the drink she set down on the counter and gulped it all in one go.</p><p>"Must be really funny..."</p><p>"Nah."</p><p>Emma set her glass down beside her.</p><p>Stretching her arms, she frowned.</p><p>"This is uncomfortably tight."</p><p>Grumbling to herself, she turned her attention back to Melissa. Scratching the side of her cheek, she mumbled.</p><p>"...To be honest, I kind of get how you feel."</p><p>Emma tapped the tip of the glass.</p><p>"I could kind of guess why you acted the way you did. It's not like I only knew you from the academy. Ever since we were little I would always see you try your best to please your father. At one point I was even jealous of you..."</p><p>"Jealous?"</p><p>Melissa shook her head.</p><p>"Please, as if anyone would be jealous of me."</p><p>"You'd be surprised actually. Not only is your father the strongest in the world, but you're also incredibly smart. There's many out there that don't have it as good as us."</p><p>"...Smart, huh?"</p><p>Melissa took off her glasses and wiped them with her clothes. Her eyes strained.</p><p>"If only that was actually useful in this day and age."</p><p>"You think too little of yourself."</p><p>Emma rolled her eyes.</p><p>"You might not realize it, but just your inventions alone have enabled civilization to rise to heights previously seen as unthinkable. One example of that is the magic card system. That invention alone has helped us advance in so many ways."</p><p>"If I were you, I'd simply put more emphasis on myself than on what other people think. It's what I've been doing, and it kind of works like a charm."</p><p>"That so?"</p><p>Melissa pursed her lips as she thought of Emma's words.</p><p>In a way, Melissa could see what Emma was trying to express, but she was still struggling to alter her way of thinking.</p><p>Her brows furrowed.</p><p>"I'll keep it in mind."</p><p>She then tapped on her ring and took out several potions from her dimensional space.</p><p>A complicated look spread across Melissa's face when she looked at the potions.</p><p>"What are those?"</p><p>Emma's curious voice reached her ears.</p><p>After staring at the potions for a moment, she spoke.</p><p>"...Something that I need to get rid of."</p><p>Having her memories exposed, seeing Ren's memories, and her talk with Emma...Melissa understood that she needed to change.</p><p>Though a bit late, it was time for her to grow up a little.</p><p>She realized that she could no longer be who she had been in the past, and getting rid of the potions was the first step in her transformation. Taking another look at the potions before her, Melissa swallowed a mouthful of saliva.</p><p>'It wouldn't hurt if I took another one...no, shit.'</p><p>"Take them."</p><p>Melissa pushed the potions in Emma's direction.</p><p>For a brief moment, she almost lost herself in the temptation.</p><p>"Eh...right."</p><p>Emma took the potions and put them away. Even though she was confused, she still complied. Then, she looked at Amanda.</p><p>"You've been quiet for quite a while now, Amanda. Isn't there something that you want to say?"</p><p>"Eh..ah!?!"</p><p>Amanda's body flinched when she heard Emma's voice. Her reaction startled the two girls who looked at Amanda with an odd look.</p><p>Just as she was about to say something, her hand twitched and her eyes darted toward a particular area on the counter. An area where there was a slight stain that came as a result of Melissa's careless drinking.</p><p>"Amanda?"</p><p>"Yes?"</p><p>Amanda's body flinched once again when she heard Emma's voice.</p><p>"Did you not hear what we were sayi...my god."</p><p>Emma facepalmed halfway through her sentence as she finally got the gist of the situation.</p><p>Using her arm, she wiped off the stain.</p><p>"You happy now?"</p><p>"For what?"</p><p>Amanda looked at Emma with a blank and expressionless look. She was clearly trying to feign ignorance of what just happened.</p><p>"You..."</p><p>***</p><p>Click—!</p><p>The big monitor in front of me turned on when I inserted the black box into the computer processor.</p><p>It was eerily quiet around me while a dim white light illuminated the area around me.</p><p>I moved the cursor till a message appeared on the display.</p><p>[Would you like to play the message]</p><p>[Yes] [No]</p><p>Dragging the cursor around the screen, my hand paused. I was starting to hesitate.</p><p>"Haaaa..."</p><p>I let out a nervous breath and tightened my grip on the mouse.</p><p>Click—!</p><p>I then pressed the top part of the mouse.</p><p>"Ehmm....how should I start this?"</p><p>A familiar voice echoed throughout the air once I pressed on the mouse, and I lowered my head.</p><p>Appearing on the screen was Smallsnake.</p><p>He was currently sitting in the same room I was sitting in. No, rather, it looked an awful lot less advanced than what it was at the moment. Clearly indicating that this video had been taken quite a while back.</p><p>"...Not really sure why I'm even making this video, to be honest. I don't think I'll ever be in a situation where I will have to go on a dangerous mission, but I guess you might never know what will happen in the future. Could just be a video log for me to relieve some of my stress, who knows?"</p><p>Turning his wrist, he checked the time on his watch.</p><p>"Well, since nothing particularly important happened just yet, I won't make this any longer than it has to be—"</p><p>"Smallsnake?"</p><p>A void suddenly interrupted. It sounded awfully familiar.</p><p>"Smallsnake where are you? Oy, Smallsnake!"</p><p>"Haa..."</p><p>Alternating his gaze between the distant door and the camera, Smallsnake sighed.</p><p>"Shit, looks like I'll have to cut this video short."</p><p>"Smallsnake!!!"</p><p>"I'm coming!!"</p><p>Extending his hand, the screen turned black.</p><p>"Hahahaha.."</p><p>A restrained laugh escaped from my lips while my arm covered my mouth and my body trembled. I felt a bundle of emotions rise from deep within my body.</p><p>'...I remember this.'</p><p>That day, I remember needing Smallsnake for something urgent. Was taken aback by his sharp response.</p><p>'I guess it makes sense now.'</p><p>"...Well it's been a while."</p><p>A new image formed on the screen.</p><p>Smallsnake showed up on the display. His physique appeared somewhat drab in comparison to the last time, and beneath his eyes were prominent black rings.</p><p>His voice also sounded croaky.</p><p>"Hmmm..."</p><p>Scratching his nose, Smallsnake leaned back on the chair and blankly looked toward the ceiling without saying anything.</p><p>"...So it's been about a month since you've disappeared."</p><p>From his words I understood that this video was recorded while I was in the Monolith.</p><p>"Many think that you're dead, but I know you're not. The fact that Angelica is still doing fine is proof of that....cause you know, the two of you have like..."</p><p>Smallsnake touched his two fingers together.</p><p>"...signed a contract with each other and stuff, so like...she would definitely know if you were alive or not and...what's the relationship between you two like? ...No, never mind...haaa...I can't do this...please come back, it's really hard doing this alone."</p><p>The screen went blank as Smallsnake leaned forward and tapped on the keyboard.</p><p>A new video began to play after that.</p><p>"You're a fucking asshole, you know that?!"</p><p>I was slightly taken aback by his sudden outburst.</p><p>"You see, I'm a human too. I've never had you not tell me to shut up after more than two phrases! The worst part is that I've become accustomed to it!"</p><p>Smallsnake smacked the desk.</p><p>"If before I used to complain whenever you tell me to shut up, I now accept it like it's a given! Not even that, Ryan has also started to pick a couple of things from you, and this is sadly one of the things! I can't do this anymore!"</p><p>"Hehehe...he.."</p><p>Leaning my head against my arm which was resting on the table, my body trembled as I tried to suppress my laugh. My other hand clenched at my chest which was hurting.</p><p>More and more videos began to replay, arousing all sorts of different emotions in me.</p><p>"Your sister is an angel. Should I open up a shrine for her? Remember when she said to apologize to me? Oh, god, the face you made....ahahhaha, you should've totally seen it."</p><p>"...Guess what, Angelica no longer calls me stick like human anymore! That's progress I tell you!"</p><p>"Wow, just wow. Did you seriously just go on a trip without us just like that? How irresponsible do you have to be?"</p><p>Laughter, anguish, sadness, grief, guilt...</p><p>Slowly the timer started to reach the end as the videos continued to play. A sense of dread filled me while my eyes tracked the timer.</p><p>'No...'</p><p>I didn't want it to end.</p><p>"Ehm..."</p><p>Smallsnake rubbed his head as he reclined in the chair. He looked much more serious than before.</p><p>Drumming his fingers on the table, his brows furrowed.</p><p>I wiped the corner of my eyes and sat up straight.</p><p>Slowly, Smallsnake raised his head and our eyes met. Or at least, that was what it felt like.</p><p>"....How should I start this?"</p><p>Smallsnake crossed his arms and leaned back on the chair.</p><p>Turning his head, he looked behind him. Bringing his arm over the top of the chair, he scanned the back of the room.</p><p>Making sure that there was no one there, he sat back down on the chair and sighed.</p><p>"Good thing that no one's here..."</p><p>He murmured in a barely audible tone.</p><p>Then, lifting his head, he stared at the camera.</p><p>"Thinking back at our trips to Henlour and Issanor, I realized something...life is really feeble, isn't it?"</p><p>"Having stayed in the human domain for as long as I did, I never truly realized just how bad the situation outside was. It's only after having experienced everything myself that I am once again reminded of how meaningless and feeble my life is."</p><p>Smallsnake lowered his head and stared at his shaking hands.</p><p>"...Honestly, I'm scared."</p><p>His voice turned a little weak. Just barely.</p><p>"You see, I'm not actually scared of dying. I've already come to terms with this idea from a very young age. I'm not really talented like you and the others, and so when the time truly comes, I'll probably die...hahah."</p><p>Letting out a small laugh, Smallsake bitterly laughed.</p><p>"I bet you'd curse at me when you see this. 'Shut up. The only way you can truly die is from being overworked.'"</p><p>Raising his shoulders wide, his voice deepened as he tried to impersonate me.</p><p>"Pff...There's no way I'd say that..."</p><p>"...Oh, please. You know yourself that I'm right."</p><p>"Hahah..."</p><p>I laughed out loud.</p><p>The pain in my chest only intensified.</p><p>I only stopped once I saw Smallsnake's face turn serious again.</p><p>"On a serious note, there's a reason why I'm scared of dying..."</p><p>Halfway through his sentence, his body started to shake a little.</p><p>"...As I've said before, it really isn't because I'm scared of death but...well..."</p><p>Smallsnake slowly raised his head and stared at the ceiling.</p><p>"It's because I have something to do. A goal you might say."</p><p>My body leaned forward to better hear his words. Meanwhile, I used my arms to wipe my eyes.</p><p>As if synchronized with me, he also wiped his eyes with his arm.</p><p>"In case you were wondering, my name is Brian. It's the name that my mother gave to me...and a name I slowly became unfamiliar with after her death. It wasn't a name I wanted anyone else to know, but after having stayed with you for as long as I did, I don't find the need to hide it from you."</p><p>Pressing both hands on the table, he slowly rose from his seat.</p><p>"My story really isn't that compelling, so I won't really dwell too much on it. If I had to break it down in simple words, it would be...my mother was killed by someone whom I thought of as a close friend...brother?"</p><p>Smallsnake's teeth clenched as he stared at the camera.</p><p>He then inhaled deeply, doing his best to hold back the anger and despair that were visible on his face. He closed his eyes and opened them again quickly.</p><p>"...There's not much I know about him, but his name is Hemlock. Currently, he goes by the name Malik Alshay—!"</p><p>Click—!</p><p>The video cut off halfway through his sentence. Nonetheless, I understood his words. However, that wasn't what interested me at the moment.</p><p>"No, no, no..."</p><p>I stood up from my seat and reached for the monitor.</p><p>My eyes were fixed on the small bar at the bottom of the video. It was currently filled.</p><p>I felt my heart sink at that moment.</p><p>Grasping the monitor with both hands, I clenched it tightly.</p><p>'Is that really all to the video?'</p><p>"No...It can't be..."</p><p>There had to be more. At least, that was what I hoped for.</p><p>But sadly, there wasn't.</p><p>...and, it was only then that it finally sank into my heart.</p><p>Smallsnake was dead.</p><p>***</p><p>Ding—! Ding—!</p><p>Synchronization complete</p><p>Kevin opened his eyes and saw a prompt appear in front of his vision. That wasn't all.</p><p>Mission reward: Minor rank up &lt;A-&gt; → &lt;A+&gt;</p><p> A burst of energy spread across his body, and Kevin felt the world around him spin. The muscles on his body became firmer, and his head became clearer. </p><p>He felt a sudden burst of euphoria in his body.</p><p>But in spite of all the changes that were happening around him, his gaze was locked toward the ceiling of his room.</p><p>Currently, his eyes were not very well-focused. He had a similar expression to someone who has just seen a ghost.</p><p>"Haha..."</p><p>A hollow laugh eventually escaped from his lips. Raising his hand to cover his face, he silently mumbled.</p><p>"Ah, I understand now..."</p><p>Thinking back at what he saw in the synchronization visions, a bitter and sad smile spread across his face.</p><p>"Everything finally makes sense."</p><p>The previous questions he had been asking himself...about why he couldn't defeat the demon king after all the loops, about Ren's regressions, about the Demon King and the Akashic records...</p><p>He finally had all the answers.</p><p>"Hahaha."</p><p>Another hollow laugh escaped from his lips.</p><p>"And here I thought Ren was the crazy one. Turns out, I'm way worse than he is...a lot worse..."</p><p>Kevin closed his eyes, the dazzling red of his crimson eyes glistened. His expression then slowly started to morph, before gradually becoming expressionless.</p><p>"I've already reached this point, there's no turning back anymore..."</p><p>***</p><p>End of volume [4]</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-606.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-608.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

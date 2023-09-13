@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 535 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 535 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-534.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-536.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>If I had to describe the treasure with one word, then it would have to be messy.</p><p>As soon as I walked into the room, I saw piles of useless armor and weapons stacked together in a corner. From the way the items were stacked, whoever was in charge of the place had no care for the items as he just carelessly threw them into the room.</p><p>Regarding the room, the room was relatively spacious as it was about the size of half a football court. Not too big, but also not too small.</p><p>In spite of this, the place wasn't well maintained, with cracks forming on the walls and a rusty and moldy smell permeating the space.</p><p>'Do the demons not care about their own armory?'</p><p>I muttered as I stared at the place.</p><p>Answering me was my other self as my mouth opened.</p><p>"The demons don't care, it's just that most of the stuff here is useless for them since these are just scraps from some of the deceased contestants. They essentially take any useful item for themselves before throwing the stuff they can't use in this place."</p><p>'Then this isn't a Treasury. It's more like a dump.'</p><p>"In a way yes."</p><p>My head slowly nodded.</p><p>"...This is a dump for the demons, but an amazing place for anyone else."</p><p>Moving forward, my body bent down and picked up a certain book.</p><p>There were clear signs of aging and tears on the pages of the book. Further, the book's cover was dusty, so I couldn't see what it was. But from a single glance, I could tell that it was something that used to belong to a human.</p><p>I instantly knew what the book was.</p><p>Upon brushing away the dust, I saw the title and description of the book, confirming my suspicions.</p><p>'A martial manual...'</p><p>A four-starred one at that.</p><p>[★★★★ Iron Style]</p><p>Through a series of different techniques, the user can harden his body and acquire great offensive power.</p><p>While reading the skills description, I thought.</p><p>'This skill might fit well with Hein.'</p><p>Several months ago, Hein complained about his lack of offensive power. This skill seemed tailor-made for him.</p><p>I became increasingly convinced that the martial manual was written specifically for Hein as I thought about it. Through the hardening of the skin, the martial manual not only increased his offensive power but also strengthened his defense.</p><p>'If Hein used the skill, alongside his defensive capabilities...'</p><p>"Then he would become an unstoppable tank."</p><p>My other self finished my words for me.</p><p>Glancing at the martial manual for a brief moment, he put it inside of my bracelet.</p><p>Following this, he examined more items. Whether it was martial manuals, artifacts, herbs, or even skills, this place had everything.</p><p>Of course, not all of it was useful. In fact, most of the stuff present in the room was rather useless to me.</p><p>A half-hour after entering the place, my other self had pretty much sorted through everything and had taken whatever he could take, but considering that we had to negotiate with the Duke afterward, he didn't take everything.</p><p>In any case, he pretty much took all the martial manuals he could find.</p><p>Many manuals ranged from one to two stars, but there was the occasional three-star manual as well. Furthermore, he had found two more four-star manuals, but neither of them was useful to me, so I could express my regret secretly.</p><p>Still took them since I could either sell them or give them to the others.</p><p>It was at that moment.</p><p>"This is a nice bow."</p><p>Jolting me out of my thoughts was my other self as I suddenly felt my hand grasp something hard.</p><p>When I focused on the object my other self picked up, I realized it was a bow. Upon closer look, I couldn't help but agree with his assessment.</p><p>'...It really looks nice.'</p><p>The bow's frame seemed to have been constructed of long-lasting ash wood. Its string was made from what seemed to be great-quality monster hair, an extremely rare material around the human domain that could go up for eight-digit figures.</p><p>In addition to wrapping leather around the limbs, the points ended in curved claws giving it an eerie and menacing feeling. The handle was also wrapped in a dark and ominous skin decorated with carvings.</p><p>A large quiver made of rare hide accompanied the bow, appearing to be intended to be worn around the archer's belt. In addition to its aesthetics, the outer side was embellished with animal horns.</p><p>Truly giving it a sharp and menacing feeling.</p><p>"An &lt;S&gt; rank artifact. Not bad..."</p><p>[Kamulat's rage]</p><p>Rank : S</p><p>Bow carefully crafted through different</p><p>[Bloodlrage] - The more blood this bow spills, the sharper and faster each successive arrow becomes. Cooldown, 1 hour.</p><p>The description of the item made my lips curl into a thin smile.</p><p>After that, my other self quickly tossed the bow into my dimensional space and continued to look through the remaining items.</p><p>Regrettably, there wasn't anything else that interested me amongst the piles of items.</p><p> ===</p><p>[[E] Flame domain]</p><p>Creates a domain made out of fire around the user.</p><p>===</p><p>[[G] Deafening]</p><p>Upon activation, it will temporarily deafen the selected target.</p><p>[[C] Levitation]</p><p>A brief moment of levity occurs when the skill is used.</p><p>There were also a couple of other skills, but none of them proved to be useful to me and were quickly discarded by my other-self.</p><p>Not that we had a choice.</p><p>Since skills were something that demons could also learn, they were much more valuable in the eyes of the Duke.</p><p>This was regardless of rank the skill was.</p><p>That, and the fact that I could tell my other self already had something in mind when looking around the place.</p><p>Not sure how I could explain it. But from the way he was carefully looking around the place in search of something, I knew that there was something important hidden there.</p><p>"Here it is."</p><p>Fortunately, I didn't have to wait for long to understand what he was looking for as he soon picked up another skill book from the ground.</p><p>At a first glance, it looked like any regular skill book out there, however, the moment I caught a glimpse of its description, I knew that this was anything but a regular skill book.</p><p>[[A] Dark Servant]</p><p>It will grant the user the ability to summon a shadow servant for an extended period of time. There will be a 50% resemblance between the Shadow servant and the user in terms of skills and strength. Cooldown period : 5 days.</p><p>'This...'</p><p>In spite of the skill description's simplicity, there were tremendous implications behind it. For a brief moment of time, I didn't know what to say as I just blankly stared at the skill description.</p><p>As I considered all the different things I could do with it, different scenarios continuously replayed in my head.</p><p>I slowly became more excited.</p><p>"This will do."</p><p>Jolting me out of my thoughts, my hand raised and touched the top of the book.</p><p>Following this, a bright white light enveloped the room, and a multitude of different scenes sprang inside my mind. Solidly implanting themselves in there.</p><p>This process didn't hurt one bit, but it still felt weird. It felt as though something was tickling at my brain.</p><p>"Haa..."</p><p>Once the weird sensation disappeared, opening my mouth, I exhaled. The skill book in my hand shattered into different bright lights before disappearing into the air.</p><p>"Let's try the skill."</p><p>Following this, my hand raised and the mana inside of my body started to circulate like crazy.</p><p>Within the span of a couple of seconds, about half of my mana disappeared.</p><p>As this was happening, I spotted a translucent black-figure emerge from the shadows in front of me as two bright yellow pupils stared in my general direction. Taking a closer look at the black figure, apart from its general frame, the figure didn't bear any semblance with me as it just looked like a shadow.</p><p>Upon closer inspection, I noticed that the black figure was currently holding a sword on the right side of its body.</p><p>Silence enveloped the room as the shadow's two bright yellow eyes stared in my direction.</p><p>It was at that moment that my mouth opened.</p><p>"First movement."</p><p>As soon as those words escaped my lips, the shadow servant quickly seized the sword's sheath and took a stance.</p><p>While this was happening, my body's mana drained at an alarming rate. Far more than I was comfortable with.</p><p>Click-!</p><p>Then, a familiar clicking sound rang out and a bright light flashed. After the bright light vanished, I felt a stinging sensation at the tip of my nose as the servant's sword paused right there.</p><p>I felt a wet sensation trickle down my nose. It was probably my blood.</p><p>Raising my finger, my other self pushed the sword away from my nose and nodded in satisfaction.</p><p>"...This will do for now."</p><p>After his words faded, the shadow servant dispersed. With his eyes lingering on the spot where the servant used to stand, my mouth opened.</p><p>"You've probably noticed from this slight demonstration, but you must be careful with this skill."</p><p>"As much as it grants you the ability to summon a servant of similar strength, each of his movements will deplete your mana. The same is true if it is destroyed after battle..."</p><p>After listening to what he had to say, regardless of how much I wanted to find a flaw in his argument, I knew that he was speaking facts.</p><p>Although the skill was strong, it also had flaws. While these weren't major flaws, it was basically a short-time usage skill that could only be used during short combat situations.</p><p>If I wanted to use the skill during prolonged battles, then it would only lead to my inevitable loss as the mana consumption was simply far too monstrous.</p><p>Glancing around the place, my other self opened his mouth once more.</p><p>"Remember—!"</p><p>Clank—!</p><p>But it was at that moment, that the door of the Treasury suddenly burst open as a figure showed up from behind it. A threatening pressure bore out from his body, quickly heading in my direction.</p><p>Closing my mouth, my head turned to casually look at the guest that had just arrived.</p><p>A wave of annoyance ran through my body as my head stared at the figure outside. My mouth soon opened.</p><p>"...I don't like to be interrupted when I'm talking."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-534.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-536.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

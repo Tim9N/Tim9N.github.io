@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 809 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 809 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-808.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-810.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'What is he planning?'</p><p>When Jezebeth looked at Ren, his eyes narrowed as he tried to comprehend the motivation behind Ren's continued opposition to him.</p><p>As opposed to before, the very air around him changed, and the world around him started to collapse.</p><p>It was only thanks to Jezebeth that it remained intact.</p><p>The tension in the air was palpable, and Jezebeth's crimson eyes flickered dangerously.</p><p>"Is this really your decision?"</p><p>He asked, his voice low and dangerous.</p><p>Ren's expression remained unchanged, and Jezebeth's frustration grew.</p><p>"Do you understand the consequences of your actions?"</p><p>He threatened, gesturing toward the projections that surrounded them. Each frame held a different individual, and Jezebeth could see humans and members of the three races.</p><p>Their situation…</p><p>It wasn't good. In fact, it was terrible, and each second, hundreds if not thousands of individuals died at the hands of the demons.</p><p>It was a slaughter.</p><p>"If you choose to fight me, by the time our fight is over, everyone will be dead. Your friends, your lover... your family. Everyone will die! Do you really wish for that to happen?"</p><p>Jezebeth expected Ren to flinch, to hesitate, to show some sort of emotion. But Ren just continued to stare at him with that same unnerving gaze.</p><p> "Even now, as we speak, people are dying!?"</p><p>Jezebeth continued, his voice rising with his frustration.</p><p>"You don't seem to care about their lives, but what's the point of all of this? If you don't care about them, why do you even bother fighting against me?"</p><p>The question hung in the air, unanswered, and Jezebeth's anger simmered. Why was Ren doing this? Was it to spite him? For what reason? Were all of his preparations for nothing!?</p><p>"Why!?"</p><p>SWOOOSH―! He bellowed, the sound echoing through the room and causing the projections to flicker.</p><p>"…Why?"</p><p>Finally, Ren spoke. His voice was quiet, but it carried an air of finality that made Jezebeth's face stiffen.</p><p>"The reason is simple."</p><p>Ren said, his gaze shifting toward the projections.</p><p>"My job is to kill you. As for the others..."</p><p>The space around one of the projections distorted, and Jezebeth realized too late what was happening. Smallsnake, who was only a few meters away from him, disappeared, and Jezebeth turned to look at Ren, who was looking at him with a smile on his face.</p><p>"That's a job for another person."</p><p>His voice gently spread across the space, and Jezebeth felt his entire body tremble.</p><p>"You..."</p><p>Jezebeth's voice trailed off as he looked at Ren, his anger boiling over.</p><p>To be honest, if he wanted to, he could've probably stopped Smallsnake from leaving, but he decided that it wasn't worth it. He could tell from Ren's eyes that he really didn't care whether he lived or died, and keeping him was pointless.</p><p>The same was true for the people who were dying within the projections.</p><p>He could tell at a glance that they were of no concern to him at the moment.</p><p>"You really..."</p><p>Jezebeth clenched his teeth, his lips curling into an annoyed smile.</p><p>"Piss me off."</p><p>***</p><p>Drip. Drip. Drip.</p><p>Thick raindrops pounded against the deserted streets, collecting into small pools along the streets. They reflected the dim light that filtered through the thick clouds in the sky.</p><p>The sky was grey and overcast, casting a gloomy and eerie atmosphere over the empty town.</p><p>"Where is this place?"</p><p>I wondered, looking around me and finding a tiny deserted town nestled on the coastline of what seemed to be an island.</p><p>Splash! Splash!</p><p>The waves hit the coastline with a relentless force, crashing against the rocks and sending sprays of salty water into the air.</p><p>The sound of the waves was deafening, a constant roar that echoed throughout the surrounding landscape. As each wave approached the shore, it rose up, building in size and intensity before crashing down with a thunderous boom.</p><p>"Hmm."</p><p>I frowned at the sight in front of me.</p><p>Upon closer observation, the town in the distance seemed to be made of human architecture, and it looked abandoned and forgotten, with overgrown weeds and moss covering the once well-maintained buildings.</p><p>'I've never seen such a place on earth… where in the world is this place?'</p><p>"Splash!" I took a step forward, my foot splashing against one of the puddles, ripples forming outwardly on the surface of the water.</p><p>When I looked down at the puddle, I gazed at my reflection. My entire body was dark, almost shadow-like, and while I could see my features, there was no color in me.</p><p>Suddenly, a screen appeared in front of me, and I looked at it with a mixture of complex emotions.</p><p>'It's been a while since I've last used this skill. Who would've thought it could've been used this way…'</p><p>[[A] Dark Servant] - It will grant the user the ability to summon a shadow servant for an extended period of time. There will be 50% resemblance between the shadow servant and the user in terms of skill and strength. Cooldown period: 5 days.</p><p>I tore my gaze away from my status window. Indeed, just before Jezebeth appeared, I switched my body with the other me and became what I was now.</p><p>It felt rather uncomfortable moving in this body, but at the same time, I didn't feel any strangeness from it. I practiced fighting with this body several times, and there was no problem with it.</p><p>I could perform just as well as without this body, and in fact, I was a bit stronger than my usual self.</p><p>That… That was just how big the difference between the other me and me was. Just 50% of his strength was about the same as my current strength.</p><p>'It's not all too bad.'</p><p>There was something that was unaccounted for in the skill. The fact that I gained my other selves skills while retaining my own.</p><p>With the two combined, my power rose even further.</p><p>"Huuu."</p><p>I took a deep breath, scanning the world around me. When I closed my eyes, I expanded my mana outwardly and tried to feel for any life that was in the vicinity.</p><p>The island was rather big, and it took me quite a lot of mana to get a proper view of the entire island. Only when I got a good feeling of the entire island did I open my eyes and let out a deep breath.</p><p>"If I'm not wrong, this should be the Pillar of Envy."</p><p>I didn't know much about these pillars, but the conversation between the other me and Jezebeth was transmitted inside of my mind, and I came to understand that this was a world within those enormous pillars that crashed against earth not too long ago.</p><p>"How troublesome..."</p><p>Out of all pillars, I had to enter the hardest one…</p><p>Even so, I wasn't discouraged. My task was to help as many people as possible and reduce the casualties on our side.</p><p>Beating all the heads of the Demon Clans was impossible for us yet. There were a couple of things I had set up beforehand, but I wasn't too confident of them working out... perhaps so, but that didn't really matter in the grand scope of things.</p><p>I could fight against one head, but I couldn't fight against all seven. Even if I wanted to fight against one of them, by the time our fight was done, almost all of those on our side would have perished.</p><p>"What I need to do right now is stall for as much time as possible. Be it by saving people or getting the attention of all the big-shot demons in here... I have to stall enough time for the other me to kill Jezebeth."</p><p>So long as he managed to kill him, everything would come to an end.</p><p>Everything was in the other me's hands, and I could only pray that he'd be able to beat Jezebeth.</p><p>He hadn't told me what his plan was, but he reassured me that all I needed to do was save those I wanted to save. He would take care of the rest.</p><p>The only problem, however, was the fact that I couldn't use the laws. Since our powers were directly connected, if I used the laws, I'd be directly affecting his fight against Jezebeth.</p><p>In fact, just me being here was severely affecting his fight as Dark Servant took a lot of mana.</p><p>"Huuu."</p><p>Thinking of the situation, I took another deep breath.</p><p>"For now, I'll start with those on this Pillar. Once I'm done, I'll go to the other Pillars…"</p><p>Taking a step forward, my vision blurred, and my surroundings changed.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-808.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-810.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

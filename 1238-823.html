@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 823 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 823 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-822.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-824.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Boom—!</p><p>My entire being writhed in agony as my back collided with the ground. I previously thought that falling into the sand wouldn't hurt, but I was dead wrong on that assumption.</p><p>It hurt like hell.</p><p>'That's right; how come I only realized it now?'</p><p>I came to a sudden realization.</p><p>VOOOM—! While keeping an eye on the approaching punch, I twisted my body to the side and just managed to avoid getting hit by it. It was just by a hair's breadth, but I was still able to avoid the incoming attack.</p><p> I was lucky enough to react on time.</p><p>BOOOM—!</p><p>My eardrums shattered as a result of the impact between the Prince's fist and the sand next to me. With no sound reaching my ears, all I could hear was a constant ringing noise.</p><p>If that wasn't bad enough, the aftermath of his fist sent me flying in the opposite direction.</p><p>With that said, I understood the reasoning behind the Prince's sudden increase in strength.</p><p>'…This is the Pillar of Wrath. It only makes sense that he becomes stronger the angrier he is.'</p><p>Swoosh—!</p><p>As I twisted my body in the air, a fist materialized in the area I was previously in, and my eyes landed on a long, muscular red arm.</p><p>I tried to cut it with my sword, but it disappeared before I could even move my sword, and a powerful force hit me from above.</p><p>Boom—!</p><p>"Ukh."</p><p>I once again crashed against the ground and let out a soft groan. By now, my whole body ached, and the ring in my head only grew louder.</p><p>I tried to pull myself up by pressing my hand against the sand, but just as I moved, something grabbed the back of my head and pushed me down against the sand.</p><p>BANG—!</p><p>"Ukh."</p><p>From the moment the Prince changed, the fight had been one sided.</p><p>I tried fighting back, but no matter what I did, he was already before me. He was relentless. He kept attacking me before I even had the chance to breathe or properly distance myself.</p><p>As if that weren't bad enough, he grew more powerful with each attack, and the injuries in my body started to accumulate.</p><p>Inevitably, the mana within my body drained at astounding rates, and my body began to lose color.</p><p>Boom—!</p><p>Narrowly avoiding his fist and rolling to the side, I pressed my hands against the sand from above my head and pushed my body up.</p><p>Twisting my body, I kicked toward the back of his neck.</p><p>Pak—!</p><p>Just as my kick was about to connect with his neck, he raised his hand, and it struck his forearm.</p><p>BANG—! The moment my leg connected, the sand around us shattered, and pressurized wind waves spread outward from the point of contact. My hair fluttered, and in that split second, our eyes met.</p><p>Compared to the first time that I had seen him, he was different.</p><p>His entire body was now red, and a tangible, dark red hue of demonic energy circulated around him. It was denser and thicker than it had ever been.</p><p>His crimson eyes shone with a menacing hue that spread out from them, and his entire body towered over mine.</p><p>The subsequent events transpired so rapidly that by the time I reacted, it was too late.</p><p>Swoosh—!</p><p>Moving his arm down, I felt his hand grasp my leg.</p><p>My body streaked through the air shortly after that as he pulled my body toward his direction, and I saw an elbow quickly approaching.</p><p>Even with [Eyes of Chronos], I was helpless by the speed at which his elbow was coming, and the only thing I could do was bring my arms forward and block the attack.</p><p>Boom—!</p><p>My arms disappeared.</p><p>That was the best way I could describe what I saw. It all happened so fast that the moment that I brought my hands forward to defend against his elbow, my arms, which were covering my head, disappeared.</p><p>The elbow stopped, but an unbearable pain coursed through my body. It was so painful that I was unable to even groan.</p><p>The only thing I could do was clench my teeth and remind myself that the current pain was nothing compared to what I had endured previously.</p><p>That this pain wasn't real and that it was just in my mind.</p><p>'I've been through worse.'</p><p>It may or may not have worked, but I didn't have much time to contemplate this as his elbow dropped once more.</p><p>"Nope."</p><p>My arms, which had vanished moments earlier, reappeared. In that instant, nearly half of my mana vanished, and my entire body turned a hazy grey color.</p><p>Bringing my hands forward, I held onto his elbow with both hands and exerted as much strength as possible.</p><p>The elbow stopped, and in one quick motion, I cut off my right leg, which was still being held by the Prince.</p><p>"Ukh."</p><p>Once more, I felt a sudden wave of pain, but I kept reminding myself that this wasn't the worst I had ever felt.</p><p>That it was all just an illusion.</p><p>Swoosh!</p><p>After depleting a lot of my mana, my leg returned, and I heavily gasped for air.</p><p>"Haaa…"</p><p>Unfortunately for me, I didn't have much time to think as the Prince was once again on me. Thrusting his fist forward, his figure appeared behind me, and I could only duck down, barely dodging his fist.</p><p>Swoosh!</p><p>The space above me shattered, and I felt the laws bind me all over as golden runes and words emerged from the ground beneath me.</p><p>"Shatter."</p><p>It was good that his mastery over the laws was far inferior to mine, and I was easily able to break the shackle.</p><p>That being said, I was certain that the Prince already knew this beforehand. It was clear from the get-go that his actions were merely an attempt to slow me down… and it worked.</p><p>Right as I shattered the laws, his fist was already right on my head.</p><p>"Stop."</p><p>I mouthed, channeling the laws into my voice. The space around the fist distorted as golden runes appeared in front of me, and a small fissure appeared before the fist. That wasn't the only fissure that appeared; another also appeared behind him.</p><p>The fist, which was previously headed my way, warped and reappeared from the fissure that had appeared behind him, crashing directly at his back.</p><p>BOOM—! The Prince's entire body shot away from where I was, and finally, I was able to take a breather.</p><p>"Haa… Haaa…"</p><p>Sweat trickled down the side of my face at that moment as I rested my hands against my knees.</p><p>"Shit."</p><p>I was trying my best to refrain from using the laws, but I had no choice this time. Had I not used the laws, I would've probably lost.</p><p>"Fuck."</p><p>Cursing once more, I turned my head to stare at the Prince of Wrath. He had just gotten up, and he seemed to be relatively fine, but I knew from a glance that wasn't the case.</p><p>The attack had an effect on him.</p><p>'I'm afraid that I'll have to use the laws this time… Things will become quite troublesome if I don't.'</p><p>It became quite obvious to me that he was stronger than me. Perhaps if the two of us were outside the pillar, I would've had an easier time. Within the Pillar, demons were immeasurably more powerful than they were in normal circumstances.</p><p>That much was already obvious.</p><p>Perhaps we were on equal terms when outside, but inside, we weren't, and it became very clear to me.</p><p>Swoosh—!</p><p>The fact that he reappeared in front of me without my being able to detect him demonstrated just how powerful he was within the pillar.</p><p>In fact, he had gotten even stronger than a few moments prior.</p><p>"Stop."</p><p>Once again, putting the laws into my voice, the Prince's body came to a sudden stop behind me. Golden runes clamped all over his body.</p><p>My body turned hazy at that moment, and I almost collapsed from exhaustion, but I clenched my teeth and bore through the exhaustion.</p><p>I could see a faint glow emanating from the Prince's body as I turned to stare at him. It was the Akashic laws that shattered the shackles on his body, allowing him to break free from the restraints that I had set up.</p><p>I didn't think much from that point forward.</p><p>Extending my hand, I pressed my finger against his forehead, and his entire body flew back once more.</p><p>"Stop."</p><p>He only flew back for a couple of meters before coming to a sudden stop again. Similarly to before, golden runes floated around the area he was in, clamping at his body from all sides.</p><p>"Cough… Cough…"</p><p>I nearly lost my balance in the sand after coughing several times, but I persisted and continued to move. My feet felt like lead, and the fact that they sank into the sand with every step did not help matters.</p><p>"You.. really…"</p><p>Arriving before the Prince again, I almost vomited, but I held it in and pressed my hand against his face. Just as I was about to touch his face, his entire body began to tremble, and I became nearly translucent.</p><p>"Ukgh."</p><p>I groaned out loud, attempting not to pass out from the pain.</p><p>"Stop resisting."</p><p>Soon, my hand came into contact with his face, and I clenched my teeth extremely tightly. Closing my eyes, I felt a soft yellow orb inside his body. It was an energy that I was all too familiar with, and I beckoned it toward me.</p><p>"Come to me."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-822.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-824.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

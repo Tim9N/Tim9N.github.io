@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 533 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 533 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-532.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-534.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Crack. Crack. Crack.</p><p>A large black palm hurled down toward three figures emitting a powerful aura as cracks formed around a large blue planet.</p><p>"He's here!"</p><p>An orange glow enveloped the body of one of the figures, causing her to scream out in helplessness. As she raised her hand, she cast a translucent yellow barrier around herself and the two other figures beside her.</p><p>Her actions prompted the two other figures to release their own barriers as well.</p><p>Within seconds of the two releasing their barriers, the large hand came into contact with the first barrier. The outer barrier cracked immediately as the faces of the three individuals behind it paled significantly.</p><p>Seeing that the situation was critical, the three exerted even more power on the barrier.</p><p>When they tried exerting more power, their bodies glowed brighter.</p><p>Unfortunately, their struggle was futile.</p><p>Seconds after their hues expanded, the first barrier crumbled into thousands of pieces. After the first barrier, the second followed, and the third followed after that.</p><p>All three individuals were soon pressed down by the hand.</p><p>A look of helplessness flashed across their faces as their bodies were sent crashing down against the ground.</p><p>Bang—!</p><p>Immediately after the explosion, a large crater formed on the ground. After that, the sky began to split and a tear soon appeared.</p><p>Stepping out of the tear was a white-haired figure with scarlet-red eyes.</p><p>As his gaze seemed to encompass every existence within the world, his presence enveloped the entire planet.</p><p>Casually taking a glance at the three people below, he closed his eyes and took a deep breath.</p><p>"...This will do."</p><p>Extending his right hand, fissures started to form around him.</p><p>Crack—! Crack—!</p><p>A horde of black humanoid creatures emerged from the fissures. It didn't take long for the sky to be overrun with demons as more demons emerged from the large fissures in the sky.</p><p>While looking at the sky in despair, the faces of the three people below the ground paled further. It was from that moment that they understood that their world was no longer theirs.</p><p>It had fallen into the hands of the demons.</p><p>It was at that moment, that a figure suddenly stepped out of the portal.</p><p>An all-powerful pressure bore down on the world the moment his figure emerged. It even rivaled that of Jezebeth. Of course, that was only applicable in this case as Jezebeth wasn't using his real body.</p><p>Nevertheless, it still spoke measure of his strength.</p><p>After scanning the area with his eyes, they soon came across Jezebeth. His back unknowingly straightened once his eyes paused on him. He quickly made his way toward him.</p><p>As he approached Jezebeth, all the demons beside him distanced themselves from him.</p><p>In a respectful tone, he bowed his head.</p><p>"Your Majesty."</p><p>"Mhm."</p><p>While Jezebeth scanned the world with his eyes, he nodded his head without paying attention to him. The demon didn't seem to mind this as he patiently waited for his orders.</p><p>His wait didn't last for long as Jezebeth soon opened his mouth.</p><p>"...I want this world corrupted within a year's time."</p><p>With those words, the Demon's face spread into a broad grin.</p><p>Looking down at the three figures below, his smile deepened as he took in their despairing looks.</p><p>Bowing down his body lightly, he responded.</p><p>"...Understood."</p><p>His reaction suggested that he took enormous pleasure in torturing his prey. Glancing at Jazebeth once more, he tried to dismiss himself.</p><p>"If there is anything else I can assist you with you—"</p><p>"Wait."</p><p>As the demon was about to leave, Jezebeth opened his mouth again. In an instant, the demon halted.</p><p>A respectful tone immediately emanated from his mouth.</p><p>"...Is there anything you need, your majesty?"</p><p>Looking into the distance, Jezebeth pondered for a moment as he fell deeply into his own thoughts. Then, from the corner of his eye, he glanced in the direction of the demon.</p><p>"Have you contracted with someone yet? A human to be exact?"</p><p>"...Contracted? Human?"</p><p>The demon cocked his head slightly and eventually nodded.</p><p>"I have your majesty."</p><p>"With who?"</p><p>"A human on earth."</p><p>"Is he an important figure there?"</p><p>The confusion on the demon's face grew. Nevertheless, he still answered. Who in the right minds would refuse to answer the questions of the Demon King?</p><p>Recalling his contractee, the demon thought back at the things he told him before nodding his head.</p><p>"He appears to be."</p><p>"I see..."</p><p>Jezebeth's brows furrowed. It was then that he suddenly twitched his face and grasped the side of his head, startling the demon.</p><p>"Your majesty?"</p><p>"...It's nothing."</p><p>Raising his hand to stop the demon from approaching him, Jezebeth's face changed slightly as he softly whispered.</p><p>"My memories are still not intact..."</p><p>Taking a deep breath to glance at the demon, he closed his eyes. When he opened his eyes again, he gazed deeply at the demon opposite.</p><p>His next words caused the demon's face to change.</p><p>"Tell your employee to pay special attention to those around him. There may be a cancer lurking within his organization. A cancer that will destroy everything that he's built up within a couple of seconds."</p><p>"What do you mean your majesty?"</p><p>"...It means exactly what I said. Make sure you tell this to your contractee."</p><p>Before the demon could reply, Jezebeth's face suddenly changed. A powerful wave of pressure suddenly escaped his body, causing all of the demons who had just arrived to hold their hands at their throats, trying to breathe.</p><p> Ignoring their struggle, Jezebeth's face progressively darkened before his lips pulled into a thin smile. </p><p>"You bastard. You already knew I was going to be here, weren't you?"</p><p>As his brows furrowed tightly, his smile quickly faded. Closing his eyes to sense something, it only took an instant for him to figure out exactly where he was.</p><p>As he pondered inside his mind, his brows tightened more once he realized where he was.</p><p>'...How troublesome.'</p><p>He thought inside his mind.</p><p>The distance.</p><p>It was quite far.</p><p>Had he been in his normal body, he wouldn't have had much trouble going to him directly, but he wasn't...</p><p>Nevertheless.</p><p>Glancing at the demons around him, his eyes paused on the demon closest to him.</p><p>"Keep the words that I've said to you in mind."</p><p>His gaze drifted to the other demons, and he began speaking loudly.</p><p>"Make sure you convert all of the mana in this world. You have one year's time."</p><p>Raising his hand, he swiped it toward the empty space in front of him.</p><p>Crack.</p><p>A fissure formed in front of him. A final glance at the demons behind him prompted him to step into the fissure.</p><p>Upon entering the fissure, his face darkened considerably.</p><p>"Let's see if we can meet each other again."</p><p>***</p><p>Bang—!</p><p>As my body entered a familiar room, a door crashed down loudly. Helplessly watching my own body walk into Duke Azenoch's office, I asked.</p><p>'What are you up to?'</p><p>Slowly, my body moved toward his desk and sat on his chair without answering.</p><p>In a casual gesture, he tossed a small pulsating orb into the air while placing both legs on the table.</p><p>Plack—! Plack—!</p><p>During his repeated tossing of the orb, a thin layer of mana coated its body. This was so that the Duke wouldn't be able to regenerate his body.</p><p>Indeed, the Duke had still not died yet.</p><p>His actions completely dumbfounded me as I asked.</p><p>'What are you doing?'</p><p>'...Waiting.'</p><p>After some time, he replied.</p><p>Hearing his voice, I asked another question. A rare sense of urgency rushed through my body as I thought about all the problems that were about to come soon.</p><p>From the other Duke to the Demon King.</p><p>The thought brought great anxiety to me.</p><p>'What are you waiting for?'</p><p>Plack—!</p><p>Grasping the ball with my hand, he remained silent for a couple of seconds before answering.</p><p>'...For the other Duke to come back.'</p><p>'The other Duke? Why?'</p><p>Casually glancing at the orb, the corner of his lips pulled a bit. Instead of answering, he replied with another question.</p><p>'Why do you think I would wait for the Duke in this kind of situation?'</p><p>As opposed to answering immediately, I began to ponder what he said. Given that he wasn't the type of person to act rashly and do something without a proper plan, he definitely must've thought of something.</p><p>...But what exactly was he planning?</p><p>'Ah.'</p><p>It was then that it finally hit me.</p><p>'You...you're planning on negotiating with the other Duke.'</p><p>'Pretty much.'</p><p>In response to his confirmation, I had a hard time finding the right words to say.</p><p>Despite not knowing much about the Duke's current affairs, there seemed to be a conflict between them. Having defeated Duke Azenoch and kept his core intact, he could now negotiate with the other Duke.</p><p>In exchange for the core, he would grant us access to the portal that would lead back to earth. Or something like that. Not sure about the details yet since he didn't divulge anything yet.</p><p>But I estimated that it was something along those lines.</p><p>Furthermore, given that his performance was seen by a lot of demons, the other Duke wouldn't act rashly.</p><p>Especially after the fight had only ended within two seconds.</p><p>There was no way the other Duke would try to provoke someone like that.</p><p>'It can work.'</p><p>But...</p><p>The more I thought about it, the more apprehensive I became.</p><p>'...it's an extremely risky plan.'</p><p>The plan sounded feasible, but it was also extremely dangerous. Not only because the skill was now on cooldown, but because the Demon King was also coming.</p><p>With him added to the mix, I didn't see how the plan would work out.</p><p>'Don't worry about the Demon King.</p><p>But as though he could read my thoughts, my other self replied.</p><p>'It will still take a while for him to come here so we're safe for now. With regards to the Duke...'</p><p>My eyes suddenly sharpened.</p><p>'He will have no choice but to agree to what I will propose to him.'</p><p>There was a sudden tightening of my grip on the orb. This did not last for long as after a while, loosening my grip, he put the orb away and proceeded to scan the room.</p><p>Putting my legs down, he started to stretch my neck.</p><p>I felt a sudden twitch on my lips as the edges slowly started to curl upwards.</p><p>"While we wait for him to come, let's have a look at the place."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-532.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-534.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 611 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 611 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-610.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-612.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Sixty to seventy years.</p><p>That much time has elapsed since my departure from Immorra.</p><p>It seemed like a lot of time, and in all honesty, it was.</p><p>At this time, the average lifespan of a human was 200–300 years.</p><p>Sixty to seventy years were approximately 1/3 of a human's lifespan. Obviously, that only applied to those who had mana within them. If they had no mana, then their life span would only equate to at most the early hundreds.</p><p>There were ways to extend one's life if one had no mana, but those strategies were sometimes far too expensive because they called for the acquisition of incredibly expensive and potent medical materials and potions.</p><p>In any case, even if it seemed like a lot of time, this wasn't a huge issue for an orc. Compared to humans, they lived much longer lives. For them, seventy years wasn't anything noteworthy.</p><p>Of course, that wasn't what I was worried about. The problem was the situation surrounding him.</p><p>'I don't believe Silug's strength has increased much because Immorra doesn't have a high aura density and there is still a conflict going on. He is most likely at least on the same level as me.'</p><p>Back then, the only reason Silug was able to break through to &lt;S-&gt; rank was because of the medical ingredients I had given him.</p><p>That was in the past, however.</p><p>With the state Immorra was in, I feared that his strength might've stagnated. Resources were that scarce.</p><p>'I shouldn't have held this off for as long as I did.'</p><p>This made me realize just how negligent I had been in the past.</p><p>…The situation was probably dire for the orcs at this moment.</p><p>Dire enough to not make me want to help them.</p><p>It sounded really troublesome, and if not for the fact that Angelica's life was on the line it Silug died, I would've already discarded the idea of saving him.</p><p>"How annoying."</p><p>I murmured to myself as my vision became slightly foggy.</p><p>My feet soon came to a halt.</p><p>Before I knew it, I was in front of my house door.</p><p>"Hm?"</p><p>Feeling something trickle down my nose, I quickly wiped it away with my hand. I didn't need to look to understand it was blood.</p><p>"Shit, not again."</p><p>I was forced to lean my hand against the side of the door as a wave of dizziness hit me. The world around me started to spin and I started to choke on the air.</p><p>"Khuak."</p><p>My body shook to the sides as my eyesight zoomed and unzoomed. My hold on the door handle was all that was preventing me from falling. The experience I was having reminded me of being stranded aboard a tiny wooden boat in the middle of the ocean with waves twice the side of me.</p><p>My stomach churned.</p><p>My breathing was labored, and it took a total of five minutes for the symptoms to subside. Even then, I didn't feel so good.</p><p>"Haaa…haa…"</p><p>Was it because I was overworking my body to the extreme or because the other me was slowly taking over, I wasn't sure, but…</p><p>"It's getting worse."</p><p>The frequency and duration of them were increasing, if there was anything I observed.</p><p>A thought occurred to me.</p><p>'I hope Melissa is done checking over my conditions.'</p><p>When the symptoms first appeared, I visited numerous medical professionals. None of them, though, appeared knowledgeable enough to understand what was happening inside of me right then.</p><p>This was why things had gotten as bad as they did.</p><p>Melissa was my sole ray of hope at the time. I had thrown my pride to the wind and sought her for assistance.</p><p>Surprisingly, she came, took a sample of my blood, and didn't seem to be against the concept of helping me as I thought she would have been. All I had to do was wait for the results to come back.</p><p>That being said, it was taking longer than I had anticipated. Not that I was one to complain.</p><p>The only thing that was a bit troublesome was the fact that she wasn't a doctor, but a man could only hope.</p><p>Ding— Dong—</p><p>I rang the doorbell to my house once I managed to calm myself down.</p><p>The sound of rushed footsteps echoed shortly after, and coming to greet me at the door was my mother.</p><p>Clank—</p><p>"Welcome back, Ren!"</p><p>"Yeah."</p><p>Receiving one of her usual hugs, I went into the room and took off my shoes. After that, I headed into the living room where I saw everyone already gathered.</p><p>The moment I entered the room, they all looked at me with strange faces.</p><p>"What?"</p><p>The way they were looking at me...</p><p>It was kind of weird.</p><p>'Ah, right.'</p><p>It took me an instant to realize why they were looking at me like that.</p><p>Bitterly smiling, I sat down on the sofa.</p><p>"I didn't do it because I wanted to. Circumstances made me have to act that way."</p><p>I didn't explain more than that since they wouldn't understand anyways. Fortunately, none of the people present seemed keen in asking for more as they greeted me and went back to their own thing.</p><p>"Want one?"</p><p>Nola offered me a chip once I sat down on the sofa.</p><p>I gladly took her up on the offer and ate the chip. Meanwhile, I rubbed Nola in the head with my head.</p><p>"Don't mind if I do."</p><p>"Mhm! Stop it."</p><p>To my shock, Nola stood up and glared at me.</p><p>"No!"</p><p>"Uh?"</p><p>Her reaction left me dumbfounded.</p><p>Why was she reacting like that?</p><p>"Look at what you've done. Now her hair is all messed up."</p><p>Amanda walked toward Nola and began to style her hair, which further confused me. It took a total of two minutes for her to fix Nola's hair.</p><p>"All done."</p><p>Amanda took out a small mirror and showed it to Nola.</p><p>She immediately smiled when she saw her own reflection.</p><p>"Happy?"</p><p>"Happy."</p><p>Nola happily nodded her head before sitting back down on the sofa. This time, she chose to sit on the other side, right next to Amanda and further away from me.</p><p>"If you want to blame someone, blame yourself."</p><p>Amanda shook her head and sat down next to me.</p><p>"I..."</p><p>'How was I supposed to know?'</p><p>"Here look."</p><p>Unexpectedly, Amanda leaned down and handed me her phone. She leaned so close to me that it wasn't long before I felt her head on my shoulder.</p><p>My eyes opened up a bit as I looked around me and whispered near her ear.</p><p>"Hey, you're leaning a bit too close."</p><p>"So?"</p><p>"Everyone is looking…"</p><p>Shifting her head up to look at me, she grinned.</p><p>"And?"</p><p>"Ugh."</p><p>Speechless, I opened and closed my mouth repeatedly. Eventually, I let out a long groan.</p><p>After "his" death, a lot of things changed throughout the course of the last two years. You'd think Amanda would have kept her distance from me throughout that period. I would have completely understood if she buried her affections for me after what she saw, but…</p><p>Applying more pressure on my arm, she murmured.</p><p>"Let them watch if they are interested."</p><p>"Haa…"</p><p>I could only sigh in exasperation.</p><p>'Right, in the end, this is my decision.'</p><p>Whether it was because I needed to come to terms with Smallsnake's death or because she stuck with me after finding out the truth, I eventually made the decision to accept her feelings.</p><p>'Not that our relationship changed that much.'</p><p>Although that was a rather significant jump for me, I eventually discovered that aside from Amanda acting more pampered than usual, our relationship hadn't actually changed all that much.</p><p>It was mainly because we were both busy with our own things, her with the guild, and me with the curse.</p><p>But that was all right. We were moving at our own pace, and that was all that mattered.</p><p>There was no need to rush things.</p><p>"Here, have a look."</p><p>Amanda nudged her phone in my direction.</p><p>"Oh, right."</p><p>Taking the phone from her hand, I looked at the screen.</p><p>[Rank 18 at the age of 24. Monster or a spy from the Monolith?]</p><p>[Ren Dover makes a shocking return. From the conference to…]</p><p>I handed the phone back to Amanda.</p><p>"Why are you showing me this?"</p><p>"Take a look at the pictures."</p><p>She pointed out while leaning her body closer.</p><p>"Oh."</p><p>It was only after she pointed it out to me that I realized that all the photos used in the articles were that of me with a fake smile on.</p><p>I let out a tired sigh.</p><p>"Out of all the pictures they could've used…"</p><p>"You can't really blame them. The screen turned black after a certain period of time."</p><p>Amanda's mom interjected in the middle. She had a rather amused smile on her face. I feigned ignorance to it..</p><p>"Screen turned black?"</p><p>"Yeah. At one point, the screen turned black. I think it was because of something you did."</p><p>"Right…"</p><p>And here I thought they had all seen what I did.</p><p>I guess I had used a bit too much strength.</p><p>'Well, it doesn't matter. I wanted to get the message across to the people in the hall, not them anyways.'</p><p>"I think that was for the best."</p><p>"Why's that?"</p><p>Natasha curiously asked.</p><p>Amanda answered her before I could answer.</p><p>"The fewer people get to see his real strength the better. Then again…"</p><p>Lifting her head slightly to meet my eyes, her lips curled.</p><p>"You didn't exactly show all your strength did you?"</p><p> 'She knows me too well.'</p><p>I mysteriously smiled.</p><p>"Maybe? Who knows?"</p><p>Amanda lifted her head from my shoulder. After that, she scooched over to where Nola was. She was currently busy playing on Amanda's phone.</p><p>"Well, since you won't say anything, I'll just play with Nola."</p><p>"Hey, wait."</p><p>***</p><p>Clank—!</p><p>After locking the door behind him, Kevin turned on his apartment's lights. When the light flared and brightened the space, he experienced an odd feeling of loneliness after giving his apartment a careful inspection.</p><p>His apartment was rather big, enough for a whole family to comfortably live in. It had everything, from two bathrooms, four bedrooms, a living room, and a gym...yet at the same time felt extremely empty.</p><p>Taking a bottle of water from the fridge, Kevin sat down on one of his sofas in the living room and turned on the TV.</p><p>[To be honest, I'm quite frankly shocked by his achievements. For him to rank 18 at the age of 24, could this be a sign?]</p><p>[Carrol, I'm quite frankly still not really convinced by...]</p><p>"Looks like you've become the talk of the town, Ren."</p><p>Kevin lightly laughed as he looked at the news. He found the picture used on the screen especially funny.</p><p>It was so glaringly obvious that his smile was fake.</p><p>Ding—!</p><p>It was at this moment that his phone rang.</p><p>Kevin took out his phone and looked to see who the sender was.</p><p>[Hey, why aren't you answering me anymore?]</p><p>It was from Emma.</p><p>His smile slowly faded.</p><p>Clenching onto his phone, his hand started to shake. Biting his lips, he turned off the phone and leaned his head back against the sofa.</p><p>Blankly staring at the ceiling of the room for what felt like forever, he smiled in self-deprecation.</p><p>Kevin lowered his head and clenched his teeth.</p><p>Extending his hand, his hand started to glow in white color. His eyes flashed with loneliness when he looked at the white glow.</p><p>"In the end, this is the only way. Even if you end up hating me for forcing you into this situation...for making you remember all of your regressions...you're the only one that can do something about 'it'."</p><p>Kevin slowly clenched his hand.</p><p>"After all, a puppet can't fight against their master...'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-610.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-612.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

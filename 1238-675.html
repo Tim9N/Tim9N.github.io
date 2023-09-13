@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 675 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 675 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-674.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-676.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Day 3]</p><p>Monolith headquarters.</p><p>In a grand hall dimly lit by a large chandelier, twenty people sat on ten golden thrones set along the sides of the hall, with a large empty throne at the end of the corridor.</p><p>The throne was jet black in colour and was significantly larger than the golden thrones that were present in the room. It was clear to whom the throne belonged to.</p><p>There were approximately twenty people in the room, and they all looked at each other with expressions that conveyed cold calculation and hostility.</p><p>"Is everyone here?"</p><p>Mo Jinhao, who was seated on the throne that was adjacent to the one that was situated in the centre of the room, was the first person to speak as his grey eyes swept over the entirety of the room.</p><p>He crossed his legs and rested his arms over his legs.</p><p>"Everyone should already know why we have gathered today, no?"</p><p>"…when is the leader coming?"</p><p>Nobody in the room seemed interested in what Mo Jinhao had to say as they all went about their business. It was clear from the get go that Mo Jinhao's authority wasn't high enough to influence the people that were present in the hall.</p><p>Each person who was there in the hall had the same level of power as one of the seven heads of the Union, and yet they were all distinctly different from one another in terms of their power and what they specialized in.</p><p>The only person who responded was a man positioned on the golden throne opposite him. He had a warm smile spread across his face as he spoke.</p><p>Objectively speaking, he was handsome. He had sharp, nicely structured facial features that made him look like a celebrity. That was until one paused toward his eyes, which seemed to be devoid of any emotion, and weren't smiling, unlike his face.</p><p>Clementine Manual, an &lt;SS&gt; ranker of the Monolith, and one of the elders part of the Monolith council.</p><p>His empty gaze gave him a heavy atmosphere.</p><p>"We are aware of why we are present. Just that we have many tasks to complete in preparation for what is to come. Not all of us have the time to waste here discussing irrelevant details that we already know."</p><p>"It is not useless."</p><p>Mo Jinhao answered, his voice devoid of any emotion, and the room became even tenser.</p><p>"Please, stop it you two."</p><p>It was at this moment that another voice spoke up.</p><p>The voice belonged to a woman with long, glossy brown hair, and strong brows who sat on the opposite end of the Clementine. The thinness of her dress revealed her cleavage, and the fact that she was leaning against the armrest of the throne exposed her legs, which were crossed together.</p><p>"The leader is on his way, and we don't want the place to turn nasty before he arrives, do we?"</p><p>Her words had a peculiar allure to them, and as a result, both Clementine and Mo Jinhao were compelled to stop talking and take a step back in an unusual manner.</p><p>This wasn't done out of fear, but rather out of an abundance of caution. Miranda Black, another one of the elders in the Monolith Council, and &lt;SS&gt; ranker. She was also arguably the second most powerful person in the room.</p><p>Her powers didn't lay in her appearance, but rather, her formidable power which granted her the ability to control the mind of someone that was within close proximity of hers.</p><p>If caught unaware, even one of the elders of the council would find themselves brainwashed and taken control by her.</p><p>'The puppet master'</p><p>Was the nickname given to her, and she without a doubt deserved her name.</p><p>"You know what we should care about more?"</p><p>Miranda's eyes grew colder as her hand drummed against the throne's armrest. She looked around the room at the other twenty or so people before responding coldly.</p><p>"...We should think about how to deal with the little rat that slaughtered all the spies I had painstakingly raised. Do you realize how difficult it is to raise puppets of that calibre?"</p><p>The air around her started to become denser, and her hair slowly raised up.</p><p>As Miranda's hair began to twist, it began to fall in random directions across her face. The door unexpectedly opened just as she was about to say something else, and Hemlock walked straight in.</p><p>As soon as he came into view, there was a sudden and total hush that spread throughout the room, and each of the twenty senior citizens who were there bowed their heads.</p><p>None dared to raise it, apart from Mo Jinhao.</p><p>When they raised their heads again, Hemlock was already sitting on the large throne with his hand propped up on the arm chair of the throne, which caused the bottom of his chin to be elevated slightly.</p><p>"I see that all of you have already made yourself comfortable."</p><p>***</p><p>Idalism; the unrealistic aim for perfection.</p><p>The unwillingness to compromise over something for the sake of maintaining perfection, and what the Union was in Hemlock's eyes.</p><p>An idealistic organization that was unwilling to do whatever it took to save humanity.</p><p>But that was fine, there was a reason why the Monolith existed. If the Union was unwilling to take the steps necessary to save humanity, then it would be Hemlock's job to do the things that they couldn't do.</p><p>Everyone in the room felt a chill run down their spine as Hemlock's eyes icily swept across the group of approximately twenty people who were present.</p><p>The room remained silent until Hemlock took his gaze away and closed his eyes.</p><p>"Most of you already know by now what happened a little while back, during the Assembly."</p><p>As soon as those words left Hemlock's mouth, the atmosphere immediately began to become extremely tense.</p><p>No one dared to utter a single word, allowing for Hemlock to continue talking.</p><p>"Upon reflection, this was my fault. Some might say it was a mistake, but it wasn't all that bad. In fact, I had anticipated that something similar would transpire. The forces we lost are not insignificant, but with this small purge, we have managed to increase our forces' hatred for the human domain."</p><p>What Everblood had done was by no means small.</p><p>In fact, the damage that the Monolith sustained was quite heavy. Hemlock was only downplaying the damage over here, and it was a very good reason.</p><p>"Setting that topic aside, has everyone one of you had the surgery done?"</p><p>"Yes."</p><p>"Yes."</p><p>"Yes."</p><p>Everyone answered, almost unanimously.</p><p>When Hemlock saw that everyone had nodded their heads, there was a look of obvious contentment on his face. Hemlock made the decision to increase their investment in the chips after the chips were shown to be successful with test subject 876, also known as Ren Dover.</p><p>The result was a chip that was many times more powerful than the old prototype, which was currently implanted in the heads of almost all of the Monolith executives, including the lower ranked warriors.</p><p>This chip alone gave Hemlock the confidence to win the war, and it was also what made Everblood's stunt so painful because many of the soldiers who died had the chip in their heads.</p><p>"Although I do find the chip quite useful now that I have it, is it really necessary for all of us to have it implanted into us?"</p><p>A dark burly man asked. Rowan Khaalnd scratched the back of his bald head while sitting with his arms crossed and his legs spread apart. His expression conveyed a hint of dissatisfaction.</p><p>The air around him was extremely oppressive.</p><p>Hemlock gazed at him and smiled.</p><p>"Of course, shouldn't we all take advantage of every little advantage that is available to us? If someone gives you power, why refuse it?"</p><p>"..I guess."</p><p>Rowan eventually calmed down and leaned back in his chair.</p><p>Rowan stopped making a scene and just closed his eyes instead of arguing with Hemlock. This may have been because he was afraid of Hemlock and didn't want to anger him, or it may have been because he had some inkling that what Hemlock had to say had some truth to it.</p><p>No one really knew, nor were they interested in knowing.</p><p>Opening his eyes again, Rowan tried to change the topic.</p><p>"What about you, leader? Do you also have a chip?"</p><p>"Of course. Like I said, I would never refuse any power that is given to me?"</p><p>As a matter of fact, Hemlock had implanted a chip inside of his head in the same manner as the others had. His chip, on the other hand, was unique in comparison to theirs.</p><p>Given that the chip installed in 876's head was only a beta prototype, there was no self detonating function installed within it in case the subject refused to obey orders.</p><p>There was a tracking device, but that was about it.</p><p>After all the money that he had invested in the development of the chip, Hemlock had managed to get someone to install a self detonating device that would kill anyone within the vicinity of the chip.</p><p>The power that was hidden behind the detonating device was devastating, and it was something that Hemlock had secretly done in order to have a better control over the entire organization.</p><p>No one could go against him.</p><p>He wasn't an idealistic man. Hemlock had no principles, and for him, the perfect method was the one that would give him the ability to accomplish his goal.</p><p>Regarding those that developed the chip…</p><p>'It was a bit unfortunate, but it had to be done.'</p><p>Apart from him and a few other people, no one could know about this little secret of his, which would serve as a weapon of last resort.</p><p>'I hope it doesn't have to come this far…'</p><p>After all, Hemlock wasn't crazy. He definitely wasn't.</p><p>He was the future saviour of humanity.</p><p>He was someone who was going to prevent the extinction of the human race. There was no way someone like him could be crazy?</p><p>'That's right, I'm not crazy. Everyone else just isn't smart enough to understand what I'm doing. It is time that I brought them back to their senses and showed them just how cruel reality is."</p><p>Hemlock abruptly stood up and turned to face the Monolith's council members. The air around him began to rumble, and a pall of tension descended into the room, making it difficult for everyone to breathe.</p><p>Dark scales began to form around Hemlock's cheeks and arms as wings sprouted from behind him, and his demonic bloodline began to suppress that of everyone else present.</p><p> "We have four more days before the truce ends. I want everyone to get ready before then and do as originally planned. Make sure to not kill any human. Our priority is converting as many humans on our side. Not kill them." </p><p>This idealistic world that others were living in….</p><p>He was going to crush it.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-674.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-676.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

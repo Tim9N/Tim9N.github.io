@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 842 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 842 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-841.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-843.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Haa… haa…"</p><p>I could barely hold my breath at the moment. Something seared through my chest as what remained of the core crumbled from my hands and reached the floor beneath me.</p><p>Pain gulfed my entire being as I stretched my hand which was flickering in and out of existence.</p><p>The toll that the laws had taken on this body was quite large, and each second felt more agonizing than the other.</p><p>"I… haa… haa… I need to go…"</p><p>There wasn't much time left. I could tell with just a glance that my time in this body was almost up, and that it would soon shatter.</p><p>But that was fine.</p><p>There were only two remaining Pillar Masters.</p><p>Just two more…</p><p>All I needed to do was get rid of them. So long as I did, my goal was accomplished.</p><p>'No… there's still one more thing left.'</p><p>"Huuu."</p><p>I took a deep breath and closed my eyes. Indeed, there was still something else that I needed to do after getting rid of the Pillar Masters.</p><p>Something far more important, and more meaningful to me.</p><p>…and for that.</p><p>C… Crack!</p><p>A crack formed on the space in front of me as the Pillar started to shake simultaneously.</p><p>Rumble—! Rumble—!</p><p>Using all of my power, the very air inside of the Pillar started to twist, and the shaking grew more intense. At the same time, the crack in front of me started to expand, and I turned my head.</p><p>It was there that my gaze met with Ryan's. The two of us looked at each other for a couple of seconds before I nodded at him, and mouthed.</p><p>'Take care of what happens next.'</p><p>"Wh… where do you think you're going!?"</p><p>I felt something grasp at my arm just as I was about to leave. When I turned my head, I found myself staring at Emma.</p><p>Her eyes were burning with a certain something that forced me to stay rooted on the spot.</p><p>"Tell… me…"</p><p>Every word that came out of her mouth seemed to be a struggle for her. She had a pale complexion and appeared to be on the verge of passing out, but even as she was clinging to me, her bloodshot eyes were focused intently on me.</p><p>"I know you know…"</p><p>She started, her voice hoarse.</p><p>"Y…you've been keeping a lot of things from me, and while I never asked you because I respected you, and what you've been trying to do… I… I can't take it anymore. I'm losing my mind, and…" Emma ruffled her hair, her voice turning feeble, "I…I need answers. I can't take it anymore."</p><p>"…"</p><p>I stared at her without saying anything. I couldn't do it, and just as I was about to say something, she interrupted me with a question that stopped me in my tracks.</p><p>"Who… who is Kevin?"</p><p>She ruffled her hair once more.</p><p> "I… he keeps appearing inside of my head, and I… I just can't take it anymore. It feels like I know him… It feels like he should be someone important to me, but why… why can't I remember him?" </p><p>Her voice was laced with desperation, and when she looked up at me, she bit her lips until they bled.</p><p>"You know… don't you? Not only that… you also know what happened to my father, don't you? Why won't you tell me? P… Please tell me."</p><p>Rumble—! Rumble—!</p><p>In the background, the Pillar continued to shake, and everything around us was crumbling. Even so, despite everything that was happening, I continued to stare at Emma, and I eventually let out a sigh.</p><p>"Cat's out of the bag… I guess."</p><p>I didn't want to do this. Not now, and not in this situation. I wanted to tell her after everything was done and the situation wasn't precarious, but seeing the state in which she was, I knew that such an option didn't exist.</p><p>"Stay still."</p><p>When I extended my finger forward and pressed it against her brows, I could feel the strength leaving my body. But I bore through it and imparted everything that she needed to know.</p><p>'Done.'</p><p>The process didn't take too long, and I didn't linger to see her reaction. Stepping into the crack beside me, my vision blurred.</p><p>'I hope I didn't make a mistake…'</p><p>***</p><p>"Take care of what happens next?"</p><p>Those were the words that Ryan managed to interpret from Ren before he left. His mind was still in a mess, but he was somewhat able to calm himself down.</p><p>Rumble—! Rumble—!</p><p>The Pillar continued to shake, and everything around him started to crumble and fall apart.</p><p>Without saying anything, Ryan turned his head, and his gaze paused on two figures on the ground. They were Emma—who passed out shortly after Ren left—and Leopold, respectively.</p><p>Unlike Emma, the area around Leopold was covered in a pool of red. The blood had since stopped, but Ryan just couldn't bring himself to look at the scene for too long.</p><p>Boom—!</p><p>The ceiling started to fall apart, and the demons around them went into panic. Without saying much else, Ryan picked up Emma and then walked to where Leopold was.</p><p>With each step he took, his heart grew heavier.</p><p>This was… the second person he had lost whom was close to him. The pain that he once thought he wouldn't experience again started to resurface, and he brought his arm to his face, wiping away at whatever was falling.</p><p>Biting his lips, he moved next to Leopold and pressed his hand against his chest.</p><p>Bang—! Bang—!</p><p>A blue barrier formed around the three of them, and right as the shield formed, the cave's ceiling crumbled, burying the three of them together.</p><p>The world within the Pillar collapsed after that.</p><p>***</p><p>[Earth.]</p><p>"Careful, there's still a lot of demons. We may have the upper hand, but I'm not sure for how long."</p><p>Monica's face tinged with worry as she gazed at her horizon where thousands upon thousand of demons were. Alongside them were a legion of monsters that bore they fags at them.</p><p>The scene would leave anyone tingling with fear, and had the scene happened in the past, then perhaps so. Unfortunately, things were different now.</p><p>Everyone had witness the fall of several Pillars, and morale couldn't be any higher.</p><p>Clank—! Clank—!</p><p>Hues of all colours flashed across the sky as the land crumbled, and blood spilled in the air. Leading the charge were Brutus, Gervis, and Monica who left nothing but devastation in their wake.</p><p>Xiu! Xiu! Xiu! Xiu!</p><p>"Argh! It… It's the harbinger of rain!"</p><p>"The harbinger of rain!"</p><p>"Kill her!"</p><p>If there was one individual that left the greatest impact within the battlefield, it was none other than Amanda. She wasn't as strong as Gervis, Brutus, and Monica, but her every actions were met with nothing but fear.</p><p>Her arrows rained down from the sky like a storm, killing hundreds of demons at once. Her pinpoint accuracy, and power left the demons in despair, and thus a nickname was created after her.</p><p>'The harbinger of rain.'</p><p>A nickname that perfectly suited her style.</p><p>The bringer of rain…</p><p>Xiu! Xiu! Xiu! Xiu! Xiu!</p><p>"Argh!"</p><p>"Akhhh!"</p><p>"S..Stop her!"</p><p>More and more arrows continued to rain down from the sky, killing many of the weaker demons ahead. Many demons tried to attack her directly, but it was a futile effort on their end.</p><p>"Silly, you've chosen the wrong target. You're supposed to kill the one next to you."</p><p>"Ah… yes, I, I apologize."</p><p>Spurt—!</p><p>"Argh! Traitor!"</p><p>Scenes in which demons turned against their comrades started to appear within the area around Amanda as a purplish hue swept the surrounding. The source originated from Donna whose eyes glowed brightly, and her sweet voice travelled across the surroundings.</p><p>"Careful of the one behind you! He's trying to backstab you!"</p><p>"Ah!? How dare you!"</p><p>"Wh…Wha—"</p><p>Spurt—!</p><p>"You think you could get me you shitty traitor!?"</p><p>Boom—!</p><p>Donna wasn't the only one near Amanda. Pressing his foot against the ground, black threads burst from the point where the foot pressed, and shot in every direction, impaling all the demons around.</p><p>Spurt—! Spurt—!</p><p>Black blood rained down from the sky, and Jin's figure blended against the ground, reappearing on the other side of the field, dagger in hand and aimed at one of the many demons around them.</p><p>"Argh!"</p><p>Spurt—!</p><p>Removing his dagger away from the demon's back, Jin looked around him and frowned.</p><p>"There's too many, we need more backup!"</p><p>While he and Donna were doing a good job, they were still massively disadvantaged. They were only two people, and while their individual power was extremely strong, their stamina and mana wasn't infinite.</p><p>At the moment, they were really struggling.</p><p>Xiu! Xiu! Xiu! Xiu!</p><p>The same went for Amanda who didn't even have the time to wipe off the sweat that had accumulated on the side of her face.</p><p>Stretching the bowstring, she released arrow after arrow. She was like a machine, and despite the blood that was leaking from her finger, she continued to shoot.</p><p>…But just like Jin and Donna, her stamina and mana wasn't infinite. She needed breathing space, and potions weren't going to cut out for her.</p><p>'This can't go on.'</p><p>Understanding just how precarious her situation was, Amanda was about to resort to one of the trump card when all of a sudden…</p><p>Booom—!</p><p>"Amanda! You're safe!"</p><p>A thrilled voice echoed across the space as two people came rushing in Amanda's direction, killing all of the demons that were in their way. When Amanda turned her head, her expression also brightened.</p><p>"Mom, dad."</p><p>Despite seeing her parents, she was still able to keep herself relatively calm. The same couldn't be said for them as the pounced her immediately.</p><p>"You're safe… thank god… I didn't know what had happened, I just found myself in this weird world with your mom… I panicked when I saw you, thinking that something…haa… thankfully, you're safe."</p><p>Of course, the one that was the most worried was her dad who embraced her tightly. So tightly that she struggled to breathe, but thankfully, he didn't hug her for very long.</p><p>Letting go, Edward looked around before asking.</p><p>"Where is Re—"</p><p>Rumble—! Rumble—!</p><p>Not even halfway through his sentence, and a muffled explosion reverberated from the distance. The sound came from quite far, but they were still able to hear it, and soon, they witnessed one of the Pillars crumble in the distance.</p><p>"That… is that him?"</p><p>The subtle pain in her dad's voice was almost comical, but Amanda didn't have much time to pay attention to it as she once again stretched her string and shot her arrows.</p><p>Xiu!</p><p>"Yes."</p><p>She still had time to reply to them as she shot arrow after arrow.</p><p>"I see."</p><p>Nodding his head, Edward turned his attention toward the demons and monsters around them. Stretching his shoulder, he clapped his hand once.</p><p>Boom—!</p><p>A large shockwave spread across his surroundings, sending some of the demons recoiling back. Extending his hand, a large spear appeared in his hand, and the world around them started to dye in a crimson colour.</p><p>"Let me help out."</p><p>Stretching his back, he clenched the spear tightly.</p><p>"You might not know this… but there was a time I was called the Blood Prince."</p><p>Arching his back, he threw the spear with all his might.</p><p>Boom—!</p><p>A sound akin to a bomb exploding echoed out loud, and the spear shot forward at neck breaking speeds, tearing everything in its path apart. Black blood rained down on the sky, and the air around Edward twisted.</p><p>Extending his hand, a brand new spear appeared, and he once again stretched his back.</p><p>"Let's see…"</p><p>His gaze swept across the field and settled over the nearest demons. He repeated the same motion as before an the sound of an explosion echoed in the air.</p><p>Boom—!</p><p>Over a hundred demons disappeared at that point, and a new spear once again appeared in his grasp.</p><p>He grinned.</p><p>"…Looks like I'm not as rusty as I thought I was."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-841.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-843.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

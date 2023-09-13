@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 467 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 467 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-466.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-468.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank—! </p><p>Closing the door behind me and entering the apartment, I was greeted by my mother's cheerful voice. </p><p>"Welcome back you two." </p><p>"We're back." </p><p>Lowering my body, Nola hopped down on the ground. In her mouth was a small lollipop. </p><p>"Mama!" </p><p>Like the traitor that she was, she immediately run in our mother's direction. </p><p>"Oh, my sweet Nola." </p><p>Grabbing her from the armpits, my mother picked Nola up from the ground and cuddled with her. </p><p>Rubbing her cheek against Nola's, I could hear Nola's heartful giggle come from the distance. </p><p>"Are you jealous, Ren?" </p><p>My mother teasingly asked.</p><p>"Jealous?" </p><p>I shook my head and scoffed. </p><p>"I'm not jealous." </p><p>The edges of my mom's lips curled upwards. </p><p>"Aww, that's cute." </p><p>Putting Nola down, she proceeded to extend her hands in my direction. </p><p>"Come here, mama will also give you attention." </p><p>"...I'm good." </p><p>Taking off my shoes, and ignoring my mother, I proceeded to head for the living room. </p><p>Although I had my back turned on my mother, I could practically hear the sound of her heart shattering as I left.</p><p>This was a necessary evil, however. </p><p>The number of hugs and kisses that she had given me the past few days were enough to make me want to once again leave the human domain. </p><p>"Huh?" </p><p>Upon stepping into the living room, I was surprised to find a familiar figure sitting down.</p><p>Tilting my head, I spoke.</p><p>"What are you doing here?" </p><p>Tap. Tap. Tapping onto the screen of the tablet in her hand, Natasha casually glanced in my direction. </p><p>"Oh, you're back." </p><p>"...You didn't answer my question." </p><p>Sitting down on the opposite end of the sofa, I looked at Natasha with a skeptical look on my face. </p><p>Once again she ignored me. </p><p>"Aigooo, the technology has advanced so much in the fifteen years that I was asleep."</p><p>A look of frustration appeared on Natasha's face as she repeatedly tapped on the tablet in her hands. </p><p>'Looks like she is too busy trying to figure things out then to answer my question.' </p><p>After observing her for the last minute, I could more or less guess what was happening. </p><p>Ever since coming back from Issanor, Amanda had given her mother the room next to ours. </p><p>Since my mother was now no longer as busy with guild matters and Natasha had nothing else to do, they had both grown closer together. Hence why she was here. </p><p>"Freshly baked cookies coming up." </p><p>Entering the room holding onto a tray of freshly baked cookies was my mother. </p><p>The moment she entered the room, a sweet buttery scent permeated the room.</p><p>Catching a whiff of the scent, Natasha turned to look at my mother and pointed at the tablet. </p><p>"Samantha, help me out over here. How do you turn on the holographic function?" </p><p>"Oh, dear." </p><p>Putting the tray down on the table, my mother proceeded to sit down next to her. </p><p>Following her from behind was Nola who sat down on her lap. Leaning closer to Natasha, she began to explain. </p><p>"If you want to turn on the holographic function you need to press this button over here." </p><p>"This one?" </p><p>"Ye—" </p><p>Smack—!</p><p>A low-smacking sound resounded across the room. </p><p>Pointing her finger at Nola's hand which was reaching for the cookie, my mother scolded. </p><p>"No, Nola, you already had a lollipop, no more sweets for you." </p><p>"B..but.." </p><p>Taking her hand back, tears started to gather by the side of Nola's eyes.</p><p>However, Nola's tricks were futile in front of my mother. Her protests only served at making her voice sterner. </p><p>"No means no." </p><p>"...Huah!" </p><p>Before Nola could protest, a startled shout suddenly rang through the air as holographic images sprung in the air. </p><p>The one responsible for this, Natasha, jumped back in shock, almost dropping the tablet in the process. </p><p>Fortunately for her, my mother was quick to react. Extending her hand, she caught the falling tablet. </p><p>"Careful now." </p><p>She then proceeded to hand it back to Natasha. </p><p>"You should've seen this coming." </p><p>"...Thank you." </p><p>With a quick thank you, Natasha took the tablet back. Turning her head, she tried to hide her embarrassment. </p><p>Smack—!</p><p>Once again a low smacking sound resounded across the room as my mother raised her voice. </p><p>"Nola!" </p><p>Caught once again caught in the act, tears finally started to stream down Nola's cheek as she turned to look at me. </p><p>"Huaa, brother!" </p><p>"Ren, stay put." </p><p>Opening my mouth, I quickly shut it back as I suddenly felt my mother's glare. Biting my lips, I turned my head to look away from Nola. </p><p>'...Sorry, Nola. This is not someone I can defeat.'</p><p>The only thing I could do at the moment was secretly apologize inside of my mind. </p><p>"Haizz, Ren, you spoil your sister too much." </p><p>My mother's frustrated voice rang throughout the room. Hearing her words, I shook my head. </p><p>"....No, not so much." </p><p>"Oh really?" </p><p>"Yes." </p><p>Nodding my head, I gazed at her from the corner of my eyes. </p><p>"The spoiling only went as far as buying her candies. I never went overboard." </p><p>"Heh..." </p><p>My mother scoffed. </p><p>"Ren, don't think for a second that I'm a fool." </p><p>Lowering her head she pointed at the hairpin on Nola's head. </p><p>"I know just how much money you've spent on the hairpin on Nola's head." </p><p>Hearing her words, my face cringed and I turned to look at Nola. </p><p>The moment I did, I finally caught sight of Nola who was sitting on her lap with her hands and head hung low. </p><p>The look on her face reminded me of someone who had lost everything. </p><p>Their family, their friends, their homes, and everything that they held dear in their hearts. She looked like a husk of her former self. </p><p>'What a drama queen'</p><p>I thought. </p><p>Feigning ignorance to it, I tried to defend myself. </p><p>"That so-called hairpin is an automated artifact that will activate whenever Nola is in danger." </p><p>Although they were being protected 24/7 by Amanda's security, I took extra precautions to ensure Nola's safety. </p><p>The hairpin on Nola's head did in fact cost me a pretty penny, but it was a necessary purchase. </p><p>"Haaa...alright, what you said makes sense." </p><p>Letting out a sigh, my mother leaned back on the sofa. Caressing Nola's listless head, she proceeded to ask. </p><p>"By the way, do you have any plans for this week?" </p><p>"No, I'm on holiday." </p><p>"Oh? Then do you have any plans for what you're going to do on your holiday?" </p><p>Thinking for a bit, I shook my head. </p><p>"No, not yet." </p><p>Honestly, although I said that I was going on a holiday, I had zero ideas on how to do that.</p><p>For the past three years, I had been training and trying to survive every day that I had long forgotten how a holiday worked. </p><p>Kind of pathetic if I had to say. </p><p>At that moment, my mother suggested. </p><p>"Then how about you bring Nola to watch her favorite idol group? Kimbol?" </p><p>'Idol group? Kimbol?'</p><p>What in the world was that. </p><p>Before I could ask, Nola who had been listless the whole time sprang back into life as her body jerked up. </p><p>"Yeeeeaahh! Kimbol!" </p><p>Jumping down from our mother's lap, she ran up to me and clutched my leg. </p><p>Raising her head, she looked at me with a pleading look.</p><p>"...You will bring Nola, right?" </p><p>"Ugh." </p><p>Staring at Nola, My heart suddenly squeezed. Raising my head, I looked at my mother. </p><p>"Do you have any videos of this group?" </p><p>"Mhm, of course, I do." </p><p>Taking out her phone, and pressing onto the screen, my mother quickly loaded up a video of the idol group my sister loved. </p><p>"Have a look." </p><p>Pressing onto the screen of the phone, I saw five really beautiful girls dancing to the rhythm of a catchy song. </p><p>Staring at it for the next few seconds, I was left impressed by the girl's coordination and the song. </p><p>I could understand why Nola was so interested in it. </p><p>As I was watching, my mother started to speak. </p><p>"They're currently the most popular idol group out there and are quite the hot commodity around here. Going to be hard to find tickets, however, I don't think you will have a problem getting them if you pay a little extra." </p><p>I nodded at her words. </p><p>Money did speak more clearly than words. </p><p>"I don't kn—" </p><p>Just as I was about to push back the phone, my hand suddenly froze. That was because I suddenly saw Nola dancing to the rhythm of the music by the side of the table. </p><p>Lowering my head and staring at the video, I raised it again to see Nola matching the movements of the girls dancing in the video. </p><p>"We're going." </p><p>Handing the phone back to my mother, I quickly came to decision. </p><p>"Mother, you can count on me. I'm one hundred percent going there." </p><p>Even though I wasn't a big fan of idol groups, Nola's actions were enough to convince me to go. </p><p>"Will you really?" </p><p>I nodded. </p><p>Taking out my phone I proceeded to look at the prices for the show, and honestly, although they were quite expensive, they weren't something that could hurt my pockets. </p><p>"Hear that Nola? Brother will bring you to watch the concert!" </p><p>As she had been busy dancing to the music, Nola was only able to hear the news now. The moment she heard those words, her face instantly brightened. </p><p>"Waaaah!" </p><p>She quickly lunged in my direction and snuggled all over my legs. </p><p>"Thank you, brother!" </p><p>Patting her head, I replied with a smile. </p><p>"No worries. No worries." </p><p>"Mhh, now that we're at it, why don't you bring Amanda with you." </p><p>At that moment, Natasha suddenly suggested. </p><p>"Amanda?" </p><p>I tilted my head. That was quite the random suggestion. </p><p>"But isn't she busy with guild-related stuff?" </p><p>"It's exactly because of that that I am suggesting this." </p><p>Putting the tablet in her hand down, Natasha let out a tired sigh.</p><p>"Ever since coming back here, I rarely see my own daughter. All she does is work from morning till night. Just like you, she needs a break..." </p><p>Pausing, she looked at Nola. </p><p>"An while we're at it, I don't think Nola would mind, right Nola?" </p><p>Nola shook her head. </p><p>"No, Nola doesn't mind." </p><p>"Well, there you have it." </p><p>With a satisfied smile on her face, Natasha turned to look at me. </p><p>"Since Nola agreed, you won't have a problem with it, right?" </p><p>Lowering my head and staring at Nola, I nodded my head. </p><p>"...Yeah." </p><p>Actually, inviting Amanda was probably for the best. If an adult and a kid suddenly showed up for a pop show, it would just look weird.</p><p>Clapping her hands together, Natasha continued. </p><p>"That's great, the guild is nearby, how about you go visit Amanda and tell her in person. I already told her that you are on the way." </p><p>"...Alright." </p><p>Letting out a long sigh and pressing my hands on my tights, I slowly stood. </p><p>'Was planning on visiting her anyways, this works out for me.' </p><p>Mainly because Amanda was the one in charge of distributing the magic cards. Could use this chance to ask her about the progress of the situation. </p><p>As I stood up, I glanced toward Nola. </p><p>"Nola, will you come with me to see Amanda?" </p><p>"Y—" </p><p>Before she could reply, my mother quickly cut her off. </p><p>"No, Nola will stay here. It's already too late for her to go out. She needs to go to sleep." </p><p>"No!"</p><p>Nola protested. But it was all futile. Lifting her from the ground, my mother quickly restrained her. </p><p>"You're going to bed right now."</p><p>"Brother!" </p><p>"Sorry, Nola."</p><p>Once again, I could only apologize to Nola. </p><p>The mother had spoken, there was nothing else I could do about the situation. </p><p>Steeling my resolve, I turned around and left the house. </p><p>***</p><p>It was quite late in the evening and the entrance of the Demon Hunter guild was still flocking with people coming in and out of the building. </p><p>The distance between my apartment and the Demon Hunter's guild was only a ten minutes walk and thus, I was able to arrive at the entrance fairly quickly. </p><p>Entering the building through the front door, I headed for the main reception area. </p><p>The interior design of the place was fairly simple, however, it contained a strange elegance to it as the floor which was made out of marble perfectly reflected the lights coming from above. </p><p>The furniture was quite minimalistic in style, and there was a nice scent of lavender lingering in the air. </p><p>Arriving at the reception, I was greeted by a beautiful young lady. </p><p>"Hello, how may I help you?" </p><p>"Right, I've scheduled an appointment." </p><p>Tap. Tap.</p><p>The receptionist tapped on the keyboard of the computer. </p><p>"May I ask with whom?" </p><p>"Amanda Stern." </p><p>At the exact moment I said those words, the receptionist's finger paused. </p><p>After which, recollecting herself, she once again pressed on the keys of the keyboard. </p><p>"Give me a second." </p><p>Taking her hand away from the keyboard, she grabbed onto the phone that was beside her and quickly dialed a number. </p><p>The call went through in an instant. </p><p>"Yes, Miss Stern, there is someone here claiming to have made an appointment with you." </p><p>"Okay, yes, I will quickly ask." </p><p>Placing her hand over the phone, the receptionist turned to look at me. </p><p>"Sir, may I know your name?" </p><p>Casually glancing at the receptionist, a thought struck me as the edges of my lips curled upwards. I teasingly said. </p><p>"Tell her that I'm the most handsome guy she knows." </p><p>"Er..." </p><p>Caught off-guard by my sudden response, the receptionist froze on the spot. </p><p>I nudged her with my head. </p><p>"Don't worry, you won't get in trouble. Just tell her that." </p><p>"...Okay." </p><p>With a forced smile on her face, the receptionist took her hand away from the phone and did as I told her. I could read her thoughts from where I was standing. The reason she complied was because she was afraid of me being a bigshot that she couldn't offend. </p><p>"Ehmm...h-e claims to be the most ha-ndsome man you have ever seen." </p><p>Relaying the message, her voice trembled from time to time. </p><p>Just as she finished her sentence, the secretary's face squinted; clearly, she was scared of Amanda's answer. </p><p>However, contrary to her expectations she didn't get scolded as she turned to look at me with an astonished look. </p><p>"Yes, yes, okay, I will immediately bring him up." </p><p>Following this, she hung up the phone and looked at me with a look of shock. </p><p>It took her a bit to recollect herself, and when she did, she bowed her head. </p><p>"Miss Stern is waiting for you, Mr. Han Yufei." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-466.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-468.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

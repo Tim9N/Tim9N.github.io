@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 568 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 568 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-567.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-569.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"I wonder what will happen when I combine the two together."</p><p>Melissa cheerfully hummed as she mixed a couple of herbs in a small pot.</p><p>The situation would've frightened any normal person, and they would've frantically tried to find an escape from this strange planet, but…</p><p>Melissa was different.</p><p>Her attachment to earth was quite frankly nonexistent. Neither she nor her family liked each other.</p><p>Her staff didn't like her, and she didn't like them.</p><p>…maybe there were her friends there, but could she really even call them friends? Maybe? Well, it didn't matter.</p><p>At the end of the day, what Melissa cared for the most was research.</p><p>The way she presented herself made it seem as though she was troubled with all the work she was doing, which was true. There was no doubt that she was overworked, but it did not mean, however, that she disliked what she was doing.</p><p>In fact, she loved it.</p><p>Trying new things and proving her father wrong was a lifelong passion of hers that she would never trade for anything else.</p><p>Just thinking of his salty face...</p><p>"Yeah, I love research~"</p><p>The fact that she found herself on a new planet, with its new vegetation and surroundings, only served to arouse her excitement.</p><p>Thinking about all the different combinations she could make by extracting the essence of the different plants around her…</p><p>"Mhmhm~ Isn't this the best?"</p><p>Stirring the pot in front of her, Melissa's smile grew wider.</p><p>Rustle—!</p><p>The sound of rustling caught Melissa's attention. Her head snapped to the direction where the sound originated.</p><p>The space surrounding her started to distort, allowing her to get a clear sight of what lay beyond the barrier she set up.</p><p>"Who's there!?"</p><p>She raised her voice and stood up. A series of different cards and spheres appeared in her hand.</p><p>Mana circulated from out of her body, covering the area around her.</p><p>'Shit, how is it possible for my barrier to have been found out?'</p><p>It must be noted that she set up an extremely high barrier. It was something she had paid a lot of money for since she was planning to leave the human realm to collect samples of different plants.</p><p>Who would've thought it would come in so handy. In any case, Melissa's expression turned extremely solemn as she understood that for someone or something to have already seen through its camouflage, that person was extremely skilled.</p><p>"Hold on."</p><p>It was at that moment that Melissa heard a familiar voice coming from the distance as she lowered her hands a little.</p><p>Right then, Melissa was able to catch a glimpse of a familiar figure who was looking at her strangely.</p><p>"Kevin?"</p><p>Spotting the figure, Melissa immediately recognized him.</p><p>Well, it wasn't that hard. There weren't that many people as handsome as him.</p><p>Maybe Jin.</p><p>…and definitely not Ren.</p><p>Although he did seem to have become a lot more handsome than in the past.</p><p>Not that Melissa would openly admit it.</p><p>A mere thought of the faces he would make if she admitted which facts made her stomach flip.</p><p>"Melissa, let me in."</p><p>Tapping onto the barrier revolving around her, Melissa watched as ripples formed around it.</p><p>Staring at Kevin, Melissa didn't answer immediately. Instead, she squinted her eyes and carefully observed him.</p><p>"Hmm…"</p><p>"Melissa?"</p><p>The frown on Melissa's face tightened when she heard him call her name.</p><p>"What's the nickname Ren uses whenever he talks with you</p><p>"Eh?"</p><p>A confused expression spread across Kevin's face as he looked at Melissa.</p><p>"What are you doing? And what does that have to do with anything."</p><p>"It has to do with a lot."</p><p>Melissa replied as her eyes sharpened.</p><p>"…So?"</p><p>Crossing her arms together, her foot began to tap on the ground.</p><p>Currently, she was testing if the person outside was really Kevin.</p><p>In spite of her excitement about her circumstance, she was not stupid enough to invite anyone who looked like Kevin.</p><p>Her guard never went down.</p><p>"If you don't answer me within the next minute, I'll keep you out."</p><p>Melissa grew impatient as she saw Kevin's struggling expression.</p><p>"Ugh."</p><p>Letting out a groan, Kevin's face grimaced as he eventually murmured something...</p><p>"P..pushhover.."</p><p>"Huh? I didn't hear it clearly."</p><p>Placing her hand behind her ear, Melissa leaned her body forward. Her hair fell toward her right shoulder.</p><p>Staring at Melissa, Kevin clenched his fists tightly before he glared in her direction and raised his voice.</p><p>"Pushover okay? Ren's nickname for me is pushover!"</p><p>"…Sounds about right."</p><p>Confirming that he was indeed Kevin, Melissa walked toward the cabin and pressed a button. Immediately after that, the barrier around her tent quickly started to disappear and Kevin was finally able to come in.</p><p>Coming out of her tent, Melissa carefully observed Kevin.</p><p>"So? Do you have any idea about what's going on?"</p><p>This was the answer that she wanted to know the most.</p><p>Although she didn't show it externally, she was actually quite happy with the fact that there was hope for her to return to earth.</p><p>How would she rub her new discoveries to her father if she wasn't able to return?</p><p>That was her biggest grip; with the whole situation, and now that it was solved, she was a lot more relaxed.</p><p>While Melissa was in the midst of her thoughts, scratching the back of his head, Kevin apologetically looked at Melissa.</p><p>"…About that."</p><p>Taking note of Kevin's sudden strange behavior, Melissa's head snapped to face him directly.</p><p>Kevin's wryly smiled when he saw this.</p><p>"About why you suddenly found yourself here, I think this might have to do with me."</p><p>***</p><p>Bang—</p><p>While stumbling on the floor, I felt an intense pain aimed at my back.</p><p>"What do you think you're doing with all the banging on the wall."</p><p>A sinister voice echoed out as I felt a kick on my ribs area and my body flew toward the other side of the room.</p><p>Bang—</p><p>"Ukh."</p><p>Letting out a groan, I heavily gasped for air. The pain…it was excruciating.</p><p>In spite of this, as I heavily breathed for air, I made sure to breathe in a certain way.</p><p>If I was going to get beat up, I may as well do it while training.</p><p>As I felt something hard smash against the side of my head, I bitterly smiled.</p><p>'I'm truly becoming more and more of a masochist.'</p><p>Bang—!</p><p>"Khhh."</p><p>"Do you really think that we are unaware you are communicating with the person next door? "Don't worry, we'll move you both immediately."</p><p>"Akh!"</p><p>Feeling something grasp my hair, I was suddenly dragged out of my room.</p><p>Although I kept my eyes closed, I still felt a burning sensation in my eyes as I was pulled by my hair out of the room.</p><p>It was painful, but compared to what I had experienced in the past, it wasn't anything worth complaining about as I was soon thrown back into a different room.</p><p>Thud—</p><p>I smashed against the hard ground.</p><p>"Be obedient and stay over here. If I see you pull any shit like that again, I'll kill you."</p><p>There was an echoing sound of rock grating coming from the hallway, and the doors immediately closed.</p><p>The most important thing was that the darkness returned and my eyes were once again opened.</p><p>Tears slowly fell on my cheeks. The sudden contact with the light had truly messed up my eyes.</p><p>In any case, this sudden scenario confirmed one thing for me.</p><p>"The person trapping me and Jin are demons."</p><p>Despite having my eyes closed the entire time and not looking at them directly, I could tell this much from two things.</p><p>The sharp nails I felt at the back of my head, and the fact that the person handling me was talking using demonic language.</p><p>The langue demons used.</p><p>Considering how important it was, it was only natural that I learned it and it was also thanks to this that I was able to live in the arena back in the demon world.</p><p>"Huuu…"</p><p>Taking a deep breath, I pressed my hand against the side of my ribs.</p><p>"Although I didn't think they would be this rough, I already knew that this was going to happen."</p><p>In any case, Jin and I knew that the people who had trapped us would soon make a move after all the noise that we were making.</p><p>Thankfully, it went all according to our calculations.</p><p>"…and now we wait."</p><p>Taking another deep breath, I started to repeat the breathing exercise that I memorized from Han Yufei.</p><p>***</p><p>Outside a room blocked by a small black door, a demon gazed toward the distance.</p><p>"Have you sorted him, Exilion?"</p><p>"I have."</p><p>Walking over to the other demon, a scowl spread across the face of the demon known as Exilion.</p><p>He, along with the other demon, Impedius, was in charge of guarding the rooms.</p><p>"Did he put any resistance?"</p><p>Impedius asked as he looked at Exilion.</p><p>"No."</p><p>Exilion shook his head in disappointment.</p><p>"It turns out he's a much tougher nut than I thought. It didn't matter how much I kicked or beat him, he didn't seem to respond."</p><p>"Same went for me"</p><p>Impedius said with evident disappointment in his voice.</p><p>When he recalled how barely he reacted when he dragged the human out of the room by his hair, he could only be disappointed.</p><p>Shaking his head, he raised his head to stare at Exilion.</p><p>"Has the leader contacted you yet?"</p><p>"No."</p><p>Exilion shook his head.</p><p>"They still don't know how humans got on this planet, but for now they said to treat them like any other laborer. Before they are sent to a labor camp, break their minds and make them obedient."</p><p>"Understood."</p><p> With a nod of his head, Impedius turned to stare at two different rooms in the distance.</p><p>Out of curiosity, he asked.</p><p>"How are the other three other humans fairing?"</p><p>Turning his head to also look in that direction, Exilion thought for a moment before replying.</p><p>"Two of them are doing fine, but the other human seems to be on the verge of death."</p><p>"Verge of death?"</p><p>"He may last a little longer, but I don't know. Unlike the others, he can't seem to get out of the paralysis."</p><p>Focusing his attention toward the far end, where a room sat, Impedius cracked a smile.</p><p>"Just as rumors said. Humans are fun creatures to break..."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-567.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-569.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

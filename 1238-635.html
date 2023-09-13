@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 635 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 635 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-634.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-636.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang—!</p><p>Sparks flew through the air as Hein easily deflected the demon's attack with his shield. He then brought the shield near his shoulder and smashed his body against the demon, sending it tumbling toward the ground.</p><p>"Haaa!"</p><p>[Iron lance]</p><p>After delivering the initial blow, he followed it up by penetrating the demon with his extended hand, which had a thin gray hue extending forward in the form of a pointy spear.</p><p>Spurt—!</p><p>Black blood spilled all over Hein's body in the process, dying his clothes and shield a black color.</p><p>His hand continued to penetrate deeply into the demon's body until finally coming to a stop when he felt something hard.</p><p>Exerting a little more force, a glass shattering sound echoed.</p><p>Crash—!</p><p>'Thank god I'm no longer in my old phase.'</p><p>His mouth twitched when he saw the state his shield was in. It was completely dyed in black.</p><p>Had it been the past him, he would've immediately freaked out at the thought of his shield getting dirty, but it no longer bothered him as much. It still did...but just not as much as it did in the past.</p><p>"Haaa...haaa.."</p><p>'This is tiring.'</p><p>Hein's breathing was rough.</p><p>He had slain so many demons that he had lost count, and as he lifted his head to look ahead, he groaned audibly.</p><p>"Just how many are there?"</p><p>...The number seemed endless.</p><p>"Hein, pay attention!"</p><p>He was suddenly startled by the sudden sound of Leopold's voice coming from behind him.</p><p>Suddenly, an energy blast shot past his cheek and exploded a couple of meters in front of him where a demon was standing.</p><p>Boom—!</p><p>Hein turned to look back.</p><p>"Thanks."</p><p>"Don't lose focus in the middle of battle."</p><p>Ava approached him from behind. She was currently sitting on a large gray wolf.</p><p>The wolf was about double Hein's height, towering over most of the orcs on the battlefield. There was also an intimidating presence exuding from its body, alerting the many demons around them.</p><p>Seeing her approaching, Hein instinctively slammed his shield towards his right side, resulting in the instantaneous death of a demon that tried to sneak up on him.</p><p>"Alright, alright."</p><p>Hein nodded his head dismissively.</p><p>A few seconds later, he stepped on the dead demon's body, destroying its core directly.</p><p>"I was just thinking about how long we'll have to fight. From the looks of things, we'll still be fighting demons for a long time."</p><p>"You're not wrong."</p><p>Leopold commented from the side as he rested his shotgun on his shoulder. With his free hand, he cut a demon's body in half.</p><p>"...But you don't have to worry too much."</p><p>He pointed toward the distance.</p><p>"The war is going to end a lot sooner than you think."</p><p>Booom—!</p><p>As soon as he finished speaking, the ground began violently shaking, and Hein could hear the agonized cries of the demons off in the distance. When he turned his head to look at what was going on, he was astounded to see the orc chief slashing his axe through more than a dozen demons.</p><p>In every place where his axe cut, demon parts fell and black rain began to fall.</p><p>"Wow."</p><p>Hein muttered in amazement.</p><p>The ferocious and imposing manner in which he dispatched the demons as though he were trimming some weed left a deep impression in Hein's mind.</p><p>"Who is he?"</p><p>Lian's voice echoed beside him at the moment.</p><p>"That over there is an orc, Liam. He is currently fighting against demons. "</p><p>Hein explained when he realized that Liam was standing next to him. He made sure to sound as comprehensible as possible.</p><p>"..."</p><p>Liam looked at him with a look filled with disgust.</p><p>"What's with that look? ...Don't tell me that you've forgotten about orcs and demons. "</p><p>"Who are you again?"</p><p>"..."</p><p>It was Hein's turn to go silent.</p><p>"You know, I th—"</p><p>Just as he was about to say something back, Leopold's energy beam once again brushed past his cheek, killing a demon behind him.</p><p>Booom!</p><p>Hein glared at Leopold.</p><p>"Can you not do that?"</p><p>"Then pay more attention to your surroundings."</p><p>Leopold shrugged his shoulders.</p><p>"Guys focus, let's finish this quickly. I want to go back and get changed."</p><p>Ava's voice echoed, and a large shadow fell across everyone's faces as her wolf leaped forward and bit into a couple of demons.</p><p>"Fighting while holding back is boring, so let's finish this as fast as possible."</p><p>She disappeared into the distance after that.</p><p>Taking a look at the others beside him, Hein rushed in the direction of where she went.</p><p>"Hey wait for me! You're supposed to stay behind me. I'm a tank for a reason!"</p><p>***</p><p>I felt Randur's gaze pause on me as I surveyed the battlefield from the top of the castle.</p><p>"Is the orc going to be alright with all the modifications you are going to make to the castle?"</p><p>"It should be fine."</p><p>I reassured him.</p><p>"It won't matter. Since it will help out with the war, I'm sure he's going to be fine with it."</p><p>The changes that I was going to bring to the castle would not only benefit me but Silug as well. Not only that but after having saved his life not too long ago, there was no way Silug would disagree with what I was doing.</p><p>'He might be surprised initially by the appearance of the dwarves, but I'm sure he's going to be understanding.'</p><p>"Well, if you say so. How do you want us to modify the castle? "</p><p>"For now, I want you guys to focus on making the mana chamber."</p><p>My priority at the moment was breaking through to &lt;SS-&gt; rank. Although I was uncertain, I had a feeling that the stronger I became, the harder it would be for the other me to take over my body.</p><p>Having said that, given his original strength, I was beginning to wonder if my efforts had been in vain.</p><p>After some consideration, I realized that the only way for me to escape the influence of my other self was to reach a level comparable to his. Although I wasn't sure what his true strength was, I knew it wasn't something I couldn't attain in the span of two years.</p><p>...It was simply impossible.</p><p>'Still, I can't just give up.'</p><p>Even if one day he might end up taking over, I didn't want to have any regrets.</p><p>By the time my life reached an end, I wanted to at least accomplish everything that I had set out to do...or lay a foundation for that.</p><p>Just like my plan with Immorra.</p><p>"After you're done setting up the mana chamber, I want you to help me set up some defensive measures for when the next wave comes."</p><p>"What about after the war?"</p><p>Jomnuk walked over to us.</p><p>Peering down the castle which sat atop a large hill, I thought for a moment before replying.</p><p>"There's a lot of things that I want to get done here after the war is done. By the time you two return and sort out the problems with Inferno, how about sending more dwarves here to help me set up a city?"</p><p>"A city?"</p><p>Both Randur and Jomnuk looked at me with surprised looks.</p><p>I silently nodded my head.</p><p>"I'm going to contact the elven queen not long after the war ends, and also have her help me out with this project. The end goal is to turn this planet into a trump card for when the third cataclysm arrives. "</p><p> My ambitions for this planet were big.</p><p>Very big.</p><p>I had initially just wanted to turn this planet into one where I would have the orcs slowly raise an army for when the third cataclysm arrived, but I realized that this planet had a lot more potential than that.</p><p>It had the potential to become a trump card that could turn things around during the third cataclysm if used correctly.</p><p>Not only would it also bring me an endless source of income, but it would also allow me to build a better relationship with the other races...</p><p>The more I thought about it, the more excited I became.</p><p>"Your plan sounds great and all, but how can you make sure that the information about this planet does not get leaked?"</p><p>Pouring cold water on my ambitions was Randur.</p><p>I sighed out loud when I heard his words.</p><p>"...That's what I'm trying to figure out at the moment."</p><p>Jezebeth could destroy this planet with just a swipe of his hand if he came to know about its existence. For my ambition to be fulfilled, I needed to be extremely careful.</p><p>Careful enough to not allow any information about this planet to leak to him.</p><p>"We should first start by setting up a large barrier that blocks all sort of information with the outside word. One that is similar to the one in Henlour."</p><p>Jomnuk suddenly suggested</p><p>I turned my head to look at him.</p><p>"Is that possible?"</p><p>"It is."</p><p>He nodded his head and added.</p><p>"It will cost a bit, but it won't be a problem for you since we'd also benefit quite a lot by establishing a city over here. This way, we can process all the ores here instead of back in Henlour. It will drastically reduce the chances of us getting discovered as well."</p><p>"Yeah."</p><p>I agreed with what he said.</p><p>If they were to process the ores back in Henlour, the spies from Inferno would without a doubt notice something odd, compromising the whole situation.</p><p>"The only problem I see with the idea is the mana problem. Even if you manage to destroy the compressor that is pumping demonic energy into the air, this planet has barely any mana in it. Mana chambers only work in small rooms, and trying to fill a whole city with mana isn't feasible..."</p><p>"It's fine."</p><p>I waved my hand.</p><p>"The city doesn't need to be filled with mana. A couple of mana chambers will do. This place will mainly be a place where the orcs can build their forces while you guys develop technology and mine for the ores."</p><p>With this planet's main source of energy being aura, I knew that it was impossible for me to use this place to train for a long extended period of time.</p><p>It sucked since the time flow difference would be of big help for me, but as they all said; Beggars can't be choosers.</p><p>"Alright, Jomnuk and I will start working on the framework of the city. We'll get back to you soon."</p><p>Randur tapped me in the thigh. Well, at least that area...</p><p>Laughing out loud, he waved his hand.</p><p>"We'll be going back now, I'll let you know if we need anything."</p><p>"..yeah."</p><p>My head shook when I saw Randur leave while laughing.</p><p>'At this point, I'm not even surprised.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-634.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-636.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

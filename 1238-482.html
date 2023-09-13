@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 482 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 482 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-481.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-483.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Nothing."</p><p>Despite having looked through the footage for the whole night, I saw nothing.</p><p>Even with Ryan's and Smallsnake's help, there was nothing in the footage that suggested that Professor Thomas was involved with anything.</p><p>"Haaa..."</p><p>"Am I really overthinking things? ...Or am I purposely being misled?'</p><p>Even though I had already taken this possibility into account a long time ago, the fact that this was all part of the plan of the other entity inside of my body never slipped away from my mind.</p><p>It was exactly because of this that I was being so paranoid.</p><p>If professor Thomas was a spy from the Monolith, then I would've not cared the least bit.</p><p>However, if this was something that 'he' had planned, then things were different.</p><p>Gulp—!</p><p>Taking another shot of the potion, my mind started to calm down.</p><p>'Honestly, at this point, the best option would be for me to get rid of him even if he's innocent. Even though it's unfair, this is the only thing I can do to calm my mind. Worst case, I can just give him enough money to live comfortably for his whole life.'</p><p>Couldn't take any more risks.</p><p>Letting out a long breath, I dragged my body to class.</p><p>'Let's me observe for a couple of days before coming up with a decision.'</p><p>Stopping right before the door of the classroom, I fixed my clothes and glasses.</p><p>Then, once I made sure that everything was fixed, I proceeded to enter the classroom.</p><p>Clank—!</p><p>Upon entering the classroom, I found that I was actually the last one to arrive.</p><p>Instantly the eyes of everyone present landed on me. Not minding the stares, and nodding once, I decided to sit down at the front of the classroom.</p><p>I actually didn't need to attend the lecture, however, I still decided to attend because of my paranoia.</p><p>"One's mana flow may be disjointed from the flow in the air, and as such…"</p><p>At the front of the classroom, the professor continued on with his lecture. Yet again, his lecture was filled with nonsense that I couldn't comprehend.</p><p>I wasn't the only one that felt this way as the students near me had bored looks on their faces. Glancing at them from the corner of my eyes, I couldn't help but laugh a bit.</p><p>'Kind of remind me of the time back then at the Lock.'</p><p>Back then, when I still thought that this world was still a novel, and knew nothing about current world affairs, I would also behave like them.</p><p>It felt kind of nostalgic.</p><p>"Huaaam…"</p><p>I let out a soft yawn.</p><p>Before I knew it, my eyes started to become heavier.</p><p>Was it perhaps because of the boring lecture or because I hadn't been sleeping properly for the past two days?...but slowly, my eyes started to close, and it wasn't long before my consciousness slipped.</p><p>*</p><p>"What in the world are you doing Sophia?"</p><p>"Shush, you'll wake him up. Move back a little. I haven't positioned myself well."</p><p>"Is this far enough?"</p><p>"Yeah, yeah, perfect. Lower your body a little. Get the lighting right."</p><p>"Ugh, why is this so complicated? The previous ten photos looked fine to me."</p><p>"Just shut up and do it."</p><p>'What's going on?'</p><p>Hearing a set of voices near me, my mind gradually cleared up and I slowly opened my eyes.</p><p>"Huh?"</p><p>Click—!</p><p>At the exact moment I opened my eyes, I heard a small clicking sound. Blinking my eyes a couple of times, much to my surprise, I found Sophia standing a couple of inches away from me with two of her fingers up in a peace sign.</p><p>Opposite her was Maria who held a phone in her hand.</p><p>Once my mind cleared up completely, my brows furrowed.</p><p>"What are you two doing?"</p><p>"Kya!"</p><p>Sophia jumped up in fright as she dashed behind Maria. Peeking from behind Maria, Sophia stuttered a little.</p><p>"Y…you're awake."</p><p>"You think?"</p><p>Raising my head and glancing around the classroom, I checked the time.</p><p>[9:32 A.M]</p><p>"It's already this late?"</p><p>'Did I sleep throughout the whole class?'</p><p>It was only after I checked the time that I finally realized that class had ended not too long ago.</p><p>Standing up from my seat, I grabbed onto my glasses and put them back on.</p><p>"Are you going to leave now?"</p><p>Sophia cautiously asked.</p><p>Glancing at her for a brief moment, I turned my gaze in the direction of the other seats and slowly nodded my head.</p><p>"Yeah."</p><p>At the moment the whole class was still full, as they still had another lecture going soon.</p><p>However, there were still ten minutes before that lecture started so I was okay for now.</p><p>"E…excuse me."</p><p>Just as I was about to leave, I felt a slight tug on my shirt.</p><p>Turning my head, I was surprised to find the student from yesterday's incident looking at me. Ricard Mainz.</p><p>Recalling the conversation he had with Thomas yesterday, a smile appeared on my face.</p><p>"How can I hel—"</p><p>"I'm sorry!"</p><p>Before I could finish my sentence, lowering his body, Ricardo suddenly apologized at the top of his lungs, attracting the attention of everyone in the room.</p><p>"..."</p><p>For a brief moment, I was unsure of how to react.</p><p>'What's going on?'</p><p>My slight hesitation proved to have given Ricardo the wrong message as his body started to tremble.</p><p>Bang—!</p><p>Getting down on his knees, he banged his head on the ground and screamed even more loudly.</p><p>"I'm sorry! I'm sorry! I'm sorry! Please don't kill me! I swear it was just an accident!"</p><p>"...What?"</p><p>Feeling the gazes of everyone in the class directed in my direction and leaning my body forward, I grabbed him by the arm and stopped him from banging his head on the ground.</p><p>"Oy, what is up with you? Snapped out of it. I won't kill you."</p><p>"Hiiii! I'm sorry! I'm sorry."</p><p>Despite my attempts at understanding where his fear was coming from, I found Ricardo's face bleach more and more.</p><p>Seeing that the situation was turning out for the worst, I quickly came up with a solution.</p><p>"Hold still."</p><p>Grabbing him by the back of his hair, I pulled his head up and took out a small potion from my dimensional space.</p><p>"Huuuua!"</p><p>Ignoring his screams, I uncapped the potion and chugged it down his throat.</p><p>"Shut up and drink it."</p><p>The effects of the potion were almost instantaneous.</p><p>Almost immediately after he injested the potion his body stopped shivering and he started to calm down.</p><p>Once I saw this, I finally let go of his hair and he slumped back on the chair.</p><p>Silence enshrouded the room. Ignoring it, I lowered my head and stared at Ricardo from beneath my glasses.</p><p>"Have you finally calmed down?" I asked.</p><p>"Haa...haa..."</p><p>However, I was only met with the sound of his heavy breathing.</p><p>Just as I was about to speak to him again, a familiar voice rang from behind me.</p><p>"What's going on here?"</p><p>Having spent the whole night spying on him, I was immediately able to recognize the person.</p><p>I took a step to the side.</p><p>"Professor."</p><p>"Did something happen?"</p><p>With a slight nod, Professor Thomas walked headed in my direction. His eyes soon paused on Ricardo.</p><p>"What do we have here?"</p><p>Lowering his body, his voice became soft.</p><p>"Ricardo, is everything alright?"</p><p>At Professor Thomas's words, Ricardo's head twitched a little. Then, weakly lowering his head, his eyes paused on the professor.</p><p>"Ah...eh, professor?"</p><p>"Yes, yes, it's me."</p><p>Professor Thomas said with a smile on his face.</p><p>"Is everything alright?"</p><p>Raising his head, my eyes once again met with Ricardo's. After a while, he nodded his head.</p><p>"Ah...yes."</p><p>"I see. That's good."</p><p>Standing up, Professor Thomas patted him on the shoulder.</p><p>"You probably didn't get much sleep yesterday, did you? After everything that happened, right?"</p><p>"...Th..that's right."</p><p>Ricardo weakly nodded his head.</p><p>Professor Thomas turned his head to glance in my direction. Extending his hand, he passed me a small folder.</p><p>"Assistant, I'll go bring Thomas to the infirmary. Can you do me a favor? Go to my office and put these on my top shelf. I probably won't return to my office, so it's best if you do it for me."</p><p>"...Okay."</p><p>Taking the folder, my eyes began to squint a little.</p><p>Supporting Ricardo by the bottom of his armpit, professor Thomas slowly helped him up. Just as he was about to leave, he suddenly paused and turned to look at me.</p><p>"You know the password to my office, right?"</p><p>"...No."</p><p>I shook my head.</p><p>"Ah."</p><p>Leaning his body closer a bit, he softly whispered.</p><p>"The code is 091."</p><p>'091?'</p><p>My brows knit.</p><p>The numbers sounded oddly familiar. However, I couldn't quite remember where I had heard of them.</p><p> "Do you remember the password?" </p><p>It was then that Professor Thomas's voice rang, and I snapped out of my thoughts. Staring in his direction, I slowly nodded my head.</p><p>"Yes, I know."</p><p>"That's good."</p><p>Turning around, professor Thomas lowly helped Ricardo out of the room.</p><p>"Be careful of your step."</p><p>"...Yes "</p><p>Staring at the two from behind, my eyes began to squint tightly.</p><p>***</p><p>At the same time, Han Clan.</p><p>Gathered inside a large hall were the respective members of the Han clan.</p><p>"Thank you all for coming here."</p><p>Standing in the middle of the hall was none other than Han Yufei. The current heir of the Han clan.</p><p>"Why have you called us here? Xiao Fei."</p><p>Seated amongst the seats was an elderly man with a long white beard. He was Han Ding Hui and he was the Grand Elder of the clan. There was kindness in his eyes as he stared at Han Yufei in the middle of the hall.</p><p>"Grand Elder, thank you for taking your time to meet me."</p><p>Han Yufei cupped his hands.</p><p>"No, problem, no problem."</p><p>Han Dinghui dismissively waved his hands. He was very happy with this nephew of his. He wouldn't mind taking some time to listen to whatever he had to say.</p><p>"Don't waste any more time. Tell us what you want."</p><p>It was then that a grumpy voice suddenly sounded from one of the elder seats. The voice belonged to Han Chen Yu. A fairly high-ranked elder.</p><p>Hearing his voice, another elder beside him nodded his head.</p><p>"We don't have all day, so get on with it."</p><p>"Yes."</p><p>Sensing the impatience in the elder's voice, Han Yufei smiled. He immediately went straight to the point.</p><p>"I would like to relieve myself of my duties as an heir for the next five years."</p><p>"..."</p><p>At the exact moment his words faded, the hall became deathly silent as no one dared to utter a single word.</p><p>Before anyone could blow their tops off, Han Yufei wisely continued.</p><p>"I believe that I have found the best opportunity for me to grow and I don't want to let go of this opportunity."</p><p>Raising his hand to stop anyone from voicing their objections, Han Yu Fei continued.</p><p>"I know what you are going to say, however, no, I don't believe that the clan can provide the same level of training. This may be a gamble that I'm taking, but I believe that if it pays off, the Han clan can emerge at the top amongst the four clans."</p><p>As he spoke, his eyes darted all over the room. From time to time, his eyes would stop on an elder.</p><p>"I want you all to trust me. If you give me this chance, I will not let you down."</p><p>Finally finished with what he wanted to say, Han Yu Fei looked at everyone in the hall and cupped his hands.</p><p>"Once again, please allow me to do this."</p><p>Right as his words faded, several elders stood up from their seats.</p><p>"This cann—"</p><p>"This is non—"</p><p>"Absolu—"</p><p>"Quiet!"</p><p>Before they could even finish their sentence, a booming voice echoed throughout the whole hall, shutting them up instantly.</p><p>Staring in the direction of the person that had spoken and seeing that it was none other than Han Dinghui, everyone stopped talking.</p><p>Once the hall quieted down, Han Dinghui sternly looked at Han Yufei.</p><p>"Your words, do you truly believe them?" Han Dinghui asked.</p><p>"Yes."</p><p>Han Yufei replied while raising his head and meeting the Grand Elder's eyes.</p><p>For a brief moment of time, time seemed to have stopped moving for Han Yufei as his gaze met with the Grand Elders.</p><p>However, as he thought back at Ren's fight, back at the conference, Han Yufei's teeth clenched and he continued to look at the Grand Elders' eyes.</p><p>'I want to be strong like him.' He thought.</p><p>Just the image of Ren beating the orc and Kevin so effortlessly ignited Han Yufei's spirit.</p><p>'Since you said that you can make me stronger, I will gamble on you.'</p><p>Han Yufei's and the Grand Elder's stare down persisted for a while before a soft smile appeared on Han Dinghui's face.</p><p>"Very well."</p><p>He eventually said. Closing his eyes, he started to caress his beard.</p><p>"You are still young. I won't stop you. With your talent, even if these five years end up being a waste, you should have no problem reaching the full potential of your talent."</p><p>Pausing for a second, he once again locked eyes with Han Yufei. His eyes became more serious.</p><p>"I may be allowing this, however, I hope you keep in mind that the clan's interest always comes first."</p><p>"Yes."</p><p>Han Yufei's back straightened.</p><p>"Good."</p><p>Han Dinghui let out a satisfied smile. Raising his hand to stop the others from speaking, he once again looked at Han Yufei.</p><p>"Is there anything else that you would like to say?"</p><p>"...Yes."</p><p>Scratching the back of his head, Han Yufei's tongue stuck out from his mouth a little. Swallowing a mouthful of saliva and staring at the Grand Elder once more, he softly said.</p><p>"I would like permission to give away the family art to one person."</p><p>Although his voice was soft, it powerfully rang through the ears of each of the elders present, and everyone's faces simultaneously froze.</p><p>"Wh..what?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-481.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-483.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

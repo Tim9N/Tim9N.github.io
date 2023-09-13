@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 782 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 782 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-781.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-783.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Planet Idoania.]</p><p>'What's going on?'</p><p>Angelica was completely taken aback as she looked at the flock of pink hair that was in front of her.</p><p>The moment they came into view, the entire battleground came to a complete stop, and several of the dwarves that had been surrounding her suddenly fell to the ground.</p><p>Once Angelica was able to get a better glimpse of the figure that had come to rescue her, she was stunned to see a demoness with a beauty unlike any other.</p><p>Her crimson eyes gave off a mystifying pink glow, and wherever her gaze fell, the dwarves would stop moving suddenly and slam into the ground.</p><p>Almost as if they had suddenly fallen asleep.</p><p>It… It was a one sided slaughter.</p><p>'Who is she?'</p><p>Angelica was astonished by the demoness's appearance, as she had previously believed she was doomed.</p><p>With all those dwarves surrounding her, she was truly helpless, and yet, just when she was about to die, a demoness she didn't know came to her rescue.</p><p>"What are you doing? Are you not going to help me?"</p><p>Angelica was jolted awake by a pearly and sweet voice, and when she looked up, she saw the demoness glaring at her with a look that was unbefitting of her voice.</p><p>She looked like those gangsters she saw on TV back on earth.</p><p>'This… is this how she normally is?'</p><p>Angelica was somewhat perplexed by her behavior, but through it all, she managed to nod her head. After taking a step forward, her wings spread out, and she flew closer to her.</p><p>Her eyes started to shine as well, and her voice amplified.</p><p>"Stop moving for a second."</p><p>As was the case previously, the dwarves in the area stopped moving the moment Angelica's voice rang out.</p><p>And it was only for a split second, but that was enough for the pink-haired demoness who took advantage of that opening to take out a single rapier from her storage space and cut it horizontally.</p><p>Clank! Clank! Clank!</p><p>Sparks flew, and cracks formed on the dwarven armor. Several of them flew back and crashed against the ground, tearing apart the land and trees beneath them.</p><p>"Tsk."</p><p>When the pink-haired demon realized that her attack hadn't completely eliminated the targets, she made a clicking sound with her tongue and turned her attention to Angelica.</p><p>"Hey, you."</p><p> She called out, her voice sounding rather irritated.</p><p>Angelica pursed her lips when she felt her gaze pause over her.</p><p>She didn't show any outward signs of her anxiety and instead calmly looked back at her, despite the fact that she was feeling quite anxious for some reason, most likely because of the disparity in the strength of their abilities.</p><p>"Yes?"</p><p>The pink haired demoness frowned at her calmness, but her brows soon relaxed.</p><p>She began talking after taking a look at her surroundings and determining that there was still some time left before the dwarves launched their next assault.</p><p>"It looks like the strategist's words were right."</p><p>"Strategist?"</p><p>Her words immediately caught Angelica's attention.</p><p>'Why did she mention the strategist? Was he the one that sent her here? …Or is there something that I don't know going on?'</p><p>Overhearing her words, the pink-haired demoness looked at her.</p><p>"Right, you don't know."</p><p>"Right, you don't know," Priscilla said, flocking her hair to the side but keeping quiet. Angelica's interest was piqued even more, and she pursed her lips again.</p><p>'Why isn't she saying anything? …Is there truly something that I'm unaware of?'</p><p>It certainly appeared to be the case based on her response. She had just gotten to the point where she was about to say something when she was cut off.</p><p>"Don't look at me like that, I won't tell you anything. You can figure it out later."</p><p>"…"</p><p>Angelica was forced to keep quiet after realizing that she had read her thoughts. She could only keep them to herself.</p><p>It seemed as though she was adamant about not saying anything, so she refrained from testing her luck.</p><p>The pinked hair demoness seemed to appreciate this gesture as she smiled.</p><p>"By the way…"</p><p>She turned her head to look at the dwarves who were approaching from behind her, and she used her thumb to point in their direction.</p><p>"Should we do something about them?"</p><p>"Ah, yes."</p><p>Angelica nodded her head, her mind clearing up from the previous thoughts.</p><p>A smile formed on the pink-haired demoness.</p><p>"Prisicilla."</p><p>"Excuse me?"</p><p>"My name…"</p><p>The pink haired demoness turned her head to look at Angelica.</p><p>"…My name is Priscilla."</p><p>***</p><p>"Provide me with a comprehensive update of the current situation," commanded a deep voice from within the tent. The assembled demons immediately raised their heads and rushed to present several parchments of paper to the strategist, who calmly perused the contents.</p><p>"S,strategist."</p><p>One of the demons approached, stuttering. Bending down on one knee, he passed the parchment with both hands.</p><p>"Please have a look."</p><p>"Hm."</p><p>A hand moved forward and grasped the parchment.</p><p>Placing it over the desk in front of him, the strategist looked through it, his green eyes calmly scanning through the contents of the parchment.</p><p>Though concealed, the demons sensed a smile from the strategist, whose subsequent words revealed satisfaction with the progress made.</p><p>"Good. It looks like things are progressing as I've anticipated."</p><p>"Ah, yes," a demon started flattering, "it was a genius move to use the Lust clan as bait to lure the dwarves. With those little bastards being the perfect counter for them, they would've obviously targeted them. Having the Sloth Clan wait in ambush was a great idea. With that, we managed to deal a devastating blow to the dwarven forces."</p><p>"Mhm."</p><p>The strategist calmly nodded his head.</p><p>He didn't pay much attention to the demon's words. All he did was repeat stuff he already knew. Rather, he found it to be quite annoying.</p><p>Sort of reminded him of a certain kid he knew in the past.</p><p>He was a lot smarter than the demon next to him, though.</p><p>"How is the situation with the elven forces?"</p><p>"Like you've suggested, the Clan of Envy and Pride is handling that matter. They seem to be on the brink of winning."</p><p>Another demon answered.</p><p>He was an older looking one, and unlike the other demons, he didn't try to flatter the strategist.</p><p>Walking up toward the strategist, he placed his long and skinny finger over the parchment and mumbled.</p><p>"The Orcs are also not doing any better, with the three remaining clans taking care of them. From my conservative estimates, the war should be over within the next week or month."</p><p>"I think so too."</p><p>The strategist nodded his head in agreement.</p><p>The war.</p><p>It was as good as over.</p><p>The demon forces were simply far too overwhelming for them to handle and more than a war, it was more of a slaughter.</p><p>The strategist's brows furrowed when he thought thus far, and his eyes trembled. Even so, he forced himself to keep composed.</p><p>"Have you reminded our forces not to kill if they surrender?"</p><p>He turned his head to look at the elderly looking demon.</p><p>"We need to replenish the forces that we've lost."</p><p>"Don't worry about that."</p><p>The elderly looking demon smiled.</p><p>"We're not that stupid. Everyone who is willing to surrender will be taken in and forced to sign a contract with us. We've already recruited tens of thousands by now."</p><p>"That's… good."</p><p>The strategist nodded his head once more.</p><p>His voice faltered a little, but it was barely noticeable.</p><p>"You don't seem pleased by the news?"</p><p>"Huh?!"</p><p>Just then, a voice whispered inside the tent, startling everyone present.</p><p>The strategist's head hastily turned toward the direction where the voice came from, and immediately after, he heard loud thumping sounds resound throughout the tent.</p><p>Thump! Thump! Thump!</p><p>"These lowly subjects greet your majesty, the Demon King."</p><p>Jezebeth paid no mind to the demons and kept his gaze focused on the strategist. He had a knowing smile on his face.</p><p>"What? You also don't seem too pleased to see me…"</p><p>"You think?"</p><p>Rather than being cordial and respectful like the other demons, the strategist merely rolled his eyes and turned his gaze away from Jezebeth. Witnessing the scene, the demons within the room didn't dare breathe and hastily lowered their heads.</p><p>They were scared out of their wits at the moment. How could the strategist behave like this in front of his majesty!?</p><p>Was he trying to die or something?</p><p>Yet… Contrary to their expectations, Jezebeth showed no signs of anger and calmly moved toward one of the seats inside the tents.</p><p>With his arms over his thighs, he sat down on one of the chairs and let out a long breath. When he felt everyone's eyes pause on him, he waved his hand dismissively.</p><p>"Carry on with what you're doing. I'm just taking a break."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-781.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-783.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

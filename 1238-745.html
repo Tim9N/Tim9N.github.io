@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 745 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 745 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-744.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-746.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The Fallen Angel, Wing? Whatever the guild's name was―it was the same as the Demon Hunter Guild in terms of layout. I felt at home the moment that I entered the guild, baffling Edward.</p><p>In the lower grounds of the Guild.</p><p>"Wake up, you've had enough sleep."</p><p>I pressed my hand against Octavious's head and channeled my mana into him. He was currently bound on a chair opposite me, and his body jerked the moment my mana entered his body.</p><p>"Huh? …w,where am I?"</p><p>He looked around in confusion before his eyes settled over me.</p><p>"It's you."</p><p>Somehow he was able to recognize me in an instant.</p><p>That was a good start.</p><p>"Yes, it's me… Whatever that means, and if possible, I'd like it if you calmed down a little."</p><p>I wouldn't want him to pass out again.</p><p>"Your head should be a little clearer. You should be able to think for yourself for once…"</p><p>While I didn't know much, from what I was able to figure out regarding the power that was circulating within Octavius's system was that it was slowly consuming his emotions and essentially turning him into some form of emotionless warrior.</p><p>Sort of like a robot with diluted emotions.</p><p>I looked at him and reassured.</p><p>"If you're worried about suffering a potential backlash, don't be. With me here, nothing will happen to you. I've also already caught a glimpse of your memories, and have an understanding of what happened, but…"</p><p>I paused.</p><p>"…There's still some things that I'm unclear about and hence why I'm currently with you."</p><p>Silence filtered across the room following my words, and I continued to gaze at Octavious who was similarly looking back at me.</p><p>While I wasn't capable of reading his mind, I didn't need to. His face said it all.</p><p>"You've done a lot of fucked up shit under the influence of the power you wielded. I'm not sure how bad since the only one who knows this best is you… but that's not what I care about at the moment. What I care about at the moment is figuring out who was it that made you the way that you were and what was the purpose behind giving you the power."</p><p>It wasn't clear to me before, but it was clear to me now.</p><p>If I wanted to get back to my own world, I had to figure out who the one controlling everything from the shadows was.</p><p>'Once I figure out who it is that is responsible for all of this, I'll finally be able to get back. I'm sure of it."</p><p>I looked at Octavious. He was the key to helping me determine who was responsible for everything.</p><p>"Cough… Cough…"</p><p>He coughed several times. Clearly, he was still quite injured from our earlier conflict, but I didn't care. I wanted answers.</p><p>"Y,you… how are you so strong?"</p><p>The question he posed wasn't what I wanted to hear and my brows furrowed.</p><p>"Don't worry about that for now. Answer my question first. Who is the one behind you, and why did you do the things that you did?"</p><p>"I…"</p><p>Octavious opened his mouth before lowering his head.</p><p>"…I don't know."</p><p>I knew he wasn't lying from how helpless he looked.</p><p>"You don't know? What don't you know? Who is the one behind the matter, or what the purpose behind your power was?"</p><p>"…I don't know who is the one behind my power."</p><p>He answered after a short struggle and cast his gaze on me.</p><p>"You say you have seen my memories… you should know that he's never shown himself to me. Even while I was under his power, I never got to catch a glimpse of his looks… All I know is his title."</p><p>"Protector of the Seat of Diligence."</p><p>I finished the sentence for him.</p><p>This 'title' was one of the things that stood out the most in his memories.</p><p>'Protector of the Seat of Diligence… sounds eerily similar to one of the seven virtues… seven deadly sins…'</p><p>My brows furrowed.</p><p>'It couldn't be right?'</p><p>"Alright, I believe you in the fact that you don't know who this protector is, but you should at least be aware of what his purpose in giving you power was, right? Can't you tell me what he's ordered you to do over the past few years?"</p><p>"That…"</p><p>Octavious's eyes flashed with complex emotions. Organizing his thoughts, he eventually answered.</p><p>"…I don't remember much. However, from what I recall, my mission was simple. That is to make sure that I stood at the top of the world."</p><p>My brow raised.</p><p>"That's it?"</p><p>"Yes."</p><p>Octavious nodded his head.</p><p>"That's it."</p><p>He added.</p><p>"My goal was that simple. It was to remain at the top of the world, and eliminate anyone that comes close to my power."</p><p>I bit my shirt and pondered before asking.</p><p>"Is this the reason why you had the three Grandmasters imprisoned and sentenced to death?"</p><p>"Yes. They were growing too powerful. They were the closest to reaching the next level, and I was ordered to eliminate them."</p><p>"So that's not the first time you've done something like this."</p><p>"It's not."</p><p>Octavious shook his head, and I lowered my head.</p><p>"I've also been tasked with keeping watch on those that show particularly strong talent. My job is to make it so that they don't develop to their full potential."</p><p> "I see…"</p><p>'It's as I suspected.'</p><p>Pondering over his words, a lot of things started to make sense. Thinking back at my world, and recalling how the three Grandmasters had all fallen during their peaks…</p><p>'It looks like their deaths had nothing to do with the demons.'</p><p>From the looks of it, the one responsible for their death was probably the higher power that lurked within this world.</p><p>Perhaps the reason they were killed so early was because things were moving at a faster rate than they were now...</p><p>"ha ha."</p><p>I suddenly found myself laughing, catching Octavious off-guard.</p><p>"Is there something funny?"</p><p>"No, no. Don't mind me. I suddenly thought of something absurd."</p><p>I covered my face as an absurd thought crossed my mind.</p><p>'While this world is indeed a lot more peaceful than the one I belong to, it's just as bad as the one I belong to if one looks carefully. While not many people are aware, they're merely a bunch of sheep inside of a large herd. If not for the demons…'</p><p>I laughed again.</p><p>One could argue that the demons were the ones that gave humans a chance at freedom.</p><p>"Did I say something funny?"</p><p>"No, I told you it's something else."</p><p>I looked back at Octavious and stood up from my seat.</p><p>"Thank you, I think I got a better understanding of what I'm up against. I'll take my leave now."</p><p>"Wait."</p><p>I was stopped before I could leave.</p><p>"Yes?"</p><p>I looked at Octavious who pursed his lips. His eyes shook a little and his head lowered. He seemed to be struggling to find the right words, and I think I saw something that closely resembled fear in his gaze.</p><p>...I found myself stopping at that.</p><p>"C,can you do me a favour?"</p><p>***</p><p>"Humm, Humm."</p><p>Melissa was in a good mood. To the point that she began humming while she was arranging the items on the table in front of her. This was an extremely uncommon occurrence, and if anyone who knew her were to witness it, they would be astounded beyond belief.</p><p>"Lalala, ulululu."</p><p>It had to be said. She was not the greatest of singers. In fact, she was rather terrible. So much so that Rosie, who was still frozen in place in the distance, started to fear for the glass around the lab.</p><p>It was shaking.</p><p>"Dadum, pulum, katum, Chika!"</p><p>Melissa drummed her fingers over the desk. With the influx of information inside her mind, she felt invincible at the moment.</p><p>Instantaneously, all of the obstacles that had been preventing her from making further progress in her research were gone, and from that point on, she was able to conduct experiments without encountering any problems.</p><p>So smooth was her life in the lab that she herself was baffled by the results. She was on cloud nine at the moment.</p><p>"Money, money, money, in the rich girl's world~"</p><p>The glass began to shake even more, and Rosie's face became increasingly pale. She started fearing for the worst.</p><p>Ding―!</p><p>It was a blessing that the bell at the lab's entrance suddenly rang at that precise moment as Melissa immediately stopped singing. It didn't take long for a frown to appear on her face, but the thought of all the money she was going to have soon was enough to convince her to go ahead and open the door.</p><p>"Since I'm in a good mood today, I'll let this one slide."</p><p>When she reached the entrance, she pressed her hand against the side of the door. Her expression froze as soon as she caught a glimpse of the man who was standing on the other side of the door.</p><p>Her mood instantly sunk after that and her expression turned gloomy.</p><p>"It's nice that you haven't forgotten about me, father."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-744.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-746.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

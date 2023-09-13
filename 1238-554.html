@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 554 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 554 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-553.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-555.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"He's here."</p><p>As I stared toward the entrance of the building, I silently sighed to myself as I repositioned my fork on the table.</p><p>After turning her head, Amanda also caught sight of the individual, resulting in her eyebrows furrowing tightly.</p><p>"He came a lot faster than I expected."</p><p>"Yeah."</p><p>With a nod of my head, I met the individual's eyes. Immediately after meeting my eyes, I was met with his fierce glare.</p><p>After him, a couple of people with larger frames entered. Their appearance only served to give me a bigger headache.</p><p>'...I knew that this was going to happen.'</p><p>Squinting my eyes, I carefully scrutinized them.</p><p>"They appear to be &lt;B&gt; rank at best."</p><p>"Mhm."</p><p>The auras they emitted were not hard to detect since they did not attempt to hide them in the first place. In addition, they both wore black suits adorned with a familiar emblem.</p><p>After a careful look, I realized that the emblem belonged to the Starlight Guild.</p><p>It was then that I came to one conclusion.</p><p> "They are probably his designated bodyguards." </p><p>"They are."</p><p>Anyhow, even if they brought an &lt;A&gt; rank, I wouldn't be concerned. The same couldn't be said with &lt;S&gt; ranks as they would be quite troublesome to deal with, but it wasn't like they could actually get one.</p><p>Upon their arrival, all the eyes inside the restaurant shifted toward the three individuals as they approached our general direction.</p><p>When I turned to stare at Amanda, my smile became bitter.</p><p>"What did I tell you?"</p><p>Turning her head away from them, her lips curled.</p><p>"…So what are you going to do?"</p><p>"What else am I supposed to do?"</p><p>As I slowly stood up from my seat, I removed the napkin from my lap, ready to confront the people who were about to approach us.</p><p>'I'll just release a bit of my aura and get this over with.'</p><p>However…</p><p>"What business do you have with them?"</p><p>Out of nowhere, a familiar figure appeared, and two hands touched the shoulders of the bulky individuals, stopping them from moving.</p><p>Startled, they turned to look at the individual who had stopped them. As soon as they saw him, their faces bleached completely and their bodies trembled.</p><p>Meanwhile, with eyes wide open, I immediately recognized the figure as I called out.</p><p>"Kevin?"</p><p>A million questions rose inside my mind as our eyes met.</p><p>"What are you doing here?"</p><p>Since when was he here? …and how does he know that I'm here?</p><p>Was it a coincidence?</p><p>I discarded the notion as soon as I saw his glare. There was no doubt that he had come to me on purpose.</p><p>Before that.</p><p>"Who are you?!"</p><p>A loud shout echoed throughout the restaurant as Micheal glared at Kevin.</p><p>With a furrow of his brows, Kevin didn't answer immediately. Staring in my direction, he alternated his gaze between Amanda and I.</p><p>"….what are you guys doing?"</p><p>"We're having lunch."</p><p>I replied after meeting his gaze.</p><p>Nodding his head, Kevin's frown deepened. After that, he turned to look at the three individuals that were looking for trouble.</p><p>"Let me handle this for now. Once you're done with lunch, I'll just need ten minutes from you. I need to talk about something important."</p><p>"Okay."</p><p>I subconsciously replied as I stared at his serious expression.</p><p>The only time Kevin's seriousness was this severe was when something significant happened. And so I knew better than continue to ignore him.</p><p>"Hey yo—"</p><p>Without waiting for the guy to finish speaking, Kevin gripped Micheal's shoulder blade and he let out an agonized scream.</p><p>On the other hand, the bodyguards had stopped moving completely as their eyes focused on Amanda. Their already bleach-white faces blanched even more. Clearly, they had finally recognized Amanda who no longer had her back turned on them.</p><p>Silently staring at them for a moment, Amand raised her head to stare at Kevin who was dragging Micheal out of the store.</p><p>Pointing at him, Amanda asked the two bodyguards.</p><p>"Shouldn't you be helping him?"</p><p>"We..we apologize for his behavior."</p><p>Instead of following him, the two bodyguards bowed their heads in Amanda's direction.</p><p>Coldly staring at them for a couple of seconds, Amanda waved her hand.</p><p>"Leave."</p><p>"Th..thank you!"</p><p>After that, the two bodyguards quickly scurried out of the restaurant.</p><p>Scratching the side of my head, I turned to look at Amanda who seemed to be in a sour mood.</p><p>"...That was resolved a lot faster than I expected."</p><p>In truth, I had originally thought I'd have to do some annoying stuff, but things turned out much more smoothly than I expected.</p><p>"Now that I think about it, we really do have some bad luck."</p><p>"What do you mean?"</p><p>"I mean..."</p><p>Pausing, I glanced around the place.</p><p>Immediately after I glanced around the place, the heads of the people around the store quickly snapped away from our direction.</p><p>I wryly smiled.</p><p>"See, a lot of the people here recognize you. For that one guy to know who you are, it really is bad luck."</p><p>"...You're pretty famous too."</p><p>"Not with my hair and eyes."</p><p>"Hmm..."</p><p>Squinting her eyes to get a better look at me, Amanda picked the fork back up and softly muttered.</p><p>"Maybe."</p><p>***</p><p>"Mr. Voss. We deeply apologize for his behavior."</p><p>Quickly coming out of the restaurant the two bodyguards rushed up to Kevin and apologized profusely as they looked at Micheal on the floor, bloodied and bruised.</p><p>With a white cloth in hand, Kevin glanced in their direction briefly without replying.</p><p>On the outside, Kevin looked extremely serious and fierce. However, on the inside he was secretly regretting his actions.</p><p>'I may have gone overboard.'</p><p>He had only wanted to stop him for a moment, but the more he restrained him, the more he lashed out.</p><p>In the end, Kevin beat him up for good, and he was ashamed to say that he felt great relief from it as he imagined Ren being the guy he was beating up.</p><p>In any case.</p><p>Taking out of his phone, Kevin snapped a photo of the guy on the floor. After that, he quickly sent the image to Jin.</p><p>"I hope he won't get too mad at me."</p><p>[This guy yours?]</p><p>Riing—!</p><p>Not even a couple of seconds after he sent the message, and his phone suddenly started to ring.</p><p>With a bitter smile on his face, Kevin picked it up.</p><p>"...So?"</p><p>—What happened?</p><p>After a brief pause, Jin's solemn voice echoed through the speakers of Kevin's phone.</p><p>As soon as his words echoed out, the bodyguards' bodies trembled uncontrollably as they instantly recognized who the voice belonged to.</p><p>"Well..."</p><p>Brushing his hair up, Kevin started to recount to Jin exactly what had happened. He had already heard a bit from the individual himself, and connecting the dots together, he already had an idea of what had happened.</p><p>"In short, this guy annoyed Ren and Amanda."</p><p>—Huh?</p><p>Jin's voice voice sounded rather confused.</p><p>—Did you just say that he annoyed Ren and Amanda? What did he do?</p><p>"I'm not exactly sure myself. But it appears as though he tried to hit on Amanda while she was having lunch with Ren."</p><p>—He did?</p><p>"Yeah...</p><p>After another brief pause, Jin spoke up.</p><p>—Do me a favor and let them go for me.</p><p>"Sure, but what are you going to do with them?"</p><p>Kevin asked out of curiosity.</p><p>However, Jin's reply caught him off-guard as he almost tripped on the spot.</p><p>—What else am I going to do? I'm going to promote them.</p><p>"What? Did you not hear what I said?"</p><p>—It's exactly because I heard what you said that they deserve to be promoted.</p><p>Opening his mouth for a moment, Kevin soon closed it.</p><p>"Did Ren also piss you o—"</p><p>"Oy, if you have something to say about me, say it to my face."</p><p>Cutting Kevin off was Ren's voice as he headed in his direction.</p><p>Glancing at the individual on the ground, his eyes soon paused on Kevin's phone.</p><p>"Jin, is that you?"</p><p>He was met with no response.</p><p>"Give me that for a second."</p><p>Taking his phone from his hand, Ren spoke up.</p><p>"I know that you're still connected. You don't have to pretend like you're not."</p><p>—...What do you want?</p><p>It was then that Jin finally spoke and Ren smiled in satisfaction.</p><p>"Keum..."</p><p>Clearning his throat for a moment, Ren looked at Kevin before his eyes paused on the figure on the ground.</p><p>"Do you have time two days from now?</p><p>—Two days from now? What do you need?</p><p>"You free or not?"</p><p>In an attempt to avoid answering him, Ren pushed.</p><p>Somehow it worked as Jin started to check his schedule.</p><p>—Let me check.</p><p>"Sure."</p><p>Turning his head to face Kevin, Ren shrugged his shoulders.</p><p>Kevin instantly realized what he was trying to do and shook his head.</p><p>'Guess we're going with the kidnapping.'</p><p>—...I'm free.</p><p>It was at that moment that Jin's voice once again echoed through the speaker of the phone.</p><p>Looking back at Kevin, the smile on Ren's face widened.</p><p>"That's great, that's great..."</p><p>Ren repeatedly muttered out loud as he brought the phone closer to himself.</p><p>"Since you're free, I'll send you the address and location of a place in a bit. Make sure you don't come late."</p><p>—Wait, I didn't say that I was going to a—</p><p>Without waiting for Jin to finish replying, Ren hung up.</p><p>Then, turning to look at Kevin he tossed the phone in his direction.</p><p>"That's one problem solved."</p><p>Catching the phone, Kevin put it away and looked at the two bodyguards. Pointing at Micheal on the ground, he waved his hand.</p><p>"Take him."</p><p>Immediately after his words, the two bodyguards nodded their heads and grabbed him by the armpits and carried him away.</p><p>Staring at their departing figures, Kevin shook his head.</p><p>He almost felt bad for them. Especially since he knew that Jin was only joking when he said that he was going to promote them.</p><p>'Tough days will lay ahead of them...'</p><p>"What are you thinking about?"</p><p>Arriving next to him, Kevin felt a hand on his shoulder.</p><p>"Nevermind what I'm thinking, let's go somewhere more private to speak. I've got something important to say to you."</p><p>Feeling Ren's gaze on him, Kevin stared back.</p><p>After a while, Ren nodded his head.</p><p>"Alright, if that makes you feel better."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-553.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-555.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

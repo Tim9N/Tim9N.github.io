@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 835 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 835 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-834.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-836.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Pillar of Greed]</p><p>It was dark and damp. A musty smell of damp earth and rocks filled Ryan's nostrils as his eyes slowly opened up.</p><p>Blinking a couple of times, he noticed that he couldn't quite see very far. The dim lighting around him made it difficult to see beyond a few meters. When he reached out with his hand, he felt a rough and uneven surface.</p><p>'A cave?'</p><p>That was the first thought that crossed his mind as he felt the sides of the walls.</p><p>Drip. Drip.</p><p>The sound of dripping water echoed in all directions in the space he was in, further reaffirming his original assumption.</p><p>"Hm?"</p><p>Right when he tried to move, he noticed that his feet were bound to something and that the little mana inside of his body had been completely sealed.</p><p>"Shit."</p><p>Letting out a curse, he squinted his eyes and noticed a small bracelet on his ankles.</p><p>They were firmly clamped at his ankles and were rather thick. About the size of his forearms and made it impossible for him to move properly.</p><p>'This is bad.'</p><p>He knew instantly that the situation was not good.</p><p>It was also at that moment that he recalled what had led to his sudden appearance over here, and his expression changed.</p><p>"Leopold?"</p><p>He called out, hoping to receive some sort of answer, but it was much to his dismay that he realized that he was the only person inside the cave.</p><p>"Crap."</p><p>Ryan started to worry a little.</p><p>Although Leopold was stronger than him, he didn't know what was currently happening and was understandably worried.</p><p>That being said…</p><p>"Huu."</p><p>All it took was a single breath for Ryan to calm himself down. He had been on many dangerous missions in the past, and this wasn't any different.</p><p>After calming himself down, Ryan closed his eyes and started to ponder over his options.</p><p>While he wasn't like Ren and didn't have a chip inside of his brain, he was still a genius in his own right.</p><p>Several different scenarios popped up in his mind, and it wasn't long before a plan formulated inside of his mind.</p><p>'Hmm, I guess that could work.'</p><p>He opened his eyes. Unlike before, his gaze was calm, and no longer was he nervous like a few moments prior.</p><p>"Now then…"</p><p>Fiddling his tongue around his teeth, his tongue settled over the furthest tooth on his bottom right side, and his expression cringed a little.</p><p>Cr… Crack!</p><p>With a low snapping sound, his tooth came undone and fell directly onto the ground. The process was rather quick, but it still hurt a little.</p><p>Turning his head to stare at the tooth in front of him, Ryan moved his body forward a little, and he picked the tooth with his tongue.</p><p>'Who would've thought I'd have to use this? It's good that I came prepared.'</p><p>Although his mana was sealed, he had installed a mechanism within the tooth that enabled him to access the contents without the need to use mana.</p><p>Tik! Tik!</p><p>It took him about twenty seconds, and within that time, the tooth had completely changed into a tiny black box. Tapping onto it with his tongue, Ryan was able to catch a glimpse of a myriad of different items.</p><p>'I guess Ren's nagging wasn't useless.'</p><p>He had originally made this for Ren, but he had also made one for himself and the others. He never would've thought he'd need to use it, but as luck would have it, he indeed found himself in a situation where he needed to use it.</p><p>Even though his main dimensional space was taken and he was stripped of all his possessions, he wasn't necessarily as hopeless as he would've been.</p><p>Click!</p><p>"Easier than I thought."</p><p>After disabling the bracelet that was on his ankle using one of the items in his dimensional space and making sure that it didn't trigger the alarm, Ryan finally let out a sigh of relief.</p><p>"That was nerve-wracking."</p><p>As composed as he was, he had been nervous the entire time.</p><p>One wrong move, and everything would go up in the air. Since he valued his life, during the process he found himself sweating more than he had ever done during an intense workout.</p><p>Thankfully, everything worked out, and nothing happened.</p><p>That was what mattered the most, and he pressed his hands against the ground, helping himself up.</p><p>'I wonder how they designed the bracelet.'</p><p>Taking the bracelet out, Rayn started to study it. He understood that knowing the mechanism behind it was extremely important for his next course of action, and so he spared no second to study it.</p><p>'I wonder what this circuit does? Is this the one that connects to the mana disruptor, or is it...'</p><p>And so, even though time was tight, Ryan spent the next couple of hours just staring blankly at the bracelet in his hands.</p><p>He imprinted every circuit within his mind, and he forced himself to understand everything that was going on inside of the artifact.</p><p>"Hmmm "</p><p>Once he was done stretching his body, he took out a small artifact from his dimensional space. It was the same shotgun like artifact that belonged to Leopold.</p><p>He may or may not have stolen it from him.</p><p>Not that it mattered since he had several spare ones.</p><p>"Haa.. what a waste of a core."</p><p>Retrieving a small core from his dimensional space, he placed it over the artifact and activated it.</p><p>A gentle glow formed on the artifact in his hand.</p><p>"This will do."</p><p>Given the disparity in strength between him and Leopold, it was a given that he had to use a core to supplement the use of the artifact.</p><p>He would never be able to make use of the artifact if it weren't for the core.</p><p>'This way.'</p><p>With his mana restored, he could now see better within the darkness, and that was when he noticed a small opening that was sealed by an iron door.</p><p>Approaching it carefully, Ryan peaked through the small gap above, and that was when he caught sight of two demons standing guard.</p><p>'They look rather strong.'</p><p>He couldn't exactly tell, but they were certainly stronger than him. Not as strong as Leopold, though. He could at least say this much.</p><p>'That's good.'</p><p>Had they been stronger than him, then the situation would've been a lot more difficult.</p><p> Ryan shifted his focus to the iron door while sticking his tongue out and bent over to place a small device over the top of it. The device's eight legs appeared to be clamping down on the metallic door in a manner that was eerily reminiscent of a spider.</p><p>Cl..Click!</p><p>Pressing the buttons and trying to make the least sound possible, the gadget activated, and the eight legs clamped harder on the metallic door.</p><p>Each of the legs emitted a minuscule red light from its base, and this light began to revolve around the device in a clockwise direction.</p><p>A small red circle formed on the iron door shortly after, and once the legs rotated twice, Ryan put the gadget away.</p><p>'Looks like they haven't noticed.'</p><p>Since the machine was designed to be extremely quiet and unnoticeable, Ryan was able to create a small opening on the door without being noticed by the demons.</p><p>So long as he gave it a light knock, it would fall, and an opening would appear.</p><p>Standing up, he looked toward the two guards from the opening above, and he knocked at the door once. He didn't bother ducking down and just stared at them from the small opening above.</p><p>Tok!</p><p>"Hu?"</p><p>Even though it was a soft knock, it was enough to immediately draw the attention of the two demons who were standing guard. Both of their heads snapped around to look in his direction.</p><p>"What was that?"</p><p>"Hey, look."</p><p>They soon took notice of Ryan whose eyes were fixed on the two demons.</p><p>"He can move? How is this possible? Did the band malfunction?"</p><p>The demons seemed rather shocked by the fact that Ryan was able to move and get to where they were, but that shock didn't last for long as the two approached the opening.</p><p>"You... how did you g—"</p><p>The demon never got to finish that sentence.</p><p>Clank!</p><p>Right as the two approached the door, Ryan knocked on the area where the gadget had previously been placed, and a piece of the door fell.</p><p>In that split second, he positioned the shotgun so that it covered the gap that had appeared and pulled the trigger on it with his left hand.</p><p>Bang—!</p><p>"Akgh!"</p><p>"Erkh!"</p><p>The power that the shotgun held proved to be a little too much for the two demons, who were blasted into pieces as multiple holes appeared on their bodies.</p><p>'Oh wow."</p><p>Even Ryan was astounded by the shot's power, but he didn't let it affect him and pushed the door open to let himself out.</p><p>Clank!</p><p>Shortly after that, he moved toward the two demons and retrieved another gadget from his dimensional space.</p><p>The gadget was merely a small pen that he used to scan the bodies of the two demons before retrieving their cores.</p><p>"I hope this works."</p><p>Click—</p><p>Clicking on the top of the pen, Ryan felt a small vibration coming from the pen.</p><p>It continued to vibrate for the next couple of seconds before stopping, and when it did, a small light burst forth from the top, enveloping Ryan completely and changing his whole structure.</p><p>In a matter of seconds, his skin turned dark and his body became taller.</p><p>Two horns emerged from the top of his head, and shortly after that, two wings materialized on his back.</p><p>Taking out a mirror, Ryan looked at himself and nodded in satisfaction.</p><p>"Good."</p><p>What he had done was merely create a hologram that overlapped with his figure, enabling him to look like a demon.</p><p>Although it was not the most suitable approach that he could take, given the circumstances, it was the most appropriate approach.</p><p>Placing the pen in his pocket, Ryan put one of the demon cores away and crushed the other one.</p><p>Woom—!</p><p>A wave of demonic energy burst forth shortly after crushing the core, and beckoning it with his hand, the demonic energy started to move and coat Ryan's body. Instantly, his body started to emit the aura of one of the demons he took down.</p><p>While it closely resembled the demon's aura, it wasn't the same. There were subtle differences.</p><p>If one paid close attention, they'd notice that the demonic energy that was coating his body was thinning by the second, but that didn't really matter to Ryan.</p><p>He wasn't planning on staying for much longer.</p><p>"Now then…"</p><p>Clank!</p><p>With everything in check, he closed the door behind him and rubbed his hands. He didn't even bother hiding his traces; he just left.</p><p>"…to find Leopold."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-834.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-836.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 687 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 687 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-686.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-688.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang—!</p><p>A figure crashed against a series of buildings, sending them crumbling to the ground.</p><p>With another muffled blast, the figure crashed against the ground, and a crater formed around the area around him.</p><p>Following the dispersal of the debris and subsequent clearing of the area, Kevin's haggard figure appeared to be seen standing in the midst of the debris.</p><p>His clothing was ripped, and he appeared to have a gaping wound in his chest.</p><p>His red eyes gleamed under the red, apocalyptic sun that hung in the sky, matching its intensity.</p><p>"How pitifully weak..."</p><p>A figure with white hair descended from the sky above him in a slow and collected manner. His presence loomed over the world, and his towering figure oppressed anything within its sights.</p><p>He looked no different than a god that had descended upon the mortal world, as his every movement caused the world to shake.</p><p>"I'm rather disappointed."</p><p>Jezebeth spoke while maintaining eye contact with Kevin, who was standing below him.</p><p>His icy stare was filled with what could only be described as disappointment, and he raised his hand.</p><p>Palm facing Kevin, he mumbled.</p><p>"…If you're really all the records have planned in order to stop me, then I really am disappointed."</p><p>Booom—!</p><p>The world tore apart, and Kevin's vision grew black.</p><p>***</p><p>"Come, eat your soup, Kevin."</p><p>Kevin's ears rang with the sound of a familiar voice as he looked down and took a quick glance at the meal that was in front of him.</p><p>It was a straightforward yellow clear soup mixed with a few different vegetables ranging from carrots, broccoli, and the like.</p><p>'It's bland, and the nutritional value is low…'</p><p>Kevin thought as he brought the soup to his mouth.</p><p>The taste of the soup was extremely bland, and it never seemed to fill him, even though he was once again five years old.</p><p>The only reason he never grumbled was because he understood that this was the best his caretakers had to offer.</p><p>A simple vegetable soup.</p><p>Kevin, in all candor, did not comprehend why the records would assign him to such inept caretakers; however, he was not programmed to question the system's decision-making.</p><p>The only thing he needed to do was follow orders.</p><p>But…</p><p>"Why do you take care of me?"</p><p>There was still a lingering sense of curiosity in his heart, and he just couldn't help but bring himself to ask his caretaker the one question that had been in his mind ever since his first life.</p><p>Why would such a creature risk so much in taking care of him when they couldn't even take care of themselves?</p><p>Wouldn't it be more appropriate for them if they just abandoned him and lived for themselves?</p><p>If that were the case, then they wouldn't be experiencing nearly as much suffering as they were right now.</p><p>On the contrary, their quality of life for them would significantly improve.</p><p>He was nothing but a burden, and Kevin wouldn't really think anything of it if they got rid of him. He knew that he was nothing but a nuisance to them.</p><p>All in all, it was the most logical decision.</p><p>"Why do I take care of you?"</p><p>Kevin caught a fleeting glimpse of his mother looking at him with a friendly grin on her face as she turned her head and lightly winked her eye.</p><p>Moving toward where he was, she kneeled down slightly and caressed his cheek.</p><p>"I'm your mother; why wouldn't I take care of you?"</p><p>"Are I not a burden?"</p><p>Kevin asked, his face expressionless.</p><p>His mother's expression changed to one of surprise as she listened to his words, and then she smiled broadly and pulled him closer to her.</p><p>"Burden? Why would you ever be a burden. My life has never been more fulfilled now that you're with me. I'm sure your father thinks the same."</p><p>Feeling the soft and warm embrace of his mother, Kevin didn't say anything more.</p><p>He was more confused than before.</p><p>The sound of his mother's voice was what broke him out of his reverie as she suddenly squeezed him more tightly in her embrace.</p><p>"Oh, right! You spoke! It's such a rare occasion that I didn't even notice it!"</p><p>Her sudden burst of excitement once again made Kevin confused.</p><p>'Why is she showing such a reaction for such a trivial thing?'</p><p>Humans…</p><p>They were creatures far more confusing than he thought.</p><p>***</p><p>Ding—!</p><p>System configured</p><p>100%</p><p>Time passed, and the same scenes from the first life repeated themselves. The demons came, and his parents died trying to protect him.</p><p>Kevin crouched down and stared at the lifeless body of his mother while he prodded her flesh with his finger.</p><p>"Why?"</p><p>As Kevin's mind replayed the events that had taken place in the subsequent minutes and seconds, he became even more perplexed.</p><p>"Kevin, move!"</p><p>He could still clearly remember his mother pushing him to the side in an effort to protect him from a demon, but she ended up being the one who was killed.</p><p>Before his eyes, he witnessed the dismemberment of his mother, followed by his father dragging him away and hiding him in the same place as his previous life.</p><p>"I said that you didn't have to take care of me. Why did you do something so foolish?"</p><p>Kevin asked, poking at the dead carcass of his mother.</p><p>His father, who was not too far away from where he stood, was completely mangled, and he was no longer recognizable.</p><p>Kevin sat on the ground and stared at his mother and father for an undetermined amount of time while they lay dead on the ground.</p><p>Somehow, his heart felt emptier than usual.</p><p>He usually felt like this, but for some strange reason, he felt even emptier.</p><p>'Why is that?'</p><p>When additional support arrived, he was whisked away from the area and placed in an orphanage before he even had a chance to realize a day had passed.</p><p>After that point, life returned to how it had been before, and Kevin's progress in strength continued at a steady pace as the years went by.</p><p>*</p><p>Twenty five years later.</p><p>Once again, Kevin found himself standing in front of Jezebeth.</p><p>His expressionless face was the same as it had been in the past.</p><p>However, when compared to his previous life, Kevin was much more powerful in this one.</p><p>It wasn't just by a little bit; it was by quite a large margin.</p><p>In this life, he was able to become even more powerful than he had been in his previous life by combining the knowledge he gained from his previous life with the system given to him by the records.</p><p>He also received instruction from the most skilled instructors, which contributed to his increased confidence.</p><p>Simply put, he could swat his former self in just a couple of moves. He had improved that much.</p><p>"We look eerily familiar, don't we?"</p><p>Jezebeth's voice rang throughout the world, his eyes glossing over his body. With a raised eyebrow, he asked.</p><p>"…You couldn't possibl—"</p><p>Before he could finish his sentence, Kevin's hand was already raised, and a white hue began to emerge from it. It covered the entire world around him, and Jezebeths' face changed.</p><p>Kevin launched his attack not long after that, and a powerful wave of energy headed in Jezebeth's direction.</p><p> "Akashic laws…" </p><p>The expression of shock on Jezebeth's face didn't last for very long. Instead, he appeared to have realized something, as evidenced by the appearance of a faint smile on his face.</p><p>"I see...so you're the missing piece that I need in order to get to the records."</p><p>His hand raised, and Kevin's attack was instantly slashed in half, two deep lines forming on the land behind him.</p><p>"Hmm, not bad…"</p><p>Jezebeth muttered something under his breath as he looked at his hand, which was quivering and bleeding very slightly.</p><p>Lowering his head to stare at Kevin, he smiled ever so slightly.</p><p>"I have to say, you're definitely strong. Strong enough to fight against me, but…"</p><p>Jezebeth shook his head.</p><p>The world seemed to suddenly distort itself and lose its color with the sudden raise of his hand.</p><p>Crack! Crack!</p><p>The sky began to fracture, and everything beneath Jezebeth began to collapse. The world's oceans began to rise, the ground began to tear apart, and everything in the vicinity was obliterated into nothingness.</p><p>In an instant, nearly half of the world's human population was annihilated, and seven enormous fissures formed in the sky.</p><p>Within those fissures, seven powerful figures emerged, and behind them, tens of thousands of other powerful figures appeared. The world came to a sudden standstill, and the crimson sky started to darken.</p><p>Stepping forward, one of the seven powerful figures placed their hand on their chest and announced.</p><p>"The Wrath clan makes their presence."</p><p>Like a sonic wave, his voice boomed throughout the world. Glasses shattered at the sound of his voice, and the air around him trembled.</p><p>Not wanting to be outdone, those behind him stepped forward and introduced themselves individually.</p><p>"The Pride clan makes their presence."</p><p>"The Sloth clan makes their presence."</p><p>"The Lust clan makes their presence."</p><p>"The Gluttony clan makes their presence."</p><p>"The Greed clan makes their presence."</p><p>"The Envy clan makes their presence."</p><p>The seven patriarchs of the seven major clans had made their appearance, followed closely by thousands upon thousands of demons belonging to each and every one of the clans.</p><p>Each and every one of them had expressions on their faces that were filled with obedience and submission.</p><p>"…Do you understand now?"</p><p>Jezebeth gazed at Kevin, his eyes gleaming with a dangerous red hue.</p><p>Kevin simply stared back at him without making any kind of facial expression.</p><p>Underneath, his muscles were tensed, and sweat had started to accumulate in the palm of his hands.</p><p>Simply being in their presence was almost identical to being in Jezebeth's, and Kevin felt as though his entire body was becoming immobilized.</p><p>"You're strong, I will give you that, but in the end, that's all you are. Even if I don't finish you myself, my kin will do it for me."</p><p>Interlocking his hands behind his back, Jezebeth slowly turned around.</p><p>Raising one of his hands in the sky and staring at the large army of demons, he quietly mumbled.</p><p>"Get rid of him."</p><p>...and with that order, the seven patriarchs moved at once, followed by the thousands of demons behind them.</p><p>A terrifying battle ensued shortly after that.</p><p>One that was sadly not in Kevin's favour.</p><p>Just like in his last life, he once again died.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-686.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-688.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

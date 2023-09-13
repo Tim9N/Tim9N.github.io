@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 484 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 484 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-483.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-485.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Interesting..." </p><p>Closing the book down, the same figure turned to look in my direction. Our eyes met. </p><p>Clank. Clank. Clank. </p><p>Taking a step forward, the rattling sound of the chains echoed throughout the room. </p><p>Staring at the chains from the corner of my eyes, I was left surprised by the fact that the chains were directly coming from the ground of the room. </p><p>Though confusing, I stopped paying attention to this detail as the other figure soon neared me. </p><p>Coming to a halt beside Professor Thomas, the other figure slowly raised his head, revealing two deep blue eyes. A slight smile tugged in between his lips. </p><p>"So you're telling me that from the very beginning you suspected that I had something to do with this situation?" He asked with an amused look on his face. </p><p>"...You can say so." </p><p>I calmly nodded my head and replied. </p><p>Glancing at Thomas for a brief second, I looked back up at the other Ren. </p><p>"Like I've said before, from the moment that something happened with Aaron's dad, I already suspected that something was going on, and the moment that I met Professor Thomas, my suspicions became even more glaring." </p><p>Tap. Tap. Tap. Lowering my hand, I began to tap on the armrest of the chair. </p><p>"It was right at the moment that Professor Thomas mentioned my name, 876, that I was able to somewhat gauge what you were planning. Of course, since there was the possibility of you possibly reading my mind, I decided to take countermeasures." </p><p>Raising my hand, I pressed my finger on the temple of my head. </p><p>"If you could've read my mind, then you could've easily been able to tell that I was merely playing along with you. Even though I was having most of my thought processes inside of my chip in order to hide them, you should've still been able to determine my intent." </p><p>Taking into account the possibility of Ren being able to read my mind, I decided to take some precautions. </p><p>Since whenever I used the chip, my thoughts happened within a fraction of a second, I had a sudden thought. </p><p>'What if I use the chip to hide my real thoughts?' </p><p>What if the chip was fast enough to hide my real thoughts from the other entity? ...and so that was exactly what I did. </p><p>Whenever I wanted to think about him, I just activated the chip. </p><p>In that split second that I activated the chip, I would quickly contemplate everything that was happening around me.</p><p>"Haaa..."</p><p>Letting out a long sigh, I shook my head. </p><p>"...Unfortunately, there is a glaring flaw with this method." </p><p>Raising my head, I met the other Ren's eyes. </p><p>"The flaw is that even though I might be able to hide from you exactly what I'm thinking, it's practically impossible for me to completely hide my thoughts. It just isn't." </p><p>Regardless of how fast I was thinking, if the other Ren was truly capable of reading my mind, he should've been able to pick up my intentions, regardless of how small they were. </p><p>Still, this was what I wanted to begin with.</p><p>I wanted him to find this out so that I could properly gauge whether he could read my mind or not. </p><p>However, it didn't seem like he could. </p><p>Had he done so, he would've found out that I had already made countermeasures for his plan. And thus, this only meant one thing.</p><p>"You can't read my mind..." </p><p>Pursing my lips, I asked. </p><p>"I'm right, aren't I?" </p><p>Though I said that, I wasn't exactly one hundred percent sure. </p><p>After all, with everything I went through with him, the possibility of me being purposely misled wasn't impossible. </p><p>"..." </p><p>Once again I was met with no response. Regardless, I continued. </p><p>"Anyhow, let's say that my hypothesis is correct and that you can't read my mind. How are you capable of always being a couple of steps ahead of me?" </p><p>Pausing, I glanced at the other Ren from the corner of my eyes. </p><p>"After thinking about it for quite a while, I came up with one conclusion."</p><p>I paused. </p><p>"...You know the future." </p><p>At the exact moment those words left my mouth, the temperature of the room chilled considerably </p><p>The edges of my lips curled upwards. </p><p>"If you think about it, that makes sense."</p><p>For him to have been able to plan the scenario with Angelica and Amanda's mother, there is simply no way you could've done that without knowing that I would end up being the elven domain and that the only way to cure her mother was through the Xurin fruit, which I so happened to have.</p><p>Also, the fact that he knew about the 'novel' world was probably the biggest clue regarding the possibility of him knowing the future. </p><p>"Since you know the future, it also gives me the idea that the memories inside of my head were in fact implanted by you." </p><p>The more I thought about it, the more plausible this possibility became. </p><p>Even though the memories inside of my mind were possibly fake, the fact that they were a representation of the future was undeniable. </p><p>For the other Ren to know about the future, and to be inside of my head, I could only think of one thing. </p><p>He was the one that had planted the memories inside of my head. Or at least, he knew who was the one responsible for this. </p><p>"Hmmm..." </p><p>Crossing my arms together, I licked my lips. </p><p>"You know, I've always been curious. Even if you don't answer, I'll still ask, but..." </p><p>Tap. Tap. Tap. The sound of my fingers tapping on the armrest of the chair echoed throughout the room. </p><p>"...Is Everblood working for you?" </p><p>Even though I already knew the answer, I wanted to get proper confirmation from the other Ren himself. </p><p>"You don't have to pretend otherwise, I'm—" </p><p>"Yes." </p><p>It was then that, cutting me off, the other Ren spoke up. </p><p>"Hm?" </p><p>My brow raised in surprise. </p><p>Didn't think he would answer so quickly. </p><p>"...so you finally decided to speak?" </p><p>I instantly sat up straight. </p><p>Thud—! </p><p>Grabbing Professor Thomas by the hair, the other Ren dragged him out of the chair and dumped his body on the ground. He then proceeded to sit down on the chair opposite. </p><p>My brows furrowed tightly. </p><p>'I only noticed it now, but he also touched the book before, right?'</p><p>It was at the exact moment that he grabbed Thomas's hair that I realized that he had also been able to touch the book from the bookshelf. </p><p>This made me realize something. </p><p>'...He is no longer just a projection.' </p><p>How did that happen? </p><p>Before I could open my mouth, the other Ren started to speak. His next words caused the frown on my face to deepen. </p><p>"...You don't have to be wary of Everblood." </p><p>"What do you mean?"</p><p>I leaned my body even more. </p><p>"You think I don't about the shit that he pulled?" </p><p>Interlocking his hands, the other Ren shook his head. His deep and detached voice rang across the room. </p><p>"What did I say before?" </p><p>My eyes began to squint. </p><p>'What is he on about?' </p><p>Staring into his deep blue eyes, I lowered my head slightly. </p><p>"There are a lot of things that you've sa—"</p><p>Just as I was about to finish my sentence, the other Ren quickly cut in. </p><p>"I'm not your enemy." </p><p>"Huh?" </p><p>I once again raised my head to meet his eyes. </p><p>"You're not my enemy?" </p><p>"Yes." </p><p>The other Ren nodded his head. </p><p>"Pft." </p><p>I immediately scoffed. </p><p>"You think I will believe that after everything that you've done to me? In fact..." </p><p>Extending my hand and tapping on my watch, I opened up the news article from before. The one about my identity being that of 876. </p><p>===</p><p>[Breaking news]</p><p>Recent revelations have been made that Ren Dover, the missing student from the Lock is in fact 876. Because of his excellent performance at the conference, he made a deal with the Union and framed Aaron Rhinestone.</p><p>---Read More---</p><p>===</p><p>"Does this look like something someone who is trying to help me would do?" </p><p>"..." </p><p>Wordlessly staring at my watch for a good couple of seconds, the other Ren took his eyes away from it. </p><p>"As I've said before, I'm not your enemy." </p><p>Once again, he repeated the same thing. I secretly clenched my fists underneath my table. </p><p>"Bullshit." </p><p>I irritably replied. </p><p>"What have you done to ever prove to me otherwise? All you've done is messed with my mind, and..." </p><p>Taking out a potion from my dimensional space, I smacked it on the table. </p><p>Plack—!</p><p>"Had it not been for these, I would've probably once again fallen for your scheme." </p><p>The potion was none other than the potion that Melissa had given me. Had it not been for that potion, I would've most likely fallen for Professor Thomas's mind games. </p><p>People said that the scariest enemies were ones that were strong, however, I begged to differ. </p><p>To me, the strongest and most dangerous enemies were ones that could read your thoughts and push the right buttons.</p><p>Just like Professor Thomas. </p><p>Had it not been for the potions Melissa had given me, and the fact that I knew that something was up, then perhaps, the outcome would've been much different. </p><p>"..." </p><p>Upon smacking the bottle on the table, a brief moment of silence ensued. </p><p>The silence was soon broken by the other Ren. </p><p>"...I'll repeat it one more time. I'm not your enemy. Be it me, or Everblood. We are not your enemies. You may not figure things out now, however, you will soon know." </p><p>Pausing, the other Ren stood up. </p><p>Clank. Clank. Clank. </p><p>Once again, the rattling sound of the chains hitting each other echoed throughout the room. </p><p>With his hands behind his back, the other Ren began to walk all the way toward the bookshelf of the room. </p><p>His feet soon came to a pause. </p><p>Lowering his head, he glanced at the chains binding his body. </p><p>"I don't have much time, so I will only say a couple more words..." </p><p>Clank. </p><p>Without a loud metallic sound, the lax chains suddenly straightened. </p><p>Ignoring them, the other Ren stared toward the window of the room. Or to be more precise, toward the sky. </p><p>"Use Monarch indifference." </p><p>"Huh?" </p><p>My head moved back. </p><p>"Why in the world would I use—" </p><p>"If you want strength, use Monarch's Indifference. So far, you've only used a small fraction of its powers." </p><p>Clank. </p><p>The chains suddenly started to exert more power. However, the other Ren simply ignored them. </p><p>"If things ever reach a point where you will die, use Monarch's Indifference. I will show you just how powerful you are..." </p><p>Clank. Clank. </p><p>Slowly, the other Ren's body started to get wrapped by the chains.</p><p>Soon his whole body was enveloped by them, and just as he was about to be dragged to the ground, he was able to utter a couple of more words. </p><p>"I'm impressed by the fact that you've been able to outplay me for once. However, don't get ahead of yourself. You are still not out of the waters just yet..." </p><p>Right as his words faded, his body disappeared and the door of the room flung open. </p><p>Clank—! </p><p>"Ren." </p><p>The first one to come into the room was Donna. Behind her were multiple different professors. </p><p>"Ren, I've been trying to conta—" </p><p>Entering the room, Donna's footsteps suddenly came to a halt.</p><p>Upon entering the room, her eyes locked on me for a brief moment before they paused on Professor Thomas's lifeless body close to me. </p><p>It took a bit of time for her to process the situation, and when she did, she looked at me and asked. </p><p>"What happened?" </p><p>***</p><p>A/N : Thank you very much for the nice comments. I've gotten considerably better and will return to writing very soon. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-483.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-485.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

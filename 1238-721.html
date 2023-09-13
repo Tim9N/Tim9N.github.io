@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 721 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 721 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-720.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-722.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>An oppressive silence filled the air, disturbed only by the occasional trickle of water and the distant echo of a bat's wings in flight.</p><p>The temperature was cool and clammy, like a dank veil of the eternal night had settled over the passage. The only beacon of relief came from the entrance, through which a bright beam of sunlight occasionally shone, illuminating pockets of mineral deposits that sparkled like stars in the night sky.</p><p>The cave was a dark, damp abyss.</p><p>It seemed to stretch on into eternity, filled with oppressive shadows and the occasional glimmer of a distant light source.</p><p>Rock walls surrounded the path, hard and smooth with years of sedimentary deposits, providing a tight and narrow passageway.</p><p>All of a sudden…</p><p>Cla Clank—!</p><p>The sound of metal clamping together reverberated, scattering all other sounds.</p><p>Seated in the middle of the cave, black scales started to appear on the surface of a male figure. They covered his whole body and only stopped at his cheeks.</p><p>Fwap—!</p><p>Suddenly, two enormous bat like wings emerged from his back and extended all the way to the opposite end of the cave.</p><p>Rumble—! Rumble—!</p><p>The power that erupted from the figure, who slowly opened its eyes to reveal two crimson red eyes, caused the cave to violently shake, and it appeared that it was on the verge of collapsing.</p><p>Bringing his hand forth, and closely examining his long finger and sharp nails, a smile formed.</p><p>"Finally…"</p><p>His voice cracked, and the rumbling around him stopped.</p><p>As he closed his eyes, the scales on his body and his wings began to retract. The two red eyes morphed into blue ones over the course of a few minutes, and the figure shrunk by several inches.</p><p>The process was rather fast, and once it was over, the power that seemed to overflow from his body, completely disappeared. It was as if it never had been there to begin with.</p><p>"I've finally managed to completely assimilate the blood into me."</p><p>Ren mumbled, observing his hands which had now returned to normal.</p><p>Lowering his hands, he took a deep breath before looking around him.</p><p>"How long have I been here for?"</p><p>He wasn't sure. He had lost track of time while trying to assimilate the blood and the Nectar. The only pity was that he was still &lt;SS-&gt; ranked.</p><p>Due to the lack of mana in the air, he made no substantial advancements in that area. With that being said, his overall power was significantly higher than it had been in the past.</p><p>Perhaps he might even be able to escape against a Patriarch...</p><p>'Since the others haven't disturbed me, I shouldn't have exceeded four months.'</p><p>Since he needed to get back to earth and still had one more thing to finish, it would be inconvenient for him to stay there for any longer than that.</p><p>'They should've realized by now, right?'</p><p>Ren suppressed his urge to smile. Thinking back at what he'd done, he couldn't help but shake his head.</p><p>If he continued like this, those around him would start having trust issues.</p><p>Cracking his back and neck, Ren stretched his body and made his way toward the entrance of the cave.</p><p>"Alright then, let's get this over with.'</p><p>***</p><p>Sloth Estate, Prince Valling's office.</p><p>It had been about three months since his discussion with his granddaughter, Priscilla, and about four months since the accident.</p><p>During that time, many things changed.</p><p>As expected, the moment the World Decree happened, they came out the biggest winners. It wasn't even by a small margin. It was convincingly so.</p><p>Everyone was able to take part in the harvest, with the exception of the Patriarchs, and those who were successful in gathering their share received it.</p><p>Usually, it'd be the House of Envy that would come out with the biggest gain, but this year was different.</p><p>Under the suppression of the other houses, they were barely able to scrape up one fruit.</p><p>The other houses weren't much better off. Due to all the infighting, many tried sabotaging each other in order to get credit and lead the succession war.</p><p>It didn't need to be said about their harvest.</p><p>In the end, under his granddaughter's leadership, the house of Sloth emerged with the biggest gain of all.</p><p>Best of all, none of the other houses said anything since they all understood that, had it not been for that stroke of 'luck', on Prince Arian's side, they would've been the biggest losers.</p><p>Because of this, and the fact that they didn't have time to be jealous, everything went smoothly.</p><p>"…How long are you planning on watching?"</p><p>Prince Valling calmly set his pen down and looked up.</p><p>Not long after, a figure appeared from out of thin air and pointed toward the seat opposite him.</p><p>"Do you mind?"</p><p>"Go ahead."</p><p>"Thank you very much."</p><p>It was a simple exchange. A friendly one.</p><p>Pushing the chair back, Ren sat down.</p><p>He looked around the place, before turning his attention back to Prince Valling who looked back at him with a calm expression. There were hints of curiosity in his gaze.</p><p>"You don't seem surprised?"</p><p>He asked.</p><p>"Should I be?"</p><p>"No."</p><p>Ren smiled and shook his head.</p><p>"I've made my intentions pretty obvious. Of course, you wouldn't be surprised."</p><p>He leaned back on the chair and drummed his fingers over the wooden armrest.</p><p>"I'll cut straight to the chase; have you come up with a decision?"</p><p>"No."</p><p>Prince Valling shook his head.</p><p>Still calmly observing Ren, he tapped once at the table.</p><p>"…I needed to see you once before coming up with a decision?"</p><p> "Oh?"</p><p>Ren raised his brow.</p><p>"And are you satisfied with what you saw?"</p><p>"Maybe."</p><p>The Prince mysteriously smiled. His calm demeanor made it hard for Ren to discern his real intentions.</p><p>…Not that he cared.</p><p>"Well, it doesn't really matter to me. There'll eventually come a time when you will have to make that decision, and luckily for you, that time is not here yet."</p><p>If there was one thing that Ren was aware of, it was the fact that he was not even close to being an appropriate piece to gamble on.</p><p>Especially when the other side was the Demon King, the one being that stood at the pinnacle of the universe.</p><p>…Of course, that was only for now.</p><p>"The reason why I came here is not because I want you to choose sides. I just want to negotiate with you. So—"</p><p>"I can't offer you more than one devil fruit for your silence. We've gained quite a lot from the World Decree, but I still can't offer you more than that... I hope you can understand."</p><p>"…"</p><p>Ren felt at a loss for words. Prince Valling was more straightforward than he had originally anticipated.</p><p>…Not that he disliked that.</p><p>Rather, he quite liked that. It saved him a lot of time.</p><p>He smiled from ear to ear.</p><p>"I wasn't going to ask you for more."</p><p>"Then it looks like we have a deal."</p><p>Prince Valling smiled. Extending his hand, a scroll appeared in his hand.</p><p>It was a mana contract.</p><p>"I prepared this beforehand. You can have a look at it yourself."</p><p>'He's come prepared. As expected, it isn't easy to fool someone like him.'</p><p>Priscilla was enough of a warning.</p><p>Smiling, Ren took the scroll and read through its contents. In the meantime, he heard the Prince's voice in the background. It was tinged with amusement.</p><p>"Have a look and see if there are any loopholes."</p><p>"Of course."</p><p>Ren didn't appear to be bothered by his words and read the contents with great attention. Because he was simulating all possible outcomes through the chip in his head, it took him approximately ten minutes to complete each line.</p><p>Only when he was satisfied with it, would he go to the next line and repeat the same process.</p><p>Overall, it took about 2 hours for Ren to read just about 12 lines. Throughout the entire time, the Prince didn't interrupt him and answered any question that he had.</p><p>The process was rather smooth.</p><p>"Alright, then."</p><p>Feeling content with what he heard, he signed the contract.</p><p>A glow appeared, and a mana contract between the two parties began to take shape. Because the contract was of the highest possible quality, the instant that it was activated, Ren experienced a heavy feeling in his heart.</p><p>"Looks like we have a deal."</p><p>As soon as Prince Valling saw the contract floating through the air, he opened a drawer in his desk and took out a small box, which he promptly gave to Ren.</p><p>"Here's my end of the deal."</p><p>"Thank you very much."</p><p>After retrieving the box, Ren cracked it open only a little bit. After looking through the narrow opening, he was content with what he saw and decided to close the opening.</p><p>He was very satisfied with what he saw. The trip was worth it.</p><p>"I heard you will be leaving soon?"</p><p>Prince Valling's voice echoed once more.</p><p>Raising his head, Ren put the box away and nodded his head.</p><p>"Yes, I'll be leaving in less than a few days. It's about time that I go back."</p><p>"I see."</p><p>The Prince nodded his head with a smile.</p><p>Turning his head, he gazed toward the window, his thoughts unknown.</p><p>"When the time comes that the two of us meet again, I hope you won't disappoint me."</p><p>Ren didn't say anything. His smile said it all.</p><p>Standing up, his figure quickly vanished into thin air.</p><p>A few words lingered after his departure.</p><p>"…Let's hope I'll meet your expectations then."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-720.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-722.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 603 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 603 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-602.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-604.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Did you get the files?"</p><p>"Yes, I've got them."</p><p>Hemlock smiled back at Brian as he flashed a card in his direction. The card was in fact a small USB stick in disguise.</p><p>"Excellent."</p><p>As he looked around, he expressed his heartfelt praise. Observing the surroundings, his eyes were filled with vigilance and alertness.</p><p>"It would be a bit troublesome if the others caught us…not that it would be any problem for me, but I don't necessarily want the others to know of me yet..."</p><p>He murmured in a low voice.</p><p>Catching his whisper, Smallsnake asked.</p><p>"Did you say something?"</p><p>"No."</p><p>Hemlock shook his head while he continued to look around.</p><p>As of now, they were in a nice lobby filled with a lot of people who were walking around, each of whom was wearing a nice suit with hair that was neatly combed. In order to blend with them, Brian and Hemlock were also wearing similar attires, but Hemlock's looks were too much of a problem as they attracted everyone's attention wherever he went.</p><p>"Let's leave for now."</p><p>Hemlock rose from the sofa and headed toward the elevator, much to Brian's confusion.</p><p>"Why are we leaving right now? Don't we have to hand this USB stick?"</p><p>"Not yet."</p><p>Hemlock pressed the elevator button and a small circular yellow light flashed around the button.</p><p>Turning around, he looked at Brian.</p><p>"Brian, don't say anything for now. Let's find a quieter spot so I can talk to you."</p><p>"…Okay?"</p><p>Though confused, Brian nodded his head.</p><p>Though the situation looked sketchy, he trusted Hemlock and followed his instructions. It showed how much he trusted him.</p><p>"I knew you would understand…"</p><p>Hemlock quietly murmured with a smile.</p><p>Ding—!</p><p>With a low chime, the elevator door slowly opened and he took a step in. Brian followed him from behind.</p><p>After that, the elevator doors slowly began to close.</p><p>*</p><p>"So, what did you want to say to me?"</p><p>Taking Hemlock's gaze, Brian looked down at his glass cup filled with whiskey and ice before lowering it.</p><p>As Hemlock sipped his drink, which was the same as Brian's, he slowly put it on the wooden counter before him.</p><p>A tranquil atmosphere permeated the area they were in as dim light covered the area they were in.</p><p>"Brian.."</p><p>He muttered in a low tone while shaking the glass in his hand.</p><p>"Yes?"</p><p>Tilting his head a little, Brian was taken aback by his behavior.</p><p>'Is there something wrong with him?'</p><p>His current state…</p><p>How could Brian explain it? He seemed different from the usual person he knew.</p><p>"Did something happen, Hemlock?"</p><p>He asked, his voice tinged with a little worry.</p><p>Turning his head to stare at him, Hemlock smiled.</p><p>"No…"</p><p>He then shook his head and grabbed the drink from the top with all four fingers. Twirling it around, he quietly mumbled.</p><p>"…Everything is just fine."</p><p>"Then why do you seem so down?"</p><p>"Is that the impression you're getting from me?"</p><p>Squinting his eyes and taking note of his expression, Brian nodded his head.</p><p>"Yes, yes you do."</p><p>Hemlock's smile seemed rather fake at the moment, and his expression wasn't as relaxed as it was in the past.</p><p>There was definitely something up.</p><p>"Doesn't seem like anything can escape from your sight. As expected of someone like you."</p><p>"Have a look."</p><p>Hemlock tapped the air until a sheet of paper appeared in front of him, which he then slid across the table.</p><p>"What's this?"</p><p>Curious, Brian grabbed the piece of paper.</p><p>'What is he trying to show me?'</p><p>Brian thought to himself. The way Hemlock was behaving seemed a little too strange for him.</p><p>'Well, whatever, let me see what's on this paper.'</p><p>Shrugging his shoulders, he looked through the paper.</p><p>"Eh..."</p><p>A strange sound escaped from his mouth as he looked at the first sentence.</p><p>A loud pounding sound erupted from nowhere as Smallsnake felt it powerfully ring inside of his head.</p><p>"Wha..what's this?"</p><p>Gradually, his hands began to shake and his face began to crumble as he continued to read the page. Then, after reading for the next couple of seconds, Brian's neck robotically twisted to look at Hemlock, who was facing him with an expressionless look on his face.</p><p>"It..can't be, right?"</p><p>…at this very moment, Hemlock, whom Brian thought of as a very close friend and his only friend...started to look foreign to him.</p><p>From his smile to his expression and aura…he no longer looked like the same person Brain knew.</p><p>"What's with that look?"</p><p>Jolting Brian out of his thoughts was his voice. Out of reflex, Brian dropped the paper in his hand and he moved back a little.</p><p>"Y..you…"</p><p>His voice began to stutter.</p><p>Without saying a word, Hemlock stared at Brian without showing any signs of being offended.</p><p>It was only after he realized that Brian couldn't say anything that he started to speak.</p><p>"Brian."</p><p>He first started off by calling out his name.</p><p>As a result of his words, Brian stopped stuttering and proceeded to stare at him. The expression on his face was completely pale.</p><p>Shaking the glass in his hand, Hemlock looked toward the front.</p><p>"…Remember the conversation we had not too long ago, in this very bar?"</p><p>Brian immediately shook his head.</p><p>With a tilt of his head, Hemlock responded.</p><p>"I guess it makes sense for you to not remember in a way. You were pretty drunk that day…"</p><p>Taking a sip of the drink in his hand, Hemlock smacked his lips and raised his head to stare at the dim lights coming from above.</p><p>"There is no escaping the fact that mankind is on the verge of extinction. We are fated to go extinct, and that's the truth. No matter how hard we try, we will never succeed in winning this war. It's impossible. It's futile...It's suicide..."</p><p>Listening to Hemlock's words, Brian swallowed a mouthful of saliva.</p><p> His emotions were running wild inside of his body.</p><p>His surroundings felt numb, and Hemlock, whom he considered very important, suddenly seemed like a total stranger to him.</p><p>'…it's all because of this paper.'</p><p>Taking a glimpse of the paper from beside him, Brian's body shook.</p><p>'Why?'</p><p>"This is for your own good, Brian. I'm doing this to keep you from going extinct like all the other people of this world once 'he' arrives." It's only natural that you're confused about why I suddenly assigned you a demon contract, but trust me, I'm doing this to help you..."</p><p>Leaning his body forward a bit, Hemlock brought the paper to Brian's face.</p><p>Brian, you have a very high level of skill. Initially, I didn't think too much of you, but after working with you for the amount of time that we have, I realized that you are the one...You are the one that can help me save humanity and prevent them from going extinct. With your skills and my skills together, we can help change this world. Help them make the right decision..." "</p><p>Reaching out his hand toward Brian, Hemlock smiled at him.</p><p>"In my search for a demon that perfectly matches your abilities, I had to ask a lot of favors. It wasn't easy, but I understood just how important your skills are. Please take my hand. Take my hand and help me save this world from inevitable destruction and—"</p><p>"No."</p><p>Brian pushed the hand away before Hemlock could finish his sentence.</p><p>His expression froze at the rejection.</p><p>"Eh?"</p><p>"Did you seriously think that I would accept your offer?"</p><p>Brian looked at Hemlock with a face. His face filled with anger and sadness.</p><p>"It's great that you want to save humanity, but can you truly be regarded as a human once you sign a contract? Don't you lose sight of yourself when you're overwhelmed by all of your emotions which become more prominent as a result of your signature? If you lose the things that make you human, why even bother doing this?"</p><p>Hemlock's countenance twisted more and more with each word Brain spoke.</p><p>Taking a deep breath to calm himself down, he said.</p><p>"…But Brian, didn't you previously agree with me? Didn't you also say that this was the only thing that could save humanity? Didn—'"</p><p>"When?!"</p><p>Brian's voice raised.</p><p>"When did I ever say such nonsense before?!"</p><p>"Right here, a couple of weeks back! I thought that you of all people would understand what I'm trying to do!"</p><p>Hemlock also raised his voice as he smacked his cup against the wooden counter.</p><p>Bang!</p><p>The table broke in two, and Brian looked at Hemlock in shock.</p><p>"I..."</p><p>Alternating his gaze between Brian and the table, the expression on Hemlock's face soon turned completely expressionless, and he sat back down on the chair.</p><p>"Haa.."</p><p>Passing the paper back to Hemlock, Brian smiled in self deprecation.</p><p>"I should've known better. There's no way someone would be nice to me without having some sort of agenda against me..."</p><p>Standing up from his seat, he took his black coat and wore it.</p><p>"Don't ever contact me again."</p><p>Walking up to the bar owner, Brain paid for the broken table and drinks before he coldly looked at Hemlock and left the place. From how he didn't react when the table broke, Smallsnake knew that he was someone that was most probably working under Hemlock.</p><p>Once Brian left, Hemlock remained seated in the same spot for a long time.</p><p>"Haa…"</p><p>Eventually, he let out a long exhale and murmured.</p><p>"Im disappointed. Out of all people, I would've thought that you would understand me."</p><p>Covering his head with both hands and clenching his hair, Hemlock mumbled to himself.</p><p>"Why does no one understand what I'm trying to do? It's not like I'm doing anything bad…I'm only just trying to save humanity from going extinct…why is something like this so condemned by everyone? Are they just blinded by this false sense of security that the world is giving them?"</p><p>The more he spoke, the greater the insanity in Hemlock's eyes. A black-light flashed behind them.</p><p>"Right…that must be it. The only reason why people aren't agreeing with me is because they are too distracted with this false sense of security that is masking the real danger that is about to approach…they don't understand that death in this world is inevitable and that there is no hope for them in the future. They need to experience true helplessness before they understand…yeah, it must be that."</p><p>Covering his face with his hands, Hemlock suddenly thought of something.</p><p>"Right..right…this must be the only way…I'm sure he'll understand…"</p><p>Dropping the drink on the ground, Hemlock's figure disappeared from the spot.</p><p>*</p><p>While gazing into the window on her right, a lady sat up straight on the bed and cut some apples.</p><p>She had a rather peaceful look on her face.</p><p>"I hope Brian is doing well. He hasn't paid a visit in quite a while."</p><p>She pouted a little when she murmured those words.</p><p>Usually, Brian would visit her every day. There were times when he would not come, but he would never leave for as long as he did.</p><p>"Is it because I'm feeling better now? Does he think it's no longer worthwhile to visit me now that I'm feeling better?"</p><p>The more she thought about it, the angrier she became.</p><p>"What an unfilial child."</p><p>"That's not the case ma'am."</p><p>A voice suddenly echoed amidst her thoughts.</p><p>"Ahh!"</p><p>Laurenta, Brian's mother, screamed out in shock when she heard a voice coming from behind her. She was so startled that some of the apples fell on the bed sheets.</p><p>It wasn't until she saw who the individual was that she finally calmed down. She glared in his direction.</p><p>"Hemlock! Why must you scare me like that?"</p><p>"I apologize."</p><p>Hemlock lowered his head in apology.</p><p>"I didn't mean to startle you like that."</p><p>"Haa…"</p><p>Covering her chest with her hand, Laurenta waved her hand. Then, putting on a smile on her face, she grabbed an apple and handed it to Hemlock.</p><p>"Care for an apple? I've been spending my time cutting them all day waiting for Brian to arri—"</p><p>"No thank you."</p><p>Moving toward her direction a little, Hemlock suddenly pressed his hand against her mouth and nose and applied pressure. Her eyes opened up in shock.</p><p>"Mh..Mhhhh...mhhh!"</p><p>"Shhhh…"</p><p>Hushing her, Hemlock brought his body closer to her ear and whispered. Although his expression looked calm, there was a faint tremble in his hand.</p><p>"Don't think badly of me. I'm doing this for Brian. I'm doing this for him…"</p><p>Laurenta's eyes slowly started to close as she appeared to be able to understand his remarks. She may have wanted to say something, but it wasn't as if Hemlock would give her a chance to. Just as her eyes fully closed, a small tear fell down the side of her cheek.</p><p>Sooh her breathing stopped and so did her heart.</p><p>"Haaa…haaa…."</p><p>Taking his hand away from her mouth, Hemlock jumped back and gasped heavily for breath. With sweat dripping down the side of his face, he looked at Laurenta. Then, lowering his head to stare at his hands which were shaking, he mumbled to himself.</p><p>"I..I had to do it. It was the only way…I..it was the only way to make him understand..." "</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-602.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-604.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

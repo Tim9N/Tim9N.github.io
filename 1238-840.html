@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 840 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 840 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-839.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-841.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Lead us toward the exit."</p><p>Ryan issued the command to the demons, his voice calm and collected despite the chaos that surrounded them.</p><p>It was an unusual situation, to say the least. The demons, previously doing everything in their power to resist him, were moving in unison as they followed his orders to the word. They were no different than puppets at the moment.</p><p>Bang—!</p><p>The muffled sound of explosions rang in the distance as screams echoed everywhere.</p><p>In the midst of the madness that had overtaken the underground system, it seemed that no one was paying them any attention.</p><p>This was good…</p><p>'Everything is moving smoothly.'</p><p>Their current situation was rather delicate, and just one single mistake would cost them their lives. Having exhausted all of his means, Ryan could only hope that everything flowed smoothly.</p><p>'Yeah… it's going to work… I should have already accounted for everything.'</p><p>As they moved forward, Ryan found himself growing increasingly confident in his plan.</p><p>He had expected the demons to be suspicious of their group, but it seemed that his strategy was working even better than he had hoped.</p><p>Emma's presence was proving to be an unexpected boon.</p><p>The demons seemed to be more focused on the chaos around them than on the group of humans that were following them.</p><p>It wasn't long before they found themselves moving through a labyrinth of tunnels.</p><p>Ryan couldn't help but feel a sense of awe at the sheer scale of the underground system.</p><p>He had always known that it was vast, but seeing it firsthand was a different experience altogether.</p><p>Swoosh! Swoosh!</p><p>"Over here!"</p><p>"Move!"</p><p>As they moved through the tunnels, they saw demons rushing past them, heading toward the areas that they had previously been in. But the demons paid them little attention; their gaze was focused solely on the task at hand.</p><p>'It seems like the prisoners are making things difficult for them... good.'</p><p>The group continued on for what felt like hours.</p><p>Ryan had lost track of time, and he wasn't sure how much longer they could keep up the pace. But then, in the distance, he saw a faint glimmer of light.</p><p>His heart skipped a beat as he realized that they were nearing their destination.</p><p>As they approached the opening, the demons in front of them came to a sudden stop. Ryan hesitated for a moment, unsure of what to do. But then he understood. The area ahead was where he needed to go.</p><p>He turned to the demons and spoke softly, his voice barely above a whisper.</p><p>"The exit is over there, isn't it?"</p><p>The demons didn't reply, but their nodding heads confirmed what he had suspected.</p><p>Ryan felt a surge of excitement as he realized that they had made it. When he turned his head, he saw that both Emma and Leopold were looking at him.</p><p>"Let's be careful when going there. We might never know if there are any demons guarding, plus…"</p><p>Frowning, Ryan moved to where Emma and Leopold were and removed their bracelets.</p><p>"…What lies ahead might not necessarily be the exit, so it's best if we're careful."</p><p>Click! Click!</p><p>After removing the bands, Leopold and Emma felt their mana return, and Ryan returned their weapons to them. At the same time, he handed them a couple of tools to conceal their presence so that they wouldn't be found out later on.</p><p>The process was rather fast, and they soon turned to face the glimmering light in the distance. There was an apparent nervousness in their gazes at the moment.</p><p>Even though they were strong, they knew that they were far from being the strongest in their surroundings. They still had to tread carefully.</p><p>"Let's go."</p><p>Extending his hand and crushing the cores of the two demons that had brought them here, the demons disappeared into dust, and Ryan followed Emma from behind.</p><p>Each step was light, and the closer they got to the opening, the more nervous Ryan became.</p><p>'It's going to be fine... I've been through worse...'</p><p>He could practically feel his own heart beat out of his chest at the moment, and soon, they all passed through the light.</p><p>"What the…"</p><p>The moment they passed through the opening, everyone was shocked by what they were seeing.</p><p>They had emerged into a large, cavernous space with a high ceiling that seemed to stretch up into the darkness. The walls were rough and jagged, and the floor was littered with debris.</p><p>But the most disturbing thing was the rune that had been intricately set up in the center of the room. It was massive, stretching for several meters in every direction, and it glowed with an eerie, pulsating light.</p><p>Sitting around the rune were several members of the alliance, and the three of them could vividly see the mana in their bodies get sucked dry out of them, turning them into skinny husks that would soon fall down and be replaced by new members every minute.</p><p>The entire thing was gruesome, and Ryan's face turned green.</p><p>'Sh..shit..'</p><p>He felt a chill run down his spine, as if he had stumbled upon something that he was not meant to see.</p><p>He took a step back, his mind racing with questions and fear.</p><p>Emma and Leopold were similarly shocked, their eyes wide with shock as they looked upon the scene. They had to cover their mouths in order not to make any sound, but it was too late.</p><p>As soon as they arrived, Ryan and Emma realized that they had underestimated the demons that lay beneath them.</p><p>Despite their careful planning, they were instantly detected by the numerous demons that lurked in the shadows. Countless pairs of glowing eyes stared up at them, making their skin crawl with fear.</p><p>"Shit."</p><p>Ryan cursed under his breath as his body tensed up with a sudden chill.</p><p>They had tried their best to remain cautious, but it seemed like their efforts had been in vain. All the tools they had used to conceal themselves had failed, and now they were caught in the demons' sights.</p><p>"So be it."</p><p>Emma said grimly, drawing her sword and jumping down into the fray.</p><p>"Emma!?"</p><p>Startled, Ryan called out for her, but it was already too late.</p><p>Swoosh!</p><p>Blade drawn, her blade flashed in the dim light, and Ryan watched as she jumped down and began hacking at the runes beneath them, with each blow releasing a burst of mana.</p><p>BOOM—!</p><p>"Arkgh!"</p><p>"Argh.. catch her!"</p><p> Caught off-guard, a few of the demons fell to her blade, but it wasn't long before she was surrounded on all sides.</p><p>Spurt—!</p><p>"Since we're screwed anyway, we might as well do as much damage as possible!"</p><p>Emma shouted from beneath as she continued to slash at the runes.</p><p>Ryan knew that he needed to help her, but he also knew that he wasn't strong enough. He watched in horror as several powerful demons approached her, realizing that she was no match for them.</p><p>'Shit, I need to do something...'</p><p>Ryan's heart pounded in his chest as he watched Emma struggle against the demons. She fought valiantly, but it was all for naught.</p><p>She was easily overpowered and eventually crashed against the wall beneath them.</p><p>BANG—!</p><p>"Ugh!"</p><p>Ryan started to bite his nails out of nervousness and rummaged through his dimensional space for anything that could.</p><p>"I... I..."</p><p>"That's enough."</p><p>But before he could do anything, he felt a hand press against his shoulder, and his entire body froze on the spot.</p><p>The same was true for the demons below, who stopped in their tracks.</p><p>"You guys have caused quite a problem for me."</p><p>A soft voice boomed out, and Ryan felt something claw into his body. When he turned his head, his eyes caught sight of a particularly sinister-looking demon.</p><p>"Ha..hah..."</p><p>His presence was unlike any of the other demons Ryan had seen before, and he struggled to breathe.</p><p>He exuded a sense of power and malevolence that made Ryan's skin crawl. The demon seemed to be smiling, but when his gaze fell upon the runes beneath them, his expression turned sinister.</p><p>"I see... You guys must be the reason for all of the chaos that has ensued... right?"</p><p>The demon spoke, his voice sounding like soft, tempting whispers that almost made Ryan agree with him.</p><p>Biting his lips until they bled, Ryan forced himself out of the trance. He could feel the demon's grip tightening on his shoulder, and he knew that he had to act fast.</p><p>Spurt—!</p><p>But before he could even do anything, his vision clouded with red, and when he turned to see the source, he found Leopold staring at him with wide eyes.</p><p>"Uh.. eh?"</p><p>Their gazes lingered for a moment, and Leopold lowered his head to look at the gaping wound on his chest. Blood leaked everywhere, and his gun fell to the ground.</p><p>Tak. Tak.</p><p>Raising his head back up to stare at Ryan, he cocked his head.</p><p>"Y...y..."</p><p>He never got to finish that sentence. Staring at Ryan one more time, Leopold fell over the edge and against the hard surface beneath.</p><p>Thump!</p><p>"L,leopold!"</p><p>Watching Leopold fall to the ground, Ryan shouted at the top of his lungs, but it was already too late.</p><p>"Human child... "</p><p>A soft whisper reached Ryan's mind.</p><p>"...You need to understand that there are consequences one has to pay for their actions."</p><p>'Ah.. wha... wha...'</p><p>Ryan was barely able to think at that moment. He was still reeling from the shock of watching Leopold's death. The image of Leopold's body falling down the edge kept replaying in his mind, and he felt a sense of overwhelming blankness.</p><p>"Indeed."</p><p>It was then that he heard a soft, chilling voice that broke through the fog in his mind.</p><p>A hand appeared from the space itself and grabbed onto the head of the demon beside Ryan, crushing him against the wall.</p><p>Boom-!</p><p>The impact was deafening, and a black foot slowly stepped out of the void to reveal a familiar figure.</p><p>Ryan's eyes widened in shock as he realized who it was, but his words stopped the moment he heard his voice and his entire body trembled.</p><p>A bone-chilling coldness pervaded every part of his body, as he felt a primal fear he never felt before in his life.</p><p>Unknowingly, he took a step back.</p><p>Away from the figure he knew.</p><p>"...One should indeed pay for their actions."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-839.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-841.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

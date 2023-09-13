@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 516 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 516 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-515.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-517.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"He's going to be crucial for when we escape?"</p><p>My interest was immediately piqued when I heard his words.</p><p>In an attempt to quench my curiosity, I asked.</p><p>"Who exactly is he?"</p><p>But my other self simply shook his head.</p><p>"You will find out once you challenge him."</p><p>"Haaa..."</p><p>Closing my eyes, I let out a long sigh. As usual, he would always leave out the more important details for later.</p><p>What a terrible habit.</p><p>"...So I won't be fighting against the current emperor?"</p><p>"Not yet."</p><p>A narrow grin spread across my other self's face as he replied.</p><p>"If you were to fight him right now, you would only end up losing."</p><p>"Hmm...?"</p><p>Involuntarily, my brows furrowed as I tilted my head.</p><p>"You serious?"</p><p>"...Yeah."</p><p>Processing the information, my eyes closed.</p><p>'So another one who is stronger than me...'</p><p>Honestly, I was quite troubled by his apparent confidence in his prediction of my inevitable defeat against the present emperor.</p><p>It just didn't sit tight with me.</p><p>Was I just that competitive? Wasn't too sure.</p><p>"Huuu..."</p><p>With my eyes closed and letting out a short breath, I inquired about the current Emperor.</p><p>"For you to say what you said, the Emperor must be incredibly strong."</p><p>"...Sort of."</p><p>My other self replied.</p><p>In a tight brow furrow, I stared.</p><p>"Sort of? What do you mean?"</p><p>"He may be strong, but that isn't the reason why I am saying that you will lose against him if you two fought."</p><p>"...Continue."</p><p>Taking in more of what he was saying, my ears perked up. I had a feeling that his next words were going to be extremely important.</p><p>"The games are rigged. SilverStar, the current Emperor will be made the next Overlord in the next match."</p><p>"What?"</p><p>And I wasn't wrong as his follow up made my eyes shoot wide open.</p><p>"Hold on, what are you talking about? Doesn't Edward still have over thirty matches left before he gains freedom? Shouldn't he still be fine?"</p><p>"You're right."</p><p>My other self gave a short nod.</p><p>"But there are two main fundamental reasons for this action. The first reason you should already know."</p><p>"Yeah."</p><p>Edward still had over thirty matches left before he gained his 'freedom,' but to avoid making it appear rigged, he was purposely set to lose a bit before that.</p><p>Even then.</p><p>"Why this early?"</p><p>Regardless of how many matches he lost before hitting 100, I was fairly confident that nobody would find it strange.</p><p>So there must be another reason.</p><p>...and I didn't wait for long to know the answer.</p><p>"He's not far from breaking through to the next rank."</p><p>"...Huh?"</p><p>My head snapped in the direction of my other-self. Pricking my ears with my fingers to make sure I didn't hear incorrectly, I asked again.</p><p>"What did you say? Can you repeat that?"</p><p>"No."</p><p>But my other self just shook his head.</p><p>I shrugged my shoulders.</p><p>"...Whatever."</p><p>I had only asked because I wasn't sure I had heard wrongly. That didn't seem to be the case.</p><p>Massaging my forehead, I took a deep breath.</p><p>"I guess it makes more sense now."</p><p>Since the demons overlooking the place were both Dukes themselves, if Edward broke through, his strength would reach a similar level to theirs. This in itself was a threat to their authority, prompting them to act.</p><p>Scratching the bottom of my chin, I pondered out loud.</p><p>"So the reason why we created all that chaos before coming here was because we wanted to attract the attention of some of the upper echelon away from the arena. Correct?"</p><p>I glanced at my other self whose only reply was a brief glance.</p><p>But that was enough.</p><p>"If that's the case, it makes more sense for the current Duke to be rushing things..."</p><p>Clearly, the other Duke had left the territory based on the fact that the current Duke seemed to be rushing.</p><p>Had the two of them been together, Edward's rank up wouldn't have bothered them too much.</p><p>Since the entire city was now under the watchful eye of only one Duke-ranked demon, the appearance of someone of similar strength would put it at risk. Not only that but so would his life.</p><p>There was no way he would just sit by and watch something like this unfold. He was planning on having Edward killed before he ranked up.</p><p>In the midst of my pondering, I had a sudden thought.</p><p>"If they are so afraid of Edward, why not just kill him directly instead of making someone else do it?"</p><p>"...Do you even need to ask? Have you forgotten which clan we're in?"</p><p>My question was met with another question. Glancing at him for a second, I shook my head.</p><p>"Nevermind."</p><p>Right...</p><p>This was the pride clan. Of course, their pride wouldn't allow them to do that.</p><p>'Stupid.'</p><p>I thought as I clapped my hands together.</p><p>"Alright."</p><p>Taking a look at myself from the other side, I stretched my neck.</p><p>"I already have an idea of what I'm supposed to do."</p><p>Taking another glance in my direction, he disappeared from his spot without saying anything.</p><p>Having become accustomed to his actions, I tapped my bracelet and took out a piece of paper and a pen. Grasping the body of the pen tightly, I began writing on the paper.</p><p>The next few minutes flew by since I already knew what I wanted to write on the paper.</p><p>"...and done."</p><p>My tongue dipped out of my mouth as I put the pen away.</p><p>With the letter inside, I placed a couple of things in the small dimensional space the size of a small ball.</p><p>"This should be enough."</p><p>It wasn't until I was satisfied with what I had put in that I looked for the door and knocked.</p><p>'Thank god they didn't search me.'</p><p> To Tok—!</p><p>For a brief moment of time, I was met with no response. Fortunately, I did not have to wait for long as the door soon opened and a demon appeared opposite me.</p><p>My gaze was met by the demon's cold gaze. His croaky, brittle voice echoed in the air as he opened his mouth.</p><p>"What do you want?"</p><p>"...I would like to pay respect to the current Overlord."</p><p>"Ha?"</p><p>The Demon's face changed a little. In spite of this, he grumbled in a quiet whisper and nodded after some thought.</p><p>'This might be fun...'</p><p>My ears were able to pick up the whisper of his voice despite it being extremely quiet.</p><p>Though I was slightly apprehensive after hearing him speak, I decided to follow through with my plans anyway. As long as I managed to meet Edward, then everything was alright.</p><p>"Follow me."</p><p>"Okay."</p><p>Closing the door behind me, I followed the demon.</p><p>***</p><p>While staring at the ceiling of his room, Edward muttered something.</p><p>"How long has it been now?"</p><p>His eyes were out of focus, and his emotions were numb.</p><p>The four years he had spent in this hell hole were taking a toll on him.</p><p>But.</p><p>"Just a little bit more..."</p><p>He ended up muttering as he clenched his hands into a fist and a powerful aura erupted from his body.</p><p>The end was in sight.</p><p>There was only a little more struggle he had to endure before he could regain his freedom.</p><p>...Just a little bit more.</p><p>To Tok—!</p><p>A knock came on the door of his room and the aura coming out of his body dwindled quickly.</p><p>In an instant, Edward's face turned grim as he glanced at the door.</p><p>"What do you want?"</p><p>The echo of his deep voice filled the room.</p><p>An answer was provided after a while by a croaking voice. It was a voice Edward was all too familiar with. One that belonged to a demon.</p><p>"Someone is here to pay his respects."</p><p>"Send them back."</p><p>As he grimly replied, Edward wore a look of repulsion on his face.</p><p>This wasn't the first time that something like this had happened in the past. Due to his current position as the top dog in the arena, everyone wanted to curry favor with him, but he didn't pay any attention to them.</p><p>The fact that he knew better than to trust anyone here did not even compel him to glance at them or bother to listen to them.</p><p>The same could be said for the current situation.</p><p>But the demon behind the door seemed insistent.</p><p>"The person that wishes to meet you is a human."</p><p>"...a human?"</p><p>Edward paused for a moment.</p><p>Following a few moments of thought, he eventually shook his head.</p><p>"Send him away."</p><p>Humans weren't quite rare here. In fact, he had already seen multiple during his stay. It was initially his intention to meet them, but after a while, he knew better not to as they would come at him all vying to protect them or form some sort of alliance.</p><p>The only thing they wanted was for him to protect them, which was something he wasn't keen on doing.</p><p>His goal was not to babysit them but to gain freedom. Anything that would impede him from doing so was his enemy.</p><p>"Human says he has recently migrated from the human world to this one and asks for your advice."</p><p>Just then, Edward's head snapped upwards.</p><p>"Did you just say he came from the human world just recently?"</p><p>'Does that mean that he knows about the current situation with Amanda?'</p><p>While taking a few deep breaths to calm himself, his heartbeat unknowingly started to beat faster. Closing his eyes for a moment, he waved his hand.</p><p>"Let him in."</p><p>"As you wish."</p><p>Clank—!</p><p>It was a white-haired man with deep blue eyes who slowly emerged from behind the door as the demon's voice echoed through the space.</p><p>"I will be staying here to supervise the stay."</p><p>In a brief glance, Edward glanced at the demon before examining the white-haired figure.</p><p>The moment his eyes paused on the figure, Edward's brows twitched for a moment.</p><p>'He looks familiar.'</p><p>Though it had been quite a while since he had been in the human domain, he felt an odd sense of familiarity as he looked at the figure in front of him.</p><p>'Did I meet him somewhere before?'</p><p>He eventually shook his head and mumbled to himself.</p><p>"I don't think I'd forget someone that looks like him so easily..."</p><p>No matter how he tried to think, he couldn't quite recall where he had seen him.</p><p>White hair and deep blue eyes...</p><p>He would have remembered someone who looked like that had he met him in the past.</p><p>"Hello."</p><p>At that moment, the white-haired figure stopped and smiled at him.</p><p>"My name is White Reaper, and it is an honor to finally meet you. Mr. Overlord."</p><p>He then extended his hand in his direction.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-515.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-517.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

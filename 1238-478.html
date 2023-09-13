@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 478 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 478 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-477.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-479.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'Oh god.'</p><p>The moment I turned my head and my eyes met with the person who had called out for me, a groan couldn't help but escape from my mouth.</p><p>"What are you doing here?"</p><p>"What do you mean? This is my classroom."</p><p>Placing her hands on her hips, Sophia pouted.</p><p>"I'm more offended by the fact that you didn't notice me at all."</p><p>"Mhhh."</p><p>I casually nodded.</p><p>Because my focus had been on the professor the entire time, I didn't notice Sophia at all.</p><p>Which would've been for the best since her appearance gave me a headache.</p><p>Pinching the middle of my brows, I asked.</p><p>"Anyways, what do you need from me?"</p><p>"How rude, I was just here to say hi to you."</p><p>"Okay, hello, now go away." I bluntly replied, while shooing her away with my hands.</p><p>However, it didn't seem like she managed to get the message as she took out her phone and shoved it in my face.</p><p>"So rude, anyways, I have something else to talk to you about. Please for the love of god stop this guy."</p><p>"Who?"</p><p>Moving my head back to get a better look at what she was showing, my eyes squinted.</p><p>"...What the."</p><p>My eyes dilated.</p><p>"Give me that."</p><p>Snatching the phone from her hand, I leaned my body closer to get a better look.</p><p>[Shoot for the moon. Even if you miss, you'll land among the stars.]</p><p>Shivers.</p><p>The exact moment my eyes paused on the image and I read the caption, my body started to shiver uncontrollably.</p><p>'Oh my god, Kevin...'</p><p>Raising my head, I handed the phone back to Sophia before muttering.</p><p>"He needs to be stopped."</p><p>"Right?"</p><p>Sophia took the phone back.</p><p>"Please do something about it."</p><p>Crossing my arms together, I nodded my head in agreement.</p><p>"I'm with you on this one."</p><p>What Kevin was posting was a menace to society. He needed to be stopped at all costs.</p><p>"Ehm, I'm sorry if I'm interrupting you two, but..."</p><p>It was then that I finally took notice of the other person beside Sophia.</p><p>Once my eyes paused on her, my brows creased a little.</p><p>Setting her looks aside, the first thing that surprised me about her was her aura. It was wild and powerful. If I had to make a guess, she was in the early stages of &lt;C&gt; rank.</p><p>Given that this was the second year, her achievements were quite outstanding.</p><p>Feeling her gaze all over me, before I could ask her purpose, she suddenly spoke up. Her eyes burned with fighting spirit.</p><p>"How strong are you?"</p><p>My brow raised.</p><p>"That's a bit of a random question."</p><p>However, taking note of the wild aura revolving around her, I instantly understood she was what some might call a 'battle junky.'</p><p>Scratching the side of my neck, I looked up for a moment.</p><p>"How strong I am? ...Well, did you not watch me during the tournament?"</p><p>"I did, I did."</p><p>The girl bobbed her head up and down.</p><p>"But you gave up before the tournament ended, and back then, you were only &lt;B&gt; ranked when you defeated that &lt;A-&gt; ranked orc. Although I can't tell what your strength is right now, I can tell that your strength is far above what it was back in the tournament, and I'm wondering exactly how strong you are at the moment."</p><p>Placing my hand beneath my chin, I murmured.</p><p>"Aha...good question."</p><p>Honestly, there was no real answer to this.</p><p>In terms of strength, I had long surpassed Kevin who was still &lt;B&gt; rank, or maybe &lt;B+&gt; rank, wasn't really sure at this point, but, even if he did breakthrough, he was no longer my match.</p><p>'In fact, I don't think there is anyone my age that can beat me.'</p><p>At least in the human domain.</p><p>Glancing in the girl's direction, I mysteriously smiled.</p><p>"Well, let's just say that I'm pretty strong."</p><p>Before she could start complaining, I turned around and waved my hand.</p><p>"Don't bother complaining. Even though I'm pretty strong, compared to the actual &lt;S&gt; rankers, I'm still nothing but a small fish inside of a bigger pond. I've still got a long way. Ask me that question once I reach the ranks."</p><p>Even though the achievement of being one of the strongest amongst my ages was something quite noteworthy, at the end of the day, it was really nothing worth celebrating.</p><p>What really mattered was becoming the strongest amongst the strongest, not the strongest amongst the weakest.</p><p>Lifting my glasses up, I proceeded to leave the classroom.</p><p>***</p><p>"Haa..."</p><p>With his shoulders slumped, Kevin let out a long and tired sigh.</p><p>'Thank god this is over."</p><p>He secretly thought to himself.</p><p>Today was his first day as an assistant professor, and it was quite frankly something that he wanted to forget.</p><p>He initially thought that it was going to be a breeze since he was teaching third years, which were a lot more sensible and mature compared to the first years, however, he had completely underestimated just how rampant teenagers were.</p><p>Even though no one dared to challenge him, they all bombarded him with a series of different questions, and basically, stopped him from teaching.</p><p>Thankfully, this was only his first day of teaching, so he didn't really need to get much done.</p><p>Still, he couldn't let things progress like this.</p><p>'I wonder if Ren had it better than me.'</p><p>Realistically speaking, he should've had a much harder time than him. Not only was he an assistant professor and he was teaching second years, but he was also fairly popular due to what happened back at the conference.</p><p>"Heh."</p><p>The thought of Ren having a harder time than himself made Kevin smile.</p><p>Taking out his phone, he sent him a quick message.</p><p>[How was your day?]</p><p>Not even a couple of seconds after he sent the message, he got a reply.</p><p>However, the message written wiped the smile off of Kevin's face.</p><p>[Don't talk to me.]</p><p>"Huh?"</p><p>Lowering his head, he typed back.</p><p>[What do you mean?]</p><p>Ren's response caused Kevin to freeze on the spot.</p><p>[Shoot for the moon. Even if you miss, you'll land among the stars.]</p><p>Kevin's mouth started to spasm, and he quickly typed back.</p><p>[I thought you told me that you don't go on social media. How did you find out about it? ...And also, what is wrong with it.]</p><p>However, right as he sent the message, he was surprised to find that his message couldn't go through. What followed after was a string of red text that said.</p><p>[The user has blocked you.]</p><p>Crack—!</p><p>Before he knew it, Kevin's screen started to crack.</p><p>***</p><p>"How nasty."</p><p>Shaking my head, I put my phone away.</p><p>No way in hell I was going to talk to him after what I saw. Even now, I wished I had never seen that.</p><p>'If only I could go back in time.'</p><p>"Haa..."</p><p>Letting out a long breath, I stopped in front of a familiar door.</p><p>To Tok—!</p><p>Knocking on the door once, I pulled the handle and entered the room.</p><p>Entering the room, I stopped right at the entrance. Although I wanted to enter the place, the state of the room prevented me from doing so.</p><p>.</p><p>"Professor, is there anything you need from me?"</p><p>Sitting by the other side of the desk, Professor Thomas leaned his back against the chair and rested his feet on the table. In his hands was a small tablet.</p><p>Hearing my voice, he casually gazed in my direction.</p><p>"Oh, you're here."</p><p>"Yes."</p><p>I politely replied back.</p><p>Glancing around the place, I asked.</p><p>"So is there something that you nee—"</p><p>But, not even a second after I started speaking, the professor spoke up. His next words caused my body to freeze on the spot.</p><p>"876."</p><p>Slowly my head turned in the direction of the professor, and our eyes met.</p><p>For a split moment, all I saw was my very self inside of his eyes. I saw myself inside of a dark and endless space.</p><p>An endless space filled with nothingness.</p><p>Ba…thump. Ba…thump.</p><p>Unknowingly, my heart started to speed up.</p><p>There was something about his eyes. Something about them that really set me off. They felt familiar.</p><p>Furthermore, how was it possible for him to know that I was 876? The Union had used all of its power to cover up every single trace of Aaron during the time I was at the Monolith.</p><p>Only a select few actually knew what happened.</p><p>Quickly recollecting myself, alarm bells rang inside of my head as I solemnly stared at Thomas who turned his head to look at his tablet again.</p><p>"What's your purpose?"</p><p>I asked. Secretly, I was channeling the mana inside of my body.</p><p>Gulp—!</p><p>I swallowed a mouthful of saliva.</p><p>"Hm?"</p><p>Just when I was about to attack, Professor Thomas turned his head in my direction. Once our eyes met, he slowly turned his tablet around.</p><p>"876? Do you not know him?"</p><p>"Uh?"</p><p>Lowering my head, I glanced at the tablet.</p><p>Displayed on the tablet screen was the image of a news article.</p><p>[Connal Rhinestone, father of Aaron Rhinestone, also known as 876, disappears. Could his disappearance have anything to do with what happened to his son? Should everyone be alert about his disappearance?]</p><p>Staring at the article, I stopped channeling the mana inside of my body and my mind became less alert.</p><p>'Ah, he was talking about that.'</p><p>Right, with Connel's disappearance, it wasn't strange for 876 to once again be the topic of the town.</p><p>Raising my head, and once again meeting Professor Thomas's eyes, I no longer gave the same feeling as before.</p><p>'Was I hallucinating?' I thought to myself.</p><p>Everything happened so fast that I wasn't able to process anything that happened. Was what I saw the fruit of my imagination?</p><p>I really couldn't tell.</p><p>"876, what a pitiful guy."</p><p>While I was in thought, Thomas once again started to speak.</p><p>Scrolling through his tablet, he shook his head.</p><p>"Although the Union didn't release too much information about this guy, I did hear that he was a failed experiment from the Monolith. For him to have escaped such a place, he must've suffered quite a lot."</p><p>"...Right."</p><p>I did suffer quite a bit.</p><p>Recalling the events of the past, my brows started to crease.</p><p>Unaware of what I was thinking, Professor Thomas, sat up straight and scrolled more.</p><p>"If you took about it, this 876 guy, he was quite unlucky."</p><p>"How so? Wasn't he a wanted fugitive that committed a lot of crimes? Why was he unlucky?"</p><p>I asked. Before I knew it, I was suddenly getting swept by his rhythm.</p><p>Lifting his head, Professor Thomas fixed his glasses.</p><p>"Well, you are right."</p><p>He then proceeded to put the tablet down.</p><p>"But don't you think that the reason he committed all the crimes he did was because of what he went through at the Monolith? I'm sure his mind was filled with demons."</p><p>"Demons?"</p><p>I leaned my head to the right and asked. What exactly was he on about?</p><p>"...Right, demons."</p><p> Raising his finger, he slowly pointed it toward the middle of his forehead.</p><p>Silence descended in the room.</p><p>My breathing stopped.</p><p>"The voices inside of our minds. The ones telling us what to do, no matter how right or wrong they are. The voices that we can't shut up no matter how much we try to shut up. The ones we try to ignore, but always come back..."</p><p>Like soft whispers, Thomas's voice entered my mind.</p><p>Each and every one of his words deeply resonated inside of my mind.</p><p>"The demons target our deepest fears, guilts, morals, and before you know it..."</p><p>Professor Thomas suddenly clapped his hands.</p><p>"Bam!"</p><p>The clap was soft, but they powerfully rang inside of my head like thunderclaps, snapping me out of whatever thoughts I was in.</p><p>"....You find yourself with your back against the wall. Unsure of what to do."</p><p>'What's going on?'</p><p>Staring at my hands which were filled with sweat, I lifted my head up and once again stared at Professor Thomas.</p><p>"...Why are you telling me this?"</p><p>"Why am I telling you this?"</p><p>Lowering his head, I manage to catch a glimpse of his eyes underneath his glasses.</p><p>With a simple smile on his face, he grabbed the tablet and put it away.</p><p>"Nothing really, I was just sharing my thoughts on the matter. This 876 guy, he has been quite the talk recently, you know?"</p><p>"...I see."</p><p>Closing my eyes and recollecting my breath, I turned to look at the door.</p><p>"Professor, wasn't there something that you needed from me?"</p><p>"Ah, yes."</p><p>Professor Thomas smacked the top of his forehead. Glancing around the room, he said.</p><p>"Can you help me clean up this mess?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-477.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-479.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

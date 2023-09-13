@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 851 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 851 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-850.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-852.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Ashton city, Earth.]</p><p>Whiiish—!</p><p>Coming out of the pocket dimension, Liam and Han Yufei were rather disoriented. The sudden change in environment confused them for a moment, and the fact that they hadn't been back on earth for over five years didn't help with the situation.</p><p>"Are we back?"</p><p>"It looks like it."</p><p>The familiar city streets, the pillars in the faraway distance, the serene blue sky… they were truly back.</p><p>Not that they had seen the Pillars before...</p><p>Liam sighed in relief, but he didn't get to enjoy the relief for very long. All of a sudden, the ground trembled, and one of the skyscrapers near them collapsed.</p><p>BOOOM—! Something crashed against several of the buildings as they collapsed.</p><p>They were taken aback when, after turning their heads to look at the structures, they noticed a familiar figure off in the distance.</p><p>Liam was able to identify them in an instant, as evidenced by the sudden yellow glow that emanated from his eyes, and he quickly disappeared from the spot.</p><p>"Hey, wait for me!"</p><p>Appearing right above the skyscraper, Liam could hear Han Yufei's voice in the far distance, but he didn't particularly care and cocked his head.</p><p>"Do you need help?"</p><p>Bang—!</p><p>Crashing against the wall, Emma looked up and glared at Liam.</p><p>"What do you t—Akh!"</p><p>KWAAANG—! Crossing her daggers, she barely managed to block the demon's claw. Groaning, she nudged her head several times. As if trying to tell Liam to get on with it.</p><p>Cracka! Cracka!</p><p>Good thing that Liam got the message, and lightning crackled around him.</p><p>The demon that was on top of Emma immediately froze on the spot, and Liam appeared behind it. He slashed his hand across the demon's thigh as his eyes took on a yellowish tinge and began to shine even more brightly than before.</p><p>That's where he felt the core was.</p><p>"Huek!"</p><p>That was about it for the demon. Just one move from Liam was all it took, and its entire body turned to dust.</p><p>"Thank… haaa.. you."</p><p>Catching her breath, Emma sighed in relief.</p><p>Upon closer observation, Liam realized that Emma's complexion was rather bad. Her face was pale, and her head was covered in sweat.</p><p>Thinking about the demon that he had just defeated, his expression turned strange.</p><p>"You were struggling with just that?"</p><p>Actually, now that he took a closer look at her, she seemed different from how she normally was. He hadn't spent much time with her, so he wasn't too sure, but… she seemed a little wilder.</p><p>If that made any sense.</p><p>"Do… hhaaa… do you really think that's the only… haaa.. demon that I was up against?"</p><p>Catching her breath, she pointed toward the distance, and that was when Liam finally noticed. A street littered with demon corpses.</p><p>It was a sight to behold, and his mouth instantly shut.</p><p>"That's fair enough."</p><p>"No shit…. Haa… I'm fucking tired."</p><p>Well, he could tell. The fact that speaking made her this tired was a great testament to that.</p><p>"Want a potion?"</p><p>He offered her a potion as an apology, but she rejected him right away.</p><p>"I'm good."</p><p>"Well, suit yourself."</p><p>Putting the potion away, Han Yufei suddenly appeared beside them. With his broadsword on his back, he gazed at the streets hidden behind the skyscraper and put up a thumbs up.</p><p>"Wow, impressive."</p><p>"Thank you."</p><p>Emma thanked him politely, taking out one of her own potions and gulping it down. Her chest started to level at that point, and her breath returned.</p><p>Just as she was about to speak, Liam's expression suddenly changed, and his head snapped upwards, toward the sky.</p><p>"What's wrong?"</p><p>Suddenly noticing the shift in Liam's expression, Han Yufei and Emma looked at him.</p><p>He didn't respond to them and continued to stare at the sky for a good couple of seconds before his eyes suddenly shone with a brilliant hue of yellow that enveloped the entire surroundings.</p><p>"Liam?"</p><p>His action startled both of them, but his subsequent words startled them even more.</p><p>"Do you have any way to contact the others…"</p><p>His voice, which always seemed lazy and lethargic, had an unusual seriousness to it that made both Han Yufei and Emma look at each other in confusion.</p><p>They nonetheless thought about his words, and Han Yufei was the first one to answer.</p><p>"Ryan… he knows of a way to contact everyone."</p><p>"Okay."</p><p>Liam nodded his head.</p><p>"Contact him and tell him that he is coming."</p><p>"He?"</p><p>"Yeah… he."</p><p>***</p><p>WOOOM—!</p><p>"…"</p><p>No one said a word upon coming out of the dimensional pocket. Be it Angelica, Hein, Ava, or Smallsnake.</p><p>They all just stared quietly at the world around them without saying a word.</p><p>What they'd wittinesses inside of the Pillar…</p><p>"Are you…"</p><p>Ava was the one who eventually broke the silence as she turned to face Angelica. She was quietly staring at the ground, her thoughts unknown.</p><p>Everyone turned their attention toward Angelica, following her words, and sensing the attention she was being given, Angelica raised her head.</p><p>"I'm fine."</p><p>She was. At least, that was what she tried to make herself believe.</p><p>Reality was that she wasn't sure.</p><p>The scene she witnessed… it wasn't something she wanted to remember.</p><p>Even though Angelica knew it had to be done and she deserved it… It still left her empty.</p><p>That was… her very own mother. Someone she looked up to despite hating her at the same time.</p><p>"Are you sure you're okay?"</p><p>A soft voice reached her ears, and when she turned, she saw a face she hadn't seen for quite a while.</p><p>"I'm fine."</p><p>She smiled at Smallsnake.</p><p>"Well… I'll believe you for now."</p><p>It was clear that he could see right through her, but it was good that he let the topic go and shifted his attention toward Ava.</p><p>"What are we sup—"</p><p>—Ava? Hein? I can feel your communication; are you guys there?"</p><p>Smallsnake was stopped by a familiar voice that echoed from Ava's watch.</p><p>He froze the moment he heard the voice.</p><p>"Ryan?"</p><p>Ava raised her watch and brought it to her lips.</p><p>"Ryan, is that you?"</p><p>—Who else would it be? I'm the only one th… ah, no never mind. That's not important. I was just about to say th-</p><p>"Ryan?</p><p>Smallsnake spoke, moving closer to Ava. It was there that the communication abruptly turned silent.</p><p>"…"</p><p>"Ryan?"</p><p>Smallsnake called out once more, hoping that he could hear him.</p><p>"…"</p><p>But yet again, he was met with no response. Just as he was about to try again, the communication turned on again.</p><p>—Is this some sort of sick joke? What are you guys trying to pull? No, never mind; I don't have time to deal with this shit.</p><p>There was clear anger in his voice as he spoke, and when Smallsnake heard his words, he smiled.</p><p>'So he still remembers my voice…'</p><p>The thought made him smile even more, and his head moved closer to the watch.</p><p>He tapped on the screen, and a projection appeared in front of him. Turning the camera on, Smallsnake waved, a soft smile on his lips.</p><p>After seeing him again, he had a lot of things he wanted to say to him... He had changed a lot in appearance since the last time he saw him; he had become an adult, and looking at how disheveled his appearance was, he knew that he must've had a hard time during the few years he wasn't there.</p><p>"…You've grown up a lot."</p><p>Such were the words that came out of his mouth when he saw him.</p><p>He could've started with something else, but his appearance was what reminded him of how times had changed and that he was no longer the young teen he once used to know.</p><p>"…"</p><p>On the other side, Ryan's expression froze, and when his gaze met Smallsnake's, his eyes blinked several times until, eventually, droplets of water streaked past his cheek.</p><p>Blinking more, he brought his arms over his face and continued to wipe at whatever was falling, his expression never changing.</p><p>"Huuu."</p><p>Covering his face with his hands, he hoarsely spoke.</p><p>"W... well, as of the time that you left, I am approximately the same age as you were…"</p><p>"Ah… I see…"</p><p>Smallsnake smiled, his lips trembling a bit.</p><p>"Same age, huh… I, sure missed a lot…"</p><p>"Yeah… yeah you did."</p><p>***</p><p>[In an unknown area, Earth]</p><p>The world outside the pillars was a mess. Buildings crumbled, ecosystems were torn apart, and the ground was shredded into nothingness.</p><p>Jin wielded his daggers like they were an extension of his body, slicing at the enemies with such utter precision that they didn't even have the time to react. The accuracy of his attacks completely shattered their cores in one go, killing them immediately.</p><p>Thump—!</p><p>What's more. Stepping onto the ground, black threads would spike out from the point between his foot and the ground, shooting directly at the demons near him and impaling them directly at their cores.</p><p>His skills had improved drastically over the years, and he was now at a level where only Prince ranked demons could pose a threat to him.</p><p>"Not bad."</p><p>Priscilla turned to look at Jin with a look of pleasant surprise. Being the closest one to Jin, she could see just how much finesse his movements had.</p><p>As someone who was nearing Prince rank herself, she could see through his every move. His power was quite rare and extremely good when dealing with multiple opponents.</p><p>"Impressed?"</p><p>Her train of thought was interrupted by Jin's voice as he appeared behind her without any warning.</p><p>Reaching out with his hand, he grabbed a demon by its throat and clenched his hand tightly, tearing the head off.</p><p>Then, moving one of his fingers up, thin threads burst from the ground and enveloped the entire body of the demon, sinking it to the ground.</p><p>"Don't flatter yourself."</p><p>Priscilla snorted and waved her hand.</p><p>WOOOOM—! Immediately, the surrounding space shook, and a tidal wave of demonic energy burst forth from her hand, enveloping several monsters and demons approaching in their direction.</p><p>"You're still too early to compete with me."</p><p>"You want to bet?"</p><p>"On what?"</p><p>"On who gets the most kills."</p><p>With another snort, Priscilla smirked, and her pink hair started to flutter.</p><p>Her crimson eyes shone with a strange power, and every demon and monster near them suddenly slowed down.</p><p>Though Jin seemed serious, Priscilla found his actions laughable. After she had shown him her powers, how did he still think that he had a chance against her? Did he have something else up his sleeves? If he did, what was it?</p><p>She suddenly grew curious.</p><p>"Alright, I'll play with you. What does the winner get?"</p><p>"Why are you asking if you already know the answer?"</p><p>"I just need to make sure. I've already learned my lesson the last time…"</p><p>Feeling her subtle glare, Jin turned his head and pretended to not have heard her words.</p><p>'She sure knows how to hold her grudge.'</p><p> She… she reminded him of a certain someone.</p><p>'Hmm, maybe just not as petty… he's… it's hard to find someone as bad as him.'</p><p>Truthfully, he didn't know if such a person existed. Nor did he want to imagine. If such person truly existed, he wouldn't want to meet them.</p><p>"When do we start?"</p><p>Priscilla's demonic energy started to spread throughout every inch of the area they were in. At the same time, Jin grabbed his two daggers and got into position.</p><p>"We can start whenever you're ready."</p><p>"I'm ready."</p><p>"Okay then…"</p><p>The two of them were just about to get ready when, all of a sudden, a voice transmitted into Jin's mind.</p><p>—Whatever you're doing, get cover.</p><p>"Huh? Who is this?"</p><p>Jin looked around in surprise. His actions caught Priscilla's attention, and she teased.</p><p>"What's with you? Backing out already?"</p><p>"Quiet for a moment."</p><p>But Jin's serious expression made her instantly understand that the situation was not as it seemed.</p><p>—Jin, if you're hearing this, immediately find cover… Bzzz…</p><p>A static sound filled Jin's ears halfway through.</p><p>"Hello? What's going on?"</p><p>—Bzz.. hide… he is com–bzzz..</p><p>"What? He is coming? Who is co–"</p><p>Cr… Crack—!</p><p>With a sudden distortion of the space above, a subtle cracking sound echoed from above, and the entire planet came to a sudden standstill.</p><p>Almost at the same time that happened, Jin turned his head, and his heart stopped. The same went for many of the humans and alliance members fighting, as despair suddenly clouded their minds.</p><p>A gentle voice transmitted into the ears of everyone present as a figure stood in the skies.</p><p>"You tried your best to delay the inevitable, but…"</p><p>With long white hair that fluttered in the wind and two crimson red eyes that looked down upon everything beneath, a figure unlike any other stood above the skies, and as if ink had dropped on paper, the skies began to gradually turn red.</p><p>"…I am here."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-850.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-852.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

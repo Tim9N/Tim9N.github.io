@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 504 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 504 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-503.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-505.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Standing at the top of a small cliff, I looked at the pale red sky. </p><p>A pungent and chemical-like smell lingered in the air, prompting my nose to momentarily close up.</p><p>"Two more months, huh?"</p><p>With four months gone, there were only two months left for me in this place.</p><p>Actually, if possible, I preferred to go back earlier.</p><p>Surprisingly the Demon realm wasn't that much different compared to earth. Aside from the terrible smell, and the fact that the place was filled with demonic energy which made it harder for me to recover my mana, everything else was pretty much normal. </p><p>The landscapes, the time difference, and the gravity. It was pretty much the same as that of earth which surprised me quite a bit. </p><p>Ah, right, this place also had only one sun. </p><p>Lowering my head, I covered my mouth. </p><p>"Huaam, I'm tired." </p><p>During these four months, I didn't only just train, but I also spent the time sorting out the thoughts inside of my head. </p><p>It took me quite a bit, but I had pretty much come to terms with everything that had happened.</p><p>Despite the fact that I wanted to reject everything that I had learned with all my heart, I knew that it wouldn't do me any good.</p><p>And thus. </p><p>I decided to stop caring. Or should I say, I decided to move on and focus everything on getting stronger. </p><p>If the figure inside of my head was none other than my future self, then I decided to stop at nothing to stop that future. </p><p>That said.</p><p>Squatting down a little, I squinted my eyes and gazed into the distance. </p><p>"Looks like they've finally made their move…"</p><p>"Indeed."</p><p>Before I knew it, my other self had appeared next to me as he similarly looked into the distance. </p><p>"The greed clan have finally started to make their move against you."</p><p>"Figured as much."</p><p>With everything that I had done over the past couple of days, I wasn't surprised by this development.</p><p>Rather, I was in fact more shocked by how slow they were.</p><p>Sitting back down on the ground, I looked up at the sky. </p><p>"Hey, what exactly were you planning when you had me provoke the greed clan."</p><p>Knowing myself well, I knew that my other self had other plans in mind when telling me to destroy a series of sub-branches. </p><p>The real question was why would he want to do that? </p><p>"Weren't you looking for a way to save Amanda's father?"</p><p>Unexpectedly, I received an answer to my question. What surprised me the most was the contents of his words.</p><p>I instantly sat up straight.</p><p>"Wait, do you have an idea of where he is?"</p><p>There were three goals I had in mind when entering the demon realm.</p><p>Of those three goals, one of them was finding Amanda's father.</p><p>Over the last few months, although Amanda had tried to hide it as much as possible, I could tell that she was incredibly exhausted.</p><p>And not only that, the guild didn't seem to be faring well lately.</p><p>It had gotten to the point where Natasha had decided to come back and take the reigns of the situation. Not that she was of much help, but it still did relieve Amanda of her stress.</p><p>That said.</p><p>With Amanda's father being gone for as long as he was, it was inevitable for news to spread about this, resulting in the other clans becoming more rampant than ever.</p><p>If the situation continued like this, I was afraid that something terrible would happen to the Demons Hunter guild, and I simply couldn't allow for that to happen.</p><p>The downfall of the Demon Hunter guild would lead to catastrophic consequences.</p><p>Not only for me but for the human domain as a whole. </p><p>"Is Amanda's father trapped in the Greed clan?"</p><p>"No."</p><p>The other me shook his head. </p><p>Taking out a small branch he lowered his body and drew a large square, and divided it into seven disproportional sections. </p><p>"Let's just ignore the fact that the demon world is not squared and that this is not in any shape or form accurate, as you already know, there are seven clans in the demon world."</p><p>"Right..." </p><p>I nodded my head.</p><p>They were the Lust clan, Greed clan, Sloth clan, Wrath clan, Gluttony clan, Pride clan, and Envy clan. </p><p>Ren continued.</p><p>"You should also know that the clans don't get along with each other quite well, right?"</p><p>"Yeah."</p><p>It was as he said.</p><p>Despite working together, the clans weren't on friendly terms. In fact, their relationship was quite complex as there were a lot of hidden fights between them.</p><p>I had in fact witnessed a couple of them during my training in the demon realm. </p><p>If not for their fear of the Demon King, they would've long had started a war amongst each other.</p><p>Just went to show how powerful Jezebeth reign was. </p><p>In the meantime, the other me continued. </p><p>"There are three secret alliances between the clans. The lust clan and the sloth clan, the greed clan and the wrath clan, the pride clan and gluttony clan. These are the three alliances between the clans."</p><p>Ren paused and looked at me.</p><p>"Do you get it?"</p><p>Caressing my chin, I pondered over his words. It was then that I realized something.</p><p>"What about the clan of envy?"</p><p>Did he perhaps forget to mention it? </p><p>But that didn't seem to be the case as he shook his head.</p><p>"No, I didn't forget. The Envy clan is not in an alliance for one simple reason, and it's because they are the strongest and scariest out of the seven clans…"</p><p>Raising the stick, he pointed it towards the biggest block which was located at the bottom right corner of the large square.</p><p>"Amongst the clans, they are the strongest and scariest as they have the most number of Duke-ranked demons alongside Marquiss-ranked ones."</p><p>He then raised the stick and pointed it toward two smaller blocks that bordered the Envy clan block.</p><p>"These over here are the clan of Wrath and Greed. As they both border the Envy clan, they have no choice but to ally together."</p><p>The more I listened, the more everything started to make sense to me. </p><p>In short, most of the conflicts arose due to their bordering lands. The Lust clan and the Sloth clan both bordered the Greed and Wrath clan, resulting in minor skirmishes arising between the two, hence their alliance. </p><p>The same could be said for the Pride clan and the Gluttony clan as they bordered the Lust and Sloth clan. </p><p>Of course, this wasn't the only reason for their conflict, but it played a major part in it. This posed a question. </p><p>"Okay, so what's the goal in targeting the Greed clan?"</p><p>Was Amanda's father located there or something? </p><p>Putting the stick down, the other me answered. But his answer was unexpected. </p><p>"Nothing in particular, it could've been any other clan."</p><p>"Oh?"</p><p>I raised my brow and repeated. </p><p>"It could've been any other clan..." </p><p>"Yeah." </p><p>"I see..." </p><p>My mind started to race. </p><p>With all the information I had just learned, an idea started to formulate inside of my mind.</p><p>After a while, I asked.</p><p>"Where exactly is Amanda's father?"</p><p>"He's in the Pride clan."</p><p>"I see…"</p><p>The picture inside of my mind was starting to become clearer. It wasn't long before I finally understood what the other me was planning.</p><p>A long sigh escaped from my mouth.</p><p>"As expected of myself…"</p><p>I stood up and gazed into the distance. </p><p>"Alright, I already have an idea of what you want me to do to. Let' me start making preparations now."</p><p>With a smile on his face, the other me stood up.</p><p>"Seems like you've caught on. You have four days, better get started." </p><p>***</p><p>The next day. </p><p>"Finally found them." </p><p>Observing a couple of demons in the distance, I stood atop a large boulder that was the size of a large car. </p><p>The demons were currently about a couple of hundred meters away from me. Their strength wasn't anything worth looking at, but that wasn't the reason why I was targeting them. </p><p>Squinting my eyes and making sure they were indeed the demons I was looking for, I stood up, and channeled the mana inside of my body. </p><p>"Aim for their weak spots, and don't go all out."</p><p>Just then, I heard a voice coming from next to me. </p><p>Though my mind was in a state of pure concentration, I heeded his words and did exactly as he said and reduced the mana that I had gathered toward my sword. </p><p>"Huuuu..." </p><p>I took a deep breath and closed my eyes. </p><p>'I hope this works...'</p><p>Placing my hand over my sword, I pressed the hilt of my sword and a subtle clicking sound rang throughout the area I was in. </p><p>Click—! </p><p>Following the clicking sound, I abruptly opened my eyes and a bright light flashed across the area I was in. Despite that, I kept my eyes locked on the demons in the distance. </p><p>It was then that I was able to see it. </p><p>Crack. Crack. </p><p>Thin cracks formed around the area the demons were in, startling the two of them. </p><p>Not only that, but a couple of seconds after the cracks formed, with a shattering noise, two bright lights shot out and directly pierced through the skulls of the demons. </p><p>Their bodies quickly dropped to the ground. </p><p>"Haa...Haa..." </p><p>Gazing at the demons in the distance, my chest heaved up and down unevenly. After a while, I clenched my fists. </p><p>"I did it." </p><p>I finally used the fifth movement of the Keiki style without suffering any backlash. </p><p>The other me complemented. </p><p>"Not bad. Although your body still can't handle the full power of the fifth movement but reducing the force and mana you put into the attack, you're still able to use the attack without suffering any backlash." </p><p>Calmly walking toward the demons in the distance, he added. </p><p>"Your mana control has indeed improved a lot." </p><p>"...Thanks." </p><p>With a slight nod, I recomposed myself and followed him from behind. </p><p>We soon arrived before the demons. </p><p>Halting my feet a couple of meters away from them, I mumbled to myself. </p><p>"They are already regenerating." </p><p>As I had not destroyed their cores, the demons were still alive. But that was exactly what I was looking for. </p><p>Sitting down on the ground, I leaned back on one of the trees and patiently waited for the demons to heal. </p><p>Fortunately, I didn't have to wait for long. </p><p>By the time it took for me to recover a bit of mana, the two demons were already healed. Opening my eyes and carefully scanning their bodies, I watched as they looked back at me, not even daring to move a single inch of their bodies. </p><p>At the moment I was wearing a dark robe, and a mask, hiding the fact that I was a human. </p><p>"You two..." </p><p>When I finally opened my mouth, the two demons flinched. They were clearly still shaken up by my sudden attack from before. </p><p>I waved my hand. </p><p>"Don't worry, I won't kill the two of you. I just want to ask you two something." </p><p>With their eyes still locked on me, neither answered. </p><p>But I didn't mind this. A smile soon emerged on my lips.</p><p>"You two are in contact with your branch leader at the moment, aren't you?" </p><p>The countenance of the two demons changed drastically. I once again waved my hand. This time, I put some mana into it, and the two demons fell face flat on the ground unable to even lift a finger. </p><p>The smile on my face deepened a little. </p><p>"Don't worry you, I mean no harm." </p><p>Massaging the back of my neck, I stood up. </p><p>"If you're indeed in contact with your branch leader, just relay him a message for me." </p><p>Turning around, I paused. </p><p>"...Over the next few days, I will contact you again, and I will present you with a big opportunity. Whether you take it or not will depend on you." </p><p>Pressing my foot on the ground, I shot back into the forest. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-503.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-505.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 521 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 521 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-520.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-522.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Moments prior to the fight. </p><p>Casually coming out of his room, Edward made his way toward the arena. Along the way, he couldn't help but think about Ren. </p><p>'I'm curious about his strength...' </p><p>In spite of the fact that it had been four years since he last met him, he remembered him as a promising talent. </p><p>In comparison to Kevin Voss, he was not exactly a high-profile talent, but an incident caused his name to spread far and wide at the time. </p><p>Something about him defeating a demon or something...</p><p>"Looks like I've just arrived in time." </p><p>A loud cheer greeted Edward as he stepped into the arena. </p><p>After arriving at his designated platform and entering the room that overlooked the entire arena, he sat down on a sofa and made himself comfortable. </p><p>[On the left side, we have a familiar opponent. This is someone who has never lost a fight, and whose Duke ranking is third...] </p><p>The Demoness's loud voice echoed out of the arena as he sat down.</p><p>Following her announcement, the gates opened and a figure slowly came out. With semi-long black hair and deep yellow pupils that glowed with a strange light, Lightning Dragon slowly approached the arena's center. </p><p>His very presence caused the arena to quiet down for a couple of seconds. </p><p>Once his feet came to a stop, the demoness extended her hand toward the other side of the arena and announced. </p><p>Our right corner contains a figure that we've been waiting for eagerly. A newcomer who has already reached such heights in such a short period of time...] </p><p>"He's finally coming out." </p><p>Shifting his body forward, Edward sat upright. </p><p>His desire was to see how much this once youth had grown since he had last seen him. </p><p>When the gates of the arena slowly rose, a figure with deep blue eyes and white hair slowly emerged. </p><p>Just like Lightning Dragon, his entire presence caused the arena to quiet down. </p><p>Tok.Tok. </p><p>While his eyes remained fixed on the figure opposite him, Lightning Dragon, his calm and rhythmical footsteps echoed out loud. </p><p>While slowly approaching the center of the arena, he displayed indifference toward the cheers from the crowd, or anyone else. </p><p>At this moment, all of his attention was focused on his opponent. </p><p>"I like that..." </p><p>There was a slight curl on Edward's lips as he noted this. </p><p>The way he carried himself. </p><p>It was impressive. </p><p>Neither arrogant nor overbearing, but calm and focused. The perfect combination that made one stand apart from the masses. </p><p>"I wonder if Amanda is just as strong as him..." </p><p>Thinking about his daughter, Edward's face flashed with sadness. The thought of leaving her alone with all of his responsibilities pained his heart beyond measure. </p><p>If not for this shitty place, he would've long sought a way to return home, but this proved much more difficult than he had expected. </p><p>The demon world was just that scary. </p><p>"Just wait a little longer..." </p><p>Edward secretly clenched his fists. </p><p>[You may begin!] </p><p>The demoness' loud voice signaled the start of the match, jolting Edward out of his thoughts. </p><p>His eyes grew sharper as he shifted his attention back to the arena. </p><p>"Show me what you've got..." </p><p>The first to make his move was Ren. Placing his hand over the sheath of his blade, he quickly got into a stance as mana erupted from out of his body. </p><p>Click—!</p><p>What happened next was so fast that no one was able to react on time. Not even Edward as he had difficulty keeping track of what happened. </p><p>He only remembered hearing a faint clicking sound before a bright white light flashed and a metallic ring echoed. </p><p>Everything happened within the time it took for him to blink his eyes, and once his focus returned to the match, he found Ren's sword drawn from his sheat, aimed at Lightning Emperor's heart. </p><p>However, what was most shocking was the fact that Lightning Emperor had casually blocked the attack by tilting the body of the sword in his hand. </p><p>Edward's pupils dilated as his demeanor shifted. </p><p>"...He was able to react to that?" </p><p>He quickly sat up straight and paid close attention to the match. </p><p>While he had originally come here to get a peek at Ren, after having seen the first exchange, he discarded such thoughts and paid proper attention to the match. </p><p>He could no longer afford such leisure. </p><p>From Ren's lightning-fast attack that he could not properly see, to Lightning Dragon's ability to block such attacks. </p><p>He had severely underestimated both of them. </p><p>*** </p><p>"...What an interesting pair." </p><p>Duke Anozech's flashed with interest as he gazed at the arena below. Specifically toward the two individuals who had just had their first exchange.</p><p>"This is the first time I've seen White Reaper use his sword, who would've known that he had hidden something like this." </p><p>The speed of his attack...</p><p>It was fast. Really fast. So much so that even Duke Anozech had a hard time fully seeing its course. </p><p>That said. </p><p>That was simply because he wasn't paying attention. Had he been paying attention, he would've been able to follow along. </p><p>"...But what's more impressive is Lightning Dragon. To be able to stop such attack." </p><p>The edges of Duke Anozech's lips curled into a sinister grin. </p><p>"How amusing." </p><p>"Your excellency." </p><p>It was then that his servant appeared out of nowhere. </p><p>Without turning around, Duke Anozech asked. </p><p>"What is it?" </p><p>"I've got a report for you." </p><p>"Say it." </p><p>"The Blood Prince is currently in one of the platforms, looking at the match." </p><p>"Oh?" </p><p>Duke Anozech's attention shifted toward his servant. The smile on his face grew wider. </p><p>"The Blood Prince has come to spectate this match?" </p><p>"That's correct." </p><p>"Hah..." </p><p>Raising his hand to caress his mouth, Duke Anozech's pondered for a moment. </p><p>'What a rare occasion...' </p><p>Although this wasn't the first time that the Blood Prince had spectated a match, it had been quite a while since he had done so. </p><p>'Does he know something that I don't?' </p><p>Turning around, Duke Anozech gazed in the direction of where the two contestants were. </p><p>Narrowing his eyes, he muttered out loud. </p><p>"Is he here for Lightning Dragon or White Reaper?" </p><p>***</p><p>"H...how is this possible?" </p><p>Still shaken by the fact that my attack had been blocked, I was unable to react to Lightning Dragon's counterattack. </p><p>Cracka! Cracka! </p><p>My muscles convulsed severely as lightning crackled in the air and penetrated deeply into my body. </p><p>"Ughhh!" </p><p>Clenching my teeth and suppressing the pain, I forcefully stomped my foot on the ground and distanced myself from him. I was fortunate to realize that Lightning Dragon had no interest in pursuing me. </p><p>Bang—!</p><p>"haa...haaa..." </p><p>In spite of my efforts to distance myself from Lightning Dragon, I cursed inwardly as my chest heaved up and down unevenly. </p><p>"Damn it..." </p><p>A look of incredulity crossed my face as I looked at Lightning Dragon. </p><p>'How in the world did he do it? How is it possible for him to stop my attack? Or was it a fluke?' </p><p>...I was still shaken by this by what had happened. </p><p>Sure, this wasn't exactly the first time that my attack had ever been stopped, but to do it so cleanly and calmly? </p><p>It had never happened to me before. </p><p>"Huu.."</p><p>I was quick to calm down. Knowing that I was in the middle of a battle, I didn't let my emotions get the best of me. </p><p>Rather, I became calmer. </p><p>'Let's test this one more time. See if it's a fluke or not.' </p><p>Channeling my mana, I decided to take it up a notch. Locking my eyes on Lightning Dragon who calmly stood in the middle of the arena without a care in the world, I calmly took a step forward and pressed my thumb against the hilt of my sword. </p><p>The third movement of the [Keiki style] : Void Step. </p><p>Click—! </p><p>A subtle clicking sound rang out and my vision warped. At the same time my vision warped, I activated 'Eyes of Chronos.'</p><p>'Let me get a better look and see how you managed to defend my attack...' </p><p>Within what felt like a couple of seconds, Lightning Dragon's figure appeared in front of me. </p><p>With my sword extended in his direction, I watched it as it neared his head. Ready to impale it at any second. </p><p>"Huh?" </p><p>But it was then that something shocking happened. It was shocking enough to make my blood turn cold. </p><p>With his eyes still focused in the distance, Lightning Dragon shifted the top part of the blade in the direction of where my sword was about to land. What was especially shocking about this situation was the speed at which he was doing it. </p><p>From my view, it looked as though time was flowing at a natural rate for him. </p><p>"What!?" </p><p>Clank—! </p><p>A dull metallic sound reverberated throughout the arena as my eyes opened wide in shock. </p><p>"H...how?" </p><p>Staring at the tip of my sword which was perfectly blocked by the body of his sword, I found myself unable to comprehend the situation. </p><p>How was it possible? </p><p>"Your sword art..." </p><p>Jolting me out of my stupor was Lightning Dragon's voice. Before I could even reply, thin bolts of lightning crackled around him. </p><p>Crackle! Crackle!</p><p>It wasn't long before the bolts of lightning converged on the end of my sword in sync, sending electricity coursing through my body. </p><p>I was instantly hit by a wave of dizziness as the muscles in my arms spasmed. </p><p>"Ukhhh..." </p><p>Clenching my teeth, I tried to suppress the pain. But it was then that Lightning Dragon made his move. </p><p>Extending his left hand, he opened up his palm and reached out for my head. </p><p>It was a simple movement. Neither slow nor hurried. However, this seemingly simple move caused the back of my hair to stand as my eyes opened widely. </p><p>'...I need to avoid this.'</p><p>That was all I thought as the hand reached closer to me. </p><p>A sense of impending doom gripped me tightly, forcing me to release all my mana. It was clear to me that I would lose the match if I let that hand touch me. </p><p>WIIIING—! </p><p>Forcing all my mana out of my body, I clenched my teeth and directed all my mana toward my sword. </p><p>"Kh..." </p><p>Gritting my teeth, my muscles bulged and the mass of the sword sharply rose. Before long, I found myself incapable of holding the sword and it quickly fell to the ground as its mass grew. </p><p>"Hm?" </p><p>At the same time this happened, Lightning Dragon's hand came to a pause. It wasn't too far away from my face, maybe a quarter of a meter, but after sensing what I was doing, he stopped whatever he was doing and glanced toward my sword. </p><p>My sword soon hit the ground, and a thunderous noise echoed out. </p><p>BANG—! </p><p>In the wake of the impact, a crater was formed on the ground, and granules of sand flew everywhere. </p><p>Quick to react, Lightning Dragon pressed his foot against the ground and distanced himself from me. </p><p>The situation was not as fortunate for me, as I lost my balance and fell forward. </p><p>But that was enough. </p><p>I had accomplished my goal, and that was to avoid his attack. </p><p>"Haaa...haaa..." </p><p>Pressing my left hand against the ground, I disrupted the flow of mana to my sword, and it quickly returned to its original mass. </p><p>"...He's strong isn't he?" </p><p>It was then that a voice echoed from behind. Without needing to look, I knew who it belonged to. </p><p>"Not only can he see your moves, but he can also keep up with them." </p><p>His voice seemed particularly serious as he spoke. However, what shocked me the most were his next words. </p><p>"...and he's someone whose talent isn't any weaker than Kevin's." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-520.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-522.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

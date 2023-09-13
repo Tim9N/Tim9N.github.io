@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 601 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 601 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-600.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-602.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Ha…"</p><p>Softly touching my lips and staring at the door, I stopped for a moment to process everything that had happened before turning my attention back toward the desk. I didn't have much time to waste.</p><p>Even then, as I looked through the drawers, unknowingly, my heart which was previously heavy, lightened up somewhat.</p><p>'She really..'</p><p>Shaking my head, I opened another drawer, and it was then that my eyes paused on a certain item.</p><p>"Found it."</p><p>A quiet mutter escaped me.</p><p>After finding my bracelet behind one of the drawers, I channeled my mana into it and checked its contents.</p><p>Without a second thought, I left the room after making sure everything was there. Of course, right before leaving, I made sure to collect every single item that had previously caught my interest.</p><p>Ba...Thump Ba…Thump!</p><p>While moving, I could hear the slow, dragging beat of my heart, reminding me of the situation.</p><p>'…I don't have much time.'</p><p>The feeling was much clearer than before.</p><p>This sense of imminent doom and inevitable danger that I felt quite a while ago...it seemed closer than ever.</p><p>Without a second thought, I activated [Drifting steps] and hurried out of the place.</p><p>***</p><p>BOOM—!</p><p>An explosion erupted after the core was destroyed.</p><p>There was a jolt throughout the room, causing Melissa to almost fall over. It was fortunate for her that Kevin was beside her to help her stand.</p><p>"I've got you."</p><p>"Than—"</p><p>"Go."</p><p>"Ha?!"</p><p>Kevin pushed her inside the portal that had formed in front of him before she could finish her sentence.</p><p>'I'm sorry.'</p><p>Kevin secretly apologized inside his mind.</p><p>"Hm?"</p><p>Kevin turned his head to stare toward the top right corner of the ceiling. His expression quickly changed as his breathing became heavy.</p><p>"Emma quick!"</p><p>Rushing Emma in his direction, Kevin felt something grip his heart. His eyes were lined with anxiety</p><p>'He's here.'</p><p>He was borderline panicking.</p><p>"Coming!"</p><p>As she pressed her foot towards the ground, Emma appeared next to Kevin and entered the portal. Her speed was so fast that Kevin only caught a glimpse of her shadow.</p><p>Immediately after she entered the portal and disappeared, and Kevin followed her example.</p><p>Cra..Crack.</p><p>When Kevin entered the portal, and right as his vision was about to blur, he caught a glimpse of the scene behind him, and there he watched the air stir as a figure slowly emerged from a crack.</p><p>White hair, red eyes, and a black armor...</p><p>'It's him.'</p><p>Immediately recognizing the figure, Kevin's heart froze.</p><p>Turning his head, Kevin's eyes met with the figure and he felt his blood boil.</p><p>'...A pity.'</p><p> Those were the last words he could make out as his vision darkened. </p><p>***</p><p>Voom—!</p><p>The air rippled and the portal that was standing in the air shrunk.</p><p>A depressing silence enveloped the room shortly after the portal disappeared.</p><p>"Cough, cough..."</p><p>Interrupting the silence was a series of short coughs. Turning his head to stare in a particular direction, Jezebeth blinked his eyes slowly.</p><p>"...This was unexpected."</p><p>He quietly murmured while he looked toward the broken core before staring in a particular direction.</p><p>Tilting his head, Jezebeth wondered.</p><p>"How did they manage to defeat Magnus?"</p><p>For a Prince ranked demon to lose to several individuals that had not even reached &lt;S-&gt; rank...</p><p>"Did he perhaps interfere?"</p><p>A sudden thought crossed his mind, prompting a smile to form on his face.</p><p>"...Indeed. Only he can be responsible for this."</p><p>The more he thought about it, the more convinced Jezebeth was with his theory.</p><p>'The most likely explanation is that Magnus was playing around with everyone by showing their memories to them. This strategy most likely backfired since 'he' probably gave Magnus a glimpse of his true memories. My guess is that he most likely showed him an image of one of our most recent fights...'</p><p>The one in which he had lost.</p><p>This inevitably led to Magnus losing his mind, making it easier for him to eliminate him.</p><p>"Hahaha."</p><p>A laugh escaped from his lips as he covered his face with his hand.</p><p>"...As expected of him."</p><p>If there was anyone that could pull this kind of thing, it was 'him'. With a smile on his face, he lowered his head.</p><p>Extending his hand, he ripped the air in front of him, creating a small fissure.</p><p>"How about I ask him directly?"</p><p>***</p><p>"How long is he going to take?"</p><p>Smallsnake wondered out loud as he looked toward the entrance of the room.</p><p>It had been quite some time since Ren went to find his items, but he still hadn't returned, making Smallsnake worry.</p><p>Despite not knowing exactly what was happening, Smallsnake felt this incomparably heavy pressure bear down on him with every passing second. Especially after he recalled the short conversation Ren had with Kevin not too long ago.</p><p>The fact that Kevin and Ren were showing such worried looks was an indication that the situation was critical. And it was exactly because of this that Smallsnake couldn't help but worry.</p><p>After a few minutes, Smallsnake began to fidget with his fingers as he thought to himself.</p><p>'Don't tell me that something happened?..I hope not.'</p><p>This was a habit he tended to do whenever he was nervous.</p><p>BOOM—!</p><p>Right as he was about to greet him, a thunderous explosion reverberated throughout the entire infrastructure and the entire room shook.</p><p>"Kh…"</p><p>In that split moment, Smallsnake almost let go of the portal.</p><p>Fortunately, keeping his hand against the side of the wall, Smallsnake was able to stop himself from falling down.</p><p>The explosion lasted for a split second and so did the shaking.</p><p>"They must've broken the core of the building."</p><p>Understanding what had happened, the sense of urgency that Smallsnake previously felt became even more prominent as he felt the back of his hair stand.</p><p>That was because not long after he heard the explosion, he suddenly felt a terrifying feeling engulf his entire being.</p><p>Smallsnake swallowed hard as his knees started to shake.</p><p>"R..ren, you better hurry."</p><p>He quietly murmured.</p><p>Clank—!</p><p>Suddenly, Smallsnake heard a sound, and a figure appeared behind the door. As soon as he saw the figure, Smallsnake's eyes lit up.</p><p>"You're finally he—eh?"</p><p>Halfway through his sentence, he stopped himself. That was because he realized that the figure was not Ren. The figure looked too feminine to be Ren.</p><p>Walking past him, Amanda headed for the portal.</p><p>"He's coming soon."</p><p>'…Her eyes look kind of puffy.'</p><p>Smallsnake thought to himself as he looked at Amanda. Whatever the case, he remained silent and waited for her to enter the portal.</p><p>"Is he doing fine? Did you guys encounter anything along the way?"</p><p>"He's fine."</p><p>Amanda answered while moving toward the portal.</p><p>"...It just took more time than we expected to look for the items. He should arrive soon."</p><p>"Alright."</p><p>Smallsnake sighed in relief upon hearing her words.</p><p>After pressing his hand up against the wall and tapping several different buttons, the portal that was running started fluctuating, and the air became more charged with mana.</p><p>Waiting for a couple of seconds, and taking a look at the portal, only when the portal calmed down did Smallsnake take a step to the side.</p><p>"Alright, you can go in."</p><p>"Thank you."</p><p>Staring at the portal and nodding her head toward Smallsnake, Amanda walked in without hesitation.</p><p>"Make sure to keep the portal open for now, Ren will be coming any second now."</p><p>Before completely entering the portal, Smallsnake was able to hear Amanda's last words, prompting him to nod his head in agreement.</p><p>"Alright."</p><p>She had a point.</p><p>Although it would only take a couple of seconds to completely activate the portal, Smallsnake knew that in a situation where time mattered, those two seconds would make a difference.</p><p>Voom—!</p><p>Submerging into the portal, Amanda's figure disappeared and a ripple formed in the portal before the entire room became quiet.</p><p>With his hand against the side of the wall, time passed and sweat started to accumulate on the side of Smallsnake's head.</p><p>'Why is he still not here yet?'</p><p>Keeping the portal open wasn't exactly the easiest of tasks. Not so much because it required a lot of mana, but because of the high mana density around it. Had it been someone as strong as Ren, they wouldn't have felt it, but since Smallsnake was weak, the high mana density was too much for him to bear.</p><p>It felt like staying in a room that was filled to the brim with oxygen. Agonizing.</p><p>The pressure on Smallsnake's body increased with each passing second.</p><p>Had it not been for Amanda's reminder, he would've probably already let go.</p><p>'Hurry up.'</p><p>Clenching his teeth, the veins on Smallsnake's forehead started to protrude, and his knees started to buckle.</p><p>"What's taking so l—"</p><p>Boom—!</p><p>Before he could even finish his sentence another explosion rang out as Smallsnake caught sight of a figure smashing against the side of the room at incredible speeds.</p><p>Dust and debris flew in the air, masking Smallsnake's vision. Tearing them apart, Smallsnake was able to finally catch a glimpse of Ren who was rushing in his direction with a face filled with anxiety.</p><p>"Quick!"</p><p>He shouted at the top of his lungs while he headed in his direction.</p><p>"It's ready."</p><p>Smallsnake shouted back while taking a glimpse of the portal that was next to him.</p><p>Without saying a word Ren ran at full speed toward the portal. His figure was so fast that it left after images behind.</p><p>A tranquil voice suddenly echoed across the space.</p><p>"Got bored of waiting for you, so I took my leave. Let's meet each other next time."</p><p>The entire room froze over at the moment, and Ren's body jerked to a stop. Taking a look at him, Smallsnake was able to catch a glimpse of his expression.</p><p>'Wha...'</p><p>Tap.</p><p>The calm sound of a footstep echoed throughout the room.</p><p>Raising his head to stare in the direction of where the sound came from, Smallsnake caught a glimpse of a figure calmly heading in their direction.</p><p>He had snow-white hair that was somewhat similar to Ren's hair, an abyssal black armor that seemed to absorb all forms of light heading its direction, and fierce crimson eyes.</p><p>At that moment, Smallsnake stopped breathing. His chest constricted and a suffocating feeling settled inside of his body.</p><p>"Kahak!...Kahk!"</p><p>Bringing his hands toward his neck, he gagged several times as saliva dripped down from his mouth.</p><p>"Khak..."</p><p>Dropping down on two knees, he clenched his throat. A long line made out of saliva dripped down from his mouth.</p><p>'This can't be...'</p><p>Forcing himself to raise his head, Smallsnake once again felt his eyes pause on the figure that had just entered the room, and he choked with horror.</p><p>That was because he felt it.</p><p>He felt it very clearly.</p><p>Death was here.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-600.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-602.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

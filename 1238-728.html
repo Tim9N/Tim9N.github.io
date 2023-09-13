@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 728 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 728 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-727.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-729.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>It was white.</p><p>My vision was white.</p><p>It remained like that for quite a while. I wasn't sure for how long, though. Time seemed inconsequential at the moment as I basked in a strange warmth.</p><p>It enveloped every part of my body, pouring into me and tickling every part of me.</p><p>…It felt oddly good.</p><p>The feeling didn't last for long. Soon, my vision warped and my senses started to return.</p><p>It wasn't long before I felt something bump against me and I heard the sound of engines roaring in the distance.</p><p>"What are you doing, asshole?"</p><p>"Huh?"</p><p>When I turned around to look around me, I was taken aback to find that I was standing in the middle of a crosswalk. People moved past me with annoyed and threatening looks.</p><p>"What are you standing there like an idiot? Move the fuck away."</p><p>I was pushed once again.</p><p>When I turned to look, I saw a young girl glaring at me before she disappeared into the crowd.</p><p>After frowning for a while, I ultimately made the decision to cross over to the other side of the road. Even though I wasn't entirely clear on the reason why I was standing in the middle of the road, I should know better than to just remain standing there.</p><p>After making it to the end of the road without incident, I stopped for a second to take a look at my surroundings.</p><p>'What's going on?'</p><p>Everything looked and felt so…</p><p>Different.</p><p>"Is it just me?"</p><p>I could see children running around with happy expressions on their faces, and adults walking alongside them with smiles plastered on their faces as they went about their business.</p><p>It was as though the war that they'd just gone through had never happened.</p><p>'Are they that happy that the war is over?'</p><p>The scenery wasn't bad. I quite liked it. It was quite peaceful, and unknowingly, I cracked a smile.</p><p>"Kevin did a good job."</p><p>All that I was seeing was thanks to his sacrifice.</p><p>My smile slowly receded as I thought about him.</p><p>'If only he was sti-'</p><p>"hm?"</p><p>Realizing something, I looked up at the sky, and a curse slipped past my mouth.</p><p>"The fuck?"</p><p>I gave it a few blinks to make sure my eyes weren't playing tricks on me. Confirming that I was indeed seeing correctly, I lowered my head and glanced at the air around me.</p><p>It contained little to no psyons.</p><p>"W,what?"</p><p>I felt my heart stop for a moment.</p><p> If that wasn't all...</p><p>The massive crack that used to hang in the sky was also gone. As if it never existed in the first place.</p><p>"Hold on a second, what the hell is going on?"</p><p>Looking around and finding an empty bench, I sat down and massaged my head.</p><p>When I extended my hand, a faint glow materialized all the way around it. The glow was not particularly bright, and it covered only the exterior of my hand; however, the moment it did so, I noticed that everyone around me was staring at me with surprised looks on their faces.</p><p>"An awakener!"</p><p>"He can use mana!"</p><p>"Ha?"</p><p>As I looked around at everyone's faces, which were glowing brightly at the sight of my powers, confusion continued to grow within me.</p><p>…I was already used to such stares.</p><p>I was somewhat well-known, but as I looked around, I noticed that everyone had their smartphones out and was taking pictures of me. This made me even more aware that there was something wrong with the situation.</p><p>Especially since their focus wasn't on me, but on the faint glow in my hand...</p><p>"Are you a newly licensed hero? Did you already sign up for a guild?"</p><p>A guy wearing a suit and sunglasses approached me. He seemed rather fit, and his aura was close to &lt;C&gt; rank. Probably &lt;D+&gt; rank.</p><p>For some reason, the moment he arrived, the people around him moved and looked at him with even more reverence than they previously did toward me.</p><p>'Is he famous?'</p><p>I stealthily gave him a closer look and, after determining that he was not a person I had seen before, I gave a covert shrug.</p><p>'Must be some sort of celebrity, I guess.'</p><p>I didn't really pay attention to anything outside of what I cared about. I was famous, but not to the point where everyone knew me, unlike Kevin.</p><p>"My, my, I didn't expect to see a talented young man over here."</p><p>His eyes under the sunglasses seemed to be glowing as he looked at me.</p><p>He handed me a diamond card.</p><p>"Pleasure to meet you; I'll cut straight to the chase. I would like to recruit you to our guild."</p><p>There was visible pride in his voice as he said those words.</p><p>I was amused, but I still took the card.</p><p>[Dominion Scott : Head Scout of Green Claw Guild]</p><p>Playing with the card, I looked at him and pointed at myself.</p><p>"Don't you know me?"</p><p>While I didn't expect everyone to know me, I didn't expect someone who seemed to be working in the guild business to be unaware of who I was.</p><p>I wasn't being arrogant; I was just aware of the fact that I was quite well known within the Guilding industry.</p><p>Especially since I was so highly ranked within the Hero ranking.</p><p>"Hm?"</p><p>The man cocked his head with a confused look.</p><p>"Should I know you?"</p><p>I was taken aback, and my brows furrowed.</p><p>'Does he really not know who I am? Perhaps he's new to the business?'</p><p>That probably was the answer.</p><p>Smiling, I handed him the card.</p><p>"Never mind. Thank you for the offer, but I'll have to reject it."</p><p>"You're rejecting?"</p><p>It was the man's turn to frown as he stared at the card in my hand. Raising his head, he looked at me deeply before his voice lowered.</p><p>"Are you already with some other guild?"</p><p>"…No?"</p><p>I had my own mercenary group. What guild?</p><p>"Are you perhaps from the Union?"</p><p>"No?"</p><p>The hell was with the questions?</p><p>"Are you per-"</p><p>"Look man, I'm not with anyone. If you'll excuse me, I'll take my leave."</p><p>His behavior was beginning to annoy me, and I couldn't stand it any longer. As a result, I shoved the card back at him and got ready to leave to head back to the headquarters.</p><p>Only that...</p><p>"I'm talking. Who told you to leave?"</p><p>A hand pressed against my shoulder. There was quite a bit of force put into it, but it wasn't as if it was very painful.</p><p>"Haha."</p><p>I let out a laugh.</p><p>'It's been a while since I've met someone this arrogant…'</p><p>I cocked my head to the side and looked at the man before focusing my attention on the hand that was pressing against my shoulder.</p><p>I smiled.</p><p>"It's in your best interest if you were to let go."</p><p>"Hey, kid. I've been treating you pretty nicely. I'd appreciate it if you took a look at the offer once more."</p><p>The man lowered his head, exposing his eyes under his sunglasses. As a bright yellow glow began to emanate from his body, the complexion of the people in the area around us began to change.</p><p>Looking around me, I frowned.</p><p>"Do you seriously not know me?"</p><p>I already knew the answer, but I had to make sure. For some reason, I felt that there was something off about the situation.</p><p>"Heh."</p><p>The man laughed, and the yellow glow around his body started to expand.</p><p>"Kid, do you think that just because you've awakened your powers you're some sort of bigshot? Let me tell you, your powers mean not-hm!!!"</p><p>"Alright shut up."</p><p>I pressed my hand against his mouth and clenched his head tightly. Instantaneously, the yellow glow that had been enveloping him vanished, and his face turned completely white.</p><p>After lowering my head and taking a quick glance at the business card that he had given to me earlier but that had since fallen to the ground, I bent over and picked it up.</p><p>I looked at the guild name, which was imprinted on the card.</p><p>"Green Claw Guild, huh?"</p><p>Never heard of it before.</p><p>I was a bit surprised. I had never heard of this diamond ranked guild before. I assumed I knew the names of most of the diamon graded guilds because there weren't many of them... but from the looks of it, my memory was starting to fail.</p><p>'No, that's impossible.'</p><p>Was this perhaps a new guild that made great contributions to the war and was thus promoted as a result?</p><p>…If so, I'd explain why everyone seemed to be looking up to someone who was ranked so low.</p><p>'How should I deal with this?'</p><p>As I turned my attention back to the man, who was by this time wriggling around in my grasp, I felt my head throb with annoyance.</p><p>"Hm!! Hmm!"</p><p>His once-pale face had taken on a purplish hue, and he stared at me with a terrified expression.</p><p>I heaved a sigh and released my grip on him as I reflected on my earlier discoveries and noticed the terrified expressions on the faces of the people around me.</p><p>'I don't have time to deal with this crap at the moment.'</p><p>"Cough, cough!"</p><p>The moment I released him, he started coughing violently.</p><p>"Y,you.. y,you…"</p><p>He seemed to want to say something to me, but I ignored him and headed out. There were more important things that I needed to take care of.</p><p>Although he looked like a chained villain, I wasn't too bothered. Staring at the card in my hand, it slowly burned and disappeared.</p><p>'Perhaps, I'll pay the guild a visit later…'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-727.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-729.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 599 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 599 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-598.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-600.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Thump! Thump!</p><p>Two arrows fired from Amanda's bow and impaled two demons in the head, killing them instantly.</p><p>Lowering her bow, Amanda continued to silently follow Ren from behind.</p><p>A complicated look spread across her face.</p><p>'…I have to do this.'</p><p>The urgency in Ren's eyes told Amanda that the situation was very likely extremely serious and that now would not be the best time to speak with him, but Amanda also understood Ren really well.</p><p>…and knowing exactly how he was feeling at the moment, Amanda clearly understood that Ren had some ideas about possibly leaving the others behind and going on his own somewhere.</p><p>Though she wasn't exactly sure if her deduction was correct, she thought this was a very real possibility, which was why she wanted to speak with him now rather than later.</p><p>Nonetheless, she still held herself back from talking at the moment.</p><p>She would only do it when they arrived at their destination.</p><p>"We're here."</p><p>It didn't take long for Ren's footsteps to halt as he stopped in front of a large door.</p><p>Lowering her bow and walking next to him, Amanda scanned the doors</p><p>The door was about eight meters in height and seemed to be made out of some sort of heavy metal alloy.</p><p>There were carvings on the front of the door depicting some strange symbols and runes. They seemed rather foreign to her.</p><p>"This is most likely where the Duke ranked demon rested."</p><p>Ren's voice reached Amanda's ears. Putting his hand against the door and closing his eyes, silence enshrouded the surroundings.</p><p>A white hue began to spring out of his body, making Amanda shudder.</p><p>'He's gotten stronger.'</p><p>This was her initial thought as she felt his power.</p><p>She wasn't exactly certain, but it seemed to her that Ren had broken through.</p><p>'Again...'</p><p>Bam—</p><p>In the hall they were in, a loud banging sound, along with the quaking of the door, startled Amanda out of her thoughts.</p><p>Amanda's sight was obscured by dust rising from the ground.</p><p>As Amanda regained awareness of what was happening, she saw Ren standing in the same spot she had seen earlier. A low murmur escaped his lips as his brows furrowed tight.</p><p>"…It's tougher than I thought."</p><p>Once again raising, he placed it on the door.</p><p>As he pressed his hand against the door, the white hue that was emanating from his body became even more fierce, and another loud noise echoed.</p><p>Bang—!</p><p>This time, he seemed to have exerted even more power as the halls shook with even more force, sending Amanda off balance.</p><p>Fortunately, she was quick to recover and used her bow to keep herself balanced.</p><p>'That was close.'</p><p>A secret thought crossed her mind as she slowly stood up. Returning her attention to Ren, she watched the door slowly fall towards the ground, causing another loud noise.</p><p>Bang—</p><p>"Let's go."</p><p>Without waiting for Amanda, Ren rushed into the room.</p><p>Amanda followed him from behind.</p><p>***</p><p>"So you've made a friend. I'm happy for you Brian."</p><p>Laying down on a clean white bed, a middle aged lady held the hand of a youth who was looking at her with a thin smile on his face.</p><p>"Yes mom, I've been doing well so you don't have to worry about me. As you can see, I've been able to afford your hospital bills and the doctors said that you will have no trouble recuperating from your illness."</p><p>Bending down on one knee to the ground, Brian brought her hand toward his forehead as he whispered.</p><p>"…You'll finally be cured."</p><p>A smile spread across the woman's face as she heard her son's words.</p><p>"I'm really glad that you're happy."</p><p>Clank—</p><p>Suddenly, the doors of the room unlocked and a devilishly handsome figure entered the room as the son and mother were enjoying a heartwarming moment. He held a bouquet of flowers in his right hand.</p><p>Right as he entered the room, his footsteps came to a halt.</p><p>"…Looks like I'm disturbing something important."</p><p>Jolting Brian out of his moment, he raised his head and glared in Hemlock's direction.</p><p>"What are you doing here?"</p><p>"What? Didn't you tell me that I could visit?"</p><p>Taking off his long brown coat, the figure sat down on the sofa opposite Brian and his mother.</p><p>"Ah right."</p><p>Recalling something, he got off his seat and moved to where Brian's mother was resting.</p><p>Extending his hand, he gently placed the flowers next to Brian's mom and gently smiled.</p><p>"Nice to meet you, ma'am, I'm Brian's colleague. I hope you don't mind my presence."</p><p>"Oh my."</p><p>With a sweet smile on her face, Brian's mother grabbed the flowers and placed them beside her.</p><p>Turning to look at Brian, her smile became even sweeter. With a teasing tone, she spoke.</p><p>"Why didn't you tell me that your friend was this handsome?"</p><p>"Why would that matter?"</p><p>"It of course matters!"</p><p>She protested whole crossing her arms together.</p><p>"I haven't been able to go out for quite a while now, and I need something to entertain my eyes."</p><p>"Well, you can look at me for however long you want ma'am."</p><p>"Shut up."</p><p>"Brian, don't take this away from me."</p><p>"Mom…"</p><p>In between glaring at his mother and Hemlock, Brian rolled his eyes at Hemlock one more time before standing up and deciding to bid her goodbye.</p><p>"I think it's time for me to go, I'll contact you later mom. For now, it looks like I will need to go to work."</p><p>"Sure thing."</p><p>Aware of Brian's circumstances, Brian's mother waved goodbye to him and his friend.</p><p>"Have a good day at work the two of you. I hope everything goes well."</p><p>"Thank you ma'am, your words are really encouraging me to work ha—"</p><p>"Shut up."</p><p>"Hey."</p><p>Unable to stand Hemlock's look, Brian grabbed him by the shoulder and dragged him out of the room.</p><p>Clank—</p><p>Closing the door behind him, Brian glared at Hemlock.</p><p>"What do you think you're doing?"</p><p>"Visiting a friend's mother?"</p><p>"No, I get that, but what's with you flirting with my mother?"</p><p>"But I wasn't."</p><p>"He, you don't call that flirting?"</p><p>"Indeed, I was just socializing. Something you don't seem to be able to do."</p><p>Turning around, the smile on Hemlock's face slowly faded.</p><p>"Let's not talk about that for now, we've got something important to do today."</p><p>Brian's face similarly turned serious upon hearing those words.</p><p>"How's the pay?"</p><p>"Excellent."</p><p>"I'm in."</p><p>"I know."</p><p>Hemlock looked at Brian and shook his head. Hemlock knew he could count on Brian to participate as long as the pay was good.</p><p>He was just like that.</p><p>"Oh, right, I almost forgot. It's supposed to be an undercover mission, so you must use a nickname."</p><p>"Eh? That sounds bothersome."</p><p>"It's orders."</p><p>"Alright, then."</p><p>With a shrug of his shoulders, Brian thought for a moment before mumbling to himself.</p><p>"A nickname…what should I use?"</p><p> Turning his head to face Hemlock's direction, he asked.</p><p>"Have you thought of something?"</p><p>"I have."</p><p>"Oh? What is it?"</p><p>Turning his head to face Brain, Hemlock smiled before he muttered.</p><p>"Malik Alshayatin."</p><p>***</p><p>"Smallsnake!" "Smallsnake!" "Smallsnake!"</p><p>"Huh? Ah!"</p><p>A pat on the shoulder jolted Smallsnake out of his thoughts, and he turned to look at Ryan.</p><p>"Are you okay?"</p><p>He asked. There were notable hints of worry in his voice as he looked at him.</p><p>Taking note of this, Smallsnake smiled.</p><p>"I'm fine."</p><p>When he turned his head to look at the others, he pressed his hand against the wall and the mana in the air began to warp.</p><p>"I'm done."</p><p>He watched as the air began to swirl with mana as the portal next to him started to activate.</p><p>The mana in the air became thicker with each passing second. It was slowly starting to become more difficult for Smallsnake to breathe.</p><p>It didn't take long for the portal to fully form, about two minutes.</p><p>Watching the portal fully form, Smallsnake turned to gaze into the distance.</p><p>"He still hasn't come back yet…"</p><p>While he was worried, Smallsnake knew Ren was a capable individual, so, turning to face Ryan and the others, he began to speak.</p><p>"You guys go in first, I'll hold up the portal for now."</p><p>Because the portal needed someone to keep it functioning, Smallsnake had no choice but to wait for Ren to arrive before he could leave.</p><p>Lowering his head, he looked at Ryan.</p><p>"Ryan, since you're the weakest, you will enter first, and the others will follow his example after, understood?"</p><p>"Okay."</p><p>Though reluctant, Ryan nodded his head and proceeded to head for the portal.</p><p>Looking at him from behind were Angelica and the others with the exception of Ren, Amanda, Kevin, Melissa, and Emma.</p><p>Setting Amanda and Ren aside, the other three were busy destroying the core.</p><p>"Smallsnake."</p><p>Once again jolting Smallsnake out of his thoughts was Ryan's voice.</p><p>With his head turned and looking in his direction, Ryan looked at Smallsnake and softly mumbled.</p><p>"…Don't stay too long."</p><p>"Don't worry."</p><p>A smile spread across Smallsnake's mouth as he felt touched by Ryan's concern.</p><p>"I'll come back as soon as Ren comes back, okay?"</p><p>"Okay."</p><p>Ryan nodded his head, finally feeling a little relieved.</p><p>Then, turning his head, he directly entered the portal and disappeared.</p><p>Once his figure completely disappeared, Smallsnake turned to look at the others.</p><p>"Alright, next."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-598.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-600.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

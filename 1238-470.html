@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 470 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 470 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-469.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-471.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Thank you all for coming to our show!" </p><p>Entering the main stage, were five girls all wearing cute dresses. They were the members of Kimbol. </p><p>At their appearance, the crowd erupted into cheers as they all started waving their glowsticks in the air. </p><p>"Whaaa! </p><p>Waving her glowsticks in the air, Nola mimicked the crowd as she cried out in excitement. </p><p>Grabbing onto her small legs, I raised my head and shouted. The way she was moving made it hard for me to keep ahold of her. </p><p>"Nola be careful." </p><p>"Whaaa!" </p><p>But it didn't seem as though she could hear me as she continued to shout alongside the crowd. I could only sigh at this.</p><p>'I guess I just have to be more careful.' </p><p>"Thank you, thank you." </p><p>Thanking the crowd was a girl with soft black hair and a very pretty face.</p><p>Her name was Sophia Ray and she was the leader of the group. </p><p>I knew this because throughout the whole journey to the stadium Nola had made me memorize the names of each of the girls in the group. </p><p>Flashing a stunning smile, Sophia winked at the crowd and got into position with her group </p><p>"Thank you all for coming today, we are very happy with your presence. Today, we will start with our first song, 'Tribunal', I hope you enjoy it." </p><p>The already boiling crowd became even more excited as they began to shout words of love. </p><p>"We love you Kimbol!" </p><p>"Thank you, Sophia!" </p><p>"We love you all." </p><p>Listening to the crowd's words, my face cringed a little. </p><p>To be honest, I wasn't the type of guy that loved this type of stuff. I was more into classical and calming music. </p><p>Sometimes I liked listening to different genres, but that was when I was in a mood to destroy something. </p><p>Glancing at Amanda who was standing next to me, I asked. </p><p>"Still angry at me?" </p><p>"...I'm over it." </p><p>To my surprise, Amanda shook her head. </p><p>"Oh?" </p><p>Tilting my head to get a better look at my face, I remained skeptical. </p><p>"...Are you really?" </p><p>"Yes." </p><p>Amanda once again nodded her head. I squinted my eyes when I saw this, however, I eventually shrugged it off. </p><p>Didn't really buy it, but there was nothing else I could do anyways. </p><p>What was done was done. </p><p>'A lot of women fall in love and chase empty dreams.'</p><p>'But I wanna take that to the head before I leave your side.'</p><p>'You make me happy, just being with you.'</p><p>'I fall in need of your love.'</p><p>It was then that the music started playing, and the girls beautiful voices started traveling throughout every corner of the arena grounds. </p><p>It had to be noted that the girls were currently not holding onto a microphone, and that was because the sound they were making was created through the vibration of the mana in the air. </p><p>It was sort of similar to Benjamin, the guy I wanted to recruit back at the Lock. </p><p>Through manipulating the mana in the air the singers were able to directly instill emotions into the viewer's heads, making the music seem more impactful. </p><p>The general person couldn't have noticed it, however, that was the general crowd. </p><p>With my strength nearing &lt;A-&gt; rank, such tricks could no longer fool me. </p><p>"You also noticed it right?" </p><p>"Yes." </p><p>Amanda also seemed to have noticed the same thing as she nodded her head and added. </p><p>"Their mana control is not bad." </p><p>"I agree."</p><p>For them to be able to do what they did, they without a doubt had trained a lot. </p><p>'When things get rough, love is all you need.'</p><p>'So let me shoulder your burden, love me right now.'</p><p>'And that you love her.'</p><p>'Like roses loves them over growing.'</p><p>The first song lasted for a total of five minutes, and throughout the whole performance, the dancers danced to the rhythm of the music in a very coordinated manner. </p><p>Following the first song, they began to sing a second, then a third, and soon they were on the eighth song. </p><p>By this point, I was already exhausted, yet, the crowd and Nola seemed more energized than before. </p><p>"Whhhhaaaaa!" </p><p>Fortunately, it didn't seem like I was the only one who felt this way as Amanda also seemed to be feeling the same as me. </p><p>I understood where she came from though. </p><p>Just like me, she wasn't someone that liked crowds a lot and wasn't really the energetic type too. </p><p>Leaning closer to her, I whispered in her ear. </p><p>"You also tired aren't you." </p><p>"!?" </p><p>Seemingly caught off-guard, Amanda's head recoiled back as she covered her ear with her hand. She glared at me. </p><p>"Y..you.." </p><p>"That was not on purpose." </p><p>Raising my hands, I immediately tried to defend myself. </p><p>"Don't blame me for this, the crowd is too loud." </p><p>"..." </p><p>Squinting her eyes, Amanda lowered her hand. Once she did so, I was able to see that her ear was slightly red. </p><p>I feigned ignorance to that. Pointing that out would do me no good. </p><p>"Don't do it again..." </p><p>Amanda said in a soft voice. Pursing her lips together, she added. </p><p>"...It tickles." </p><p>"You ticklish?" </p><p>My eyebrow raised at this new piece of information. </p><p>However, before I could follow up, I suddenly felt the attention of the whole crowd directed toward my general direction. </p><p>"Gentleman over there." </p><p>Following this, I suddenly heard a familiar voice from the distance. </p><p>Turning my head in the direction of where the voice came from, I finally realized why the voice sounded familiar. </p><p>It was because it belonged to none other than the lead singer Sophia Ray.</p><p>'Oh god.'</p><p>I inwardly groaned when I realized this. </p><p>Once I turned around and my eyes met with the lead singer, she proceeded to flash a smile in my direction.</p><p>The moment that happened, I felt multiple jealous gazes headed in my direction. </p><p>I then pointed my finger toward me. </p><p>"Me?" </p><p>Although it was quite clear that she was trying to talk to me, I just wanted to make sure I was really the one person she was addressing.</p><p>Her next words made me realize that I was. </p><p>"Yes, yes, you." </p><p>Taking a step forward, she looked at the top of my head and asked. </p><p>"Gentlemen over there, may I ask, is that your daughter over your head?" </p><p>"Daugther?" </p><p>Raising my head and seeing Nola, I finally understood why she had called for me. </p><p>'Ah, I see, she mistook Nola for my daughter.'</p><p>Understandable, my current face was that of an older man. </p><p>"Yes, yes, she's our daughter." </p><p>Before I could reply to her, I suddenly felt something soft grab my right arm and my heart nearly jumped out of my chest. </p><p>"h..Huh?!</p><p>Letting out a weird sound, my head snapped toward my right where I saw Amanda standing next to me with her face as red as a tomato.</p><p>She had a look of regret on her face, however, biting her lips and increasing the grip of my arm she continued with her story. </p><p>"T-the girl..is our daughter." </p><p>Opening my eyes wide, I looked at Amanda with a dumbfounded look. </p><p>My mouth opened and closed repeatedly. </p><p>"A-Amanda?" </p><p>In the end, those were all the words I could muster.</p><p>Despite that, Amanda did not answer and forcefully kept her eyes on the front.</p><p>From her expression, I could tell that she wanted to dig herself a hole. </p><p>Unaware of what was happening, putting on a brilliant smile, the leading signer turned her attention toward Nola. </p><p>"Oh, what a sweet couple you two are." </p><p>The lead singer complimented. She then bent down and asked. </p><p>"What's your name little girl?" </p><p>"Nola!" </p><p>Nola shouted back. </p><p>What shocked me the most about this was the fact that she did not bother correcting the misunderstanding. </p><p>"This..." </p><p>Honestly, from that point on, everything felt like a blur. </p><p>My mind was so out of it that before I knew it, I found Nola on the stage next to the singers. </p><p>'Nola, in the stage...' </p><p>"Huh? Nola!?" </p><p>Snapping out of it, my eyes opened widely. </p><p>Turning around and glancing at Amanda who had long let go of my arm, I pointed at Nola who was on the stage. </p><p>"Amanda, when did Nola get there?!" </p><p>Without turning her head and glancing at me from the corner of her eyes, Amanda replied. </p><p>"...Do you not remember?" </p><p>"No." </p><p>I shook my head before I lowered my head and asked. </p><p>"Whose fault do you think that is?" </p><p>"..." </p><p>Pursing her lips, Amanda turned her head away from me and said. </p><p>"Everything should be fine. They only asked for her to dance on the stage. They do it every show." </p><p>Massaging my forehead, I let out a sigh. </p><p>"Haaa..." </p><p>'Wasn't this supposed to be a holiday? ...Why do I feel more mentally tired than back when I was inside of the Monolith?' </p><p>Really. </p><p>"Hm?" </p><p>Just as I was about to come to terms with the situation, I suddenly caught sight of a familiar figure in the distance. </p><p>Once my eyes paused on the figure, my head recoiled back as my face turned strange. </p><p>"Huh?"</p><p>'What in the world is he doing here?'</p><p>"What's wrong?" </p><p>Seemingly sensing my shift in mood, Amanda asked. Glancing at her, I softly muttered. </p><p>'Want To See More Chapters?' Please visit [ .C o M] "Nothing big, I just found a familiar face. Wait here, and keep an eye on Nola." </p><p>"...What?" </p><p>Lowering my hoodie I took a step forward, however, recalling something, my feet came to a stop. </p><p>Turning my head, I handed Amanda my phone. </p><p>"Take a video of Nola on the stage. Make sure to capture everything." </p><p>Without waiting for Amanda to reply, I quickly headed in the direction of the familiar figure. </p><p>Unprecedented solemness clouded my face. </p><p>'This is a problem.' </p><p>Passing through the crowd with my hoodie covering my face, I soon arrived next to the figure.</p><p>Placing my hand on his shoulders, I pulled his shoulder. </p><p>"Oy, what in the world are you doing here?" </p><p>"Huh?" </p><p>Obviously startled by my sudden actions, the figure angrily turned his head in my direction. </p><p>"Who in the world are you?" </p><p>"Ha." </p><p>I let out a dry chuckle. </p><p>"Didn't think you would forget about your boss, Leopold?" </p><p>That's right. </p><p>The figure who I had caught sight of from the distance was none other than Leopold. </p><p>"Boss?" </p><p>A sudden look of realization flashed across Leopold's face the moment I said those words as his face mellowed out. </p><p>Then, turning his head, he avoided my line of sight as he dryly laughed. </p><p>"Ha, ha, what are you doing here?" </p><p>"That's what I wanted to ask. I never took you for someone who was a fanatic for idol groups." </p><p>Out of all the people that I knew, he was the last person that I would've guessed. </p><p>Letting out a long sigh, I patted him on the shoulder. </p><p>"Before anything else, I just wanted to say that I'm not angry, just confused by the fact that you are into idol groups." </p><p>Everyone had their hobbies, I wasn't one to judge. </p><p>Was just weirded out by the idea of someone like Leopold being into idol groups. Just didn't fit his image. </p><p>"Actually..." </p><p>Scratching the side of his neck, Leopold had an awkward look on his face. </p><p>"I'm actually here for my daughter." </p><p>"Daughter?" </p><p>Freezing on the spot, I had a sudden look of understanding. </p><p>"Ah right, I forgot you had a daughter."</p><p>Prior to recruiting him, I had looked through his profile and did in fact remember that he had a daughter. </p><p>Because Leopold never really talked about his past, I nearly forgot about it. </p><p>Now everything made more sense. </p><p>She was quite old if I remembered corrected. Looking around the place, I curiously asked. </p><p>"Where is your daughter?" </p><p>"Over there." </p><p>Raising his hand, Leopold pointed toward the distance. </p><p>"Where?" </p><p>Curious, I followed the direction of where he was pointing at.</p><p>"Huh?" </p><p>Blinking my eyes a couple of times, I looked at Leopold with an incredulous look on my face. </p><p>"I'm not seeing wrongly am I?" </p><p>"You're not." </p><p>Leopold shook his head. Turning his head to look at me, he said. </p><p>"That's my daughter right there. She even has the same surname as me. Ray." </p><p>My jaw dropped. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-469.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-471.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

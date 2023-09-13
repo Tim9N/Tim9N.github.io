@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 660 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 660 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-659.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-661.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"There's a way?"</p><p>I abruptly turned my head to stare at Angelica, who was sitting on the sofa in an elegant manner with both hands resting on her thighs.</p><p>Her purple dress accentuated her great curves while her glossy black hair gently cascaded down one side of her shoulders.</p><p>With a complicated look on her face, and without answering, she looked at Suriol.</p><p>"You already know the answer, don't you."</p><p>"..."</p><p>Suriol lowered his head without answering.</p><p>I took notice of his action and alternated my gaze between the two of them.</p><p>"What's going on?"</p><p>Was there something that I was missing?</p><p>Adjusting her posture, Angelica let out a long sigh before speaking.</p><p>"There is one way to save him, and that's to sign a contract with him."</p><p>"Huh?"</p><p>Her words stunned me. Sign a contract with him? How does that make sense?</p><p>"As your strength increases, so does his, thereby repairing a portion of the damage to his core. This is how demonic contracts typically operate, as a contractee's increase in strength also benefits the contractor."</p><p>Angelica answered my worries before I could even ask.</p><p>I instantly understood her words.</p><p>'Right, it's as she says. As the two are connected, the progress of the contractee will directly affect the demon's rank. If so, it makes sense that my increased strength will aid Suriol in recovering from some of his wounds.'</p><p>After getting a better grasp of the situation, I decided to keep my mouth shut, and the rest of the room followed my lead and fell into a deathly silence.</p><p>Silug, who was still present inside the room, had a clueless expression on his face as he aimlessly wandered around the space with his eyes.</p><p>I opened my mouth again and broke the silence.</p><p>"...This contract, do we have to do it?"</p><p>Honestly, I wasn't in favor of signing a contract.</p><p>The only real benefit I would receive from signing a contract with Suriol was a temporary increase in strength, but other than that, there was no other advantage. In point of fact, it was harmful to a greater extent than anything else.</p><p>Not only would demonic energy seep into my body and cloud my already muddled mind, but there was a chance that I would be in serious trouble if the others on earth discovered my secret.</p><p>Especially by the people from the Union, as they would most likely brand me as a traitor.</p><p>"Is there really no other way?"</p><p>I asked as I gazed at Angelica and Suriol.</p><p>"Not really."</p><p>Angelica shook her head upon meeting my line of sight.</p><p>"Unless you have a devil fruit that is extremely pure, there is really nothing else that can save him. This is the only possibility that I can think of."</p><p>'Do I really have no choice?'</p><p>My mood turned gloomy when I looked at Suriol, who pursed his lips and gazed at the floor. He looked to be in deep thought.</p><p>'Is signing the contract really worth all the trouble?'</p><p>I honestly didn't think so. Although my strength would indeed sour to a new level, it would actually weaken if I were to fight against demons.</p><p>Bloodline suppression was a real thing.</p><p>Certainly, it would be advantageous in my battle against the Monolith, but the risk far outweighed the benefits.</p><p>I apologetically looked at Angelica.</p><p>"Sorry, it looks like I mi―"</p><p>"There is another way."</p><p>I was cut off by Suriol who raised his head and gazed at me directly in the eyes.</p><p>Angelica turned her head to look at him, and a frown began to form on her normally delicate brows.</p><p>"What are you talking about?"</p><p>As she spoke in a cautious manner, her expression became very grave.</p><p>Suriol spared her a glance before speaking.</p><p>"Bloodline transfusion."</p><p>Bam!</p><p>Angelica got up from her seat in an unexpectedly abrupt manner, which caused the couch behind her to spin back a couple of meters.</p><p>"Are you crazy?!"</p><p>A look of shock dyed her face while she gazed at Suriol and raised her voice.</p><p>"What are you trying to do? Are you trying to have him killed?"</p><p>'Have me killed?'</p><p>As the atmosphere in the room grew increasingly tense, her aura began to radiate with increasing intensity.</p><p>I was perplexed by what was taking place, so I moved in front of Angelica in an effort to calm her down.</p><p>"Calm down for a moment, I'd like to hear his proposal. Who knows, there is a possibility that this could work."</p><p>"It won't work."</p><p>Angelica bluntly replied, glaring at Suriol.</p><p>Her blunt answer aroused my curiosity as I asked.</p><p>"Why not?"</p><p>Why was she so against this method? Was there something wrong with it?</p><p>I got my answer shortly after.</p><p>"Blood transfusion, like the name suggests, is a process in which one mixes their blood with demon blood."</p><p>"What?"</p><p>I was left stunned by her words.</p><p>Angelica continued.</p><p>"It is considered taboo because the demon will suffer severe injuries from the transfusion. In many instances, the demon will die shortly after transfusing their blood with the recipient, and, unlike demonic contracts, the recipient will not be bound to the demon whose blood they have received."</p><p>"It's something that the current Demon Lord has banned completely. If he becomes aware of anyone performing this technique, they will have their entire bloodline exterminated."</p><p>I finally understood why Angelica was reacting the way that she had.</p><p>"What happens to the recipient when they have the demonic bloodline in their body?"</p><p>"They will go crazy."</p><p>Angelica replied in a straightforward manner.</p><p>"With the contract not acting as a medium to mitigate the purity of the bloodline, transfusing a demon's blood will lead you to lose your mind. All of your innermost desires will be pushed to the limit, and you won't be able to think properly."</p><p>"Really?"</p><p>I turned my head to look at Suriol who had remained silent the whole time.</p><p>Was he so desperate to suggest something so reckless to me?</p><p>"No."</p><p>He unexpectedly shook his head when he looked at Angelica.</p><p>"Although what she said is true, it only applies when a large amount of blood is transfused rapidly. If you do it gradually and stabilize your mind during the process, your likelihood of losing your mind will be drastically reduced."</p><p>"Ridiculous."</p><p>Angelica scoffed as her eyes turned icy.</p><p>"Tell the truth, you're only suggesting this strategy because you're desperate for a Prince ranked core. In the short term, he may be able to maintain his sanity, and his strength will increase dramatically, even more than he would by signing a contract, but there is a high likelihood that he will completely lose his mind not long after."</p><p> "Not if his mind is strong."</p><p>"Bullshit."</p><p>'Did she say my strength would rise dramatically?'</p><p>I fell into deep thought while Suriol and Angelica bickered with each other in the background.</p><p>Something about Angelica's words caught my attention, and I couldn't get it out of my mind for some reason.</p><p>I eventually asked aloud.</p><p>"Will transfusing my blood with that of a demon really increase my strength drastically?"</p><p>Suriol and Angelica simultaneously stopped talking when they heard my words.</p><p>Angelica's facial expression changed again as she stared at me with a stern expression.</p><p>"Ren...don't tell me that you're seriously considering this."</p><p>"Answer my question first. Will this method help me increase my strength? "</p><p>This was the thing that I wanted to know the most.</p><p>Fortunately, Suriol answered my question shortly after.</p><p>"It will. Not just by a little bit, but by quite a lot. If you're lucky, you might even be able to transform."</p><p>"Transform?"</p><p>My interest was piqued once more as my eyes focused on Suriol.</p><p>Nodding his head, he continued.</p><p>"Yes, if you successfully merge with a bloodline of Marquis or higher, you will be able to transform partially into a demon. We call this transformation, Demon Transformation and in this form, you will not be suppressed by a demon's blood unless it is from a demon of a higher rank, unlike contractees, who are suppressed by any bloodline. Not only that, but you will also be able to manipulate demonic energy."</p><p>"Oh?"</p><p>My interest started to grow the more Suriol spoke.</p><p>"Your strength will soar once more as a result of this change. Let's just say that if you had been able to transform, the fight between us wouldn't have been as close as it was."</p><p>"Even though what he said is accurate, if you were to fight a demon with a purer bloodline than yours, you would likely be at a disadvantage. Your odds of defeating a Prince level demon will decrease."</p><p>Angelica quickly cut in, but Suriol rebuked not long after.</p><p>"That's true, but you can simply make your bloodline purer. If you mix your blood with demonic blood you will be able to consume devil fruits and demon cores to purify your bloodline. By the time your bloodline reaches the Prince rank, fighting against someone of that level will be a breeze for you."</p><p>"Do you really think it's so easy to find devil fruits that can help him? His goal isn't a measly Prince ranked demon, it's the Demon King. Do you really think his bloodline will be pure enough to fight against the demon King?"</p><p>"He might as well go to the world tree and pick the devil fruits himself and eat them all if he ever wants to have a bloodline pure enough to not get suppressed by the Demon King."</p><p>"What did you just say?"</p><p>My head raised up as my eyes shot wide up.</p><p>"Uh?"</p><p>My abrupt actions caught Angelica off guard as she looked at me with a confused look.</p><p>"Say what again?"</p><p>"The part where you spoke about the world tree."</p><p>"That? ...If you want to have a bloodline pure enough not to be suppressed by the Demon King, you might as well go to the world tree and pick the devil fruits yourself?"</p><p>"Bingo!"</p><p>My eyes became animated and my fingers snapped.</p><p>While the two of them were bickering, I was paying close attention to what they were saying. In fact, although tempting, I was planning on rejecting the blood transfusion offer.</p><p>The reason was exactly as Angelica stated.</p><p>With the bloodline transfusion method, against higher ranked demons, I would be put at a disadvantage.</p><p>It wasn't that much different from signing a contract, apart from the transformation thing.</p><p>Considering that I wanted to kill Jezebeth, it was clear that this option was a no go.</p><p>...Of course, that was until I heard the last part of Angelica's sentence.</p><p>'Yes, if I really get access to the devil fruit that grows in the world tree, I would without a doubt be able to purify my bloodline to the King rank. If that happens, I will without a doubt have another ace up my sleeve!'</p><p>I made my decision within an instant</p><p>Raising my head, I directly looked at Suriol and ignored Angelica.</p><p>"About this bloodline transfusion, tell me more about it."</p><p>***</p><p>"Just made in time."</p><p>Kevin scanned the panel in front of him and sighed in relief.</p><p>Destination : Immorra</p><p>Would you like to teleport : [Y] [N]</p><p>Kevin licked his chapped lips and then looked at his ring to make sure he had brought everything he needed. The check was completed rather quickly, and he turned his attention to his watch at that point.</p><p>After he brushed his other hand across the watch, a transparent white sphere materialized all the way around the watch.</p><p>'Tomorrow will be an extremely important day. There's no way I'll miss it.'</p><p>Kevin took his eyes away from the watch and turned them back toward the panel.</p><p>Without hesitation, he pressed the [Y] and his body started to disintegrate on the spot.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-659.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-661.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

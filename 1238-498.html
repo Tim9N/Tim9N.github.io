@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 498 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 498 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-497.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-499.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Has the illusion started?</p><p>It was the only conclusion I could make as I gazed into the distance.</p><p>Carnage.</p><p>If I had to describe what I was seeing in one word, it would be 'carnage.'</p><p>Large cracks scattered throughout the scarlet-dyed sky. Coming out of them was a sea of creatures, all pushing each other, hungrily goggling at what was beneath them with an insatiable and malicious look.</p><p>Buildings started to crumble, as screams echoed everywhere.</p><p>The blaring and irritating sound of the sirens became drowned out by the frightening explosions that were happening around the city.</p><p>"This..."</p><p>What's going on?</p><p>Staring at the scene from the top of the building, I was left at a loss for words. An acrid smell permeated the area around me.</p><p>In the end, I managed to murmur.</p><p>"This place looks familiar..."</p><p>I had definitely seen this place before.</p><p>But because of its current state, I found it hard to tell where exactly it was.</p><p>Taking my eyes away from the city, I waved my hand in the air and realized that the temperature around me was scorchingly hot. Sweat trickled down the side of my face, and breathing started to become more difficult for me.</p><p>'What I powerful illusion.'</p><p>I thought.</p><p>Clenching and unclenching my fists, I was left shocked by how realistic everything around me felt. The thing that shocked me the most about the illusion was the fact that I could feel all my senses.</p><p>From my sense of touch, smell, sight, hearing, and taste.</p><p>Everything around me felt exactly as it did in the real world.</p><p>"Huuu..."</p><p>Fixing my gaze on the city below, I took a deep breath to clear my mind.</p><p>"Alright."</p><p>Once my mind was cleared, I took a step forward and my clothes and hair fluttered upwards. Reaching my ears was a loud rush of wind; similar to the static from blowing into a microphone which was also accompanied by a paper-like sound coming from my fluttering clothes.</p><p>Bang—!</p><p>Crashing against the groups, miniature fine miniature crevices formed on the area beneath my feet.</p><p>Brushing my clothes off, I took a look at my surroundings.</p><p> "How odd..." </p><p>People continued running around the city, desperately trying to cling to survival. Yet, no one seemed to have managed to notice my appearance.</p><p>It was then that I noticed a male with a short build running my way.</p><p>"Watch out!"</p><p>I warned.</p><p>Despite my words, the man continued to run. I became alarmed.</p><p>Can't he see me?</p><p>"Huh?"</p><p>The answer to my question was soon answered.</p><p>A split second after my words faded, the male passed through my body. As he passed my body, I turned my head to look at his disappearing back before I looked at my hands.</p><p>Lowering my body, I touched the ground. Feeling the rough and granulated road, my brows slowly knit together.</p><p>Slowly, I came to a conclusion.</p><p>"I can only touch things that are non-living."</p><p>To test this theory, I walked up to another pedestrian running, and just like the first time, he directly ran through my body.</p><p>This confirmed my theory.</p><p>I couldn't touch living beings.</p><p>"Where am I?"</p><p>Though odd, I decided to concern myself with other things. Looking around me, I tried to get a better idea of where I was.</p><p>For a second I almost forgot that I was inside of an illusion.</p><p>"Hm?"</p><p>It was then that I noticed something.</p><p>Carefully moving through the debris that littered the streets, I arrived at a small intersection.</p><p>"This place..."</p><p>[Avenue Street, 17N]</p><p>It was the name of a street that wasn't too far from my house. The one I used to live in before Amanda moved my parents.</p><p>Curious, I decided to have a look.</p><p>At the moment, I was still unclear about what the goal of the illusion was about, but I could tell that time here was slower than in reality.</p><p>The real goal of going to my old house was to figure out if there were any irregularities with this world.</p><p>Since I didn't have any clue regarding how to get out of this illusion, this was all I could do.</p><p>...and, I couldn't really explain it.</p><p>But.</p><p>I felt this odd inexplicable feeling inside of me that told me to go there. I grew more alert when I realized this.</p><p>Was this part of the illusion?</p><p>*</p><p>"It's been a while since I've been here."</p><p>It took me around five minutes to reach my old house, and when I gazed at it from beneath the footsteps, I felt a small part of me stir.</p><p>I may have not spent a lot of time in this house, but it still felt nostalgic to me.</p><p>If there was one thing that was different about this house than the one inside of my memories, it was the fact that a part of it was damaged.</p><p>Still, the damage wasn't to an extensive degree.</p><p>"What am I doing?"</p><p>Bitterly shaking my hand, I moved up the stairs and grabbed onto the metal handle of the door. Feeling the cool sensation of the knob, I twisted it and opened the door.</p><p>Clank—!</p><p>The same homey scent of the past.</p><p>The same wall that was littered with pictures of me and my family.</p><p>Without a doubt, this place was home.</p><p>Creak. Creak.</p><p>Taking a step forward, the wooden floor started to creak beneath my feet. This was typical of an old house. Especially one that seemed to have gone through rough times.</p><p>"It's the same."</p><p>Staring at the pictures on the walls, I realize that everything was the same as the last time I had seen them. The house was a bit worn out, and the windows were broken, but it was the same as it was in the past.</p><p>There was nothing out of the ordinary.</p><p>"Strange..."</p><p>How were the demons able to create such detailed illusion?</p><p>"Khhh..khhh.."</p><p>It was then that I heard a muffled sobbing sound coming from the distance. My head immediately snapped in that direction.</p><p>"Who?"</p><p>I instantly became alarmed.</p><p>Was this part of the illusion?</p><p>Raising the heels of my foot, I tiptoed my way toward where the sobbing sound was coming from. I wanted to be as quiet as possible.</p><p>Not sure if this was a good idea or not.</p><p>Stopping right before the door frame that led to the living room, I carefully tilted my body to catch a glimpse of what was happening.</p><p>"What..."</p><p>My body stiffened.</p><p>Catching a glimpse of what was behind the door frame, my body stopped moving.</p><p>"Mom...Dad...Nola..."</p><p>A frail and weak voice rang throughout the empty house.</p><p>Sitting on his knees, behind three familiar figures, a figure hunched over their bodies and wept uncontrollably. His body continuously trembled, and though hidden, his complexion looked especially pale and skinny.</p><p>It was clear that the figure had been morning for more than a day.</p><p>The scene looked truly heartwrenching.</p><p>'This is all an illusion.'</p><p>I, of course, managed to recognize the sobbing individual. Who could it be, but me?</p><p>Biting my lips, I turned my head.</p><p>Despite the fact that I knew that this was all an illusion, the images of my family lying down on the ground, dead, kept replaying inside of my mind.</p><p>A sharp and inexplicable pain coursed through my heart, forcing me to look away.</p><p>"Fuck..."</p><p>I eventually swore.</p><p>Clenching my teeth and fists, I calmed myself down.</p><p>'Get a hold of yourself! You're doing exactly what the demons want!'</p><p>As if I'd let them.</p><p>Slap—!</p><p>Slapping my face, I dispelled all distracting thoughts from my mind. Taking a deep breath, I closed my eyes and proceeded to walk over my hunched-up figure.</p><p>After deliberating for a bit, I came to a conclusion.</p><p>'Since this is an illusion that is probably targeting my weak points, I should get rid of them in order to free myself.'</p><p>Extending my hand, a sword materialized on my palm. Firmly gripping the sword, I slowly started to unsheath it.</p><p>Once I unsheathed the sword, I stared at its sharp and glistening body which I could see my reflection in.</p><p>Staring at my reflection on the sword, I raised my sword.</p><p>"Huuu..."</p><p>I took another breath.</p><p>Exhaling slowly, I gradually flexed my muscles and prepared to slash down.</p><p>"Hold on..."</p><p>Coming to a halt, I felt a hand grasp my shoulder.</p><p>WIIIING—!</p><p>Out of pure reflex, I rapidly twisted my waist and slashed in the direction of where the voice came from.</p><p>But as I slashed down, my sword was met with no resistance as it simply slashed the air.</p><p>"Wow."</p><p>A surprised voice rang out.</p><p>Raising my head, my eyes soon met with a figure I was all too familiar with. Unexpectantly, despite having just slashed at me, the figure's attention was not drawn to me, but to the illusionary version of myself.</p><p>"What do you feel?"</p><p>He asked. His voice was the same as it always was. Emotionless and cold.</p><p>My brows furrowed.</p><p>"What are you talking about?"</p><p>"Don't play dumb. I asked..."</p><p>Raising his hand, he pointed his finger in the direction of the illusionary version of myself.</p><p>"What do you think about what you're seeing. Do you feel anything at all?"</p><p>"I don't."</p><p>"...Oh?"</p><p>The other entity smiled.</p><p>"I don't believe you."</p><p>Before I had a chance to speak, he took a step forward and suddenly pressed his palm on my back.</p><p>"...How about you try feeling it for yourself."</p><p>"Wha—"</p><p>Before I even had the chance to reply, the world around me warped, and my consciousness slipped.</p><p>*</p><p>Pain.</p><p>An immeasurable pain that I couldn't describe consumed my entire body.</p><p>It was a different type of pain. One that was drastically different from the times I almost had my soul incinerated and my body burned to bits and experimented on.</p><p>It hit different, but it was a pain that I never wished anyone would bear.</p><p>"Haa... haaa..."</p><p>I found it hard to even breathe.</p><p>I couldn't quite open my mouth. Every action, be it breathing, thinking, or anything that required energy seemed strenuous at the moment.</p><p>Slowly, I placed my hand over my heart and clenched my clothes.</p><p>"It hurts..."</p><p>Opening my eyes, the faces of my parents, devoid of any sign of life appeared in my vision. The pain intensified.</p><p>"Haaaaa..."</p><p>I let out a heartwrenching cry.</p><p>The pain.</p><p>It was overwhelming. I wished for it to stop.</p><p>Amidst my cries, a voice echoed from behind me.</p><p>"It hurts doesn't it?"</p><p>I wanted to reply, but I couldn't. I could feel tears drip down from the side of my cheeks.</p><p>Regardless, he continued to speak.</p><p>"Losing the people you love so dearly, hurts doesn't it?"</p><p>Where was he getting at?</p><p>His enigmatic way of speaking irritated me.</p><p>"How would you feel if you felt the same pain you're experiencing now, over and over again? In an endless cycle that will never stop?"</p><p>I slowly turned my head, before finally getting a better look at the other entity.</p><p>It was then that I noticed it.</p><p>The other entity that I was all too familiar with looked at me with a smile on his face.</p><p>But his smile...</p><p>The smile on his face.</p><p>It wasn't normal. No, it was a heartwrenching smile. A smile that seemed to tell millions of words with just a single glance.</p><p>"Ah..."</p><p>I was finally able to open my mouth.</p><p>Stumbling back a bit, my eyes changed.</p><p>"It... can't be..."</p><p>The smile on the other figure lessened a little. With his eyes lowered, he opened his mouth.</p><p>"The pain you're experiencing. It's something I'm all too familiar with. It's something that I cannot get rid of, regardless of much I try to. But..."</p><p>He paused.</p><p>Raising his head, our eyes finally met.</p><p>"Unlike you, I experience this type of pain at a much higher level. Imagine watching your family, die, over and over again, and you can't do anything about it. No matter how many times you try to change the inevitable future, something happens and forces you to experience the same pain again. And again. And again. And again. And again."</p><p>His every word deeply resounded inside of my head. I could feel the sadness and detachment in his voice.</p><p>Somehow, it deeply resonated with something inside of me. Something that I wanted to reject with my whole being.</p><p>"At one point. When one experiences such pain, over and over again, what do you think will happen to that person?"</p><p>Stop it.</p><p>"Do you think they can move on? Move on and continue undergoing this endless cycle of torture, like nothing ever happened to them?"</p><p>Stop it, damn it.</p><p>"...Or do you think that they will inevitably start to lose all the traits that made them human? Lose a part of themselves? ...and only start to think about getting out of this endless cycle, even if it means sacrificing what they once held dear in the past."</p><p>Stop fucking speaking!</p><p>"When pushed to the limit, death looks like the most comforting place one wants to be..."</p><p>I endlessly shouted inside of my mind, but deep down I knew. I knew exactly what the figure was trying to hint at.</p><p>"Ren, do you know why I always say that I'm not your enemy?"</p><p>I didn't reply.</p><p>Inside, I already knew the answer.</p><p>"It's because I am you..."</p><p>"khh..."</p><p>I let out a muffled sound.</p><p>I felt my body weaken, and my head went blank.</p><p>I couldn't understand anything anymore.</p><p>The figure who I had thought to be my enemy, and whom I thought was trying to kill me at every chance he got, was actually me?</p><p>How did that make sense? I wanted to deny it, but...</p><p>Thinking about the past, everything was slowly starting to make sense. A blurry picture started to form inside of my mind.</p><p>Turning around, I looked back at my parents.</p><p>'Imagine watching your family, die, over and over again, and you can't do anything about it.'</p><p>'We are cursed.'</p><p>Slowly the pieces started to fall into place, and the picture started to become more and more vivid.</p><p>"Hm, it looks like we don't have much time. If this keeps going, you're going to die."</p><p>Lowering his body and hooking his arm around my neck, I heard his whisper in my ear.</p><p>In front of me, a small screen materialized. Displayed on it was my figure, and the opposite of me was another figure speedily heading in my direction.</p><p>It was then that I understood something. If I didn't do anything now, I was dead.</p><p>"...I've said this before."</p><p>His were were soft, but never before did they ring as powerfully in my head as they did now.</p><p>"Use Monarch's indifference."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-497.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-499.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

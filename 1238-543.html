@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 543 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 543 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-542.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-544.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'...You are making it really hard for me not to like you.'</p><p>Amanda's words echoed inside my mind like thunderbolts as my body stopped moving altogether.</p><p>Millions of different thoughts flashed inside of my mind as I struggled to speak.</p><p>This...</p><p>She knew that I knew all along?</p><p>A bitter smile soon spread across my face.</p><p>'...And here I thought I was doing a good job at trying to hide my feelings.'</p><p>As expected of Amanda, she was more perceptive than I thought.</p><p>I was unsure of what to say to her sudden confession as I stared at her. Although I knew that she liked me, I didn't take her for one to express her emotions so suddenly.</p><p>The Amanda I knew was supposed to be reserved and shy.</p><p>Not someone that would boldly confess like this.</p><p>'Just what happened during the time that I was in the demon world?'</p><p>Honestly, she had caught me off-guard.</p><p>"Ehm—"</p><p>"You don't have to answer me just yet."</p><p>Amanda let go of the railing before I could say anything else. As she turned away from me, she moved toward the balcony's sliding door.</p><p>"Sorry for dropping off something like that after you've just returned. I just...feel like I needed to say it. For my sake."</p><p>There was a short pause in her speech as she placed her hand on the slider door.</p><p>"...I guess I'm selfish in my own way, but if I never did this, I don't think you would've ever though about it."</p><p>In the midst of my racing mind, a strange feeling overpowered me.</p><p>"Once again, sorry fo—"</p><p>I didn't know when, but before I knew it, I had already taken a step forward and I found myself grasping her wrist.</p><p>"Wait."</p><p>"Huh?"</p><p>After my hand made contact with Amanda's, her body flinched and she turned to face me with a surprised expression.</p><p>Our faces weren't far.</p><p>About a few inches away from each other.</p><p>Gazing at her face which seemed to sparkle under the moonlight, I had a sudden thought.</p><p>'Was I always this indecisive?'</p><p>It didn't take long for me to come up with an answer to that question.</p><p>...Yeah.</p><p>I guess I was.</p><p>Thinking back, I really did have the tendency to overthink things.</p><p>But it couldn't be helped. I was someone that liked to have everything under control.</p><p>Just like in this case, were my emotions real, or were they a fruit of my other self's work?</p><p>To be honest, this was something that had been plaguing my mind for quite a while. I had long stopped thinking about it because I was busy with other stuff.</p><p>It only resurfaced recently when I went to the demon realm.</p><p>At the time, I didn't think about saving Amanda's father when I went to the demon world.</p><p>How could I have?</p><p>I had just come off from a fight against the demon king and found out about the secret of the entity residing inside of my body.</p><p>Edward was the last thing that was on my mind back then.</p><p>In addition to that, I saved Edward back then primarily because the situation back in the Demon Hunter Guild was complicated. It had to be noted that they were the ones protecting my parents, and if something bad happened to them, my family would be put in quite a bit of danger.</p><p>I wasn't really thinking too deeply about it.</p><p>...and maybe, just maybe, Amanda may have misunderstood my actions.</p><p>But.</p><p>Taking a deep breath, I slowly opened my mouth to speak.</p><p>"This weekend..."</p><p>I let go of her wrist as I stared deeply into her obsidian black eyes.</p><p>"...Are you free this weekend?"</p><p>***</p><p>Clank—!</p><p>Closing the door behind her, Amanda stood still while lowering her head.</p><p>This persisted for a good couple of minutes as she tried to let the events that transpired not too long ago sink into her mind.</p><p> '…It really happened, right?' </p><p>She thought to herself.</p><p>Ren had actually asked her out on a date right?</p><p>Within a moment, Amanda's cheeks became hot as her head made its way deeper into her bosom.</p><p>"It really did happen..."</p><p>Recalling his soft smile and warm eyes, Amanda knew that whatever happened back then wasn't a fruit of her imagination.</p><p>It had actually happened.</p><p>Knock—! Knock—!</p><p>It was at that moment that Amanda heard a knocking sound.</p><p>"Amanda? Are you okay?"</p><p>It was her father. Edward.</p><p>Placing both of her hands on her cheeks, Amanda hastily turned her head and pressed her hands on the door.</p><p>"…I'm okay."</p><p>She answered in an audible whisper.</p><p>"Is that so…"</p><p>Edward awkwardly said.</p><p>A weird silence followed his voice as neither of them spoke.</p><p>After a while, unable to bear the silence anymore, Edward spoke up.</p><p>"Amanda, can I come in?"</p><p>"No."</p><p>Putting more pressure on the doorside, Amanda shook her head furiously.</p><p>"Don't come in."</p><p>Despite feeling sorry for her father, she did not want anyone to see her right now. Let alone her father.</p><p>Although she couldn't see herself in the mirror, Amanda knew that her expression wasn't quite right at the moment. She didn't want to risk it.</p><p>"…Are you perhaps angry at me?"</p><p>Having misunderstood Amanda's words, Edward's voice fell.</p><p>Calming herself down, Amanda replied.</p><p>"I'm not."</p><p>"Then why?"</p><p>"Because I'm about to take a shower."</p><p>"Oh…"</p><p>Another moment of silence ensued as Edward seemed to struggle to find the right words to say.</p><p>He eventually backed off.</p><p>"Alright then, we still have a lot to discuss together. I'll see you tomorrow morning. Good night."</p><p>"Good night."</p><p>With her back pressed against the door, Amanda closely paid attention to the sound of his footsteps distancing themselves from her room.</p><p>It was only after she could no longer hear them that she finally calmed down.</p><p>Slowly, her feet slid down and she hid her face in between her knees.</p><p>"…I'm sorry."</p><p>She silently murmured as she thought back at her father's crestfallen voice.</p><p>But it really couldn't be helped.</p><p>She really couldn't bear to let anyone see her at the moment.</p><p>"This is hard…"</p><p>***</p><p>"Did I make a mistake?"</p><p>I repeatedly asked myself this question as I stared at the ceiling of my room.</p><p>In all honesty, everything since the events that transpired not too long ago still seems a little hard to believe.</p><p>'...I hope she isn't too mad with my answer.'</p><p>Thinking back, I neither agreed nor denied her confession.</p><p>Still, after removing all thoughts from my mind, I decided to give it a go.</p><p>I wanted to explore my feelings and see if I actually liked her.</p><p>There was indeed the possibility of my other self manipulating my feelings in order to create a weakness for me, but I honestly didn't think this was the case.</p><p>Amanda was strong.</p><p>In terms of talent, she was only lagging behind Kevin. Not only that, she wasn't someone that I needed to look after in case the situation turned bad.</p><p>She was someone that knew her responsibilities, and knew how to act upon them.</p><p>In contrast to being a burden, I thought of her as someone I could trust.</p><p>After a moment's pause in my thoughts, I muttered silently to myself.</p><p>"I think this might be for the best."</p><p>On another note, I really did need something to distract me from the things that were happening.</p><p>...and this was probably the best distraction out there.</p><p>"Is it really for the best?"</p><p>At that moment, a voice echoed beside me. My reaction was nonexistent since I had grown accustomed to hearing that voice.</p><p>While still staring toward the ceiling of my room, I replied.</p><p>"What do you know?"</p><p>I then turned my head to glance in his direction.</p><p>"If not for you, things wouldn't have been so complicated."</p><p>"If not for me you would've died many times over."</p><p>"That may be true, but…"</p><p>Sitting up straight on the bed, I leaned my body forward a little.</p><p>"I would've never found myself in those situations had it not been for your influence."</p><p>Clank. Clank.</p><p>Scratching his ear, the rattling sound of the chains binding his arms echoed out.</p><p>He had a rather nonchalant look on his face.</p><p>"Been curious about something...As someone who knows that their actions are controlled, you don't seem to be doing much."</p><p>"Am I not?"</p><p>Massaging the bottom of my chin, I shrugged my shoulders.</p><p>"I guess I just realized there is no need for me to do so."</p><p>"No need?"</p><p>"Yeah…"</p><p>Glancing his way, I just smiled at him.</p><p>There were many ways for someone to deal with a manipulator.</p><p>In most cases, it would be best to ignore what they say and do the opposite of what they advise, but in my case, where most of his suggestions aligned with my desires and goals, this was not an option.</p><p>Thus, I decided to opt for a different method.</p><p>"I see."</p><p>Nodding his head slowly, my other self calmly opened his mouth.</p><p>"So you still think that I'm your enemy?"</p><p>Shrugging my shoulders, I leaned back on my bed.</p><p>"Think what you like."</p><p>"Alright…"</p><p>With a casual nod of his head, the other me turned to look toward his body which was slowly starting to become transparent. The chains that were binding his body suddenly tightened, and a weird red hue started sprouting from them.</p><p>Clank!</p><p>This sudden phenomenon surprised me a bit as I had never seen it before.</p><p>"What's going on?"</p><p>"...I've overstayed my stay."</p><p>Staring at the chains which were binding his body, my other self turned to look in my direction.</p><p>Before he could say anything else, I started speaking.</p><p>"Let me guess, you've used too much energy after controlling my body."</p><p>"...Yes."</p><p>"As expected."</p><p>There was definitely a cost that he needed to bear when controlling my body and using that skill.</p><p>As a matter of fact, I also suspected there was more to the skill than it just being a simple power boost, but as he wouldn't tell me, I could only guess for now.</p><p>Clank. Clank. Clank.</p><p>Suddenly, more chains appeared from underneath the ground as they beckoned my otherself, who stared at them without showing any signs of panic.</p><p>Extending his hand, he let them bind his body completely.</p><p>His body gradually started to fall toward the ground from that moment on.</p><p>Within a few seconds, his head had already reached the ground, and with a simple smile on my face, I waved in his direction.</p><p>"...Have a nice trip."</p><p>Moments after my words faded, his body slowly sunk to the ground and disappeared.</p><p>With my eyes lingering on the spot where he disappeared, the smile on my face slowly faded away as I softly mumbled underneath my breath.</p><p>"Monarch's indifference."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-542.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-544.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

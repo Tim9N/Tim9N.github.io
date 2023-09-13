@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 539 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 539 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-538.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-540.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank. Clank.</p><p>During the slow opening of the air train doors, a sweet voice lingered in the air.</p><p>[You have arrived at the station]</p><p>"We're here, let's go."</p><p>"Okay."</p><p>Standing up, Edward was the first one to head out of the train. Similarly standing up, I glanced at Liam who was sitting on the seat beside me.</p><p>"Are you going to be fine by yourself?"</p><p>"No problem."</p><p>My eyes squinted.</p><p>He nodded.</p><p>"...You sure?"</p><p>"Positive."</p><p>"Alright then."</p><p>With a casual shrug of my shoulders, I showed him my phone.</p><p>"In case you forget where you're supposed to be, you can still call my number. Well, that is of course unless you also forget that, in which case I won't be able to help you at all."</p><p>"I should be fine."</p><p>"If you say so."</p><p>Finishing my drink and putting it down on the table, I bid farewell to Liam and left the train.</p><p>"Alright, see you."</p><p>"Goodbye."</p><p>Beep. Beep.</p><p>Moments after I got off the train, I heard beeping sounds come from the train and the doors closed. A short time later, the train sped away.</p><p>It was then that Edward moved next to me and asked.</p><p>"Have any idea where he's going?"</p><p>"No clue at all. He just said that he had some stuff to do."</p><p>Right before we left the demon realm, I had proposed to him to join my mercenary group. On a good note, he accepted my offer, and we were soon going to meet each other again.</p><p>On a bad note, he said that he was only going to be a member in name, meaning that he would help whenever he was free.</p><p>Apparently, he didn't like being chained down by organizations as that was too boring for him.</p><p>I tried to convince him otherwise, but he didn't seem to budge and I eventually had to step back and accept his terms.</p><p>It was better than nothing.</p><p>"I guess I better get going now."</p><p>Jolting me out of my thoughts was Edward's voice. Turning around, I placed my hand over his shoulder.</p><p>"Where are you going?"</p><p>"...To my guild and meet my daughter?"</p><p>"Nope."</p><p>"Hm?"</p><p>Edward looked at me with a confused look.</p><p>Taking a closer look at him, I shook my head.</p><p>"Not like this you are."</p><p>"Ah..."</p><p>It wasn't until Edward felt my gaze that he realized what was wrong. It was the fact that he was dressed as a hobo at the moment.</p><p>While he was in the arena, his clothes were in good condition, but after being trapped in a prison for a few days, he grew a rough beard and he smelled. Additionally, his clothes showed signs of tearing due to the demon's treatment.</p><p>He was just unpresentable.</p><p>"It would be best if we got you something to change in before you meet your daughter."</p><p>'...and your wife as well.'</p><p>But I wasn't going to tell him this. Wanted to create a surprise for the two of them.</p><p>That said.</p><p>Suddenly, Edward's eyes locked on me, and I realized my tongue had slipped.</p><p>Would you please correct me if I heard you incorrectly, or did you just say we were going to meet my daughter in your apartment?"</p><p>"Keum...I meant my parents' house."</p><p>With a slight cough, I kept a straight face.</p><p>"Weren't you there during the meeting where I introduced magic cards?"</p><p>"...Yeah"</p><p>Edward's eyes squinted.</p><p>I continued.</p><p>"Well, considering just how much money was involved, I had asked Amanda to send some people to look after my parents and she moved them to stay next to her apartment. After that, Amanda and my mother got along well with each other, and sometimes she comes over for dinner..."</p><p>"I see..."</p><p>With a slight nod, Edward's face flashed with sadness. At a glance, I could tell what he was thinking.</p><p>'He must be thinking that she was lonely...'</p><p>Pressing my hands against his back, I pushed him forward.</p><p>"Enough with that look. Let's get you changed and show Amanda the best version of yourself, and not some hobo version..."</p><p>"Watch it."</p><p>"You can't deny reality."</p><p>Ignoring the stares coming from the people beside us, I somehow managed to bring Edward to a nearby retail shop to get him some decent clothes and a haircut.</p><p>That was how we spent the remaining two hours before dinner.</p><p>***</p><p> 7:30 P.M. </p><p>Ding. Dong.</p><p>Samantha rushed to the door when the doorbell rang.</p><p>"...I'm sure it's Natasha."</p><p>Since Amanda was due to arrive a little later for guild business, Samantha assumed the person outside was Natasha. Only she would arrive so early.</p><p>Her instincts proved correct when she opened the door and found a familiar figure behind it.</p><p>With a bright smile on her face, Natasha greeted Samantha while holding a basket of goods.</p><p>"My apologies for intruding."</p><p>"Come on in."</p><p>A smile spread on Samantha's face as she took a step to the side.</p><p>"Make yourself at home."</p><p>"Thank you."</p><p>As Natasha handed Samantha the bag of goods, she slowly entered the room. Immediately after coming in, she was met with the sight of Nola playing with Ronald, her father.</p><p>Taking note of her appearance, Ronald greeted her with a nod.</p><p>She greeted back.</p><p>"Nice to see you."</p><p>"You too."</p><p>Immediately after greeting him, Natasha's eyes fell on Nola. Her face instantly melted.</p><p>"Nola! How have you been doing?"</p><p>"Sister Natasha!"</p><p>After escaping her father's grasp, Nola ran up to Natasha and hugged her, causing her face to melt even more as she patted her head.</p><p>"I am a sister, that's right...</p><p>With a broad smile on her face, Natasha put Nola down. Then, turning her head, she looked in Samantha's direction.</p><p>"Do you need any help?"</p><p>"Not thank you."</p><p>Walking toward the dinner table, she carefully placed seven plates. Natasha who was looking at her quickly took notice of this and asked.</p><p>"Seven plates? There are two extra plates."</p><p>"...It's deliberate."</p><p>Samantha answered. Her tone was rather chilly.</p><p>'Deliberate?'</p><p>Who could the other guests be?</p><p>"Ah!"</p><p>It was at that moment that she thought of something.</p><p>"Did he return?"</p><p>Samantha's hand paused the moment Natasha's words left her mouth. But after a while, with her usual smile, she continued to set the dishes in place.</p><p>"...Yeah, and he's apparently bringing an extra guest."</p><p>"An extra guest?"</p><p>Natasha curiously cocked her head.</p><p>"Did he say anything about who the guest is?"</p><p>"No clue."</p><p>Setting the last dish down, Samantha cleaned her hand with a small rag and headed back to the kitchen.</p><p>"You know him. He won't tell me anything anyway, so I guess we can only find out when he's coming."</p><p>"What a troublesome boy..."</p><p>Standing up, Natasha started to feel great sympathy for Amanda.</p><p>'Oh daughter of mine. I might not judge you for your tastes, but you are in for a tough battle ahead.'</p><p>...A man like Ren was hard to tame.</p><p>"I think it's best if I hel—"</p><p>Ding—! Dong—!</p><p>Halfway through her sentence, the door suddenly rang. Immediately after the door rang, leaning her head out of the kitchen, Samantha looked at Natasha.</p><p>"Natasha, would you mind getting the door?"</p><p>"Sure."</p><p>Raising her thumb, Natasha slowly walked up to the door. While she walked to the door, she thought to herself.</p><p>'Did he already arrive or is it Amanda?'</p><p>Either way, she would find out soon enough as she reached her hand out to grasp the door knob.</p><p>Clank—!</p><p>Opening the door, with a bright smile on her face, she welcomed the guests.</p><p>"Welcom—"</p><p>But halfway through her sentence, her face suddenly froze. After that, her face became significantly paler.</p><p>"Bu...but...h..how?"</p><p>***</p><p>Moments before.</p><p>"This is the place."</p><p>The moment Ren's voice echoed out, Edward's feet came to a pause. Staring at the door in front of him, he took a deep breath.</p><p>"...Is this where you live?"</p><p>"Yeah."</p><p>Ren nodded from the side. Robotically turning his head, he asked.</p><p>"Yo..ou nervous?"</p><p>There was a slight stutter in his voice as he spoke.</p><p>This caught Edward's direction as he stared in his general direction.</p><p>"...I want to ask you the same thing. You nervous?"</p><p>"Me?"</p><p>Ren instantly scoffed at his question.</p><p>"Ha...I'm..definitely not nervous at all. I'..ve gone up ag-ainst Duke-ranked demons, I-I am definitely not scared of my m..other...as iffff"</p><p>'Then why are you shaking?'</p><p>Edward almost blurted out as he saw Ren shaking even more fiercely. However, he decided against it. He probably had his own circumstances.</p><p>That said.</p><p>'I feel a bit better now.'</p><p>Witnessing Ren's state, Edward felt a lot calmer. Taking another deep breath, he extended his hand and pressed on the doorbell of the house. As he did, he made sure to smile.</p><p>Ding—! Dong—!</p><p>The doorbell chimed at the push of the button, and the sound of rushed footsteps echoed from behind the door.</p><p>Clank—!</p><p>Within moments, a stunning beauty emerged from behind the door; her hair falling gracefully down her shoulders and her eyes reflecting an innocence that seemed to abound. With a bright smile that seemed to light up the surroundings, she greeted.</p><p>"Welcom—"</p><p>Then, halfway through her sentence, Edward's gaze caught hers and the two of them froze in place.</p><p>As if time had frozen still, a deep silence prevailed over the area as the two of them stared at each other.</p><p>Neither believed what they were seeing.</p><p>"I..it can't be..."</p><p>The first to break the silence was Edward who repeatedly shook his head and took a step back.</p><p>"I..Impossible.."</p><p>As he struggled to find the right words to say, he felt a lump in his throat. The woman whose crystal eyes were now filled with tears stood by the door and Edward was overcome with a sharp pain in his heart.</p><p>"Ha..."</p><p>He grasped his clothes as he took another step back.</p><p>That woman...</p><p>There was no way he wouldn't recognize her.</p><p>She was the only woman who had left a deep imprint in his heart, and the woman who had also torn his heart apart.</p><p>Despite the fact that she looked like Amanda, Edward would not mistake her for her.</p><p>That was the depth of her imprint on his heart.</p><p>Throughout the years, he had never forgotten about her. She may have left abruptly, but Edward never forgot about her.</p><p>After all, he knew why she had left him.</p><p>...Of course, he knew.</p><p>He may have not been as powerful as he was now, but he still had his means, and when he learned the truth of the matter, he felt a little piece of him tear apart.</p><p>'In the end, despite all of my power, I couldn't do anything to stop what happened...'</p><p>Often mumbling to himself those words, he would isolate himself and focus on his work, neglecting Amanda.</p><p>The reality was that Edward had never been too busy in the past to support Amanda.</p><p>In fact, he did have time.</p><p>He felt a suffocating sensation every time he glanced at Amanda, as he recalled his past with Natasha and her actions. It was as if he were trapped in a room filled with water with only a small opening for air.</p><p>Despite his best efforts, he simply couldn't do it...</p><p>It was only later that he managed to come to terms with Natasha's sacrifice. Even then, the damage had already been done, and Amanda stopped expressing her emotions.</p><p>This sight...</p><p>It broke him.</p><p>Just what kind of father would allow his daughter to experience such a neglected childhood?</p><p>His decision to move on from the past began at that moment.</p><p>...At least that was how it was supposed to be.</p><p>When Edward stared at the figure in front of him, he felt a surge of emotions as his body trembled uncontrollably.</p><p>In an effort to quiet his trembling mouth, he bit his lip. Eventually, he managed to mutter something.</p><p>"Na..tasha, i..s that really you?"</p><p>"Ah..."</p><p>Hearing his voice, a tear trickled down Natasha's cheeks as both her hands were pressed against her mouth. As she struggled to speak, her choking sounds echoed throughout the apartment corridors.</p><p>A few moments later, she weakly nodded her head.</p><p>"Y...yes..."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-538.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-540.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

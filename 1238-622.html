@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 622 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 622 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-621.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-623.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"You've fought well."</p><p>Silug didn't know how to react after hearing those comments as he was left humiliated on the ground. He wanted to retaliate and say; 'It's not over.', but as his eyes paused on the finger that was aimed at his forehead, he involuntarily swallowed a mouthful of saliva.</p><p>'I will die.'</p><p>With just a glance he recognized the power hidden within that single gesture, and it was then that he relaxed his body.</p><p>He kept his head lowered for a little while longer.</p><p>"I..I've lost."</p><p>It took a while for the loss to finally register inside of his mind, and when he did, he felt extreme disappointment in himself.</p><p>'Who would've thought that the human would grow up to be so strong.'</p><p>He wasn't very knowledgeable about humans, however, he did know a couple of simple facts.</p><p>For example, he knew that humans lived a relatively short life, and he also knew that humans only just recently gained access to mana.</p><p>For them to develop so much…</p><p>It was truly frightening.</p><p>"Kill me."</p><p>After some while, Silug murmured feebly. Although he spoke in a low voice, everyone in the square could still hear him. When the orcs in the room heard his comments, their complexions transformed.</p><p>Only Ren remained indifferent to his words as he continued to stare at Silug.</p><p>Opening his mouth, he asked.</p><p>"Is the idea of working for me that repulsive to you? …Repulsive enough to make you want to kill yourself rather than accept my offer?"</p><p>"No."</p><p>Silug weakly shook his head while he looked at the other orcs present.</p><p>"…I just can't bear to part with them. For over sixty years I have fought with everyone here and treated them as my kin, my family. As the Chief of the tribe, it would only mean treason if I leave and let them die at the hands of the demons. Becoming the Chief comes with heavy responsibilities, and leaving them when they need me the most isn't one of them."</p><p>His voice raised as he clenched his teeth.</p><p>"That will not be something that I, Silug, will do!"</p><p>His loyalty was undying.</p><p>He would never let anything happen to his clan even if it resulted in him letting go of his pride and morals.</p><p> '…whatever it takes.'</p><p>"Interesting."</p><p>He was surprised to hear Ren's voice. Compared to before, it was a lot less serious.</p><p>Yet, right as Silug met his eyes once again, he felt a weird sense of intimidation coming from him.</p><p>He couldn't quite explain it, but the feeling was akin to having his whole body submerged inside a cold pool of water.</p><p>Mustering every bit of his strength, he asked Ren.</p><p>"What is interesting?"</p><p>"You."</p><p>Ren bent down on both knees and inched closer to Silug.</p><p>"Your power and strength are amazing. Just what I needed. You don't have to worry about your accommodation since you'll be staying with us—</p><p>"What about my tribe?"</p><p>Silug cut Ren mid sentence, prompting him to lower his head to stare at Silug.</p><p>"Hm?"</p><p>"What will happen to my tribe once I leave?"</p><p>"Your tribe?"</p><p>Ren tilted his head ever so slightly.</p><p>He then shrugged his shoulders.</p><p>"How should I know? They aren't my responsibility."</p><p>Silug's heart sank when he heard those words.</p><p>'As expected, he only cares about me.'</p><p>His actions were understandable as Silug understood his position well. However, that didn't mean he couldn't feel disappointed.</p><p>Sitting up straight he reached out for the axe that wasn't so far from him, but right as his hand was about to grab it, he felt the sole of a foot press down against his arm.</p><p>"...Do you really want to do that?"</p><p>His sight was met with Ren's questionable look.</p><p>Silug glared at him menacingly.</p><p>"I thought I already told you before. I will not be leaving my tribe. You either kill me today or leave!"</p><p>"Mhh…that does sound quite troublesome. You did sign a contract with Angelica, so killing you is off the table."</p><p>Ren's eyes squinted.</p><p>After a while, he sighed.</p><p>"Get us a couple of rooms to rest, I'll think about a solution later."</p><p>"Huh?"</p><p>Silug remained silent as a result of Ren's surprising words. He couldn't comprehend what was happening as all he could muster was a blank look.</p><p>It was only after Ren spoke again that he finally woke up from his daze.</p><p>"You deaf?"</p><p>"…You heard him."</p><p>Silug ordered as he turned his head to stare in the direction of where the other orcs were, awakening them from their daze.</p><p>"Get him and the other humans some rooms."</p><p>Supporting his body with his axe, Silug slowly stood up and looked at Ren. He had a complicated look on his face.</p><p>"I don't understand why you're doing this, but I hope you know that this gesture won't make me change my mind."</p><p>"Oh, I know."</p><p>Ren nodded his head while patting Silug on the shoulder once.</p><p>"You should get ready."</p><p>"Get ready?"</p><p>Silug snapped his head to stare in Ren's direction.</p><p>However, he was only met with an ambiguous look.</p><p>"You'll know soon enough."</p><p>After that, he turned around and walked away, with the others lagging behind. It goes without saying that a few orcs guided them during the procedure.</p><p>'Get ready? What is the human talking about?'</p><p>Silug felt an ominous premonition when he stared at Ren's departing back.</p><p>Although his words sounded suspicious, Silug didn't doubt that the human was on his side.</p><p>In the end, as he was linked to the demon through contract, his death would mean her possible death.</p><p>There was no way the human would take such a big risk.</p><p>This could only mean one thing…</p><p>Something big was heading their way. Possibly a war? Or something that was just as bad?</p><p>Silug was uncertain, but he wasn't one to hesitate. His years of experience had taught him a lot of things.</p><p>Turning his attention back toward the orcen delegates, he commanded.</p><p>"Everyone get ready for combat. Tell the other orcs to be wary. Activate all the defenses and equip your armor and weapons!"</p><p>All of the delegates, including Omgolung, were astonished by his order, but when they realized how serious Silug was, they promptly cooperated.</p><p>"Understood."</p><p>Immediately after that, they departed and started to get everything ready.</p><p>It didn't take long for the square to empty out, leaving Omgolung and Silug all alone.</p><p>"Was he the reason why you were able to become as strong as you are now and defeat me?"</p><p>"Yes."</p><p>Silug did not lie and nodded his head.</p><p>He slowly started to reveal everything that led to his rise to power.</p><p>"Had it not been for him I wouldn't have ever been able to defeat you."</p><p>"I see…"</p><p>Omgulong quietly nodded his head before asking another question.</p><p>"Let me ask you another question, why have you decided to prepare everyone for combat after a few of his words?"</p><p>"I have my reasons."</p><p>Silug provided an answer but held back some information. He was unable to directly inform him that he had made a deal with a demon, and thus was aware that they weren't his direct adversaries.</p><p>Although it wasn't exactly a secret that he did, as it was the reason why he had managed to sneak up on Count Azeroth, he preferred not to speak about the topic.</p><p>"I understand."</p><p>Thankfully, Omgolung was an understanding person.</p><p>It may have been due to all the time he had spent locked up, but his personality was now a lot calmer than in the past.</p><p>The same could be said for Silug who had grown wise over the years.</p><p>He was no longer the naive and power hungry orc from the past. The thirst for revenge had long disappeared from his mind. All he thought about at the moment was the well-being of his tribe.</p><p>In a way, he was starting to regret his past decisions.</p><p>"Get ready for battle, I have a feeling that something big is coming."</p><p>"Understood."</p><p>***</p><p>"What an interesting toy."</p><p>Playing with a small statue in my hand, I lay in what seemed to be a bed? To be honest, I wasn't exactly sure of what to make of the thing I was laying on.</p><p>More than a bed, it was more like a flat wooden bed frame with some sort of beast skin for a blanket.</p><p>It was anything but comfortable.</p><p>Still, I wasn't one to complain as this did not matter to me at the moment.</p><p>Tossing the statue in my hand and catching it again, I mumbled under my breath.</p><p>"I hope he will be fast."</p><p>Been a while since I had collected this statue. I knew it would come in handy.</p><p>Just this simple statue in my hand was enough to start the war between the demons and orcs again.</p><p>The reason was straightforward. I knew the demons were waiting for something after gathering some information from the ones I had tortured along the way.</p><p>This was why the orcs were still alive. Since my goal was to conquer the whole planet, I decided that it would be best if I initiated the war before the demons were ready for whatever they were planning.</p><p>I didn't want any unnecessary things to happen during my quest in conquering this planet.</p><p>...and it was fortunate for me to hear that an old 'acquaintance' of mine was still alive.</p><p>An 'acquaintance' that would help me a lot in the next couple of days.</p><p>Tossing the statue in my hand one more time, I snatched it from the air.</p><p>"Everything is going according to how I predicted...at least for now."</p><p>***</p><p>A/N : I am sorry for the delay in the chapters. In short, I spilled coffee on my laptop and lost some very important files. Fortunately, my chapters were already written in advance and were saved only once, but I had to spend the past week trying to get a new laptop and retrieving the files which I have lost. In any case, since my new laptop is still coming, I edited everything on my phone, which further delayed everything.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-621.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-623.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

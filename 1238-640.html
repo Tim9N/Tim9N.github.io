@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 640 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 640 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-639.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-641.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The demon's higher army was made up of one Duke-ranked demon, twenty-seven Marquis-ranked demons, and five hundred Count-ranked demons.</p><p>It was a force that should've easily wiped out anything that was on the planet.</p><p>They would have conquered the entire planet long ago had the demon's ultimate goal not been to make all orcs their contractees.</p><p>Suriol, the Duke-ranked demon in charge of overseeing this planet, was currently floating at the tail end of the army. Behind him were the twenty seven Marquis ranked demons delegates, while the Count ranked demons were at the very front, leading the legion of demons.</p><p>"Duke, we have almost arrived."</p><p>One of the demon delegates spoke.</p><p>Suriol came to a stop in the air and gazed into the distance.</p><p>"Hmmm..."</p><p>His brows furrowed tightly.</p><p>Likewise, the demon delegates came to a halt and turned their heads to look at one another. They found the manner in which Soriol was behaving to be rather peculiar.</p><p>"Is there anything that you are displeased with, Duke?"</p><p>The demon that had spoken before asked.</p><p>Suriol shook his head.</p><p>"No."</p><p>The demons took a breath of relief.</p><p>Suriol was notorious for his impatient and tyrannical nature. One wrong move and they would find themselves dead without knowing how they had died.</p><p>His next words, however, brought heavy tension into the air.</p><p>"...I just get the distinct impression that there are several powerful figures off in the distance, which the scout report didn't make me aware of at all. If the error was only by a factor of one, I could possibly have let things go; however, for some reason, I get the impression that the number of powerful figures is much greater than what is reported...why is that?"</p><p>The demon delegates broke into a cold sweat as they stared into the distance.</p><p>Even though he didn't make any outward displays of his anger and didn't say anything to indicate it, everyone understood that Suriol was incredibly angry at that very moment.</p><p>He was the sort of demon who was happiest when he was in complete control of everything, so the fact that this chain of events had clearly gone in the opposite direction of what he preferred was very frustrating to him.</p><p>For there to be variables that he hadn't thought of...he was clearly displeased.</p><p>"How is this possible? ...I'm sure our spies would've noticed if there was someone of that caliber in there."</p><p>One of the demons spoke up in shock.</p><p>"That's right, if there were this many strong people and we cou..."</p><p>The demon stopped halfway through his sentence.</p><p>In his sight was Suriol's raised hand, an indication for him to stop speaking.</p><p>"Stop speaking for now. I'll let this slide since this isn't too much of a problem."</p><p>All the demons sighed in relief when they heard his words.</p><p>"...Depending on how well you do in the war, I'll decide whether to kill you or not."</p><p>Once he uttered those words, the faces of the demon delegates hardened. All of them swallowed a mouthful of saliva as they exchanged glances.</p><p>Clearly, the threat from Suriol had worked as their gazes turned sharp. Especially when they were looking at the castle and the orcen army in the distance.</p><p>"What do you want us to do, Duke?"</p><p>"Nothing for now. From the looks of things, it appears as though our enemies are aware of the fact that we've implanted spies in their midst."</p><p>Suriol dampened the enthusiasm of the group. He gazed at the vast army in front of him with a dispassionate and icy expression.</p><p>"Let the weaker demons fight for the time being; there is no immediate need for us to join the conflict. Observe the situation from where you are and intervene if you notice anything out of place. If not, remain put while I take care of the orcen leader..."</p><p>Suriol's wings slowly started to expand.</p><p>After pressing his foot into the air, he vanished from his previous location and materialized at the very top of the demon army.</p><p>Fwap.</p><p>As he spread his magnificent wings even further in the air, he produced a massive shadow on the ground below. As he looked around the castle, his eyes eventually settled on a specific individual inside the structure.</p><p>Silug.</p><p>"There you are, orcen chief..."</p><p>His croaky and sinister voice rang through the air like a gentle whisper.</p><p>He extended his hand, and all of a sudden, a powerful force erupted from within him. It shot straight toward Silug in a ruthless manner, moving at extreme speeds.</p><p>The power behind the attack was so great that the surroundings began to warp, and as a result, several hundred demons fell from the sky and smashed into the ground. This was all caused by the residual demonic energy that was left over from that one single attack.</p><p>"Move away!!"</p><p>Silug, who was subjected to such a terrifying attack, could only watch helplessly from below as it dove at terrifying speeds in his direction.</p><p>With just a glance, he could tell that he could do nothing against the attack as it was simply far above his level.</p><p>Even the orcs that were next to him felt completely hopeless.</p><p>Despite this, not a single one of them surrendered as they synchronized the raising of their weapons and prepared to defend their lives at all costs.</p><p>"Roooooooar!"</p><p>The surrounding walls were shaken by the tremendous roar that Silug let out. He brandished his enormous axe and readied himself to launch an assault with all of his strength. He thrust his head back to glare at Soriol and shouted with everything he had in him.</p><p>"Even if I die today, I won't die until I at least injure you severely!"</p><p>As he pounded his foot against the ground, the ground beneath him began to crack, and the green hue that was emanating from his body began to rapidly expand in the air.</p><p>It then mingled with the red hue that was emanating from the runes that were attached to his body, giving it a hue that was a darker shade of yellow.</p><p>Crac...k. Crack! Cra...ck!</p><p>As he continued to pound his foot against the ground, the ground beneath him continued to crack and it wasn't long before a crater formed beneath his feet.</p><p>"Haaaa!"</p><p>As he yelled at the top of his lungs once more, a frightening energy started to appear at the very edge of his axe. At this point, the attack that Soriol had launched against him was only a few meters away, threatening to erase his existence within the next second.</p><p>"Excuse me!"</p><p>A silhouetted figure suddenly materialized in front of Silug just as he was about to cut with his axe.</p><p>Everything happened so quickly that he was barely able to react to it.</p><p>Boooooom-!</p><p>...The last thing that Silug heard was a terrifying explosive sound as the dust in the air rose in the air, masking Silug's vision as well as the vision of those around him.</p><p>"What the..Ukhh!?"</p><p>Silug felt his body skid several meters back due to the aftermath of the attack.</p><p>In spite of that, his mind never stopped thinking about the figure that appeared before him just as Soriol's attack was about to hit him.</p><p>'What happened?'</p><p>It took a few seconds for the dust to settle, and by the time it was completely settled, what Silug saw was a set of long hair that swayed lazily in the air.</p><p>A human-like figure that was grasping a long and thick sword with one hand, blue lightning crackling all around his body, and two majestic yellow eyes that glowed a resounding yellow hue stood in front of Silug as smoke swept past his body.</p><p>If that wasn't enough, his clothes and his figure both appeared to be in pristine condition despite the powerful explosion that had occurred several seconds prior.</p><p>The sight...</p><p>It became deeply imprinted inside Silug's mind.</p><p>'Strong...'</p><p>***</p><p>At the other end of the battlefield.</p><p>A soft whisper rang in the air.</p><p>"Get ready?"</p><p>Jin slowly got out of his hiding spot and fixed his gaze in a certain direction.</p><p> "...This is going to be a lot more difficult than I had anticipated."</p><p>With just one glance at the number of demons that were in the air, Jin felt his complexion change.</p><p>Having secretly followed the demons from behind and having relayed to the orcs their position, Jin had more than enough time to see just how dreadful the situation was, and honestly...</p><p>'It's beyond dreadful...'</p><p>It was impossible for them to deal with the sheer number of demons, and if that wasn't bad enough, there were also more than twenty Marquis-ranked demons, along with one that appeared to be a step above that.</p><p>"I am with you on this one."</p><p>Emma also stepped out from the hiding spot and nodded her head.</p><p>"From the looks of things, the situation doesn't look good at all. One mistake and we might find ourselves meeting in the afterlife."</p><p>"...Don't count me in."</p><p>Melissa's voice echoed from behind.</p><p>She was peeking from behind a tree.</p><p>"I'm just here for the herbs. If you guys die, I won't be there to collect your bodies. "</p><p>"If we die, you won't have anybody to recover in the first place."</p><p>Emma rebutted.</p><p>Melissa quietly nodded to herself.</p><p>"Good point."</p><p>"Quiet for a moment."</p><p>Jin hushed the two of them as he brought his finger to his mouth and crouched a little.</p><p>As Jin continued to stare off into the distance like a stealthy hunter looking for his prey, the atmosphere around him fell into complete and utter silence for the next couple of minutes.</p><p>He was currently looking for an opening in the back formation of the demons where the Marquis ranked demons were located. With his current strength, it was possible for him to deal with one Marquis ranked demon. Perhaps even two...but that was just about it.</p><p>Of course...this only applied to situations where he was fighting against them one on one.</p><p>...If it was through an ambush.</p><p>Now that was a completely different thing.</p><p>'Got it.'</p><p>It wasn't long before Jin's eyes became animated.</p><p>"The Duke ranked demon has left, now is our chance."</p><p>As soon as she finished speaking those words, Jin's form disappeared into the darkness. A chilly glint flashed across his pupils as his eyes fixed on a specific Marquis ranked demon that was floating in the air above him.</p><p>'...I wonder how many Marquis ranked demons I can kill before getting noticed.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-639.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-641.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

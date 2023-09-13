@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 597 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 597 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-596.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-598.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Snap.</p><p>All it took was a snap of 'his' fingers to see the world around me shatter.</p><p> Cracks appeared in the black void, and the pieces slowly fell to the ground, revealing a white background behind them. It was like broken glass. </p><p>Gazing toward the breaking void, I turned to focus my attention on the other me that was standing not so far from where I was.</p><p>In particular, my gaze fell toward the chains that were binding his body. A complicated look flashed across my eyes.</p><p>'What do I do now?'</p><p>I found myself questioning myself.</p><p>With everything that I saw…I…really found it hard. Hard to find the drive to move forward.</p><p>Everything just felt so fake to me at the moment. As if everything that I knew before had now become something that was unfamiliar.</p><p>Be it the people that I knew, or reality itself.</p><p>'Wha..t do I do?'</p><p>…I really didn't know.</p><p>Cra..cracks.</p><p>Behind me, a muffled sound echoed. It was reminiscent of the sound of sand rubbing against a hard surface.</p><p>Without needing to look, I knew that it was the white orb cracking behind me.</p><p>Crack. Crack.</p><p>Accompanying the cracking sound, I felt an unfamiliar energy enter every fiber of my body. It was slowly seeping into my body, making my muscles tremble.</p><p>Feeling the power that was entering my body, my emotions numbed.</p><p>How could they not...</p><p>It felt as if a little part of me was fading with each crack in the core.</p><p>'...I don't think have long.'</p><p>With every crack, I could feel my existence start to disappear. No, rather, I felt it merge with something else.</p><p>It was most likely the other part of me.</p><p>I wasn't exactly sure about how long it would take, but I had a feeling that it wouldn't take more than a couple of years.</p><p>By then, would the current me still exist?</p><p>I wasn't sure.</p><p>'..I..I guess I've lived my purpose.'</p><p>I couldn't say that my life was the most fulfilling, but I was definitely happy with what I had. Added all together, I only existed for four years.</p><p>'Ha..ha..four years.'</p><p>The thought suddenly made me laugh.</p><p>It hurt.</p><p>The laugh hurt.</p><p>Grasping onto my chest, I raised my head and stared at the cracking void.</p><p>The cracks fell, and my eyes closed.</p><p>Opening my eyes again, I found myself standing in the previous spot from before.</p><p>Taking a look at everyone around me, I came to realize that all of them had also snapped out of it.</p><p>Their complexions were rather pale, and they had a look filled with incredulity and shock.</p><p>That was until they slowly turned their heads to gaze in my direction.</p><p>Be it Amanda, Kevin, Jin, Smallsnake, and everyone else that was in the room…all of their eyes were directed toward my direction.</p><p>A myriad of different emotions flashed across their faces while they gazed at me.</p><p>Closing my eyes, I turned my head to stare away from them before re-opening them. I couldn't bear their gazes.</p><p>Despite only being brief, their gazes were devoid of animosity and hatred.</p><p>It was all I needed.</p><p>My eyes then landed on Magnus.</p><p>"...He seems to have also been affected."</p><p>At the moment, he was sitting on his knees, staring blankly at the ground. A blank look covered his face as his mouth trembled and he whispered.</p><p>"I…impossible."</p><p>I took a step forward.</p><p>Tap.</p><p>In that exact moment, pressing my foot against the ground, the echo of my foot touching the ground rang in the air, and I caught a glimpse of several people flinching.</p><p>My body was filled with a bitter feeling.</p><p>'…I can't blame them.'</p><p>Their reaction…</p><p>It wasn't something that was outside of my expectations. With everything that they saw, they were probably extremely scared of the other version of me.</p><p>The one that they didn't know.</p><p>"It's me."</p><p>'For now...'</p><p>I spoke in a voice loud enough for everyone to hear. I was letting them know that I was still me, and the other me had not taken over.</p><p>Fortunately, my words seemed to have alleviated some of the cautions in the eyes of the others as their shoulders relaxed.</p><p>Taking a deep breath, I continued to move toward where Magnus was.</p><p>It didn't take long for me to reach him. Pausing in front of him, I lowered my head and gazed at him.</p><p>He still had the same blank look on his face from before. Pausing in front of him, his whispers became more clear to me.</p><p>"I..it can't be…"</p><p>Ignoring his words, I reached out my hand and grasped his neck.</p><p>***</p><p>Belief.</p><p>'An acceptance that something exists or is true, especially one without proof.'</p><p>That was the definition of belief.</p><p>Everyone had their own beliefs. Some believed in things that others didn't, and the same went for others.</p><p>A primary source of belief was religion.</p><p>The belief and worship of a superhuman controlling power, especially a personal god or gods.</p><p>Many had a god that they worshipped and believed in.</p><p>Magnus was one such person.</p><p>His belief was in the Demon King.</p><p>Jezebeth.</p><p>He was his god and the person he worshipped.</p><p>His reverence was based on his belief that he was an omniscient and omnipotent being. All were under his control, and he was undefeatable.</p><p>There was nothing that could defeat him.</p><p>...Or at least that was what he thought.</p><p>Images began to sink into Magnus's mind, and his body shook.</p><p>"I..it can't be..."</p><p>He whispered in a tone filled with denial.</p><p>"..He...he can't have been defeated...it's impossible."</p><p>His whispers continued to echo throughout the room.</p><p>There was a sense of loss in Magnus's eyes.</p><p>Denial, anger, bargaining, depression, acceptance.</p><p>Those were the five stages of depression, and that was what Magnus was currently going through at the moment.</p><p>Except for the fact that there was no fifth stage for him.</p><p>'Acceptance.'</p><p>By now, this was impossible.</p><p>It was impossible for Magnus to accept what he saw.</p><p>The sight of his own 'belief', 'god', being defeated by someone else felt as if the world was collapsing around him.</p><p>What he was currently feeling, was akin to having their own existence denied.</p><p>It was like receiving proof that the god whom he had been worshipping was actually not as invincible as he thought he was.</p><p>Somewhat, he wasn't any different from Ren who was also going through a similar state. The only difference, however, was the fact that Ren was able to accept reality, unlike Magnus.</p><p>'The memories, they must be fake.'</p><p>The only thing Magnus could go through at the moment was an endless cycle of denial.</p><p>He was as desperately clinging onto that little hope that perhaps what he had seen was fake.</p><p>Deep down, he knew that what he saw was real, but he couldn't accept it.</p><p>'Impossible!'</p><p>Tap—!</p><p>Right in front of him, he heard the sound of soft footsteps echoing. When Magnus raised his head, he was met with a set of deep blue eyes.</p><p>A chill ran down Magnus's spine when their eyes met as he subconsciously moved back a bit.</p><p>It was very subtle, and almost no one caught sight of it, but this was a clear show of fear, and Ren didn't miss it.</p><p>"You saw it, didn't you?"</p><p>He asked while opening his mouth and reaching out for the back of his neck.</p><p>His body exerted a tremendous amount of pressure. In reality, the pressure wasn't anything too outstanding for someone of Magnus's rank. It was still powerful, but nothing that would've affected typically put Magnus in a difficult spot.</p><p>The only problem was that Magnus was not in the right state of mind.</p><p>At the moment, Magnus perceived the current Ren to be exactly like the figure in one of the visions. They didn't look exactly the same, but as their figures overlapped, Magnus felt terror rise from deep within his body.</p><p>"..N..No."</p><p>He reached his hand out and moved back. There was a clear look of terror in his eyes.</p><p>Magnus was overwhelmed by Ren's hand reaching for his neck. It felt like a giant palm that was coming down from the sky, tearing everything that was in its way apart just to reach out for him.</p><p>His body trembled even more.</p><p>He wanted to put resistance, but every time he did, images of the scene in which Ren defeated Jezebeeth replayed inside of his mind, and all thoughts of fighting back disappeared.</p><p>'Th..there's no way I can fight against someone that can defeat his majesty...'</p><p>That was all Magnus could think of at the moment.</p><p>...At the moment, he was nothing but a shell of his former prideful self.</p><p>His pride was completely shattered, and it didn't take long for Ren's hand to grasp his neck.</p><p>"Ah..ha..."</p><p>Feeling his neck get tugged upwards, Magnus felt his head lift and he was forced to meet Ren's eyes.</p><p>For a brief moment of time, neither one of them spoke as they stared at each other.</p><p>It was only for a brief moment, but to Magnus whose mind was currently a mess, it felt like an eternity had passed. Cold sweat dripped down his back, and he swallowed a mouthful of saliva.</p><p>He felt an impending sense of doom at the moment, but he couldn't muster any courage to do anything about it.</p><p>'H..He de...feated his majesty. I can't fight him...'</p><p>"Goodbye."</p><p>Crack—!</p><p>Those were the last words Magnus heard before he felt the back of his next get pressed together and his core cracked.</p><p>Just like that, a prince-ranked demon was defeated.</p><p>He didn't even put an ounce of resistance.</p><p>Swooosh—!</p><p>Scattering in the room was his body which had turned into fine black powder. With his eyes lingering toward the powder for a good couple of seconds, Ren turned around.</p><p>In that instant, he once again felt everyone's gazes directed in his direction. Despite their different looks, none of them seemed to want to distance themselves from him at the moment.</p><p>Nevertheless, there was this weird sense of estrangement lingering in the air. Breathing in the air, Ren felt weirdly suffocated by this weird sense.</p><p>Right as he was about to open his mouth to say something, his expression changed and he looked toward the sky.</p><p>Opening his mouth, he mumbled.</p><p>"...He's coming."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-596.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-598.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

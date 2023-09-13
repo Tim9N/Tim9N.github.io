@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 605 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 605 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-604.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-606.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Pitter! Pitter!</p><p>The muffled sound of rain hitting against the window beside me, woke me up.</p><p>I groggily opened my eyes and glanced toward the window, where I was greeted by a gloomy scene. It was a dark and dreary sight, typical of any rainy day.</p><p>It perfectly synchronized with my mood.</p><p>[You have 37 missed calls]</p><p>When I finally had the opportunity to check my phone, I noticed several missed calls. They seemed to come from my parents, Amanda, Kevin, and the others. I ultimately didn't answer them back and just shut off my phone.</p><p>I wasn't in the mood to talk with anyone at the moment.</p><p>Everything felt like a dream to me at the moment. No, rather, a nightmare. One that I couldn't possibly escape from.</p><p>'What time is it?'</p><p>An unknown period of time passed while I lay on my bed just blankly staring at the ceiling of the room I was in.</p><p>Raising my hand and turning my wrist, I checked the time. I felt a sudden pang in my heart while I stared at the time. 16 : 39 P.M.</p><p>"...It's almost time, huh?"</p><p>I reluctantly got out of bed and stumbled toward the closet where I pulled out a set of black clothes. Grabbing onto the clothes, my hands shook.</p><p>It was almost time for Smallsnake's funeral to start.</p><p>A few days had passed since the incident, and those few days had been among the most difficult in my life. It was difficult to prepare a funeral for someone you had assumed would accompany you till the end and would always be around.</p><p>I...I just couldn't stomach it.</p><p>How?</p><p>Just where did things go wrong?</p><p>Why must things have turned out this way?</p><p>"What's this?"</p><p>Unknowingly, I felt something wet stream down from the side of my face.</p><p>"..Ah, shit."</p><p>I raised my hand and clenched my chest as a sharp, heartbreaking agony swept across my chest.</p><p>It hurt.</p><p>It really hurt.</p><p>I...I really didn't expect things to turn out this way. I...I really didn't.</p><p>***</p><p>Ryan looked toward the empty casket in the distance as he passed through the long aisle that was covered in a long red carpet and seemed to stretch for miles. It was probably shorter, but to him, it looked endless.</p><p>His footsteps felt heavy, and his eyes were rather blurry.</p><p>It still hadn't sunk into his mind.</p><p>...The fact that Smallsnake had left him.</p><p>The fatherly or brotherly figure he had been missing throughout his entire life was gone just like that.</p><p>"I..shouldn't be like this."</p><p>He mumbled to himself while he walked down the aisle.</p><p>'Fix your clothes, you look like a total mess like that.'</p><p>'Is that really how you want to look at my funeral?'</p><p>'At least wipe your tears.'</p><p>'What a mess, I thought I taught you better.'</p><p>A bitter smile formed on Ryan's face as he suddenly thought of his appearance. Raising his arm, he wiped his tears away.</p><p>'He would probably nag me if he saw me in this state.'</p><p>A hollow laugh escaped from his lips.</p><p>Moving toward the empty casket, another wave of sadness swept past Ryan who felt something grip his chest. Once again, he felt the corner of his eyes tear up, but as he thought of Smallsnake, he stopped himself.</p><p>'I mustn't show him that I'm crying.'</p><p>He may not have been here, but to Ryan, he was here.</p><p>He was always here.</p><p>Staring at the casket for a couple of good minutes, Ryan lowered his head. He then made his way to a seat and sat down.</p><p>The entire chapel was filled with familiar figures. Angelica, who was currently disguised as a cat, Ava, Hein, Leopold, Kevin, Amanda, Emma...all of Ren's friends and people that were previously on the other planet. All of them were mourning Smallsnake's death.</p><p>But...</p><p>There was only one person missing.</p><p>'Where is he?'</p><p>Looking around, Ryan tried to look for Ren. It didn't take long for him to spot his parents whom he had met once with Smallsnake...they were here...yet Ren wasn't.</p><p>Everyone was here apart from him.</p><p>'Why?'</p><p>Ryan wondered while he continuously looked for him.</p><p>'Why isn't he here?'</p><p>It didn't seem like he was the only one that was looking for him. Practically, almost everyone in the chapel was also looking for him.</p><p>...How could they not?</p><p>He was the one that was supposed to speak first. He was supposed to be the one guy that known him the longest.</p><p>So why wasn't he here?</p><p>Why? Out of all people, he should've been the first one here!</p><p>Why?</p><p>Why!!</p><p>Why!?</p><p>'D..does he not care?'</p><p>Ryan ultimately found herself thinking about the dream he had witnessed as a result of the demon's meddling.</p><p>'Does he really just think of us as just pawns?'</p><p>He never put much thought into it back when he was watching everything. In the first place, he didn't understand much of the content that was shown to him.</p><p>...It made no sense.</p><p> Nonetheless, if there was one thing he managed to pick up from the flashbacks, was Ren's mentality and the way he behaved. </p><p>He killed individuals without showing any remorse and treated everyone as though they were expandables that could be tossed at any time.</p><p>It didn't matter whether he knew them or not. If they were in the way of his goals, they were nothing but a roadblock that needed to be removed.</p><p>This was the Ren that Ryan saw in the visions, and this was also this behavior that made Ryan understand that the dream was probably a fake. The Ren he knew wasn't like this at all.</p><p>He wasn't.</p><p>Never.</p><p>...At least that was what he thought before.</p><p>But as time ticked, and everyone quietly sat down waiting for him to arrive, Ryan started to have second thoughts.</p><p>'No, no, no, it can't be.'</p><p>His emotions were gradually beginning to spiral downward in a negative direction, possibly as a result of the fact that he wasn't in the finest emotional state. No one could blame him for his thoughts.</p><p>As crazy and unlikely the probability of that Ren being the Ren he knew, Ryan just couldn't stop overlapping the two figures together...</p><p>'No, no..they are not the same people...'</p><p>The memory of Smallsnake conversing with Ren in the same way as before was the only thing keeping him from going further down. He was also the one that informed him that Ren wasn't that way.</p><p>It was Smallsnake's words that kept him from going down an even bigger downward spiral of thoughts.</p><p>"Keum."</p><p>Jolting Ryan out of his thoughts was a small cough. Raising his head up, he found Kevin standing at the altar.</p><p>"Why is he there?"</p><p>Ryan quietly mumbled while he looked at Kevin. He barely knew Smallsnake, what right did he have to stand there?</p><p>"I know that some of you are uncomfortable with my sudden appearance here, but..."</p><p>Lowering his head, Kevin turned his wrist and checked his watch.</p><p>"We're currently running late, and it doesn't seem like Ren is here yet. Since we can't afford to take the whole day, I can only start the—"</p><p>Clank—!</p><p>Right as Kevin began to speak, the doors slammed open abruptly. As soon as that happened, more than half of the audience turned to look in the direction of where the noise came from, and there they saw a ragged figure coming in slowly.</p><p>'Ren?'</p><p>Ryan thought as he spotted him from the distance.</p><p>He wasn't the only one that notice his appearance as the chapel was filled with murmurs and whispers.</p><p>Taking note of his glaring black circles, pale face, crooked tie, and wrinkled clothes, Ryan pursed his lips.</p><p>His appearance brought a small turmoil in the chapel as several figures rushed to him, only to be rejected by him who slowly walked toward the altar. His steps were rather slow, yet, seemed extremely firm.</p><p>Silently clenching his teeth, Ryan lowered his head.</p><p>He felt a deep sense of shame rise from deep within his chest.</p><p>'Right...it was stupid of me to think like that...'</p><p>Smallsnake's death probably hit Ren the hardest. He previously thought that he should've been the one who was supposed to be the saddest about his apparent death, but staring at Ren who had trouble walking, Ryan realized how immature his thinking was.</p><p>In truth, he was probably jealous.</p><p>To him, Smallsnake was like the father he never had. He was naggy, yes, and he hated it...but...but..</p><p>'W..why do I suddenly miss his nagging so much? Why...'</p><p>Pita!</p><p>A tear fell down from the corner of his eye.</p><p>'I...'</p><p>"Does this work?"</p><p>A groggy voice jolted Ryan out of his thoughts.</p><p>Raising his head, he spotted Ren standing behind the podium. In his hand was a small piece of paper.</p><p>Gathering the attention of everyone present, including Ryan's, he began to speak. At first, his voice seemed rather firm, but the more he spoke, the fainter his voice became.</p><p>"I would like to first extend my gratitude to all relatives, friends, and attendees that have come today to honor a great man, Smallsna...haha."</p><p>A hollow laugh suddenly escaped from Ren's lips.</p><p>"...This is much harder than I thought."</p><p>Crumbling the piece of paper in his hand, he leaned his body forward and looked at everyone present.</p><p>His sudden actions startled some of the people present.</p><p>"D..do you guys want to know something funny?"</p><p>Regardless, he didn't seem to care as he continued.</p><p>"..I've known Smallsnake for about four to five years. He's probably the first friend I've ever made in this world. He was also a person that I liked to joke around with...thinking back, I was probably really harsh on him. My jokes were extremely nasty. Back then, I didn't think too much of them. In the first place, I never thought that he would die. Just casual banter...I was probably really arrogant...but that's not the funny part...."</p><p>Turning his head to look at Smallsnake's image, Ren drummed his fingers on the image.</p><p>"Smallsnake, Smallsnake, Smallsnake.."</p><p>He mumbled his name repeatedly.</p><p>Covering his face with his hand, Ren's voice suddenly trembled. He seemed to be struggling with his words.</p><p>"...T-he really funny thing about all of this is that...I still don't know his name. From the first that I met him, I never once asked him for his name and just called him Smallsnake. Haha."</p><p>He let out another laugh.</p><p>"Pathetic, isn't it?"</p><p>His hands started to shake while the entire chapel was enveloped in silence. His words deeply resonated with the hearts of some of the people attending.</p><p>"...This isn't all...as a leader, Smallsnake's death can only be attributed to my own selfishness and..."</p><p>Ren bit his lips.</p><p>Unable to finish his sentence, Ren clenched the piece of paper in his hand even more tightly.</p><p>His hands started to shake uncontrollably as his head lowered.</p><p>While this was happening, no one said anything. There was a stifling silence inside the room.</p><p>One that felt really suffocating.</p><p>During the silence, most people had their heads lowered. Everyone apart from Ryan and a couple of others that kept their gaze on Ren...and it was because they kept their eyes on him that they suddenly noticed him looking in a certain direction.</p><p>Following his line of sight, Ryan realized that he was looking at Kevin who was also looking back at him.</p><p>Alternating his gaze between the two, Ryan suddenly noticed that Ren's body was shaking even more as his mouth opened and closed several times. His expression was heartwrenching.</p><p>In the end, Ren mouthed them since he was unable to utter them.</p><p>'...Please die?'</p><p>***</p><p>Volume [4] End - part 1/2.</p><p>The next volume will be the last volume of the book. The book is sadly coming to an end.</p><p>P.S. I will not be going on a break.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-604.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-606.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

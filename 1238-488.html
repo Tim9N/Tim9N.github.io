@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 488 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 488 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-487.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-489.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[No, it's cause I can actually do something about them, unlike the Union who can't seem to be able to do anything at this point.]</p><p>Staring at the projection in front of her, Monica munched on the popcorn in her mouth.</p><p>"...Munch, munch, I guess you were right Donna. His tongue really did go loose...Munch..."</p><p>There was a trace of amusement in her voice as she said those words. Clearly, she wasn't the least bit perturbed about the things that Ren had said on the projection.</p><p>"Munch...Heh, he even said that he doesn't care about anyone, hahaha...way to go Ren!"</p><p>Besides her, Donna was in total dismay as she covered her face with her arms.</p><p>"I knew it...I knew that this was going to happen..."</p><p>Gulp—!</p><p>Swallowing the popcorn in her mouth, Monica patted Donna on the back. Secretly, she was just trying to get rid of the grease on her hands.</p><p>"Calm down Donna, the one that should be most worried about the situation should be me. Unlike you, I'm actually working for the Union, not that I disagree with what he's saying, but..."</p><p>Lowering her hand, she grabbed another handful of popcorn.</p><p>"Well, what's done it's done. The moment I gave him the recording, I already knew that he was going to pull something like this."</p><p>Stopping her hand right before her mouth, Monica sighed.</p><p>"Actually, I'm probably going to be in a bit of trouble since Daphne didn't know I was recording her back then, but, well, I'm &lt;SS-&gt; ranked now."</p><p>Softly chuckling, Monica stuffed her mouth with another handful of popcorn.</p><p>"Munch...Munch...What they gonna do about it?"</p><p>Gazing at the projection in front of her for a good minute, Donna eventually gave up.</p><p>"...Well, alright."</p><p>'I knew that this was going to happen anyways.'</p><p>Though a small part of her prayed that Ren wouldn't pull something like this, thinking back at the words he said, Donna realized that perhaps this was for the best.</p><p>The crack in thy sky did indeed seem like a good indication that something big was about to happen.</p><p>If Ren's words served as a catalyst to help humanity realize in just how much of a predicament they were in, then what he said wasn't as bad as she was making it out to be.</p><p>There was only one problem.</p><p>And that was the backlash that Ren's words would create throughout the world. For a good while, Donna knew that the human domain would be in a lot of turmoil.</p><p>Turning her head to glance at Monica who was carefreely eating her popcorn, Donna softly mumbled.</p><p>"It looks like we're going to be very busy this month."</p><p>Because she had been so focused on the press conference, Monica was unable to hear Donna's mumbles.</p><p>"Hm?"</p><p>Turning her head, she asked.</p><p>"Did you say something, Donna?"</p><p>"No."</p><p>Staring at Monica for a good couple of seconds, Donna shook her head and sighed.</p><p>"Nothing, I didn't say anything."</p><p>***</p><p>[...and that's Kevin Voss.]</p><p>"Pftttttt"</p><p>Spitting toothpaste all over the mirror, Kevin's eyes opened widely.</p><p>Opening and closing his mouth like a fish stuck out of the water, Kevin almost dropped his phone on the ground.</p><p>He had only woken up ten minutes ago, and thus he did not have enough time to change as he was still in his boxers. The reason why he woke up so early was to watch Ren's press conference, however, mid-way through the press conference, Ren suddenly named dropped him.</p><p>How could Kevin not be shocked?</p><p>"Ren, what in th—"</p><p>[As I was saying, if you're looking for a pusho—Keumm, someone to put your hopes into, then you can do that with Kevin. He's the type of guy that will care about random people that he doesn't know.]</p><p>Not even halfway through his sentence and Ren's voice once again rang out from the speaker of his phone.</p><p>This time Kevin's body froze completely.</p><p>"Ah...Ah..."</p><p>'He was trying to say pushover, wasn't he?'</p><p>For a brief moment of time, Kevin was unable to formulate a sentence as he found himself having a hard time trying to comprehend what he had just heard.</p><p>Vein slowly started to protrude from the top of his forehead.</p><p>Crack—!</p><p>Before he knew it, a cracking sound rang throughout the room, finally snapping Kevin out of his thoughts.</p><p>Lowering his head to see what had happened, Kevin's face slowly started to turn red.</p><p>"Shit..."</p><p>Staring at this phone, a curse inevitably escaped from his mouth.</p><p>"That's my second phone this week!"</p><p>***</p><p>"The plan has failed..."</p><p>A deep voice echoed throughout the surroundings as an elderly man with turbid gray hair and wearing a dark gray robe gazed at a small projection in front of him.</p><p>Depicted in the projection was a youth with deep blue eyes and black hair.</p><p>Hatred flashed across the elderly man's eyes as he stared at the youth in the projection.</p><p>[Hmm, I guess you could say that I did what the Union couldn't do for quite a while, and that's actually doing some damage to the Monolith.]</p><p>The more he listened to the youth in the projection, the greater the hatred in the elderly man's eyes became.</p><p>Crack—! Crack—!</p><p>Unknowingly, the elderly man's knuckles started to crack as the mana around him started to turn rampant.</p><p>"Relax."</p><p>Just then, a raspy voice rang from behind Mo Jinhao. At the exact moment his words echoed, the mana around Mo Jinhao relaxed.</p><p>Without turning around, Mo Jinhao kept his gaze on the projection in front of him.</p><p>"...You said that to leave things up to you. Yet, it doesn't look like your plan succeeded."</p><p>"It did."</p><p>Refuting Mo Jinhao's words was the same raspy voice.</p><p>"If you're talking about 876's situation, then yes, the plan could be considered to be a failure, however, if you're talking about the plan in an objective manner, it did not fail. The Union has suffered considerably from this ordeal."</p><p>After deliberating over the matter, Mo Jinhao's eyes began to squint.</p><p>'Indeed, if we set 876 aside, the plan could be considered a success in its own way. It can't be considered a total failure.'</p><p>"We may have not achieved what we wanted with 876, however, the seeds of distrust against the Union have been planted. If we take advantage of this situation, we may be able to harvest a lot out of this situation." The same raspy voice from before continued speaking. "You just have to be patient and think long-term, there will be plenty of opportunities against 876. Especially if we manage to break down the natural order established in the human domain."</p><p>Crossing his arms, Mo Jinhao's face turned solemn as he deliberated over the words.</p><p>'His words aren't wrong. Because of the contract, we can't directly attack the Union or the human domain. However, just like the demon said, if we take advantage of this situation, we may be able to plant even more seeds of chaos in the human domain. Once that happens, getting to 876 should not be a problem.'</p><p>The Monolith's goal was to create as much discord as possible in the human domain.</p><p>This was so that they could break the natural established order, and recruit more people for their cause.</p><p>So far, although their plan did not succeed as much as Mo Jinhao wanted it to as he wanted nothing more than to break 876 into bits, the current situation was very favorable for them.</p><p> With it, they could plan for the future when the contract finally expired. </p><p>"Alright, I've come to a decision."</p><p>Raising his head, Mo Jinhao finally turned his head around where his eyes soon paused on a black humanoid figure sitting down on a small red couch with a wine cup in his hands.</p><p>Swirling the cup in his hand and bringing it toward his nose, the demon took a couple of sniffs of it.</p><p>"Ugh."</p><p>His face soon grimaced. Moving the cup away from himself, the demon's eyes squinted considerably as he moved his head to the side.</p><p>"I still don't understand how you humans can possibly like this sort of stuff."</p><p>Putting the cup down, the demon raised his head to look at Mo Jinhao. Their eyes soon met, and a smile emerged on his face.</p><p>"It looks like you've finally come to terms with reality."</p><p>"Yes."</p><p>Mo Jinhao nodded his head.</p><p>"We may have not been able to trouble 876 as much as we wanted, but we have indeed achieved our main objective."</p><p>Moving toward the projection, he quickly turned it off.</p><p>"I'll be leaving to talk to the leader. If you will excuse me."</p><p>Swinging his arm, Mo Jinhao's robe flung behind him as he directly headed for the exit of the door, leaving Everblood behind.</p><p>Clank—!</p><p>With a loud sound, the room door shut, and silence surrounded the room.</p><p>"Ku, ku, ku."</p><p>The silence was eventually broken by Everblood's amused laugh as his head moved back. With both arms on the back of the sofa, Everblood's raspy voice echoed across the empty space.</p><p>"Who would've thought that the plan we worked so hard for would fail like this?" He managed to utter amidst his laugh.</p><p>"It's better this way..."</p><p>It was then that an apathetic voice devoid of any emotion, sounded from beside Everblood as a figure appeared next to him.</p><p>"Better?"</p><p>Unperturbed by the figure's sudden appearance, Everblood tilted his head.</p><p>"You're saying that it's better like this?... Or are you saying that this was also planned by you?"</p><p>The figure closed his eyes.</p><p>"Who knows."</p><p>Leaning his body forward, the figure grabbed the wine cup on the table and sniffed the wine.</p><p>"Planned or not planned, if he was incapable of doing this much, it would only mean that he wasn't improving. Also..."</p><p>Bringing the glass cup to his mouth, the figure slowly took a small sip.</p><p>Clank. Clank. Clank.</p><p>A small rattling sound echoed throughout the room as the chains binding his hands clashed against each other.</p><p>"Haa..."</p><p>Upon taking a sip of the drink, a satisfied smile formed on his face.</p><p>"...The game wouldn't be fun if everything went as I wished."</p><p>"Hmmm."</p><p>Everblood's head moved back. The smile on his face deepened.</p><p>"Indeed, if he wasn't able to do this much, everything would simply be too boring. I may not understand what you're trying to do, but so far, I haven't been disappointed. This truly is fun..."</p><p>Clink—!</p><p>Placing the cup down, the figure crossed his legs. The room suddenly became tense, and the smile on Everblood's face quickly wiped.</p><p>"How is the situation going on your end?" The figure asked. His emotionless voice sent shivers down Everblood's spine.</p><p>"Everything is going just as planned," Everblood replied as his back unknowingly straightened. "Connel has inserted himself in the deeper ranks of the Monolith, and will soon break into the &lt;SS-&gt; rank."</p><p>"..."</p><p>Following Everblood's words, silence shrouded the room as the figure slowly closed his eyes.</p><p>It wasn't long before he eventually opened them.</p><p>"Good."</p><p>He slowly started to nod his head. In a slow manner, he turned his head to face Everblood, revealing his deep blue eyes.</p><p>"Don't forget why you're here. Don't stray away from it. Make sure you accomplish it."</p><p>"Yes."</p><p>Standing up, the figure walked toward the other side of the room, following him from behind were thick black chains.</p><p>Clank. Clank. Clank.</p><p>He eventually stopped in front of the door of the room.</p><p>Raising his hand and tracing his finger over the door of the room, the figure slowly closed his eyes and suddenly asked.</p><p>"What do you think makes destruction so beautiful?"</p><p>"It's—"</p><p>Before Everblood had a chance to reply, slowly opening his eyes, he softly mumbled.</p><p>"I'm not a very emotional guy. Some might argue that I have long lost my emotions, but...watching everything you've worked hard for destroying something that someone else worked just as hard for; It really does move my heart."</p><p>"Like I've said Ren. I'm not your enemy."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-487.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-489.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

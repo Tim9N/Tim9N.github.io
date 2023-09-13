@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 785 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 785 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-784.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-786.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Demon Domain, Kuzma City]</p><p>The demons stood idly by as the orc horde marched closer and closer to their city, a ferocious and bloodthirsty light glowing in their eyes the whole time.</p><p>"Careful! Stay behind the barriers, and don't move!"</p><p>"Keep attacking from where you are!"</p><p>The orcs were an intimidating sight, with their muscular bodies covered in thick, matted fur and their jaws lined with two long, pointed tusks. Each orc wielded a massive weapon, swinging it with deadly accuracy as they charged at the walls of the city.</p><p>Boom―! Boom―! The ground shook with the force of the orcs' approach, and the demons watched with a mixture of amusement and disgust.</p><p>They had long known that the orcs were planning an attack on their city, but they had not expected them to come so soon or so aggressively.</p><p>They had done everything in their power to prepare their defenses, but the orcs' strategy turned out to be significantly more aggressive than they had anticipated.</p><p>Despite the surprise attack, the demons were not afraid.</p><p>They knew that they possessed powers that the orcs could never hope to match.</p><p>They could sense the fear and uncertainty in the orc army, and they relished the opportunity to turn their own tactics against them.</p><p>One of the demons, a tall, lanky creature with pointed ears and an elongated snout, spoke to the others.</p><p>"Everything is proceeding smoothly."</p><p>He said, his voice low and menacing.</p><p>He was Prince Kuzma, the current head of Kuzma City, and the one responsible for overseeing the battle.</p><p>"From the looks of things, we'll soon be having a nice feast."</p><p>Kuzma's gaze was currently drawn toward Brutus, the orc leader. He knew that if Brutus so much as made a move, it could turn the tide of the battle.</p><p>Therefore, he was keeping a good watch on him.</p><p>"Get ready to attack," Kuzma commanded. "I'll keep their leader in check. Make sure to kill as many orcs as possible in the meantime."</p><p>"Understood!"</p><p>The other demons nodded their agreement and began to channel their energy, unleashing a barrage of spells toward the orcs below.</p><p>Woom―! Woom―!</p><p>The orcs faltered, their weapons clanging uselessly against the barrier that the demons had erected around the city. Kuzma gestured to his fellow demons, indicating that it was time to launch their attack.</p><p>"Attack them directly!"</p><p>He shouted.</p><p>"Send the close combatants out!"</p><p>After letting out a bloodthirsty roar, the demons emerged from the walls and swooped down on the orcs with such ferocity that it left them dazed and confused.</p><p>Swoosh! Swoosh!</p><p>They fought with fluid grace, their movements almost too quick for the eye to follow. They came upon the orcs like a swarm of bees.</p><p>"Akh!"</p><p>"Argh!"</p><p>The orcs were caught off guard by the unexpected attack and faltered back, their ranks decimating as a result.</p><p>"Keep in position! Keep in position!"</p><p>"Attack!"</p><p>"Help!"</p><p>"Arggghhh!"</p><p>The commands faded alongside the sound of the battle that was ensuing between the demons and orcs.</p><p>Chaos crept its way onto the battlefield.</p><p>***</p><p>It was a known fact that each race had its own pride.</p><p>This was especially so for the three races; the dwarves, the elves, and the orcs.</p><p>It was because I knew this that I was shocked by the message request that I received from Brutus. It had honestly caught me off guard, and while I was surprised, I immediately left Plintus City.</p><p>'The distance between Kuzma City and Plintus is about 1000 km, so it shouldn't take me more than an hour to get there.'</p><p>Even though I could go a lot faster and cut the time down to five minutes, I needed to save up my mana in order to complete the task.</p><p>Given the scale of the war, I couldn't show up there completely drained.</p><p>'It's not like I have a choice.'</p><p>Swoosh!</p><p>I sped through the rotten land.</p><p>The trees were withered, and the air was thick with a sulfur scent.</p><p>This occurred as a result of the lingering demonic energy in the area. It stunted the growth of all living organisms within and actually caused them to regress and turn back to whatever they were at the moment.</p><p>"Hmm.. wait, what if?"</p><p>Right then, my feet came to a sudden halt.</p><p>I had a sudden thought, and my expression changed a little.</p><p>"…They should be fine even if I arrived a little later, right?"</p><p>***</p><p>"We've sent the request for backup. He said that he would be coming."</p><p> "He?" </p><p>Brutus glanced at the strategist, who hurriedly nodded his head.</p><p>"I'm referring to the human leader, Ren."</p><p>"Just him?"</p><p>"That…"</p><p>The strategist frowned but then proceeded to shake his head.</p><p>"I doubt it. I believe he will be coming with the human forces. Given the distance, he should arrive here in about an hour."</p><p>"An hour?"</p><p>Brutus frowned, and the strategist added.</p><p>"If he doesn't show up in the next five to ten minutes, then he'll most likely show up in an hour."</p><p>"Hmm."</p><p>Brutus pondered over the strategist's words before coming to a sudden understanding.</p><p>"I understand."</p><p>After that, he turned his attention once more toward the distant battlefield.</p><p>But just as he turned, his expression abruptly changed. The previous stalemate that was between the demons and orcs was completely shattered as demons came pouring down from above.</p><p>"Arrrgh!"</p><p>"Help!"</p><p>"Ahhhh!"</p><p>What he was witnessing before his eyes was nothing short of a slaughter as orc after orc collapsed and their limbs flew through the air in all directions. Their cries of agony were amplified and delivered directly to his ears, and Brutus's expression became grim.</p><p>Rumble!</p><p>The impact of his axe striking the ground next to him resulted in the formation of a shallow depression in the area where it had made contact.</p><p>"C,commander?!"</p><p>His unexpected actions startled the strategist, who retreated a few paces; however, Brutus's knees bent, and his calves bulged, exposing a long and thick vein.</p><p>Realizing what was about to happen, the strategist hurriedly spoke up.</p><p>"Commander, no!"</p><p>…but it was too late.</p><p>Booom!</p><p>The air split apart, and a sonic boom echoed in the air.</p><p>Brutus's bulky figure flew into the air and came shooting right toward the city in the distance.</p><p>Right in front of the wall that surrounded the city's outskirts, he materialized with his axe raised high above his shoulder, and his muscles puffed out to their fullest extent.</p><p>Aura erupted from his body at the same time that his enormous mouth gaped open, and he let out a harrowing roar.</p><p>"Aarghh!"</p><p>The air around him distorted, and the space around him started to lose color.</p><p>His actions gathered the attention of everyone beneath, and the force contained within that axe made several people spit mouthfuls of blood, their internal organs heavily damaged.</p><p>"I knew you'd be coming."</p><p>Right then, a raspy voice reverberated through the air, and a lanky demon appeared right in front of Brutus.</p><p>The instant he appeared, the pressure that had been suffocating the battlefield was immediately relieved, and as a result, a great number of those who had been lying on the ground were able to maintain their lives.</p><p>Despite this, when the demons looked up, their expressions could not help but change as they took in the disparity in size between the two forces in the air.</p><p>One was huge, while the other was… tiny.</p><p>They seemed to be two people from different worlds.</p><p>"Prince Kuzma!"</p><p>The loud roar that Brutus let out roused everyone from their stupor, and his axe came slashing down toward Prince Kuzma.</p><p>The air around the axe whistled as it tore through the air at unbelievable speeds.</p><p>BOOOOM―! A horrifying explosion ripped through the entire battlefield, rupturing the eardrums of those who were standing beneath it and driving a number of orcs and demons fleeing in all directions.</p><p>After the collision, it was unclear how many individuals were able to survive, but it was reasonable to assume that the vast majority of them didn't.</p><p>The aftermath of the collision left a cloud of dust, which eventually settled, revealing an unscathed Prince Kuzma standing in front of Brutus.</p><p>This revelation left everyone in shock.</p><p>He was clenching Brutus's enormous axe with both hands while he stood with his arms raised above his head.</p><p>"Khhh… This is rather heavy, don't you think?"</p><p>The Prince's entire body, including his face, was trembling, and he had a pale complexion.</p><p>The same could not be said about Brutus, however, as his muscles puffed out and he applied an even greater amount of force.</p><p>Brutus let out a furious roar and pushed down further.</p><p>"Argghhhh!"</p><p>Slowly, Prince Kuzma's figure started to move down…</p><p>When they saw him, the hearts of many demons dropped, but Prince Kuzma suddenly cracked a smile, and that was enough to make everyone understand that something was up.</p><p>"Now!"</p><p>Prince Kuzma shouted all of a sudden, and the air around Brutus stirred. Immediately after that, more than a dozen demons of the Duke rank materialized around them, and Brutus's expression changed.</p><p>"You coward!"</p><p>With a distorted look, he tried to move his axe away, but when he tried to, he realized that Prince Kuzma was holding onto it very tightly.</p><p>He laughed out loud.</p><p>"Hehehehehehe. You fool. I knew someone as simple-minded as you would act the way that you did the moment things started to turn south."</p><p>He turned to look toward the demons surrounding Brutus and shouted.</p><p>"What are you waiting for?"</p><p>The Prince glared at the demons around him while desperately clinging to the sides of Brutus's axe with his hands.</p><p>"Now! Attack! Kill him for me!"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-784.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-786.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

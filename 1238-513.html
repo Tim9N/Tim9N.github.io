@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 513 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 513 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-512.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-514.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"This will be a short fight."</p><p>Overlooking the arena from above, SilverMoon's eyes narrowed. All of the top Duke bracket competitors were standing beside her.</p><p>"That's good for Skull Crusher."</p><p>"Yeah."</p><p>"It was a given considering his strength. Although he's nothing much himself."</p><p>None seemed to be interested in the upcoming fight. There was an air of certainty about the fight, despite the fact that it hadn't even begun yet.</p><p>Who was going to win was already clear to them.</p><p>"Why do you even bother with that human, anyway?"</p><p>A lazy-looking figure languidly asked. His shoulder-length black hair spread across the sofa as he leaned back against the sofa and stared up at the ceiling with his yellow-colored eyes.</p><p>From his mouth, he took out a popsicle and looked at SilverMoon.</p><p>"I admit that he is strong, but Skull Crusher should be able to handle him."</p><p>"I know."</p><p>SilverMoon replied. Glancing back at the figure, she asked.</p><p>"You're also a human, what did you think of him?"</p><p>"Him?"</p><p>The figure leaned back once again on the sofa and crossed his arms behind his head as he gazed at the ceiling of the room.</p><p>"Huaaam."</p><p>He let out a yawn.</p><p>"He aight. Nothing special apart from his hair."</p><p>That was the last thing he said before he closed his eyes</p><p>"I see..."</p><p>SilverMoon nodded her head and once again turned to look at the arena below. However, this was merely a pretense. Her attention was secretly drawn to the human from earlier.</p><p>'Rank 3, Lightning Dragon.'</p><p>He was the individual that SilverMoon feared the most out of all the bracket contenders. His strength was quite unknown as he always ended an opponent within a couple of moves, but SilverMoon always felt this unsettling feeling whenever she saw him.</p><p>She couldn't explain it clearly, but there were times that she would fear him above the current Emperor.</p><p>Perhaps it was because her instincts had been honed over a long period of time, but she knew that the human sitting on the sofa was bad news.</p><p>Had it not been for his lazy personality, who knows...</p><p>He could've even been the current Emperor.</p><p>'What am I thinking?'</p><p>After shaking her head to clear her mind, SilverMoon returned her attention to the arena.</p><p>With the demoness already present and preparing to announce something, SilverMoon's eyes narrowed even further.</p><p>"The match is about to start."</p><p>Her words drew the attention of everyone in the room as they all gazed at the arena.</p><p>"Should we bet on how long the human will last against Skull Crusher?"</p><p>"Sounds fun."</p><p>"I want in."</p><p>***</p><p>In a calm manner, I got up from the bed and walked toward the cell door.</p><p>"Are you ready?"</p><p>"Yeah."</p><p>Nodding, I pressed my hand against the cell door and opened the door.</p><p>Clank—!</p><p>My ears were pricked up by the sound of several demons waiting on the other side of the door.</p><p>I didn't pay much attention to them since I was used to such scenes.</p><p>As he turned around and walked deeper into the tunnel, one of the demons ordered.</p><p>"Follow me."</p><p>"..."</p><p>Without saying anything, I followed him from behind. As for the other demons, they followed me from behind, trapping me completely. This was so that I wouldn't escape.</p><p>Not that I had any plans to do so.</p><p>At least not yet.</p><p>*</p><p>The loud cheers from the crowd inside the arena were the first thing I heard as I neared the arena.</p><p>The closer I grew to the arena, the louder their cheers became.</p><p>"I suggest you end the fight as soon as possible."</p><p>A familiar voice reached my ears. Glancing in his direction, I lowered my head and didn't answer.</p><p>'That's the plan.'</p><p>Since I had already antagonized the top ten rankers in my bracket, there was no need for me to keep formalities.</p><p>I had to end them quickly to save my energy for when I fought the Emperor. Someone who was most likely going to be extremely hard to fight.</p><p>"We're here."</p><p>Stopping in front of an enormous gate made out of metal, the demon turned to look at me.</p><p>"Get ready. Your fight will start any minute now."</p><p>As I lowered my head, I did not respond. I took a deep breath and concentrated on the noise coming from the arena grounds.</p><p>[And in the right corner, with an undefeated streak...]</p><p>Though faint, I could also hear the announcer's voice coming from the other side of the gates. It was the same voice I had been hearing over and over again for the past week or so.</p><p>[...Please welcome White Reaper!]</p><p>Clank—!</p><p>With a low rumble, the doors soon started to open.</p><p>Stepping forward, I entered the arena with my head raised.</p><p>"White Reaper!"</p><p>"Fuck him up!"</p><p>"Skull Crusher! Destroy him!"</p><p>From the moment I stepped into the arena, I could hear the loud cheers of the spectators. They were filled with energy and bloodthirstiness.</p><p>I paid them no mind.</p><p>That was because my current focus was directed toward the towering figure standing opposite of me.</p><p>"We meet again."</p><p>A large smile spread across Skull Crusher's face as he cracked his knuckles.</p><p>Crack. Crack. Crack.</p><p>"..."</p><p>Staring back at him, I didn't reply.</p><p>"Don't blame me for what will happen next. We clearly gave you a way out. I hope you last long enough for me to enjoy myself."</p><p>"Sure."</p><p>I lazily replied. The look on Skull Crusher's face changed when he realized I wasn't taking him seriously, but I didn't notice as I had my eyes on something else.</p><p>Appearing right behind Skull Crusher was my other-self. Due to the fact that no one could see him, his appearance did not attract any attention.</p><p>"Are you going to proceed as we planned?"</p><p>Meeting my gaze, he asked in a soft tone. In the midst of the loud cheers, I could clearly hear his voice.</p><p>I slowly nodded my head in his direction.</p><p>'Yes.'</p><p>[Are the two contestants ready?]</p><p>Just as I nodded, I felt the demoness's gaze pause on me. I glanced back at her and replied briefly.</p><p>"Yes."</p><p>[Skull Crusher?]</p><p>"Yes."</p><p>He also gave her a short reply.</p><p>With a simple nod, she raised her hand and the noise in the arena ceased. A slight smile hung on the demoness's face as she noticed this.</p><p>The arena grounds became tense as she held her hand in the air. At the exact moment the tension reached its climax, she finally lowered her hand.</p><p>[You may fight!]</p><p>After lowering her hand, she announced the start of the fight and I quickly activated one of my skills.</p><p>'The one.'</p><p>As soon as I activated 'The one,' everything came to a halt. Neither Skull Crusher nor Demoness dared move an inch.</p><p>At the same time, my other self slowly moved behind Skull Crusher.</p><p>With my eyes still locked on Skull Crusher, I remained standing. From the corner of my eyes, I kept my focus on my other-self.</p><p>Slowly he positioned himself behind Skull Crusher and extended his leg.</p><p>It was only then that I took a step forward.</p><p>Tok.</p><p>***</p><p>'What's going on?'</p><p> Looking into those dull gray eyes, Skull Crusher felt his muscles loosen as he couldn't muster any strength in them. He was paralyzed on the spot. </p><p>Suddenly, his body started shaking.</p><p>Lowering his head to glance at his hands, he muttered in a trembling tone.</p><p>"Is this fear?"</p><p>This was an emotion that he had not felt for quite a long time.</p><p>Actually, not quite.</p><p>He had recently felt this emotion not too long ago. Back when he met the current Emperor of the Duke bracket.</p><p>After having beaten so many contenders without losing a single match, he had grown ignorant and had challenged the current Emperor.</p><p>That was the biggest mistake of his life.</p><p>Had it not been for his mercy, he would've long died.</p><p>'I...impossible.'</p><p>But compared to the sense of dread he felt from the current emperor, the one coming from the small figure standing opposite him was even more fiercesome. He couldn't stop his legs from trembling.</p><p>'Is he even stronger than the emperor!? Impossible!'</p><p>The dull-grey gazes stared back at him once more as he raised his head.</p><p>"Ah..."</p><p>He let out a strange sound.</p><p>"What are you doing?!"</p><p>"Do something!"</p><p>"Fight! Kill him!"</p><p>"I will kill you!?"</p><p>In the midst of his struggle to find any energy to move, insults were hurled his way.</p><p>"You fat orc! Are you scared?"</p><p>"You useless pig!"</p><p>"My bet!"</p><p>It was then that the figure opposite him took a step forward.</p><p>Tok.</p><p>A calm and audible step reverberated throughout the arena. Because the demons in the stand were so far away from the arena, none of them could feel what Skull Crusher felt the moment he took a step.</p><p>That single step, although normal, carried a tremendous amount of pressure that almost caused his knees to buckle on the spot.</p><p>"What's this?!"</p><p>He shouted in an aggrieved tone.</p><p>"What is happening to me?"</p><p>How could he be scared of someone that was half the size he was?</p><p>Preposterous!</p><p>Mustering every little bit of strength and willpower in his body, he slapped his face.</p><p>Slap—!</p><p>When Skull Crusher slapped his face, a loud slapping noise echoed throughout the entire arena.</p><p>All forms of noise in the arena seized as all the demons stared at Skull Crusher with confused looks on their faces.</p><p>'What just happened?'</p><p>Everyone wondered at the same time. Snapping them out of it was Skull Crusher's loud voice.</p><p>"I don't know what sort of trickery you used to cause me to feel the way that I did before, but I won't fall for it again."</p><p>His body erupted in a terrifying hue of green. Glaring in White Reaper's direction, the muscles of his body doubled in size as his aura started to cover the whole arena.</p><p>He was going all out from the get-go.</p><p>"Yeah!"</p><p>"Fuck him up!"</p><p>"So he was using a trick! I knew something was up."</p><p>Skull Crusher's sudden actions reinvigorated the crowd as they stood up from their seats and cheered even more loudly.</p><p>Lowering his head, the human smirked.</p><p>"It's useless."</p><p>Taking another step forward, the dull color in his eyes darkened ever so slightly and the pressure Skull Crusher felt intensified immensely. His body felt as if it was being burdened by a huge mountain before, but now, it felt as if several mountains were pressing on him simultaneously.</p><p>He couldn't move.</p><p>"Ukah..!"</p><p>Holding onto his breath, Skull Crusher's face started to bleach as he struggled to lift a finger.</p><p>"W...what's this?"</p><p>He muttered in an incredulous tone.</p><p>Tok.</p><p>The calm sound of a footstep once again rang throughout the whole arena. Out of pure instinct, Skull Crusher took a step back.</p><p>"Huh?"</p><p>It was then that it happened. Right as he took a step back, he suddenly felt something hard and his vision lowered.</p><p>Thump—!</p><p>With a soft thump, he found himself on the ground. The noise coming from the crowd once again stopped.</p><p>"Eh..."</p><p>Confused he looked around him.</p><p>It was then that he noticed it. As he sat on the ground, every spectator in the stand was watching him intently.</p><p>He felt thousands upon thousands of eyes looking down on him from above. There was a clear judgmental look on their faces as their eyes were filled with ridicule and disgust.</p><p>"What the..."</p><p>A sudden dimming of his vision prevented him from finishing his sentence as a hand grasped his face.</p><p>"Sleep tightly."</p><p>Those were the last words he heard before his consciousness slipped.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-512.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-514.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

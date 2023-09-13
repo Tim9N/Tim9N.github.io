@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 538 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 538 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-537.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-539.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Bwergh!"</p><p>As I gripped the grass, I felt my stomach churn and it wasn't long before I found myself vomiting on the ground.</p><p>"Fucking port—Bwergh!"</p><p>Midway through my sentence, I once again puked on the ground as I felt a sudden wave of nausea wash over me.</p><p>'It's always like this with portals and just when I thought I had gotten over it…'</p><p>It had been quite a while since I had last puked from a portal. After recently thinking I had become accustomed to it, I was disappointed to discover that this was only my delusion.</p><p>In the midst of my puking spree, I suddenly heard the sound of someone puking close by.</p><p>"Bwergh!"</p><p>Upon turning my head slightly, I noticed Liam in a similar situation to mine. As a matter of fact, he appeared in a worse state than mine as his face was swollen and tears were streaming down his eyes.</p><p>"Damned port—Bwergh!"</p><p>I felt a great deal of sympathy for him after seeing how badly he was affected by the portal.</p><p>'Poor hi—'</p><p>"Bwegh!"</p><p>"You guys…"</p><p>A helpless voice echoed while Liam and I were puking. It belonged to none other than Edward. The only one that seemed unaffected by portal sickness.</p><p>"H…how can you still stand?"</p><p>I managed to get out a few words when I raised my head to gaze at him.</p><p>It had to be noted that portal sickness was a very real thing that people suffered from, and the longer the journey, the more prevalent this was.</p><p>It was weird for Edward to be unaffected by this.</p><p>With a shrug of his shoulders, Edward answered.</p><p>"I just have a stronger stomach than the two of you."</p><p>"Ugh."</p><p>I groaned.</p><p>After that, it took about five minutes for both Liam and I to finally recover from portal sickness.</p><p>Once I did, I finally stood up and looked around me. Currently, we were in a vast grassland. Immediately, my gaze was drawn to the mountains on the horizon, which were surrounded by a sea of trees. The sight was breathtaking.</p><p>Taking a glance at Liam, I asked.</p><p>"Where exactly are we?"</p><p>"I don't know."</p><p>His reply was quick. But immediately after that, my face changed a little.</p><p>"…Nevermind."</p><p>'Need to make a mental note to myself about his bad memory.'</p><p>Tapping on my bracelet, I took out my phone and checked the top bar to see if there was any signal. Fortunately, it seemed as though I was in luck.</p><p>"...Two bars. Good enough."</p><p>Ding—! Ding—! Ding—!</p><p>It was at that moment that my phone started chiming repeatedly as over a hundred different notifications came in at once. It was a bit overwhelming as my phone froze up.</p><p>Furthermore, most of the notifications were useless as they belonged to some apps or were just s.</p><p>I quickly discarded those.</p><p>Halfway through deleting them, I noticed that I also received plenty of messages from the others.</p><p>"Kevin sent me quite a few..."</p><p>===[Kevin Voss]==</p><p>Kevin : Where are you?</p><p>Kevin : Why did you suddenly leave without telling anyone?</p><p>Kevin : I swear...</p><p>Kevin : I've just broken through &lt;A-&gt; rank. If you don't inform me soon, I will have no choice but to leave without you.</p><p>Kevin : On a side note, does the quote "You have to look through the rain to see the rainbow." sound good?</p><p>===[Kevin Voss]==</p><p>I quickly discarded his messages. He lost me on the last message.</p><p>"Oh, I also received texts from my mom."</p><p>I quickly checked those.</p><p>===[Mom]==</p><p>Mom : My sweet boy. My favorite son. My son who I have barely seen over the last five years. I just came to learn about your little trip. One that would last for half a year. I'm totally fine with you going, but couldn't you have given your mother a little heads up? You know, because I'm your mother? You probably won't see this message for a while, so when you do, call me. If you don't…</p><p>===[Mom]==</p><p>The message ended there, but I felt a chill run down my spine as soon as I saw it.</p><p>Without hesitation, I glanced toward the others to make sure they weren't listening. As a sign of precaution, I moved a little bit further.</p><p>Immediately, I dialed my mother's number.</p><p>Ring—! Ring—!</p><p>—…</p><p>The call soon went through, but there was an empty silence behind it.</p><p>'…she's mad.'</p><p>Forcing a smile, I started to speak.</p><p>"Mom? It's me. Your favorite son. I'm back…?"</p><p>—…</p><p>I was once again met with silence. It was from that moment that I realized I was in deep shit.</p><p>"Mo—"</p><p>—…Are you okay?</p><p>Just as I was about to say something, my mother cut me off and spoke.</p><p>Hearing her voice, I sighed in relief.</p><p>"I'm fine. I just came back a couple of minutes ago, and…"</p><p>Lowering my head, I glanced at my body. Making sure that everything was still there, I continued.</p><p>"…it seems like all of my limbs are intact."</p><p>—That's good.</p><p>My mother replied in a rather flat and short tone. My brows furrowed a little when I noticed this.</p><p>Thinking of the worst, I felt my heart sink as my voice became rushed.</p><p>"…Is everything okay? Did something happen while I was gone? Don't tell me that something happened."</p><p>—No.</p><p>To my relief, it didn't seem to be the case as my mother continued.</p><p>—Nothing happened while you were gone. Everyone is fine.</p><p>"Is that so?"</p><p>—Yes.</p><p>Then what was the problem?</p><p>'Don't tell me she's giving me the silent treatment..'</p><p>While scratching the side of my neck, I decided that the best thing to do at the moment was to apologize.</p><p>"Listen, mom, I'm sorry for not telling you that I was going to leave, but back then, circumstances forced me to do this…"</p><p>The only reason I went to the demon realm was to sort out my head, not because I wanted to train and explore the place.</p><p>Despite not showing it outside, I was still suffering from my past experiences at the Monolith.</p><p>To cope with everything that was happening, I resorted to taking Melissa's potions.</p><p>Since then, everything was going well. Nightmares became less frequent, and I was able to sleep more comfortably. All in all, my life seemed to be normal. Potions were not a long-term solution, unfortunately.</p><p>Two months into the demon realm, they ceased to be useful, and two more months later, they stopped working altogether.</p><p>The nightmares began to return from that point on. In spite of this, they did not seem to affect me as much as they used to. This was to be expected, I had gone through ever harsher experiences since then, and my mind had hardened a little.</p><p>Even then, they still affected me from time to time.</p><p>'I really need to find a long-term solution for this problem…'</p><p>If not, I might one day end up losing it again as I did back in Issanor.</p><p>Raising my head to stare at the mountains in the distance, I continued to talk.</p><p>"I'm not going to lie to you and tell you that the place I went wasn't dangerous, but you should know very well that it is very darn hard to kill me. Some might even call me a cockroa—"</p><p>—I understand.</p><p>Cutting me off, I heard my mother's voice. I instantly stopped speaking the moment I heard her voice.</p><p>After a short pause, she continued.</p><p>—We'll have a talk once you get back home. For now, answer me this. Will you be back home on time for dinner?</p><p>"Dinner? Give me a second."</p><p>Lowering my head, I glanced at my watch and checked the time, 14:03.</p><p>Once I checked the time, I also checked my location through the GPS on my watch. Licking my lips, I did a quick scan of the map.</p><p>'We're not that far from Ashton city. In fact, we're pretty close to the Clayton ridge. If we take the train, we might be able to make it by six, two hours before dinner…'</p><p>Having confirmed that everything was in order, I responded to my mother.</p><p>"Yes, I should be able to make it back for dinner."</p><p>—Okay, I will make one extra meal. Natasha and Amanda will also be joining, so it won't really make a difference.</p><p>"Ah!"</p><p>The moment my mother mentioned Amanda and Natasha's names, I suddenly remembered something and turned my head to glance at Edward in the distance who was currently helping Liam recover from the portal sickness.</p><p>Turning my head back, I whispered.</p><p> "Mom, can you add another person?"</p><p>—Another person?</p><p>"Yeah. Don't worry about who it is, you will know once we arrive."</p><p>—…Okay.</p><p>Her voice sounded rather confused, but she still nevertheless complied.</p><p>"Thank you mom, I will come back home soon. I will see you later."</p><p>—Okay. See you soon.</p><p>Following her words, she hung up on me. Scratching the back of my head, I turned to look at Edward and Liam in the distance.</p><p>"Are you two done? Shall we go back home now?"</p><p>***</p><p>"Insidious Guild and RagingDragon Guilds have both filed for bankruptcy. Following their actions, we've received several letters from the Central Government telling us to stop. How should we proceed?"</p><p>"Ignore them. Continue as planned. Tell the Central government to stop meddling in our affairs. If this persists, we will no longer hold back, even if costs our guild to go under."</p><p>Amanda's threatening voice echoed throughout her office space as she glanced in Maxwell's direction.</p><p>Following their plan to take over all of the guilds that planned on harming her guild, the Central Government decided to interfere.</p><p>Although their actions were understandable, it was still disappointing. In light of the fact that her actions were destroying several Diamond-graded guilds, their actions didn't seem so unreasonable.</p><p>Not that Amanda cared.</p><p>"This is something we must do. We will look like pushovers if we listen to the Central Guild. It is unfortunate that several Diamond-graded guilds will go down as a result of our actions, but this is a result of their actions. Who told them to provoke us?"</p><p>While she was talking, her eye would repeatedly glance toward a pen holder that sat on the far end of her desk.</p><p>It was slightly tilted to the right.</p><p>'Just a little...'</p><p>In an effort to look like a proper guild representative, Amanda tried her best to not mind the slightly distorted pen holder...but it was hard. Really hard.</p><p>Her finger twitched underneath her desk.</p><p>"I agree with your assessment young miss. As the saying goes, if we give them an inch, they will take a mile. I will quickly share your—hm, is everything alright young miss?"</p><p>"Yes."</p><p>In response to Maxwell's words, Amanda straightened her back. Keeping her face straight, she glanced at Maxwell.</p><p>"Do exactly that. Please do tell the elders about the situation."</p><p>"…Okay."</p><p>With a rather confused look on his face, Maxwell eventually nodded his head and turned around.</p><p>'Now is my time...'</p><p>In the exact moment he turned around, Amanda reached for the far end of the desk and adjusted the pen holder.</p><p>A wave of relief washed over her body when she did this.</p><p>But…</p><p>"You really need to fix your habits, young miss…"</p><p>"Weren't you leaving?"</p><p>"I was…"</p><p>"…and?"</p><p>"Have a good day young miss."</p><p>With a satisfied smile, Maxwell left the office. Staring at his disappearing back, Amanda's eyes squinted.</p><p>'…He knows too much.'</p><p>Twiiing— Twiiing—</p><p>At the exact moment Maxwell left, Amanda's phone rang. Lowering her head, Amanda's back straightened once more.</p><p>It was a message from Samantha.</p><p>===[Samantha Dover]==</p><p>Samantha: Amanda dear, please join us for dinner today at 8 p.m. Your mother will also becoming and she will be sad if you don't come. Don't be late.</p><p>===[Samantha Dover]==</p><p>"The tone..."</p><p>A bitter smile appeared on Amanda's face as she read the message. From the tone of the message, it appeared as though this was not an invitation but an order.</p><p>"Haaa..."</p><p>Letting out a long and tired sigh, Amanda started to clear out her schedule.</p><p>"Might as well."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-537.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-539.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

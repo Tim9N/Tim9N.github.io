@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 633 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 633 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-632.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-634.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As soon as Ryan pressed a few of the buttons on the control panel, the portal that he had constructed began to behave in a peculiar way.</p><p>There was a rustling in the air, and on the control panel, there were suddenly rows upon rows of data that appeared with each second that passed.</p><p>The information that was written on the panels was incomprehensible to me. Even with the chip in my head, I couldn't make heads or tails of what was written on them. The same couldn't be said for Rayn, who looked through the data in a composed manner and typed a variety of different codes at the speed at which they were appearing.</p><p>Ta!</p><p> With the sudden press of a key, Ryan urged us back.</p><p>"...The portal is connected. Take a couple of steps back. "</p><p>"Sure."</p><p>I complied with his request and moved a couple of steps back.</p><p>After not even a fraction of a second had passed since I had taken a step back, the portal started violently trembling, and an eerie whistling sound that was reminiscent of that of the wind blowing inside of a storm started to reverberate throughout the room.</p><p>Rata! Rata! Rata!</p><p>The large metallic portal began to shake, as did the room, which had already been shaking slightly before this occurred.</p><p>"Okay, the connection is established!"</p><p>The loud reverberation of Ryan's voice occurred at the precise moment when the shaking started to become more intense.</p><p>He pressed another key and everything went deathly quiet. The shaking stopped, and so did all the noise.</p><p>Ryan hurriedly moved toward where the portal was with a large core in the palm of his hand.</p><p>"Ready?"</p><p>He asked whilst looking at both Angelica and I.</p><p>Meeting Angelica's eyes, we both nodded our heads as we quietly observed from a distance.</p><p>"Ready."</p><p>"Ready. "</p><p>"Okay."</p><p>Ryan shattered the core in his hand and a wave of mana exploded in the air. The scene looked similar to a large explosion of colors as the mana instantly started to spread throughout the entire room.</p><p>Well...at least, attempted to.</p><p>When Ryan placed his hand on the edge of the portal, the mana that was previously unrestrictedly moving through the room abruptly came to a stop. Then, much like a magnet, it began to draw closer and closer to the center of the portal.</p><p>"Done."</p><p>Ryan wiped the sweat that had accumulated on his forehead and moved toward where we were.</p><p>"What do we do now?"</p><p>I curiously asked while paying attention to the portal that was slowly starting to form.</p><p>"We just wait."</p><p>"How long?"</p><p>"Not much, just a minute."</p><p>...and just as he said, by the time a minute passed, the portal fully formed. A green light lit up at the top of the portal and figures began to appear one by one in the room we were in.</p><p>"It's working..."</p><p>I could hear Ryan's faint whisper coming from beside me as my attention was drawn toward the figures that appeared one by one inside the room.</p><p>"...I'm glad that I was able to be of help."</p><p>Ryan quietly mumbled.</p><p>I ruffled his hair a bit when I heard the last few words.</p><p>"You've always been helpfu—"</p><p>"Here's a couple of figures I haven't seen in a while."</p><p>I was cut mid-sentence by a rough voice. A thin smile formed on my face as I focused my attention on the source of the sound.</p><p>"Jomnuk, Randur, it has been a while."</p><p>"What an interesting place this is."</p><p>They had already lost interest in me by the time they caught a glimpse of the room we were in.</p><p>I didn't mind this at all as I stepped forward and gave them a brief rundown of where we were. I had previously omitted this information for security measures.</p><p>"We're currently on a planet called Immorra. It was an old orcen planet which was mainly used for agriculture."</p><p>"Immorra..."</p><p>Randur massaged his beard upon hearing the name of the planet.</p><p>His eyes lit up after a while, and he slapped his thigh.</p><p>"Ha! I know this place! "</p><p>"You do?"</p><p>Jomnuk couldn't contain his surprise at the fact that Randur seemed to know where we were as his head snapped in his direction.</p><p>I too was surprised as my focus shifted toward him.</p><p>"How do you know?"</p><p>"Hehe."</p><p>Randur held his belly and laughed.</p><p>"I spend most of my time studying, as opposed to you, who spends most of his time playing with nonsense. I remember coming across the description of this planet a couple of years ago."</p><p>"Oh? Enlighten me. "</p><p>Jomnuk's brow arched upward.</p><p>Randur smirked in contempt.</p><p>"If I don't remember wrong, this planet wasn't just any regular planet, but was actually the biggest agricultural planet among the seven orcen planets of the past."</p><p>"In the age before the orcs were conquered by the demons, there used to be seven main orcen planets, which were Nostrolia, Pestraolia, Onnosie, Alides, Chaipra, Giumia, Zohatis. All these planets held great strategic importance, and were where the main forces of the orcs resided, but..."</p><p>Randur raised his finger in the air as he looked at Jomnuk.</p><p>"Despite how important all of the planets were, their importance was nothing in comparison to that of Immorra, the planet we're currently on."</p><p>"In fact, one might even argue that the main reason why the orcs lost the war was precisely because of the loss of this planet! Had they not lost this planet, they might've been able to repel the demons back!"</p><p>During the time that Randur was talking, he walked around the room. As he touched the walls of the room, a shine began to appear in his eyes.</p><p>"...Not only is this location ideal for cultivating medical plants that possess aura-like properties, but it is also crammed to the gills with incredibly rare ores and minerals! This place is a goldmine, damn it!"</p><p>He slapped his thigh in excitement before he looked at me.</p><p>"Why in the world didn't you tell me about this before? If you told me about this place earlier, we could've already extracted tons and tons of metal, which would've been extremely useful for us in the upcoming war. "</p><p>I apologetically shook my head.</p><p>"...Sorry, but I wasn't exactly free since the time we last saw each other. A lot happened, and this just flew off my mind."</p><p>This was the sad reality of things.</p><p>With everything going on in my life, I never realized how important Immorra was. I couldn't be fully blamed for this because portal technology had only recently advanced to the point where it could connect to places that were thousands of miles away.</p><p>...and the dwarves' generosity in imparting a great deal of the technical expertise that they possessed was a significant factor in making this accomplishment possible.</p><p>In any case, I could have come here with just Kevin, but it would have been impossible to bring the others. There was a limit to his power.</p><p>"Anyway, we should take things easy for now. A war is still ongoing at the moment. "</p><p>"A war?"</p><p>Jomnuk and Randur took a moment to look at each other. They then peered their sights toward the far end of the room.</p><p>Their brows simultaneously furrowed.</p><p>"You're right, but it seems to be coming to an end."</p><p>Randur was the first to speak after he took his eyes away from the wall.</p><p>I replied shortly after.</p><p>"This is, unfortunately, only the first wave. The 'dummy' wave, I presume. The real one will come soon. "</p><p>The frown on Randur's face deepened.</p><p>"Ren, you do know that Jomnuk and I can't stay for long. With Inferno showing signs of movement, I'm afraid that we will have to return before the war erupts, so we can't really help y..."</p><p>"Don't worry about it."</p><p>I dismissively waved my hand at Randur.</p><p>"I didn't call you guys to help me with the war. I've only called you here to help me set up the portal and help me out with a couple of other things."</p><p>I glanced toward the other dwarves that were slowly appearing one by one inside the room.</p><p>"There are many things that I want to construct here, and I can only do it with your help."</p><p>First and foremost, I intended to rebuild the entire castle over here. With the war approaching, it required a more effective defensive system, and this worn down castle was just not going to cut it.</p><p>Following that, I intended to relocate my headquarters, and the dwarves were the best at constructing an adequate defensive system with all of the latest technology. For example, I needed a place that could efficiently produce mana in which I could train.</p><p>The lack of mana in Immorra's atmosphere was easily felt, as my strength had slowed significantly since arriving here.</p><p>It was fortunate that I had brought several cores with me, but despite my wealth, I wasn't wealthy enough to carelessly consume cores in exchange for mana.</p><p>In any case, the dwarves knew how to build rooms that could channel mana from the core more efficiently, allowing me to train in an environment similar to that of Earth. With time passing faster here, it would later prove to be a huge advantage for me.</p><p>"Obviously, I'm not asking you guys to do this for free. As I've already informed you before, I'll present you guys with a great opportunity in exchange for you guys helping me construct a couple of things, and don't you think I've managed to keep my word?"</p><p>"You have."</p><p>Randur sincerely nodded his head.</p><p>"I'll have to admit, this place will indeed benefit us a lot. Since we are people of our word, we will do as you request. "</p><p>"Great."</p><p>I smiled in relief once I heard Randur's words.</p><p>I was relieved to hear that.</p><p>Boom!</p><p>The room began to shake violently again, and several people lost their balance in the process. My mouth opened as I turned to look at the room's ceiling.</p><p>"Regarding the war, you can leave it to me. Plus..."</p><p>My mouth stopped, as a few familiar figures appeared from out of thin air.</p><p>"...My main reinforcements are already here."</p><p>***</p><p>A/N : If you see any mistakes, please point them out to me. I'm still editing through my phone sadly.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-632.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-634.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

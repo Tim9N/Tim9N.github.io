@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 730 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 730 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-729.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-731.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Sunlight filtered through the canopy of trees, gently bathing my body and enveloping it with a thin layer of warmth.</p><p>The birds chirped, and a gentle breeze lingered in the air.</p><p>It felt nice outside, but as I sat down on a wooden bench in a familiar park, everything around me seemed so intrusive.</p><p>"I want it, mom!"</p><p>"No, that's enough sweets for today."</p><p>"Umhhhh!"</p><p>My gaze never left the pair of mother and daughter in the distance. They were quite close to me. About a hundred meters.</p><p>…Yet, they never felt so distant before.</p><p>"Nola, you better behave. I already told you that you can't have any more candy for today."</p><p>"Why!?"</p><p>"Because I said so."</p><p>I couldn't help but crack a smile as I watched the two of them argue from a distance. It was a sight that had been seen plenty of times before. One to which I have been accustomed for a considerable amount of time.</p><p> "Is there something that you need, young man?"</p><p>Apparently noticing my gaze, the woman turned her head to look at me.</p><p>She looked the same, maybe a bit older than in my memories.</p><p>I smiled at the two.</p><p>"No, don't mind me. You guys just remind me of my family."</p><p>"Oh."</p><p>The woman flashed me a smile before patting Nola on the head.</p><p>"Is your sister as naughty as her?"</p><p>Lowering my head to look at Nola, I laughed.</p><p>"…You can say so. Perhaps even naughtier."</p><p>"You must have it tough then."</p><p>The woman spoke with sympathy before taking Nola's hand. She was currently glaring daggers at me, and I couldn't help but laugh once more.</p><p>"It's getting late. We have to go. It was nice knowing you."</p><p>"It was nice knowing you too."</p><p>I murmured while staring at their departing backs.</p><p>I didn't have to wait for very long before I lost sight of the two of them, and when that happened, I leaned back against the bench that I was sitting on.</p><p>"This is fucked."</p><p>The whole situation was fucked.</p><p>"Why did you do this, Kevin?"</p><p>I had an idea at first, but it only became clear to me after a while.</p><p>…This was not the world I lived in.</p><p>This was a world where Kevin and I never existed.</p><p>'No, rather. It's more accurate to say that this is a world where the Demon King never existed.'</p><p>While mana existed, gates and dungeons didn't. The Monolith also didn't exist, and no one had ever heard of the demons.</p><p>Dwarves and the other races too.</p><p>The geography was also very different from what I remembered, with Ashton city still existing but the four great cities having disappeared from the world's map and being replaced by many other major cities all over the world.</p><p>That wasn't all.</p><p>The overall strength of the people here was drastically lower than in the world that I was used to. In this world, the highest power was &lt;A+&gt;</p><p>It was none other than Octavius who held such power, but despite my best efforts, I was unable to find any humor in this situation.</p><p>This world…</p><p>It made no sense to me.</p><p>"May I take a seat?"</p><p>"Huh, yeah, sure."</p><p>I scooched to the side a little and allowed the person to sit next to me.</p><p>Covering my face with my arm, I took a deep breath.</p><p>'Just what is your purpose in sending me to this world? There must be a reason… and how do I go back? Reverse it?'</p><p>There was no way Kevin did all of this without a reason. There must've been one, but just what was that reason?</p><p>"Are you perhaps wondering why you've been sent here?"</p><p>A voice pricked my ears, and my body tensed. The voice… It was somewhat familiar. I just couldn't quite remember to whom it belonged to.</p><p>I slowly lowered my arm and looked toward my right. Immediately, my breath stopped, and my mouth opened and closed several times.</p><p>It was a face that I'd never forget.</p><p>One that belonged to a guy whom I used to regard as my best friend. The same one that I had killed a long time ago.</p><p>"M,matthew?"</p><p>***</p><p>Angel Wing Guild.</p><p>Edward had a serious look on his face as he looked at the screen in front of him. Two other men were standing behind him, and both of them were also staring intently at the screen before Edward.</p><p>The room was incredibly tense at the moment.</p><p>No one uttered a single word as everyone gazed in the direction of the screen in front of them.</p><p>On it, the events that had taken place in the past were played over and over again. It showed a young person with short black hair, and deep blue eyes, looking around before disappearing.</p><p>It had been about the twelfth time that Edward watched, and yet, he couldn't understand how that youth managed to disappear from the spot.</p><p>Was it some sort of skill?</p><p>…but how was that possible?</p><p>Skills were practically impossible to get, and those that did have it were the most authoritative individuals in the entire world.</p><p>Even he had to sacrifice a hefty sum to acquire a single skill.</p><p>"It must be some sort of trick."</p><p>One of the men behind Edward uttered. He had long gray hair and a thick beard.</p><p>"If he really did have a skill, then I'm sure we would've known about it. There's no way our information network would miss someone like him."</p><p>"I agree."</p><p>The other male nodded. He had a fairly large stomach, dark hair that was beginning to thin out toward the back of his head, and wore a pair of thin round glasses.</p><p>"He must've used some sort of trick to escape from the detection of the captain. Since he boldly entered the place, I'm sure he must've had some sort of preparations."</p><p>"Yeah."</p><p>"Hmm."</p><p>Edward frowned when he heard their analysis.</p><p>Normally, he'd agree with them. It was practically impossible for someone that young to know a skill and yet be unknown to them...</p><p>Because there were only a finite number of skills in the world, as the most powerful Guild in the world, they would undoubtedly be the first to learn of any newly discovered skills in the world, so how could they have missed the appearance of such a skill?</p><p>'Unless he's someone that has been secretly groomed by a superpower.'</p><p>The possibility made him frown, and he turned his head.</p><p>"Do you guys have anything on his identity?"</p><p>"No."</p><p>The older man shook his head.</p><p>"I've tried checking his face with the database, but I got nothing. No family history, no DNA, no date of birth, nothing… It's as if he doesn't exist."</p><p>"Hmm."</p><p>Edward's frown deepened further at the news.</p><p>…The possibility was starting to seem more plausible.</p><p>"Is there absolutely nothing on him?"</p><p>"Actually, there is something."</p><p>The plump man spoke, taking out a tablet and passing it on.</p><p>"After checking the cameras and the base system, we were able to find a video of him."</p><p>"Oh?"</p><p>Edward raised his brow with a hint of joy.</p><p>After tapping on the tablet, a video soon began to replay, and as it did, the hint of joy that had been on his face slowly started to fade, giving way to an extremely serious expression.</p><p>"Who is the other man in the video?"</p><p>He seemed rather familiar.</p><p>"He goes by the name of Dominion Scott, and he works for the Green Claw Guild."</p><p>Edward paused, and his brow raised once more.</p><p>"That Green Claw Guild?"</p><p>"Yes. That Green Claw."</p><p>"Hmm."</p><p>Edward interlocked his hands together, and his frown deepened.</p><p>Edward took another look at the video and was surprised to see how easily he had taken the man down. This made him realize that the situation was more serious than he had originally thought it would be.</p><p>He took a deep breath.</p><p>"As much as I hate those guys from the Green Claw Guild, I want you to contact them immediately. Tell them that we're willing to cooperate with them in finding this youth."</p><p>"You want to contact them?"</p><p>The plump man looked at Edward strangely.</p><p>"Why do we have to contact them? Can't we just do it ourselves?"</p><p>"No."</p><p>Edward shook his head and shifted his attention back toward the display.</p><p>"Since we both have the same target, it's best if we cooperate. We might be the number one guild, but that doesn't mean we're omnipotent. If we join hands with them, we might be able to find him faster."</p><p>His goal was to find the man.</p><p>Nothing else.</p><p>He didn't care if he had to work with someone else to find him.</p><p>"...Understood."</p><p>The two nodded immediately and thereafter left the room in haste.</p><p>Silence reigned over the office space as Edward traced his finger over the tablet and continued to replay the video.</p><p>The more he watched, the greater his frown became. The young man was without a doubt strong. To what extent? He wasn't sure.</p><p>However, that didn't matter.</p><p>Although he hadn't done anything to Natasha, just the fact that he had gone to his daughter's apartment and claimed it as his own alarmed him.</p><p>He couldn't let such a dangerous man continue to roam the streets.</p><p>Not when he was possibly aiming for his daughter.</p><p>To Tok―!</p><p>A knock was suddenly heard from the other side of the room.</p><p>It soon opened to reveal the features of a young woman with glossy black hair and a well developed body, with her abdomen revealed in her two-piece outfit that consisted of a short black shirt and a leather skirt.</p><p>Her face was cold, but at the same time, it carried a gentleness within it.</p><p>Moving toward Edward, she asked.</p><p>"Did you call me, father?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-729.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-731.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

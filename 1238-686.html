@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 686 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 686 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-685.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-687.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Uwa! Uwa!"</p><p>A newborn infant's cries reverberated in the background as two gentle hands wrapped around the small frame of its body in an attempt to soothe its cries.</p><p>"Hush, Kevin, don't cry. Mommy's with you."</p><p>'Is this what it feels like to be a newborn human?'</p><p>Kevin's crimson eyes stared at his two small hands that were reaching out, grasping the air above him for some unknown reason.</p><p>In the instant that Kevin was born, he already knew his mission.</p><p>From the moment he felt the gentle embrace of his mother's warm hands as she wrapped them around his body and surrounded him with warmth, he was aware of the purpose behind his existence as well as the mission that he had to complete.</p><p>'Defeat Jezebeth.'</p><p>The cancer that the records were afraid of. The one singular entity that was disrupting the balance of the universe.</p><p>…That was his sole and only purpose for existing.</p><p>"Why is his hair white, and why are his eyes red?"</p><p>Kevin, who had just been born, heard his parents' shocked and bewildered voices as they drifted gently in and out of his field of hearing.</p><p>When he looked up, he saw the faces of two people, one male and one female, looking down at him with curiosity.</p><p>'These must be the people who have birthed me.'</p><p>Kevin pondered as he observed the two humans, who were staring at him with confused expressions. They had relatively delicate facial features, but their clothing appeared unremarkable, and they appeared somewhat filthy.</p><p>From what Kevin could gather, their names were Margaret and Johnathan. At least, that was what they seemed to call each other.</p><p>In spite of their filthy appearances, they had friendly expressions, and the sight of their smiles was not displeasing to the eyes. At least to Kevin, but he didn't seem to care all that much about it.</p><p>In his mind, these were the two beings that would help him gain a foothold in this world before he could finally mature and leave on his own.</p><p>He didn't have any particular attachment to them.</p><p>"The DNA test says that it is our child; maybe he was just born with some strange illness or something along those lines? ...I'm not entirely sure."</p><p>The man on the left, who appeared to be his father, was seen tenderly caressing the woman, who was described as having brown eyes and long black hair.</p><p>Her features were soft, and Kevin couldn't quite put his finger on what it was that made her smile so compelling.</p><p>Nor did he care to understand.</p><p>"But if there is one thing that I'm sure about..."</p><p>As Kevin's father leaned in to give him a kiss on the cheek, the top of Kevin's head dampened.</p><p>"...it's that he's our son."</p><p>***</p><p>"I'm sure it was an accident. He definitely didn't do it on purpose."</p><p>Kevin stood by and watched as his mother pleaded in front of three people.</p><p>The subject of everyone's attention right now was a young child who stood in the middle of the other two adults and appeared to have tears forming in his eyes.</p><p>"An accident?"</p><p>A round woman with curly yellow hair and an angry and repulsed expression on her face pointed an accusatory finger at her young child while raising her voice.</p><p>"How are you going to explain this?"</p><p>Her finger touched the child's eye, which was currently black.</p><p>"Your delinquent child punched my child for no apparent reason! How can you explain to me the black eye on his face?"</p><p>"That..."</p><p>Margeret looked at the eye for a moment, and she turned to look at Kevin. Biting her lips, she asked.</p><p>"Kevin, did you do this?"</p><p>"..."</p><p>Kevin remained silent and simply looked at her the whole time.</p><p>He had never actually punched the child in the first place. It was another bigger kid, but the victim decided to lie and shift the blame for the attack onto Kevin out of fear for the bigger kid.</p><p>Kevin could tell right away that saying anything would be pointless; it would probably go to death's ears.</p><p>The people here weren't looking for the real culprit but for someone to blame the situation to.</p><p>With Kevin being the preferred target due to his background.</p><p>In addition, because this establishment was in a rather poor condition, there were no cameras to provide evidence to support his claim.</p><p>Talking was a waste of energy.</p><p>"See, your child isn't even denying it!"</p><p>The woman yelled and pointed angrily at Margaret, whose face suddenly turned pale.</p><p>"He...he didn't even say anything. How can you just―"</p><p>"Oh, stop it! We both know your autistic son did it!"</p><p>As soon as the word "autistic" was mentioned, Margaret's face immediately froze, and she began to bite her lips more forcefully while murmuring in a voice that was only audible enough for Kevin to hear.</p><p>"My son is not autistic..."</p><p>"How are you going to make up for what your son did?"</p><p>The woman continued to bother Margeret until she finally looked up and slowly stood up. She took a deep breath and turned her head to smile at Kevin.</p><p>Her smile was an attempt to convey the words, 'Everything is fine; I'll handle this,' but it looked more forced than anything to Kevin, who simply stared at her emotionlessly.</p><p>"How much?"</p><p>"How much what?"</p><p>The woman asked, crossing her arms. Margaret repeated herself, pulling out a small, worn-out purple pouch.</p><p>"...How much are the hospital fees. I will...pay."</p><p>She took several bills from her wallet, her hand attempting to remain steady. Despite her efforts, they still shook slightly.</p><p>Before uttering a price, the woman deliberated for a short while, during which she stole a quick glance at the cash that was being removed from the wallet and raised five of her fingers.</p><p>"500U. I'll let this matter slide if you give me 500U."</p><p>"5..500U"</p><p>Margaret's hand stiffened, and her face became increasingly pale.</p><p>After taking a few deep breaths, she looked at Kevin once more before reaching into her wallet, pulling out a banknote, and slowly passing it to the other woman, who quickly snatched it away from her hands.</p><p>"I'll take that."</p><p>At long last, the lady cracked a grin of contentment. It was clear to Kevin that this was the woman's real goal from the very beginning and that they had just been scammed.</p><p>"I'll let matters slide this time."</p><p>After giving Kevin one final menacing glance, the woman turned around and walked away with her son, leaving Kevin and his mother standing together in the empty corridor.</p><p>'Why is she doing this?'</p><p>Kevin questioned this as he looked at his mother with a puzzled expression on his face.</p><p>Sincerely, he did not comprehend the reason why her mother would go to such great lengths for him.</p><p>She was not required to pay the money. The worst-case scenario was that he would be expelled from kindergarten, but it wasn't a big deal because what he was learning was useless.</p><p>In addition, he avoided them on purpose so they wouldn't become too attached, as he didn't care about them, but for some reason, they refused to ignore him.</p><p>'Why is that?'</p><p>Kevin wondered.</p><p>"C..ome, let's go Kevin"</p><p>Kevin was dragged out of the corridor by the hand and led to the building's exterior, where a man dressed in rather soiled clothes and a bright green construction uniform appeared, running up to them.</p><p>He had a rather anxious look on his face as he rushed toward their side.</p><p>"How was it…is there anything wrong with Kevin?"</p><p>"No, nothing at all...I've managed to sort out the situation."</p><p>Margeret said with a forced smile on her face.</p><p>She looked at her husband and mumbled.</p><p>"Judging from your clothes, you must've directly rushed from work. Will you be fine?"</p><p>"Eh...sort of. I told my boss that there was an emergency with Kevin. He's understanding. At most he will deduct my pay, but that's fine."</p><p>Johnatan took off his bright yellow hat and scratched the top of his head before putting it back on and adjusting his clothes.</p><p>"Honestly, I'm glad that I wasn't there on time. Hehe, I think the situation would've been worse had they seen the clothes that I'm wearing. Those kids might even end up bullying Kevin for it."</p><p>"You're right…"</p><p>Kevin's mother nodded, and a warm smile appeared on her face. Tugging Kevin by the hand, she nudged with her hand.</p><p>"Alright, how about we go bac—"</p><p>It was then that it happened.</p><p>The world began to twist around them, and the ground beneath them visibly shook.</p><p>Beep―! Beep―! Beep―!</p><p>The sky turned from an azure color to a red color, and the alarms of the cars around them started to go off uncontrollably.</p><p>"What's going on?"</p><p>"What's happening?"</p><p>After the sudden shaking of the ground, the first thing the couple did was bring Kevin into their embrace.</p><p>At the same time, they looked around with looks of confusion and anxiety etched across their faces.</p><p>A rusty smell suddenly permeated the air, and Kevin's eyes dilated slightly.</p><p>"It's the demons."</p><p>Kevin spoke, his voice monotonous and his crimson eyes gleaming under the moonlight. His parents showed startled looks the moment Kevin spoke as they both snapped their heads to look at him.</p><p>"What did you say?"</p><p>"Demons? What are you talking about?"</p><p>Kevin didn't answer and continued to stare at the sky with an emotionless look.</p><p>"Kyaaaa!"</p><p>The answers to their questions came to them quickly in the form of a dark humanoid creature that appeared in the air and a red ecliptical sun that shone down upon the world and caused enormous flames to emerge.</p><p>Screams of terror resounded throughout the atmosphere as buildings started to crumble right before their very eyes.</p><p>"Haaaaa!!"</p><p>"Someone help me!"</p><p>Rumble―!</p><p>The environment was in complete anarchy—flames that seemed to burn endlessly consumed everything that was within sight, and buildings continued to collapse.</p><p>What had been a normal, peaceful day in a small village located not too far away from Ashton city turned into a scene straight out of hell.</p><p>Within the span of a couple of minutes, the world crumbled apart, and all hell broke loose.</p><p>Fwuap―! Fwuap―!</p><p>Huge creatures with enormous wings and sinister smiles stood in the air and arrogantly watched as some humans set fire to everything below them.</p><p>The scene that unfolded below them exemplified hopelessness in its purest form.</p><p>Kevin was dragged by his parents through the streets of the village in a solemn and hushed manner as they ran along the crumbling roads and hellish flames.</p><p>"Huff...huff...Honey, quick, over here!"</p><p>Turning left from a building, Johnathan gestured with his hand.</p><p>Soon after that, the couple saw a modest house off in the distance, and they made their way there as quickly as they could.</p><p>Crash―!</p><p>Jonathan used his foot to forcefully break through a wooden door that led to the small house, and then he immediately hid inside the house after he had done so.</p><p>After setting Kevin down, Johnathan put his finger on his mouth and looked at Kevin with a serious expression on his face.</p><p>"Huff...huff...Make sure you don't make a sound"</p><p>"There is no p—"</p><p>"Shhhh, please...just remain quiet here, okay?"</p><p>The woman whispered while she placed her hand over Kevin's mouth and fought back the tears that were streaming down her cheeks.</p><p>"Please don't make a sound..."</p><p>As Kevin watched the solemn expressions on his parents' faces, he merely closed his eyes and maintained his silence while cradled in his mother's embrace.</p><p>After that, there was complete and utter silence throughout the neighborhood for the subsequent five minutes.</p><p>'What pointless actions.'</p><p>Kevin wanted to tell them that staying here would only prove fatal, but seeing that they were refusing to listen to him, he just remained put.</p><p>He didn't particularly feel anything out of the situation.</p><p>...The silence did not last for long.</p><p>Booom—!</p><p>A jarring explosion occurred in the neighborhood of the house where they were all together, startling everyone.</p><p>The aftereffects of the shock caused the windows of the house to shatter, which led to the destruction of a better part of the house.</p><p>"Get down!"</p><p>Covering both Kevin and his wife with his body, Jonathan dove down.</p><p>"khhhh...ahhhh"</p><p>A steady buzzing sound started up in everyone's ears a few seconds after the explosion went off, and it continued for some time after that.</p><p>"Ugh...Kh..."</p><p>It was a groan that brought Kevin back as he looked up to see his father having a difficult time standing up, his back covered in blood with large glass shards impaled on his body.</p><p>"H-oney"</p><p>Margaret, trembling and aware of the situation, couldn't help but cover her mouth in shock and grief.</p><p>She gently caressed her husband's cheeks as hot tears streamed down her cheeks, trying not to make a sound.</p><p>"It's okay I-"</p><p>Just as Johnathan was about to reassure his wife that he was okay, the sound of approaching footsteps startled them.</p><p>Cruch—! Cruch—!</p><p>He didn't think twice and shoved his wife away as he yelled, "Quickly run! I'll hold him back!" with his eyes widening despite the back pain he was experiencing.</p><p>"No! Johnathan!"</p><p>Margaret attempted to protest with a distressed expression, but she was immediately shoved by Johnatan, whose eyes were now bloodshot.</p><p>"Quick! Go!"</p><p>After a moment of hesitation, she ran out of the house with Kevin in her arms without looking back.</p><p>"kukuku, what have we got here?"</p><p>Soon after the woman and the child left, appearing from the other side of the door, a young man with long blonde hair appeared.</p><p>"Die, you bastard!"</p><p>Johnathan screamed as he shouted while staring intently at the young man and displaying a thick red hue all around his body.</p><p>He may not have been talented, but he was still capable of using mana.</p><p>*</p><p>Clank—!</p><p>Margaret searched for a place to hide upon entering a new residence and quickly discovered a small trapdoor.</p><p>"yes"</p><p>Clank—!</p><p>She was shocked to discover, upon opening the trap door, that the space beneath it could only accommodate one small child.</p><p>However, instead of despair, a look of relief appeared on the woman's face.</p><p>With a look of determination, she placed Kevin inside the small compartment.</p><p>"Get in here.."</p><p>She pointed at the small gap.</p><p>"Here, hide over here. No matter what you hear, don't make a sound...please."</p><p>Margeret suddenly bit her lips as she tenderly looked at Kevin.</p><p>"...I will now go help your dad...I don't know if I will be back, but...could you say a couple of words to me?"</p><p>"…"</p><p>Staring at his mother, Kevin's eyes remained unperturbed, and he continued to remain quiet despite her request. Tears welled up on Margaret's face as blood started to spill from the bottom of her lip, and she looked down.</p><p>In a low voice, she murmured.</p><p>"It's okay, I understand...Thank you...and I love you"</p><p>Clank—!</p><p>Immediately after closing the trapdoor, Kevin's vision became dim.</p><p>A couple of minutes after the trapdoor was shut, he heard muffled explosions not far from where he was.</p><p>Though unsure, he could also make out the faint sound of a woman's scream.</p><p>He wasn't exactly sure if it belonged to his mother or not...but he didn't really put much thought into it as he closed his eyes and hid his presence.</p><p>'It looks like they have served their purposes.'</p><p>Boom—! Boom—!</p><p>This went on for a few more minutes before it finally came to an end. Shortly after that, there was a complete and total absence of sound in the surrounding area.</p><p>Kevin crept out of the location he was in after an undetermined amount of time had passed, and he did so in a quiet manner.</p><p>The dead body of his mother was the first thing he noticed when he emerged from the building. Her eyes were wide open, and so was her mouth.</p><p> From a glance, Kevin could tell that she had run out of the building and screamed her lungs out to attract the attention of the demons away from him.</p><p>'Why?'</p><p>Kevin wondered.</p><p>He truly didn't understand why she would sacrifice her life for him.</p><p>The same was true for his father, who showed a similar reaction when he foolishly dove into the arms of a demon.</p><p>'Could this be the records?'</p><p>Kevin had a sudden thought and soon came to the conclusion that their foolish actions must've been due to the records.</p><p>If not, why would anyone try to do something as foolish as sacrificing their own life for someone else?</p><p>Ding—!</p><p>Suddenly, a low chime echoed in his ears, and a blue panel appeared in front of him.</p><p>System activating</p><p>—[13%]—————</p><p>Loading</p><p>It was at this moment that Kevin's feet came to a pause, and he murmured.</p><p>"...It's here."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-685.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-687.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

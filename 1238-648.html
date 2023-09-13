@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 648 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 648 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-647.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-649.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Amanda's eyes lit up the moment they caught sight of Han Yufei, and the moment that happened, she finally let go of her tension and knelt on the ground on one knee.</p><p>"Haaa...haa...thank you."</p><p>Amanda muttered a few words of gratitude as her body slowly started to twitch from exhaustion.</p><p>Without a second thought, she took out several potions that Melissa had given her and gulped them down in one go.</p><p>As soon as she downed the potions, she started to feel a warm sensation that spread throughout her entire body, and the wounds on her fingers and other parts of her body started to slowly heal.</p><p>In case that wasn't enough, her mana and stamina were also beginning to return to normal, and little by little, a small flush began to spread across her previously pale face.</p><p>'...How strong.'</p><p>Amanda was surprised to see how potent the effects of the potions were.</p><p>Considering that she was the young mistress of the most powerful guild in the human domain, it did not come as a surprise to know that she had taken a lot of potions in her life; she naturally possessed an accurate understanding of the potency of the effects produced by these standard potions.</p><p>However, when compared to the potions that Amanda had just consumed, which had been given to her by Melissa, she realized that there was a vast difference between the two.</p><p>As a matter of fact, she had the impression that she was now able to fight once more.</p><p>'Incredible.'</p><p>This discovery astounded her as she slowly stood up.</p><p>"Are you okay?"</p><p>It was then that Han Yufei walked over.</p><p>Amanda nodded her head as she turned her head to look at him.</p><p>"I'm fine now, thank you."</p><p>Things would have been much more difficult for her if it hadn't been for his prompt intervention.</p><p>"That's great."</p><p>Han Yufei refocused his attention on the demons that were approaching the castle from below. Just as he was about to take a step forward and was about to once again engage in combat with the demons, his foot came to a halt and he slowly turned around, as if remembering something.</p><p>With a visible shudder of his body, he looked at Amanda with a pitiful look on his face.</p><p>"H..hey.."</p><p>His voice quivered slightly.</p><p>'What's going on?'</p><p>Amanda was taken aback by his unexpected actions, and she stared at him with a perplexed expression on her face. What, exactly, was it that caused him to react in such a manner?</p><p>Amanda didn't have to wait very long before she figured out the answer to that question; however, after she heard his subsequent words, she was left at a complete loss for words.</p><p>"...Can you do me a favor and stop telling him that his charm is lower than mine? It..s been causing a lot of problems."</p><p>Amanda's eyes blinked a couple of times as she tried to process his words.</p><p>The moment she did so, she became aware that her hand was covering her mouth, and before she even realized what was happening, she had already started giggling uncontrollably.</p><p>"P..please..."</p><p>***</p><p>'He's weaker than the human that I previously fought.'</p><p>While staring at Ren, who was covered in blood and had been severely beaten, this was the realization that came to Suriol.</p><p>Ren was in a terrible state, but what was even worse was that he didn't put up even the slightest bit of resistance when he was being attacked, which made the situation even worse for him.</p><p>'…Is he really the human in the memories?'</p><p>When Suriol recalled the memories of the previous human he had been fighting, he had the distinct impression that something was wrong with the memories he received.</p><p>He wasn't supposed to be this weak.</p><p>Despite the fact that Suriol was aware of Ren's weaknesses due to the memories he had acquired from Liam, things should not have been this simple.</p><p>Something was amiss, so he instinctively stopped attacking and retreated, his eyes brimming with alertness. Obviously, he did not forget to leave a mark on the human's body before he left.</p><p>"What sort of game are you playing at?"</p><p>Suriol asked as he scanned the human in front of him.</p><p>After taking a second look, he was unable to detect any menacing power emanating from the human... Despite this, he continued to listen to his gut instincts, which told him to retreat.</p><p>There was something really odd about the human…</p><p>"What game am I playing at?"</p><p>And shortly thereafter, the human slowly raised his head. When their eyes met, the human brushed back his hair.</p><p>At the moment, he sported an expression that could be described as both indifferent and icy, giving off the impression that he did not possess any emotion. Things became especially alarming when his eyes started to become a hollow gray color.</p><p>"I'm not playing any games. I'm merely just trying to adjust myself to this new rank…"</p><p>He extended both hands to his sides while mumbling something to himself.</p><p>"...It isn't every day that one experiences such a drastic rise in power."</p><p>The sky started to dim as a direct result of his direct actions.</p><p>A powerful hue began to envelop Ren's body as the sky began to show signs of cracking and tearing.</p><p>At the same time, his &lt;SS-&gt; rank strength erupted from his body.</p><p>"What's this?"</p><p>After being startled, Suriol looked around him with a confused expression on his face. The power that was slowly enveloping the battlefield was very intimidating, to say the least. Enough to cause even Suriol to feel some sort of strain.</p><p>However, if that wasn't all...</p><p>"Martial body."</p><p>The weight that was pressing down on Suriol became significantly heavier by that light murmur coming from Ren's mouth as Suriol's expression finally changed.</p><p>On the other hand, Ren's body began to undergo transformations as his muscles began to swell, his veins ruptured, and his rank steadily increased.</p><p>Within an instant, Ren's rank shot up from &lt;SS-&gt; rank all the way toward &lt;SS&gt; rank.</p><p>'I…it can't be…'</p><p>Gulp—!</p><p>Suriol involuntarily swallowed a mouthful of saliva as he moved back.</p><p>Ren's power increased to a dangerously high level for an unknown reason.</p><p>Suriol felt pressure build from all of his sides as his eyes met with Ren's who was standing in front of him.</p><p>'No, I can't let things continue like this!'</p><p>Suriol's expression hardened as he became aware of how dire the situation was, and a terrifying energy began to emanate from his body at the same time. In his mind, he tried to reassure himself.</p><p>'There is no need for alarm. Since I possess the previous human's memories, I should be able to anticipate his movements.'</p><p>He scanned his surroundings and recalled something.</p><p>'If I'm not wrong, soon enough sword energies will come crashing down toward me at incredible speeds…I should get out of here as fast as possible.'</p><p>After taking in his surroundings, Suriol came to a conclusion very quickly. He furiously glared in the direction of his opponent while rapidly expanding the wings on his back. Then, with a flap of his wings, his body zoomed in Ren's direction.</p><p>'If I head to where he is, he will be forced to stop whatever he is doing. After all, there's no way he can attack himself, right?'</p><p>His body accelerated through the air as he approached Ren swiftly.</p><p>When Suriol finally came face to face with Ren, just as he had predicted, he watched him furrow his brows and then abort his attack entirely. Clearly, he had realized Suriol's intention.</p><p>"Hahahha, I bet you didn't see this coming!"</p><p>Suriol revealed a crazy smile after successfully stopping Ren's attack.</p><p>SHIIING!</p><p>As he slashed at the human that was in front of him, he didn't squander even a single second of the valuable extra time that he had bought for himself and attacked with everything he had.</p><p>Unfortunately, Ren was able to avoid his attack with just a small step backward.</p><p>Suriol's heart sank, but it wasn't long before it calmed down again.</p><p>'That's right, I still have that…'</p><p>His special power.</p><p>The one that allowed him to gain an advantage over his opponent.</p><p>After one more beat of his wings, his body lurched backward, and he came to a stop in the middle of the air.</p><p>'This should be far enough.'</p><p>"Oh? Are you going to do something?"</p><p>"!!!"</p><p>Suriol was startled by a sudden whisper in his ear. When he turned around and saw Ren standing directly behind him, his expression changed drastically.</p><p>'What!?'</p><p>Before he could even begin to comprehend how Ren had appeared behind him, he had to repeatedly close and reopen his eyes. Only then was he able to start making sense of what had happened.</p><p>He didn't give it a second thought before hurriedly twisting his body and slashing in Ren's direction.</p><p>Clang—!</p><p>Ren's sword, which Suriol had not realized had been removed from its sheath, deftly blocked his claws as they attempted to cut him in half.</p><p>Clang! Clang! Clang!</p><p>Shockwaves propagated throughout the atmosphere as the two engaged in a duel in midair, with Suriol attempting an attack and Ren defending himself with a simple turn of his sword.</p><p>It also had to be noted that Ren had only been using one hand throughout the entire exchange. It was clear to those spectating that he was the one who was at an advantage at the moment.</p><p>'What's going on?'</p><p>Suriol wondered to himself as he continued to attack.</p><p>'I'm a Duke ranked demon that is on the verge of breaking through to the Prince rank. He's merely a human that has just broken through to Duke rank…I should be having the upper hand!'</p><p>What was going on!? Things didn't make sense at all!</p><p>Clank—!</p><p>When his sword and Suriol's nails collided, the result was a sonic boom in the form of a pressurized wind gale that spread out across the sky.</p><p>"Hyak!"</p><p>In the aftermath of the assault, Suriol discovered that he had been pushed back by several meters. He raised his head to look at Ren, who seemed rather composed and calm.</p><p>As a result of the exchange, he had also taken a few steps back. As a matter of fact, it appeared that he had retreated a few steps further than Suriol.</p><p>This was a resounding demonstration that Suriol's strength was indeed superior to that of Ren, and it was at this very moment that Suriol came to a sudden realization.</p><p>'It's his technique.'</p><p>At this precise moment, Suriol had the epiphany that Ren's strategy or technique, whichever it was, was the thing that was enabling him to engage evenly in head-to-head combat with him.</p><p>Currently, Ren's whole body was riddled with wounds and he looked to be in a sorry state, but…</p><p>'Why do I feel pressured?'</p><p>Just his gaze alone made Suriol feel uncomfortable. He was unsure of exactly what he had done before, but the end result was that his rank was now only marginally inferior to his own and he was fighting evenly with him. Perhaps even winning.</p><p>'No, no, this can't be happening!?'</p><p> "I'll give you two choices..."</p><p>Ren's emotionless voice rang inside Suriol's head cutting his thoughts away.</p><p>Suriol forcefully calmed himself down and calmly asked.</p><p>"What are the… two choices?"</p><p>"We stop this meaningless fight and you submit to me."</p><p>'As expected.'</p><p>Suriol's teeth clenched when he heard Ren's words. He had long estimated that this was what Ren was going to say.</p><p>The only reason he had asked was because he wanted to buy himself some time to use his skill. The one that allowed him to duplicate his opponent's point of envy.</p><p>At this moment, he realized that this was the only way for him to salvage the situation.</p><p>'Almost there.'</p><p>He raised his head to look at Ren.</p><p>"…What is the other choice?"</p><p>"Heee…"</p><p>Ren scoffed as his eyes began to dull and an incomparably powerful pressure began to erupt from his body.</p><p>"If you choose to attack, I'll kill you."</p><p>'Kill me?'</p><p>Suriol was left stunned by Ren's answer.</p><p>Letting the answer sink into his mind, he suddenly burst out laughing.</p><p>"Hahaha, has all that power gotten into your head? Do you actually think you can defeat me with the power you showed?"</p><p>He was strong, that was certain, but for him to actually kill him?</p><p>"Ha, You've gone completely crazy. All that power has gotten into your head."</p><p>"I guess?"</p><p>Ren responded in a sluggish manner while bringing his hand forward and repeatedly clenching and unclenching his hand.</p><p>"Honestly…having just broken through to this new rank and feeling all the power that comes with it…I would find it quite saddening if you were to choose to submit to me. After all, I do want to have some fun as well."</p><p>":..You sound quite confident in yourself."</p><p>Suriol gritted his teeth in a covert manner. Suddenly, a purple hue erupted from out of his body, and his figure began to transform.</p><p>"So that's your choice…"</p><p>A soft smile soon began to spread on Ren's lips as he extended his hand.</p><p>"I couldn't have asked for anything better."</p><p>When he closed his fist, the surrounding air suddenly became icy. Shortly after that, the sky began to twist and cracks formed all over the sky. Bright yellow swords began to emerge from the cracks in the sky, with their tips all pointed in Suriol's direction.</p><p>"Let's see…"</p><p>Ren lowered his head to look at Suriol's, and as he did so, he slowly pressed his hand down, causing the swords that were floating in the air to plummet to the ground like a torrential downpour of death.</p><p>"What's going on?"</p><p>"What's that?"</p><p>The ongoing conflict below was slowed down as everyone turned their attention to the sky in order to observe the phenomenon that was taking place in the atmosphere as an insurmountable pressure bore down over a large radius that encompassed several kilometers.</p><p>The very instant that they saw the enormous swords raining down from the heavens, many people felt a tightening in their chests as they swallowed mouthfuls of saliva and focused their attention on the two individuals that stood in the sky.</p><p>At this moment, everyone knew that the outcome of the conflict between the two would dictate the real winner of the war.</p><p>Instantly everyone stopped whatever they were doing and focused their attention on the conflict above.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-647.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-649.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

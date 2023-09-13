@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 502 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 502 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-501.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-503.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Crack—!</p><p>A thin fissure materialized out of thin air.</p><p>Tok.</p><p>A calm and steady footstep echoed throughout a large hall. Two crimson-red eyes shone in the dark hall, as a semi-transparent white-haired figure stepped out of the thin fixture.</p><p>The fissure closed up, and the figure walked toward the end of the hall where a throne sat at the top of a flight of stairs.</p><p>Stopping next to the flight of stairs, the figure looked up.</p><p>It was then that his eyes met with another set of scarlet red eyes. Sitting on the throne with his legs crossed and the side of his face leaning on his arm which was propped up on the throne, the red-eyed figure looked down.</p><p>At the exact moment the two eyes met, the white-haired figure beneath the flight of stairs started to disintegrate as bright white lights started coming out from his body.</p><p>Slowly, the particles floated in the air and merged into a white ball that flew in the direction of the figure sitting on the throne.</p><p>Extending his hand and opening his palm, the white-haired figure sitting on the throne watched as the ball paused and levitated atop the palm of his hand.</p><p>He then stared at the orb for a good couple of seconds.</p><p>"Heh."</p><p>He smiled and squeezed his hand.</p><p>Rumble—!</p><p>Immediately after he squeezed his hand, the hall started to shake uncontrollably. This persisted for a good minute before the shaking came to an abrupt halt.</p><p>Just then, the moment he squeezed the white orb, memories, and images of what had transpired not too long ago began to replay inside of the Demon King's mind.</p><p>Leaning his head back, the white-haired figure muttered.</p><p>"Not bad."</p><p>For someone that had not remembered his past, this was indeed pretty good.</p><p>But.</p><p>"He's still too weak."</p><p>Jezebeth shook his head.</p><p>Although the figure was the same as he remembered in the past, he had still not reached the strength of his past.</p><p>"Old friend..."</p><p>Jezebeth laughed a bit.</p><p>This was a bit of a stretch from his end.</p><p>They couldn't quite be called friends, after all, their goals clashed. Had they not clashed, then perhaps they might've even joined hands.</p><p>Unfortunately, they were fated to stand on the opposite ends of each other.</p><p>Such was their fate.</p><p>"It's truly a pity..."</p><p>Waving his hand the air distorted and a small black portal formed in front of him. Squinting his eyes, he peered through the black portal.</p><p>From there, he was able to see a large planet in the distance.</p><p>"It's only a matter of time."</p><p>Jezebeth ended up mumbling after staring at the planet in the distance.</p><p>"...Five years."</p><p>Placing his hands on the side-arms of the chair, he gradually stood up.</p><p>"That's how long you have left. I hope you don't disappoint me the next time I see you. I can sense it. This will be our last game."</p><p>Extending his hand, powerful black energy sprung forth from his body and merged toward the palm of his hand.</p><p>Opening his mouth, the edges of his lips curled upwards as amusement flashed across his face.</p><p>"Boom."</p><p>Seconds after his words came out, cracks started to form on the surface of the planet.</p><p>Within seconds the cracks started to expand, before...</p><p>Bam.</p><p>They shot outwardly throughout the space, leaving nothing but a bright orange nebula.</p><p>***</p><p>"What do you mean Ren is gone?"</p><p>Smallsnake's exasperated voice rang inside a small luxurious room.</p><p>"First he breaks a dungeon, then he suddenly runs away without telling us where's he going, and expects us to be fine with the situation."</p><p>Pacing around the room, he threw his arms in the air.</p><p>"I'm sick of his shit! I'm sick of it!"</p><p>Gone was his usual demeanor as he continued ranting nonstop.</p><p>Not that anyone else paid him any particular attention. Smallsnake ranting about Ren wasn't exactly a rare sight.</p><p>"Do this do that, solve this, solve that, I'll be gone for a bit so take care of the others for me while I'm out."</p><p>He threw his middle finger in the air.</p><p>"You fucking bastard! Just wait until you come back!"</p><p>"...and what are you going to do when he comes back?"</p><p>It was then that Angelica's voice echoed throughout the room, and Smallsnake's feet came to a pause.</p><p>"What am I going to do?"</p><p>Smallsnake puffed his chest.</p><p>"I'm going to finally give Ren a reality check. Let him understand that he can't overwork people like me. There will come a day when they will rebel against his tyranny!"</p><p>"Oh?"</p><p>Angelica raised her brow. The corner of her lips curled upwards, albeit slightly. She was clearly enjoying the show.</p><p>"But I can already imagine what the conversation between the two of you will be like."</p><p>"Hm?"</p><p>Smallsnake tilted his head. Before he could even reply, Angelica started talking.</p><p>"Hey Ren, we need to have a t—"</p><p>"Shut up Smallsnake, take a seat."</p><p>"Okay."</p><p>Everyone in the room subconsciously nodded their heads. Be it Leopold, Ava, Ryan, or Hein, they all nodded their heads in agreement.</p><p>This was indeed how they would imagine Smallsnake's confrontation with Ren to go.</p><p>"Wha—"</p><p>"I'm right, aren't I? Stick-like human."</p><p>Smallsnake weakly turned to face Angelica.</p><p>Raising his hand, he lowered it.</p><p>"When are you going to stop calling me stick-like human?"</p><p>"...When I feel like it."</p><p>Angelica shrugged her shoulders and leaned back on her chair.</p><p>Her words caused Smallsnake's sudden inflated ego to quickly deflated as his shoulders slumped down.</p><p>"Hey..."</p><p>"What?"</p><p>Angelica snappily asked</p><p> "Nevermind..." </p><p>In the Smallsnake gave up and sat down in the corner of the room.</p><p>"No one likes me..."</p><p>He repeatedly mumbled to himself with a lost look on his face.</p><p>Angelica rolled her eyes.</p><p>He tended to do that from time to time. This was exactly why no one in the room paid him any particular attention.</p><p>Clank—!</p><p>It was then that the room burst open and a haggard figure walked in. With his shirt untucked and filled with beer stains, Thomas walked into the room. His haggard eyes scanned the room in search of someone.</p><p>But he was inevitably unable to find him.</p><p>"Where has that bastard run off to?"</p><p>He asked in a groggy and throaty voice.</p><p>"I should've known from the moment that he came here that he was going to give me more work," He mumbled in an almost inaudible voice.</p><p>*Puff*</p><p>Smoke rose in the air.</p><p>With both legs on a wooden tea table, Leopold casually glanced at Thomas.</p><p>"If you're asking for Ren, then tough luck, he went on a trip."</p><p>Thomas almost fell on the spot.</p><p>"A trip?"</p><p>*Puff*</p><p>Leopold took another puff and nodded.</p><p>"Yeah."</p><p>"Give me that shit."</p><p>Walking up to Leopold, Thomas snatched his cigarette and took a puff himself.</p><p>*Puff*</p><p>"Oy, Oy."</p><p>Leopold stood up in anger. Extending his hand he tried to snatch his cigarette back.</p><p>"Go back to your drinks you alcoholic."</p><p>Not that Thomas would allow it as he took a step back and avoided his arm.</p><p>"Eh? Says the smocking addict."</p><p>*Puff*</p><p>He took another puff.</p><p>Extending his hand and stopping Leopold from snatching the cigarette back, Thomas cut to the chase.</p><p>"Anyways, I'm not here to joke around."</p><p>At his words, the atmosphere in the room suddenly started to become more serious as everyone finally started paying attention to him.</p><p>*Puff*</p><p>Taking another puff, Thomas looked at Leopold's face scrunch up from the corner of his eyes, but he pretended to feign ignorance and kept a straight look.</p><p>"Ehem, anyway, I'm here to thank you on behalf of the black market. Had it not been for you guys, we would've never been able to find out the two demons residing in our dungeons."</p><p>Raising his hand, Thomas scratched the back of his head.</p><p>"Quite frankly, I'm embarrassed. Although we don't particularly pay too much attention to what happens within the dungeons, times have changed and dungeon overloads have become a real problem."</p><p>Pausing, Thomas tapped on the butt of the cigarette.</p><p>"Therefore, after a lot of consideration, we've decided to grant you all access to our treasury room. You can take whatever you want."</p><p>At that exact moment, his words faded, and everyone's eyes lit up, including Smallsnake who regained vitality.</p><p>Noticing the changes in everyone's expression, Thomas already started to express his regret.</p><p>"Ah, shit..."</p><p>Without a doubt, they were going to lose a lot of money today.</p><p>***</p><p>A few hours later.</p><p>"Oh, I see. Okay, yes, Alright, thank you for informing me."</p><p>Click—!</p><p>Hanging up the phone, Samantha turned around.</p><p>Sitting on the couch of the living room, Natasha raised her head and gazed at Samantha.</p><p>"Is something up?"</p><p>Samantha smiled. Her smile sent chills down Natasha's spine.</p><p>"Oh, no, nothing much."</p><p>She then proceeded to sit down on the sofa opposite her.</p><p>Covering her mouth with her hand, her eyes opened slightly.</p><p>"I've just heard something funny."</p><p>"Funny?"</p><p>Natasha carefully asked as she scooched her body back a little.</p><p>She didn't look like someone who had heard had something funny. Quite the contrary in fact. To Natasha, she looked like someone that was out for blood.</p><p>"Very."</p><p>Samantha lowered her hand and crossed her legs.</p><p>Still retaining the smile on her face, her face darkened. Or at least, that was how it seemed to Natasha.</p><p>"Apparently, my filial, handsome, kind, smart, son has decided to take a six-month vacation without any prior warning."</p><p>The smile on her face wiped.</p><p>"How sweet of him, right?"</p><p>"He what?"</p><p>This time, it was Natasha's turn to be surprised.</p><p>"He's going on a six-month vacation?"</p><p>"That's what his colleagues said."</p><p>Natasha leaned back on her chair.</p><p>"No wonder you're ma—"</p><p>"I'm not mad."</p><p>Samantha sharply cut.</p><p>Opening her mouth, just as she was about to say something, she closed her mouth and sighed.</p><p>"Okay, I'm a little bit mad."</p><p>Similarly leaning back on the sofa, Samantha shook her head.</p><p>"I'm sure Ren is doing this for a good reason. He's not the type of person that does something impulsively, but I really do wish that he would tell me this kind of stuff before he just goes on to disappear for a while like he usually does. This isn't even the first time."</p><p>Recalling all of the times that Ren disappeared out of nowhere, Samantha wanted to get mad, but in the end, she couldn't bring herself to.</p><p>He was her son, so she knew him best.</p><p>Therefore, she knew that whatever was happening right now, was very important for him.</p><p>He wasn't the type of person to leave without any real reason. She was just venting her frustrations at the fact that he didn't even say goodbye to them before leaving.</p><p>Now, how was she supposed to explain to Nola that he was going to leave for another six months?</p><p>Just the thought gave her a headache.</p><p>Clank—!</p><p>It was then that the living room's door opened.</p><p>"Speak of the devil. "</p><p>Samantha muttered.</p><p>"Mama!"</p><p>Following her words, Nola ran into the living room with a bright smile on her face.</p><p>Samantha smiled when she saw this. Extending her hands, she picked Nola up.</p><p>"Huaaa."</p><p>Nola happily giggled.</p><p>As this was happening, someone else entered the living room. It was Amanda.</p><p>Greeting her was Natasha.</p><p>"How was your day Amanda."</p><p>"Mhm."</p><p>Amanda casually nodded her head and sat down on the sofa. She then took out her phone, and scrolled through it with a serious look.</p><p>Her behavior surprised Natasha quite a bit as she couldn't help but worry.</p><p>"Is there something wrong, Amanda?"</p><p>"No."</p><p>Amanda flatly replied. Her eyes were currently fixed on a certain post. It was a post of two girls with a certain someone Amanda knew.</p><p>[Enjoying my time with our new professor!]</p><p>In the photo was a selfie of Ren happily sleeping with two beautiful girls, of which one was Sophia, with their hands doing the peace sign.</p><p>2,053,057 likes.</p><p>MrNettwerkSheep : Whaaa! He's so handsome!</p><p>7Clouds5 : Isn't that Ren Dover?</p><p>Kilin874 : Cool!</p><p>Her eyes squinted.</p><p>'He seems to be enjoying his time as a professor...'</p><p>She thought. But she eventually shook her head and sighed.</p><p>Actually, she could tell from the picture that the photo had been taken without his consent.</p><p>That said.</p><p>Whenever Amanda looked back at the photo, she would feel this weird sense of discomfort in her heart.</p><p>At first, she was confused about her feelings, but it didn't take long for her to realize what she was feeling.</p><p>It was jealousy.</p><p>There was no use denying her feelings anymore.</p><p>She liked Ren.</p><p>And quite a bit at that.</p><p>Therefore.</p><p>Whenever she would see pictures of him with another girl, Amanda would inevitably become jealous.</p><p>It just wasn't something that she could control anymore and wasn't something she was planning on controlling.</p><p>She realized that she could no longer remain as passive as in the past.</p><p>She needed to become more proactive.</p><p>"Oh, Amanda, have you not heard?"</p><p>It was then that she heard her mother's words. Amanda finally took her eyes away from her phone.</p><p>"Heard what?"</p><p>"That Ren's on a six-month vacation."</p><p>Like a sudden bombshell had been dropped on her, Amanda's face froze.</p><p>Natasha's face changed when she realized this as she murmured in a low voice, "Looks like she didn't know as well...'</p><p>It was then that she suddenly noticed a change in Amanda's countenance.</p><p>Natasha flinched slightly as she cautiously asked.</p><p>"...Amanda, sweetie, why are you smiling?"</p><p>"I'm smiling?"</p><p>Amanda placed her hand over her lips.</p><p>"..Yes."</p><p>Natasha nodded her head.</p><p>"Yes, you're smiling."</p><p>She was smiling. But that wasn't the scariest part.</p><p>The scariest part was the fact that she was smiling exactly like Samantha was not too long ago.</p><p>'Dangerous.'</p><p>Natasha thought as she scooched further back in her seat.</p><p>This was a very dangerous situation.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-501.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-503.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 705 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 705 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-704.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-706.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>The room's atmosphere became oppressive, suffocating all those within.</p><p> The butler on the side and another demon present in the room brandished their weapons and pointed them toward the human seated opposite the Duchess.</p><p>Under the pressure that surrounded them, perspiration began to form on the sides of their faces. This was despite the fact that they were all within the Duke realm.</p><p>Priscilla wasn't in a much better state, and her eyes shook under the tremendous pressure.</p><p>"P-prince rank…h.how is this possible?"</p><p>There was an undisguised shock in her voice. Never did she imagine that the hooded figure would turn out to be a Prince ranked entity. An entity that stood at the very peak of existence.</p><p>'No, although it's close to Prince rank, it's still just a little bit off...'</p><p>It was still far superior to her strength.</p><p>A bone-chilling voice echoed throughout the room as his mouth parted open.</p><p>"…Your misunderstanding started from the very moment you thought I cared about such matters."</p><p>Hearing the voice, shivers ran down her back. The gaze with which he looked at her made her feel insignificant.</p><p>Just a couple of words from him, and everything changed. Originally, she was planning on using the information to have him join her side. In her eyes, he was an existence that she could make use of.</p><p>Plus, since they had already settled their debt, they owed each other nothing.</p><p>...It was a pity that she had kicked an iron plate.</p><p>He wasn't someone who could be controlled. Priscilla came to understand this the hard way.</p><p>She took a deep breath while gripping the armrest of her chair tightly. By the second breath, her gaze became calm again, and she met his eyes.</p><p>"Alright, then. Let me hear what you're here for."</p><p>She accepted the situation rather quickly. She didn't have much of a choice. With her grandfather, not present due to the matters regarding the World Decree, she had no way to get out of the situation.</p><p>She'd gain nothing from fighting against them.</p><p>"Good. It looks like you're easy to talk to."</p><p>The human smiled. The tension that had been suffocating the room dissipated almost as rapidly as it had arisen, and as soon as it did, she experienced an immediate sense of relief.</p><p>He then crossed his legs.</p><p>"I won't waste much of your time. I want to cooperate with you."</p><p>"Cooperate?"</p><p>"Yes. Cooperate."</p><p>He put further emphasis on the word 'cooperate', as if trying to show that he wasn't trying to take advantage of her.</p><p>'Tsk, let's hear this out.'</p><p>Of course, Priscilla didn't really put much thought into his words. She was a demon, and she naturally understood that there was no such thing as true 'cooperation'. One side always tended to lose out, and given what had happened before, she didn't believe for one second that he was actually going to propose a fair deal.</p><p>"The cooperation is rather simple."</p><p>The man grasped the edges of his hood, slowly lowering it to reveal his face. Jet black hair, deep blue eyes, and pale skin. In that moment, Priscilla finally managed to see what lay behind the hood.</p><p>'As expected, he's a human.'</p><p>Though she was already aware, it didn't take away from her shock. It was almost unheard of for a human to be this powerful.</p><p>He continued.</p><p>"…In exchange for helping you, I want you to help me."</p><p>"Helping me?</p><p>Priscilla had to take a moment to digest his words. An odd look then spread across her face.</p><p>"…Helping me? How exactly are you planning on helping me?"</p><p>While he had the strength similar to that of a Prince ranked demon, he was by no means capable of fighting against seven other Prince ranked demons. He was strong but not strong enough.</p><p>"Don't worry about my means."</p><p>The man smiled. It was a smile that exuded self-assurance, and for some reason that Priscilla was unable to explain, she found herself drawn to it.</p><p>Somewhat.</p><p>Even though she found his confidence to be rather infectious, she was not the type of person to actually fall for such nonsense.</p><p>She drew her hands together in front of her and leaned forward, pressing her elbows against her thighs while keeping her hands interlocked.</p><p>"Let's say I believe you. What exactly do you need from me?"</p><p>"Nectar."</p><p>It was a simple word. Yet, the moment that those words escaped from his mouth, Priscilla's face underwent a subtle change.</p><p>'...As expected.'</p><p>"Nectar? You're not thinking of the same nectar that I'm thinking of, right?"</p><p>"What other nectar is there?"</p><p>"…This fucking."</p><p>A curse escaped her mouth, and she let slip her true personality. She leaned against the sofa, covering her face with her hand, and looked away.</p><p>She probed a little bit further.</p><p>"How much do you need?"</p><p>"Enough for four people."</p><p>"…Aooo."</p><p>Priscilla had never in her entire life imagined that she would be capable of producing such a sound. However, at that precise moment, she let out a sound that was eerily reminiscent of a dog's howl.</p><p>Had she been in her normal state of mind, she would've been too embarrassed to speak. But she wasn't.</p><p>"You might as well rob me at this point! Do you have any idea just how much you're asking for?!"</p><p>Spit came out of her mouth at the beginning of each of her sentences, and at some point, she had stood up from her seat.</p><p>"I'd have understood if it was for one person, but three more people? Just fucking rob me already!"</p><p>Nectar.</p><p>Or, to be more precise―World Nectar―was something that was almost as rare as the purest devil fruit that could be harvested from the world tree.</p><p>Even though it didn't have the same effects as the devil fruit, it still had the amazing ability to make one's mind clear.</p><p>It didn't sound like much, but such material was extremely valuable to demons, whose actions were always influenced by their impulses.</p><p>The man slowly closed his eyes, oblivious to Priscilla's yelling in the room. He didn't finally open them up again until five minutes had passed and Priscilla had finally calmed down.</p><p>"Are you done?"</p><p>He inquired, his tone a little flat.</p><p>Priscilla frowned, but upon opening her mouth, she closed it back again and sat down. She was indeed done.</p><p>"Good."</p><p>A smile formed on the man's face. His smile made Priscilla feel mildly irritated, but she somehow managed to suppress her inner feelings.</p><p>He continued.</p><p>"While I do know the importance of the Nectar, I'm also very well aware of how much the upcoming batch of devil fruits are worth."</p><p>Their eyes met, and Priscilla felt her breath stop for a moment.</p><p>"I'll provide you the opportunity to be one step above the rest, and in exchange, you give me some nectar. What part of the deal doesn't sound unfair?"</p><p>"That, but…"</p><p>"But, what?"</p><p>"But."</p><p>Priscilla found herself unable to refute. Muttering another 'but' her mouth promptly shut, and her back sank into the sofa.</p><p>'If… and if his words are true, then it might really be worth a shot.'</p><p>The World Nectar was indeed rare, but it wasn't as though she didn't have it. In fact, she had more than enough to appease him...</p><p>It was just that she was rather afraid of what her grandfather might do if he were to learn of her actions.</p><p>'He won't kill me, will he?'</p><p>Maybe it was best if she found a way to protect her core. In case something happened...</p><p>Another problem was whether he had the capability of achieving what he had promised to do.</p><p>What if he failed and the others learned of her plot?</p><p>A risk.</p><p>It is unquestionable that she would take a significant risk if she were to accept the terms. One in which she was unsure whether or not the risk was worth it.</p><p>But did she even have a choice, to begin with?</p><p>"You…"</p><p>She raised her head and stared deeply into his eyes. When their eyes met, the thing that surprised her the most was that she did not observe any change in his eyes from the beginning to the end of their deal.</p><p>He was calm. Strangely calm. Was it confidence? …or was he just pretending to be confident?</p><p>"What is it?</p><p>He asked.</p><p>"…How can you guarantee me that you're not going to screw me over?"</p><p>"Heh."</p><p>As if already expecting the answer, a hazy smile formed on the man's face.</p><p>Then, with a flick of his finger, a scroll appeared in his hand, which he unfurled slowly before passing onto her.</p><p>"Here. Take it."</p><p>'A mana contract.'</p><p>Priscilla's face suddenly took on a very obvious frowning expression. Instantaneously, she recognized what he was holding, and without giving it much thought, she took it from him and began to read it.</p><p>She first read the entire contract, which took her about ten minutes, and then she read it again, which took her about twenty more minutes. Given her attention to detail, it was essential that she read it more than once.</p><p>"Upon the signing of this contract, the two parties will swear not to betray each other..."</p><p>She slowly started to recite the contents of the contract.</p><p>"From the moment the contract is signed, both parties will disclose how many entities are aware of the existence of the contract and the other party."</p><p>She was well aware of how unreliable mana contracts were.</p><p>A loophole could have been created with nothing more complicated than some simple wording changes. Because this was such an important transaction, she had to be extremely careful, as the slightest mistake could have disastrous consequences.</p><p>"From the moment the contract is signed, both parties will be unable to disclose in any shape or form any information regarding the transaction that occurred between both parties..."</p><p>Finally, after reading the passage for the fourth time, she set it back down on the table and muttered.</p><p>"…I can accept the terms."</p><p>"Find any loopholes?"</p><p>'What an annoying human.'</p><p>Priscilla found it hard to contain herself at the moment. The amused look on the human's face annoyed her to no end. Especially when it seemed to say, 'I know you found nothing because there was nothing, to begin with.'</p><p>Secretly balling her fist, her face blossomed into a smile.</p><p>"I want to add a condition."</p><p>"Condition?"</p><p>Finally, and for the love of all demons, a change finally occurred on the face of the man sitting opposite her. With his brows knitting together, his voice started to deepen.</p><p>"Let's hear it then. What's your condition?"</p><p>"It's nothing much."</p><p>Raising her hand, Priscilla's gaze shifted, stopping directly before a familiar cloaked figure. It was the one that had saved her back then.</p><p>With her smile enlarging by the second, her head cocked a little.</p><p>"Let him stay with me for a bit."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-704.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-706.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

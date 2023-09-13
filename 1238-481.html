@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 481 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 481 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-480.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-482.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank—! </p><p>Coming out of Donna's office, the first thing I saw was Kevin standing by the side with his phone in his hand. </p><p>He had a lonesome look on his face. </p><p>'You had it coming.' I thought before heading out.</p><p>Right as I had taken a couple of steps, Kevin called out for me. </p><p>"Ren, wait." </p><p>"..." </p><p>Without saying anything, my footsteps came to a halt. </p><p>"Ren, enough of the jokes, I need to talk to you." </p><p>Sensing that Kevin's tone was serious, I turned around. </p><p>"What is it?"</p><p>Putting the phone away, Kevin looked around. His gaze locked on the cameras of the place. </p><p>"Hmm, I don't think this is the right place for me to say. Actually, let's meet up on the weekend, outside of the Lock." </p><p>Seeing how mysterious he was being, my brows couldn't help but crease. </p><p>However, in the end, I nodded my head. </p><p>"Alright." </p><p>"Thanks." </p><p>Lowering his head, Kevin finally took notice of my hand. </p><p>"What happened to your hand?" </p><p>"Nothing." </p><p>Turning around, I raised my hand and bid Kevin goodbye. Even if I told him, he'd eventually find out. </p><p>"I'll see you around, I got things to do right now." </p><p>"...Okay." </p><p>Taking out the card that Donna had given me, I casually flipped it around my hand. </p><p>'This is probably going to be a long night.' </p><p>*** </p><p>Lock, Informatory. </p><p>Clank—! </p><p>With the sound of the door opening, the nurse raised her head and looked at who had just come into the room. </p><p>"Oh, it's you, professor." </p><p>Upon setting her sight on the person that had entered the room, a smile appeared on her face. With his usual bowl-cut hair which was now in a bit of a mess and lanky body, Professor Thomas entered the room. </p><p>Glancing in the direction of the youth laying down on the bed, the nurse asked. </p><p>"You here to check up on him?" </p><p>"Yes." </p><p>Professor Thomas answered with a smile. </p><p>Turning his head, his eyes paused on the youth on the bed. </p><p>"How is his situation?" He asked. </p><p>"He is doing pretty well." </p><p>The nurse replied as she stood up. Walking beside Ricardo, the youth that was currently resting, she casually tapped him on the arm. </p><p>A subtle and faint blue hue enshrouded the tip of her finger as she tapped his arm. </p><p>"Ugh." </p><p>At the exact moment her hand pressed to his arms, with a small sound, Ricardo's eyes which were closed shut slowly started to open. </p><p>Blinking a couple of times and glancing toward his left and right, he groggily muttered. </p><p>"Where am I?" </p><p>"You're at the infirmary." </p><p>The nurse replied with a kind smile on her face. </p><p>"...The infirmary?" </p><p>It took a couple of seconds for Ricardo to recall the events prior to his appearance in the infirmary, and when he did, his face bleached completely. </p><p>"Ah...no..ah.." </p><p>Mumbling to himself, sweat started to drip by the side of his face as he sat up and started to stutter. </p><p>"T..the...the lesson! I...I...I" </p><p>Raising his head, his eyes finally paused on Professor Thomas. His mouth became dry. </p><p>"Professor," He weakly muttered. </p><p>"It's alright." </p><p>Sitting down on the bed, Professor Thomas's voice was calm. </p><p>"You don't have to worry about what happened today. Don't you remember what happened?" </p><p>Raising his hand, he placed it on Ricardo's shoulder. However, right as his hand touched his shoulder, Ricardo flinched back in fear. </p><p>"Ah." </p><p>Seeing Ricardo flinch, Thomas quickly took his hand away from his shoulder. Raising both hands in the air, he softly said. </p><p>"Don't worry, I'm not trying to hurt you." </p><p>Realizing what he had done, Ricardo apologized. </p><p>"I'm sorry professor." </p><p>"It's okay." </p><p>Understanding the current mental state of the student, Thomas scooched his body away from Ricardo. </p><p>In a calm manner, Professor Thomas started to explain to Ricardo what happened. </p><p>"Ricardo, if you are worried about what happened today, you don't have to. My assistant professor was able to resolve everything. No one was injured." </p><p>"...I...Is that so?" </p><p>Ricardo stuttered a little. </p><p>However, recalling the events prior to passing out, it indeed seemed to be that way. He secretly let out a sigh of relief. </p><p>"You should probably apologize to him after this." </p><p>Professor Thomas suddenly suggested, and Ricardo nodded his head in a daze. However, his following words sent chills down Ricardo's body. </p><p>"...Yes." </p><p>"Even though he was not exactly hurt a lot, he did get injured." </p><p>Snapping his head, he worriedly asked. His face became even paler. </p><p>"Injured!? He got injured?!" </p><p>"Ah, you don't have to worry." </p><p>Glancing at the nurse, Thomas slowly moved his body closer. </p><p>"His injuries are only on a surface level. They aren't much." </p><p>Despite his words, Ricardo was not in the slightest bit relieved. In fact, his body slowly started to tremble. </p><p>'He's not mad at me, right? He won't kill me because of what I have done? What if he targets my family? They already are suffering because of how expensive the school fees are, what if he targets them?' </p><p>Recalling just how ruthless Ren looked back in the videos he saw of him, Ricardo couldn't stop trembling. His teeth started to chatter. </p><p>"Hey, Ricardo are you okay?" </p><p>He was only able to snap out of it when he felt something touch his right hand. Lowering his head, he found professor Thomas looking at him with worry. </p><p>"What are you worrying about? Are you worrying that Ren will do anything to you?" </p><p>Richard silently nodded his head. In response, Thomas smiled. </p><p>"You don't have to worry about that. All you have to do is apologize..." </p><p>Thomas's voice slowed down a little. His voice deepened too.</p><p>"...All you have to do is apologize sincerely." </p><p>"...Yes." </p><p>Ricardo slowly nodded his head. </p><p>'Yes, I need to apologize. If I apologize properly, he might not go after my family right?' </p><p>Raising his head, his eyes met with Thomas's. As their eyes met, Thomas's head tilted slightly. </p><p>"You know what you have to do right?"</p><p>"Yes." </p><p>Ricardo replied. </p><p>With a satisfied look, Thomas stood up. </p><p>"That's great." </p><p>Placing his hand on Ricardo's shoulder, and seeing that he no longer flinched at his touch, Thomas's smile grew a little. </p><p>"If you have any worries you want to share with me or anything of the sort. You can come to me at any time. As your professor, I will always be there for you." </p><p>"...Okay," Ricardo slowly replied. </p><p>"Good." </p><p>Thomas pushed Ricardo's body down. </p><p>"Have some rest for now. I will be seeing you in class tomorrow." </p><p>Glancing at the nurse, Thomas waved his hand at her. </p><p>"I guess everything is sorted. It should be about time I leave." </p><p>"It was nice seeing you, Thomas." </p><p>Once again waving his hand, Thomas finally left the room. Staring at Thomas's back from the bed, Ricardo slowly turned his head and stared at the ceiling of the room. </p><p>"I need to apologize," He softly muttered. </p><p>*** </p><p>Gulp—!</p><p>Chugging down a potion the size of a shot, I slurped in delight. </p><p>"Ahhhhh." </p><p>My head which was groggy instantly lightened up. </p><p>Staring at the potion in my hand, I muttered. </p><p>"Thank god for this." </p><p>The potion that I had currently consumed was something that Melissa had developed and was what I used in order to help my mind calm down and stabilize. </p><p>This was also the potion that I used in order to stop the negative thoughts inside of my mind from rising. </p><p>Immediately after each shot, all sorts of negative thoughts regarding my past would quickly disappear. </p><p>This was what helped me cope with my past. </p><p>It may not necessarily be a long-term solution, however, this was something I couldn't live without at the moment. </p><p>My mind was a very dark place. A place even I feared going into. </p><p>"Let's see." </p><p>Standing in the middle of a small room, and surrounded by a series of holographic images, I swiped my hand right. </p><p>At the exact moment my hand swiped to the right, the holographic images in front of me switched. </p><p>Following this, a series of different images appeared in front of me. </p><p>"Ricardo Mainz." </p><p>Glancing at them for a brief moment, I pressed on a certain profile, and the holographic images in front of me expanded. </p><p>"Good." </p><p>Currently, I was at the Lock's surveillance system. By selecting Ricardo's profile, I was able to gain access to all videos with his face in them. </p><p>Over a thousand hours of different footage presented itself before me. </p><p>My brows creased when I saw this. Crossing my arms, I shook my head. </p><p>"There's no way I have enough time to watch it all." </p><p>'Let's filter even more.' </p><p>After a bit of thought, I raised my hand and selected over twenty different profiles. Each belonging to the individuals the Lock suspected of being spies. </p><p>Of course, professor Thomas's profile was included in one of the profiles selected. </p><p>"This should do." </p><p>Upon selecting the profiles, I pressed the confirmation button and the holographic images slowly started to disappear once by one. </p><p>This persisted for a good minute before finally, the holograms stopped, and the thousands of hours of footage became tens of hours of footage. </p><p>This was still too much for me. </p><p>"Hmm, let's remove interactions when it is a lecture." </p><p>After a bit of thought, I once again filtered the footage. This time I chose to remove the lecture times since that was not what I was looking for. </p><p>What I was looking for was data that suggested to me that the incident that occurred not too long ago was instigated. What I wanted was one on one interactions. </p><p>Pressing the confirmation button, the holograms once again started to diminish. </p><p>It wasn't long before the footage finally stopped. To my delight, there was only an hour and a half worth of footage. </p><p>"Hhmmm?" </p><p>However, to my shock, I found out that the person who had interacted with Ricardo the most was in fact not Professor Thomas, but another professor. </p><p>Professor Jefferson. </p><p>Furthermore, he was actually one of the individuals I knew was actually a spy. </p><p>'Wait, so this actually has nothing to do with Professor Thomas?' </p><p>Filtering Professor Jefferson's data for a moment, I was only left with several minutes of interaction between Professor Thomas and Ricardo. </p><p>One of the interactions between him and Ricardo was at the training grounds where he gently moved him away, alongside multiple other individuals, in order to get to the middle of the square. </p><p>There was also another interaction at the nurse's office, because he had his back against the camera, I couldn't see his face properly, however, listening to their conversation, I found nothing that was suspicious at all.</p><p>[What are you worrying about? Are you worrying that Ren will do anything to you?]</p><p>[You don't have to worry about that. All you have to do is apologize...]</p><p>[...All you have to do is apologize sincerely.]</p><p>Most shockingly, Professor Thomas was asking Ricardo to apologize to me. This made me start to once question the validity of my suspicions.</p><p>'Maybe I'm overthinking things?' </p><p>Was I perhaps just being sensitive? ...At this point, I really had no idea, because other than that, the interactions that Professor Thomas had with Ricardo only amounted to either a few words or just simple greetings. </p><p>Nothing else. </p><p>"What the..." </p><p>Un-filtering the video footage, I quickly looked through Professor Jefferson's interactions with Ricardo, and from there was able to see that each time Ricardo met with Jefferson, he would come out always more depressed, or how should I say? Insecure? </p><p>From this moment on, I already knew who was responsible for this incident. </p><p>"Without a doubt, Ricardo is one of Jefferson's targets..." </p><p>But...</p><p>I still just couldn't accept the idea that I was overthinking things. Raising my hand, I unknowingly started to bite my nails. </p><p>"Ugh. I don't care."</p><p>Swiping my hand right and saving all the footage between Professor Jefferson and Ricardo, I proceeded to un-filter all the names in the system and pressed onto Professor Thomas's name. </p><p>Hundreds of hours of different footage appeared before me. </p><p>Gulp—! </p><p>Taking out another shot of Melissa's mental potion, I started to play the videos. </p><p>'Fuck it, I don't care. Even if I end up wasting all of these hours, as long as it helps me find something, then it's worth it.' </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-480.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-482.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

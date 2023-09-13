@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 768 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 768 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-767.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-769.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Cr…Crack! Crack!</p><p>It was a sight unlike any other.</p><p>The sky, once a serene blue, was now cracking and breaking apart, revealing a jagged, gaping chasm that seemed to stretch from horizon to horizon.</p><p>The edges of the crack glowed with an ethereal light as if searing heat emanated from the depths of the celestial rupture.</p><p>"What's going on?"</p><p>Whispered someone in the crowd.</p><p>"The sky… It's…"</p><p>Stuttered another.</p><p>As the people stood there, frozen in awe, strange things began to happen.</p><p>Rustle―! Rustle―!</p><p>The crack pulsed and writhed, and one could hear a sound like the rustling of wings or the whispering of ghosts. And then, from the depths of the crack, something emerged - something huge and tangible… almost like a wave.</p><p>"H,hey…"</p><p>Leon punched Ram, who was beside him. His gaze was currently drawn toward the crack in the sky.</p><p>It was expanding by the second.</p><p>"I'm not seeing this, right?"</p><p>Ram shook his head, secretly taking a big gulp. There was something unsettling about the situation, and his lips trembled.</p><p>"You.. you have any idea of what's happening?"</p><p>"N,no."</p><p>Leon shook his head.</p><p>"I think it's best if― "</p><p>Just as he was about to finish his sentence, the crack exploded into bits, and the wave that formed above came crashing down from the sky.</p><p>Crash―!</p><p> The wave was so powerful that it sent the people scattering in all directions. Accompanying the wave were screams of terror which resounded throughout. Pieces of the sky fell directly down to earth, and everyone fell into a state of panic.</p><p>"Oh, shit!"</p><p>Leon muttered, staring at the approaching wave. He wanted to run, but he couldn't. The wave was too fast and too large for him to avoid. By the time a second had gone by, the wave was already upon him, and he reflexively closed his eyes, thinking this would be his last.</p><p>Wooosh―! But just as he closed his eyes, he felt a passing breeze, and the mana inside of his body boiled.</p><p>It was like a furnace had been lit inside him, and he could feel the power coursing through his veins.</p><p>"Huh?"</p><p>When he opened his eyes again, he was shocked to see that he was still alive.</p><p>'I didn't die? What's going on?'</p><p>He looked around him, checking to see if Ram was still fine.</p><p>To his surprise, the screams of terror had completely died down, and when he looked around, he saw everyone with the same surprised expressions.</p><p>"What happened?"</p><p>Leon overheard Ram's absentminded mutterings, and he turned his head toward him. He observed him closely but found that nothing was strange with him.</p><p>The same went for Ram, who observed Leon just as closely. Just as the two were about to open their mouths, their eyes bulged simultaneously. It was as if they noticed it at the same time.</p><p>"The…"</p><p>The two of them quickly closed their eyes and felt the mana in the air. Moments after closing their eyes, they both opened them up again in shock.</p><p>Staring at each other, their mouths turned agape.</p><p>"I,I'm not tripping, am I?"</p><p>Ram's voice was barely above a whisper.</p><p>"No… You're not tripping."</p><p>Leon shook his head at Ram's words, his face filled with shock. Looking around and seeing the shocked expression on several other individuals, his mouth slowly opened.</p><p>"…The mana in the air definitely became many times denser than before."</p><p>***</p><p>"Ugh."</p><p>I was aware of everything that was going on the entire time. I was there, so I not only saw everything that took place, but I also saw the final moments.</p><p>For a fleeting instant, the thought crossed my mind that this might be the end for me. There was nothing that stopped him from ending it all when I no longer had control over my body.</p><p>During that moment, I really thought it'd be it for me… I thought that everything that I worked for would come crashing down at that moment, so…</p><p>'Why? …Why did you not go through with it?'</p><p>I could not shake the question from my mind. I was extremely curious as to what had caused such a shift in attitude, given that I had previously attempted everything to change his mind.</p><p>…What was it that made him change his mind?</p><p>Was it Kevin?</p><p>Was he the one responsible for the sudden change…?</p><p>"Ugh."</p><p>I let out another groan as I felt the tips of my fingers and attempted to prop up the rest of my body from the ground.</p><p>The entirety of my body hurt, and I was so stiff that I could hardly move. I knew that several of my bones had been fractured, and despite the fact that I had just consumed a potion, I also knew that I would still require some additional time to recuperate completely.</p><p>"Fuck."</p><p>In spite of the excruciating pain, I was able to force myself toward the nearest wall and lean my back against it. I forced myself to take a few deep breaths in order to overcome the excruciating pain that was permeating my entire body.</p><p>…It was painful, but I was well versed with pain.</p><p>Something of this magnitude did not bother me nearly as much as it would have quite some time ago when I was still at the Lock.</p><p>'It isn't too bad…'</p><p>I started by looking around the room. It was in a state that was still acceptable. It looked like a few paintings and some papers had been knocked over, but other than that, there wasn't much damage.</p><p>It just looked like a light breeze had come through the room, knocking the insignificant stuff down.</p><p>Despite that…</p><p>"What is this?"</p><p>My attention was drawn to a particular yellow orb that floated in midair above the wooden floor. Although I was quite a distance away from it and found that I was unable to move closer to it, as I observed it, I got the impression that I was already familiar with it.</p><p>Familiar golden runes and words floated around the orb, and I found myself unable to tear my gaze away from it.</p><p>…For some strange reason, it resonated with something within my body, and I stretched my hand toward it.</p><p>"Come."</p><p>I uttered subconsciously as if I were in a trance. What was shocking, however, was the fact that the orb listened to my words.</p><p>The orb responded to my command as if it were a sentient being and moved in my direction, drifting closer to me. Before coming to a halt, it hovered just a hair's breadth above the palm of my hand.</p><p>A gentle pulse swept through the air, and I let out another breath.</p><p>I didn't know when, but that breath was soon followed by another, and I was soon breathing heavily.</p><p>'This orb…'</p><p>There was something about the orb…</p><p>I couldn't place what was causing it, but I noticed that my vision was becoming increasingly blurry, and I couldn't take my eyes off the runes and words that were surrounding the orb... I wasn't certain if I was hearing correctly or not at that moment, but I noticed gentle whispers lingering in the air, and I slowly brought my hand to a close.</p><p>Swoosh―! Immediately after my hand came to a close, another gentle golden pulse radiated through the air, sweeping through every corner of the room and spreading outwardly, reaching areas around the room I was in.</p><p>"This."</p><p>At that precise moment, both my eyes suddenly became crystal clear, and a surge of power rushed through my body, filling every nook and cranny of it.</p><p>...The wounds that had formed inside of my body started to heal at an alarming rate, and before I knew it, I had fully recovered. In addition to that, I felt a rapid expansion of the laws that were within my body.</p><p>If before the ratio between demonic energy and laws were uneven, now… now the laws were almost on equal terms with the demonic energy in terms of quantity.</p><p>"Ukh."</p><p>That… The two energies within my body started to compete with one another, so although it was a positive development, it also turned out to be quite a troublesome matter.</p><p>To keep the two energies from clashing against one another, I had to concentrate extremely hard, and despite my best efforts, it was taking a significant toll on my body.</p><p>"Shit."</p><p>I let out a curse through my clenched teeth.</p><p>… This presented quite a challenge, but as if that weren't enough, all of a sudden, I became aware of a distinct cracking sound emanating from further away, and I cocked my head in that direction.</p><p>"It's starting."</p><p>The sight that appeared before me was beyond anything I could have possibly imagined. Despite this, rather than being shocked, I was more surprised by what I saw. I had a premonition that the moment I killed Waylan, something similar to this was going to take place.</p><p>...I made the decision not to work with him due to this factor as well. Before we turned against each other, the two of us could have easily used each other to defeat Jezebeth. The fact that this was taking place right now was the reason why I did not choose to go with such an option.</p><p>Swoosh!</p><p>The sky began to tear apart, and I felt a lingering breeze brush past my body. It invigorated each and every part of my body, and I could feel the mana within my body beginning to boil.</p><p>Even though it wasn't happening very quickly, the mana that was contained within me began to grow and become more fluid.</p><p>"This is…" I smiled at the feeling. It was exactly as I thought. "…Good."</p><p>Clank―!</p><p>"Dad, what's goin…huh? What are you doing on the ground? Where's my dad?"</p><p>Right at that moment, the door flung open, and in walked Emma. It wasn't until she saw that I was the only one in the room that her panic subsided, and she stopped looking around the room.</p><p>"Ah."</p><p>When I felt her gaze on me, I opened my mouth to respond, but I found that I was unable to say anything. I gave it one more shot, this time taking a deep breath to calm myself down, but I got the same result.</p><p>…There was something stopping me from speaking.</p><p>"What's wrong with you?"</p><p>Emma asked, noticing the abnormality in me.</p><p>Before I met her gaze, I forced a mouthful of saliva down my throat. I bit the inside of my lower lip and then cast my eyes downward before closing them.</p><p>'This is going to be troublesome…'</p><p>"He went out to check out the situation."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-767.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-769.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

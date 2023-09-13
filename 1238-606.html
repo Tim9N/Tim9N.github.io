@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 606 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 606 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-605.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-607.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Pathetic, isn't it?"</p><p>As I mumbled those words, I turned to face the people in the seats across from me.</p><p>My throat tightened as I felt the gazes of the people in the room.</p><p>Their gazes...</p><p>They felt rather suffocating. Especially when I met the gazes of Ryan and the others that were close to Smallsnake. I felt a deep sense of guilt when I saw the pained expression on their faces.</p><p>A part of me felt responsible for this mess.</p><p>It wasn't just that. As I spoke, memories of Smallsnake started to resurface inside my mind. Each and every one of them caused me to experience intense anguish.</p><p>Time stood at a standstill, and a great sense of wariness washed over me. Enough to give me the impression that my body had completely lost all of its vigor.</p><p>'...I look pretty pathetic, don't I?'</p><p>I lowered my head and stopped speaking.</p><p>I probably looked a far cry from how I usually acted, but I couldn't help it. Never did I expect a loss to impact me so much.</p><p>Unlike the other me, I still had emotions, and they weren't something I could just turn off with the flip of a switch.</p><p>I wish I could...</p><p>...I really wish I could.</p><p>I slowly raised my head and opened my mouth to speak. My eyes quietly swept the room in the process.</p><p>My gaze halted in a certain area just as I was about to speak.</p><p>My body began to tremble. A flood of emotions burst out from deep within my body while my eyes focused on a particular person in the distance.</p><p>He...</p><p>He looked just like me.</p><p>Black hair, blue eyes, and an indifferent look...it would be more appropriate to say that he was me.</p><p>He was standing near the rear of the room with shackles around his hands and feet. Everything around me started to vanish at that very moment, leaving only him to fill my field of vision.</p><p>Everything around me felt dark.</p><p>It seemed as though the world had ended and the two of us were the only people remaining in this world. Breathing and standing got a little more difficult, which intensified the feeling of unease that I felt.</p><p>'All of this...'</p><p>Blinking once, the world around me cleared up and I found myself inside the chapel again. He was still standing there.</p><p>His image continued to haunt me in my mind.</p><p>'...All of this is his fault.'</p><p>I quietly mumbled to myself.</p><p>Everything that was happening to me, and Smallsnake's death. It was all his fault.</p><p>I was sure of it.</p><p>Smallsnake's death was something he had planned.</p><p>At first, it didn't make sense to me, but by this point, I was positive. Smallsnake's death was planned by him. He had planned his demise with the sole purpose of inciting animosity between Jezebeth and I.</p><p>His actions didn't make sense to me, but I just knew...</p><p>I knew that everything was his fault. He was cursed, yes...but so was I.</p><p>He was my curse.</p><p>That's why.</p><p>Opening my mouth, I quietly mumbled.</p><p>'...Please die.'</p><p>***</p><p>The funeral lasted for over three hours.</p><p>At that time, several individuals walked up to the podium and shared their memories of Smallsnake.</p><p>A large majority of the attendees didn't quite know Smallsnake. They were mostly there to support those that were affected by his death.</p><p>In fact, the number of people that were actually close to him didn't number more than ten. It was sad.</p><p>...but what was sadder was the faces of those that were mourning his loss.</p><p>Watching everything unfold, Kevin understood something.</p><p>He understood just how much this individual known as 'Smallsnake' meant to the people around him.</p><p>Especially Ren who seemed to be in a terrible state.</p><p>But...</p><p>'Please die.'</p><p>Catching a glimpse of his words, Kevin found himself unable to continue paying attention to the funeral.</p><p>Recalling his expression as he said those words, and the direction he was looking at, Kevin felt numb.</p><p>'Was he talking about me?'</p><p>Why?</p><p>Why did Ren want him to die so badly?</p><p>Actually, Kevin understood why. He just didn't want to accept it.</p><p>The loops, the memories, they felt weird to Kevin. In a way, he looked like the bad guy. He was the guy that turned Ren the way that he was.</p><p>...But Kevin felt that something was missing.</p><p>In a way, his actions made sense to him.</p><p>If he was presented with a choice to restart the world when half of it was destroyed as a result of Ren's actions, he would make the same decision again.</p><p>In a sense, what Ren was going through was what he deserved to go through.</p><p>His actions...</p><p>They were no worse than the Demon King.</p><p>Kevin understood that...yet he couldn't bring himself to hate him. In a way, he felt sympathy for him.</p><p>Especially after understanding just how much pain he went through, and the reason for his actions.</p><p>Kevin had no doubt that he would behave the same way if put in the same situation as him.</p><p>Nonetheless, that wasn't the thing that bothered Kevin.</p><p>'...There's something missing.'</p><p> Something else was bothering him. </p><p>He wasn't exactly sure about what it was. For now, it was just a feeling, but at the same time, Kevin knew that there was more to this 'feeling' of his.</p><p>"Hey, it's time to go back."</p><p>Kevin looked toward Emma after sensing a pull at his arm. After briefly focusing his attention on her, he turned around and swept his gaze around the room. Soon his eyes paused on Ren who seemed to be with his parents.</p><p>After focusing on his figure for a few seconds, Kevin's eyes drooped. Then, turning around, he left the chapel.</p><p>"Let's go."</p><p>"You not going to talk to Ren?"</p><p>"...Not now."</p><p>Kevin quietly mumbled.</p><p>Pursing his lips, he repeated in a softer voice.</p><p>"Not now."</p><p>***</p><p>I followed the others back toward the headquarters right after the funeral.</p><p>There were a lot of things that needed to be sorted out in the absence of Smallsnake.</p><p>Clank—!</p><p>Opening the door of the warehouse, the first thing that greeted me was darkness. It was a rare sight.</p><p>Usually, I would be greeted by lights and Smallsnake's presence.</p><p>'You're finally here, Ren.'</p><p>'Shut up.'</p><p>'Fuck you.'</p><p>"Haha."</p><p>A short laugh escaped from my lips when I recalled our typical interactions.</p><p>Who would have imagined that such simple recollections would make me feel so bad?</p><p>"I'll go train."</p><p>"Me too."</p><p>We had just walked in when I heard numerous voices behind me.</p><p>I then saw Hein and Ava walk straight into the training rooms. Their expressions were more restrained than before. Their appearance conveyed a strong impression of determination and resolve.</p><p>Smallsnake's death seemed to have finally woken them up to the harsh reality of this world.</p><p>...But it wasn't just them that were affected.</p><p>"Here."</p><p>A hand extended toward me, and I felt something land on my hands. I lowered my head and found a crumbled up pack of cigarettes.</p><p>It was Leopold. I couldn't tell much from his expression, but his actions were enough to convey to me what he was feeling.</p><p>"...He always told me to stop smoking. I guess it's about time I took his advice."</p><p>He left right after that.</p><p>Following him from behind was Angelica who didn't say a single word. She was followed by Han Yufei and Liam, who simply left the room without saying a word, leaving Ryan and I standing in the hallway.</p><p>"You know..."</p><p>It was then that Ryan opened his mouth.</p><p>Turning my head, our eyes met.</p><p>"...You know, Smallsnake never hated you despite the way you treated him."</p><p>A great pang gripped my heart when I heard his words.</p><p>Thinking back to how I treated Smallsnake in the past, I felt great regret.</p><p>'If only I was nicer to him...'</p><p>His death made me realize just how much of an asshole I was.</p><p>...and it was exactly this realization that ate away at my consciousness as I felt deep remorse.</p><p>'If only...'</p><p>"There's no point regretting the past now."</p><p>Ryan muttered while he handed me a small black box.</p><p>I lowered my head and glanced at the box.</p><p>"What's this?"</p><p>"It's something Smallsnake told me to give to you in case something happened to him."</p><p>Shoving it at me, he followed the others, leaving me behind.</p><p>A stifling silence permeated the air as I stood rooted on the spot, staring at the small black box in my hand.</p><p>I already had an idea of what was inside the box, and it was precisely because I knew that I felt hesitant.</p><p>My lips trembled as I squeezed the package tightly into my palm.</p><p>"You really..."</p><p>***</p><p>End of Volume [4] Part 2/3.</p><p>There was originally only going to be two parts for the end of the volume, but it ended up being 6k words long, so I'll be cutting it to three parts.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-605.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-607.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

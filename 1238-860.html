@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 860 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 860 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-859.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-861.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Epilogue — Effort's never betray you [2]</p><p>Tok—</p><p>"..."</p><p>The sound of the glass bottle tapping against the stone grave echoed in the quiet surroundings as Melissa stood there, consumed by her thoughts.</p><p>With a firm grip on the bottle, she took a small gulp of the liquid it contained, feeling its bittersweet taste on her lips.</p><p>Drip— Drip!</p><p>A cascade of juices trickled down the side of her mouth as she hastily withdrew the bottle.</p><p>"Haaagh."</p><p>She exhaled, her breath heavy and her cheeks rosy.</p><p>"You know…"</p><p>She started speaking.</p><p>"…I know full well that I need to let go of you. Let go of the memories that I keep on clinging to."</p><p>Her vision started to blur as she removed her glasses, allowing her emerald eyes to be exposed to the world.</p><p>"I just… I guess I still want an excuse to be mean. I grew to hate the world because of you, but at the same time, I grew to have fun hating the world. Not caring about others' opinions, pushing away those who tried to form connections with me, and, overall, embracing my inner cynic didn't feel so terrible."</p><p>Extending her hand, she gingerly placed the glass bottle atop the cold gravestone.</p><p>Tok—</p><p>"But there comes a point when enough is enough."</p><p>Melissa let out a weary sigh, blinking her eyes repeatedly as she adjusted to the altered clarity of her blurred vision.</p><p>"It's time that I let go of you and myself. I can't be like this anymore. I guess…"</p><p>She closed her eyes, raising her face toward the sky.</p><p>"…It's time for me to finally move on. So should you if you're listening to me. I still resent you, but you should learn not to give a fuck like me. So what if my life ended up shitty? In the end, I'm still what I am today because of you, and…"</p><p>A faint, enigmatic smile tugged at the corners of her lips.</p><p>"I don't despise what I've become."</p><p>Tok—</p><p>Once more, she tapped the glass against the gravestone as if bidding farewell before turning away and leaving the graveyard behind.</p><p>Strangely, as she ventured forth, Melissa sensed a newfound lightness in her every step, as though a burden had been lifted from her weary shoulders.</p><p>Pausing for a moment, she glanced back, fixing her gaze on the cemetery, her eyes drawn to the words etched into the stone.</p><p>===[Octavious Hall]===</p><p>A hero, a devoted husband, and a loving father.</p><p>===[2030 — 2073]===</p><p>"A loving father... pfft..."</p><p>She whispered softly, the words carrying a mix of pain and closure.</p><p>And with that, Melissa continued on her way, the weight of the past gradually dissipating with each passing moment, leaving her ready to embrace a future tinged with both scars and newfound resolve.</p><p>It was time she moved on and grew up.</p><p>***</p><p>*Puff*</p><p>Smoke filled the air as Jin took a puff of his cigarette. He lifted his finger and playfully manipulated the swirling tendrils, guiding them along the path traced by his fingertip.</p><p>By the time he was done, certain words formed in the air before him. 'IAD' was what it said.</p><p>"Hehe."</p><p>He couldn't help but chuckle as he gazed at the words before him. Taking a quick look beside him, he pressed his lips together, attempting to hold back his laughter.</p><p>'Indeed, there's no better fit than these words for her...'</p><p>"The fuck are you doing?"</p><p>A certain annoyed voice echoed beside him, and Jin's smile faded.</p><p>"Nothing."</p><p>With a wave of his hand, the smoke dissipated. Concurrently, Priscilla's eyes narrowed as she examined him intently.</p><p>"IAD?"</p><p>Her eyes squinted further.</p><p>"Why do I have a feeling it's related to me?"</p><p>"You're imagining things."</p><p>Jin responded with an air of casual indifference, raising the cigarette to his lips and inhaling deeply from the butt.</p><p>*Puff*</p><p>"That being said," he paused and turned to look at her with narrowed eyes. "What are you still doing here? It's been a year since the war has ended. Shouldn't you be on your way?"</p><p>A year had passed since the defeat of the Demon King, and numerous events had occurred at that time. Priscilla and her clan, having provided crucial assistance during the war, were granted the privilege to remain on Earth.</p><p>With that being said, most of the demons chose to depart Earth and return to their respective planets.</p><p>The same was for her father, the current Patriarch of the Sloth clan.</p><p>"Isn't it true that you're the designated successor of the Sloth Clan? I would assume someone of your stature would have numerous responsibilities. Why haven't you returned to aid your father?"</p><p>Jin flashed a smile as he uttered each word, though his intention was subtly hidden. In the most courteous manner possible, he was essentially expressing his desire for her to fuck off.</p><p>*Puff*</p><p>"Hmmm, can't argue with that," Priscilla mumbled, exhaling a plume of smoke while leaning against the sofa they shared. Closing her eyes and relishing the cigarette, she nonchalantly observed Jin at her side. "But what can I say? I'm starting to enjoy my time here. If I were to return, who would I have the pleasure of annoying?"</p><p>"..."</p><p>Jin's expression twitched in response to her words, leaving him momentarily speechless. The subtle smirk on her face only served to amplify his feelings.</p><p>"Tsk."</p><p>He clicked his tongue.</p><p>'Ignorant, Arrogant Demoness.'</p><p>"Have anything against what I said?"</p><p>Jin shuddered involuntarily, his gaze fixed on Priscilla. The way she stared at him made him feel exposed as if she had somehow discerned his innermost thoughts.</p><p>Staring at her for a brief moment, he nodded his head.</p><p>"Actually, yes."</p><p>"Oh?"</p><p>Priscilla raised her brow.</p><p>"You're a very ballsy human, aren't you?"</p><p>"And so I've been told."</p><p>Relaxing, Jin took a drag of his cigarette and leaned back against the sofa.</p><p>"No, you haven't."</p><p>"Didn't you just now?"</p><p>"..."</p><p>"He."</p><p>Jin smirked, taking another good drag of his cigarette. It felt good getting one over this annoying, ignorant, arrogant demoness.</p><p>Priscilla's eyes narrowed.</p><p>"You're becoming bolder with each passing day."</p><p>"Don't like it?" Jin pointed towards the door. "You can leave. I won't stop you."</p><p>He wasn't the one who told her to stay with him. If she found him annoying, she had every right to leave whenever she wanted. He wasn't going to stop her, nor did he want to.</p><p>"Haaa..."</p><p>Jin let out a long sigh. He missed the days when he could relax by himself without any interruptions. Now that she was here, he no longer had the privilege of having such peaceful days.</p><p>"What a mess," he muttered to himself, casting a resentful glance toward Priscilla. One that she promptly returned.</p><p>"What are you looking at?"</p><p>Staring at Priscilla's menacing glare, Jin had a sudden thought. 'She's kind of cute when she's angr—eh no, what the fuck am I thinking about?'</p><p>With a shudder, Jin quickly dispelled the thought away from his mind as he sat up straight. He had almost lost himself for a moment.</p><p>Ding—!</p><p>"Hm?"</p><p>Just then, his phone rang.</p><p>"Fuuuck..."</p><p>As Jin stared at the message on his phone, his expression crumbled, and his grip on the device tightened. Priscilla, noticing his reaction, leaned over to catch a glimpse of what was on his screen.</p><p>"What is it? Let me see," she demanded, extending her hand to snatch the phone away. However, Jin swiftly moved his hand out of her reach and placed his other hand against her cheek.</p><p>"Hey! Hey! Hey! Boundaries!"</p><p>Jin protested, trying his best to push her face away from him.</p><p>"No, forget about boundaries. Let me see," Priscilla insisted, unbothered at all by what Jin was saying as she forced herself over.</p><p>"Hey! Fuck stop!"</p><p>"Stop being a pussy, and let me see!"</p><p>"Over my dead body!"</p><p>"So you want to die that badly?"</p><p>The two engaged in a brief tussle on the sofa as Jin made an effort to push Priscilla away.</p><p>Tempted to pull her hair in frustration, he quickly thought better of it. While he did say "over my dead body," he didn't actually want to die.</p><p>"Give up, and let me see!"</p><p>"No!"</p><p>"Fuck you!"</p><p> Using every means at his disposal, whether it was his legs or his head, Jin fought back in an attempt to defend his phone.</p><p>However, Priscilla proved to be persistent and agile, like an octopus latching onto his arm. She continued her relentless efforts to snatch the phone from him.</p><p>"Got it!"</p><p>In the end, the struggle ended with Priscilla emerging as the victor. She successfully snatched the phone away from Jin's hand, triumphantly gaining control over it.</p><p>Leaning against the sofa, the color faded from Jin's silhouette as he started to contemplate his life.</p><p>With a determined gaze, she looked at the contents displayed on the screen, finally achieving her goal.</p><p>It was time for her to reap the rewards.</p><p>Turning on the phone, she inserted the password. Immediately Jin's face changed, but Priscilla didn't care. She had known his password for quite some time now.</p><p>"Uh?"</p><p>But upon looking at what was displayed on the screen, her face turned strange, and she looked at Jin, who turned his head away from her.</p><p>"S...seriously?"</p><p>Her face betrayed the fact that she was trying to hold her laugh as her cheeks inflated and her face flushed red.</p><p>"Pft... you... seriousl—pffttt."</p><p>"Stop laughing."</p><p>Jin's expression crumbled as he turned to glare at her.</p><p>"Oh... pffftt... okay... pfttt," unable to contain herself any longer, Priscilla erupted into uncontrollable laughter. "Hahahahha!"</p><p>Tears streamed down the sides of her eyes as she laughed hysterically, smacking her hand against the side of the sofa in amusement.</p><p>Ba Bam—!</p><p>The sight of her laughing hysterically made Jin's expression darken considerably as he leaned forward to snatch his phone back. Priscilla didn't even bother posing a fight as she let him have the phone back and continued laughing.</p><p>"Hahahaha."</p><p>Jin's expression darkened with every second of Priscilla's laughter.</p><p>"Are you done?"</p><p>Jin struggled to control his frustration. Despite his best efforts to restrain himself, it proved to be a challenging task as Priscilla continued to laugh at him, pointing toward his phone.</p><p>"Hahahha...Y..pftt...eah."</p><p>Thankfully, Priscilla managed to stop herself as she gradually calmed down, and the smile on her face faded. Jin calmed down when he saw this, and just as he was about to put this all behind him, Priscilla's mouth parted open. Her voice sounded strangely deep.</p><p>"Jin, Grandpa is really starting to worry about your future. This is the fifteenth blind date you've rejected. Is there perhaps something wrong with... You know you can tell Grandpa if you have trouble with your reproductive organ. We live in an age where medicines and potions work wonders. If there's really a problem, I'll search throughout the entire continent for a cure. You can trust Grandpa on that. I'm well past my prime and would like to see a grandchild; please take some time to reconsider. I'm really worried—"</p><p>"Shut up!"</p><p>Jin yelled at the top of his lungs, desperately attempting to halt Priscilla's relentless laughter.</p><p>"Hahahahahha!"</p><p>Ignoring the rage in Jin's eyes, Priscilla continued to laugh uncontrollably, her hand once again smacking against the sofa.</p><p>Ba Bam—!</p><p>"I... uhhh... can't br... uhhh... eathe!"</p><p>Priscilla gasped between fits of laughter, her amusement now hindering her ability to breathe properly.</p><p>"Suffocate," Jin muttered under his breath, his frustration evident in his words. "Damn it."</p><p>He clenched his fists. Never in his life did he feel so humiliated, not even during the time when Ren beat him up at the Lock.</p><p>Despite all his efforts and contributions to the war, Jin found himself unable to escape the clutches of his grandfather. Be it before the war or after the war; he always tried to find a means to set up a blind date for him.</p><p>Despite Jin's repeated rejections in the past, they proved to be ineffective in deterring his grandfather. On the contrary, his grandfather returned with even greater strength and determination, making it clear that he could not escape the inevitable.</p><p>It had gotten so bad that Jin wasn't even sure what to do.</p><p>'Should I just go to one?'</p><p>The thought made him sigh. He wasn't really looking for a relationship at the moment. He enjoyed his peaceful—well...</p><p>He turned to look at his left.</p><p>"Ahh... I can't b..reathe! Uhpp.. help!"</p><p>'Eh... I guess it's not that peaceful.'</p><p>So long as she remained here, his life would never be peaceful. He sighed once more.</p><p>"Just what did I do to deserve this?" He unconsciously blurted out loud, covering his face with his arm while leaning back and resting his head against the sofa.</p><p>He was seriously starting to contemplate life.</p><p>"Don't be sad."</p><p>Jin felt a subtle bump on his shoulder and slowly removed his arm from his face. He turned to look at Priscilla, who was still gazing at him with a smile that she was trying to suppress. Obviously, she was still struggling to keep herself from laughing.</p><p>He glared at her.</p><p>"What would you know?"</p><p>Reaching into his cigarette box, Jin retrieved a cigarette and swiftly lit it using his finger. He took a deep, leisurely drag, savoring the moment as he exhaled the smoke.</p><p>*Puff*</p><p>"You wouldn't understand the pains that I go through every day."</p><p>"Hey, come now... Don't be so extra..."</p><p>Priscilla spoke, a hint of pity in her voice. Although she found the situation highly amusing, a small sense of sympathy crept into her. She couldn't help but shudder at the mere thought of her father subjecting her to a similar ordeal.</p><p>If that were to happen... she wasn't sure what she'd do.</p><p>"Oy!"</p><p>"Give up."</p><p>Taking a cigarette from Jin's box, Priscilla replicated his actions by lighting it up and taking a small drag. Leaning against the sofa, she turned her gaze towards him, a sudden surge of curiosity evident in her eyes.</p><p>"Hey."</p><p>"What?"</p><p>Jin didn't even look at her. Not that Priscilla cared as she continued.</p><p>"Say," she pursed her lips, her eyes lowering a bit before raising back up again. "Is what your grandfather said true? Does you—"</p><p>"It works just fine."</p><p>Jin answered before she could finish her words. He was so tired that he didn't even bother glaring at her as he lethargically took another drag of his cigarette.</p><p>"As I said, I'm just not interested."</p><p>"Hmmm."</p><p>Priscilla's eyes squinted, carefully scrutinizing Jin from top to bottom.</p><p>'That's a pity,' she thought to herself, studying him closely.</p><p>Upon closer inspection, she couldn't deny that he was undeniably handsome. In fact, he surpassed the majority of demons she had encountered in her lifetime and was probably amongst the very top in terms of looks.</p><p>It was a shame that someone as good-looking as him had chosen to be an eunuch.</p><p>Truly a shame.</p><p>She shook her head once more.</p><p>"Why are you looking at me like that?" Jin asked, turning his head to face her. There was visible pity in her gaze that made him feel uncomfortable.</p><p>"Have you truly never thought about going on those blind dates?"</p><p>Priscilla didn't answer him. Instead, she asked what she was most curious about.</p><p>"I'm sure you'd have no trouble finding a partner if you went there. Unless..." Priscilla suddenly squinted her eyes, a mischievous glint appearing in them. "...You have someone you already like?"</p><p>"..."</p><p>Without saying a word, he turned his gaze away from her.</p><p>"Eh?"</p><p>Jin's sudden silence stunned Priscilla, who found her smile fading rather quickly.</p><p>"You... don't tell me you actually have someone you like?"</p><p>Priscilla's words carried a distinct tone of surprise, revealing her genuine astonishment. Never in her wildest dreams did she imagine that this idiotic person before her could actually harbor romantic feelings for someone.</p><p>'Who is it?'</p><p>Suddenly, an overwhelming sense of curiosity overwhelmed her, urging her to uncover the identity of the person who had captured Jin's heart.</p><p>"What does it matter to you?"</p><p>Jin asked, briefly glancing at her from the corner of his eyes.</p><p>"No, but," Priscilla pursed her lips, all of a sudden finding herself unable to say a word.</p><p>'That's right, what does it matter to me?'</p><p>As Priscilla contemplated the situation, she acknowledged that it wasn't truly her business. She shouldn't be invested in such matters.</p><p>However, an unexpected feeling of unease began to settle within her. Despite her initial reluctance, the discomfort of not knowing gnawed at her, leaving her strangely compelled to uncover the truth.</p><p>"Actually, to be honest, it doesn't really matter to me, but I'm suddenly curious. Just what type of person can make someone like you fall for them?"</p><p>Excuses started to flow out of her mouth, but at the same time, they held some truth.</p><p>Indeed, Priscilla couldn't help but wonder about the kind of person who could truly touch Jin's heart. Throughout the year they had spent together, she hadn't encountered anyone who seemed capable of eliciting such emotions from him.</p><p>In her eyes, he had appeared somewhat emotionally detached, like a eunuch.</p><p>The mere thought of someone managing to break through his stoic facade piqued her curiosity even further.</p><p>"Well, to be honest. I'm not sure anymore."</p><p>Jin shrugged his shoulders, a subtle hint that he was contemplating sharing his thoughts with Priscilla.</p><p>Though he had no obligation to do so, a peculiar feeling tugged at him, urging him to reveal his thoughts. It seemed that over the course of their year together, he had grown somewhat attached to this ignorant yet arrogant demoness.</p><p>"What do you mean you're not sure?"</p><p>"It means what it means," Jin said, his eyes lowering a bit. "There was a time when I used to like her, but now..." bringing his hand up, he scratched the bottom of his chin. "...I'm not so sure anymore."</p><p>The person in question was none other than Melissa. There indeed used to be a time when he was in love with her.</p><p>It was part of his dark past, but... the feelings were real. Just what was it about her that made him fall in love with her back then?</p><p>"I think the main reason why I liked her back then was because of her status. I used to be very ambitious in the past. I wanted to be number one at everything, and I wanted to make our guild the number one."</p><p>Melissa's father was Octavious Hall. The number one ranked Hero in the entire world. If he managed to marry her back then, he'd be able to help his guild rise to the top and overtake Demon Hunter.</p><p>That... perhaps, was the main reason why he liked her back then.</p><p>'Actually, not just that...'</p><p>He had to admit. Melissa was indeed quite beautiful. Among the most beautiful girls he had ever seen. Had it not been for her terrible personality, she'd have a line of suitors following her every beck and call.</p><p>'...I quite liked her personality.'</p><p>Perhaps, the thing that truly made him attracted to Melissa back then was her personality. There weren't many people that would openly rebuke him like that. She was one of the only few that would actually lash out at him.</p><p>"Damn, I'm surprised someone like you can have someone you actually like."</p><p>"What does that even mean?"</p><p>Jin glared at Priscilla who looked back at him with squinted eyes. Eventually tearing her gaze away from him, she shrugged her shoulders.</p><p>"What's your type?"</p><p>She was genuinely curious to know. Perhaps because she had grown accustomed to him over the year, she was starting to grow curious about his preferences on a few matters.</p><p>"My type?"</p><p>Rather than retorting back at her, Jin nibbled on the cigarette in his mouth before revealing what he had come up with before.</p><p>"I gues... someone strong. Arrogant. Lashes out a lot... doesn't suck up to me. Independent... Annoying, yet—"</p><p>Jin's eyes widened all of a sudden as mused over his words and turned his head, meeting Priscilla's gaze.</p><p>She too had her eyes wide open.</p><p>The entire room fell silent all of a sudden.</p><p>Tak—! Tak!</p><p>And both their cigarettes fell from their mouth as Jin's face colored white with horror.</p><p>"Oh... shit."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-859.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-861.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

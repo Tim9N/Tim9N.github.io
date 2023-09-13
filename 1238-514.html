@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 514 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 514 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-513.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-515.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>On one of the upper platforms overlooking the matches, a heavy, somber atmosphere prevailed.</p><p>SilverMoon stared at Skull Crusher who was passed out on the ground without saying a word. She was not aware of Skull Crusher's current condition, and quite frankly, she didn't care.</p><p>He had lost, and that was all that mattered to her. Regardless of whether he had died or not, she was no longer interested in it.</p><p>"Trash..."</p><p>She uttered in disgust.</p><p>The match itself had already ruined her mood. As a result, she decided to leave the room as she no longer felt the need to stay there.</p><p>Before leaving the room, she took one last glance at the arena below before murmuring.</p><p>'Petty tricks.'</p><p>Clank—!</p><p>The door closed shut and she disappeared.</p><p>As for the other top rankers in the room, they had mixed reactions.</p><p>While their reactions to the white-haired figure below were not as strong as SilverMoon's, they were still startled by what they had seen. Their eyes were now mixed with fear and apprehension.</p><p>For him to have beaten Skull Crusher so easily, they themselves couldn't do it.</p><p>It now became clear to them that whoever this newbie was, he was above their level.</p><p>Well, almost everyone.</p><p>"Hm? Has the fight ended?"</p><p>A lazy and groggy voice echoed out on the platform.</p><p>Blinking a couple of times, Lightning Dragon lifted his head to view the arena below. The loud cheers had woken him up from his nap.</p><p>"Huaam."</p><p>Yawning out loud, he lazily asked.</p><p>"Who won?"</p><p>"...Your fellow human member."</p><p>A deep voice answered his question. The voice belonged to an orc, and he was currently ranked fourth in the rankings.</p><p>Compared to Skull Crusher, he was shorter, but despite his height, he emitted an even more powerful aura compared to Skull Crusher.</p><p>"Human?"</p><p>Taking a closer look at the action below, Lighting Dragon squinted his eyes.</p><p>His gaze lingered on the white-haired figure in the midst of the arena grounds for a little over a couple of seconds.</p><p>"He looks familiar."</p><p>He muttered in a loud voice.</p><p>Upon hearing his words, everyone turned to look at one another.</p><p>In the past, his words would have seemed odd to them, but now that they were used to him, they didn't think too much of it.</p><p>To them, was someone that had a terrible memory.</p><p>Sort of.</p><p>His lack of memory was more indicative of a lack of care. His memory of everyone else present in the room was limited to the current emperor, and no one else.</p><p>The only people he remembered were those who were worth remembering, and it was clear to them that they weren't worth remembering. The same could be said for the white-haired figure below as Lightning Dragon still seemed to be unable to remember him.</p><p>"Yes, he's won."</p><p>The orc from before replied. His eyes flickered coldly as he looked at the human on the sofa. However, he didn't dare to move.</p><p>In his mind, there was no doubt that the human in front of him was frightening, and that he stood no chance against him. Even then, his attitude irritated him to no end.</p><p>For someone as prideful as him to be treated as nothing but air...</p><p>Crack.</p><p>The air rang with a cracking sound as he clenched his fist tightly.</p><p>"Huaaam …"</p><p>Taking a moment to cover his mouth with his hand, Lightning Dragon leaned back against the sofa, completely unaware of the orcs' thoughts.</p><p>"That's good for him…"</p><p>He then reached out for a long blue sheath in which a sword rested inside and grasped it with his left hand. Pulling it closer to his body, he closed his eyes.</p><p>"So tired."</p><p>Smacking his lips, he weakly muttered.</p><p>"Don't wake me up until the Emperor match starts."</p><p>As soon as he finished speaking, he immediately fell asleep.</p><p>The room quieted down.</p><p>***</p><p>To Tok—</p><p>"Come in."</p><p>Upon entering a room that looked familiar, SilverMoon lowered her head. In secret, she glanced toward the center of the room where a shirtless man with long silver hair stood.</p><p>The current Emperor, SilverStar.</p><p>The person that stood at the peak of the Duke bracket, and someone whom she served.</p><p>Taking a closer look at him to make sure that everything was alright, only then did she finally lower her head.</p><p>"Are you ready for your upcoming match?"</p><p>She asked. In spite of the fact that her voice sounded normal, it was tinged with anger.</p><p>This was naturally picked up by the figure standing in the middle of the room.</p><p>"Is there something up with you?"</p><p>He asked in a rather soft tone. Lifting her head, SilverMoon's tightly furrowed brows relaxed a little.</p><p>She eventually sighed.</p><p>"It's nothing big. Remember the human that rejected our offer?"</p><p>"…What about him?"</p><p>"He beat Skull Crusher. And it wasn't just a simple victory, but he completely won without even lifting a finger."</p><p>Her teeth clenched as she thought back to the fight.</p><p>'How dare you challenge our authority.'</p><p>"Without lifting a finger?"</p><p>Surprise flashed across SilverStar's face. But it came as fast as it left.</p><p>Glancing at SilverMoon, he slowly walked up to her.</p><p>To Tok.</p><p>The calm and steady sound of his footsteps echoed throughout the room.</p><p>Taking a moment to caress her cheek, he halted his steps in front of her. His thumb traced down the long scar that traced down her face, resulting in a faint blush to appear on her cheeks.</p><p>As he watched this, he smiled faintly.</p><p>"...It doesn't matter."</p><p>"What do you mean it doesn't matter? He's directly challenging your authority."</p><p>SilverMoon protested, but the Emperor shook his head.</p><p>"You know very well that my next match is against the Emperor of the King bracket, right?"</p><p>"Yes, I know."</p><p>SilverMoon nodded her head. This realization sent her heart racing.</p><p>Just a few minutes from now, the current Emperor, SilverStar, would go against the King bracket Emperor, DeathBringer.</p><p>Who would face off against the Overlord would be decided in this match.</p><p>Once he was able to beat him, he would finally be able to fight against the current Overlord. The only obstacle stopping him from reaching freedom.</p><p>"Ignore the human for now."</p><p>SilverStar took his hand away from her cheek. Her face was filled with reluctance when he did so, but she kept her tone calm.</p><p> "I understand. But are you really going to let him go like that?" </p><p>"No."</p><p>He replied.</p><p>Before he continued, his attention turned toward an ornate wooden closet not so far from where he was, where a white shirt was hanging. Walking up to it, he took the shirt out and put it on.</p><p>"There are many things that I have to attend to at the moment. So what if he managed to beat Skull Crusher? I can do that too. My real worry is the other human."</p><p>"You mean Lightning Dragon?"</p><p>"...Yes."</p><p>Buttoning the top part of his shirt, his eyes flashed coldly.</p><p>"As for that human, I will see how he will be able to run rampant like that once I become the Overlord."</p><p>"...Will you really be alright?"</p><p>SilverMoon asked. Worry returned to her voice.</p><p>Turning around, SilverStar smirked.</p><p>"You don't have to worry about me winning. That's a guarantee. I am absolute."</p><p>***</p><p>"I'm curious about something."</p><p>As I returned to my cell, I glanced at my other self and our eyes met. The look on his face suggested that he already knew what I was going to ask.</p><p>Regardless, I still asked.</p><p>"For how long can you have a tangible form?"</p><p>It had occurred to me a while ago, but sometimes my other self could manifest physically. Having always thought he was some sort of vision, I was somewhat surprised by this revelation.</p><p>I was quick to adjust though. Coming to terms with this fact, I decided to just accept it and use it to my advantage.</p><p>Just like what had currently just happened.</p><p>"About ten minutes."</p><p>My other self replied to my question. Looking back at him, I nodded.</p><p>"I see."</p><p>After closing my eyes and contemplating for a while, I had a sudden thought. Opening my eyes again, I asked.</p><p>"How far can you be from me?"</p><p>"...Not much."</p><p>"Around?"</p><p>"About five meters."</p><p>"I see."</p><p>This could serve as good information for me. Definitely planned to keep this in mind.</p><p>"What—"</p><p>"Enough about that, what are you planning to do next?"</p><p>In the middle of asking another question, my other self cut me off. Opening my mouth, I eventually shook my head.</p><p>'It isn't worth it.'</p><p>"I'm going to challenge the Emperor."</p><p>I eventually replied.</p><p>The only thing standing in my way in order to get to Amanda's father, the current Overlord was the Emperor.</p><p>The faster I got rid of him, the better things were for me.</p><p>"Although I know he'll be a tough opponent, I haven't gone all out myself yet."</p><p>"...You think so?"</p><p>I tilted my head while sitting up straight on my bed.</p><p>'That look...he definitely knows something.'</p><p>My eyes proceeded to squint tightly.</p><p>"You definitely know something. Spit it out. Tell me what I need to know."</p><p>"Heh."</p><p>My other self smiled slightly.</p><p>He murmured as he glanced at the door of the room.</p><p>"The current Emperor should be the least of your worries."</p><p>"...What are you talking about?"</p><p>I stood up from the bed. I could tell that he was about to say something important. And I wasn't wrong.</p><p>As he turned his head, he casually said.</p><p>"Lightning Dragon. He is someone who might even be stronger than the current you in the bracket. If you have to worry about anyone, it would be him."</p><p>"...What?"</p><p>Utmost seriousness flashed across my face as I stared at my other self.</p><p>"Might be even stronger than me?"</p><p>Although I never once thought that there weren't people stronger than me, it still came as a surprise for me to find someone this strong in the Duke rank bracket.</p><p>Taking a deep breath, I was able to calm myself down rather quickly.</p><p>"Why are you telling me this now?"</p><p>This was the first time that he had mentioned him ever since I had arrived here.</p><p>For what reason did he only tell me this piece of news now?</p><p>"The reason is simple."</p><p>Slowly, he turned his head to glance my way.</p><p>"It's because he is the key to helping you get out of this place."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-513.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-515.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

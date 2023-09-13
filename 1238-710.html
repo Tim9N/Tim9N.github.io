@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 710 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 710 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-709.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-711.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Thump—!</p><p>"Done."</p><p>I patted my hands while a body fell flat on the ground in front of me. Taking out one of the tubes Melissa had given me moments prior, I opened the Duke's mouth and poured the contents into his throat.</p><p>"Ukhah!"</p><p>His body jerked immediately after pouring the substance into his mouth, seemingly rejecting its existence.</p><p>...But I didn't care and forced the contents in.</p><p>His complexion gradually began to fade away, becoming paler by the second, while at the same time, scales began to form on his skin, and black veins began to emerge.</p><p>"It looks like it's working."</p><p>The poison did indeed look rather effective.</p><p>'My body is a lot sorer than I thought.'</p><p>Stretching my back, I felt every part of me ache.</p><p>'I guess this is a consequence of ingesting the Duchess's blood.'</p><p>It was only after I swallowed a bit of her blood that I was able to acquire a Sloth-related ability. Because I didn't take much of it, it wasn't very strong, rather, it was pretty weak, but it was still there.</p><p>Furthermore, it was only because I had the Nectar that I even dared to swallow her blood. Had it not been for that, I probably would've never done such a daring thing.</p><p>'It was worth it though.'</p><p>I refrained from giving the demon a further glance and instead turned to look to my right, where I saw a lovely figure standing with her bow held low in her left hand.</p><p>I thanked her.</p><p>"Thanks."</p><p>"Mhm."</p><p>Amanda did nothing more than give a slight nod of her head before walking forward and retrieving the arrow that had pierced the core of the guard.</p><p>Putting her arrow away, she looked at me.</p><p>"Do you think the demons will be aware that something happened now that he's dead?"</p><p>"Don't worry about it."</p><p>I reassured her and looked at the Duke beside me.</p><p>"Unlike the Duke over here, the guard doesn't have any contractees. His death will not cause any commotion."</p><p>According to what the Duchess told me, it was forbidden for the guards to enter into contracts with other beings. I didn't have a crystal clear understanding of the reasoning behind this action, but I knew the Duchess wouldn't intentionally mislead me about something of this nature.</p><p>Thus, I just went ahead and killed them. It saved me from using all of the gallbladder.</p><p>Lifting my head to stare at the moon hanging in the sky, I turned around.</p><p>"Let's go. We still got a lot of work to do. We only have tonight to act."</p><p>***</p><p>Duchess Klove, Duke Rhimenhart, Duke Givon, and Duke Ansandricth.</p><p>These were the names of the four remaining successors. All of them were at the beginner Duke realm and were rather respected.</p><p>Before I left the mansion, the Duchess presented me with a comprehensive booklet that contained all of the information she possessed regarding them.</p><p>Their habits, the environment in which they live, the people with whom they associated with, and much more...</p><p>They seemed like a lively bunch.</p><p>Unfortunately…</p><p>On this very bright, the four of them took their last breath.</p><p>"That makes it the last of them."</p><p>Thump—!</p><p>A demon fell before my feet, and I wiped the sweat that had accumulated on my forehead.</p><p>I had to struggle through it, but after a few hours of hard work, I was able to get everything that needed to be done, done.</p><p>"Thankfully, the night here last almost three times more than earth, else I wouldn't have been able to finish by dawn…"</p><p>Shifting my gaze toward the horizon, a bright yellow glow began to tint the sky, and what appeared to be an orange sphere began to rise into the air.</p><p>The operation lasted approximately one and a half days, all of which took place during the same night cycle.</p><p>Such unusually long nights initially struck me as odd, but I very quickly adjusted to the new schedule. I was used to not sleeping.</p><p>"Are you also done?"</p><p>I looked at Amanda.</p><p>Staring back at me, she nodded her head.</p><p>"Yes."</p><p>"That's great."</p><p>I stretched my back and yawned.</p><p>"Let's go back then. I need to catch up on some good sleep."</p><p>I was worn out, and after everything was said and done, all of the preparations were finished. All I needed to do was wait.</p><p>Wait for everything to piece itself together.</p><p>'By the time I wake up, I'll know if the plan worked or not.'</p><p>"Hm?"</p><p>At the very moment that I was about to leave, I felt a warm and gentle grasp on my hand. After looking down, I could see a soft hand grasping mine. Raising my head a little, I found Amanda quietly staring toward the distance without making a single sound.</p><p>I smiled at her actions.</p><p>"Let's go."</p><p>I guess she could still be cute while under the influence of demonic energy.</p><p>***</p><p>[Ambush at Point Z has failed. The enemy seemed prepared. Requesting backup.]</p><p>[Ambush at Point X has failed. The enemy seemed prepared. Requesting backup.]</p><p>[Ambush at Point U has failed. The enemy seemed prepared. Requesting backup.]</p><p>Hemlock's device was inundated with a tidal wave of notifications, all of which came in the form of an alarm signal.</p><p>The continuous notifications were the only sound that rang within the confines of the now empty hall.</p><p>Staring at the message, cracks formed on Hemlock's calm face.</p><p>'What's going on?'</p><p>It came as a bit of a surprise to him that the Alliance had discovered the trap that they had laid.</p><p>It was something that they had meticulously prepared in order to take advantage of the ability that one of 876's companions had.</p><p>The one to control animals.</p><p> That wasn't what surprised him the most, though.</p><p>He was taken aback by the fact that they were aware, in some way, that they had elder-ranked individuals hiding close to the mana compressors.</p><p>Such information wasn't something they should've been aware of.</p><p>"A traitor?"</p><p>It was the only explanation he could think of. Other than someone betraying him, how could such information be leaked?</p><p>'This makes things rather problematic…'</p><p>Hemlock found the situation rather annoying. He had set up a lot of plans, and he had even sacrificed several high ranking members in order to achieve his goals… and yet, someone chose to betray him?</p><p>Just who could it be?</p><p>"It's definitely not the other high members since I'd know thanks to the chip in their head."</p><p>Every single action and motion that they took was tracked by the chip. Be it when they ate, slept, or went to the bathroom... the chip knew it all.</p><p>In addition, they each had a specific team that was constantly monitoring everything that they were seeing and hearing. Furthermore, he had made it so that if he died, all the chips would simultaneously explode.</p><p>It'd be stupid of them to try anything against him.</p><p>It was also because of this that Hemlock was reasonably confident that it wasn't them.</p><p>"Just who…"</p><p>"Don't dwell on it for too long."</p><p>A crisp voice sounded within the empty space of the hall, startling Hemlock.</p><p>When he raised his head to stare in the direction of where the voice came from, he was surprised to see two crimson red eyes staring back at him. His figure was cloaked by the darkness of the hall, but Hemlock recognized him immediately.</p><p>"It's you?"</p><p>"Surprised?"</p><p>Tap. Tap. Tap.</p><p>The rhythmic echo of his steps reverberated throughout the empty hall, and shortly thereafter, Kevin made his way beneath the seat that Hemlock was occupying.</p><p>For a moment, neither of them spoke, allowing the silence to permeate the entire room.</p><p>The two were carefully studying one another.</p><p>…The silence didn't last for long, however. Soon, Kevin broke it.</p><p>"You're rather ruthless, aren't you? Killing your own high ranking members in order to conquer the great cities fast."</p><p>"I did what needed to be done."</p><p>Hemlock replied, his gaze never leaving Kevin's.</p><p>"It worked, didn't it?"</p><p>"…It sure did."</p><p>Kevin took a few moments to survey his surroundings before settling down in one of the hall's empty seats.</p><p>He made himself comfortable.</p><p>"It caught me off-guard a little bit. I didn't expect you to use such a method. It was rather refreshing."</p><p>"How did you get here?"</p><p>Hemlock questioned in an icy tone. How was it that he was able to approach the Monolith without attracting anyone's attention along the way?</p><p>Additionally, in order to prevent the others from discovering the location of the headquarters, they moved it without anyone else's knowledge.</p><p>It was no longer in the same place it was in the past, and only he and a few others knew the exact location of the Monolith.</p><p>Was it the spy again?</p><p>"There's no spy."</p><p>His thoughts were broken by Kevin's words.</p><p>Looking up at him, Hemlock frowned.</p><p>"Then how did you get here? Even if you were an &lt;SSS-&gt; ranked, you'd still be noticed by the system in place."</p><p>A special dome surrounded the headquarters. It would detect any movement and wasn't something that anyone below &lt;SSS-&gt; rank, let alone lower, could bypass.</p><p>It was a technology directly given to him by the demons.</p><p>"Did you find a flaw with the system, or did someone let you in?"</p><p>"Neither."</p><p>He answered, prompting Hemlock's frown to deepen.</p><p>"Then what gave you the confidence to come here with your meager strength?"</p><p>"Meagre?</p><p>Kevin looked at him oddly. Pressing his hands against the armrest and slowly lifting himself up, he took a deep breath.</p><p>Turbid air slowly diffused into the air.</p><p>He extended his hand, and a sword materialized in it. At the same time, the world around Hemlock began to gradually lose both color and sound.</p><p>After that, a suffocating pressure permeated the entirety of the hall, and cracks started to surface on the pillars that were supporting it.</p><p>Hemlock's pupils drew wider as he sensed the power leaving Kevin, and he followed Kevin's lead by standing up.</p><p>"H-how is this possible?"</p><p>The power he was feeling…</p><p>"Stop overthinking."</p><p>Deeply staring at him, Kevin's mouth parted open.</p><p>"I'm at a realm that the likes of you will never be able to achieve in one lifetime."</p><p>He slashed his sword, and the space collapsed.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-709.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-711.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

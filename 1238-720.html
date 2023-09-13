@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 720 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 720 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-719.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-721.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'…I should've thought things more thoroughly.'</p><p>Priscilla masticated her lower lip as she reflected on something. At the time, she was so intimidated by his power that she readily agreed to work with him without giving it further thought.</p><p>What choice did she have?</p><p>In the end, things turned out exactly as he had said, and she directly benefited from his help.</p><p>She didn't think much after that. She thought that their collaboration was over…</p><p>She didn't become aware of the nature of the circumstance in which she found herself until after she had a conversation with the other human.</p><p>"Shit."</p><p>She let out another curse.</p><p>Her footsteps eventually came to a halt in front of a substantial wooden door. It was a door that she had been to numerous times before.</p><p>To Tok—!</p><p>She knocked on the door once.</p><p>"Come in."</p><p>As if expecting her, she heard her grandfather's voice and she pushed the door open.</p><p>Clank—</p><p>She didn't say anything and kept her head lowered. She just waited for her grandfather to say something.</p><p>"What have you come here for?"</p><p>She didn't have to wait long to hear his voice.</p><p>Raising her head, she bit her lips once more.</p><p>Just as she was about to say something, her grandfather's words rang.</p><p>"Have you come here regarding what happened a month ago?"</p><p>She raised her head in surprise.</p><p>How did he know?</p><p>"Hum."</p><p>Setting his pen down, Prince Valling smiled.</p><p>"You think I wouldn't know? It was very obvious from the start that something must've happened since I know very well of your capabilities."</p><p>He continued.</p><p>"Although you are powerful, in no way are you capable of defeating seven Duke ranked demons. Especially by yourself…"</p><p>He lowered his head, eyeing her directly.</p><p>"…If our secret forces were used, I'd know."</p><p>Priscilla lowered her head. Indeed, the other houses might not suspect a thing because everything was directly pinned pointed toward Duke Ukhan, but her grandfather must have suspected that something was up because the Gall Bladder that she brought back with her was missing.</p><p>Since her uncle must've previously reported that they had brought one back, when he realized it was no longer there and everyone seemed to have completely forgotten about it, he must've realized that their memories had also been tampered with.</p><p>Plus…</p><p>The fact that a sizeable amount of nectar had vanished was a significant indication that something had transpired.</p><p>It really wasn't that hard for him to suspect that something had happened.</p><p>Thankfully, things worked out in their favor.</p><p>"At first I suspected that the other party acted on their own since your memory also got distorted, but…"</p><p>He retrieved a mirror from one of his drawers and turned it toward her.</p><p>'I'll look forward to our cooperation.'</p><p>That petty bastard.</p><p>Hearing the familiar voice, Priscilla knew that she was busted.</p><p>'As expected…'</p><p>Her grandfather already knew everything. She still had so much to learn.</p><p>"…What do you think I should do?"</p><p>She raised her head in surprise.</p><p>Unexpectedly, instead of getting angry at her, he asked for her opinion.</p><p>"You-re not angry?"</p><p>He smiled, putting the mirror back in the drawer.</p><p>"That'll depend on your answer. If you can give me a satisfactory answer, then I won't be mad, but if you don't…"</p><p>Her grandfather's eyes suddenly blackened.</p><p>All of a sudden the pressure inside the room started to increase dramatically, and Priscilla found herself unable to take a breath.</p><p>…Compared to the human, this pressure was far worse. On a level that made it seem as though the pressure given out by the human was insignificant.</p><p>The only thing she felt was pure dread at the moment.</p><p>He didn't need to continue the sentence for her to understand what he meant to say.</p><p>Thankfully, the pressure didn't last for long, and she was soon able to catch her breath.</p><p>"Hap…haaap…"</p><p>She felt sweat run down the side of her face as she clutched her chest and clenched her fists.</p><p>Swallowing a mouthful of saliva, she recollected herself and raised her head to meet her grandfathers.</p><p>He looked back at her. His gaze and expression were as calm as they had always been.</p><p>…It was this feature that made him so terrifying to her.</p><p>"We have two options."</p><p>Priscilla started to speak. She had already thought about the situation on her way back to the estate. Thus, she wasn't completely unprepared.</p><p>"The first option is the obvious option. We report everything to his majesty. In doing so, we'd have to disclose everything that had happened, and gain his protection."</p><p>She paused and looked at her grandfather.</p><p>"…Unfortunately, the moment we disclose the information, the other demons will probably become aware of what happened, whether it gets leaked by the humans, or eventually found out due to the actions of the Demon King, it is highly likely that what happened will spread."</p><p>She originally thought this wasn't going to happen. Especially since they had signed the mana contract and agreed to keep silent regarding their cooperation.</p><p>Unfortunately…</p><p>Once again, opening up the contract and reading its contents, she realized something.</p><p>[From the moment the contract is signed, both parties will be unable to disclose in any shape or form any information regarding the transaction that occurred between both parties.]</p><p>'I've been duped.'</p><p>She never thought there'd be a loophole. Especially considering how thoroughly she had looked through the contract, but when she thought back on it, she could recall a few of his words.</p><p>'Sorry for my tardiness; I had to deliver a letter. You don't mind, do you?'</p><p>If this wasn't a hint, what was? He had purposely said it back then for her to eventually realize when the time came.</p><p>The foresight he had made her shudder, and she realized that she was truly helpless.</p><p>As soon as the other demons learned about what had occurred, they would begin to be shunned and targeted by them. Irrespective of whether or not they were tricked or not.</p><p>The fact that they had collaborated with an individual who was regarded as an enemy and remained silent throughout this entire process was sufficient justification for them to look for trouble and target their resources.</p><p>"We could set up a trap, and lure the human to us and capture him, but…"</p><p>She didn't dare think any further. She'd already witnessed first hand the human's capabilities.</p><p>He was crafty and powerful. He wasn't someone who'd fall for their scheme.</p><p>"I understand."</p><p>Thankfully, her grandfather seemed to have understood something.</p><p>"Explain to me the second option."</p><p>"Okay."</p><p>Priscilla complied.</p><p>"…The second option is to buy their silence and secretly work with them."</p><p>It was a simple solution, and probably what the other party hoped to achieve.</p><p>All they'd have to do was pay an appropriate price to keep them silent about their deal and have some sort of cooperation with them.</p><p>That was probably what he was looking for the most.</p><p>"While it is indeed risky, so long as no one finds out, we'd have no problem; it's just that…"</p><p>She stopped speaking there. She didn't need to continue, as her grandfather understood what her words meant.</p><p>…There'd come a time where they'd have to choose which side to pick.</p><p>When the time came, it would determine the fate of their house.</p><p>"I've heard enough."</p><p>Her grandfather said as he picked up one of his pens and placed it in a holder next to the others in his collection.</p><p>Priscilla didn't dare speak at that moment. She waited for her grandfather's instructions.</p><p>Hopefully, her answers were to his satisfaction.</p><p>"If you were to choose an option, which one would you choose?"</p><p>"…"</p><p>At the sudden question, Priscilla remained silent.</p><p>About this…</p><p>She already had an answer. She was just afraid it was the wrong answer.</p><p>Nevertheless, feeling her grandfather's gaze, she could only swallow her saliva and brace herself.</p><p>"Option two."</p><p>"Why's that?"</p><p>"Because it is the safest option for us. As long as we pay enough to keep them silent, we won't have to worry about getting exposed. In the meantime, we can soak up the benefits that we've gained from him and secretly grow our powers while the others are fighting against each other. Once we've gained enough power…"</p><p>She didn't finish her sentence, but ruthlessness flashed across her eyes.</p><p>The main problem stemmed from the others learning of their deal and turning their attention towards them.</p><p> …But what if they got rid of them?</p><p>"Oh?"</p><p>Her words appeared to have taken her grandfather by surprise, as his normally placid face broke into a faint grin at the end of what she said.</p><p>"So you're saying we shouldn't join a side?"</p><p>"No. That's impossible."</p><p>Priscilla shook her head.</p><p>"Realistically speaking, once we've sorted everything out, we shouldn't have a problem joining his majesty's side, it's just that… do you think he will let us off?"</p><p>The Demon King wasn't the ruler of all demons just because of his strength.</p><p>No, the reason why he was so terrifying was because he could see through everything.</p><p>What they've done…</p><p>He'd probably see through it at a glance the moment they told him. If things went well, they wouldn't be punished, but if they didn't…</p><p>Priscilla clenched her teeth.</p><p>'Damn it, we've been duped real hard.'</p><p>"That's enough for now."</p><p>Thankfully, her grandfather seemed to be satisfied with her answers as he didn't show any signs of anger.</p><p>He then drummed his fingers over the table.</p><p>Turning his head to face the window, he smiled.</p><p>"Let's not do anything for now. I'm sure he'll come to us soon. We'll decide then…"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-719.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-721.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

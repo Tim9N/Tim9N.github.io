@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 746 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 746 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-745.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-747.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Even after he heard his daughter speak in a cool, detached way, Octavious' face didn't change. He had long since expected such a reaction.</p><p>Everything became clear once the power he wielded was no longer with him.</p><p>When Melissa looked at him, he was able to tell just by looking at her expression what kinds of feelings were going through her mind at that very moment.</p><p>They were expressions he'd seen many times in his life. He wasn't unfamiliar with them.</p><p>"May I come in?"</p><p>He asked, looking around and frowning at the sight of the frozen girl in the distance. Why was she like that?</p><p>"Why do you have to come in?"</p><p>It appeared as though Melissa did not want him to enter, as she blocked his path. Octavious lowered his head and fixed his gaze on her.</p><p>She looked the same as 'she' did when 'she' was younger. Perhaps she was even more beautiful.</p><p>'Her angry look is also the same…'</p><p>A long-forgotten pain began to reappear in his chest, and his expression nearly collapsed. He was able to retain it after a fierce struggle, and after looking around, he returned his gaze to Melissa.</p><p>"I need to talk to you."</p><p>***</p><p>His voice was calm and soft, but the manner in which he spoke made Melissa feel as though she could not refuse, and she moved to the side in reluctance.</p><p>"Make it quick."</p><p>She had no desire to interact with the man in front of her, but what could she do? Kick him out? The world's strongest human?</p><p>'Pft, as if that stubborn bastard would even bother listening to my demands.'</p><p>Melissa could only resign herself to the situation and lead him toward her private lab where there was no one. It was in a bit of a mess at the moment, but she didn't care in the least bit. Since he came so abruptly, she had no time to clean it, and even if he had made an appointment, she wouldn't have cared.</p><p>He was a stranger that shared the same blood as her in her eyes.</p><p>Clank―!</p><p>She closed the door behind her and turned to look toward her father. She wanted to get this done quickly.</p><p>"Out with it, what is it that you wan―!"</p><p>Feeling a rough hand against her cheek, Melissa froze halfway through her sentence. Her eyes soon opened wide as she looked at the man standing opposite her in shock.</p><p>"What are you doing!??"</p><p>She smacked the hand away and moved several steps back. With her sleeve, she rubbed her cheek and glared at the man.</p><p>"I know that you're my father, but who gave you permission to t―"</p><p>"You look exactly like her."</p><p>She froze after hearing his voice. It wasn't so much the contents of his voice that made her freeze, but the softness of his voice.</p><p>Never before did she hear him speak to her with such tenderness...</p><p>When she looked up at him, she was even more shocked to see her usually expressionless father staring at her with an expression that was different from its usual self.</p><p>He seemed to be in... pain?</p><p>"She looked exactly like you when she was younger."</p><p>He may not have directly stated who the 'she' he was referring to was, but Melissa had an idea of whom he was referring to, and as she observed him, a lump formed in her throat.</p><p>She had no idea how to react at the moment.</p><p>'My stomach is starting to hurt.'</p><p>In her twenty plus years of life, this was the first time that her father had talked about her mother, and she could vividly see the emotions in his eyes.</p><p>He looked… frail.</p><p>Melissa took off her glasses and pinched the middle of her brows.</p><p>"What are you trying to achieve over here? Do you seriously expect something from me? You don't have to pretend to be like this, if you want something, just ask away. I'll see if I can help you?"</p><p>She sat on a nearby stool and bit onto her nails.</p><p>The way he was behaving was giving her anxiety.</p><p>Emotions made her cringe.</p><p>The neglect she faced during her younger years made her emotionally immature. She wasn't capable of understanding emotions properly, and anything related to them made her cringe.</p><p>It was for this reason that she buried herself in her research and avoided people. It wasn't so much that she hated them, but she was incapable of interacting with them.</p><p>Emotions repulsed her and gave her anxiety.</p><p>She scratched the side of her neck.</p><p>'Fuck, I want this to stop.'</p><p>Octavious's current behavior was akin to torture for her.</p><p>***</p><p>Octavious smiled at her words and similarly sat down on one of the nearby stools. He covered his mouth with his hand while leaning his shoulder against the table.</p><p>There were many things that he wanted to say to her now that he had finally managed to regain clarity over his own head, however, as he looked at his daughter who was seated opposite him, Octavious found himself unable to say anything.</p><p>He couldn't recall everything, but the few tid bits that he managed to remember were no pleasant memories.</p><p>Thinking of how he had treated his daughter for the past few years… the disappointment in her face, the times he saw her cry, and the times she tried to meet his expectations only for him to disregard her efforts…</p><p>He felt his heart squeeze.</p><p>"I've failed as a father."</p><p>He unconsciously blurted out loud.</p><p>Melissa's body stiffened at his words and she looked at him with a baffled look.</p><p>Octavious smiled, it was a forced one. Every time he looked at his daughter, he felt himself drowning in even more pain, but he bore with it.</p><p>This was the price he had to pay for his actions.</p><p>"Your mother's death…" He took a deep breath. "It affected me in more ways than you can imagine. She was my everything. I was happy back then. In more ways than you could imagine. It felt as though I had everything in my life…"</p><p>A soft smile unconsciously spread across his face as he thought back at those moments in the past.</p><p>He was truly happy back then.</p><p>"She was everything that I could ever ask for in a partner. Caring, funny… annoying."</p><p>He let out a soft chuckle at the last part, and he felt something toward the corner of his eyes. He slowly lowered his head to gaze at Melissa who was staring at him with a scrunched-up face.</p><p>His gaze softened.</p><p> "You couldn't imagine just how happy I was when I heard of the news that she was pregnant… I was happy, really happy..."</p><p>Alongside the day he decided to marry her, that was singlehandedly the best day of his life.</p><p>"Just the thought of starting a family excited me. Every day I would wake up thinking about the future… Life was perfect."</p><p>His chest slowly moved up, and the smile that had spread across his face slowly subsided.</p><p>"…The moment I lost her was the moment that I lost myself."</p><p>Octavious didn't even bother looking at her. He couldn't find the courage to look at her. He was just laying out what was bottled up within him.</p><p>She deserved to hear the truth. For everything that he'd put her through.</p><p>"Many have hailed me as the strongest human in existence, some sort of talent that has never been seen before…"</p><p>Octavious shook his head.</p><p>"It's a lie… all of it."</p><p>***</p><p>The more she listened, the more Melissa found her face contorting.</p><p>'What is he doing, why is he saying all of this… and why now?'</p><p>Whatever he was trying to do, it was too late. Yet… Why did it feel as though someone was stabbing straight through her heart?</p><p>For some reason, his words were piercing her.</p><p>She didn't feel comfortable.</p><p>She wanted to leave but found herself unable to. Staring at her father who, for the first time in her life, seemed to be displaying emotions, she found herself rooted in her seat.</p><p>She clenched her teeth.</p><p>'Ah, fuck, this sucks.'</p><p>She wanted to throw up at this moment. She could feel it in her stomach. With each passing second, the feeling was getting clearer and clearer.</p><p>She covered her mouth with her hand while her foot repeatedly tapped against the ground. She felt suffocated.</p><p>"She was everything that I could ever ask for in a partner. Caring, funny… annoying."</p><p>'Make this end quicker…'</p><p>She didn't know when, but she soon felt an iron-like taste in her mouth. Thinking at how her lips were stinging, she associated it with her lips bleeding.</p><p>"Just the thought of starting a family excited me. Every day I would wake up thinking about the future… Life was perfect."</p><p>Scratching the side of her neck, she soon started to notice that her hands were sliding against something wet, and when she looked, she realized it was her own blood.</p><p>'Make this stop, I hate this… I hate this… stop...'</p><p>"Melissa."</p><p>Hearing her name being called, Melissa raised her head. It was there that she found her father staring at her with a smile.</p><p>It was a forced one, and droplets were streaming down the side of his cheeks.</p><p>"I'm sorry."</p><p>"Bluerrghh!"</p><p>She threw up.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-745.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-747.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

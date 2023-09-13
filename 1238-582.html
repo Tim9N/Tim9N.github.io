@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 582 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 582 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-581.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-583.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Krrr—!</p><p>Opening his eyes, Jin turned to face the door. Slowly, he stood up as a frown emerged on his brows.</p><p>'Did something happen?'</p><p>He wondered to himself as the light began to spill into the room and the doors slowly started to open.</p><p>It didn't take long for the doors to open, and given that Jin had no trouble with the light as his eyes were instantly able to adjust themselves to the sudden shift in lighting, he was able to see who was behind the doors.</p><p>"Kevin?"</p><p>And he was surprised to see Kevin standing on the other side of the door. He had a rather gloomy look on his face at the moment.</p><p>"Hey."</p><p>Kevin lazily waved at Jin.</p><p>"How did you come here?"</p><p>Jin asked as he looked behind Kevin and noticed Ren and a couple of other familiar figures.</p><p>"Amanda? Emma?"</p><p>What was going on?</p><p>How come everyone was here? Something about the situation was off-putting.</p><p>Turning his head to gaze in Kevin's direction, he was met by his fierce glare.</p><p>"I know what you're about to ask, and so I'm telling you now to keep those thoughts to yourself."</p><p>Jin raised his brow.</p><p>"What did I do?"</p><p>Taken aback by Kevin's sudden aggressive stance, Jin looked toward the others who shook their heads.</p><p>'What happened to him?'</p><p>Not once had he ever seen Kevin this fierce.</p><p>The Kevin he knew was different. He was more naive and a bit of a pushover. What prompted the sudden change?</p><p>"Hurry up and get out."</p><p>Jolting Jin out of his thoughts was Ren's voice as he urged him to get out of the room.</p><p>Though not exactly pleased with Ren's tone, Jin did as he asked and walked out of the room.</p><p>It was then that he noticed that there were even more people waiting behind.</p><p>"What's going on?"</p><p>His confusion only grew as his eyes paused on them, and he turned to look at Ren.</p><p>"Are they?"</p><p>"It's a long story."</p><p>Ren waved his hand, signaling him to let go of the topic.</p><p>"We don't have much time to talk right now."</p><p>Turning to face the distance, he raised his voice.</p><p>"Are you done, Melissa?"</p><p>"Shut up."</p><p>He was met with a crisp voice. There was a noticeable annoyance in the voice as Jin immediately recognized whom the voice belonged to.</p><p>'Melissa.'</p><p>Jin thought.</p><p>His thoughts were rather complicated as he thought about her. He clearly remembered chasing after her in the past, but now that he had grown up, he found himself distancing from her.</p><p>'Do I still like her?'</p><p>Staring at Melissa's approaching figure, Jin eventually shook his head.</p><p>'It doesn't seem like it…'</p><p>His heart no longer seemed to beat like in the past whenever he saw her. Rather, it was as calm as a well.</p><p>Jin realized that perhaps his attraction to Melissa was superficial, as he was only interested in her because of her father's connections.</p><p>He had long been obsessed with making the Starlight guild the number one clan in the human domain, and there was no better way to accomplish that than by seducing Melissa, the daughter of the top hero.</p><p>Well, that was how he thought about it in the past. He no longer felt the same way.</p><p>'How disgusting…'</p><p>Thinking back at his past actions, Jin felt shame rise from deep within him as he avoided making contact with Melissa.</p><p>Thinking of his past actions, he no longer knew how to react to her comfortably.</p><p>"So? Have you figured out a way to get rid of the effects of the mana sealing effect?"</p><p>"Nope."</p><p>Melissa flatly replied to Ren's question.</p><p>"This is a task that's a lot more difficult than I previously thought. It might take longer than I originally thought."</p><p>Tapping on her glasses, she tilted her head and closely examined what looked like a test tube in her hands.</p><p>"What seems to be the problem?"</p><p>Ren asked as he moved beside her.</p><p>Raising her head, she dismissively looked at him.</p><p>"You wouldn't get it."</p><p>"Why?"</p><p>"Are you some sort of scientist?"</p><p>"…No."</p><p>"That's your answer."</p><p>"Still doesn't change the fact that I might be able to help."</p><p>"You?"</p><p>Melissa suddenly scoffed.</p><p>"Please do tell me how you are able to count the number of cells that are being attacked by the mixture and forcing your blood to stop carrying mana?"</p><p>Extending her hand, she handed Ren her glasses and the test tube.</p><p>"The glasses will be able to help you zoom into the blood cells and from there you can count yourself. See if you can do it quickly."</p><p>Crossing her arms, she no longer paid any attention to Ren who quietly put the glasses on and tapped onto them.</p><p>A bright light shot from the middle of the glasses, before scanning the whole test tube.</p><p>"It shouldn't be too hard…"</p><p>Ren quietly mumbled as he closely examined the test tube.</p><p>"Hm?"</p><p>While everyone was doing their thing, Jin suddenly took notice of Ren's eyes which suddenly dilated extremely fast. Aside from that, he also observed green veins coming out of his face as it began to redden.</p><p>He looked exactly like someone that was forcing blood into their head by force.</p><p>'What in the world is he doing?'</p><p>Jin wondered to himself as he closely examined Ren. His condition didn't last for long as he soon took the glasses off and handed Melissa the glasses back.</p><p>"Done?"</p><p>She stared at him with a small smirk on her face.</p><p>"As you can see, it's a lot more difficult to figure out than—"</p><p>"There's exactly, 8,097,564 different organisms attached to the red blood cells inside of the tube, of which, 3,672,972, are of blue color."</p><p>"Eh?"</p><p>A baffled look spread across Melissa's face as he looked at Ren with a strange look.</p><p>"You're kidding right?"</p><p>Incredulous, Melissa unfolded a small piece of paper from her dimensional space.</p><p>"…eh?"</p><p>Her face paled as she unfolded the paper and stared at its contents. She then robotically turned to look at Ren.</p><p>"H-how is this possible?"</p><p>She mumbled out loud as the paper in her hand fell to the ground. It was there that Jin was able to catch a glimpse of what was written.</p><p>Overall sample size = 4 mm</p><p>Estimate count per mm of blood = [2, 001, 300 2,356, 567 1,987,931 2,012,830]</p><p>Estimate count per 4mm of blood = 8,358, 628</p><p>.</p><p>.</p><p>.</p><p>'The numbers are close.'</p><p>Upon closer inspection and recalling Ren's numbers, Jin was surprised to find that they matched Melissa's estimates. At least, the ones that were written on the paper.</p><p>'Did he really calculate all of that in the little time that elapsed?'</p><p>But how was that possible?</p><p>It shouldn't be possible. Jin tried to convince himself.</p><p> …but as he took notice of Melissa's expression, he knew that Ren was probably right.</p><p>"Answer me, how did you figure this out? Did you take a peek at my list and come out with some random number that is close to it? I'll have you know that if it's a joke, it might make the situation worse."</p><p>"Don't worry about it."</p><p>Bending down, Ren picked up the paper and handed it back to Melissa.</p><p>He then pointed toward his head.</p><p>"You see, I've got a little something inside of my head. Finding something like this is like child's play for me, so you don't have to worry about whether I'm right or wrong, I wouldn't try to harm myself."</p><p>"Right…"</p><p>Still baffled by Ren's words, Melissa seemed at a loss for words. She rigidly moved her head and headed back toward one of the distance rooms.</p><p>Was it Ren's room?</p><p>Jin wasn't exactly sure, but it seemed like it.</p><p>"Give me two minutes, I'll have the solution ready for you then."</p><p>***</p><p>Bang—!</p><p>A figure crashed against the side of the wall, creating a small crater. The figure then slid down, and the dust in the air cleared, revealing Liam's features.</p><p>"Cough…s..strong."</p><p>Liam felt his whole body ache as a palpitating pressure completely enveloped his body, making his movements extremely rigid. He stared at the demon levitating opposite him.</p><p>'So this is how strong a Duke ranked demon is…wait, no.'</p><p>Slowly, he stood up, letting the pieces of rock that had been to him fall to the ground.</p><p>Squinting his eyes, he took a closer look at the demon and it was then that he noticed that his aura was rather weak.</p><p>Channeling his mana toward his eyes, everything became more clear to him as he opened his mouth and spoke.</p><p>"You're dying…"</p><p>A deep silence permeated throughout the room as the Duke ranked demon froze on the spot.</p><p>Soon, his face changed completely as he looked at the little remaining demons in the room. They weren't exactly strong, but that was beside the point.</p><p>News of his eventual death couldn't spread. It would only serve to incite the other demons to try to take over his position.</p><p>"What sort of nonsense are you saying!"</p><p>His powerful voice shook the surroundings, and the pressure bearing down on Liam increased.</p><p>"Ukh…"</p><p>His knees buckled as a groan escaped from his mouth.</p><p>Liam knew that he had hit the nail on the head and that he had successfully enraged the Duke ranked demon.</p><p>Nonetheless, perfectly knowing that he had angered him, Liam continued.</p><p>"You can try to hide it from the others, but you can't hide it from me. I see everything."</p><p>His eyes suddenly became brighter, and he took a step forward.</p><p>"Right about now, you should already be close to running out of demonic energy…"</p><p>"Shut up!"</p><p>With a flap of his wings, the demons vanished from the spot and arrived before Liam.</p><p>His speed was so fast that Liam was barely able to move his sword in a way that it protected his heart, the spot at which the demon was aiming for.</p><p>Clang—!</p><p>A metallic ring echoed in the air, and Liam's body was once again sent skidding all the way toward the distant wall before he crashed.</p><p>Bang—!</p><p>The impact knocked the wind out of Liam as he fell on both knees to the ground.</p><p>Clenching the ground with both hands, a smile spread across his face.</p><p>"…So fun."</p><p>Liam seemed to have taken no notice of the condition of his body. All he could think about at the moment was the strength of the attack that had just landed on him.</p><p>The prospect of meeting someone so powerful excited him to no end.</p><p>Especially since Liam realized something.</p><p>"He is beatable."</p><p>Rotating his shoulders, he once again stood up.</p><p>"Eh?"</p><p>But just as he stood up, he suddenly noticed that one of his legs was twisted at a weird angle. His leg was broken.</p><p>"Oh…oh…"</p><p>Within moments of realizing what had happened to his leg, the Duke ranked demon appeared next to him.</p><p>From that moment, time seemed to have slowed down for Liam as he caught sight of the Demon's sharp nail head straight for his eyes.</p><p>'Oh shit.'</p><p>Crisis suddenly rose from deep within him as lightning began to crackle all over his body and he moved his head. Trying to avoid the demon's claws.</p><p>'Eh?'</p><p>Just as he moved his head, he suddenly noticed the demon's hand following him, and the sense of doom increased significantly.</p><p>However, it was then that something happened. It all happened within seconds.</p><p>By the time the demon's claws were near Liam's face, Liam caught sight of what seemed to be a bright light and the demon's figure was instantly thrown back, before skidding a couple of meters back.</p><p>Click—!</p><p>What followed after the crash was a familiar clicking sound, coupled with a familiar voice.</p><p>"Looks like I'm not too late, no?"</p><p>Turning his head, Liam caught sight of a familiar figure. A thin smile spread across his face.</p><p>Sitting back down on the ground, he took out an apple and bit into it.</p><p>Crunch—!</p><p>"Just a little…"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-581.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-583.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 495 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 495 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-494.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-496.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Haa...haaa..."</p><p>By the time I reached the top of the cliff, I was already starting to feel exhausted. It wasn't because the climb was hard. No, rather, that was the easiest part. The main problem was the constant attacks coming from the monsters in the sky.</p><p>"Kow!"</p><p>Jumping back and twisting my body in the air, my foot landed on a small ring, and I placed my hand on the sheath of the sword.</p><p>Click—!</p><p>What followed the low clicking sound was black blood that spilled toward the ground like heavy rain. Whilst this was happening, I twisted my body in the air.</p><p>"Huup!"</p><p>Placing my right leg on another ring, I propelled my body to the top of the cliff, and I rolled a couple of times.</p><p>"Haaa..."</p><p>With my back facing the ground, I took a few moments to collect my breath.</p><p>"I'm tired."</p><p>Getting up, I walked back and extended my hand toward Angelica who was still climbing up.</p><p>"Here."</p><p>My gesture seemed to have caught Angelica off-guard as she paused for a moment. After a while, she took my hand and helped herself up.</p><p>"...Thank you."</p><p>"No problem."</p><p>Letting go of Angelica's hand and massaging the back of my neck, I finally got a better view of my surroundings.</p><p>It was then that I finally spotted it.</p><p>"Looks like we're in the right place."</p><p>A large black castle at the very edge of the cliff. Above it was a large beacon that attracted the mana in the air, creating a large vortex; closely resembling a tornado.</p><p>'Seems like some part of the future is still intact.'</p><p>For the castle to be here, meant that not all of the future had changed. I was secretly relieved by this as it meant that I could still make some changes to it.</p><p>That aside.</p><p>Placing my hand over my forehead, I got a better look at the castle in the distance.</p><p>"It looks the same..."</p><p>The castle was almost identical to the castle where I first met Everblood, and it didn't bring me any good memories. Sometimes I wished I had never gone into that dungeon, but I knew that it wasn't something I could've controlled.</p><p>Leaning a bit, I looked beneath the cliff.</p><p>"Are they still following us?"</p><p>"No."</p><p>Angelica replied, also looking beneath the cliff.</p><p>"Strange…"</p><p>My brows creased.</p><p>"Was I perhaps wrong?"</p><p>Were the people really just some random people who had nothing to do with the matter? It was possible.</p><p>But I didn't think things were that simple.</p><p>"Angelica stay on high alert, there's a high chance we're going to get ambushed."</p><p>Regardless, I wasn't planning on letting my guard down.</p><p>"…yes."</p><p>"Alright, let's get going."</p><p>I turned to face the castle in the distance. Surrounding it, and behind it was a large expanse of dead trees, giving off a desolate and cold feeling. Compared to the bottom of the cliff, the trees were a lot denser, and taller, evoking a creepy and ghostly feeling.</p><p>If I had to make an estimate of how far the castle was, I would say it was about five kilometers in the distance.</p><p>It wasn't that far. In fact, it was quite close.</p><p>Even then.</p><p>"Let's approach slowly. There's most likely going to be a lot of traps ahead, so be careful."</p><p>If there was one thing I understood after looking at the forest, it was that it was the perfect place to create an ambush.</p><p>Especially the figures below. If my guess wasn't wrong. They had most likely taken a shortcut up and were waiting for me and Angelica.</p><p>Secretly, I started channeling the mana inside of my body.</p><p>"Let's go."</p><p>***</p><p>Three wolves sped into a vast canopy of white, leaving behind a sunken trail of imprints.</p><p>"Where do we need to go?"</p><p>Hein asked as he caught up to Ava. With the speed the wolf was going, added with the fiercely blowing wind, his hair shot back, making him look ridiculous.</p><p>Staring into the distance, Ava squinted her eyes.</p><p>"We're close."</p><p>Not even a second after her words faded, she tapped her right hand on the wolf's neck.</p><p>"Stop."</p><p>The wolf came to a halt and Ava hopped off.</p><p>Staring into the distance, her face had a tinge of solemness.</p><p>Similarly coming to a stop, Hein got off.</p><p>"Is this the place?"</p><p>"Yes."</p><p>Ava replied.</p><p>Out of precaution, Hein took out his shield which was still cocooned in a white cloth.</p><p>"Burp, we stopping?"</p><p>With a loud burp, Leopold also got off.</p><p>"Wow."</p><p>Getting off, he stumbled a couple of steps. Stabilizing his footsteps, he stared at the half-filled bottle in his hands.</p><p>"…This is a lot stronger than I thought."</p><p>He quickly put the bottle away. He was already warmed up enough, and it was no longer needed. Any more and he might actually get too drunk to fight.</p><p>Squinting her eyes, Ava adjusted the beanie in her head.</p><p>"It looks like we can only walk for now."</p><p>They were currently at the bottom of one of the mountains, and so, Ava realized that going up with the wolves was no longer a viable option.</p><p>Ava raised her flute and blew on it.</p><p>Tootle too~</p><p>A melodious tune rang in the air, and the wolfs disappeared.</p><p>Dropping her hand which was tightly clenching onto the flute, Ava proceeded to head up the mountains.</p><p>"Be careful you two, we're probably going to encounter a lot of monsters."</p><p>"Finally."</p><p>Hein murmured, unveiling his shield which was shining brightly.</p><p>"Burp…"</p><p>With another burp, Leopold wordlessly took out a gun-like device and rested it on his shoulder.</p><p>"This might help me sober up a little."</p><p>***</p><p>"Stop."</p><p>Extending my hand, I stopped Angelica from moving forward.</p><p>Squatting down a little, I squinted my eyes.</p><p>"There's something wrong with this place."</p><p>From the moment we entered the forest, I knew that there was something wrong with the place. If I had a choice, I wouldn't have entered the forest, but since it was the only way that led to the castle, I had no choice but to enter.</p><p>Anyhow, despite sensing that something was wrong with the place, I couldn't quite explain what was wrong.</p><p>I had been keeping my guard up the whole time, yet, I was unable to realize what was going on.</p><p>That was until now.</p><p>Staring at the area in front of me, I extended my hand forward and raised my finger in a particular direction.</p><p>"What are you doing?"</p><p>Angelica asked. Confused by my actions.</p><p>I answered in a low tone.</p><p>"…just checking something."</p><p>Closing my eyes and sensing the mana in the air, I stopped my finger at a particular point. Making sure that I wasn't sensing wrongly, I slowly moved my finger down.</p><p>Pluck—</p><p> Like the string of a guitar, a plucking sound reverberated throughout the air, It was then that I was finally able to catch a glimpse of an invisible string in the air. Not only one string but in fact a series of them, but, I was unfortunately unable to see where they were. </p><p>"As I expected…"</p><p>Pinching my fingers together, I felt a wet sensation. It was probably blood.</p><p>But.</p><p>I didn't have time to care about that.</p><p>Placing my hand on the sheath of my sword, I got ready to attack at any moment in time.</p><p>"Angelica, get ready, it looks like we're trapped."</p><p>Then, using my left hand and taking out three cards from my bracelet, I threw them in different directions. Left, right, and center.</p><p>It took about two seconds for the cards to ignite, and once they did, I was finally able to catch a glimpse of the area around me.</p><p>Just like the previous string from before, the area around us was filled with them.</p><p>Most shocking about this was the fact that Angelica and I didn't notice this at all. Upon closer look, I realized why.</p><p>Lowering my body, I pinched my fingers. Feeling a hard sensation on the tip of my fingers, I turned my fingers a bit to get a closer look.</p><p>"It's these fuckers…"</p><p>A small spider the size of a nail appeared in-between my fingers. In fact, it was probably even smaller than a nail.</p><p>"No wonder they managed to trap us undiscovered."</p><p>The spider's size made it hard for me to notice them. Our attention was focused elsewhere, resulting in this crappy situation.</p><p>Rustle—! Rustle—!</p><p>A rustling sound arose from the distance, and three figures showed up.</p><p>"There is someone here."</p><p>A rough and deep voice echoed out.</p><p>Following the sound, a bald and tall dark man appeared from behind a couple of trees. Wearing thick metallic armor, his footsteps sunk to the ground.</p><p>"Siphon, it looks like you're right."</p><p>A lanky man with long hair and green eyes emerged from behind the bald man. He had this vicious smile on his face, one resembling that of a snake targeting its prey.</p><p>"What do we have here?"</p><p>The third person was a female with red hair and a voluptuous body. Licking her lips, I felt her gaze scan me up and down.</p><p>"A pity…"</p><p>She murmured.</p><p>"A pity that you're wearing a mask."</p><p>Sensing her gaze, I felt disgusted. Still, I regained my composure and spoke inside of my head.</p><p>'Angelica, play along.'</p><p>I then fixed my clothes and straightened my back.</p><p>"I'll give you one option. Let us go."</p><p>"…"</p><p>At my words, the trio's faces froze.</p><p>Turning their heads to stare at each other, they soon began to laugh.</p><p>"Hahahaha."</p><p>"Hahah, we've got some feisty ones."</p><p>"Interesting…"</p><p>In the midst of their laughs, I heard Angelica's voice inside of my head.</p><p>[Let me kill then]</p><p>She was mad, wasn't she? I still shook my head.</p><p>'Calm down Angelica, like I told you, play along. If we kill then now, we're going to alert the demons inside.'</p><p>From where I was standing I could feel traces of demonic energy coming out of their bodies. They had without a doubt signed a contract with a demon.</p><p>It was only a hypothesis for now, but, since there were three people here, in all likelihood, there were three count-ranked demons inside of the castle.</p><p>This was a number I couldn't make light of. Even if Angelica was with me.</p><p>It was when I realized this that multiple different scenarios started to play inside of my head. Each was drastically different from the other.</p><p>Taking a step forward, the lanky individual's smile grew more savage.</p><p>"Why would you think we would let you go—"</p><p>"Shut up."</p><p>Raising my head, I activated 'The one' for a very brief moment. About a couple of seconds.</p><p>But that was enough.</p><p>The moment I activated the one, the trio stopped laughing and their faces finally changed. This was especially so for the lanky individual whose book shook uncontrollably.</p><p>Before they could recollect themselves, I took this opportunity to talk.</p><p>"...We know what you're doing here, let us go, we're on the same side."</p><p>Whilst talking, I tried to keep my voice deep and authoritative. I was trying to leave an impression on them. Naturally, I had reasons for this.</p><p>"Huh?"</p><p>The dark man raised his head and looked me in the eyes. Extreme caution flashed across his face.</p><p>From the corner of his eyes, he glanced at his teammates. This didn't escape my sight, and I knew exactly what he was planning on doing. He was probably signaling them to get ready to attack.</p><p>Recomposing himself, he asked.</p><p>"What do you mean we're on the same side?"</p><p>"Just like you've heard…"</p><p>Extending my hand in Angelica's direction, without any warning, I pulled down her hood, revealing her two horns. Once I took her hood down, Angelica's body flinched a little.</p><p>My actions had definitely caught her off-guard. Thankfully, she was still wearing a mask, somewhat masking her expression.</p><p>"Wha..."</p><p>Revealing Angelica's features, the atmosphere once again froze.</p><p>Smiling slightly, I repeated.</p><p>"...As I've said before, we're on the same side."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-494.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-496.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

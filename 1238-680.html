@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 680 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 680 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-679.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-681.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As predicted, when the countdown reached zero, the world descended into chaos as dungeons began to overload and monsters entered the human world.</p><p>The Monolith then turned on the mana compressor, which caused the tear in the sky to grow and sucked in the incoming mana, turning it into demonic energy, and making the monsters go even wilder.</p><p>Domick square, Ashton city.</p><p>"Will you be fine?"</p><p>I asked while looking at Angelica, who was facing the other way from me.</p><p>At that moment, we were perched on the roof of a structure, and we gazed off into the not-too-distant horizon, where a massive portal was located.</p><p>While we were talking, thousands upon thousands of monsters poured out of the portal, wreaking havoc on everything that was in their immediate vicinity.</p><p>To everyone's relief, there were already multiple heroes stationed near the portal, and things seemed to be holding steady for the time being.</p><p>Having said that, we required that portal right now in order to get Angelica back into the demon realm.</p><p>"No problem."</p><p>Angelica responded while calmly looking at the portal in the distance.</p><p>"If you manage to distract everyone for a moment, I will have no trouble entering the portal."</p><p>"Well, okay…"</p><p>I shrugged my shoulders.</p><p>"If that's what you want, I can easily do that for you."</p><p>Distracting everyone was as easy as me lifting my hand, literally.</p><p>Plus, with the cameras shut off thanks to Ryan, I didn't need to worry about the others seeing the full scale of my strength.</p><p>It wasn't time just yet.</p><p>"So are you ready?"</p><p>"I am."</p><p>Angelica nodded solemnly and gazed into the distance with a complicated look.</p><p>"You can start."</p><p>"Okay."</p><p>I did not waste any time and immediately thrust my hand downward after raising it into the air. The ground began to tremble almost instantly as a result of my actions, and the area around the portal also began to shake.</p><p>The area around the portal began to fill with cracks, and suddenly hundreds of sword energies appeared out of nowhere.</p><p>Then, as if rain had fallen upon the land, the sword energies shot toward the beasts that were rampaging next to the portal at alarming rates.</p><p>The wails of the monsters could be heard throughout the entirety of the city as blood spilled into the air and the city fell into an eerie state of silence.</p><p>In that moment, all eyes gathered on me, and I gently mumbled.</p><p>"Go."</p><p>Angelica vanished from the spot beside me, and I clenched my hand into a fist.</p><p>The rain of sword energies shot toward the ground at a faster rate, and at the same time, a large cloud of dust began to diffuse in the air, which obscured everyone's vision.</p><p>From where I was standing, I could see the members of the alliance becoming frantic as they scrambled to find cover all over the place.</p><p>They were unaware that I could manipulate my power to steer clear of them at all times, which meant that they did not need to be concerned about being put in jeopardy.</p><p>[I'm at the portal. I will be going in now]</p><p>Angelica's voice echoed inside my ears, and a faint curl spread across my lips.</p><p>"Alright, good luck. I'll see you in three months. If you aren't back by then, I'll make a quick trip over there."</p><p>[Yes.]</p><p>That was virtually the last thing I heard from Angelica before I was no longer able to communicate with her.</p><p>At that moment, I stopped channeling my mana and turned around.</p><p>'I guess my job is done for now.'</p><p>***</p><p>"What did you say?"</p><p>As Kevin looked at Emma, who was standing in front of him with an expression that was very similar to his own, he felt a dull ache in his head.</p><p>She repeated.</p><p>We've received reports of someone appearing out of nowhere and killing most of the monsters emerging from one of the main dungeons in Domick square. No one has been hurt and there is no camera footage of the incident, but..."</p><p>"Yeah, I know. It's definitely what you're thinking."</p><p>Kevin set a few documents to the side and massaged his head.</p><p>"I…should've seen this coming."</p><p>Ren's actions seemed simple on the outside, but they were anything but simple.</p><p>Even though Kevin was aware that Ren probably had something to do and that he had a good reason for doing what he did, but...</p><p>What Ren did may appear to an outsider to be a direct challenge to Kevin's authority.</p><p>Even though Ren wasn't part of the alliance, the portal was under the jurisdiction of the alliance.</p><p>What he had done was essentially trespass on the properties of another organization, and Kevin could already tell that he would soon enough get a bunch of messages from the other alliance members expressing their dissatisfaction with him for his actions.</p><p>"Ugh."</p><p>The more he thought about it, the more his head throbbed.</p><p>"...He did it on purpose."</p><p>***</p><p>Outskirts of Dromeda city.</p><p>The icy gaze of Mo Jinhao continued to fixate on the enormous city off in the distance.</p><p>The sky above the city was covered by a translucent holographic blue dome.</p><p>The dome served as a defensive structure for the entire city, covering it entirely and preventing any wild animals from entering the area. It wasn't only limited to the animals, but members of the Monolith as well.</p><p>Had it not been for the translucent dome that was protecting the entire city, the place would've long crumbled under all of the beast attacks.</p><p>"How are the preparations proceeding?"</p><p>Mo Jinhao asked, and two figures appeared behind him within an instant.</p><p>Both of them were concealed behind large white masks that covered their entire faces.</p><p>In spite of the fact that the figures' faces were obscured, it was still possible to make out that they did not have any expressions on their faces.</p><p>The manner in which they carried themselves was extremely disciplined, and they looked no different from puppets.</p><p>They were most likely updated versions of the super soldier plan that the Monolith had been working on for years.</p><p>"Reporting, the defensive mechanism behind the dome is more secure than originally anticipated. It is as if someone already knew what we were planning beforehand and made the proper arrangements. Original tasks cannot be carried out. Chance of failure is estimated to be above 50%"</p><p>After hearing one of the two figures speak, Mo Jinhao's expression took a turn for the worse.</p><p>Since a few months prior to the end of the truce, things had gone awry for him and the Monolith.</p><p>From the spies, to what happened with Evervlood, and now this…</p><p>It was as if someone was watching their every move, and predicting everything that they were doing.</p><p>Considering all the plans they had made beforehand, this was particularly irritating.</p><p>They would have most likely already taken control of a quarter of the human domain if it weren't for the defeats they suffered along the way.</p><p>"It looks like I will have to contact the leader."</p><p>Mo Jinhao quickly came to the conclusion that things couldn't continue in this manner, so he decided to give Malik Alshayatin a call in the hopes of gaining a better understanding of how to proceed.</p><p>—Is there something wrong?</p><p>The line connected shortly after and Mo Jinhao heard Hemlock's voice.</p><p>He quickly reported his findings to him.</p><p>"Several difficulties exist. It appears that the alliance, or whatever their little organization is called, has arrived prepared and has already made the necessary arrangements to sabotage our original plans."</p><p>—That does indeed sound a little problematic.</p><p>Hemlock replied in a soft tone.</p><p>In spite of the news he received, he didn't seem to be that affected by it.</p><p>Rather, based on the tone of his voice, Mo Jinhao had a sneaking suspicion that he already knew that this would occur.</p><p>Was he perhaps overthinking things?</p><p>Mo Jinhao wasn't sure. Despite the many years he had spent with Hemlock, he had never been able to discern his thoughts.</p><p>He perpetually exuded an air of mystery that made it difficult for those who were around him to gain an accurate understanding of what he was thinking at any given moment.</p><p>…and it was exactly this trait of his that made him especially terrifying to the elders of the Monolith.</p><p>"What do you suggest that I do? Conquering Dromeda city is extremely important if we want to get to Ashton city."</p><p>The human domain was structured as such; four great cities, and the capital city, Ashton city right in the middle of the four.</p><p>The purpose of the four great cities was simple. Act as a last defensive line for Ashton city.</p><p>If the Monolith wanted to bring their full force to Ashton city, they first needed to conquer the other four great cities. Only then could they send their full force there.</p><p>Because Ashton city had all of its portals closed, the only way to get inside was to go through the other four great cities, each of which had also locked all of its portals.</p><p>There was no other way in because constructing a portal that could transport thousands upon thousands of people at once was impossible without drawing unnecessary attention to the structure.</p><p>—The others are facing a similar situation to yours. Since that's the case, it is best if you go directly in yourself and sneak a couple of the soldiers with you.</p><p>"Sneak in?"</p><p>Mo Jinhao's brows furrowed.</p><p>Even though he was confident that he wouldn't have any trouble sneaking into the city given his strength, he didn't understand how that would be of any use given that he would undoubtedly be caught if he came close enough to the operating system of the shield that surrounded the city.</p><p>Hemlock answered his question shortly after.</p><p>—Have one of the soldiers carry a bomb and have him detonate the entire building where the shield system is located.</p><p>"What?"</p><p> Jinhao was taken aback by Hemlock's sudden proposal.</p><p>He quickly shook his head.</p><p>"That's impossible. The Alliance will quickly be able to tell that something is wrong. Even if I somehow manage to sneak everyone in, it will be impossible to detonate the space unless someone creates a distraction, but we both know that I can't do that as I will most likely die…"</p><p>—Don't worry.</p><p>Hemlock reassured, his tone calm as ever.</p><p>—I've already thought things through. You don't have to worry about anything. Just trust me, and do what I told you to do. If you follow the steps correctly, you will be able to accomplish the mission without any problems.</p><p>"But…"</p><p>—Trust me.</p><p>Hemlock repeated, and Jinhao eventually relented, relaxing his shoulders a bit.</p><p>"Alright, I'll do as you say. I'll infiltrate the city and sneak the soldiers into the defensive structure."</p><p>There was a reason why Hemlock was the leader.</p><p>He was a very capable individual who managed to achieve what he set out to achieve. There was no need to doubt him.</p><p>All he had to do was follow his order. That was his job.</p><p>—That's all I wanted.</p><p>"…Alright."</p><p>Mo Jinhao disconnected his call with Hemlock and once again focused his attention on the city in the distance.</p><p>Taking a deep breath, his cold and languid grey eyes became a little more animated as he muttered.</p><p>"I'm sure the leader has already thought of everything. All I have to do is just follow the orders."</p><p>Just have to follow the orders…</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-679.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-681.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

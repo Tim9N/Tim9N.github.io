@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 562 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 562 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-561.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-563.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Give this to the guild master."</p><p>Extending her hand, Amanda handed Maxwell a stack of papers. Printed on them was a long list of names and guilds.</p><p>The list was essentially one Amanda made while her father was away. It was a report detailing all the schemes and problems that a few individuals had caused the guild during her tenure.</p><p>Additionally, it included a list of former guild members who are now looking to return.</p><p>As if she was going to let them return after leaving the guild.</p><p>"Understood."</p><p>A courteous smile spread across Maxwell's face as he took Amanda's list in his hands.</p><p>Taking a brief looking at the file, he soon closed it.</p><p>"I'll make sure to report this to the guild master. He will be pleased with the list."</p><p>"I hope so."</p><p>Amanda replied with a faint smile.</p><p>With a bow of the head, Maxwell bid Amanda goodbye and left the room.</p><p>"I'll be taking my leave now."</p><p>"Okay."</p><p>Clank—!</p><p> His departure left the room silent, leaving Amanda all alone deep in her own thoughts. </p><p>Drumming her fingers on the wooden desk, she turned around to stare at the scenery outside.</p><p>"He's probably already left, hasn't he?"</p><p>Although he may not have told her when exactly he was planning to leave for the trip he told her about, Amanda could make a rough estimate based on his personality that he had probably already left.</p><p>Just the thought made her shake her head as she bitterly smiled.</p><p>'That's just so like him.'</p><p>While he may have many mysteries, his personality was quite predictable once you got to know him well.</p><p>"…I wish I could leave here as well."</p><p>Amanda's lips quirked as she stared at the long stack of papers in front of her. An inescapable sigh escaped from her mouth as she thought of all the work that she had to do.</p><p>Over the past few years, she had honestly grown tired of all of the desk work she had to do. Not only were they boring, but they were also extremely time-consuming.</p><p>Furthermore, it also started affecting her real strength as despite never missing a training session, she could feel her skills stagnating.</p><p>"Oh, well."</p><p>Once again sighing to herself, Amanda turned to focus her attention back on the papers in front of her.</p><p>While it may have been a pity that she couldn't attend, she also had responsibilities of her own.</p><p>"Maybe another tim—!!!"</p><p>A bright white light engulfed Amanda's body as she cut her sentence off mid-sentence.</p><p>"What's going on?"</p><p>She stood up from her seat.</p><p>As Amanda stood there, a small crack appeared beside her. An instant later, a small wind gale blew her hair back, forcing her to back away.</p><p>"Khh.."</p><p>While holding both hands over her face, she tried to peer through the crack.</p><p>'Am I being attacked?''</p><p>She instantly grew alarmed at the sight as a bow materialized in her right hand. A powerful aura suddenly enshrouded the room as the bow appeared. It was none other than the &lt;S&gt; rank bow that Ren had given her.</p><p>Additionally, she attempted to press the emergency button to warn the other guild members of the attack.</p><p>In the midst of doing this, Amanda felt her body lean forward as she felt a powerful suction force appear from the crack in front of her. Her face twisted with horror.</p><p>"Ukh."</p><p>While clenching her teeth, Amanda looked right and left to see if she could find any support.</p><p>Unfortunately, there wasn't, as the suction force intensified with each passing second, forcing her toward the crack.</p><p>...and before she knew it, Amanda's body was suddenly tossed into the crack after she could no longer hold herself still.</p><p>It all happened so fast that she didn't even have the time to scream.</p><p>Bang— Bang— Bang—</p><p>In response to her disappearance into the crack, all the items in the air fell to the ground, bringing the office to a state of silence.</p><p>***</p><p>At the same time.</p><p>"…5mg of Acetelyx should be enough."</p><p>Squeezing the top of a pipette, Melissa carefully observed the transparent liquid that was dropping onto a small test tube in front of her. She was in a state of extreme concentration as she tried to moderate the liquid that was dripping down the pipette.</p><p>It wasn't long before the drop of liquid finally fell into the test tube seconds after the pipette was squeezed, and smoke started to rise immediately.</p><p>"Shit."</p><p>Melissa cursed out loud as she threw the pipette in her hand and snapped her head in Rosie's direction.</p><p>"Quickly, go get me a powerful alkali! I fucked up."</p><p>"Uh? Huh?"</p><p>Startled by Melissa's sudden outburst, Rosie didn't know how to reply as she just dumbly stood still.</p><p>This irritated Melissa to no end as her voice raised.</p><p>"Quick! What are you waiting for? Did you not hear what I just said? Bring me some powerful alkali! I need to neutralize the solution!"</p><p>"Ah! Yes!"</p><p>Immediately snapping out of her thoughts, Rosie left toward a different side of the laboratory to find the alkali she was looking for.</p><p>In the meantime, Melissa returned her attention to the test tube which was now engulfed by weird purple flames.</p><p>"Just great…"</p><p>She muttered in a dissatisfied tone.</p><p>"Another failure."</p><p>Her most recent project was developing a method to control wild animals. She had received a little something from Ren not too long ago, and she clearly wanted to put it to the test.</p><p>After all, whenever he gave her a theory, he often times proved to be right.</p><p>Sort of.</p><p>At least idea-wise. Most of the time it was just her filling in the blanks.</p><p>In fact, just the thought irritated Melissa to no end.</p><p>"Why does he always give me these incomplete details? You really dislike making my life easier don't you?"</p><p>Glaring at a set of papers beside her, Melissa pulled her glasses up and sighed.</p><p>"I really can't deal with him."</p><p>If there was one person she couldn't handle, it was Ren. And that irritated her to no end.</p><p>Extending her hand for the papers, Melissa's hand suddenly paused.</p><p>"Hm?"</p><p>Sensing something, her head snapped toward her right.</p><p>"What th—"</p><p>Before she could comprehend what was happening, her body vanished out of thin air. It all happened so fast that within a quick second she was gone.</p><p>For the next couple of seconds, a deep silence enveloped the lab.</p><p>The silence was soon broken by Rosie's voice as she rushed towards where she used to sit.</p><p>"I've got the Alkaline that you've requeste—"</p><p>Rosie was disappointed to find Melissa gone just after she had entered the room.</p><p>In a confused expression, she gazed around after lowering her hand that was holding onto a jug filled with the alkaline solution.</p><p>"Don't tell me that she's already left?"</p><p>Placing the jug on the table next to her, Rosie was left in dismay.</p><p>"…I'm not even surprised at this point."</p><p>***</p><p>"Hieuk" "Hieak!"</p><p>On a rocky terrain covered in red rocks and sand, two lizard-like creatures with sharp spikes protruding from their back were half the height of a human, walked on two legs, and reptile-like eyes, carefully scanned the surroundings.</p><p>They seemed to be looking for something.</p><p>"Hieuk" "Hieak!"</p><p>Communicating with one another, one of the creatures pointed toward a large rock in the distance.</p><p>Following his comrade's line of sight, the other creature cautiously headed toward where the rock was.</p><p>When the creature reached the rock, its spikes sharpened as a dark green liquid began to fall from its body.</p><p>Tsss— Tsss—</p><p>A hissing sound echoed in the air as the liquid touched the ground, forming a small and bottomless hole on the ground.</p><p>It was clear that it was some sort of extremely potent poisonous substance.</p><p>In an attempt to take a peek, the creature moved toward the right side of the rock, but...</p><p>SHIIIING—</p><p>A sharp silver blade swept through the air, cutting the creature's neck off as the creature turned to look behind the rock. It all happened so fast that the creature was unable to react to the sudden unexpected situation.</p><p>Thump—</p><p>With a low thump, the creature's body fell to the ground, lifeless.</p><p>Catching sight of what had happened in the distance, the other creature grew enraged and stuck its tongue out, letting out a shrill cry.</p><p>"Hieeeek!"</p><p>A young female with long auburn-colored hair emerged from the other side of the rock. Apathetically glancing at the creature in the distance, she held onto a short sword in her right hand.</p><p>Using her pinkie to pick her ear, she muttered before tossing her shortsword in the air.</p><p>"Noisy."</p><p>After tossing the short sword in the air, she twisted the heel of her foot and kicked the shortsword with the sole of the foot.</p><p>Bang—</p><p>"Hieek!"</p><p>Accompanied by a muffled sound, the shortsword shot in the direction of the creature, impaling it right in its chest area, sending it crashing into the distance.</p><p>"Huaaam…."</p><p>Yawning out loud, Emma glanced at the creature and muttered to herself.</p><p>"Who would've thought that I would be able to deal with them so easily."</p><p>Recalling the time when she used to struggle to handle such creatures, Emma felt a bit of shame.</p><p>In her defense, the creatures were both &lt;B+&gt; rank. Back then she was only around &lt;B&gt; rank.</p><p>Had she not spent over half a year in her family dungeon to accumulate experience she would've never been able to defeat them.</p><p>"This should be the last one."</p><p>When Emma approached the creature and picked up her shortsword from its body, the world around her began to distort.</p><p>She sighed in relief when she saw this.</p><p>'I guess it's time for me.'</p><p>Currently, she was inside her personal VR machine, not a dungeon. After just coming out of the dungeon a couple of days ago, she wanted to try out a virtual simulated scenario.</p><p>Staring at the time, [38H 29M 58S], it was fair to say that she had improved a lot.</p><p>Her excitement was suddenly interrupted by something unexpected.</p><p>"Hm?"</p><p>Amanda raised her head.</p><p>Exactly at the same time the world around her started distorting, she noticed cracks starting to form in the air around her.</p><p>"Huh? What's going on?"</p><p>Alarm bells instantly rang inside of Emma's face as she looked around her.</p><p>"What is hap—"</p><p>But before she could even finish her sentence, she suddenly felt a suction force envelope her body, and her consciousness slipped.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-561.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-563.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 845 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 845 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-844.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-846.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Oof."</p><p>Liam felt his arm go numb as something struck them. He was barely able to react in time, and he felt himself being thrown toward the ground at an alarmingly rapid rate. The speed at which he was traveling was terrifying.</p><p>Boom—!</p><p>Just before he touched the ground, lightning crackled around him, and he was just barely able to twist his body and position himself in a way that helped him land on his feet rather than on his back.</p><p>Bang—!</p><p>The ground began to crack beneath him, and rocks began to fly past him.</p><p>'That was close.'</p><p>He thought, looking up at the bulky figure that the Pillar Mater of the House of Gluttony was.</p><p>After only a few encounters with her, he realized that he was no match for her. Without a doubt, she was one of the most powerful individuals he had ever faced.</p><p>Even so…</p><p>Bringing his hand toward his shirt, Liam clenched it and felt the beat of his heart.</p><p>Ba...Thump! Ba...Thump!</p><p>It was beating wildly.</p><p>Cracka. Cracka.</p><p>As lightning exploded all around him, he could feel excitement coursing through his entire body, and his grip on his sword became increasingly firm.</p><p>Boom—!</p><p>Another explosion went off above him, and the elven queen suddenly materialized directly above the Pillar Master. She had a complicated magic circle materialize on the top of her palm at the same time.</p><p>It glowed a green hue.</p><p>The surroundings started to twist, and long and thick vines erupted out of the magic circle, flooding the surroundings. The momentum carried all the way toward Princess Adephagia, who gazed at it with a serious expression.</p><p>She, too, couldn't take it lightly.</p><p>The attack was strong, and even Liam felt troubled by it.</p><p>But just as he thought the attack would land, Princess Adephagia suddenly opened her mouth.</p><p>WOOOOM—! As if there were a powerful vacuum inside of her mouth, the vines abruptly changed their direction and headed directly for her mouth as she swallowed them all at once.</p><p>"…"</p><p>The scene left Liam stunned. The sight... It most definitely wasn't the most pleasing to look at.</p><p>He was only able to concentrate on the scene for a short period of time before he became aware that the power that emanated from the Princess's body was beginning to increase.</p><p>"Not bad."</p><p>The Princess muttered, her gaze turning toward Liam.</p><p>'Not good!'</p><p>Craka! Cracka!</p><p>Immediately, Liam's expression changed as the lightning around him crackled even more fiercely, and he took two steps to the side.</p><p>BOOOM—! He had just moved when, all of a sudden, the area where he had been standing exploded into smithereens, leaving nothing behind.</p><p>Cold sweat trickled down Liam's face as he gazed in the direction of where he previously stood before looking up at the Princess, who was looking back at him with cold eyes.</p><p>"You were able to dodge that?"</p><p>Her voice, though soft, echoed powerfully in Liam's ear.</p><p>Upon hearing her voice, Liam's expression changed, and he pressed his hand against his sword, ready to attack.</p><p>"Wait."</p><p>A figure suddenly materialized beside him and put her hand on his shoulder just as he was about to make a move. It was Maylin.</p><p>"Don't attack."</p><p>Because of his eyes, Liam was aware in advance who it was that had arrived beside him, and as a result, he was not surprised by her sudden appearance.</p><p>Turning his head, he asked.</p><p>"Why?"</p><p>"Because you're not strong enough."</p><p>When the elven queen extended her hand in front of her, a magical circle materialized once more. This time, it was a lot more complicated than the previous one, and the power that gathered toward it was immense.</p><p>Unsurprisingly, the Princess maintained her position in the air, where she was, and opened her mouth as if she were waiting for the oncoming assault.</p><p>Such a reaction didn't go unnoticed by Liam.</p><p>"What are you doing? Haven't you noticed that she can absorb your energy?"</p><p>Liam pointed out while looking at Maylin with a strange expression.</p><p>It should've been obvious from the first time Princess Adephagia did it, so why was she doing it again? Did she really think that a more powerful attack was going to make a difference?</p><p>"I know."</p><p>Thankfully, it didn't seem like Maylin was unaware of this.</p><p>"Then…"</p><p>"I'm just buying time."</p><p>"For?"</p><p>"For you."</p><p>She answered as if it were the most obvious.</p><p>"Huh?"</p><p>Liam was taken aback by her words, and he looked at her with an even stranger gaze.</p><p>She explained further.</p><p>"You'll only be a hindrance if you're here. I'll attack her, and you can take that chance to leave. I'll buy you as much time as possible, so the moment I attack, you go!"</p><p>"Oh."</p><p>Liam nodded his head, completely misinterpreting her words.</p><p>'So she wants me to leave, and attack her from upfront… thankfully, she's not stupid.'</p><p>"I see."</p><p>"It's good that you understand."</p><p>Misunderstanding Liam's nods, Maylin smiled, and the magic circle before her burst with power and headed directly for the demoness who was still hovering in the air above.</p><p>WOOOOOM—! Princess Adephagia, upon realizing that the attack was headed in her direction, opened her mouth, and the attack ended up landing directly in her mouth, inflating her body.</p><p>"Go!"</p><p>Immediately after she attacked, Maylin pushed Liam from the back, and lightning started to crackle around him.</p><p>Cracka! Cracka!</p><p>His figure blurred on the spot and disappeared completely.</p><p>He was so fast that even Maylin was unable to tell where he had gone. When she managed to spot him again, her expression changed dramatically.</p><p>"This bastard!"</p><p>Appearing right behind the demoness, Liam thrust his sword at her.</p><p>The space around the sword cracked and twisted, and a powerful hue suddenly burst forth from the sword.</p><p>The power of that attack was unlike any he had ever thrown, and the Princess, who was halfway through digesting the force of Maylin's attack, could only turn her body to dodge the attack.</p><p>Spurt!</p><p>Unfortunately, Liam's sword was still able to land on her body, and a large gash appeared on the side of her abdomen. Black blood leaked down, and the Princess's expression twisted.</p><p>Not that Liam cared, as lightning crackled around him, and he appeared right behind her, sword thrust directly at her left side.</p><p>—Her core is in her left armpit.</p><p>He telepathically said to Maylin while thrusting his sword at her armpit. He wasn't as lucky as before.</p><p>Unfortunately for him, the moment he appeared behind her, the very air around him started to twist, and his sword bent to the side and his attack completely missed the Princess's body.</p><p>"huh? ...I missed?"</p><p> As soon as it became clear that his attack was going to miss, the demoness turned around and reached out with her hand to grab hold of his neck.</p><p>Thankfully, Liam was able to react in time and dodge her large hand, but he wasn't lucky enough to dodge her leg, which hit him directly by the side of his abdomen.</p><p>Bang—!</p><p>"Ukh."</p><p>He fell back a few paces, but before he even had a chance to catch his breath, as if something were sucking him in, he felt his body move, and before he knew it, he was standing in front of the Princess once more.</p><p>"Ah, shit."</p><p>Seeing her approaching hand, Liam inwardly cursed.</p><p>Even so, he wasn't necessarily panicking. Exactly when her hand was about to reach for his throat, Maylin appeared right behind her, with a magic circle already formed.</p><p>The power contained within that magic circle was nothing to laugh at as the entire space trembled, and even the Princess was unable to ignore it as her attention shifted away from Liam.</p><p>Smack!</p><p>When Liam tried to knock the Princess' hand away, he found that his entire body was being flung back, and he ended up crashing into the ground below.</p><p>BANG—!</p><p>"Ukh."</p><p>It was painful, but he didn't sustain any serious injuries.</p><p>"Uh?"</p><p>What caught his attention was a large shadow cast over the area he was in, and when he looked up, he was shocked to see the Princess's figure.</p><p>She was big before, but now…</p><p>Thump!</p><p>The land quaked at her step as her figure towered over it.</p><p>She was so big that Maylin, who stood in the sky, looked like an insignificant bug.</p><p>Rumble! Rumble!</p><p>The world within the pillar quaked at her presence, and an enormous power erupted from out of the Princess's body. It enveloped the entire land, before gathering back toward her.</p><p>With her eyes trained on the elven queen, she extended her large and bulky hand and flicked at Maylin, who was just barely able to dodge.</p><p>BOOM—!</p><p>The force of that one flick was enough to generate a pressurized wind streak that tore through the air and destroyed everything that was in its line of sight.</p><p>"Oh… shit…"</p><p>The sight made Liam tremble. Not out of fear but out of pure excitement as he hastily stood up and smacked his foot against the ground.</p><p>"Oy, Oy! Don't forget that I'm still here!"</p><p>Shouting at the top of his lungs, he appeared right before the Princess and aimed his sword at her eye.</p><p>He was fast. Extremely so, and by the time the Princess found him, he was already before her eye.</p><p>Clank!</p><p>Unfortunately, she was able to close her eye in time, and Liam's blade was knocked back. He fell onto the bridge of her nose.</p><p>"Ah, shit..."</p><p>Maybe it wasn't the best idea to shout...</p><p>Realizing the predicament he was in, Liam cursed, and a large shadow cast over the area he was in. Scratching the back of his head, Liam watched as a large hand came right at him.</p><p>The speed wasn't anything he couldn't deal with, but a strange suction-like force bounded him where he was, and all he could do was stare at the incoming hand that was approaching him.</p><p>"Well, fuck."</p><p>Realizing that he couldn't dodge, Liam sighed and sat down cross-legged.</p><p>"Mhh, maybe I should've gone for the—"</p><p>Smack—</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-844.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-846.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

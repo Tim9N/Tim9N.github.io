@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 551 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 551 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-550.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-552.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Piece of shit"</p><p>In an act of anger, Kevin threw his phone all the way toward his bed before walking toward the room's glass windows.</p><p>Placing his hands on the window, he stared at the city beneath him.</p><p>"...This is the second time."</p><p>When he remembered what happened in Issanor, where he clapped in front of everyone, Kevin felt as if he wanted to burrow himself beneath the ground.</p><p>'I swear to god.'</p><p>"My name is Kevin, my name is Kevin, my name is Kevin..."</p><p>Kevin repeatedly muttered to himself as he leaned his body against the window.</p><p>In spite of knowing his name was Kevin, he was still not used to it. To him, it felt unnatural. In the presence of people calling him by that name, he would experience an odd sense of discomfort that he couldn't quite explain.</p><p>'I know my name is Kevin, but why do I hate being called that? Just what did Ren do to me?'</p><p>"My name is Kevin, my name is Kevin, my name is Kevin..."</p><p>Mumbling the name a couple of more times, Kevin eventually took his hands away from the window.</p><p>After that, he swiped his hand in the air.</p><p>'System.'</p><p>His attention was drawn to a small holographic table in front of him. Swiping his hand, his brows furrowed tightly.</p><p>"Harrison street?"</p><p>Displayed in front of him was a large map of Ashton city. Two red dots appeared on the map.</p><p>At the top of the red dots, two names were displayed.</p><p>"Why is he with Amanda?"</p><p>With a thoughtful look, Kevin pinched his fingers and zoomed the map closely. Upon confirming that Ren was with Amanda, his face grew curious.</p><p>'Could he be on a date?'</p><p>Additionally to its great restaurants and view, Harrison Street had a lively atmosphere. One that made it a great place to go on a date.</p><p>'I doubt this is the case.'</p><p>Kevin shook his head after a bit of thought. Ren didn't strike him as a guy that would spend time on such things.</p><p>He was probably there to do something important.</p><p>Pinching the map out, two more dots appeared on the map, and Kevin muttered.</p><p>"This is a pretty useful feature."</p><p>[Soul Linkage]</p><p>That was the name of the feature he was currently using. It wasn't a skill, but something that was integrated with the system he had.</p><p>By creating links with several individuals, Kevin was able to know their location at any time he wanted. That wasn't all. When facing an emergency situation, he could use the feature to teleport directly to them and vice-versa, by teleporting them to him.</p><p>Although the cooldown was extremely long, about half a year, it was a very useful feature that made Kevin feel a lot more relieved.</p><p>It really made him worry less about his friends.</p><p>Waving his hand, the screen in front of him vanished as he mumbled to himself.</p><p>"A pity that I can't register that many people."</p><p>Although it wasn't exactly a big problem, at the moment, he could only link his soul with five people.</p><p>But this was enough.</p><p>After all, he was only close to about five people.</p><p>"Setting that aside, I should probably get to work."</p><p>Scratching the back of his head and taking out an orb from his dimensional space, Kevin outstretched his hand toward the air.</p><p>Later on, the orb disappeared into thin air, and the room's mana started fluctuating.</p><p>[Would you like to set up a portal?]</p><p>A string of blue text suddenly appeared in his vision as Kevin shook his head.</p><p>"No, configure the coordinates for now."</p><p>Following his words, a whirl of mana swirled in the air as Kevin's hair and clothes fluttered.</p><p>***</p><p>At the same time.</p><p>"Hm?"</p><p>In response to the strange distortion in the space around him, Jezebeth slowly opened his eyes. There was a tight furrow of his brows as he stared toward the distance.</p><p>"This power..."</p><p>Raising his hand and sensing the familiar power coming from the distance, Jezebeth's eyes icily flashed as he became more certain.</p><p>"...It's the Akashic records."</p><p>The moment he came to such a realization, everything around him came to a still as he slowly stood up from his throne.</p><p>Unprecedented seriousness flashed across his face as he extended his palm toward where he felt the power coming from.</p><p>"Gone."</p><p>But just as he raised his hand, the sensation quickly disappeared. Lowering his hand, Jezebeth's face remained impassive as he continued to gaze into the far distance.</p><p>After a while, he softly muttered,</p><p>"His connection with the records has gotten stronger."</p><p>His voice loudly echoed throughout the space he was in. There was a deep hint of solemnity in Jezebeth's voice as he moved in the direction of the power he felt.</p><p>Halting his footsteps, Jezebeth once again raised his hand and stared at it. His hand was encircled by strange white thin threads.</p><p>The Akashic laws.</p><p>A power that he had managed to acquire after swallowing the planetary seeds, and the only power that could harm the records.</p><p>With each movement of his fingers, the faster the threads moved around his hand.</p><p>Slowly, he raised his head.</p><p>"It's a pity that you didn't use your powers for longer, Kevin. However..."</p><p>Squinting his eyes, his tone turned icy.</p><p>"...There won't be a next time."</p><p>***</p><p>[Configurating coordinat-[Error]-]</p><p>A string of red text suddenly formed in front of Kevin's vision as his brows furrowed tightly.</p><p>"What's going on?"</p><p>The sudden turn of events did not deter Kevin from losing his cool.</p><p>As this was not the first time something strange was happening to the system, he was able to quickly adjust himself to the sudden situation.</p><p>Nevertheless, he was still concerned.</p><p>'What exactly is going on?'</p><p>[Error]</p><p>[Error]</p><p>[Error]</p><p>As Kevin viewed the continuous stream of error messages, his frown tightened. In that moment, however, he was awoken by a new string of text. His brows immediately jumped up.</p><p>[Warning, there is an interference with the connection.]</p><p>[Warning, there is an interference with the connection.]</p><p>[Warning, there is an interference with the connection.]</p><p>"Interference with connection?"</p><p>His expression instantly changed to one of solemnity. It was clear to him that something serious was happening, despite not knowing what exactly was happening.</p><p>Ba..Thump! Ba..Thump!</p><p>In an instant, everything around him stopped and time seemed to have slowed down. An uncontrollable rush of adrenaline filled his body as his heart started to beat faster.</p><p>'What's going on?'</p><p>This sudden turn of events startled Kevin as he looked around him in alarm.</p><p>"Ukh!"</p><p>In the midst of this strange feeling, he suddenly felt his body get engulfed by a strange energy. Shortly after, the mana inside of his body quickly drained as his face paled.</p><p>Raising his hand, he shouted.</p><p>"Stop!"</p><p>In the wake of Kevin's words, his vision was colored with yet another string of messages. A sudden sense of doom loomed over Kevin as if a gigantic black hand was reaching for him as his heart tightened unconsciously.</p><p>Another string of text appeared.</p><p>[Disrupting connection]</p><p>[Error]</p><p>[Trying again]</p><p>[Error]</p><p>[Force shut down]</p><p>[Error]</p><p>[Trying again]</p><p>The error messages continued for about a minute before they finally disappeared.</p><p>Ba..Thump. Ba..Thump. Ba..Thump.</p><p>As sweat trickled down Kevin's face, the only sound he heard was the beating of his heart.</p><p>"Haa...Haa..."</p><p>A heavy gulp of air forced Kevin to get on his knees as his energy drained out.</p><p>"W..what just happened?"</p><p>It was difficult for him to explain, but he felt his connection with the system deteriorate for a short time.</p><p>This was something that had never happened to him before, and it was quite frankly worrisome to him.</p><p>Taking a deep breath, Kevin sat back down on the ground, trying to put his thoughts into order as he tried to sort out what had just happened.</p><p>'Throughout the process of configuring the coordinates of my destination planet, a strange force suddenly appeared and attacked me out of nowhere, sending the system into a frenzy. It seems that the force is somehow related to the system, though I'm not sure what it is...'</p><p>Upon further reflection, Kevin was only left with more questions as the frown on his face deepened.</p><p>"Should I tell this to Ren?"</p><p>Kevin suddenly thought.</p><p>"If there is one person that might know what's going on, it has to be him."</p><p>Although he was still angry at him, Kevin understood that the situation was very serious. Taking out his phone, he quickly sent him another message.</p><p>[I've got something serious to discuss. If you don't answer, I will directly go to you. I know where you are.]</p><p>***</p><p> "Should we go somewhere else?" </p><p>Uncomfortable with the stares of those around me, I scratched the side of my cheek and looked around.</p><p>The situation had quite frankly gotten out of hand.</p><p>Amanda was simply attracting too much attention. Fortunately, she seemed to have noticed this as well, for she nodded her head in agreement.</p><p>"Sure."</p><p>"Great, do you want to go to a cafe first?"</p><p>In spite of my nerves, I asked calmly.</p><p>Having never been on a date before, I had no idea what to expect, and my distorted memories were of no help whatsoever.</p><p>In fact, there were many times in my memories when I was rejected by girls, so if anything, they were only making me more nervous.</p><p>With a soft smile on her face, Amanda answered.</p><p>"I'm fine with anything."</p><p>Raising my brow, I turned my head slightly.</p><p>"...and what if I choose a really crappy place?"</p><p>"That's fine with me."</p><p>The expression on Amanda's face remained unchanged as she answered. Still the same simple smile that attracted the gazes of the people around us.</p><p>"I trust you."</p><p>She added.</p><p>"Haaa..."</p><p>As I studied her expression, I let out a long sigh.</p><p>Talking like that...</p><p>She was really making it hard for me.</p><p>"...When you put it like that."</p><p>Turning around, I waved my hand.</p><p>"Alright, alright, follow me. I know of a nice place that the both of us can go to. While we're at it, we can probably eat lunch there as well."</p><p>"Okay."</p><p>A brighter smile spread across Amanda's face as she walked beside me.</p><p>"Looking forward to it."</p><p>***</p><p>A/N : should be out in an hour or two. It is completed. Just need to edit.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-550.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-552.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

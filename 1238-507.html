@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 507 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 507 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-506.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-508.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>My next set of actions was quick.</p><p>As I was dealing with a Marquis-ranked demon, every little second mattered.</p><p>Taking out a stack of magic cards from my dimensional system, I injected them with my mana before throwing them in the air.</p><p>Swiping my hand, three rings formed around the igniting cards.</p><p>By the time the cards were about to fully ignite, the rigs turned red and a small ball of fire resembling a sun was contained in the middle of the rings.</p><p>"Go."</p><p>With a simple wave, the rings flew toward the sky.</p><p>"What's this?"</p><p>Catching sight of the ball of fire, Marquis Atheora reached his hand out. But it was already too late.</p><p>BOOOM—!</p><p>A large cloud of fire bloomed in the air and accompanying it was a thunderous explosion.</p><p>The fire receded after a couple of seconds, but it served its purpose.</p><p>"Anytime now..."</p><p>"You."</p><p>Feeling Marquis Atheora's gaze land on me, I raised my head and stared back at him.</p><p>Slowly descending to the ground, he looked back at the area where I threw my attack.</p><p>"What were you trying to do?"</p><p>"Testing something."</p><p>"...You seriously want me to believe that?"</p><p>Raising his head, he smelled the air. His face changed a little.</p><p>"This sensation..."</p><p>I felt his gaze pause on me, as he carefully scrutinized my body. After a while, his eyes opened up.</p><p>"You...You're not a demon."</p><p>'Ah, looks like the cat is out of the bag...'</p><p>In order to make it seem like I was a demon, I had placed a couple of cores inside of my body. By simply creating a thin coating of mana, I stopped the demons from regenerating, and in the process, created an effect that made it seem as though I had demonic energy inside of my body.</p><p>This was a trick that I learned from my other-self.</p><p>It was quite a useful one at that as it really helped me out quite a bit. Without it, I would've probably been found out in the first month.</p><p>Had it not been for my last attack that left some lingering mana in the air, Marquis Atheora would have never found out.</p><p>"A pity..."</p><p>I muttered underneath my breath.</p><p>"I don't know how you—"</p><p>Stopping himself mid-sentence, Marquis Atheora's head snapped toward the distance. It was then that he managed to spot several demons heading his way, coming from the northern side.</p><p> His face finally changed. </p><p>"This..."</p><p>Staring at him from below, I smiled from behind my mask.</p><p>"It looks like someone noticed all of the commotions you've caused."</p><p>Not quite.</p><p>From the moment that I decided to help him out, I knew that he was going to try to silence me. Even if he wasn't, I wasn't still going to go through with my plans.</p><p>...which were essentially the same as the first one. That is, act as bait and lure them into a trap.</p><p>With Marquis Atheora now injured, if there was a better time than to get rid of him, it would be now.</p><p>That said.</p><p>Even if he was injured, he wasn't someone that I could kill. Our rank difference was just too big.</p><p>I didn't need to kill him myself anyways.</p><p>And just like I had convinced him to ambush the Greed clan, I presented another clan with a similar situation.</p><p>From how the Sloth clan was planning on ambushing the Greed clan, and how they could use this opportunity to deal damage to them.</p><p>The fireball I just threw was a signal for them to move.</p><p>"You actually planned to backstab me from the very beginning..."</p><p>Snapping me out of it, I felt a malicious and terrifying glare directed in my direction. Without needing to look, I already knew who it belonged to.</p><p>But I didn't care as my direction my attention toward the opposite side, the southern area. This was only half of my plan.</p><p>"They should also be coming soon..."</p><p>But as I looked in the distance and I saw nothing, my forehead started to crease.</p><p>'Did I mismatch my timing?...or did they ignore my words?'</p><p>If so, this was going to be troublesome.</p><p>I suddenly felt a burst of aura coming from behind me.</p><p>"You..."</p><p>Marquis Atheora's voice shook the air, and the area around me started to twist. Turning around, I realized that Marquis Atheora was preparing to attack me.</p><p>'Shit...'</p><p>Feeling the terrifying aura that was directed in my direction, I once again turned to look into the distance. Yet again, I saw nothing.</p><p>Activating Eyes of Chronos, I started to assess the situation.</p><p>The chip inside of my head started to run at full throttle as I tried to figure out my next course of actions.</p><p>"Looks like Plan A is going to be a bust. Do I have no choice but to go with plan B?"</p><p>"You don't."</p><p>A familiar voice rang from beside me. As usual, it was the other me appearing from out of nowhere.</p><p>"What do you mean?"</p><p>"...Wait a little bit longer."</p><p>After a slight pause, his voice became colder.</p><p>"Keep in mind that using that power will only serve to alert Jezebeth of your appearance in the Demon Realm."</p><p>"...You're right."</p><p>Recalling Jezebeth's power, I became extremely apprehensive.</p><p>Back then he had only sent a clone to fight me. What if he showed up in his full form? Wouldn't I just die with a simple glance?</p><p>Just the thought made me extremely apprehensive about using my power.</p><p>In the midst of my thoughts, the other me continued speaking.</p><p>"Using the skill now will not be ideal. Later on, you might need to tap into that power in order to save Amanda's father. It's best if you save it for then. Not only that but it's best if fewer demons know about you being a human. If they are made aware of your presence, all clans will start hunting you down."</p><p>"...Sure, but the situation doesn't really look too good."</p><p>"You worry too much."</p><p>Raising his head, he stared into the distance. Unlike me, he could freely move in this slowed down space.</p><p>"Give it a couple of more minutes. If something doesn't happen by then, you can go ahead with plan B."</p><p>"...Alright."</p><p>Closing my eyes and deactivating Eyes of Chronos I raised my head and met Marquis Atheora's eyes.</p><p>My next set of actions all happened within a fraction of a second. Placing my hand on the sheath of my sword, I activated my sword's effect, and the mana inside of my body started to circulate at a faster rate.</p><p>At the same time, I activated 'The One.'</p><p>Because our rank difference was a bit more than one rank, it didn't have too much of an effect on Marquis Atheora as it only worked to distract him for a split second. But it was enough.</p><p>By the time he recovered from the effect, I had already gathered enough mana.</p><p>The third movement of the [Keiki style] : Void Step.</p><p>Click—!</p><p>My vision distorted, and a low clicking sound rang in the air. At the same time my vision started to distort, I saw Marquis Atheora's attack shoot in the direction of where I was previously standing.</p><p>Boooom—!</p><p>Within a split second, it arrived in the area that I was previously standing on.</p><p>Despite my extreme speed, I was unable to come out unscathed as I ended up crashing against multiple trees, and felt tremendous pain invade every part of my body.</p><p>Bang—!</p><p>"Ukhhh..."</p><p>That said.</p><p>I had survived.</p><p>"It hurts..."</p><p>Gritting my teeth, I lifted my body up a little. I had trouble moving as some of my bones were broken, but it was worth the pain.</p><p>I quickly chugged down a couple of potions.</p><p>By the time I recovered the demons in the distance had already arrived and had surrounded Marquis Atheora.</p><p>"Look who we have here. It looks like the information wasn't wrong."</p><p>A sadistic voice echoed throughout the air as another demon that bore striking resemblance to Marquis Atheora stepped up.</p><p>I didn't know exactly who he was, but I knew that he was an executive coming from the Gluttony clan. A clan that wasn't on good terms with the Sloth clan, the clan Marquis Atheora came from.</p><p>Having presented them with an opportunity to deal damage to the Sloth clan, they obviously did not refuse it and secretly sent an adequate force.</p><p>Wasn't exactly sure they would believe in my plan at first, but it wasn't exactly hard to confirm my words.</p><p>After I told them that the Sloth clan would make a move against the Greed clan, all they had to do was check for any movement, and from there, they were able to confirm my words.</p><p>Also, to them, this could be considered a minor conflict. It wasn't anything big.</p><p>That aside.</p><p>I didn't doubt that they had set countermeasures in the off-chance that this was also a trap, but it didn't concern me.</p><p>"Marquis Exion."</p><p>Marquis Atheora's voice was filled with spite as he said those words. With narrowed eyes, demonic energy rose from his body at an alarming rate.</p><p>"Sinc—"</p><p>Just as he was about to speak, Marquis Atheora stopped himself mid-sentence again. His face changed, and he looked behind him.</p><p>Marquis Atheora wasn't the only one that had a change in expression as Marquis Exion's face also changed.</p><p>Similarly staring into the distance, I smiled in relief.</p><p>"They're here..."</p><p>Reinforcements from the Wrath clan and the Greed clan.</p><p>***</p><p>Demon Hunter guild.</p><p>Inside a large office space, Melissa sat opposite Amanda.</p><p>"What did you want to talk about?"</p><p>Amanda asked in a soft tone.</p><p>Taking her eyes away from her nails, Melissa adjusted her glasses a bit.</p><p>She quickly cut to the chase.</p><p>"The Central Government seems to be planning on regulating the magic cards."</p><p>"Oh."</p><p>Amanda absentmindedly nodded her head.</p><p>Her reaction surprised Melissa quite a bit as she raised her brow and asked.</p><p>"Are you not surprised?"</p><p>"Not really."</p><p>Amanda shook her head.</p><p>"I already had an idea that this was going to happen."</p><p>Not only her but so did Ren.</p><p>Unlike the Union which dealt with Heroes and Villains, the Central government was another power that primarily focused on keeping order in the human domain.</p><p>They weren't as powerful as the Union in terms of raw strength, but some might even say that they were more powerful than them as even the Union could not discard their orders.</p><p>Melissa leaned back on her chair and crossed her arms.</p><p>"Since you know, this makes things a lot easier. Do you already have any countermeasures in place?"</p><p>"Sort of."</p><p>"...As in?"</p><p>"Here you go."</p><p>Unlocking the drawer next to her, Amanda passed a file to Melissa.</p><p>Sliding the file her way, Melissa looked through it.</p><p>Her furrowed brows slowly started to relax. After a while, she put the file back on the table and nodded her head.</p><p>"This might actually work."</p><p>Amanda smiled slightly.</p><p>"I spent a lot of time thinking about it. It will work."</p><p>There was confidence in her voice as she said those words.</p><p>She didn't spend her days at the office idly. After learning from the best for the past couple of years, Amanda knew about the political affairs of the world like the back of her hand.</p><p>A problem like this was not going to phase her.</p><p>Brushing her hand behind her ear, Amanda's eyes narrowed.</p><p>"If the Central Government truly wants to put their hands on the Magic Cards, they should prepare to lose a couple of limbs in the process."</p><p>"...You've changed."</p><p>Melissa said after a brief moment of silence.</p><p>A smile crept on her face.</p><p>"But I like it."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-506.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-508.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

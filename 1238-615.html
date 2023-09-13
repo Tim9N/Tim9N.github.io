@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 615 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 615 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-614.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-616.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huuu…"</p><p>When I emerged through the portal, I inhaled deeply. The teleportation had somewhat upset my stomach, as it had in the past, but I was able to bear it.</p><p>It was fortunate for me to know that the effects weren't as bad as the previous times.</p><p>Was it because of my strength increase? I wasn't sure, and I didn't care. At the moment, my mind was preoccupied with other things as I extended my hand.</p><p>"This sense of heaviness, yeah, it truly feels like I'm back in Immorra."</p><p>It only took me a single minute for me to know I was back in Immorra. The distinct gravity that came from this place was quite familiar to me.</p><p>It wasn't just that.</p><p>"The suns…"</p><p>Illuminating the sky wasn't just one sun, but another one, making it clear that I wasn't on earth. Apart from that, the land looked exactly like earth.</p><p>Well, that was how it was supposed to be, but...</p><p>"Why is the sky grey?"</p><p>It took me a moment to realize this, but the sky was of an ashen gray color.</p><p>Compared to the last time I had been here, the azure clear sky had completely changed.</p><p>Because there were no clouds in the sky, it was necessary to point out that the sky's color had not changed because a storm was brewing, but rather, it was the pigmentation itself that had changed.</p><p>"The demons must've corrupted the mana to the point where the sky has changed color."</p><p>Similar to every place I had gone before, especially those where a significant amount of the mana, or in this case, aura, in the air had been transformed into demonic energy, there were phenomena that would result in a shift in the surrounding environment.</p><p>In this case, the color of the sky had changed.</p><p>"Ugh."</p><p>A wailing voice from behind me startled me out of my thoughts. When I turned around, Hein was standing in the middle of the grass with his eyes closed and his legs extended widely in a horse stance position.</p><p>From the looks of things, he was trying to get adjusted to the sudden shift in gravity but was having trouble with it.</p><p>"Ugh, what in the world!"</p><p>Another figure appeared behind Hein, and they showed similar first time reactions to his.</p><p>As I got a better look, I could see that it was Ava, and she appeared to be having more difficulty adjusting to the gravity than Hein.</p><p>But this was to be expected. After all, Hein's physique was much stronger.</p><p>Not minding the two of them, I walked near them and waited for more people to show up.</p><p>Soon, Leopold, Han Yufei, and Liam showed up one by one. Leopold aside, Han Yufei and Liam were able to quickly adjust to the shift in gravity.</p><p>From the way they were moving, it didn't seem as though they were affected in the slightest.</p><p>Han Yufei because of his extremely sturdy body, and Liam...well, Liam because he was Liam.</p><p>There was no point in using common sense with him.</p><p>"It's only Angelica and Ryan left."</p><p>They were the only two that were missing.</p><p>Fortunately, the wait didn't last for long as the two of them appeared at the same time, with Angelica holding onto Ryan's hand. The faces of some of the people near us changed when the two of them appeared.</p><p>I shook my head when I saw this.</p><p>There was a very good reason why Ryan came with Angelica, despite the fact that he was no longer a child but a fully grown teen and their appearance were therefore somewhat perplexing.</p><p>"Ugh!"</p><p>As soon as the two of them landed on the grass, Ryan's face distorted with pain as he almost fell on the floor right then and there.</p><p>Had it not been for Angelica, he would most likely fallen hard on the ground with no way to stand up.</p><p>...and the reason why he couldn't come alone was because he was still, unfortunately, too weak for this place.</p><p>"Here, wear this."</p><p>It was good that I knew this and came prepared as I handed Ryan a small bracelet.</p><p>"What's this?"</p><p>Ryan questioned as he took the bracelet.</p><p>"It's nothing much."</p><p>I answered back while turning around to see how the others were faring.</p><p>"You can increase your strength with this simple artifact. You shouldn't have any trouble navigating this gravity with it. The only drawback is that it requires mana to activate, so utilize the potions I provided you before the trip, alright?"</p><p>"Alright."</p><p>Ryan obediently nodded his head and wore the bracelet.</p><p>Satisfied with him, I focused my attention on the others. The reason why I didn't give him the bracelet before was because I wanted to see if he could adjust to the gravity or not.</p><p>It was unfortunate that he couldn't.</p><p>After seeing that they had all adjusted to gravity, I turned to Angelica and asked.</p><p>"Which way should we go?"</p><p>Without saying anything, Angelica closed her eyes for a brief moment before delicately raising her hand to point toward the west.</p><p>"That way."</p><p>Nodding my head, I rushed the others to follow me.</p><p>"Alright, you heard her. Let's go."</p><p>I raised my pace, leaving the others to follow after me at an increased pace.</p><p>***</p><p>Ashton city, undisclosed location.</p><p>It took a total of ten minutes for everyone to finally enter the portal. By the time they all entered, Kevin felt his body grow tired.</p><p>Despite his strength, keeping a portal for as long as he did still took a heavy toll on him.</p><p>Staring in the direction of where the portal used to stand, Kevin, mumbled.</p><p>"...Now that he's gone I should be able to sort everything out without any problems."</p><p>The air around him began to tremble as he reached out to the right.</p><p>In contrast to the typical red glow that emanated from his arm, a white glow appeared in his palm.</p><p>Then, out of nothing, a book began to take shape in his hands.</p><p>The book was of a red color, and was extremely familiar.</p><p>Ren would instantly recognize it if he were present. It was the same book that had previously traveled with him and had assisted him in changing a number of crucial situations.</p><p>"...It's almost time."</p><p>Opening the book up, words started to form on the paper. Carefully reading through them, Kevin carefully closed the book in his hands after a while.</p><p>Then, taking one last look at the area where the portal was set up, he directly left the area.</p><p>***</p><p>From the sky, bits and pieces of red rained down.</p><p>Spurt—! Spurt—!</p><p>As the chunks fell to the ground, they splattered all over the ground, dying the grass red.</p><p>"…That's disgusting."</p><p>While this was happening, Hein took a step back and disgustingly stared at the ground.</p><p>He then turned to face Ava who was standing next to him.</p><p>"Couldn't you have, you know, done this in a cleaner manner?"</p><p>"I could've."</p><p>Ava answered, extending her hand to the sky, allowing for multiple eagle-like creatures to land.</p><p>Upon landing on her arm, she took out her flute and tapped the eagles on the head once. They instantly disappeared after that.</p><p>"…But I don't see the need to do this in a cleaner manner. Our priority right now is to get rid of anything that can give away our location."</p><p>She sounded rather cold, but no one seemed to take offense to her tone.</p><p>Ever since Smallsnake died, one by one, everyone changed.</p><p>Not a single person apart from Liam and Han Yufei who barely knew him wasn't affected by his death.</p><p>In a way, everyone became more serious and focused. The changes were great, and they were nice to see…but at the same time, the cost that came with the changes wasn't something that I could've ever have hoped to afford</p><p>"I've been wondering, Ren..."</p><p>It was then that I heard Leopold's voice from beside me.</p><p> Just like the others, he had also changed quite a bit. He no longer smoked. That was a real struggle for him to get past, but he was now a cigarette free man. </p><p>"What is it?"</p><p>I asked while paying attention to my surroundings.</p><p>"Your strength is about S+ rank, right?"</p><p>"Yes."</p><p>I quietly nodded while I extended my hand to push away one of the bushes in front of me.</p><p>It wasn't something that I hid from the others.</p><p>After all, I did spar with everyone in the group. Just as how they knew my strength, I knew theirs, and I was happy to say, that apart from Ryan, everyone was above &lt;B&gt; rank.</p><p>A praiseworthy result if I had to say so myself.</p><p>"Liam's strength is also about the same as yours, right?"</p><p>Leopold whispered while he quietly shifted his attention toward Liam who was walking not so far from where we were.</p><p>He had a rather lost and confused look on his face.</p><p>"…Yes."</p><p>My speed slowed down a little.</p><p>Wasn't sure where Leopold was getting at.</p><p>"If I remember correctly, you also said that the strongest people on this planet were Marquis rank…"</p><p>My feet came to a full stop.</p><p>"So why in the world are we going around moving so quiet—"</p><p>"Shhh…"</p><p>I put my finger on his mouth right before he could finish his sentence.</p><p>The reason for this was because I spotted several demons in the distance.</p><p>Everyone around me also stopped moving.</p><p>"It looks like several Viscount ranked demons."</p><p>Hein whispered.</p><p>Taking a closer look at the demons ahead, I relaxed and nodded my head.</p><p>"Hein is right, it's a couple of Viscount ranked demons."</p><p>Then, scanning the people around me, my eyes paused on Han Yufei and I ordered.</p><p>"Take care of it."</p><p>"Got it."</p><p>His figure disappeared as soon as he said those words.</p><p>After that, he appeared next to the two demons and crashed their heads against each other by pressing his hands against the back of their heads.</p><p>In total, it only took about ten seconds for Han Yufei to dispatch the two Viscoint ranked demons.</p><p>I was deeply impressed by his performance.</p><p>"Good job."</p><p>"Thanks."</p><p>We continued moving after that. Meanwhile, I recalled what I was previously talking about with Leopold.</p><p>"Leopold, Regarding your question."</p><p>I turned to look at Leopold.</p><p>"Although it is indeed true that I can probably wipe out this place with just Liam, you have to take into consideration that one wrong move can lead to our death."</p><p>What worried me the most wasn't meeting a demon that turned out to be stronger than I anticipated.</p><p>No, my worries lay with the fact that my actions could invoke Jezebeth's attention.</p><p>Quite frankly, I was still far from his level. I'd be squashed like a bug if he met me at this moment.</p><p>…and in no way would I ever allow that to happen.</p><p>I made a promise to myself that I was planning to keep.</p><p>I'd never be satisfied without knowing that I failed to kill him after what he did…never.</p><p>"Alright, if you say so."</p><p>Leopold dropped the conversation and followed the others deeper into the forest.</p><p>Squinting my eyes, I gazed toward the far distance.</p><p>Honestly, that wasn't the only reason why I didn't just go all out from the beginning.</p><p>That was because I was planning on using my time here to finally break through to &lt;SS-&gt; rank.</p><p>One week was equal to seventy days, and in spite of the low mana density around this place, I brought several things with me to aid my breakthrough. They cost a lot of money, but it was well worth the expenditure.</p><p>Ever since my meeting with Malik Alshayatin, I had made up my mind to do anything within my power to increase my strength.</p><p>It wasn't about revenge or anything like that. What came foremost before that was my survival, and I knew...I knew that with my current abilities, I couldn't guarantee my survival.</p><p>I needed to keep improving.</p><p>"…Although I'm not sure if this will work or not, it's better to give it a shot rather than doing nothing."</p><p>Taking a step forward, I followed the others into the forest.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-614.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-616.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

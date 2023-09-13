@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 587 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 587 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-586.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-588.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang— Bang—</p><p>'What's going on?'</p><p>The sound of something crashing near Smallsnake awoke him from his slumber. With each passing second, the sound became more clear, and it wasn't long before his eyes were fully open.</p><p>Blinking his eyes several times, he thought to himself.</p><p>'Am I still alive?'</p><p>He could clearly remember being on the verge of dying not too long ago.</p><p>Did he die? …or was he still alive?</p><p>"Shit!"</p><p>Bang—!</p><p>Immediately after opening his eyes, he saw a figure being sent flying into the distance, before crashing heavily against what appeared to be a large metallic door.</p><p>A muffled sound accompanied the figure's crash.</p><p>"Kevin, how much longer do you need?"</p><p>A female voice shouted.</p><p>'Who is she?'</p><p>Squinting his eyes, Smallsnake's eyes paused on a female figure that he had never seen before in his life. She had long auburn-colored hair and seemed to be rather beautiful. The way that she moved across the black marble floor seemed extremely nimble, and so were her attacks that looked extremely sharp.</p><p>No, rather, she did seem familiar, but he just couldn't seem to recall who she was.</p><p>"Just buy me one more minute!"</p><p>Taking his eyes away from the female figure, Smallsnake's eyes finally paused on Kevin, and it was then that he noticed a large red hue coming out from his body.</p><p>The hue seemed to completely engulf the area they were in, making it extremely terrifying.</p><p>'What's going on?'</p><p>Blinking his eyes a couple of times, Smallsnake turned his head slightly and finally spotted what seemed to be a demon.</p><p>"Demon?"</p><p>His groggy mind sobered up and he tried to lift up his body.</p><p>"Smallsnake! You're awake!"</p><p>Feeling a hand press against his chest, Smallsnake was shocked to see a couple of familiar figures rush in his direction.</p><p>"You guys?"</p><p>"Smallsnake!"</p><p>Before he could speak anymore, he suddenly felt something hug his body tightly.</p><p>"Ryan?"</p><p>He was shocked to see that the person was Ryan who seemed to have tears streaming from the side of his eyes. As he raised his head, he saw Leopold, Ava, and Hein also staring at him. Their weapons were drawn out and formed a small circle around him.</p><p>They were clearly trying to protect him.</p><p>Taking a moment to process what was going on, a thin smile eventually spread across Smallsnake's face as he lowered his head back down and turned to stare at the ceiling.</p><p>"So I'm still alive, huh?"</p><p>He may not have been sure before, but now he knew...He knew that he was still alive.</p><p>A part of him felt great relief once he realized this.</p><p>But that didn't last long as he soon heard another crashing sound.</p><p>Bang—!</p><p>"Ukh, shit, hurry up!"</p><p>The voice seemed to belong to another familiar figure who was standing not so far from where she was.</p><p>She seemed to be standing behind what seemed to be a large transparent barrier.</p><p>"I don't think I'll be able to last much longer. The core I'm using is about to run out of energy. So hurry up Kevin! I don't want to die in this filth."</p><p>"A couple more seconds."</p><p>Kevin shouted while the red hue coming out from his body started to fluctuate wildly and the room shook alongside it.</p><p>The demon who had long noticed that Kevin was up to something, desperately tried to stop whatever he was doing, but regardless of much he tried, he would always get blocked by either the girl with the short swords, Jin, or Amanda.</p><p>"Ready!"</p><p>In the end, in spite of the demon's desperate attempts, he was unable to fully free himself from their attacks and Kevin was finally able to complete his attack.</p><p>Raising his sword behind his head, he took a step forward and appeared before the demon.</p><p>In that moment, Smallsnake felt as though time had frozen completely as the air around him solidified. The last thing Smallsnake saw was the look of utter terror on the demon's face as Kevin's attack came crashing down on him and a bright red light enveloped the entire room.</p><p>Booom—!</p><p>A terrifying explosion sounded out and Smallsnake was forced to close his eyes. In the aftermath of the explosion, Melissa took several steps back and her face paled as the barrier shook uncontrollably.</p><p>"Fucking hell..."</p><p>Smallsnake heard her curse coming from a meter away from him.</p><p>Tin. Tin. Tin.</p><p>Though faint, Smallsnake could also hear the sound of small rocks hitting against the barrier that was protecting the area around him.</p><p>This persisted for a couple of seconds before it finally stopped. Opening his eyes, Smallsnake was met with a large cloud of dust that soon settled down.</p><p>At this point, he could clearly see the aftermath of the attack and saw Kevin as well as the others struggling to breathe.</p><p> Their complexion was extremely pale, and their clothes were a mess. Nevertheless, they appeared to be relieved as Kevin held onto a small black orb in his hand.</p><p>"I…did it…"</p><p>Kevin weakly murmured as knelt down on the ground, and observed the core in his hand. Taking another breath, he squeezed his hand together and the core shattered into millions of pieces.</p><p>Crack—!</p><p>Seeing this, everyone sighed in relief and tried to regain some of their lost energy.</p><p>"That was much harder than I thought."</p><p>Kevin's voice echoed throughout the surroundings.</p><p>Patting his hand on his clothes, he cleaned the small pieces of the core he had in his hand.</p><p>"Although I knew that Marquis ranked demons were strong, I didn't think they would be this strong. For a moment, I thought I was going to die."</p><p>"Tell me about it."</p><p>Emma commented from a distance as she lay on the ground with both hands and legs spread apart. Not far from her were her two short swords.</p><p>"I don't think I'll be able to fight again. If another Marquis ranked demon comes, just know that I won't be able to help you. You're on your own."</p><p>"…and you think I'll be able to fight?"</p><p>Kevin joked as he slowly stood up and turned to face one of the distant corridors.</p><p>"Now all we have to do is wait for Ren and the others to come back. He told me that it might take a while, but I seriously think that if he takes too long, things will get quite troublesome for us."</p><p>Their stamina was currently almost depleted. The same went for their mana which was slowly recovering due to the aid of several potions.</p><p>Nevertheless, they weren't enough to completely heal him into top condition, and Kevin knew this. Especially since he was still suffering from the after-effects of having used Overdrive. At this moment, his whole body was twitching uncontrollably.</p><p>Since they were in no condition to fight, he hoped Ren would arrive before any demons could reach them.</p><p>Fortunately, his hopes were answered as not even a minute after he said those words, he was able to hear the sound of several footsteps heading their way.</p><p>"Is it this way?"</p><p>Furthermore, he could also hear Ren's voice. His complexion instantly brightened. The same could be said for the others as they slowly stood up.</p><p>But as they turned their heads, they were confronted with a scene that changed their complexion, making their faces harden.</p><p>"Just a little bit more forward."</p><p>"You know that I will kill you if you are playing tricks on me, right?"</p><p>"Spare me."</p><p>"I'll think about it if you don't lie."</p><p>Slowly emerging from the other side of the corridor, Ren held onto the back of the neck of a demon and dragged him across the floor. Coming from behind him were two other figures, but what was most shocking about the scene was not their appearance, but the demon that Ren was currently dragging with him.</p><p>"A Marquis ranked demon…"</p><p>Smallsnake murmured as he, alongside the others, felt the pressure coming out from the demon's body.</p><p>Recalling just how much they had struggled to defeat a Marquis ranked demon, and seeing just how Ren was handling one, Kevin and the others were left at a loss for words on how to react at the moment.</p><p>Wasn't it a little bit too unfair?</p><p>"Oh, so that's where you guys were."</p><p>Finally spotting the others, Ren's face brightened and he greeted them with a cheerful smile on his face.</p><p>"Have you resolved the situation?"</p><p>The first one to greet him was Kevin who seemed to have somewhat recovered from the strange scene that he saw.</p><p>"Yeah."</p><p>Turning his head, Ren patted Liam's shoulder.</p><p>"We somehow managed to defeat the demon he was fighting and finally managed to get back here."</p><p>"I see…"</p><p>Kevin nodded his head as he examined Liam who was standing next to Ren. He appeared quite lethargic at the moment as he cradled the sword in his body and kept opening and closing his eyes.</p><p>He seemed to be on the verge of sleeping.</p><p>Extending his hand, Kevin pointed toward the demon that was being held by the back of his neck by Ren.</p><p>"Is that the demon that you two were up against?"</p><p>He asked, while secretly swallowing a mouthful of saliva.</p><p>"This?"</p><p>As Ren looked at the demon, there was a brief silence in the room before he quickly waved his hand.</p><p>"Nah, no way. This is just a random demon that I picked up because I couldn't find a way to get to you guys. The demon that I fought against was way stronger than this one."</p><p>"Eh…"</p><p>Though he had already expected such an answer, the moment Ren's words echoed out, Kevin's shoulders slumped down and his head lowered.</p><p>"What's wrong?"</p><p>"..It's nothing."</p><p>Weakly waving his hand, Kevin pointed toward the door in the distance. He was clearly trying to change the topic.</p><p>"How about we open the door for now?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-586.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-588.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

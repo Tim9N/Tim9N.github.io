@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 532 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 532 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-531.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-533.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Time stopped.</p><p>The world within my vision came to a halt.</p><p>From the crowd to the noise. The only thing that stood in front of me was Duke Azonech.</p><p>Carefully placing my hand on the ground, my body slowly stood up.</p><p>In parallel with this, Duke Azonech's face changed dramatically. In a mutter, he opened his mouth.</p><p>"…Y..you were hiding your strength?"</p><p>He slowly took a step back.</p><p>He appeared to be in shock and fear.</p><p>"Not really."</p><p>My mouth automatically opened and answered.</p><p>"That's impossible!"</p><p>In a state of trembling, he screamed.</p><p>"Do you really expect me to believe that you weren't hiding your strength?"</p><p>"...You call this hiding my strength?"</p><p>I suddenly felt a wave of disgust wash over my body as I sensed my other self's emotions.</p><p>I found my head slowly rising up.</p><p>My eyes soon met with the Duke's.</p><p>"Is it really worth hiding this little amount of strength?"</p><p>"Wh...what?"</p><p>While the two were conversing, I was secretly trying to grasp what was happening around me.</p><p>It had to be noted that currently, time was flowing at a much faster rate than reality. For the two of them to be able to converse properly...just how fast were they?</p><p>Not only that, the world around me. It looked different. Everything looked a lot more colorful as I was able to catch a glimpse of the mana in the air.</p><p>There wasn't much, in fact, there was barely any mana in the air, but it was still there.</p><p>Regardless, that wasn't what attracted most of my attention.</p><p>'...Limit Breaker?'</p><p>These words...</p><p>This was the first time I had ever heard of these words, and my curiosity about them was at an all-time high.</p><p>Unfortunately, I didn't have the luxury to ponder over those words as my head glanced around the frozen space, and I suddenly found my calves tensing up.</p><p>My mouth soon opened.</p><p>"My time is limited. This amount of strength will suffice for now."</p><p>Following those words, the tension within my legs disappeared. Within a split instant, I found the Duke's face right before me.</p><p>Swooosh-!</p><p>Bringing my fingers together, my hand thrust toward the Duke's throat in a lightning-fast manner.</p><p>However...</p><p>Unlike in the past, the Duke was able to react appropriately as he dodged my attack by moving his head to the side. It was by a narrow margin, but he was still able to dodge it.</p><p>After that, he counterattacked with his own palm, pressing it towards my abdomen.</p><p>Unfortunately for him, like an open book, his every move was clearly visible in the eyes of my other self.</p><p>With a casual slap of my left hand, his palm changed course.</p><p>Nevertheless, the Duke didn't give up, as he rotated his hand and demonic force burst out of his hand, forcing out a black beam that dangerously aimed at my head.</p><p>It still proved to be a futile effort in the end.</p><p>The only thing it took for my other self to avoid the attack was a simple movement of my head, having clearly read his movements ahead of time. The beam soon flew past the side of my ear, before piercing through the pale red clouds in the sky.</p><p>The Duke's face hardened when he saw this.</p><p>Clenching his teeth, he prepared to attack again, but in the blink of an eye, my hand had already reached out and grasped his arm.</p><p>Preventing him from doing whatever he was planning on doing.</p><p>Firmly grasping his hand, my mouth then opened.</p><p>"Give up."</p><p>My body twitched with annoyance as I felt my other's emotions run down my body.</p><p>The Duke's resistance clearly irritated him.</p><p>"It's funny how you think you can actually do something to me now that we're both in the same ranks again. You couldn't do anything when we were of the same rank before, yet you think a small power-up would make a difference?"</p><p>My fingers pressed against Duke Azenoch's arm as I squeezed his hand. The Duke's face changed, but my hand continued to squeeze before it compressed it completely and I was able to close my hand into a fist.</p><p>I could feel the bones of the demons crush inside the palm of my hands.</p><p>"Don't annoy me any further."</p><p>Pulling my hand back, the hand tore off of the Duke's body and blood began to slowly spill out.</p><p>My other self glanced at the torn-up hand for a brief moment before throwing it behind me, only to see it stop mid-air and fall down at the same pace time was really moving at.</p><p>The same could be said for the blood as it remained still in the air. Slowing moving in a downward manner.</p><p>"Huaak!"</p><p>Following my action, the Duke's face twisted savagely as he screamed out loud.</p><p>As he gazed toward me, a torrential wave of demonic energy burst out of his body, converging toward the top of his palm in the form of a small ball.</p><p>"H..how dare you!"</p><p>A tremendous force was pushed out as a result of his action.</p><p>But as though he could read his mind, with just a casual tap of his hand, the ball flew past my head.</p><p>When the ball flew past my head, I heard a voice speak inside of my head. The mana inside of my body started to circulate in an odd manner.</p><p>'I'll show you one more thing before I end him. Make sure you feel how I control the mana inside of your body.'</p><p>A sudden gesture of his raised his hand and I felt the mana in my body expand outwardly. Encompassing the entire arena.</p><p>The Duke despaired at the sight.</p><p>But, my emotions remained empty.</p><p>A gradual convergence of mana followed after this. Forming a thin yet durable veil that enveloped my entire body.</p><p>As armor puzzled itself around my body, it didn't take me long to figure out what was happening.</p><p>'...Mana agglomeration.'</p><p>I had seen this scene once before, back when Monica was fighting the elders at the Monolith. In the years since then, I had been deeply impressed with her gallant and powerful figure.</p><p>My already tremendous strength multiplied many times as the armor completely encased me.</p><p>My body was flooded with ecstasy.</p><p>'Hm?'</p><p>Immediately after that, my vision completely shifted without me even having a chance to rejoice at my newly gained power.</p><p>As opposed to before, I could only see a series of black blobs now. There were a couple of more colorful ones inside of the arena, but that was about it.</p><p>Additionally, I observed that some of the blobs were smaller than others, with the blob representing the Duke being the largest.</p><p>'What's this?'</p><p>I questioned as I tried to make out what was going on.</p><p>'That's not important, look properly.'</p><p>But my question remained unanswered as my other self spoke. Listening to his words, I sharpened my gaze and paid more attention to the blobs around me.</p><p>It was then...</p><p>'...Wait, what are the small circles in the middle of their bodies?'</p><p>Upon closer inspection, I observed small circular balls the size of tennis balls tucked within blobs. Additionally, they appeared to be distributed across different areas of each blob.</p><p>Then it hit me.</p><p>'Wait, don't tell me...'</p><p>'That's right. Those are their cores.'</p><p>'...How?'</p><p>My inner shock grew further upon learning of this. How was it possible for me to detect where the cores were?</p><p>Wasn't that something only Lightning Dragon's eyes could do?</p><p>Unless...</p><p>'It's not the same. I'm using a different method. It's up to you to figure out how I did it.'</p><p>Following his words, his attention quickly shifted back toward Duke Azenoch.</p><p>Quickly scanning the Duke's body, my eyes soon paused toward his right thigh. There was a visible paling in the Duke's face the moment he noticed my eyes pause on his thigh.</p><p>He burst into dark flames as demon energy erupted from his body. My hand touched the hilt of my sword in response.</p><p>When I touched the hilt of the sword, I felt my senses and strength enhance dramatically as I felt the armor around my body brighten up.</p><p>The fourth movement of the [Keiki style] : World splitter</p><p>A bright white light flashed.</p><p>It flashed for an instant before disappearing once more.</p><p>In the dim light, I could see the Duke's intact figure standing before me like a statue. A look of pure helplessness adorned his face, as his eyes widened up completely.</p><p>Walking up to him, my finger pressed against the top of his head as I extended my hand.</p><p>A simple tap on his forehead was all it took.</p><p>Following this simple movement, the Duke's body split into many different pieces that slowly started to expand away from his body.</p><p>Lowering my head, my eyes soon spotted a small black core that repeatedly pulsated.</p><p>Reaching out with my fingers, I grasped the core tightly. When I grasped the core, I felt a strange sensation run through my body as a foreign force tried to enter my body.</p><p>Nevertheless, my other self didn't seem bothered by it, simply waving it off as if it hadn't happened in the first place.</p><p>While feeling the sensation of the core running through my body, I thought to myself.</p><p> 'Cold.' </p><p>The core was cold.</p><p>Very cold. It felt as though I was holding a ball of ice.</p><p>In that moment, my mouth opened and I muttered.</p><p>"Two seconds..."</p><p>Blood splattered all over the arena as the remains of the Duke's body lay on the ground.</p><p>Splat! Splat! Splat!</p><p>Silence.</p><p>A stunning silence enshrouded the whole arena as I felt all eyes pause on me. Even then, I could do nothing about it as I wasn't the one in control of my body.</p><p>Plack-!</p><p>Breaking the silence was a low-smacking sound as my other self casually tossed the core in my hand. Gazing at the spectators in the arena stands, he continued to silently play with the core in my hand.</p><p>Plack-! Plack-! Plack-!</p><p>It wasn't until he repeated the motion five more times that he finally stopped. Once he did, raising his head, he opened his mouth and muttered.</p><p>"So?... Is no one going to say anything?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-531.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-533.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 575 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 575 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-574.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-576.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Amanda's face turned cold as she stared at the enchanting figure that was staring back at her from the distance.</p><p>'It's her.'</p><p>Amanda was able to recognize her with just a simple glimpse of her face.</p><p>How could she not? She was the demoness that had placed a curse on her mother, and the same demon that worked for Ren...and fooled her by transforming into a cat.</p><p>'Pudding.'</p><p>The sudden recollection of pudding resulted in a slight twitch of Amanda's hand. She managed to hide the twitch by bringing her hand behind her back.</p><p>Amanda's emotions were currently in disarray as she stared at Angelica.</p><p>She didn't exactly know how to react.</p><p>She still couldn't quite bring herself to forgive her.</p><p>"Huuuu…"</p><p>Taking a deep breath, she calmed herself down.</p><p>'I need to stop being emotional.'</p><p>Amanda's face became indifferent as she remembered what she had told herself previously.</p><p>After alternating between the others and realizing that they were the people Ren had once introduced, Amanda relaxed.</p><p>"It looks like you have also been transported into this world."</p><p>Her bow disappeared into thin air, and the mana in her body stopped flowing.</p><p>Following her actions, the others also relaxed.</p><p>*Puff*</p><p>With smoke diffusing in the air, Leopold suddenly spoke.</p><p>"…You are?"</p><p>"Amanda."</p><p>Amanda replied as she turned to look at Leopold. Taking a short glimpse of the cigarette in his hand, Amanda was at a loss for words.</p><p>She couldn't quite understand how one would smoke in these circumstances.</p><p>"Amanda, huh."</p><p>Tapping the butt of the cigarette, Leopold crossed his arms.</p><p>"Have we ever met before?"</p><p>"Yes…"</p><p>His question caught Amanda slightly off guard.</p><p>'Does he not remember that I went to his daughter's concert…'</p><p>Halting her thought process there, Amanda's eyes suddenly sharpened.</p><p>It was at that moment that she suddenly recalled that he was Sophia's father.</p><p>"We have met before? Is that so? Where ex—"</p><p>"In Henlour."</p><p>She interrupted him mid-sentence before turning to look at the others, pausing on Angelica at the end.</p><p>As opposed to greeting her, she immediately began asking her questions.</p><p>Amanda seemed rather distant, but it was merely because she didn't want to let her emotions get the best of her.</p><p>"Do you have any idea where we are? And how did you guys appear here?"</p><p>"…I was hoping you might know the answer to that."</p><p>Angelica replied while staring toward the surroundings.</p><p>She didn't seem to mind Amanda's distant attitude.</p><p>"The last thing I remember is being teleported in this place before meeting up with the others."</p><p>"Same for me."</p><p>Crossing her arms together, Amanda pondered for a bit before she turned around and suggested.</p><p>"Come with me for now."</p><p>"Come with you?"</p><p>The others exchanged glances as Amanda's sudden actions surprised them. Amanda ignored them and went deeper into the forest.</p><p>"If you guys are looking for Ren, I know where he is."</p><p>Her figure vanished into the forest after that.</p><p>***</p><p>"Ugh."</p><p>I groaned as I inhaled the thick pervasive sulfuric gas that was permeating the air and burning up my nose.</p><p>Additionally, my feet were burning as I walked barefoot over rocks that released steam in the air as a result of the heat.</p><p>Plop—! Plop—!</p><p>Magma bubble burst in the air from beside me as some of it landed on the surface of my clothes, burning my body and clothes.</p><p>"Huu…huuu…"</p><p>Taking a series of calculated breaths, I tried my best to ignore the pain and continued to match forwards.</p><p>'It's heavy.'</p><p>I could barely keep my knees from buckling as I carried two large boulders behind my back.</p><p>But…</p><p>'It's the only way.'</p><p>I turned to gaze toward the far distance where I caught sight of Smallsnake laying down on the ground with heavy sweat tricking down his pale face.</p><p>Beside him were a couple of smaller rocks.</p><p>"Shit."</p><p>I cursed as I noticed his condition.</p><p>My grip on the rocks behind me firmed as I accelerated and headed towards Smallsnake. His condition looked worse than ever.</p><p>Bang—!</p><p>Dropping the rocks behind me, I moved to where Smallsnake was laying. His complexion was extremely pale and his face was drenched in sweat.</p><p>"hey, hey, are you okay?"</p><p>Wiping the sweat on my forehead, I tried to get a better look at him, but he simply brushed my hand away.</p><p>"I'm…fine."</p><p>His weak voice echoed out.</p><p>I shook my head as I noticed the tremble in his voice.</p><p>"You're anything but fine."</p><p>Taking a deep breath, I looked at Smallsnake's rocks and my own. My eyes turned to Smallsnake as I slowly stood up and picked his rocks up.</p><p>"Wha.t are you do—"</p><p>"Shut up."</p><p>After slapping Smalllsnake in the back of his head and knocking him out, I picked up his body over my shoulder.</p><p>Then, moving back to my boulders, I bent my body and picked up my two boulders.</p><p>"Ughhh!!!"</p><p>A sharp pain coursed through my body as I slowly lifted the boulders off the ground. I could feel the muscles of my body tear apart as blood started to drip down from the side of my lips.</p><p>Ignoring the pain, I slowly moved my body forward one step at the stone.</p><p>Thump—! Thump—!</p><p>With each step I took the ground beneath me shook. A sizzling sound reverberated throughout the air as my sweat dripped to the ground and instantly evaporated.</p><p>"Huuu…huuu…huuu…"</p><p>Enduring the pain and heat, I breathed in the same manner that Han Yufei thought me and slowly continued to walk forward.</p><p>Despite the pain, I could feel my body slowly getting better over time. This was a result of all the training I did.</p><p>"I'm close."</p><p>After walking for the next ten minutes, I was able to spot a large cliff in the distance where a large black hole resided. Standing near the cliff were several demons, alongside different figures, ranging from orcs, elves, and dwarves.</p><p>Most notably, I also spotted a couple of familiar figures.</p><p>'Looks like they are already there.'</p><p>Gritting my teeth to the point where I thought they would shatter, I continued to head toward the hole.</p><p>"Faster!"</p><p>"Hurry up."</p><p>"Ahhh!!!"</p><p>Near the hole, I could hear the demons shouting louder, and it wasn't long before I spotted what looked like a massive graveyard, filled with thousands and thousands of corpses that littered all over the hot ground.</p><p>Had it not been for the sulfuric smell that permeated the surroundings, I would've already puked from the smell of the rotten corpses on the ground.</p><p>"Ugh."</p><p>Feeling the squishy and rotten sensation on my feet as I stepped over the corpses, my stomach churned.</p><p> But as I glanced at Smallsnake on my shoulders, I continued to persist and move forward.</p><p>I was almost there…</p><p>***</p><p>"What are you doing?"</p><p>Taking his eyes away from the pyramid, Kevin turned to look at Melissa who seemed to be busy doing something.</p><p>She seemed to be mixing a series of different colored mixtures.</p><p>"What am I doing?"</p><p>Pouring one test tube over the other and mixing two substances together, Melissa glanced at Kevin from the corner of her eyes.</p><p>"Did you forget our previous conversation?"</p><p>"…About the weird flowers, you were previously talking about?"</p><p>"Yeah."</p><p>Melissa nodded and shook the test tube. Slowly the mixture started to turn green.</p><p>Taking a careful look at it, she continued.</p><p>"I'm currently trying to decompose the effect of two different flowers I found and trying a series of new things. And…"</p><p>Uncapping the test tube, Melissa casually tossed the test tube toward the distance.</p><p>Coming into contact with the ground, the test tube shattered into pieces and the liquid spilled onto the ground. Immediately after that, the vegetation around where the test tube broke apart started to slowly disintegrate and decay.</p><p>"Nice."</p><p>A smile adorned Melissa's face as she stared at the effects of the mixture she threw.</p><p>Taking out a piece of paper from her dimensional space and a pen, she jotted down a couple of things.</p><p>"The mixture seems to contain strong corros—"</p><p>Rustle—! Rustle—!</p><p>A series of rustling noises echoed out and Melissa and Kevin stopped whatever they were doing and stood up. It appeared that multiple figures were heading in their direction based on the sound.</p><p>A sword materialized in Kevin's hand as he prepared himself for combat.</p><p>A familiar voice interrupted him just as he was about to channel his mana.</p><p>"It's me."</p><p>Coming out from one of the bushes was Amanda who was soon followed by a series of other familiar figures that Kevin was able to instantly recognize.</p><p>"It's you guys…"</p><p>Immediately, Kevin lowered his sword.</p><p>"...How?"</p><p>His state of mind was currently in a state of disarray as he couldn't understand what was happening in front of him.</p><p>'How is it possible that they are also here?'</p><p>It was already confusing to him how Emma, Amanda, Melissa, and the others were dragged into this world. He could only explain it by the link he had created with them, but...</p><p>'How did they get here as well?'</p><p>Kevin couldn't recall having set up a link with any of the people in front of him. How could they have shown up in this world as well?</p><p>'Just what in the world is going on?'</p><p>"So you are also here."</p><p>Jolting Kevin out of his thoughts, he spotted a familiar figure in the distance. It was none other than the demoness that worked with Ren.</p><p>"Angelica was it?"</p><p>Quick to calm down, Kevin looked at the other people and judged Angelica to be the leader of the group. Especially after taking a quick glance at the others.</p><p>*Puff*</p><p>"What are you doing?"</p><p>"… It's obviously a bit dirty."</p><p>"No, it's not?"</p><p>'Just what kind of people did Ren recruit?'</p><p>Shaking his head, Kevin was just about to walk up to Angelica when his head suddenly snapped back and his eyes paused on the large pyramid in the distance.</p><p>He wasn't the only one to react as both Amanda and Angelica also reacted and turned their gaze toward the pyramid in the distance.</p><p>Without saying anything, Kevin brushed the leaves to the side to get a better look at the pyramid. It was then that he spotted a shocking scene.</p><p>It was a scene where an individual that looked to be a human walked toward the entrance of the pyramid while decapitating the heads of the two demons guarding the entrance. Most shocking was the fact that he never moved from his spot the entire time.</p><p>"W…what?"</p><p>Kevin's eyes opened wide in shock.</p><p>While he was shocked by the idea of someone barging into the pyramid through the front door, he was most shocked by the sword art he used.</p><p>It was the same as Ren's…</p><p>"How?"</p><p>Kevin wasn't the only one startled by this as Amanda's eyes met Kevin's.</p><p>'What's going on?'</p><p>They both wondered at the same time.</p><p>"It's him…"</p><p>It was then that Angelica's voice echoed out.</p><p>Both Amanda and Kevin turned their head to gaze at her.</p><p>"You know him?"</p><p>Biting her lip and nodding bitterly, Angelica glanced at Kevin out of the corner of her eye.</p><p>"…Yeah."</p><p>With a squint of her eyes, she softly murmured.</p><p>"He is someone that Ren brought, and is someone that Ren said is even more...talented than him."</p><p>In spite of her soft voice, Amanda and Kevin felt her words ring powerfully inside their heads as they couldn't comprehend what she was saying.</p><p>More talented than Ren?</p><p>How was that possible? Ren was already on the verge of breaking through to &lt;S-&gt; rank by the age of 21-22, and was already so strong.</p><p>...and now he was saying that there was someone even more talented than him?</p><p>Staring at Angelica, Kevin couldn't help but ask again.</p><p>"…Is that true?"</p><p>"Yes."</p><p>Angelica nodded her head as her face turned complicated.</p><p>"I don't particularly agree with what he said since he is older and has the same rank, but as I've fought with him already, I can say that he's incredibly s—"</p><p>"Enough with the chit-chat."</p><p>Cutting Angelica off, Melissa placed her hand over Kevin's shoulder as she lifted her glasses up with her finger.</p><p>"You wanted to save Ren and the others, right?"</p><p>Squinting her eyes to look into the distance, Melissa clicked her tongue.</p><p>"…seriously? Why bother recruiting someone that recklessly goes into enemy territory and doesn't even bother killing them? Does this guy even know that demons have cores?"</p><p>Angelica and the others turned to face the pyramid following Melissa's words and noticed that the demons that had been decapitated were gradually regenerating.</p><p>Everyone's face turned weird when they noticed this. Especially Angelica who covered her face with her hand.</p><p>"…He most likely forgot this."</p><p>"Forgot? Seriously?"</p><p>Melissa's face cringed.</p><p>Shaking her head, she gripped Kevin's shoulder.</p><p>"I can't be bothered. Anyways, Kevin you better hurry up and teleport everyone to where Ren is. Once the demons regenerate, they will most likely alert the other demons and that will most likely be the best chance for us to fetch that sack of sh—keum…"</p><p>Halfway through her sentence, Melissa coughed and silently mumbled.</p><p>"Almost slipped…"</p><p>Unfortunately for her, almost everyone understood her words.</p><p>Pretending to be oblivious to this, Melissa patted Kevin on the shoulder.</p><p>"What are you waiting for? Hurry up."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-574.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-576.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

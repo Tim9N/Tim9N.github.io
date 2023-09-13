@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 500 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 500 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-499.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-501.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Throughout his life and experiences, the Demon King found himself asking three questions. </p><p>'Why does the world reject my existence?'</p><p>'What is the meaning of my life?'</p><p>'Who am I?' </p><p>He was born a demon. </p><p>A race that needed to conquer planets in order to survive. They didn't really have a choice. In order to survive, demons needed demonic energy, and that could only be created through the conversion of the mana in the air. </p><p>That said. </p><p>There were only two things that the Demon King remembered about his childhood. </p><p>His name. </p><p>Jezebeth. </p><p>...And the fact that his race was universally hunted down by all the other races in the universe.</p><p>Everyone tended to call them a race that held no emotions, but this was far from the truth. </p><p>Demons were no different from the other races. It was true that they were a lot wilder than some of the other races, but that didn't mean that they were evil and had no emotions. </p><p>Evil was a subjective word. </p><p>There were always two sides to the same coin, and everyone seemed to have failed to realize this. </p><p>From a young age, Jezebeth never remembered staying in a single place at once. </p><p>Destruction. </p><p>Death. </p><p>Carnage. </p><p>Those were the only things he saw as he ran from planet to planet, trying to avoid being hunted down by the hands of the alliance. </p><p>Despite that, his scenery never changed. </p><p>He would always see death wherever he went. </p><p>But it wasn't the death of the inhabitants of the planet they were moving into. No, it was the death of his own race as they were mercilessly slaughtered down by the other races. </p><p>'Parasites.' </p><p>'God's mistake.' </p><p>'Why were you ever created? What purpose do you serve to this world?' </p><p>Wherever he went, he would repeatedly hear the same words being thrown at him. </p><p>Listening to the same insults over and over again, at one point he started to question himself. </p><p>'Why does the world reject my existence?' </p><p>That was when the first question arose. </p><p>Why did the world seem to reject his very existence to the core? What wrong did he ever commit?</p><p>...He had only been trying to survive. </p><p>Weren't the other races doing the same? </p><p>Weren't they also killing livestock in order to feed themselves? What was so wrong with what they were doing? </p><p>This happened back when he was still young. </p><p>...Skip a few years. </p><p> Nothing changed. </p><p>As he aimlessly ran from planet to planet in order to ensure his survival, the scenery that he saw since young never changed. </p><p>Destruction. </p><p>Death. </p><p>Carnage. </p><p>It was always the same scene. At some point, he had gotten used to the scene. But it was also when he got used to the scene that stopped and looked around himself for once. </p><p>It was from that moment that he realized something. </p><p>He was alone. </p><p>All of his family, friends, and demons that he had known throughout his years had long been killed, leaving him alone. </p><p>The only momento he had of his parents was a small black box that rested on his neck. He didn't know what it was exactly, but his parents told him to never let go of it and to put his demon core inside of it. </p><p>He was still young, and thus he obediently accepted their suggestion. He didn't know much, but supposedly, the box was very durable, and it could help him survive. </p><p>At least that was what his parents told him. </p><p>But.</p><p>As he grasped the silver box hanging on his neck and took a good long hard look at it Jezebeth felt nothing. </p><p>The box used to remind him of his times with his parents...</p><p>But it no longer did. </p><p>It was from that point that the second question arose. </p><p>'What is the meaning of my life?'</p><p>Was he just born to be hunted? Was this his meaning to life? Ever since young all he had been doing is running away. Running away from the alliance that was seeking to eradicate him. </p><p>He didn't remember anything else. </p><p>Was this all his life really amounted to? </p><p>...More time passed. </p><p>Throughout the years, Jezebeth kept asking himself the same two questions. </p><p>'Why does the world reject my existence?'</p><p>'What is the meaning of my life?'</p><p>Before he knew it, many years had passed and he suddenly found himself blankly staring at the sky. </p><p>Levitating in the sky like creatures of justice, and with light spreading out from behind them, a dozen or so figures stared at him from above. </p><p>Slowly descending down toward his direction was a woman wearing a silver armor that shone brightly and gently wrapped around her figure. </p><p>She was one of the members of the alliance that was created in order to exterminate the demons. </p><p>"...Your race does not belong in this universe."</p><p>Her crisp and melodious voice rang throughout the world.</p><p>Hearing her words, something within him snapped. 'Your race does not belong in this universe?' He had heard the same phrase over and over again.</p><p>He was sick of hearing it. </p><p>Why? </p><p>...Just why? </p><p>"Cough...Cough..."</p><p>Coughing black blood down his body, Jezebeth laughed in deprecation. His blood-red eyes gazed upwards, towards the dark clouds covering the sky. Hanging down his neck was a simple silver necklace; attached to its end was a black box.</p><p>It was his family momento. </p><p>"You...you're...nothing but a bunch of hypocrites..."</p><p>He managed to utter after struggling to find his words. </p><p>"What did you say?"</p><p>"Cough..."</p><p>"Y-ou speak as though we have committed some...cough...grave sin against you all, but what is so grave with us trying to s...survive?"</p><p>Knowing that his death was already set, Jezebeth no longer held back. </p><p>"What gives you the right to come here and judge us like you are some sort of god?"</p><p>He vented all his frustration at once. </p><p>In the last moments of his life, he wanted to let the people that had been hunting his race down know that they were simply just a bunch of hypocrites. </p><p>But it was all a futile attempt from his end. </p><p>"Don't blame me for doing this for the sake of our people. Like you've said, we are merely doing this for our own survival."</p><p>"Yo—"</p><p>Before he could say anything else, a bright orb descended down towards the ground. In an instant, his figure was enveloped by the orb, and his consciousness slipped. </p><p>He felt his body disintegrate. </p><p>Before he died, he caught sight of the box on his neck. </p><p>'In the end, I will die without knowing the answer to my two questions...' </p><p>Or so he thought. </p><p>He didn't know exactly what had happened, but just when he thought he had died, his eyes sprung open and he found his body floating into space. </p><p>"This..." </p><p>'I'm alive?' </p><p>Turning around and gazing around him, his eyes soon paused on a floating metallic scrap beside him. </p><p>"Is this the reason I survived?" </p><p>Compared to before, the box was no longer the same.</p><p>It was pretty much scraps at this point, but as Jezebeth grasped onto the box, unknowingly, a tear traced down the side of his cheek. </p><p>The emotions that he had long lost started to once again resurface. </p><p>"...W...why?" </p><p>He wondered out loud. Unfortunately, no sound came out of his mouth as he was in space. </p><p>But Jezebeth didn't care.</p><p>"...Why is this happening to me? What is the purpose of my life?"</p><p>Even though no sound came out, he continued to question his very own existence. </p><p>He couldn't understand. He couldn't understand his purpose. </p><p>'Why does the world reject my existence?'</p><p>'What is the meaning of my life?'</p><p>It was then that something happened. </p><p>A small ball of light the size of a small rock quickly headed his way. Before Jezebeth could have enough time to react and make out what was happening, the ball landed on his body, and his body arched backward. </p><p>"Ahhhhh!" </p><p>He let out an agonized scream. </p><p>The pain shot up his body like a raging fire. He cringed. It exploded in his head with a blinding whiteness. It made him dizzy. It made him reel. The pain was reminiscent of having his whole body burned into bits before being regenerated and burned again. Not only that, he felt an inexplicable and sharp pain in his brain. </p><p>The pain in his head was so strong that for a short moment of time he completely forgot about the other areas that were hurting as he clutched his head with both arms. </p><p>"Ahhhhh!" </p><p>He once again screamed as different images and information started to insert into his mind. </p><p>All of this lasted for a split second, but to Jezebeth it felt like an eternity. </p><p>"Haa...Haa..."</p><p>Once everything was over, Jezebeth's body floated in space. His chest heaved up and down unevenly, but the pain was gone. </p><p>A strange power enveloped his body. He couldn't quite explain what it was. </p><p>It took a while for him to calm down. Once he did, he slowly began to open his eyes, and his figure began to morph. </p><p>"The akashic records..." </p><p>He muttered in a soft tone. </p><p>There was a lot of new information inside of his mind. Most of it was hazy, but in that information, he was able to learn of the existence of a higher existence. </p><p>The Akashic records. </p><p>The entity that overlooked the entire universe. </p><p>And not only that, but he had also learned of something else. The bright white light that had just hit him was called a planetary seed, and it was in fact a small fragment of the akashic records. </p><p>Sorting out the information inside his mind and realizing a lot of new things, another question emerged in Jezebeth's mind. </p><p>'...Who am I?' </p><p>That was how the third question came to mind. </p><p>Unlike last time, however, he had finally found hope. A way for him to get the answers he so desperately sought. </p><p>Answers about his very own existence. </p><p>And it was none other than through breaking the limit and reaching the Akashic records. </p><p>It was from that point on that Jezebeth became the Demon King, and his curse began. </p><p>*</p><p>Opening his eyes again, what met Jezebeth's sight were two deep blue eyes. They were a familiar set of eyes. </p><p>Eyes that he had not seen in a long time. </p><p>As he gazed into them from where he was standing, the edges of Jebeth's lips curled. </p><p>'It's been a while...</p><p>There was a time when he once thought that no one would ever understand him. A time when he thought that he was alone in the universe. </p><p>But he was wrong. </p><p>There was in fact someone else out there that had the same lost look in his eyes as him. Someone that the Demon King could see himself in. </p><p>It was none other than the figure standing opposite of him. </p><p>Or so he thought. </p><p>The Demon King's forehead started to crease. He had finally noticed something. Opening his mouth, he eventually muttered. </p><p>"You're not him." </p><p>His voice echoed throughout the hall. </p><p>Ren's head tilted a little. His demeanor remained impassive and hard to read. </p><p>"...Not him?" </p><p>"Yes..." </p><p>The Demon King nodded.</p><p>The area around him started to fluctuate. </p><p>"You may look like him, but the look in your eyes..." </p><p>He paused and squinted his eyes a little. He once again carefully scrutinized Ren from his option, before eventually shaking his head. </p><p>"...You're eyes. They feel more alive. You're not him." </p><p>That lost look that was similar to his...</p><p>It was gone.</p><p>The person standing opposite him was not the person from his memories. He may look the same, but he wasn't him. </p><p>He started to grow disappointed. </p><p>*** </p><p>Feeling the Demon King's gaze directed my way, I didn't feel anything. </p><p>His pressure was enormous. </p><p>Enough to make anyone cower with just a glance.</p><p>...But, to me, it didn't really feel like anything special. </p><p>"It looks like you've still not completely awoken yet." </p><p>The Demon King mumbled to himself. </p><p>His voice was extremely soft and had it not been for my now enhanced senses, I would've been unable to hear it. </p><p>His words may sound ambiguous, but I perfectly understood what he was referring to. </p><p>It was the future version of me. </p><p>"...What exactly are you looking for?" </p><p>I slowly asked. </p><p>What was the sudden reason for the Demon King's appearance? Since a dungeon was a pocket dimension inside of the demon realm, I understood how he was able to show up here. </p><p>But I could tell that the figure in front of me was just a clone. He was here, yet at the same time, actually not here. </p><p>"What am I looking for?" </p><p>The Demon King raised his head. He eventually shook it. </p><p>"I was looking for an old friend, but he isn't here." </p><p>His voice sounded rather disappointed. Even then, there was something about his sentence that threw me off. </p><p>At least internally. Outwardly, I kept an impassive look. </p><p>"...An old friend?"</p><p>I repeated slowly. </p><p>The Demon King nodded. </p><p>"You heard correctly." </p><p>He raised his hand and opened his palm to face my direction. </p><p>"...A pity." </p><p>He once again mumbled. </p><p>Rumble— Rumble—</p><p>The room suddenly started to quake, and torrential energy sprung out from the Demon King's body, merging toward the front of his palm, creating a black sphere. </p><p>The air distorted, and the black sphere disappeared from its spot. </p><p>It soon reappeared right in front of me. </p><p>Click—! </p><p>With a low clicking sound, the sphere split into two, crashing behind me. </p><p>Booom—! Booom—! </p><p>Smoke filled the air and the castle started to crumble. </p><p>With my eyes still locked on the Demon King, I waved my hand. </p><p>"Angelica, leave now." </p><p>Before she even had the chance to realize what was going on, her body was sent flying in the distance. </p><p>I had no choice. </p><p>With her here, I couldn't go all out. </p><p>From just that single exchange I had with the Demon King, I realized just how formidable of an opponent he was. </p><p>"Don't get distracted in the middle of a fight." </p><p>Not even a second after I sent Angelica away, a familiar face appeared in front of me. It all happened so fast. Without even giving me the chance to react, I felt something press against my abdomen and my view distorted. </p><p>Before I knew it, I found myself being flung in the air and the castle I was previously in became a small black dot. </p><p>"Puchi!" </p><p>A red trail of blood followed my movement. </p><p>Closing my eyes, I twisted my body and unsheathed my sword, and swung it toward my right. </p><p>Clang—! </p><p>A powerful ring reverberated throughout the air dispersing the ashen gray clouds in the air. </p><p>Opening my eyes again, I found the Demon King holding onto my sword with just his bare fingers.</p><p>I was left shocked by this. </p><p>Only internally though. Outwardly, I didn't show it as my face refused to change. </p><p>Crack. Crack. Crack. </p><p>What followed after that was the sound of something cracking. I didn't need to raise my head to realize what was happening. </p><p>The Dungeon was about to break. </p><p>My energy combined with the Demon King's was simply far too much for the dungeon to hold. </p><p>It was then that I suddenly heard a faint whisper in my right ear. </p><p>"You're movements, they're not as polished as his..." </p><p>His voice grew even more disappointed. </p><p>By the time I was able to process his words, something pressed against my back, and my vision warped. </p><p>BANG—! </p><p>Crashing against the ground, my vision turned black.</p><p>I didn't even have the time to groan. </p><p>A familiar iron taste clung to the back of my throat, but I held it in by swallowing. </p><p>Tok. Tok. </p><p>A crunchy and regular sound of footsteps echoed out. </p><p>Raising my head, I stared at the Demon King in the distance. </p><p>"Khhh..." </p><p>With a low groan, I placed my hand on my knee and supported my body up. </p><p>For a brief moment of time, neither one of us spoke. </p><p>"Disappointing." </p><p>But the silence was inevitably broken by the Demon King. </p><p>Shaking his head, he continued. </p><p>"You're weak. So much so that I'm starting to doubt whether you are him or not." </p><p>Without saying anything, I just listened. </p><p>"...And here I thought I could finally appease my curiosity. Did I waste this much energy to test an incomplete version of yourself?" </p><p>Taking a deep breath, I softly mumbled. </p><p>"Sorry." </p><p>"...Sorry?" </p><p>The Demon King repeated. The air around him started to stir, and I could feel his anger reach out to me. </p><p>"Did you..." </p><p>"Don't misunderstand." </p><p>I cut him off and finally stood up. </p><p>"You see..." </p><p>Raising my hand, I brushed my hair back and gazed at the Demon King. </p><p>"I'm still quite unfamiliar with this new power of mine. You were also right about me lacking experience, but..." </p><p>Staring at my hands, I clenched and unclenched my fists. </p><p>This power. </p><p>I couldn't really explain what it was and where it originated from, but it wasn't something the current me could fully control. </p><p>I needed time. </p><p>Time to properly get used to it. </p><p>"I'm slowly starting to get the hang of this." </p><p>My body was slowly getting accustomed to this. </p><p>"So bear with it until I get used to it."</p><p>Taking a step forward, my vision distorted and I appeared a couple of meters behind the Demon King. </p><p>Click—! </p><p>What followed my appearance was a low clicking sound as a white line formed in the air. </p><p>The Demon King's figure blurred, and he reappeared a couple of meters ahead of me. </p><p>Drip. Drip. Drip. </p><p>Raising his thumb and tracing it over his cheek, the Demon King lowered his head and looked at his thumb. </p><p>He smiled. </p><p>"Interesting..." </p><p>Raising his hand and opening up his palm, he pressed it down. </p><p>Crack—! </p><p>A large fissure formed in the sky, and a gigantic black palm the size of the castle from before came smashing down in my direction with unprecedented speed and power. </p><p>Blinking my eyes once, I remained standing where I was. </p><p>Crash—! </p><p>Lifting my head up to gaze at the palm that was headed my way, my ears picked up a glass-shattering sound that echoed throughout the world as the palm headed my way. </p><p>In a fraction of a second, the palm was upon me. The closer it came to me, the slower time became for me. </p><p>Blinking once more, I raised my hand and tapped the air with my index finger. </p><p>Time warped and before I knew it, my finger was touching the middle of the palm, freezing it in place. </p><p>A horrifying energy started to circulate out from the point of contact between my finger and the palm in the air. Golden circles started to spread out, and the glass shattering sound became even more frequent. </p><p>Crack. Crack. Crack. </p><p>This persisted for a good couple of seconds before I lowered my hand and turned my head toward my right.</p><p>Once I turned, the palm in the air turned into a fine black powder that scattered in the air. </p><p>A fierce wind blew and my har scattered all over my face. On the other side, the same thing happened with the Demon King as he directly gazed at me with renowned interest. </p><p>With my right hand next to my face, I slowly clenched my hand into a fist. </p><p>Rumble—! Rumble—! </p><p>The area around me started to distort and the ground fiercely shook. </p><p>Placing my hand on the sheath of my sword, like a vacuum, the mana in the air started to agglomerate in my direction. </p><p>Positioning my body forward, my thumb pressed the hilt of my sword. </p><p>Crack. Crack. Crack. </p><p>Cracks started to form around the area the Demon King was standing on. </p><p>Click—! </p><p>A familiar clicking sound rang in the air, and a glass-shattering sound rang throughout the air. Replacing the cracks were a series of fissures where bright white lights shot out at tremendous speeds. Furthermore, the number of attacks couldn't be counted with one hand.</p><p>If I had to make an estimate, they numbered over a hundred. </p><p>Responding to the sudden attack, the Demon King simply waved his hand all the lights around him scattered, turning into bright white light particles. </p><p>But because the attacks were endless, he was forced to fend them off. </p><p>I took advantage of this and lightly pressed my foot on the ground before me. </p><p>My vision warped, and the palm of my hand pressed onto the Demon King's face. </p><p>Crash—! </p><p>With a loud crashing sound, I smashed the Demon King's face toward the ground. The ground started to shake, and a series of large pieces of rock the size of a regular car flew into the air. </p><p>With my hand still pressed onto his face, I clenched it tightly and raised his head before smashing it again against the ground. </p><p>Bang—!</p><p>Once again pieces of rock were sent flying in the air as the crater we were in deepened. </p><p>Unsatisfied, I repeated. </p><p>Bang—!</p><p>With each smash, the pit around me enlarged and deepened. </p><p>Bang—! Bang—!</p><p>Had it been the me of the past I would've probably have shouted something to vent out my emotions, but at the moment, as I smashed the Demon King's head against the hard ground, I felt empty. </p><p>I didn't really feel anything. </p><p>The same could be said for the Demon King who continued to stare at me through the gaps of my fingers with his scarlet red eyes. </p><p>Raising my hand one more time, I prepared to smash it one more time, but I soon stopped. </p><p>Eventually, I let go of his head. </p><p>"Why aren't you fighting back?" </p><p>I asked. </p><p>I didn't realize it at first, but it only became clear to me a few moments ago that the Demon King has not been fighting back. </p><p>"...Because there is no point." </p><p>Standing up, the Demon King patted his armor. He wasn't exactly in the best of shapes as his figure was slowly starting to turn transparent. </p><p>Staring at him from my spot, I moved my hand behind my back. Following that, my hand started to twitch uncontrollably. </p><p>I was at my limit. </p><p>"I don't see the need to fight against someone who has still not fully awakened yet. You may have gained a fraction of your former power, but you still haven't made it yours." </p><p>He turned his body away from me. </p><p>"Not only that but I didn't come here to fight you in the first place. I just wanted to check if you had awoken." </p><p>Extending his hand forward, the Demon King grasped the air and pulled away, creating a small black fissure. </p><p>"That said..." </p><p>He slowly took a step into the fissure. </p><p>"You're not half bad. We'll meet again soon enough. Once you've fully awakened." </p><p>Those were the last words he managed to say before his figure completely entered the fissure, and he disappeared. </p><p>Silence enveloped the surroundings. </p><p>Crack. Crack. Crack. </p><p>Amidst the silence, the resilient sound of something cracking continued to echo throughout the whole dungeon. </p><p>CRASH—! </p><p>What followed after it was a loud crashing sound and the dungeon collapsed. </p><p>***</p><p>A/N : We've done it! Chapter 500! As a man who keeps his word! The novel shall end here! (I'm kidding.) </p><p>Thank you very much for reaching this incredible milestone with me. To celebrate it, I made the chapter about double the size of a regular one. </p><p>I'm incredibly grateful for all of your support. </p><p>Thank you again. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-499.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-501.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

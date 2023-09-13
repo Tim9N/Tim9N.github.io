@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 490 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 490 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-489.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-491.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'To master the fifth and final movement, one must assimilate the light psyons in the air toward their sword.'</p><p>'The last movement is not something that anyone can pull off comfortably. It's a movement that does not need the body to do anything. Let the psyons do the work, and let the sword flow naturally.'</p><p>Recalling the words imprinted inside of my mind, I tried my best to keep myself focused as I gathered the light psyons toward me.</p><p>There wasn't much I knew about the fifth movement of the Keiki style.</p><p>However, from the little words and images inside of my head, I knew that it heavily relied on light psyons.</p><p>This was why at the moment, I had gathered all my focus toward the air, trying my best to agglomerate all the light psyons toward my sword.</p><p>The process was very slow, however, with due time, the sword in my hand started to become brighter and brighter.</p><p>Before I knew it, the glow coming out from the sword was so bright that it made it difficult for me to keep my eyes open.</p><p>"Khh..."</p><p>'Not yet.'</p><p>Trying my best to remain in this state, beads of sweat started to drip down the side of my face. It may have been because the room was quiet and that I was currently focused on trying to gather the light psyons in the air, but the dripping sound of the sweat hitting the ground deeply resonated inside of my head.</p><p>Drip. Drip.</p><p>The state of my mind was like that of a calm lake. Rippleless.</p><p>"Huuuuu..."</p><p>Uknowingly, the surroundings disappeared from my view, and all I saw was pitch-black darkness.</p><p>I couldn't exactly describe the state that I was in, however, at the moment, it felt as though I was one with the mana in the air.</p><p>My breathing stopped, and my hand started to move. Grasping the hilt of the sword, I slowly pulled away.</p><p>Click—!</p><p>A subtle clicking sound rang out, and the room flashed in white.</p><p>***</p><p>"Been a while."</p><p>Jin said as he entered the training grounds and nodded in Amanda's direction. Glancing around the place, he commented.</p><p>"Not bad..."</p><p>"Thank you."</p><p>Amanda replied as she handed Maxwell her towel.</p><p>Staring at Jin, her brows slowly started to crease.</p><p>"Why did you want to meet me here? My office would've been a more appropriate setting for our discussion."</p><p>"It would've been a waste of time."</p><p>"Hm?"</p><p>Amanda tilted her head. Obviously confused by Jin's answer. Before she could reply, Jin started to speak. A slight smile hung on his lips.</p><p>"I never took you for a scheming one, back then I didn't realize why you agreed to the deal so easily, now I know," Slowly, his eyes started to narrow. "...It's because of those magic cards."</p><p>"Ah."</p><p>Amanda thought back at the time when she made a deal with Jin.</p><p>Pre-Coference.</p><p>A slight smile emerged on her lips.</p><p>"Circumstances were different back then, you still benefitted from the deal."</p><p>"I guess you're right," Jin softly mumbled in an almost inaudible voice.</p><p>He couldn't deny her words, that said, if he had to be honest, looking at things now, the deal wasn't as good as he thought it was back in the past.</p><p>Secretly, he shook his head and cut straight to the chase.</p><p>"Amanda, the reason why I'm here is because we've located a big supply station near the outskirts of the Northen district. We're still monitoring the situation closely, but it looks like we need to join hands to complete this mission."</p><p>Listening to Jin's words, Amanda's brows creased a little as she fell into deep thought.</p><p>"Supply station?"</p><p>Raising her head to meet Jin's eyes, she asked.</p><p>"What do you need us to do exactly?"</p><p>"Nothing too straining."</p><p>"Elaborate."</p><p>"I just need a couple of &lt;A&gt; rankers to come and help us. We won't need &lt;S&gt; rankers, but just in case, I'll bring one from my side. You should also bring one form your side. Just in case something goes wrong."</p><p>After having analyzed the place thoroughly Jin found that this was the best probable formation needed to take care of the place.</p><p>Had it been the past, Jin would've never have collaborated with Amanda over this matter. However, as matters currently stood, Jin could not afford to bring out such a large force.</p><p>Ever since the crack in the sky appeared, all of the guild members had been allocated toward different portals in case a dungeon overload occured. Not only that, with the sudden increase in the mana in the air, many chose to use this time to break through to the next rank.</p><p>In other words, Jin's guild currently did not have enough personnel to handle this mission. Given their time constraint, he had no other choice to but to collaborate with Amanda.</p><p>"Hmmm."</p><p>With her hand under her chin, Amanda had a thoughtful look on her face.</p><p>Lowering her hand, she asked.</p><p>"Are you sure that we only need one &lt;S&gt; ranker?"</p><p>"Yes," Jin replied with a nod. "I'm confident that we won't need more than two &lt;S&gt; rankers."</p><p>In fact, Jin was fairly certain that he wouldn't need one &lt;S&gt; ranker. Bringing two was him already being cautious.</p><p>"I see."</p><p>Amanda extended her hand in Maxwell's direction.</p><p>"Maxwell, please hand me the files."</p><p>"As you wish."</p><p>Tapping on his ring, Maxwell took out a file of papers and handed it to Amanda.</p><p>"Thank you."</p><p>Thanking Maxwell, Amanda proceeded to look through the files. As she looked through her list, Amanda's lips pursed from time to time.</p><p>She didn't look at the files for too long as she soon closed the folder. Handing it back to Maxwell, she gazed in Jin's direction.</p><p> "I've just looked through the list of available members we have at the moment, and it looks like it's doa—" </p><p>Right then.</p><p>Just as she was about to finish her sentence. In the room next door, a thunderous explosion reverberated as the room Amanda and Jin were in shook, alarming the both of them.</p><p>BOOOM—!</p><p>For a split second of time, neither was able to react as they stared at each other. The first one to react was Amanda who quickly dashed out of the training room.</p><p>Di—! Di—!</p><p>Coming out of the training ground, Amanda was met with the blaring sound of the sirens ringing.</p><p>Following her from behind was Jin who looked around with a serious look on his face.</p><p>"What happened?"</p><p>"I don't know."</p><p>Amanda shook her head. Just like Jin, her gaze was extremely serious.</p><p>Her bow quickly materialized on her right hand.</p><p>"...We might be under attack." She softly muttered.</p><p>Glancing around the place, Amanda's gaze soon paused on one of the attendants rushing in the direction of where the explosion originated from.</p><p>Taking a step forward, Amanda stood in her way. Grabbing her by the shoulders, she asked.</p><p>"What's going on?"</p><p>"Hey, wha—Huh? Young Miss?"</p><p>Recognizing Amanda, the attendant flinched. Recomposing herself, she alarmly looked at a room in the distance.</p><p>"Ah. Ah, young miss, I...I don't know, but the data is saying that the explosion came from over there."</p><p>"There?"</p><p>Letting go of the attendant's shoulders, Amanda didn't waste any time and rushed in the direction of the room.</p><p>Stopping right in front of the door, Amanda channel the mana inside of her body. Just as she was about enter, she once again turned to look at the attendant.</p><p>"Do you know who entered the room?"</p><p>"Yes."</p><p>Nodding her head, the attendant took out a small card and handed it to Amanda.</p><p>"This is pass that the individual handed to us before entering the place."</p><p>"The pass?"</p><p>Taking the pass from the attendant's hands, Amanda's bow lowered. Her frown quickly relaxed and she let out a long sigh.</p><p>"Haaa..."</p><p>"What's going on?"</p><p>Jin asked as he noticed Amanda's sudden change in stance.</p><p>Turning her head to look at Jin, Amanda shook her head and put the card away.</p><p>"It's nothing."</p><p>Also putting her bow away, Amanda proceeded to open the door.</p><p>Clank—!</p><p>At the exact moment she opened the door, smoke started to spill out from the door, prompting Amanda to raise her hand and swiping it, creating a small wind funnel that cleared away the dust.</p><p>Her brows which had previously relaxed, once again furrowed.</p><p>"What's going on?"</p><p>Taking a step into the room, Amanda's feet came to an abrupt halt as her eyes paused toward a figure in the middle of the room.</p><p>Her eyes opened widely.</p><p>"Cough...Cough..."</p><p>With his back hunched on the ground, and holding onto what seemed to be his wrist, an individual coughed up blood on the ground.</p><p>"Khaaa..."</p><p>"Ren!"</p><p>Amanda instantly became alarmed as she rushed in his direction. Upon arriving next to him, she was able to get a better look at him, and worry flashed across her eyes.</p><p>Taking a knee, she took a couple of tissues from her dimensional space and wiped Ren's mouth which was covered in blood.</p><p>"What happened to you?" Amanda asked with a worried look.</p><p>His complexion at the moment was extremely pale, and not only that, lowering her head to glance in the direction of Ren's arm, she found that his right hand was broken.</p><p>A couple of meters away from his was his sword which was stained in blood.</p><p>"Cough...Cough..."</p><p>Ren once again started to cough up blood.</p><p>Snapping out of it and tapping on her necklace, Amanda took out a potion from her dimensional space and quickly fed to Ren.</p><p>"Here."</p><p>Because of Ren's current state in which he seemed to be completely out of it, Amanda brought it upon herself to chug the potion down his mouth. Because he was coughing up blood, he had most likely sustained serious internal injuries.</p><p>It was best to give him a potion now to make sure that his injuries wouldn't aggravate.</p><p>"Ugh."</p><p>"Drink it," Amanda said in a stern tone as she raised the potion up.</p><p>Opening his eyes and staring at Amanda, Ren raised his left hand and grabbed the potion. Amanda let go of the potion when she saw this.</p><p>Whilst this was happening, walking around the room, Jin walked toward the other end of the room.</p><p>Coming to a halt, his eyes traced over a large scar on the side of the wall.</p><p>The scar wasn't exactly deep. If he had to make an estimate, it would be around a quarter of a meter in depth, however, what was most shocking about it was the fact that it traced from one end to the other end of the wall.</p><p>Turning his head to glance in Ren's direction, his eyes paused on Ren's sword which was pointed in the direction of where the scar was. Turning his head back to gaze at the scar, he traced his finger over the scar.</p><p>Staring at his finger, Jin slowly opened his mouth.</p><p>"Amanda, just how durable is the room?"</p><p>"Hm?"</p><p>Snapping out of her daze, Amanda looked at Jin. She soon also noticed the scar on the wall.</p><p>"Huh?"</p><p>Her eyes darted back to Ren who was slowly starting get better. Alternating her gaze between Ren and the scar on the wall, Amanda had a sudden thought.</p><p>'It can't be...'</p><p>Amanda felt her mind blank.</p><p>With her eyes still locked on the scar all the way on the other end of the room, Amanda slowly stood up. Without looking back, she called out for her assistant.</p><p>"Maxwell?"</p><p>"Yes?"</p><p>"...Was the room in this state before?"</p><p>"This..."</p><p>Maxwell had a troubled look on his face as his gaze paused on the scar in the distance.</p><p>"I'm not exactly su—"</p><p>"It wasn't."</p><p>A female voice answered for Maxwell. It was the same attendant from before. Nodding her head, Amanda's head finally turned. Biting her lips, she looked toward the assistant.</p><p>"....Has the room been inspected before it was being used?"</p><p>Despite already knowing the answer, Amanda still asked.</p><p>It was just too hard for her to currently process what was happening. It wasn't rare for someone to bridge the gap between sub-ranks as there were many occasions in which such things happened.</p><p>Amanda just couldn't fathom how it was possible for someone who was &lt;A-&gt; rank to deal enough damange on the wall that only &lt;S-&gt; ranks could damage.</p><p>"No, it wasn't like that"</p><p>Opening her mouth, Amanda's eyes closed.</p><p>'He got stronger again...'</p><p>"Amanda, you didn't answer my question."</p><p>Snapping her out of her daze was Jin's voice.</p><p>"This..."</p><p>"How durable is this room?" Jin repeated.</p><p>Opening her mouth, Amanda closed it again and bit her lips. This persisted for a couple of seconds before she eventually answered.</p><p>"It should be &lt;S-&gt; rank."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-489.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-491.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 800 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 800 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-799.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-801.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"It's becoming quieter in here."</p><p>I glanced around the empty streets of Ashton City, feeling a sense of desolation settle within me.</p><p>It was eerily quiet as if the very air had been sucked out of the city. The once-bustling metropolis had been reduced to a ghost town, with the population dwindling day by day.</p><p>The aftermath of the war with the Monolith had taken its toll on the city, and the current migration had made the situation return to what it once was.</p><p>"Haa..."</p><p>I sighed, my gaze drifting toward the portal that stood before me. Jin was standing in front of it, flanked by a few familiar figures - Emma, Amanda, and Melissa.</p><p>I couldn't help but feel a twinge of envy at the thought of their impending departure. They were leaving for Immorra... A place I worked so hard to develop and make into the best place to live in...</p><p>I really wanted to go.</p><p>"Why aren't you coming with us?"</p><p>Jin's voice interrupted my thoughts, and I turned to face him.</p><p>"I've got a few things that I need to do over here, and I can't go there."</p><p>I replied, my tone neutral. It was only half the truth, but I couldn't reveal the real reason why I couldn't accompany them to Immorra.</p><p>Jezebeth was still out there, somewhere, and he was relentless in his pursuit of me. His ability to track me down made it impossible for me to stay in one place for too long.</p><p>This was especially so after I gained Kevin's power.</p><p>If I were to go to Immorra, there was a high chance that he would find out my whereabouts and hunt me down.</p><p>I couldn't risk putting Amanda and the others in danger, which left me with no choice but to stay behind and keep Jezebeth's attention diverted from them.</p><p>"When will you be coming?"</p><p>Emma's voice rang, and I smiled at her.</p><p>"I will probably not be coming for long. Perhaps once every week, and I'll stay at most for a couple of days over there... You see, there's a lot of things that I need to do here, and I can't stay there for very long."</p><p>Emma looked at Amanda, her skepticism apparent. I knew she didn't believe me, but I couldn't blame her.</p><p>I really was hiding something.</p><p>"Only once a week?"</p><p>Emma's voice was tinged with confusion, and I felt a pang of guilt in my chest when she looked at Amanda.</p><p>"...And you're okay with this? You do know that we'll be gone for about five years. Are you okay with only seeing him once every couple of months?"</p><p>Amanda shook her head, her expression normal.</p><p>"No...but I understand where he's coming from, so I can only accept the situation."</p><p>I felt a surge of gratitude toward Amanda.</p><p>As expected of her... She really was understanding.</p><p>"Uhh...okay," Emma said, looking defeated. "You do whatever you want. I won't interfere in your matters."</p><p>With that, she turned and handed her identification to one of the guards who stood watch over the portal. The check wasn't very long, but it felt like an eternity. I watched as Emma, Amanda, and Jin stepped through the portal, disappearing from sight.</p><p>"See you in a week, then."</p><p>"Bye."</p><p>"Have a safe trip."</p><p>I murmured, waving my hand in farewell.</p><p>As they vanished from view, a sense of loneliness settled within me. The thought of being alone in Ashton City for the next half a year was somewhat daunting, but I knew I had to keep going.</p><p>I had a mission to fulfill, and I couldn't let anything get in the way of that.</p><p>"Huuu."</p><p>Taking a deep breath, I turned and walked away from the portal, the sound of my footsteps echoing through the deserted streets.</p><p>There was work to be done.</p><p>***</p><p>'Just what are you planning?'</p><p>Jin stood there, quietly staring at Ren.</p><p>He couldn't quite put his finger on what it was about Ren that made him feel so uneasy. Was it the way he was looking at them now, or was it something deeper?</p><p>Whatever it was, it had been gnawing at Jin for some time now, and he couldn't help but feel like he was missing something important.</p><p>He stood there for what felt like an eternity, lost in thought.</p><p>Ren said nothing, just watching him with a patient expression. Finally, after what seemed like hours, Jin turned around and started walking toward the portal.</p><p> He didn't look back, not wanting to see Ren's face again.</p><p>As he walked, Jin couldn't help but feel a sense of frustration.</p><p>It was as if he were walking into a safe haven meant just for him. He wasn't the only one who felt this way, either. Everyone's expression was somewhat similar as if they were all heading towards an uncertain future.</p><p>In the end, it all came down to the fact that they were all still too weak.</p><p>While they were strong, they were still far from strong enough to be of any help to Ren. He was carrying the entire burden by himself and trying to keep them protected at the same time.</p><p>It was a heavy burden to bear, and Jin didn't envy him for it.</p><p>"I don't like it..."</p><p>Jin muttered to himself, his voice barely audible over the sound of his footsteps.</p><p>He didn't want to feel like a burden, and when he looked around and stared at the others, he could see that they were having similar thoughts as him.</p><p>The portal hummed and shimmered as they approached it, and Jin couldn't help but feel a sense of commitment.</p><p>'I've got five years... Five years to become stronger... five years to become useful...'</p><p>Woom! Woom!</p><p>His vision warped, and he appeared in the middle of a large city.</p><p>At a glance, it reminded him of Ashton City, but it was at the same time different. The towering trees, the other races, and the thinned out mana… it was similar but different.</p><p>Jin looked around, taking in his surroundings.</p><p>The city was bustling with activity as people of all races went about their business. It was a vibrant, lively place, but Jin couldn't shake off a certain feeling.</p><p>He reminded himself of how Ren looked before he left, and the scenery before him didn't look as lively as it once did.</p><p>"Should we go to our residences?"</p><p>Right then, he heard Melissa's voice, and he turned to look at her. She looked absolutely normal at the moment. Perhaps, out of everyone, she was the one that seemed the calmest, and when Jin thought about it, he wasn't surprised.</p><p>She had always been like this.</p><p>Placing his hand inside his pocket and fiddling with a certain box, he retrieved a cigarette and placed it in his mouth.</p><p>*Puff*</p><p>He took a deep drag, feeling the smoke fill his lungs.</p><p>For a moment, he closed his eyes, enjoying the sensation. A certain demoness appeared within his mind at the moment, and he felt the edges of his lips curl up at that moment.</p><p>'I wonder how she's doing at the moment?'</p><p>If she saw him again like this, would she throw a fit, or would she try to steal his cigarettes?</p><p>"He."</p><p>He involuntarily chuckled and shook his head.</p><p>Arrogant Demoness.</p><p>When he opened his eyes again, he saw Melissa looking at him with a curious expression.</p><p>"Since when did you start smoking?"</p><p>She asked, pointing at the cigarette.</p><p>Jin smiled faintly.</p><p>"It's just a habit," he said, taking another drag. "It helps me relax."</p><p>"Oh, I see."</p><p>Melissa nodded, her interest in the topic quickly waning. She surveyed the city that surrounded them and pointed in a certain direction.</p><p>"Should we go to our residences?"</p><p>Jin considered it for a moment before nodding.</p><p>"Yeah, we should. I need to rest a little."</p><p>He took another drag from his cigarette before flicking it away.</p><p>"Lead the way."</p><p>"Uh? Lead the way? You speak as if I know the way…"</p><p>"Ah… right."</p><p>***</p><p>"You still haven't left yet?"</p><p>Ashton City may have been desolate, but not everyone had left. Coming into my office was a face I thought I wouldn't see for quite a while.</p><p>"Not yet; I still have something that I want to talk to you about."</p><p>"Well… okay."</p><p>I didn't have much to do anyway, so I sat on my chair and pointed at the seat opposite me.</p><p>"Have a seat for now, Octavious."</p><p>"Thank you."</p><p>He sat himself down and looked around the room with a curious look.</p><p>"Making yourself comfortable?"</p><p>"Well, it's not like there's a point in going back home anymore."</p><p>With everyone gone, I didn't feel the need to go back home, so I installed a bed in my own office.</p><p>Was a bit weird, but it was functional.</p><p>"Well, alright."</p><p>Octavious's gaze did not linger too long on my bed, and he assumed a solemn expression.</p><p>"So… What is it that you want to talk to me about?"</p><p>For him to come to me after everyone had gone... He must definitely have something serious to talk about.</p><p>It certainly piqued my curiosity.</p><p>"About that…"</p><p>After a moment of hesitation, Octavious exhaled and explained everything to me.</p><p>'Uh?'</p><p>Hearing what he had to say, I was left at a loss for words as my body stiffened. The contents of his words…</p><p>They weren't something I'd expect to ever come out from his mouth.</p><p>"Are you sure?"</p><p>I asked, my tone taking an extremely serious note.</p><p>Leaning his body forward, Octavious nodded his head, and when I looked at his eyes, I knew that he had made up his mind on the matter.</p><p>My hand trembled for a moment, but I eventually nodded my head.</p><p>"Okay… I'll help you, and…"</p><p>I paused for a moment and looked straight into his eyes.</p><p>"Make sure you make these five years count."</p><p>"You don't have to tell me that…"</p><p>Octavious answered, a smile finally lingering over his features.</p><p>It was a smile I had never seen him make before, and it radiated serenity. It was as if he come to peace with something.</p><p>I found myself unable to look at him, and my head lowered.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-799.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-801.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 557 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 557 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-556.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-558.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Ren, are you listening to me?"</p><p>As I absentmindedly lifted and lowered the spoon in my hand, I heard a familiar voice tickle my ears.</p><p>"Ren!"</p><p>The voice grew louder with every passing second, and before I knew it, it was right next to my ear, startling me out of my daze.</p><p>"Ren Dover!"</p><p>"Huaa!"</p><p>I screamed as my hand reached out for the corner of the desk to stop myself from falling.</p><p>Unfortunately, my efforts proved futile as I inevitably still fell to the ground.</p><p>Bang—!</p><p>"Ugh."</p><p>With my butt feeling the cold hard ground, I slowly raised my head to see my mother's face looking down at me. She had a rather worried look on her face.</p><p>"Are you okay Ren? Did something happen?"</p><p>"No."</p><p>Pressing my hand against the ground and picking up the chair, I sat back down. Then, picking up the spoon, I took a mouthful of cereal and ate it.</p><p>"Ren?"</p><p>"Mh, I'm just..mhm, I've got a lot to think about..mh."</p><p>"Don't speak while you're chewing."</p><p> With a small rag in hand, my mother sat down next to me. </p><p>Supporting her chin with both hands, she leaned her body a bit.</p><p>"Be honest with me. I can tell that something happened. You can tell your mother, I'm all ears."</p><p>Lowering the spoon in my hand, I turned to face my mother.</p><p>My brows soon furrowed and I sighed.</p><p>'Fuck it.'</p><p>"...I'm going to leave again."</p><p>Immediately following those words, I closed my eyes expecting my mother to go bonkers.</p><p>But...</p><p>"Hm?"</p><p>To my surprise, I did not hear my mother lose it even after half a minute had passed.</p><p>Upon opening my eyes, I was surprised to see my mother smiling at me. The sight caused my brows to jump up.</p><p>"Mom?"</p><p>"See, it wasn't so hard to tell me was it?"</p><p>"...What?"</p><p>Opening and closing my mouth, my head tilted.</p><p>I was legitimately very confused at the moment.</p><p>"...Are you not angry at me for leaving again?"</p><p>"Angry?"</p><p>Cocking her head a little, her neat blonde hair gently fell over her shoulder. Plucking her lips a little, she asked.</p><p>"Why should I be angry?"</p><p>"...Ehm."</p><p>Raising my hand to scratch the back of my head, I didn't know how to respond.</p><p>'What's going on?'</p><p>This wasn't the reaction that I had expected from her. Was there something wrong with my mother?</p><p>Was she sick?</p><p>Worry instantly flashed across my face.</p><p>"Don't look at me like that."</p><p>With a frown on her face, my mother slowly stood up.</p><p>Taking the rug from the table, she walked toward the kitchen and placed it on the counter.</p><p>Throughout the entire time, neither one of us spoke as I waited for her to start speaking. In no time, she asked me a question.</p><p>"Ren, do you know why I was angry last time?"</p><p>"...It's because I didn't say anything before leaving."</p><p>"Right."</p><p>With a turn of her body, I met my mother's eyes. They looked an awful lot like mine.</p><p>"If you know that, then why do you think I'll get angry over you leaving? You're already an adult. What you do with your life is up to you. I can no longer control you like when you were a kid as your safety was my responsibility. It still is, but considering our circumstances, I can no longer protect you like when you were young."</p><p>A sad smile flashed across her face as she leaned her body a bit.</p><p>"That's why I'm never going to stop you from doing whatever you want to do. You are strong, and I've seen it..."</p><p>Pausing for a moment, my mother let out a gentle sigh.</p><p>"All I ask is for you to tell me when you're going on such dangerous trips. Just so that I don't have to worry about where you are all the time. You can do that for me, no?"</p><p>"...Okay."</p><p>Taking my eyes away from my mother and staring at the bowl of cereal in front of me, I slowly nodded my head.</p><p>"I'll do that."</p><p>As water flowed from the faucet in the kitchen, the sound of the water echoed throughout the room. While putting one of the plates in the sink, my mother suddenly asked.</p><p>"When are you leaving?"</p><p>My hand suddenly paused. Bitterly smiling, I answered.</p><p>"Most likely today."</p><p>Unfortunately, we couldn't push the trip any further and therefore had to go today.</p><p>'As a matter of fact, I probably shouldn't be here right now.'</p><p>There were also a lot of things that I needed to do in order to ensure that the trip was going to be successful. I had already contacted Smallsnake about the little stuff, and so that was fine for now.</p><p>The real problem was something else.</p><p>'Jin.'</p><p>The plan to kidnap him was still on full steam. But in order for that to work, there were some things that I needed to handle.</p><p>"Haa..."</p><p>A sigh escaped from my mouth.</p><p>Today was going to be a busy day.</p><p>As my mother replaced the plate in her hand with a new one, she placed the old one on a rack beside her.</p><p>"For how long are you going to be leaving?"</p><p>"I'm not too sure."</p><p>"I s—"</p><p>Clank—!</p><p>Exactly at that moment, the kitchen door opened and a familiar figure appeared. While rubbing her eyes with her little fists, Nola held a small teddy bear by its arm.</p><p>Still in her pajamas, Nola dragged the bear behind her and slowly walked toward the kitchen table, and helped herself up. It was clear that she was still sleepy as she took no notice of me who was sitting in front of her.</p><p>Smiling to myself, I got off my seat and sat down next to Nola.</p><p>"Sleepy?"</p><p>"Mhhh."</p><p>Raising my hand, I gently stroked Nola's head. In spite of this, she did not react as she simply lowered her head so that I could stroke her better.</p><p>'How cute.'</p><p>While thinking of something, I tapped my bracelet once. In the blink of an eye, a large teddy bear appeared in my hand.</p><p>"Hey, Nola."</p><p>"Mhh..."</p><p>"Look, look."</p><p>Urging the bear forward, I pushed it toward Nola. When the bear touched Nola, her mind cleared up a little and her eyes opened wide.</p><p>"Waah!"</p><p>She let out a startled shout.</p><p>A broad smile appeared on my face as soon as I noticed her reaction as I leaned my head to the side.</p><p>"How about it Nola? Do you like it?"</p><p>"Brother!"</p><p>In an instant, Nola's eyes glowed with excitement. Extending both hands, she jumped toward the bear and hugged it tightly.</p><p>A particularly amusing aspect of the situation was that the bear was almost twice Nola's size, making it appear as if she had vanished.</p><p>"Mhh..mhhh..mhh..mhh.."</p><p>Muffled sounds rang out as Nola hugged the bear tightly. The sounds persisted for a couple of seconds before they stopped.</p><p>"Nola?"</p><p>I called out as my brows furrowed.</p><p>'Why did she stop moving?'</p><p>Getting up from my seat, I circled around the bear to discover Nola's figure motionlessly hugging it.</p><p>"Hey, Nola."</p><p>I immediately became startled as I placed my hand on her back and shook her.</p><p>"Nola."</p><p>I was met with no response. Panic started to set in from there as I shook her even more fiercely.</p><p>"Hey Nola, Nola, Nol—"</p><p>"Booo!"</p><p>"Whoa!"</p><p>Startled, I took a couple of steps back and almost tripped on the ground. Raising my head, I was met with the sight of Nola extending her tongue in my direction.</p><p>"Hehehe."</p><p>Calming down and realizing that I had been fooled, I glared in Nola's direction.</p><p>"Do you seriously think that you can get away with what you've just pulled?"</p><p>"Kyya! No! Mother! Haha, hehehe, Nooo!"</p><p>I ticked Nola's sides.</p><p>Just like most children in the world, Nola was ticklish. In fact, she was especially ticklish. Just tickling her legs would send her crying with laughter.</p><p>"Hahaha, brother! Stop!...hhahaha..."</p><p>Out of mercy, I stopped after ten seconds. I wasn't cruel enough to punish her for too long.</p><p>"You better have learned your lesson."</p><p>"....Yes...sorry brother. I will...never do it again."</p><p>Nola muttered on top of the bear on the floor.</p><p>It was needless to say that she had learned her lesson as she was having a hard time breathing.</p><p>A triumphant look spread across my face when I stared at Nola. Lowering my head, our eyes met and Nola stuck her tongue out.</p><p>"Stinky brother."</p><p>"On second thought, let's go for another round."</p><p>"Kyaa! Noooo...ahahhahah!"</p><p>***</p><p>"Did something good happen to you?"</p><p>In the midst of putting her shoes on, Edward stared at his daughter. While her face was covered by her hair that was leaning forward, she was currently wearing a long black coat that reached all the way to her knees.</p><p>Shaking her head, Amanda replied.</p><p>"Nothing in particular."</p><p>"...Is that so?"</p><p>Squinting his eyes, Edward decided to let it go.</p><p>Turning his wrist, he checked the time. 9:17 A.M.</p><p>"Let's get going. We're about to be late."</p><p>"Okay."</p><p>Finally managing to put on her boots, Amanda brushed her hair behind her head. After that, she turned around to wave at Natasha who was staring at the both of them with a warm smile on her face.</p><p>"Have fun you two."</p><p>"What fun? We're going to work. How about you help out as well?"</p><p>Edward rebutted as he playfully glared at his wife.</p><p>"Have you missed me so much that you want me to work next to you?"</p><p>"I do."</p><p>Edward seriously replied.</p><p>With a wave of her hand, Natasha's cheeks blushed slightly.</p><p>"How smooth."</p><p>"But I wasn't joking."</p><p>"Oh, you—"</p><p>Clank—!</p><p>Hearing the sound of the door opening, Edward turned his head only to see Amanda leaving the house with a weird look on her face.</p><p>"Hey, Amanda, where are you going?"</p><p>"Work."</p><p>"Wait for me."</p><p>Bitterly smiling in Natasha's direction, he followed after Amanda.</p><p>Clank—!</p><p>"Hey, Amanda, you can't just leave like that."</p><p>Closing the door behind him, Edward followed Amanda from behind. Halting her feet for a moment, Amanda turned her head to look at her father.</p><p>"...And you can't just flirt in front of your daughter like that."</p><p>"Uh."</p><p>Speechless, Edward closed his mouth and stopped speaking. Awkwardly scratching the side of his neck, Edward came up with an excuse.</p><p>"Amanda, your father, and mother have not met after so many years, it's normal for them to—"</p><p>Clank—!</p><p>Cutting him off was the sound of one of the apartment doors opening. Turning his head, Edward spotted a familiar figure.</p><p>"Ren."</p><p>"Uhh.."</p><p>But contrary to Edward's expectations, Ren did not greet him back but just stared in Amanda's direction with a blank look on his face. Most shocking was Amanda's next course of action.</p><p>"Good morning."</p><p>Walking closer to him, she greeted.</p><p>Leaning her face closer to him, a mischievous grin spread across her face.</p><p>"Going to work?"</p><p>"Ehm...Yeah."</p><p>Ren replied with an odd look on his face. Though not exactly flustered, he didn't seem his usual calm self.</p><p>'Odd...'</p><p>Edward's eyes began to squint once he realized this. This was the first time that he had seen Ren lose his composure like this, and the cause seemed to be his daughter.</p><p>'Don't tell me.'</p><p>A sudden thought crossed his mind as he alternated his gaze between Amanda and Ren.</p><p>"You two..."</p><p>***</p><p>A/N : Next chap in an hour or two.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-556.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-558.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

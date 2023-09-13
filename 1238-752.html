@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 752 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 752 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-751.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-753.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As my sword tore through the air in front of me, I noticed a trickle of sweat running down the side of my face.</p><p>It had been a while since I practiced with the sword, and I sort of missed this feeling. The discomfort, which I subjected myself to on a regular basis in order to improve my strength, was not something I particularly enjoyed. I much preferred this to that.</p><p>Swoosh—!</p><p>It had also been a while since I started sweating during my training.</p><p>Swoosh—! Swoosh–!</p><p>"I think that's enough for today."</p><p>A voice called out from the back, and I stopped.</p><p>I turned my head, and as I did so, my eyes stopped on Grandmaster Keiki, who was coming in my direction. He was grinning to himself in a relaxed manner.</p><p>"You've been training like crazy for the past few days; I think you should take some time to rest."</p><p>He tossed me a towel, and I grabbed it.</p><p>I wiped my face and stabbed the sword into the ground.</p><p>"You see, I don't really have much time left here."</p><p>Matthew's words weren't clear before, but I could feel them now. I had the distinct impression that I did not have a lot of time left to enjoy life in this world.</p><p>"I want to learn as much as possible before leaving."</p><p>He didn't exist in my world, sadly. If there was a time when I could learn from him, then it was now.</p><p>I couldn't afford to waste a single second.</p><p>"You're leaving? Where to?"</p><p>The news appeared to take Grandmaster Keiki by quite a bit of surprise. It seemed as though he hadn't expected my sudden departure.</p><p>'He looks better.'</p><p>When I looked at him, he appeared to be in much better shape than when I had first found him, and that made me smile.</p><p>"I'm going back home."</p><p>"You don't live in Ashton City?"</p><p>Thinking of my world, I shook my head.</p><p>"No… I live quite far away from here."</p><p>A place only I could reach.</p><p>"Oh."</p><p>Grandmaster Keiki nodded his head reluctantly.</p><p>"That is unfortunate. I really wish that you could have spent some time with my family. If only I could, I'd be happy to put you in touch with them, but..."</p><p>He shrugged his shoulders.</p><p>"It's alright. I appreciate the gesture."</p><p>I wiped the side of my face with the towel.</p><p>The situation of the three Grandmasters was still a little sensitive. It wasn't so much that Octavious didn't want to absolve them of their wrongdoings; rather, it was more that he found it difficult to persuade the general public of their crimes.</p><p>At the same time, the Protector also existed. If he could do it, then it was going to be a long and slow process.</p><p>One that may take months or maybe even years, and sadly, during that time, they wouldn't be able to visit their families.</p><p>Seeing his grim look, I shifted the conversation away from his family.</p><p>"Anyways, is there something else you suggest I take note of when practicing?"</p><p>"Oh."</p><p>Grandmaster Keiki's eyes finally lit up, and he soon nodded his head.</p><p>"Yes, as I've confirmed to you on multiple occasions over the course of the past week. You are going to need to keep practicing the fundamentals over and over again. Please don't get the wrong idea; they are not bad. Rather, your fundamentals are already at a level that most people won't ever reach in their lifetime, but..."</p><p>He paused for a moment.</p><p>"..It's just that it's the only thing you haven't mastered. As opposed to the movements, which you seem to have quite the hang of, your basics are the only thing that you don't have a solid grasp on. Just stick to them, and you'll find yourself improving."</p><p>Extending his hand, he retrieved the sword from the ground and slashed it.</p><p>Swoosh—!</p><p>"Just slash, and slash, and slash. That's really all there is to it. Keep slashing until you feel as if it's second nature to you. Once you get that done, everything will become much easier for you."</p><p>He handed the sword back to me.</p><p>"I see…"</p><p>I took the sword from his hand and stared at it.</p><p>'Just slash, and slash, and slash?'</p><p>That sounded easy enough. It wasn't impossible.</p><p>"Anything else?"</p><p>"No."</p><p>He shook his head.</p><p>"That is the extent of the complexity involved. If you can just keep what I told you in mind, you'll be able to make significant progress in no time. The same can be said for the two other forms of swordplay. The Gravar and Levisha styles. Even though there are some key differences, they are all based on the same principles. You won't have trouble getting the hang of them when you solidify your fundamentals."</p><p>"I understand."</p><p>I threw the towel to the ground and took a stance.</p><p>'So he's saying that if I keep training my fundamentals, then learning the other two sword arts should also be easier.. not just the Keiki style.'</p><p>That… made a lot of sense, and I found myself wanting to face palm.</p><p>'Because I was so rushed to increase my power so much, I neglected to train my fundamentals as much as I should've...'</p><p>Although they weren't terrible—in fact, they were quite good—they weren't perfect, and at this point, perfection was what I needed the most.</p><p>I paused for a moment and smiled bitterly.</p><p>'Actually, more than me neglecting them, it has more to do with the fact that I have only lived in this world for about eight years...'</p><p>Had I had more time, then I was sure my fundamentals would've been perfect.</p><p>A pity I didn't.</p><p>Swoosh—!</p><p>I slashed the sword once more.</p><p>***</p><p>Thump—!</p><p>Something tore through the air and landed with a thud on a small target approximately one hundred meters away from the location where the source of the noise originated.</p><p>Staring at the target in the distance, Amanda frowned.</p><p>"Am I really talented in this?"</p><p>She had a very clear view of the target, even though it was far away. It was currently riddled with arrows, but none of them hit the target in the bullseye mark.</p><p>She had been attempting to hit the target for a week and had yet to succeed.</p><p>It felt rather depressing to her.</p><p>This was hard.</p><p>"Huh."</p><p> She took a deep breath.</p><p>Honestly, she was really doubting the validity of his words. No matter how much she thought about it, she didn't feel suited for the bow.</p><p>'It's still too early.'</p><p>She took another deep breath and calmed herself down.</p><p>After getting a feel for the bow in her hand, she gave the string a very light pull. As a direct result of this, her gaze became fixated on the object in the far distance.</p><p>She could see it quite clearly. This wasn't a surprise to her.</p><p>She had always had good eyesight.</p><p>But that didn't mean anything when she couldn't even hit the target in the first place.</p><p>Creak—</p><p>The bow creaked slightly as she pulled the string. Feeling the wind around her, she waited. Waited for the perfect moment for her to let go of the string.</p><p>The moment came sooner than she thought. Feeling the air around her still, Amanda let go of the string.</p><p>Thump—!</p><p>Amanda was able to see everything that had transpired in that instant, despite the fact that not even a second had passed since she let go of the string.</p><p>It was as if time had slowed down and all she could see was the arrow.</p><p>She watched as it tore through the air, slicing through it in the most delicate way possible, before finally coming to rest against the yellow mark in the distance.</p><p>"…"</p><p>Staring at her arrow that had pierced through the target, Amanda felt her mind go blank for a moment.</p><p>She blinked her eyes several times as she tried to make sense of what had just occurred in her head. When she finally succeeded, her face became flushed with excitement, and she leaped into the air.</p><p>"Yeasss!"</p><p>She had never experienced anything like the rush she felt when she realized she had finally hit the target; it was so exhilarating that she could feel the heat rising in her cheeks.</p><p>This feeling was awesome.</p><p>"It looks like you've made some progress."</p><p>It was at this moment that she heard a certain voice, and her initial excitement died down.</p><p>Calming herself, she turned around to face the voice.</p><p>"When did you get here?"</p><p>"Just now."</p><p>He seemed rather laid back as he stared at the target in the distance.</p><p>"I'm rather impressed. In just a week, you've managed to improve so much."</p><p>He had a look on his face that seemed to say, 'I told you so.'</p><p>It irritated Amanda for some reason, and her initial excitement wore down.</p><p>"What did you come here for?"</p><p>"To check on your progress and to say goodbye."</p><p>Amanda was stunned to the point that she couldn't move from where she was standing, as if she had been hit by lightning.</p><p>"Say Goodbye? You're leaving?"</p><p>"Mhm. I have to leave."</p><p>Amanda felt her mouth go dry, but she soon nodded her head.</p><p>"I understand. You must miss your family."</p><p>"I do."</p><p>He happily smiled. Amanda had never before witnessed him smiling in such a way, and to be completely honest, the sight of it caused her to temporarily lose her breath.</p><p>'I guess… he doesn't look like a squid when he smiles like that.'</p><p>Not that she would admit to him.</p><p>"When will you be leaving?"</p><p>Amanda set her bow down and wiped her sweat with a clean white towel.</p><p>"Soon."</p><p>He answered while following the bow with his eyes.</p><p>"How soon?"</p><p>"I'm not entirely sure."</p><p>He raised his head and looked up toward the ceiling… or something distant. Amanda couldn't quite make out what it was.</p><p>She eventually let out a long breath.</p><p>"If you're leaving so soon, why don't you have dinner with us? I'm sure my dad and my mom both want to apologize to you for what happened a while back and…"</p><p>'The same goes for me.'</p><p>She found herself unable to utter those words, but it didn't seem as though she needed to. Following his gaze, she could tell he could see right through her, and he soon smiled.</p><p>"Sure, why not?"</p><p>"Great, I'll tell my dad."</p><p>Amanda happily smiled at his words. For some reason, she felt excited by the idea. I guess, in a way... she was thankful for what he'd done for her.</p><p>Sadly, what she didn't know was that he'd agreed knowing that it wasn't possible.</p><p>C..Crack.</p><p>The world froze over, and cracks appeared within the space surrounding the two.</p><p>After that, everything shattered as though it were made of broken glass, and the world turned white.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-751.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-753.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

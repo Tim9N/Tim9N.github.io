@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 583 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 583 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-582.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-584.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Looks like I'm not too late, no?"</p><p>Brushing my hair back, I moved to where Liam was. In my right hand was a small silver sword. It was a spare sword that Kevin had handed me before separating from me.</p><p>"Just a little…"</p><p>Liam's words left me speechless. Especially after he took out an apple and started to take bites out of it.</p><p>While he took a bite of the apple, the juices from it spilled all over his fingers before falling onto the ground.</p><p>I shook my head when I saw this.</p><p>"Here."</p><p>I handed him a potion.</p><p> "I don't need it."</p><p>"Hm?"</p><p>Catching the potion, Liam threw it back to me. His actions surprised me as I blinked a couple of times, unable to fully understand why he rejected the potion when he was clearly not in a good state.</p><p>Seemingly being able to read my thoughts, Liam raised his hand and showed me the apple.</p><p>"You see, this isn't a normal apple."</p><p>Standing up, his broken foot magically started to twist and squirm. Within the span of a couple of seconds, his leg had completely healed and he lightly jumped in the air.</p><p>"See? I'm fine."</p><p>Liam threw what remained of the apple on the floor and turned to gaze in the direction of where the demon was.</p><p>I did too.</p><p>"…Another intruder?"</p><p>Unfortunately, my surprise attack didn't seem to have had much of an impact on the demon, as he appeared to be completely unscathed.</p><p>The situation was made worse by his apparent anger, as his face twisted savagely and a powerful force enveloped the scene. Currently, we were standing in a small hall, with tall pillars supporting the ceiling.</p><p>A smoky and iron-like scent lingered in the air.</p><p>"Not bad…not bad…"</p><p>The demon spat through his clenched teeth as he alternated his gaze between Liam and I. Then, looking toward the other demons present in the room, he finally noticed something.</p><p>"Dead…"</p><p>The aura that was revolving around his body fluctuated slightly.</p><p>A thin smile spread across my face when I noticed this.</p><p>'I was right to kill the others first.'</p><p>It had been quite a bit since I had arrived here, and during the time that I was here, I spent my time killing all the demons that were in the room.</p><p>None of the demons in the room were that strong, but they still posed a liability that could cause trouble in the middle of the fight, which was why I decided to kill them before saving Liam.</p><p>'The others should also be attracting the attention of the other high-ranked demons…'</p><p>Furthermore, having separated from the others who went for the core of the mana compressor, I knew that they would attract the attention of a Marquis ranked demon, and in turn, stop any reinforcements from coming to the Duke's aid.</p><p>…Not that he really needed any since he was already a lot stronger than Liam and I.</p><p>"Where is everyone?"</p><p>My decision proved to be the correct one as the Duke ranked demon seemed taken aback by the sudden situation.</p><p>…and it was right at this moment that I exchanged glances with Liam.</p><p>'Let's go.'</p><p>We understood what our task was even before we spoke as mana erupted from my body and a dark shadow appeared beside me.</p><p>[Shadow Servant]</p><p>Taking a step forward, a black disc formed beneath my feet, and I propelled my body forward.</p><p>Crackle. Crackle.</p><p>At the same time, lighting crackled around Liam's body, and his figure vanished from the spot, before reappearing right in front of the Duke ranked demons</p><p>Extending his hand, he slashed toward the demon.</p><p>SHIIING—!</p><p>I, on the other hand, pressed my hand against the hilt of my sword.</p><p>First movement of the [Keiki style] : Quick slash.</p><p>Click—!</p><p>A bright white light followed a clicking sound as mine and Liam's attack landed simultaneously on the Duke ranked demon.</p><p>Clang—! Clang—!</p><p>But much to the disappointment of Liam and I, the only thing we heard after our attacks landed was a strong metallic sound.</p><p>Once the flash of light disappeared, I was shocked to see the Duke rank demon blocking both of our attacks with just an arm. Or, to be more precise, his bones, as he didn't seem to have any muscles in his body.</p><p>"What do you think you're doing?"</p><p>His sinister and aged voice echoed throughout the place as his red pupils glared in our direction.</p><p>A menacing and powerful pressure suddenly sprang out from his body, forcing the two of us back, as the wings on his back expanded, casting a large shadow over the area we were in.</p><p>Clenching his teeth, the Duke ranked demon didn't say anything and just flapped his wings once. His figure disappeared from the spot before reappearing right in front of me.</p><p>His speed was so fast that by the time I had activated Eyes of Chronos he was already a couple of inches away from my face, and closing the distance.</p><p>'Shit.'</p><p>I silently cursed to myself as my heart tightened and cold sweat dripped down my back.</p><p>'I should've known better not to challenge a Duke ranked demon in spite of the fact that it was already old, and almost dying.'</p><p>Even with its strength rapidly declining, the demon was still leagues above my level.</p><p>'Fucking Liam.'</p><p>Why in the world did he even think he could fight against a Duke ranked demon? He was worse than Kevin when it came to being a calamity magnet!</p><p>If I was careless for even one second, I could kiss goodbye to my life.</p><p>When I was trying to figure out the way out of the situation I found myself in, I noticed what looked like a sword tip heading for the Duke's head in the midst of my thoughts.</p><p>'Fast.'</p><p>I thought as I stared at the moving sword.</p><p>It had to be noted that currently, time was flowing a lot slower than it was supposed to be. For the sword to be moving at the pace that it was…it could only be described as incredibly fast.</p><p>When the sword was a couple of inches away from the demon's temple, I noticed the demon's eyes slowly moving towards where the sword was coming, and the demon's movements changed.</p><p>He was no longer aiming to hit me, but rather, he was now trying to defend himself from Liam's sudden attack. Apparently, it wasn't something he could ignore.</p><p>Unfortunately, Liam's attack proved to be too fast for the demon to stop, and it soon made contact with his temple and dug into it.</p><p>After deactivating [Eyes of Chronos], time returned to normal and I saw the demon's body crash into one of the stone pillars.</p><p>Bang—!</p><p>"Haaa…haaa…"</p><p>As that happened, Liam appeared next to me as he supported his body with both knees and heavily gulped for air.</p><p>'What just happened?'</p><p>I thought to myself as I stared in Liam's direction with eyes full of incredulity.</p><p>'Since when has Liam become so strong?'</p><p>The last time that I had fought him, our strength was rather similar, however, right at this moment, he seemed a lot stronger than he was since I had last fought him.</p><p>"You broke through?"</p><p>When I noticed the pressure coming from Liam's body, at that moment, I realized he was now &lt;S-&gt; rank.</p><p>Realization finally dawned on me, as I just speechlessly looked at him.</p><p>'Last I remember, only one week has passed. Did he break through in that short week that we were here?'</p><p>How monstrous.</p><p>"Haaa…haaa…yeah."</p><p>Liam nodded his head before placing his sword on the floor and facing the direction of where the demon crashed.</p><p>"Still, I don't think it is enough."</p><p>"Right…"</p><p>Also turning to face the distance, my face turned extremely solemn at the sight of the Duke ranked demon slowly standing up from the rubble.</p><p>Drip—! Drip—!</p><p>With black blood spilling from the side of his face, the Duke ranked demon extended his hand to touch his wound.</p><p>Staring at the blood in his hand, I was able to catch a glimpse of his pupils dilating.</p><p>"I'm actually losing?"</p><p>His voice, which was filled with incredulity and shock echoed throughout the surroundings.</p><p>"…I am really losing to two figures that are much weaker than me?"</p><p>Lowering his hand, the demon's eyes soon turned hollow and the room froze completely.</p><p>"This can't be happening…"</p><p>The demon mumbled as his voice turned strange, and a scent of death permeated the air.</p><p>Liam's face changed drastically when he saw this, as he hurriedly grabbed me by the shoulder and dragged me back.</p><p>"Shit!"</p><p>He cursed out loud as he threw my body toward the other end of the room, sending me crashing against one of the walls.</p><p>Bang—!</p><p>"Akh!"</p><p>A painful groan escaped from my mouth as a sharp pain engulfed my back. It felt as though all the bones on my back broke. It was only a feeling though, as my body was now a lot stronger than ever.</p><p>Thud—</p><p>Falling down on the floor, I raised my head and it was then that I caught sight of the demon robotically moving his head to gaze in Liam's direction.</p><p>Raising his hand, he simply swiped it in the air.</p><p>The only thing I saw after that was a pool of red blood as three huge claw marks appeared on Liam's chest, and blood spilled in the air.</p><p>Everything happened so fast that I was unable to react on time.</p><p>But it wasn't over.</p><p>Raising his hand again, the demon once again swiped in the air, and more blood started to spread in the air as Liam's body dropped to the ground on both knees.</p><p>Thud.</p><p>Liam didn't even have time to say anything, as he passed out on the ground with his head lowered.</p><p>Once Liam was no longer responsive, the demon turned to face my general direction, and I met his hollow eyes that were devoid of anything.</p><p>Ba…thump! Ba…thump!</p><p>My heart squeezed as the rhythmical sound of my heart beating echoed throughout my ears and sweat dripped down from my back.</p><p>Right at this very moment, I felt my life flash before my eyes.</p><p>Gulp—!</p><p>One wrong move and I was done for.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-582.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-584.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

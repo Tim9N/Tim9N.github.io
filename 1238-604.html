@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 604 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 604 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-603.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-605.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"hmmm…"</p><p>Jezebeth scowled as he fixed his gaze on Ren, who appeared to have lost his soul.</p><p>'…Is this really how he used to be?'</p><p>Overlapping his image with the image of the man he knew, Jezebeth only felt disgust.</p><p>"To think that the death of someone so insignificant was all it took to reduce you into this state…"</p><p>In reality, it most likely wasn't just that. He was currently in this mental condition as a result of discovering the genuine facts about his existence and the death of one his comrades.</p><p>The man he knew was someone that closely resembled him. Someone that would do anything to achieve his goals.</p><p>It was exactly because he was like this that Jezebeth liked him.</p><p>Unfortunately, this version of him that was before him was a far cry from the figure he remembered.</p><p>In any case, this didn't concern Jezebeth.</p><p>'Should I just kill him?'</p><p>In that split moment, he had the sudden urge to end him right here and there. In the first place, the only reason he was keeping him alive was to save himself some trouble as well as time, but it wasn't really necessary.</p><p>He had already won. All he needed to do was just wait six years and the Akashic records would be his.</p><p>...Just six years.</p><p>'No, now is not a good idea.'</p><p>It took quite a bit of willpower to stop himself from killing him.</p><p>Calming himself down, Jezebeth suddenly noticed that Ren was now glaring in his direction. A powerful and chilling pressure started to expand from out of his body. One that even made Jezebeth's spine tingle.</p><p>"Oh?"</p><p>His head tilted a little as the edges of his lips curled a little.</p><p>"Someone looks a little displeased."</p><p>A little would be an exaggeration. Currently, it looked as though wanted to eat him alive. That look…it was not bad.</p><p>'Too bad now is not the right time.'</p><p>Jezebeth thought while he shook his head.</p><p>Focusing his attention toward the portal in the distance, he motioned in the air with his fingers and Ren's figure slowly floated in the air. The previous pressure that was coming out from his body disappeared just like that.</p><p>The current Ren was nothing but a bug in his eyes.</p><p>"Regrettably, I don't have time to entertain your rage."</p><p>Motioning with his finger, Ren's body slowly headed in his direction. Coming to a stop in front of him, Jezebeth scratched his neck a little before his eyes squinted.</p><p>"Don't forget the advice I gave you earlier. Everything will vanish if you kill "him." You will have the option of either dying or living, depending on which of you chooses."</p><p>He spoke with a hushed voice and an icy tone. One that sounded like a thousands snakes were hissing at the same time in Ren's ears.</p><p>Extending his hand, he pressed it against Ren's forehead. A gentle glow enveloped the room.</p><p>Feeling Ren's soul, he mumbled.</p><p>"Four years."</p><p>Removing the palm of his hand away from Ren, Jezebeth took a step back.</p><p>Then, staring straight into Ren's eyes, he began to mutter.</p><p>"…That's how long it will take for your other self to completely fuse with your current self. If by that time the current you has still not killed the Akashic holder, the other part of you will take over and end both of your existences."</p><p>A ripple spread over the vicinity as Jezebeth extended his hand and tapped Ren's forehead with his finger.</p><p>After that, a black tattoo resembling a crown began to form on Ren's wrist. His face twisted in pain, but no sound escaped from his mouth as Jezebeth kept it sealed shut.</p><p>"I've injected a small quantity of my blood into your bloodstream just in case, in four years, something does occur and 'he' refuses to take control of your body or you two come to an agreement. When four years have gone and you haven't passed away, the curse I set in you will automatically come to fruition, and you will pass away in an instant."</p><p>Jezebeth wasn't someone that believed all his plans would work.</p><p>Just because he was setting Ren free, he understood just how much of a potential problem he could pose to him in the future.</p><p>If his plan didn't work out, then he would always have a couple of backup plans.</p><p>It was in his nature to be that cautious.</p><p>Nothing could stop him from achieving his goals.</p><p>"It's time for us to part. Don't forget about what we've talked about."</p><p>With a contented smile on his face, Jezebeth patted Ren on the cheek as Ren's body floated slowly towards the direction of the portal in the distance. Throughout the entire time, the only thing he could do was glare in his direction with an undisguisable hatred.</p><p>Jezebeth merely smiled when he saw his glare.</p><p>"Time is ticking and you don't have much time left. Whether you live or die, all will depend on your next course of actions."</p><p>Pressing his palm forward, Ren's body shot toward the portal that was already set up.</p><p>After that, his body completely disappeared. The last thing that Jezebeth saw was his terrifying glare that was filled with bloodlust. After that, a deep silence enveloped the room.</p><p>It was only after a couple of seconds passed that the silence was broken.</p><p>"…should I have just killed him?"</p><p>Once again, Jezebeth started to have second thoughts.</p><p>Thinking back at the glare, Jezebeth had an unsettling feeling.</p><p>He was starting to doubt himself a little. I mean, how could he not? He knew just how powerful Ren was.</p><p>He was someone who could stand on an equal level with him. There was no way he would treat him the same as the others.</p><p>"If I stop to think about it, my strategy ought to be foolproof." If he rejects my offer, "he" will seize control and commit suicide in four years. If, however, he does not commit suicide, the curse I cast upon him should finish the job for me. Additionally, as the akashic holder is the only person capable of killing me, there is no need to worry about him harming me in any way after he kills the Akashic holder. The truth is that I have won. Everything should be within my grasp, yet... why, do I still feel so uneasy?"</p><p>This feeling…</p><p>Jezebeth clenched his fists together.</p><p>'I don't like this.'</p><p>It was anything but pleasant for Jezebeth. For someone of his caliber to feel this type of emotion, it felt nothing short of irritating.</p><p>The prospect of something going unnoticed was unsettling, and right now even his backup plan didn't seem as secure as he had believed it to be.</p><p>"I need something else.."</p><p>He quietly murmured to himself.</p><p>It was then that he realized that he needed something else to completely feel in control of the situation.</p><p>Something that would truly be able to turn the tides of the events on the off-chance that something wrong happened, and his plan failed.</p><p>"Hmm…"</p><p>Standing in the middle of the room, while deeply contemplating the matter, Jezebeth scanned the room with his eyes.</p><p>It wasn't long before they paused in a certain direction. At that moment, a startling notion crossed his mind as his eyes shone a bright red hue. After a while, wearing a thin smile on his face, Jezebeth mumbled something.</p><p>"What if…"</p><p>***</p><p>"What's taking him so long?"</p><p>In a vast room full of scars and broken equipment, an immature, borderline childish voice resounded throughout the space.</p><p>Pacing around the room, Ryan looked at the portal with worry in his eyes.</p><p>It had been quite a while since he had left the planet and he had returned to earth.</p><p>Upon returning, he discovered his mercenary headquarters in a deplorable state. Nearly everything was damaged, and Ryan believed that the entire warehouse would have been lost in the annals of history if it weren't for the training grounds' solid walls.</p><p>On another note, he wasn't the only one who was back as everyone else was also back. Everyone apart from Kevin, Emma, and Melissa who seemed to have teleported somewhere else.</p><p>Not only that, Smallsnake, and Ren were also still not back.</p><p>"Did you say that Smallsnake was waiting at the portal when you got back?"</p><p>While Ryan was pacing the room, a loud, distinct voice resounded across the space. Angelica, who was speaking, turned to face Amanda who nodded in response to her query. She seemed rather uncomfortable talking to her, but she still remained quite courteous.</p><p>"Yes. Before I left, I remember seeing Smallsnake. I told him to keep the portal open for when Ren comes."</p><p>"I see…"</p><p>Angelica nodded her head.</p><p>Then, after a couple of seconds, she frowned and asked.</p><p>"Last I recalled, you were with Ren. Why didn't you go back with him?"</p><p>Amanda pursed her lips when she heard the question.</p><p>Lowering her head a little, she softly murmured.</p><p>"It's because I didn't want to hold him back."</p><p>Thanks to her long-range shooting, Amanda was able to help him get to the top level more quickly, but she soon realized that she would only be getting in the way from that point on and chose to leave.</p><p>…also, thinking back at the conversation she had with him, she couldn't stand to stay in that room anymore.</p><p>It felt too suffocating to her.</p><p>"The portal is reacting!"</p><p>Amanda was abruptly startled out of her thoughts by Ryan's yell as ripples started to develop on the portal across from them.</p><p>Everyone in the room instantly turned to focus their attention on the portal.</p><p>Ryan's face was especially excited as he looked toward the portal.</p><p>"Looks like they've made it in time."</p><p> He murmured in relief while a thin smile spread across his face. </p><p>Swooosh—!</p><p>In the fraction of a second that followed his words, a figure blasted out of the portal and fell to the ground in front of everyone.</p><p>Bang—!</p><p>"Cough…cough…"</p><p>Accompanying the crash was a series of coughs as everyone turned their attention to focus in the direction of where the figure crashed, only to see Ren's pale figure laying on the ground.</p><p>"It's Ren!"</p><p>"Ren."</p><p>When they noticed his condition, Ryan and the others yelled out in shock. None of them appeared to be acting any differently than they had in the past as if the recollections of the dreams they saw were simply fleeting images in their brains.</p><p>The first to move to him was Amanda who looked at him with worry in her eyes.</p><p>'Somethings wrong…'</p><p>And it was right when her eyes paused on his face that Amanda suddenly noticed something wrong with his expression.</p><p>If before she left, Ren looked lonely and broken, right now, he looked completely out of it as he looked toward the ceiling while murmuring something in the air.</p><p>His voice was so soft that barely anyone could hear it. Not even Amanda could hear it, and she was right next to him.</p><p>'What is he trying to say?'</p><p>Amanda leaned in close to hear what he was saying while adjusting her body position.</p><p>"S..small..snake…"</p><p>"Smallsnake?"</p><p>Only when she put her ear next to his mouth was she finally able to decipher what he was trying to say, and when she repeated those words aloud, the entire room instantly went utterly silent.</p><p>Especially Ryan who was looking toward the portal with anticipation.</p><p>Turning his head to look at Ren and noticing his expression, he took a small step back and let out a dry laugh.</p><p>"S..Smallsnake? W…where is Smallsnake?"</p><p>"…"</p><p>He was met with no response.</p><p>"Haha…"</p><p>Ryan laughed again, while he looked around toward the others. Snapping his head around, he looked around the room.</p><p>"Surely this is a joke…Smallsnake is somewhere here, hiding and trying to get back at me for all the p..problems that I have caused him…right?"</p><p>Gradually, taking note of everyone's expressions, Ryan's voice turned weaker, and his body started to tremble.</p><p>Moving toward where Ren was, he fell on both knees and grabbed him by the shirt.</p><p>Lifting his head up, Ryan's voice raised.</p><p>"R..ren…please tell me this is a joke… It has to be a joke!"</p><p>"I.."</p><p>Opening his mouth, Ren tried to answer, but he didn't need to finish his sentence for Ryan to understand what happened.</p><p>"No,no,no,no,no…"</p><p>Letting go of Ren's shirt, Ryan fell back on his butt and blankly looked toward the ceiling of the room.</p><p>"It..can't be…didn't he promise to come back..?"</p><p>Tears slowly began to fall down the side of his back as he tried his best to smile.</p><p>"H..he wouldn't just leave like that right? Haha…I…please?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-603.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-605.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

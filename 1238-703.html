@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 703 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 703 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-702.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-704.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Good job, Jin."</p><p>"No problem."</p><p>The black spike in the distance slowly retreated into the ground.</p><p>I sighed in relief when I saw the Duchess avoid the ambush. I had noticed that something was happening around me during the time that she was dealing with the mammoth. It was for this reason that I didn't participate in the event.</p><p>When I realized what was happening, I had Jin and the others stop and had them shift their attention toward the Duchess. If there was anyone who would be the target of an ambush here, it'd be her.</p><p>The decision proved to be the correct one, as Jin was able to save her in the nick of time.</p><p>Staring at the situation, my mind began to race, and I looked at Jin. I then placed my hand over his shoulder and looked at him seriously.</p><p>"Jin."</p><p>"What?"</p><p>He turned to look at me. His eyes filled with vigilance.</p><p>'Am I that untrustworthy?'</p><p> I was a bit hurt by his gaze, but I shook it off and looked toward the distance. </p><p>"If something does happen in a bit, don't do anything."</p><p>"What do you mean?"</p><p>"Just don't struggle."</p><p>"What?"</p><p>"You'll know what I mean soon..."</p><p>Without waiting for him to understand my words, I moved further away from him and moved toward where Melissa and Amanda were.</p><p>He'll understand soon enough.</p><p>"...That was a close one."</p><p>Melissa commented, adjusting her glasses beneath the hood.</p><p>"If Jin was a little bit slower in his actions she probably would've died... Not gonna lie, that would've been pretty funny."</p><p>"No, not really."</p><p>I shook my head.</p><p>Even though she might have been hurt badly, it was very unlikely that she would have died. Also, did she say it would've been funny?</p><p>Demonified Melissa was really twisted...</p><p>"I'm sure she had some contingency plans in place for situations like this. Someone of her rank wouldn't die so easily."</p><p>"...I guess."</p><p>Melissa quickly lost interest and shifted her attention toward the direction from which the ambush came from. An undulation of demonic energy was quickly felt not long after, and a step echoed in the cave.</p><p>"Not bad, not bad."</p><p>Long black hair with a silky texture, red eyes, tanned skin, and a muscular physique. A figure wearing dragon-patterned robes materialized from the shadows. As soon as his presence became known, the cave's atmosphere became extremely gloomy.</p><p>It wasn't long before two more figures appeared behind him. Both wore heavy armor and carried an extremely overbearing aura.</p><p>"So it was you! Ukhan!"</p><p>The entire cavern could hear Priscilla's voice. Pink hair fluttering behind her, she glared at the demons while standing with her rapier unsheathed.</p><p>"You actually tried to ambush me?! Are you out of your mind?"</p><p>"My, my."</p><p>There was no visible change in the man's facial expression as he calmly advanced. The two demons following him in silence were like shadows, quietly following along without making a single sound.</p><p>His lips curled as he cast a circumspect look at the cave.</p><p>"You know damn well that I can't kill you. What's the point of getting so worked up?"</p><p>"Bullshit!"</p><p>"How crude."</p><p>The demon's face was contemptuous. His gaze swept over the remaining individuals in the cave.</p><p>Including myself and the others.</p><p>He then continued.</p><p>"Watch your words. Someone of your stature shouldn't be mingling and playing around with these rats. You're far better than this."</p><p>"..."</p><p>"Doesn't he just remind you of the old Jin?"</p><p>Melissa massaged her face while casting a distant glance at Jin. When I looked at her, I opened my mouth but was unable to speak. It hurt, but I found myself agreeing with her.</p><p>"...I think Jin is a little less annoying."</p><p>"You're one to speak. You didn't have him pester you every day in the beginning."</p><p>"Uh... Right."</p><p>Right. Compared to me, she truly did have worse. After all, Jin did have a thing for her.</p><p>"I kind of get shivers thinking about it. Just what did he see in you..."</p><p>"...I ask myself the same question."</p><p>Her reply left me stunned for a moment.</p><p>Did I hear correctly, or did she actually agree with me?</p><p>"Are you sick?"</p><p>'Did the demonic energy completely fry her brain?'</p><p>It seemed to be the case.</p><p>"I'm just self-aware."</p><p>Melissa's shoulders twitched, and her gaze shifted toward me.</p><p>"I spend almost all of my time in the lab. Why would you think I wouldn't be aware of the fact that I'm not exactly the best dating material?"</p><p>"So that's where you think the problem is?"</p><p>'You're self-aware, my ass.' I felt my face loosen up. 'It seems like she believes that her busy schedule, as opposed to her personality, is the source of the issue.'</p><p>This clarified a lot of things.</p><p>'Basically, she's delusional.'</p><p>"For some reason, I have the sudden urge to punch you."</p><p>Melissa cracked her fists, and I stepped sideways. Turning my attention away, I shifted my gaze toward the situation, which had since heated up.</p><p>...Maybe she was lying about not being an esper.</p><p>Standing over the mammoth, which was losing blood, with his hands behind his back, Ukhan's lips curled into a cruel smile as he turned to face Priscilla.</p><p>"So all of this for this little beast?"</p><p>The way he scrutinized the mammoth was akin to someone looking at a bug. It should be noted that this beast was at the pinnacle of this planet. For him to look at it with such disdain... It was clear that he was no ordinary character.</p><p>...Not that it really mattered to me, as I just sat back and enjoyed the show from where I stood.</p><p>"First, you tried to ambush me, and now you're trying to target my prey?"</p><p>The killing intent that Priscilla was emitting had taken on an almost corporeal form―slowly extending toward the vast area surrounding her.</p><p>"Hostile much?"</p><p>Yet, in the presence of such killing intent, Ukhan didn't so much as flinch. Rather, his smile only grew bigger, and his gaze returned to the mammoth.</p><p>I felt Melissa's gaze.</p><p>"Despite looking so tough, she isn't actually really doing anything."</p><p>"Well, yeah."</p><p>I took note of the two demons standing behind Ukhan and then looked back at Melissa.</p><p>"The two demons behind him are not to be trifled with. She probably knows that, hence why she's only threatening him."</p><p>"I figured that much."</p><p>"Then why did you ask?"</p><p>Melissa shrugged.</p><p>"I figured her status was high. But from the looks of things, she's getting utterly suppressed by whoever just came."</p><p>'She has a point.'</p><p>From the very moment the demon made its appearance, none of the demons present uttered a single word, while all Priscilla could do was utter empty threats. It was clear that whoever the demon was, he wasn't someone to be trifled with.</p><p>"Come now, Priscilla. I'm not here to make enemies. Rather, I'm here to help you."</p><p>"Help me?"</p><p>Priscilla's face distorted. Clearly, she did not believe in whatever he was saying.</p><p>"What nonse―"</p><p>Spurt―!</p><p>It all happened within the span of a couple of seconds. With a single swipe of his hand, blood spurted all over the cave, and the mammoth's head sagged toward the ground. Priscilla's face froze, and the entire cave became silent.</p><p>"You..."</p><p>A muffled growl quickly shattered the silence. It came from Priscilla, whose hair was now swaying in the air, and her aura flared up dangerously.</p><p>It quickly became abundantly clear to everyone present that her sanity was on the verge of breaking.</p><p>***</p><p>Just like Ren assumed. Priscilla's reasoning was indeed on the verge of snapping at the moment. She had never in her life felt so humiliated. Moreover, in front of the individuals she was attempting to recruit!</p><p>"Duke Ukhan!"</p><p>Several demons trembled in response to her voice as they sensed the malice contained in those two words. Naturally, this did not apply to Duke Ukhan, who greeted it with the same relaxed smile from the moment he arrived.</p><p>"What's wrong? Why do you seem so angry?"</p><p>Priscilla's teeth clenched even more tightly, and her eyes darted toward the two guards that were standing behind him.</p><p>'If only...'</p><p>The sole reason she hadn't sliced off his neck already was because of the two guards that were standing behind the Duke. They, too, were Duke ranked demons, but as opposed to Ukhan, who had reached the Duke rank with the aid of resources, they were fully fledged Duke ranked demons.</p><p>Serving under his father, the current Patriarch of the clan of Envy, Prince Devot, and one of the seven Prince ranked demons.</p><p>"Are you angry that I killed the mammoth? Were you perhaps trying to make it into a mount?"</p><p>The expression on Ukhan's face changed. He almost seemed apologetic at the moment. Looking at the mammoth that was lying down next to him, he seemed genuinely remorseful.</p><p>Of course, that look could fool others, but not Priscilla. She knew all too well with whom she was dealing with.</p><p>"Cut the crap."</p><p>She spat.</p><p>"Tell me what you're really here for."</p><p>Her hand gripped the hilt of her sword more tightly. She could feel the hilt tremble with the increased pressure. It was taking all of her not to strike Ukhan.</p><p>'I just have to wait until he gets back... I just have to wait...'</p><p>Right when she got ambushed, she ordered her uncle to sneak out and call for reinforcements. With his abilities, going unnoticed by them didn't prove to be hard. The only problem was whether he could get them to her on time.</p><p>Her teeth gnashed even harder.</p><p>"Nothing much. I was just curious about what you were doing..."</p><p>Duke Ukhan smiled, showcasing his pearly white teeth. Priscilla felt her stomach churn in disgust at his smile.</p><p>"Since I was in the neighborhood, I also decided to help. I heard the Abyssal Mammoth's gall bladder makes for a great poisonous substance. Since you seemed to be struggling, I decided to help you out."</p><p>An obvious lie. While it was true that the Abyssal Mammoth's gall bladder served as a great poison, the fact that she had publicized her expedition made it impossible for her to use the poison. If anyone was poisoned by it, she would be held entirely responsible.</p><p>Furthermore, it was an easily detectable poison. Other than covering up killings, it was useless.</p><p>"Here, take it."</p><p>When Ukhan swiped at the mammoth's stomach, a large incision appeared, and he reached into it. Then, after removing the gall bladder, he tossed it toward Priscilla while laughing.</p><p>Twak!</p><p>The bladder fell right beside her.</p><p>'...A few more minutes... A few more minutes...'</p><p>It took Priscilla everything she had at the time to refrain from lashing out at him. She could sense that her line of reasoning was weakening by the second. The people around her also noticed this as they distanced themselves from her. Scared of the possible aftermath of her actions.</p><p>"Now that that is done..."</p><p>Satisfied, Duke Ukhan turned his head, and his eyes locked onto a figure. With the same grin on his face, he extended his hand toward a hooded figure, and they flew into his grasp.</p><p>"Uakh!"</p><p>The hooded figure let out a painful groan as his neck was grasped by his thin fingers. Duke Ukhan's voice grew menacing as he regarded the hooded figure intently.</p><p>"Now then, how should I deal with this little pest? You should know the consequences of kicking a noble, right?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-702.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-704.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

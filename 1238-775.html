@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 775 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 775 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-774.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-776.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As I drew closer to the tower, a palpable sense of oppression filled the air. Whispers, hisses, and eerie moans could be heard emanating from within, and the very ground seemed to pulse with demonic energy.</p><p>It didn't bother me very much since my blood was mixed with demon blood. Rather, I felt quite comfortable.</p><p>…The same couldn't be said for the others.</p><p>"Are you guys okay? We can take a rest if you want. It's not like we have to rush directly."</p><p>Their conditions were quite worrying.</p><p>It wasn't so much for Jin and Amanda, who were somewhat accustomed to the demonic energy due to their experience in Ka Mankhut, but the same couldn't be said for Emma.</p><p>Her complexion was rather pale, and her breath was stagnant.</p><p>The only one that seemed to be completely fine was Liam.</p><p>I wasn't surprised, though.</p><p>He had spent quite a few years in the demon realm, where the demonic energy was as thick as it could be.</p><p>Compared to what he had experienced back then, this was child's play.</p><p>"I.. I'm good."</p><p>Emma muttered, looking around and clenching her teeth.</p><p>Judging from her expression, I could tell that she had realized that she was the only one struggling and was just trying not to be a burden.</p><p>"You know, if you're worried about being a burden, then don't be. You'd be a burden if you carried on right now and got tired later when it truly matters."</p><p>As if her inner thoughts were exposed, Emma's face changed, and her mouth closed.</p><p>She looked around for a moment and sat down.</p><p>"Alright, I'm sorry."</p><p>"Don't be."</p><p>Thankfully, she wasn't stubborn about the matter and sat down.</p><p>I unknowingly smiled when I saw that and turned my attention back toward the tower that was only a couple of kilometers away from us.</p><p>The journey to the tower so far was unobstructed.</p><p>Although there were a few guards patrolling the area, it wasn't something that posed any trouble for us.</p><p> Aside from Liam and I, everyone else was around &lt;S+&gt; rank.</p><p>We were amongst the strongest in the human domain, and thus only someone of the Duke rank would actually have a chance at finding us.</p><p>…and with me here, avoiding Duke ranked demons was rather easy. Thus, our journey to the tower was nothing short of easy.</p><p>"Do you have a way to get into the tower?"</p><p>Jin's words reached my ears, and I turned to look at him. Calmly staring at the tower in the distance, I patted him on the shoulder.</p><p>"Don't worry; it shouldn't be too much of a problem."</p><p>I turned to look at Emma. Her complexion was slowly recovering, and with Amanda by her side, she seemed to be in high spirits.</p><p>"…So long as we reach the tower, we'll easily be able to enter."</p><p>That was the goal.</p><p>***</p><p>"They've almost reached the tower."</p><p>Prince Plintus stood atop a tall building; his sharp gaze fixated on the orb in his hand.</p><p>Around him stood a group of powerful demons, their ranks ranging from Duke to Marquis.</p><p>Though their presence was not as overwhelming as the Prince's, their strength could not be ignored. They were the elite forces of the city, and they had been following the movements of a group of humans for quite a while.</p><p>As they watched the humans approach the tower, the demons couldn't help but chuckle. In their eyes, the humans were like rats walking into a trap.</p><p>"Prince, how about we attack now?"</p><p>One of the demons, Duke Kammela, suggested while staring at the orb.</p><p>His aura was faintly similar to the Prince's, but it was clear that he was still on the verge of breaking through to Prince rank.</p><p>But Prince Plintus shook his head, a small frown creasing his features. He knew that attacking now would be too hasty.</p><p>Instead, he had a plan.</p><p>Lowering the orb, he turned his gaze to the tower.</p><p>His eyes flickered as he considered the situation.</p><p>Lowering the security of the tower was a risky move, but he knew it was the best way to ambush the humans. The moment they entered, they'd be able to block them from all sides and stop them from escaping.</p><p>Even if they had some sort of trump cards in their pockets, they wouldn't be able to use them once they entered the tower due to the highly sophisticated safety devices that had been installed.</p><p>That being said... it also stored certain items and artifacts that were rather fragile. It'd be a real pity if those broke.</p><p>'No, rather than pity... it'd be a real pain...'</p><p>Prince Plintus's nose wrinkled in thought as he contemplated his next move.</p><p>"Lower the security of the tower," he said finally. "Let them enter."</p><p>The demons were taken aback by the sudden suggestion.</p><p>They knew the artifacts inside the tower were incredibly sensitive and valuable. If something were to happen to them, it could be devastating for the city.</p><p>"Prince, you need to reconsider! You, of all people, should know just how important the tower is! If something were to go wrong, the consequence would be catastrophic!"</p><p>Duke Kammela voiced his concerns, but Prince Plintus silenced him with a single glance.</p><p>"Ukh."</p><p>The Duke felt a tremendous pressure wash over him, and he instantly quieted down. The pressure he was subjected to made him unable to speak, and a realization dawned on him.</p><p>Even if he were to reach Prince rank, he would be no match for Prince Plintus.</p><p>Fiddling with the orb in his hand, Prince Plintus continued.</p><p>"I understand your concerns, but there's no better place to ambush them than the tower. It'll be impossible for them to get out once they're in."</p><p>The demons exchanged hesitant glances, unsure of whether to trust the Prince's plan. But they knew that Prince Plintus was a cunning demon, and they ultimately decided to follow his lead.</p><p>They also somewhat agreed with him. It was just that the consequences of their failure made them a little hesitant.</p><p>"Understood."</p><p>As the sun continued to set, the group of demons moved towards the tower, ready to carry out Prince Plintus's plan.</p><p>The humans were about to step into a trap, and there was nothing they could do to stop it.</p><p>All they needed to do was close the trap that they had so intricately set up.</p><p>***</p><p>"Have you recovered enough?"</p><p>"Yeah, I'm good now."</p><p>Seeing Emma's complexion return to normal, I breathed a sigh of relief and turned to look at the others.</p><p>'It looks like it was a good idea to take a rest.'</p><p>Though they didn't show it, they also seemed to have benefited from the break, as their eyes seemed more clear.</p><p>Without further ado, I tore my gaze away from them and once again shifted my attention toward the enormous tower in the distance. Licking my lips, I pressed my foot forward and rushed toward it.</p><p>Swoosh.</p><p>As I had done previously, I positioned myself at the very front and looked around to see if there were any Duke ranked demons nearby.</p><p>'There seems to be a couple of Duke ranked demons not far from here.'</p><p>Whenever I spotted them, I'd alter the direction we were going to avoid them.</p><p>While I somewhat believed that there was a high chance we could avoid their detection, I didn't want to risk things.</p><p>I decided to be on the cautious side and avoided their range of detection.</p><p>Our trip was significantly slowed down as a result of this, but given that we weren't in a particularly urgent race against the clock, we were able to accommodate delays of this magnitude.</p><p>…and we soon arrived near the gate. It took us about an hour to reach it from the spot where we took a rest, but it was well worth it.</p><p>"What should we do now?"</p><p>Liam asked, appearing right next to me. I didn't respond to him immediately and focused my attention on the gate in the distance. It was fairly large and was currently guarded by several Marquis ranked demons.</p><p>'I think that's the best option…'</p><p>I massaged my chin and continued to observe the demons that stood next to the gate. Although they were Marquis ranked demons, they weren't very strong. At most around &lt;S- &gt; rank, and thus weren't a big problem.</p><p>The problem was inside, as I could feel the presence of a particularly powerful entity. They were Duke ranked, and although they weren't a threat to me, I knew that killing them quietly was not a real option.</p><p>That said…</p><p>"The strategy is straightforward: once inside, we will hunt down and destroy the demons as quickly as we can. Our objective is to get rid of the mana compressor. As long as we are successful in destroying that, the barrier will vanish, and we will be able to begin our assault."</p><p>I seriously looked at the others.</p><p>"Ideally, I want to do this as quietly as possible, but if something goes wrong, I'll attract their attention, and you guys destroy the mana compressor…"</p><p>My eyes wandered to Liam, and I stopped there. If there was someone I trusted with taking care of their safety, it was him. So long as he was there, I didn't feel worried.</p><p>After all, his talent was absurd. He had already reached &lt;SS&gt; rank, and the craziest thing was that he had no cheat to help him get there.</p><p>Well… he himself was a cheat.</p><p>While I was massaging my hands, I stole a quick glance at the others before turning my attention once again to the demons that were off in the distance.</p><p>My vision soon blurred.</p><p>"Let's go."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-774.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-776.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

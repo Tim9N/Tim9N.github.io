@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 830 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 830 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-829.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-831.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Emma couldn't explain it in words, but the moment her gaze fell on the man that stood behind her, she found herself unable to speak.</p><p>It was as if something was stuck at her throat, preventing her from speaking, and the empty feeling that she had been feeling for quite some time suddenly started to resurface once again.</p><p>It drained her completely.</p><p>"Y..you… Who are you?"</p><p>She stumbled several steps back, staring at the smiling figure that seemed all too familiar to her, yet, at the same time, distant.</p><p>No matter how hard she tried, she couldn't recall him at all.</p><p>It was just blank.</p><p>Her mind was completely blank.</p><p>'J..just what is happening? Who is he? Why do I feel this way?!'</p><p>Her mind was a total mess, and she could barely think properly.</p><p>The more she glanced at the figure, the more her mind became a mess, and she continued to step back.</p><p>It wasn't out of fear, but due to the weird feeling that was eating at her chest.</p><p>"Ah.. haa…"</p><p>Something trickled down the side of her cheeks as she held onto her head with both hands.</p><p>"That... who, just...?"</p><p>"Emma, calm down. It's me."</p><p>"Don't!"</p><p>He tried to reach out for her, but he was quickly stopped by Emma, who slapped his hand away from her.</p><p>She glared at him fiercely.</p><p>"...Don't take a single step toward me; stay where you are!"</p><p>At this point, she was at the point where she was practically screaming, and the pain in her head was starting to grow worse.</p><p>She didn't know what was going on at that moment, but sudden images started to flash within her mind, and her head started to throb even more fiercely.</p><p>Her hand reached for her shirt, and she gripped it tightly.</p><p>'J,just what is happening?'</p><p>The longer the situation dragged on, the more she found herself wavering.</p><p>"No."</p><p>Clenching her teeth, Emma gripped her short swords at her hips and, in one swift motion, pointed them toward the man that was standing opposite her.</p><p>"You…"</p><p>Mana started to flow out of her body as power started to radiate from her. Glancing at the fog that was surrounding her, she had a sudden idea.</p><p>"I get it now."</p><p>It was the only explanation that she could think of at the moment.</p><p>That was the only thing that could explain her sudden panic attack and reaction to the unfamiliar man that she had never seen before in her life.</p><p>"You… You must be a manifestation of whatever this fog is."</p><p>She didn't speak further after that.</p><p>With both short swords in hand, she pressed her foot against the ground, and her figure appeared before the man.</p><p>She was quick. It took no time for her to arrive before him, and she slashed with her short swords.</p><p>Swoosh―!</p><p>A pity that her weapon completely passed through the man who kept smiling at her.</p><p>"I knew it!"</p><p>Emma shouted, feeling relieved that her swords had passed through the man. Without a doubt, it proved her assumption, and she managed to calm down.</p><p>'It's an illusion.'</p><p>She reassured herself.</p><p>Yet, for some reason, deep down, she felt a little disappointed at the thought.</p><p>"Why did you swing at me? Let's relax for a second..."</p><p>He said while looking down at her, his smile looking extremely sincere. It was such a gaze that made the empty feeling in Emma's heart grow, and she clenched her teeth.</p><p>"Shut up!"</p><p>She shouted, swinging her other short sword.</p><p>Even though he was only a projection, the very fact that he was there unnerved her. He had to disappear. For her own sake.</p><p>Swoosh!</p><p>Yet again, it passed through his body, but Emma didn't care.</p><p>Swoosh! Swoosh! Swoosh!</p><p>One swing after another, she kept on swinging. Her attacks would keep passing through his body, and he seemed relatively unharmed by whatever she was doing, but Emma just couldn't stop herself.</p><p>She needed to vent at the moment, and each of her swings started to become progressively faster and stronger.</p><p>Boom—!</p><p>So much so that the land beneath them tore apart, and the fog moved away for a brief moment.</p><p>"Huh?"</p><p>The thing that prompted Emma to stop was the fact that the figure remained where it was despite the disappearance of the fog, and her feet came to a sudden halt.</p><p>"Haaa..haaa… haaa.."</p><p>Her breath was extremely labored, and sweat trickled down the side of her face, but her gaze never wavered away from the figure as she continued to look at him.</p><p>"You… why.. who are you?"</p><p>There were many things that she wanted to ask at that moment, but that was all she could manage to utter. She didn't know what to do at the moment, and all she could do was stare at him.</p><p>Stare at him in hopes of him knowing something.</p><p>Something that could explain the emptiness that she had been feeling for the past few years.</p><p>She had believed that she had been able to subdue it, but at this very moment, it reemerged more powerfully than it had ever been, and she desired nothing more than to understand why this was the case.</p><p>Just what was this emptiness, and why did it grow stronger at the sight of him?</p><p>"My name is Kevin."</p><p>It was just a name.</p><p>A simple name.</p><p>Yet…</p><p>The moment he uttered those words, as if something within her snapped, a flood of memories started to resurface within her mind, and her mind blanked entirely for a moment.</p><p>Thud—!</p><p> She soon fell to her knees, and a blank look appeared on her face.</p><p>"W..wha..how… wha?"</p><p>Her words were incomprehensible, and she appeared to have a look on her face that suggested she had just seen a ghost.</p><p>Her mind…</p><p>It wasn't in the right state, as she kept repeating herself.</p><p>"H..K..evin? How?"</p><p>Memories continued to flood her mind, and something within her seemed to come close to snapping.</p><p>Swoosh—!</p><p>It was right then that 'Kevin' appeared right behind her. She didn't seem to notice him as her face remained blank, seemingly completely lost.</p><p>"Who would've thought."</p><p>Kevin's voice suddenly changed to a raspy one, and his figure started to fade, revealing the features of an elderly demon with a long white goatee and a tuxedo.</p><p>The cane, which he held in his right hand and used to assist him in maintaining his balance, sank into the earth beneath.</p><p>His gaze was currently drawn toward Emma, and his eyes flashed with interest.</p><p>"Who would've thought…"</p><p>He muttered, his voice as soft as a whisper.</p><p>"…Who would've thought that her body contained traces of the power that his majesty had given me."</p><p>***</p><p>While handing over the body of a young human girl with brown hair that reached her shoulders, Prince Solbaken issued an order to one of the demons that stood next to him.</p><p>"Take special care of her."</p><p>"Understood."</p><p>A lanky demon came up behind the Prince and grabbed the girl out of his hands before whisking her away from his line of sight.</p><p>Staring at her figure, the Prince's head cocked a little.</p><p>'I need to report this to his majesty later.'</p><p>The fact that she had traces of the power that His Majesty had given him was a cause for concern.</p><p>It wasn't exactly powerful, but there were traces of it, and that was also when he realized that her memories had been tampered with.</p><p>He wasn't too sure who was responsible for the seal, but what concerned him the most was the power that was used to seal her memories.</p><p>From what he could tell… the individual who had been responsible for placing the seal on her body was extremely strong. Perhaps even stronger than him, but even knowing that, the Prince wasn't scared.</p><p>"I too can control the powers."</p><p>With his hands behind his back, the Prince set his cane to the side and moved forward.</p><p>Tap. Tap.</p><p>His calm steps echoed within the cave, and after walking for a couple of minutes, he stood by the edge of a large opening.</p><p>With a bright light in the distance, he moved forward, and he was able to see what lay beyond the light.</p><p>"Not bad."</p><p>A smile appeared on his face the moment he was able to see what was going on as he stood above a large cave opening.</p><p>What attracted his attention was the large rune in the middle of the cavern that emitted a bright red light, and several people had been strategically positioned within the rune at various points.</p><p>They were sitting in a cross-legged position, and their entire bodies had a husky appearance.</p><p>As if they had been sucked out of everything in their bodies.</p><p>"Over here!"</p><p>"Place them over here!"</p><p>"We've captured another one."</p><p>Through an opening beneath the cave, demons continued to move forward.</p><p>They carried humans, orcs, elves, and dwarves and replaced them on the large rune in the middle of the cave that glowed brighter with each passing second.</p><p>"It looks like everything is proceeding smoothly."</p><p>The Prince was more than satisfied with what he was seeing.</p><p>If there was a reason why he wasn't scared of the entity responsible for placing a seal on the human girl, it was because of the rune in the middle.</p><p>So long as he managed to absorb the power that was building up within it, he feared no one. Not even His Majesty.</p><p>That was, of course, on the premise that he was within the Pillar and had a grudge against His Majesty, which he didn't.</p><p>He held nothing but respect and admiration for him.</p><p>"Good… good…"</p><p>Nodding to himself a couple of times, the Prince tore his gaze away from the rune and made his way back to where he came from.</p><p>He had seen enough.</p><p>'It should take no longer than a couple of hours at most… by then…"</p><p>He couldn't stop himself from smiling at that point.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-829.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-831.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 739 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 739 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-738.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-740.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>I anticipated it would be difficult to convince the three to teach me their arts. I expected to have to make a sacrifice in order to get them to comply, so I was pleasantly surprised to learn that they were willing to teach me their arts without anything in return on my part.</p><p>"Are you sure you guys want to teach me, a complete stranger, your arts?"</p><p>I emphasized the stranger part.</p><p>Five Star Martial manuals were a big deal. The more people knew about them, the worse they became, as they would be dissected to find their weaknesses and flaws; consequently, few people shared them.</p><p>Even though I had some familiarity with their arts, particularly the Keiki style, the core of it was quite different from the real Keiki style.</p><p>My Keiki style, and Grandmaster Keiki's [Keiki style] were similar yet different. After all, the only thing he handed down to me was knowledge, and when it came to martial arts manuals, knowledge wasn't everything.</p><p>"It's fine. If not for you, we would've died without having spread any of our arts to the world yet. We thought we had some time before we could pass them down to those we deemed worth it, but…"</p><p>Grandmaster Keiki lowered his head with a frown. Grandmaster Levisha finished the sentence for him.</p><p>"…but we ended up in the situation that we're in."</p><p>Grandmaster Gravar nodded his head.</p><p>"Moreover, based on what I observed earlier, you could have directly forced us to teach you the arts, but you didn't. In addition to your knowledge of Toshimoto's art style, which I have no idea how you acquired, you also seemed to be knowledgeable regarding the Gravar style, and so you are definitely talented enough to learn our arts."</p><p>Martial Manuals. Especially for four stars and above, learning requires a certain level of talent. He was trying to hint at the fact that I had the necessary talent to learn their arts due to how I was able to learn the Keiki style.</p><p>I felt a little embarrassed hearing their words.</p><p>"My talent is not bad, I guess."</p><p>"…"</p><p>The three looked at me with strange faces, and I turned my head away from them. Their gazes were rather uncomfortable.</p><p>"Alright, I'll start first."</p><p>Grandmaster Keiki stepped up. He looked at me with an interested look.</p><p>"I won't ask you how you've come to learn of my art style, but I'm curious about something."</p><p>"Ask away."</p><p>"You…"</p><p>His eyes narrowed.</p><p>"…Just how much of the Keiki style have you learned? Up to what movement?"</p><p>"Ah…"</p><p>I pursed my lips. After musing for a minute, I went ahead and told him the truth.</p><p>"Up to most of the sixth movement."</p><p>"Sixth movement, I s..."</p><p>Grandmaster Keiki's face froze, and his body stiffened. His eyes widened, and his face twitched repeatedly.</p><p>"The sixth movement?"</p><p>Two hands grasped the sides of my shoulders as Grandmaster Keiki's face inched closer to mine.</p><p>"Hold on a minute."</p><p>I moved my head away with how close his face was getting.</p><p>"How did you learn the sixth movement? No, as a matter of fact, how did you even learn the fifth movement? Even I myself have barely even grasped that… That's impossible. Are you lying to me?"</p><p>"Toshimoto, is everything okay?"</p><p>"What's wrong with you?"</p><p>Levisha and Gravar looked at him strangely. Seemingly not understanding why he was behaving like that. It was only after he turned around and explained that they finally understood. Both showed similar shocked reactions.</p><p>"Is this even possible?"</p><p>"How is it possible for him to reach the sixth movement when even you haven't created it yet?"</p><p>Grandmaster Keiki looked at them and shook his head.</p><p>"It's definitely possible. You two should know better than anyone that this is possible."</p><p>He shifted his gaze to me once again.</p><p>"Young man..."</p><p>His gaze turned complicated. However, as if he had made up his mind, he continued.</p><p>"...If possible, can you teach me the sixth movement?"</p><p>"Ehm."</p><p>Grandmaster Keiki's sudden request left me at a loss for words. How did it go from me asking for them to teach me to me teaching them?</p><p>After thinking for a moment, I shook my head.</p><p>"No, I'm sorry."</p><p>Grandmaster Keiki showed a disappointed look. He didn't press further.</p><p>"I understand. You probably don't want-"</p><p>"That's not it."</p><p>I cut him off before he could misunderstand the reason for my rejection.</p><p>"I didn't reject you because I didn't want to teach you. The reason why I can't teach you is because you're not yet at a level where you can use it."</p><p>Even at the moment, I could barely use the final movement of the Keiki style. It would be a bit of an exaggeration to say that I had completed the sixth movement. In point of fact, I only mastered about half of it, and the primary reason for that was because of my strength.</p><p>If someone like Grandmaster Keiki were to learn it, he'd explode on the spot. He was simply too weak.</p><p>"Not yet at a level where I can learn it?"</p><p>Grandmaster Keiki looked at me with a confused look. I smiled at him and didn't elaborate.</p><p>"You might not believe me now, but you'll possibly come to understand why I said what I said now."</p><p>I clapped my hands and looked at the three grandmasters.</p><p>"Anyways, that aside, we don't have much time. If possible, I'd like to start learning already."</p><p>A few guests were going to be arriving any moment now. I wanted to maximize the time that I had with the grandmasters to learn their arts.</p><p>Only that way would I get a better idea of how to develop my very own Martial Manual.</p><p>***</p><p>Mia sat outside in a daze. Her eyes were currently drawn toward four people. They were diligently practicing all sorts of movements and styles in the distance. Although she could hear what they were saying if she wanted to, she restrained herself from doing so.</p><p>She was not the type of person who would blatantly steal from other people. Furthermore, since she didn't use a sword, it wouldn't have been very helpful for her anyway.</p><p>'I wonder what his real strength is...'</p><p>Her gaze shifted toward the young man in the middle of the three Grandmasters. His whole presence was shrouded in a mist.</p><p>She couldn't see through him.</p><p>She fought with everything she had, but she was ultimately rendered completely helpless by his strength. Even Octavious was unable to give her such a feeling... and he was the strongest human within the human domain.</p><p>'It couldn't be that he really...'</p><p>There was only one explanation for all of this, but she just couldn't find herself believing it. There was a reason why the &lt;S&gt; rank was deemed to be unachievable.</p><p>It wasn't because there wasn't enough mana or resources available; neither of those factors played a role. The fact that there was no higher level was ultimately the deciding factor in this situation.</p><p>Typically, when breaking through to the next rank, one would feel a barrier that they'd need to break to reach that next level.</p><p>...There was no such thing for &lt;A+&gt; rank.</p><p>The barrier didn't exist. It was as if the world had put a limiter on that one barrier.</p><p>There had been many in the past who had the potential to reach such a rank—the three Grandmasters being prime examples. In the end, however, they all ended up failing.</p><p>Many of those who were talented enough to cross the barrier met tragic ends, with some suddenly killing themselves at certain points.</p><p>It was strange.</p><p>Whenever there was someone who was talented or had the potential to surpass the &lt;A+&gt; rank and reach the next level, they'd mysteriously die or get sick.</p><p>It made no sense, and it was exactly for this reason that Mia helped out the three Grandmasters.</p><p>She had the impression that something was taking place unseen by the world, preventing people from progressing to the next level.</p><p>The fact that she was met with such a significant amount of opposition after attempting to assist the three Grandmasters provided further evidence in support of her hypothesis, and it became her objective to determine what was going on.</p><p>Something sinister was lurking beneath the shadows, and it had clawed its way toward every powerful organization.</p><p>Slowly, her gaze paused toward the young man in the distance.</p><p>"If he truly reached 'that' rank... then he might be able to help us figure out what's going on with the world and what's trying to stop us from breaking through to the next level...'</p><p>She could only hope that was the case.</p><p>"Hm?"</p><p>All of a sudden, she sensed something, and her gaze turned toward the faraway distance. With her senses, she was able to see very far and thus caught a glimpse of several large black SUVs speeding in their direction.</p><p>Mia had a sneaking suspicion that they were not coming with the best of intentions, given the speed at which they were moving in their direction.</p><p>The young man's words served to further firm her thoughts.</p><p> "Ah, they came faster than expected."</p><p>Before Mia could say anything, she felt her vision warp.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-738.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-740.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

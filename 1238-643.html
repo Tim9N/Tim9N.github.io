@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 643 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 643 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-642.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-644.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'Is he sharper than I let out, or is he just stupid?"</p><p>Suriol pondered to himself as he gazed at the human standing not so far from him. In the previous few moments, right when he was morphing his body, he sensed a slight murderous intent coming from the human.</p><p>He thought that he would attack him.</p><p>If there was a time when he was most vulnerable, it would indeed be during his transformation, so Suriol found it surprising that he didn't attack him.</p><p>'Did he sense something?'</p><p>In truth, the human would have most likely suffered severe injuries or even died had he chosen to attack.</p><p>The fact that he didn't do anything had in itself saved his life.</p><p>Suriol was not so dimwitted as to allow the human to take advantage of such a glaring weakness in his defenses.</p><p>He was obviously prepared.</p><p>'This new body isn't too bad…'</p><p>Suriol shifted his attention toward his new body.</p><p>He repeatedly clenched and unclenched his fists before raising his head to look at the human who was staring back at him with a look filled with surprise.</p><p>The grin that was already on his face grew wider.</p><p>"This is the existence you envy?"</p><p>He asked while moving around in this new body of his.</p><p>Suriol was a member of the Envy clan. A Duke ranked one at that. What made the clan of envy the strongest of the other clans was the unique power a certain part of their members had.</p><p>Evny, Lust, Gluttony, Pride, Greed, Wrath, and Sloth; Each clan represented a sin, and with it, they were born with an innate power that was only unique to their clan, and that perfectly matched their sin.</p><p>In Suriol's case, his power was that of someone who, by looking through the memories of their adversary, could flawlessly imitate the person that their adversary envied.</p><p>In this case, it was the form that he had just copied.</p><p>It took a total of ten seconds for Suriol to get used to the new body, and when he did, he felt everything become clear as information started to flood his mind.</p><p>They were a bit scattered as there seemed to be something wrong with the person's memories, but they were enough for Suriol to absorb and assimilate with himself.</p><p>"…He is indeed a person worth envying."</p><p>He extended his hand, at which point a sword composed of tangible demonic energy materialized.</p><p>Suriol slowly assumed his position as he locked eyes with the human standing opposite him.</p><p>"Let us see the power of the human that you envy, shall we?"</p><p>Click—!</p><p>***</p><p>"Fuck off!"</p><p>Hein let out a resounding roar as his shield collided with a nearby demon, knocking the demon to the ground with a loud crash.</p><p>The next thing that he did was stomp on the demon's head with his foot.</p><p>Crack.</p><p>After hearing a familiar cracking sound, he dashed forward, where he was followed by the simultaneous assault of five demons.</p><p>Booom—!</p><p>Hein did not move from his position and instead fixed his gaze on the demons that were in front of him. The moment their eyes locked, both of them took on more vicious and bloodthirsty expressions.</p><p>"Huek!"</p><p>"Kuak!"</p><p>Hein extended his hand and swiped in a horizontal manner.</p><p>There was a pileup on the ground of several severed heads due to the result of his actions. Hein manipulated the flame psyons in the air with the flick of his finger, and as a result, the demons' bodies burned to a crisp, exposing five unblemished cores.</p><p>He didn't think twice about destroying them as he stomped on them with his foot.</p><p>Bang!</p><p>"Ukh…"</p><p>Hein suddenly groaned as a demon appeared from his right side and attacked him. He was, fortunately, able to block the attack with just his body.</p><p>'There's so many.'</p><p>Not even a second after killing five demons, and ten more were at him. The numbers…</p><p>They seemed endless.</p><p>"Fuck this shit."</p><p>He let out a resounding shout as he pounded his shield against the ground with one single large movement.</p><p>"Huaaa!"</p><p>Boom—!</p><p>The ground began to fracture, and a powerful shockwave propagated outward, forcing the demons that were around him to spread apart. Hein took advantage of the opportunity that presented itself in that split second by pressing his foot against the ground and propelling his body in the direction of the demon that was closest to him.</p><p>"Huek!</p><p>His shield slashed the demon into two. Without taking a single break, he twisted his body and the head of a nearby demon detached, falling to the ground. As the blood continued to pool on his shield, it didn't take long before it turned black in color.</p><p>With no time to care about the cores, Hein crushed the head of the demon with his foot and kicked toward his right.</p><p>Like a whip, his foot smacked against a demon's neck, sending it crashing against the ground.</p><p>Be it fist, foot, shield, head…Hein used everything that he had at his disposal to kill the demons around him.</p><p>'Looks like learning from Han Yufei wasn't that bad of an idea after all.'</p><p>His current fighting ability came as a result of Han Yufei teaching him martial arts.</p><p>Hein had the realization quite some time ago that merely defending himself was not going to be sufficient. He needed to find ways to deal with his opponent, which was why he had asked Han Yufei for assistance; Han Yufei was happy to assist him in exchange for something similar.</p><p>'Now that I think of it, this isn't nearly as bad as my time with Han Yufei…'</p><p>He shuddered involuntarily at the memory of his battles with Han Yufei.</p><p>It was bearable at first, but the guy…</p><p>He was inhuman at this point. Hein feared him more than Liam and Ren.</p><p>Initially, he was manageable; however, after practicing some strange art, he became impossible to fight against. Not only would the training grounds be left in shambles, but the manner in which he fought left absolutely no room for Hein to take a breath at any point in time.</p><p>Hein was powerless to stop Han Yufei from his endless onslaught; all he could do was brace himself and wait for his stamina to run out. However, this never seemed to happen throughout their spars as Han Yufei never seemed to run out of stamina.</p><p>He was quite simply, a monster.</p><p>'Still, it's all thanks to him that I have improved so much.'</p><p>Hein bitterly smiled and took a deep breath. Eying the demons in front of him, his eyes sharpened and his shield started to glow.</p><p>[Steel domain]</p><p>The glow around his shield became brighter, and it wasn't long before the shield split into five different sized pieces.</p><p>They began hovering around him, and while Hein grunted once, the shields began to grow in size with the assistance of Hein's mana, which was attached to the shield's side in the form of a translucent tangible material.</p><p>It wasn't long before he had five hovering shields, centered by a part of his previous shield.</p><p>'Down.'</p><p>Hein gestured with his fingers, and the shields bowed with their apexes facing outward. All of this transpired in a fraction of a second, and with a twist of his hands, the shields began to encircle his body with increasing velocity.</p><p>He then extended his hand forward and the radius around him expanded.</p><p>"Heek!"</p><p>"Hueak!"</p><p>Black rain started pouring shortly after as agonized screams accompanied the rain.</p><p>The scene was extremely gruesome, with limbs flying everywhere around Hein. However, he didn't have time to care about this as he could feel his mana dwindling at an alarming rate. It was depleting so fast that he couldn't even process the disgust he was feeling in his stomach.</p><p>'This is a lot more exhausting than I thought…'</p><p>Hein started to grit his teeth.</p><p> At the rate he was going, he didn't see how he could survive for more than twenty minutes. It sounded like a lot of time, but in reality, it was practically nothing in comparison to a war that would probably last quite a long time.</p><p>…If that wasn't all.</p><p>Boooom—!</p><p>Hein was taken aback by an expected explosion, during which he felt a powerful force blast against his shield, and he was forced to retreat.</p><p>"Urkk!"</p><p>The shields that were rotating around Hein fell to the ground in a helpless manner as he skidded back several meters.</p><p>Spurt—</p><p>Feeling a sweet sensation down his throat, Hein suddenly found himself spitting blood.</p><p>"Fuck, shit."</p><p>He wiped his lips and slowly raised his head up, at which point he was confronted with the sight of a demon looking in his direction. Hein could tell with just a glance that the demon in front of him was no regular demon.</p><p>All the demons that were previously attacking him had long stopped attacking him and had shifted their attention away.</p><p>"What do we have here?"</p><p>A sinister whisper echoed in the air.</p><p>"Huuu…huuu…"</p><p>In response to the demon's gaze, Hein noticed a change in the rhythm of his breathing.</p><p>'Marquis…'</p><p>Shivers ran down Hein's body. The rank of the demon became apparent in his mind, and his body shuddered even more fiercely.</p><p>He could barely raise his head as the demon scrutinized his body carefully.</p><p>"…You shouldn't have stood out so much."</p><p>His eerie and sinister voice once again echoed inside Hein's head.</p><p>"Had you not stood out so much, I would've never have found you."</p><p>The voice suddenly sounded a lot closer.</p><p>Unbeknownst to Hein, the demon was already a couple of meters away from him.</p><p>'Fast…'</p><p>Hein thought as he swallowed a mouthful of saliva.</p><p>He wasn't even able to tell how the demon had gotten so close to him. Hein's complexion paled and his body abruptly twisted in the direction of where the voice came.</p><p>…But it was unfortunately too late.</p><p>"Aaakh!"</p><p>He felt a powerful force press against his abdomen and his body flew several meters back until he crashed against the ground.</p><p>Bang—!</p><p>"Fuck…"</p><p>Hein cursed out loud as he felt every part of his body ache.</p><p>He slowly lifted his head up to stare at the demon that was slowly approaching his direction. No, slow was an understatement.</p><p>By the time Hein blinked, he was already upon him.</p><p>With his extended hand, he ruthlessly swiped at Hein's face, trying to end his life in an instant.</p><p>"Khhh…"</p><p>Hein felt his life flash across his eyes as he stared at the approaching claws.</p><p>The claws soon reached Hein.</p><p>'Noooo!'</p><p>Clang—!</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-642.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-644.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

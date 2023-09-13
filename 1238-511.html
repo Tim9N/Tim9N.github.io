@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 511 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 511 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-510.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-512.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank—!</p><p>Darkness enveloped my vision as the doors behind me closed shut.</p><p>Raising my hand, I snapped my fingers.</p><p>Snap—!</p><p>A small flame formed in front of me, illuminating what was ahead of me.</p><p>"Rather plain..."</p><p>Apart from a small bed that sat in the corner of the room, there was nothing else in the room. Not even a toilet.</p><p>Shaking my head, I proceeded to lay down on the bed. The bed was rather hard, but I made due. Beggars couldn't be choosers.</p><p>Beside me, the flame continued illuminating the place.</p><p>Raising my hand, I glanced at my wrist.</p><p>"They sure are confident."</p><p>I had originally thought that they would've taken my bracelet away, but that never happened. This surprised me quite a bit, but who was I to complain?</p><p>This perfectly worked in my favor.</p><p>Reaching my hand out, I slowly clenched it. I then opened my mouth and asked.</p><p>"...Are you sure Amanda's father is the Overlord?"</p><p>"Yes."</p><p>A voice echoed from near the door of the cell. I lowered my hand and frowned.</p><p>"I have no choice but to become an Emperor rank, don't I?"</p><p>"If you want to meet him, that's your only choice."</p><p>"I see..."</p><p>I nodded. Raising my head, I gazed in his direction.</p><p>There was something I was curious about.</p><p>"Apart from more resources, what's so good about being an Overlord rank?"</p><p>"Freedom."</p><p>He only replied with one word, but that was enough for me to understand everything. Sitting up straight, I asked.</p><p>"Are you saying that once someone reaches Overlord rank, they will be freed?"</p><p>"Not quite."</p><p>My other self shook his head.</p><p>Turning his head to gaze in the direction of the door, he replied.</p><p>"For an Overlord to gain freedom, they must first win against one of the ruling Dukes."</p><p>"Tsss..."</p><p>I took a cold breath of hair.</p><p>"Beat on of the ruling Dukes? I assume their strength will also be suppressed."</p><p>If not, how would anyone be able to win?</p><p>The other me nodded.</p><p>"It will be, but unlike the challengers, they won't wear any artifacts to suppress their strength."</p><p>"This..."</p><p>Wasn't this shady? What if they were about to lose? Considering their pride, it wouldn't be strange if they resorted to some petty trick.</p><p>"It's exactly as you think."</p><p>Confirming my words, the other me leaned his back against the wall.</p><p>"Freedom is merely some false hope given to ignite the fighting spirits of the contenders. They never planned on freeing them from the very beginning."</p><p>"As expected."</p><p>Letting out a long breath, I sighed.</p><p>"Don't worry too much. Just focus on reaching Emperor rank for now. All other things will come naturally."</p><p>"...Alright."</p><p>He was right. There was no time for me to dwell on these matters.</p><p>Right now my priority was to become an Emperor-level contender and get the chance to fight against Amanda's father, Edward Stern.</p><p>It was the only way I could get in contact with him.</p><p>"Ah, right."</p><p>In the midst of my thoughts, it was then that I suddenly recalled something.</p><p>Touching my hair, I plucked a couple of them and stared at them. Confirming that they were indeed white, I looked up at my other-self.</p><p>"Why is my hair white?"</p><p>As I had never looked at myself in the mirror in these past few months, it was only recently that I found out that my hair was white.</p><p>How did that happen?</p><p>It was then that my question was answered.</p><p>"It's a side effect of you using that power."</p><p>The answer didn't please me too much.</p><p>My eyes squinted.</p><p>"Does this mean that I will have permanent white hair?"</p><p>Not that I really cared, but I was already used to my black hair.</p><p>'If push comes to shove, I might as well dye them black.'</p><p>There was no way anyone would notice this...</p><p>Right?</p><p>"Ugh."</p><p>I groaned.</p><p>'What a pain.'</p><p>Glancing at me for a brief moment, he answered.</p><p>"It will turn back to normal eventually."</p><p>My eyes lit up a little.</p><p>"Really?"</p><p>"Yeah. Your hair is currently like that because of the trauma your body has suffered from using so much power. There is a reason why people have ranks. Bridging so many of them without a body that is capable of holding such power will inevitably lead to your body suffering damage&gt;"</p><p>"That makes sense..."</p><p>Recalling the events of the past, I couldn't agree anymore with his words.</p><p>The strength that I previously held...</p><p>It was something beyond my realm of comprehension. For my body to hold such power, I couldn't understand how the only issue I suffered was just my change in hair color.</p><p>'Rather, I should be grateful that the only side effect I suffered was my hair becoming white, no?'</p><p>"Stop thinking about useless stuff. Get some rest, you will soon be fighting every day for the next few months."</p><p>"Right..."</p><p>Letting out a sigh, I nodded my head and laid back on the bed.</p><p>Closing my eyes, I slowly dozed off.</p><p>'It's going to be a busy week.'</p><p>***</p><p>Inside of a dark room.</p><p>A figure sat crossed-legged in the middle of the room. A tangible pressure rose in and out of the man's body as each breath he took caused the room to shake.</p><p>There was this wild aura around him that would make anyone quake in their boots.</p><p>"Huuu..."</p><p>Taking another deep breath, the figure slowly opened his eyes, revealing a pair of deep eyes that seemed to have experienced countless things.</p><p>There was a trace of insanity inside of those eyes, but it wasn't very apparent. It had still not overtaken his sanity.</p><p>"Please wait for me..."</p><p>He softly muttered. His voice was rather weak, but it was filled wh resolution.</p><p>"I'm close. I can feel it..."</p><p>Staring at his hands, a strong undulation of mana spread out.</p><p>Ruthlessness and bloodthirst flashed across the man's eyes as he slowly closed them.</p><p>"I will win no matter what."</p><p>***</p><p>Bang—!</p><p>With a crashing sound, a figure slammed against the side of the arena, and the crowd erupted into loud cheers.</p><p>"Yes, fuck him!"</p><p>"Screw him!"</p><p>"Hahhahahah!"</p><p>[And that makes it the twelfth victory in a row for our new contender whose overall rank is now in the thirties and has earned the nickname of 'White Reaper!']</p><p>'...Seriously?'</p><p>Listening to the demoness's words, I tried my best to keep a straight face. From white death to white reaper? What was up with them and the color white?</p><p>'It's going to be over soon anyway.'</p><p>Secretly sighing, I looked at my opponent who was still passed out on the ground.</p><p>For the past week or so, I had been fighting every day, and finally managed to earn my current rank.</p><p>Rank thirty.</p><p>'I finally did it...'</p><p>I was only a few ranks away from reaching the top ten. The only ranks that enabled someone to fight against the current Emperor level contender.</p><p>Only upon reaching the top ten of a bracket could someone fight against the current emperor.</p><p>There was not much known about him. The only thing I knew was that he was someone whose strength was extremely terrifying.</p><p>It was then that the demoness came to talk to me.</p><p>[White Reaper, who will your next challenger be? Are you going to repeat your previous streaks and challenge the highest contender you can fight?]</p><p>Gazing around the crowd for a brief moment, I slowly nodded my head.</p><p>"That's correct. My next opponent will be a top ten contender."</p><p>The moment those words left my mouth, the crowd erupted into loud cheers. The cheers were so loud that I felt the ground shake for a brief moment.</p><p>I ignored it.</p><p>'After I become top ten, I will quickly fight the Emperor and get everything done with...'</p><p>There was a twenty-rank limit on whoever I could challenge. This was purposely set up so that the Emperor-ranked contender wouldn't be challenged by just anyone.</p><p>For one to fight him, they must first earn the chance to do so.</p><p>I was no exception to that rule.</p><p>[As expected of the White Reaper. Once again choosing to fight the strongest contender possible!]</p><p>The demoness hyped up the crowd. Stopping a couple of meters away from me, she winked her eye in my direction.</p><p>I could feel subtle threads of demonic energy making their way in my direction when she did that, but I merely shrugged them off.</p><p>As if she could seduce me.</p><p>For a brief moment of time, the demoness showed a surprised look on her face. She seemed to be surprised by the fact that I was unaffected by her charm.</p><p>Wasn't strange though. I had plenty of time to train myself against such attacks. Donna was my instructor for a while after all.</p><p>Her charm was far stronger than hers.</p><p>With an awkward look on her face, the demoness turned to look at the crowd.</p><p>[Ehm…for those of you that don't know who his next opponent is, let me give you a brief introduction.]</p><p>Her next words were a brief introduction regarding my next opponent.</p><p>The current top ten fighter.</p><p>[Standing at feet in height, and with a powerful build like no one had seen before, we have 'The skull crusher!']</p><p>My mouth twitched ever so slightly.</p><p>'…They really need to work on their nicknames. I bet he's naked that because he crushes the skull of all opponents he faced'</p><p>[Just like White Reaper, Skull Crusher never once faced defeat, and not only that but every time he goes against an opponent his signature move is to kill them by breaking their skull!]</p><p>'…No kidding.'</p><p>If not for the fact that I didn't want to show my emotions, I would've probably face palmed right then and there.</p><p>The crowd became even lovelier at her words.</p><p>Why wouldn't they? After all, hearing of such a ruthless opponent, what demon wouldn't be excited.</p><p>[The fight will be held tomorrow, and whoever wins the fight be finally be eligible to fight against a top ten contender and gain the chance to fight against the current Emperor of the Duke ranked bracket!]</p><p>The crowd stirred even more. But it was at that moment that the demoness's face changed.</p><p>Turning her head to look my way, she softly said.</p><p>[White death. Although your achievements have been outstanding, I would like for you to keep something in mind. The top ten contenders are on a completely different leave than the contenders you have previously fought. You won't be able to beat them as easily as the people you've currently fought.]</p><p>Meeting the demoness's eyes, I blinked once and turned around.</p><p>"Thanks for the warning."</p><p>I half-heartedly replied.</p><p>A figure appeared next to me. Staring at the demoness behind me, he smiled.</p><p>"If only she knows you've been holding back till now."</p><p>"Who cares."</p><p>I replied as I slowly entered the gates in the distance.</p><p>"I'm saving my strength for when I fight against Edward."</p><p>My feet stopped briefly.</p><p>"…and maybe the current Emperor."</p><p>***</p><p>Gazing at the white-haired figure from above, an amused smile appeared on the demon's face.</p><p>"What an amusing human."</p><p>So far, the human had shown quite the striking performance by beating his opponents with only a couple of moves.</p><p>His performances were so overwhelming, that they reminded him of the past. Of the current Overlord.</p><p>He too came out of nowhere and destroyed every single opponent in just a couple of moves.</p><p>That said.</p><p>"Your excellency, excuse my rudeness. But what do you see in that human? Although I can agree that his performances have indeed been quite outstanding, so are the performances of all top ten rankers. They too showed similar performances in the past."</p><p>"...You may be right."</p><p>The demon calmly nodded his head.</p><p>"I've just been bored recently..."</p><p>"Bored?"</p><p>"Yes."</p><p>Taking his eyes away from the arena below, the demon turned around. With a large hood covering his features, the figure's features were hidden.</p><p>Even then.</p><p>A terrifying pressure was exerted out of the demon's body, making it hard for the servant to even lift his head.</p><p>Opening his mouth, his deep voice echoed throughout the platform.</p><p>"With Duke Adramalech leaving to check out the mess at the borders, I've found myself becoming quite bored..."</p><p>Pausing for a moment, the servant suddenly felt his body freeze as he dropped to the ground with both knees.</p><p>The demon's eyes flashed.</p><p>"...maybe it's time we switch the current Overlord."</p><p> ***</p><p>A/N : Sorry for the delay. Timer didn't work.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-510.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-512.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 715 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 715 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-714.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-716.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"You see, for once, I agree with you. It's just that…"</p><p>Prince Arian paused, with his arms crossed and a thoughtful look.</p><p>With a sideways look, he gazed at his successor. Duke Velmout.</p><p>"…Prior to the accident. This little successor of mine, Velmout, set up several backup plans in case the situation turned south. Do you know what I found out?"</p><p>A smile formed on his face.</p><p>When he extended his hand, a tremor went through the air, and soon after, letters began to form in front of him. They dyed the air a crimson color.</p><p>[Patriarch, if you observe this message, it indicates that something has occurred. The most likely perpetrator is Duchess Priscilla of the Sloth clan. I'm en route to meet her at the moment.]</p><p>The hall immediately turned silent, and Prince Arian looked behind him. Toward Duke Velmout.</p><p>"I was a bit surprised when I saw this message, but I was even more surprised when I saw that he was still alive. For some miraculous reason, he managed to survive. Just by a hair breath though."</p><p>He licked his lips.</p><p>"A brief talk with him, and I was able to confirm that he had indeed been attacked by the little Duchess. This time, he didn't say it was a cloaked figure... but her. Her alone."</p><p>He turned his gaze to look at Priscilla. The smile on his face seemed somewhat uncomfortable to her, and she felt her heart drop.</p><p>"I..I…"</p><p>Her lips moved, but she was unable to utter a single sound even as her mouth parted open.</p><p>'What's happening? Why is this happening? I didn't do anything…'</p><p>No matter how much she wanted to argue, under such evidence, she knew that her situation was extremely grim.</p><p>If that wasn't all…</p><p>"If that's not enough evidence for you, Prince Valling, I've got more information for you…"</p><p>Princess Rhan started. A body suddenly materialized in front of her as she waved her hand. It belonged to a male, whose features were extremely pristine, and somewhat feminine.</p><p>The only issue was that he was completely lifeless, with not even a trace of breath left in his body.</p><p>After gazing at him for a brief period of time, the Princess extended her hand and pierced his body directly in the abdominal region, subsequently extracting a small orb from the wound.</p><p>"Take a look at his core."</p><p>She held out her hand to show the core. It was comparable in size to a marble.</p><p>"You all already know what's wrong with this, don't you?"</p><p>The Princess's eyes traveled around the room, taking in each and every person there. Her expression didn't shift much as she pinched the marble in her hand. At first glance, it appeared from the lack of emotion on her face as she fiddled with the core that she did not care very much that her successor had died.</p><p>Despite this, everyone could sense that she was harboring deep-seated resentment. She was just very good at hiding it.</p><p>"Abyssal Mammoth Bile. Only with such means can you perfectly mask the death of someone."</p><p>She drew out each word in a slow and concise manner.</p><p>While fiddling with the core she was holding in her hand, she looked around at the other players and asked.</p><p>"Was it the same for you?"</p><p>"Yes."</p><p>"Yes."</p><p>"Yes."</p><p>Her inquiry was met with a number of affirmative responses, after which the Princess pulled out a flyer.</p><p>=== [Mass event quest]===</p><p>Quest assigner : Duchess Pertinol.</p><p>Reward : The reward will depend on the contribution, with at least 5 Mor guaranteed for each participant.</p><p>Minimum requirement : Marquis rank.</p><p>Description : Request to aid Duchess Pertinol in taming the Abyssal Mammoth, a Duke-ranked monster. The minimum rank required to participate is Marquis, and the quest takes place on the 300th planetary revolution. The task entails assisting Duchess Pertinol in bringing down and taming the Abyssal Mammoth, whose approximate strength is close to that of a Prince. The rewards will be determined by the contributions made throughout the quest. If the Duchess is pleased with the performance, several Jor could be rewarded.</p><p>"What a strange coincidence, no?"</p><p>The Princess's gaze was now fully directed toward Priscilla, who trembled at the sight of the flyer.</p><p>'…It's over.'</p><p>Indeed, the moment she took out the flyer, everyone looked at her with a convinced look.</p><p>If the previous evidence wasn't sufficient to prove she was the one responsible, then this new evidence was more than enough to make that case.</p><p>"Very bold of you, Valling. I didn't know you were the type to scheme like this."</p><p>Prince Aton hurled, looking at Villian with an appalled expression.</p><p>Next to him, Prince Serling clenched his fist.</p><p>"I'm sure you're well aware of the consequences that are going to befall you in a short moment, right? Prince Valling?"</p><p>Confronted with such words, the Prince's expression did not change. He looked to be completely unfazed. As if he was unaware of the circumstances in which he found himself.</p><p>After turning around, he gazed directly at Priscilla, who returned his gaze with a look of her own.</p><p>Opening his mouth, his calm voice traveled through the ears of everyone present.</p><p>"Did you do it?"</p><p>When he spoke to the Duchess, there was not the slightest indication of irritation or anger in his tone. It appeared as though he was asking her a simple and trivial question.</p><p>The manner in which he carried himself made everyone frown, but nobody said a word about it. They were interested in knowing in great detail what it was that he intended to do.</p><p>If not for the fact that they knew his personality well, they would've already attacked him.</p><p>Was this his last desperate attempt at trying to salvage the situation?</p><p>"N-no."</p><p>A crisp stutter.</p><p>Priscilla shook her head and denied the accusation while she looked at her grandfather.</p><p>Gazing at his red eyes that seemed to be as calm as a well, she couldn't tell exactly what he was thinking, but she could only hope he would help her.</p><p>…He was her only hope. Her only hope at getting out of this situation.</p><p>After maintaining eye contact with her for a few more seconds, he turned his head around to face the opposite direction. She only caught a fleeting glimpse of it, but Priscilla thought she saw a smile on his face.</p><p>She wasn't certain about it, but his subsequent words caused her to exhale a sigh of relief.</p><p>"There. It looks like she wasn't the culprit."</p><p>He had not abandoned her.</p><p>"It seems like you've become delusional. Are you trying to protect her, or is this part of your scheme?"</p><p>As the Princess's demeanor shifted, the room's atmosphere underwent a radical transformation.</p><p>Her previously expressionless face had completely changed, and her gaze turned fierce. She was now at the point where she was finally beginning to show her anger.</p><p>"You should be well aware of what will happen now, right?"</p><p>"…and what is that?"</p><p>"Are you pretending that you don't know? …Or are you just trying to delay the inevitable?"</p><p>"No, not at all."</p><p>Prince Valling shook his head, showing no sign of being bothered in the least by the words that were being hurled in his direction.</p><p> The utter calmness and confidence in his voice somewhat managed to calm the Princess, who snorted and sat back down.</p><p>It was already a miracle that none of the other elders had exploded into a rage as a result of what had occurred, but despite their lack of action, it was clear that they were experiencing feelings that went beyond those of the Princess.</p><p>They were probably doing their best to hold themselves back. They were saving it for when the time came for them to finally make a move.</p><p>If there was something that everyone was aware of, it was that no matter what transpired during this meeting, by the time it was over, there would be only six houses left standing.</p><p>They had time to spare...</p><p>"Isn't it weird?"</p><p>Prince Valling, suddenly asked, his collected tone reverberating through the entire space.</p><p>Staring at him, none of the other demons showed much of a reaction.</p><p>...Well, none aside from Prince Arian, whose face carried a hint of a smile. His thoughts were hard to read. It had always been like this.</p><p>"What's weird, if I may ask?"</p><p>Valling spared him a glance before answering.</p><p>"Everything. Everything about the situation is weird."</p><p>"…Is this really the best you can come up with to save yourself?"</p><p>Prince Serling spat. Unlike the others, he wasn't as patient.</p><p>He was growing increasingly irritated, and he soon began to speak more loudly. A thin layer of darkness began to form around his body at the same time, spreading across the area around him.</p><p>"I've had enough of your bullshit! Either come clean, or I'll personally make you!"</p><p>"Calm down."</p><p>Prince Valling didn't seem disturbed in spite of the clear threat. Rather, he grew even calmer.</p><p>Surveying the area around him, he looked at everyone present in the room before asking. "I'll ask again. Don't you all think that the situation is too perfect?"</p><p>He continued before anyone else could speak.</p><p>"From the bile to the messages to the fact that she is the only one unharmed... Isn't it a bit too obvious?"</p><p>He looked toward Priscilla.</p><p>"I've known her for quite a long time, and I've personally taught her. If we were to really plan all of this, we wouldn't make such obvious mistakes. It's so intricately set up to point toward us that it just feels unnatural..." "</p><p>"…Is this really your argument?"</p><p>Prince Serling looked at him with a distorted look. He slapped the table and glared.</p><p>"That's the flimsiest of excuses! Own up to your actions! You weren't careless, you were just fucking stupid!"</p><p>As he looked around, his face turned bright red with anger.</p><p>"Look around you! Do you really think any one of us will be—"</p><p>"But I do."</p><p>A hushed voice interrupted Serling at that precise moment. When he turned his head, he was taken aback to see Prince Arin grinning and staring at Valling.</p><p>His next word causes the entire room to turn quiet.</p><p>"…Not only do I believe him, but I also think that he's not the culprit."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-714.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-716.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

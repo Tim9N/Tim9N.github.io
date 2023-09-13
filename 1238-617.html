@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 617 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 617 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-616.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-618.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Two days have passed since Ren went to Immorra, nothing changed in Ashton city during that time.</p><p>Everything was just as calm as it had been for the past couple of years.</p><p>Of course, that was merely on the surface level.</p><p>Anyone in a high position knew that this was the calm before the storm.</p><p>…and it wasn't just any regular storm, but a large storm. One that would severely affect the conditions of the human domain in the near future.</p><p>That was due to the fact that the truce between the Union and the Monolith will expire in less than a month, ushering in the start of a new era. An era that was filled with conflict and death.</p><p>"Why are you so confident that they will declare war on us as soon as the truce is over?"</p><p>A gathering was taking place at the top of the Union tower.</p><p>Currently, all of the top tankers were present. Including Kevin, who stood beside Monica, and Donna, who was also present and standing beside him.</p><p>It was clear to see that they belonged to the same 'faction' inside of the Union. Monica's faction.</p><p>"It is not a matter of why anymore, Monica."</p><p>Daphne, the now third ranked hero spoke up.</p><p>She began to explain the situation to her.</p><p>"Over the past few years, we have observed that the Monolith has used this opportunity to consolidate their authority and influence. Their forces are stronger and more powerful than ever, and although it isn't confirmed, we can conclude from that, that there is a high chance of a war breaking out between the two of us. Also, have you not noticed Monica?"</p><p>Daphne paused while her eyes swept over everyone in the room.</p><p>"Have you not noticed how both the demons and the members of the Monolith have become so quiet right after that crack appeared in the air?"</p><p>Monica immediately became calm after hearing her remarks, sitting back in her chair and thinking to herself.</p><p>Before she could say anything else, Maximus spoke up.</p><p>"Regarding the crack, I think this will be useful for all of you to look at."</p><p>He then pressed his hand against the desk and a hologram appeared in the air.</p><p>The image of an elf appeared in the video. Everyone in the room was familiar with the video that was currently being displayed.</p><p>"A manifestation of the most recent cataclysm is the crack that has appeared in the atmosphere. The main objective of the crack is to fill the planet with as much mana as possible in order to open the door for monsters from the demon world to arrive."</p><p>"Previously, due to the planet's low mana density, dungeon creatures could not survive on the surface for very long. This isn't true, though, when there is a lot of mana in the world of humans. If it were to occur, monsters would be free to wander the earth, allowing the demons to start a blown out war against humanity."</p><p>Pressing his hand against the desk once more, Maximus ended the video.</p><p>Then, scanning the faces of everyone present in the room, he solemnly said.</p><p>"I'm sure most of you have already seen the video before. With more reports talking about dungeon overflows becoming more prominent and the monsters no longer dying like in the past as soon as they enter the earth, it is safe to assume that we don't have much longer before the third calamity hits."</p><p>"...It's just like Ren has stated in the past, during the press conference that almost everyone here is all too familiar with. The third calamity is no longer a question of 'if' it will come, but a matter of 'when' it will come."</p><p>The tension in the room rose at his words. Regardless, Maximus continued to say his piece.</p><p>"I don't exactly know when the third calamity will hit, but it is within the reasonable assumption that it will take no less than ten years, and during that time, the most appropriate thing for an organization that is linked with the demons would be to try their best to weaken humanity."</p><p>When they heard his comments, everyone's expression turned ugly. In a sense, everyone already knew this, but it wasn't until it was brought to their attention that they truly understood how serious the situation was.</p><p>The only one in the room whose face didn't change was in fact Kevin who kept his head lowered with his eyes closed.</p><p> He already knew all of this.</p><p>In fact, he knew more. The third cataclysm wasn't going to hit in ten years, but rather four years…or perhaps even two years considering a certain factor.</p><p>The situation was a lot more dire than the people inside the room knew. One couldn't begin to describe how helpless it was.</p><p>If that weren't enough, all the other organizations pitted against the three races—with the exception of Inferno, which Ren had largely cleared out—were going to start waging war against the respective races not long from now.</p><p>Regarding Inferno, it wasn't actually over just yet. Unfortunately, Inferno wasn't that easily defeated. There were a couple of remnants that survived, and might cause significant damage to the dwarves in the near future.</p><p>Not to the point of destruction, but enough to make them feel the pain.</p><p>"Next up, Octavious, how close are you from breaking through to &lt;SSS-&gt; rank?"</p><p>Maximus asked, shifting the conversation away from the situation on earth.</p><p>Everyone's eyes fell on Octavious once Maximum's words fell.</p><p>He, who sat at the far end of the round table, slowly opened his eyes. A terrifying and tanglible pressure emitted from his body once he opened his eyes.</p><p>Everyone held their breath while they waited for him to answer.</p><p>They were unfortunately left disappointed with his answer.</p><p>"I'm still not there yet."</p><p>Hearing his remarks caused everyone's hearts to clench. Even while no one was certain if Malik Alshayatin had attained the level of &lt;SSS-&gt;, just the idea that there was a rumor of him doing so was enough to leave them feeling helpless in the face of the unexpected circumstance.</p><p>Coupled with the fact that he signed a contract with a demon, granting him more power than those that didn't have a contract, everyone felt their heart sink at the revelation.</p><p>"…are you at least close?"</p><p>Monica asked, clinging to the little hope they had regarding the situation.</p><p>Unfortunately, she did not get the answer she wanted.</p><p>"No, I'm not close."</p><p>The atmosphere became even more somber after he said these words.</p><p>For the following minutes, no one said anything as an uncomfortable silence swept the surroundings.</p><p>"Let's end the meeting now."</p><p>The meeting came to an end when Octaviois casually got up. He turned around and left the area without saying anything further.</p><p>Following his example, the others also stood up and left one by one.</p><p>Judging from the looks on the faces of some of the people present, it was clear that they were filled with anxiety regarding the future of the earth.</p><p>Even Monica was quite shaken after the meeting as she remained quiet throughout the walk back, something that was unusual of her.</p><p>"What are you doing Kevin?"</p><p>It was her words that brought Kevin out of his thoughts. Lowering his head to glance at Monica, he smiled.</p><p>"Nothing, I was just thinking about the situation."</p><p>That was a lie.</p><p>He was trying to recall a few faces at the moment. Although it didn't appear that way at first glance, this meeting was immensely detrimental to the Union. Especially in light of the fact that several top ranked heroes were invited to participate, and not just the heads.</p><p>It was from this meeting that several people made up their minds to betray the Union and join the Monolith.</p><p>Kevin's mind was preoccupied with trying to find ways to silently eliminate them.</p><p>He didn't even bother thinking about changing them, no, he much rather have them eliminated.</p><p>It was the fastest and most efficient way.</p><p>Kevin knew that this was a necessary step in order for him to raise the chances of beating the Monolith. Even then, he knew that they were merely the stepping stone to the real war.</p><p>"What are you going to do now, Kevin?"</p><p>Monica stopped and looked at Kevin.</p><p>Kevin gave her a simple smile and stopped as well.</p><p>"I still have something to do, so I won't be following you."</p><p>Monica narrowed her eyes and nodded.</p><p>"Alright, suit yourself. I've got stuff to do as well."</p><p>She then turned to look at Donna.</p><p>"You?"</p><p>"I'll go with you. I've got something to talk about with you."</p><p>"Oh...okay."</p><p>Waving goodbye to Kevin, the two disappeared in one of the corridors.</p><p>Making sure that their figures were completely gone, the smile on Kevin's face faded. He then made his way toward his office which was located on one of the bottom floors.</p><p>Clank.</p><p>Only when he was in his office that he finally relaxed.</p><p>"...I need to hurry."</p><p>He sat down on the edge of the desk and outstretched his hand.</p><p>On the palm of his hand, a red book started to progressively take shape. His palm began to glow white, encompassing the crimson book as it did so.</p><p>The book began to slowly become engulfed in a cacoon-like white light, which caused it to fall flat onto the top of his palm.</p><p>Then the pages started to turn.</p><p>In a state of complete calmness, Kevin kept his eyes on the book until a series of notification prompts appeared in front of him.</p><p>Time codex abosrption : [0%—[16%]———————100%]</p><p>Synchronisation = + 5%</p><p>He lost consciousness soon after.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-616.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-618.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            
