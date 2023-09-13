@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 339 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 339 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-338.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-340.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>339 Setting the pieces in motion (3]</p><p>"...That took way too long."</p><p>I muttered wearily, taking my eyes away from the panel in front of me.</p><p>It has been about a week ever since I infiltrated the place, and so far, everything was progressing smoothly.</p><p>Well, sort of.</p><p>The deactivation of the second beacon took a lot longer than my initial expectations.</p><p>Compared to the first beacon, the process was a lot different.</p><p>The whole process was coded in a completely different manner compared to the first beacon, making it almost impossible for me to complete it quickly.</p><p>Any wrong step and I would end up locking the whole system.</p><p>Furthermore, the panel I was currently using was less advanced than the one I previously used when deactivating the first beacon.</p><p>With those factors added together, the whole process took a lot longer than originally anticipated.</p><p>Fortunately, using the excuse that Jomnuk's memories were too jumbled up and that I needed to reorganize them properly, I managed to placate some of the impatient elders.</p><p>It wasn't easy, but given my previous performance, they let it slide.</p><p>It had to be noted that they were all individuals whose minds were corrupted by demonic energy, so the fact that I managed to calm them down was a miracle in itself.</p><p>"Are you done?"</p><p>A cold voice reached my ears. It was Angelica.</p><p>"Yeah, I'm pretty much done."</p><p>Before I knew it, Angelica was standing next to me, looking at the panel in confusion.</p><p>Seeing the confusion on her face as she looked at the panel, I shook my head at her.</p><p>"Don't bother trying to understand it, even I don't know what I did. I won't be able to explain even if you asked."</p><p>I only did what the instructions told me to do.</p><p>I had no real idea of what I was doing.</p><p>Had I known what I was doing, then perhaps I would've completed it at a much faster pace.</p><p>"I see..."</p><p> Relaxing her brows, Angelica proceeded to move towards where Tomnuk was.</p><p>Standing next to him, she put her hand on the helmet and asked, "What should we do with him?"</p><p>"Him?… Good question."</p><p>Turning around and staring at Karl, I frowned.</p><p>"Also, don't touch that. I don't know what that thing does."</p><p>It was a fact that I couldn't kill him.</p><p>If he died, then everyone would know that I wasn't the real Karl. After all, the demon that he was contracted with would definitely report back.</p><p>That was part of why I didn't want Angelica to touch the helmet. If something happened to Karl, then everything would come crashing down.</p><p>"Okay."</p><p>Fortunately, Angelica understood that. She removed her hand from the helmet.</p><p>"Thanks."</p><p>Thanking Angelica, I turned my attention back towards Karl.</p><p>'Could I use him to my advantage?" I pondered.</p><p>So far, the plan that I set up was perfect. At least, that's how it seemed to me.</p><p>But I knew better than anyone else that no plan was ever perfect.</p><p>Even if there were no apparent flaws in a plan, anything could ruin it at any time. There were too many unknown variables to account for, especially in my situation.</p><p>Perhaps, due to some external factor, or even a minor miscalculation, the whole plan could crumble at any time. And that, I couldn't afford to have.</p><p>Although I had a plan B, it wouldn't hurt to come up with a plan C.</p><p>Pinching the middle of my brow, I spoke up after a while.</p><p>"Leave him be for now. I'll figure something out while I'm at it."</p><p>"...Okay."</p><p>"Good."</p><p>Turning my attention back towards the panel, I double-checked the values to make sure that nothing was wrong.</p><p>'Everything looks correct.'</p><p>None of the values seemed out of place.</p><p>"...Here goes the second beacon."</p><p>Once I checked and made sure that there were no errors, I pressed onto the final key.</p><p>Di. Ding-</p><p>"Haa…. Done."</p><p>Once I pressed on the keyboard and initiated the deactivation of the second beacon, leaning back on my chair, I closed my eyes for a brief moment.</p><p>'I wonder… Just how much damage will the second beacon's loss do to the city defense?'</p><p>The first beacon's deactivation weakened the barrier considerably.</p><p>Perhaps the second beacon would have a similar effect, if not worse.</p><p>Opening my eyes, I then proceeded to tap on the panel.</p><p>Before long, video images appeared in front of me and I took a look at the situation outside.</p><p>***</p><p>At the same time, in Henolur's outer walls.</p><p>"The second beacon is down!"</p><p>A panicked scream echoed the hymn of despair in the hearts of all dwarves.</p><p>Right as those words faded, one of the lights in the sky started to fade away before completely disappearing.</p><p>Those who were standing below and witnessed the scene firsthand had horrified looks on their faces as they vividly watched the barrier once again lose color.</p><p>"It's the second beacon!"</p><p>"Oh almighty, what in the world is happening here?"</p><p>Crack! Crack! Crack-</p><p>But just as it looked like things couldn't get any worse, enormous cracks started to appear on the surface of the barrier.</p><p>Before long, the cracks slowly started expanding all over the barrier's surface.</p><p>BANG-! BANG-!</p><p>As the cracks formed continuously, on the other side of the barrier, the demons attacked with greater ferocity. As they attacked, they had bloodthirsty, savage expressions on their faces.</p><p>BANG-！</p><p>To those standing behind the barrier, it looked as though the attacks were working as the earth shook and the blasts were no longer getting dispersed like they used to before. Even the barrier seemed to shake in the face of such an onslaught.</p><p>"Over here."</p><p>Standing at the very bottom, right at the edge of the barrier, Hein glanced behind him and pointed towards a small crack forming on the surface.</p><p>"There's a crack forming over here! Quickly report this to Smallsnake!"</p><p>"Got it."</p><p>Ava solemnly replied and took out a communication device from her dimensional space.</p><p>With Smallsnake and Ryan taking care of the logistics, they had asked her and the others to report to them whenever they saw a crack form on the barrier.</p><p>As she was taking out her communication device, turning her head right, towards Newton, she ordered, "Newton, go check if there are any more small cracks forming."</p><p>*Twiit*</p><p>Twirling, Newton flapped its wings and flew in the air.</p><p>In a couple of seconds, it was already high up in the air, searching for any possible cracks on the shield.</p><p>"Good boy."</p><p>Once Newton flow off her shoulder, Ava quickly sent a message to Smallsnake and told him of her findings.</p><p>"There is a crack in the location that I'm currently in. So far, the crack looks small. but it appears as though it is increasing in size, although very slowly. I've sent you the coordinates already. Check it out when you have time."</p><p>Click-</p><p>Once she reported everything, turning off the communication device, Ava looked at Hein.</p><p>"We're done with this site. Let's go look for more cracks."</p><p>"Okay."</p><p>Nodding, Hein left the area with Ava.</p><p>***</p><p>"This much damage with just the second beacon...?"</p><p>For the barrier to weaken that much, just from two of its beacons not working, it seemed like my previous thoughts were correct.</p><p>My plan had to be altered.</p><p>Originally, I had expected this type of weakening from the fourth beacon's deactivation, not the second.</p><p>But for it to be damaged this much by just losing two beacons, something had gone terribly wrong with my plans and they needed to be changed.</p><p>Not by much, but I now needed to operate at a faster pace.</p><p>"This is fucking annoying."</p><p>I was of course annoyed by the development. I couldn't help but curse out loud.</p><p>"What happened?"</p><p>Angelica asked from the side.</p><p>Turning to glance at her, I scratched the back of my head and sighed.</p><p>"Angelica, it looks like we have less time than I had expected."</p><p>"What do you mean by that?"</p><p>She asked, narrowing her eyes.</p><p>Massaging my forehead, I replied in an exasperated tone, "I mean that we are going to start moving either today or tomorrow."</p><p>"What..? But, didn't you say that you needed a month?"</p><p>"You're right, but things have changed..."</p><p>Just like Angelica said, the plan was originally going to span a month's period, just the right time to set everything up, but it looked like I was too naive.</p><p>Taking out a small communication device, I sat back on my chair and texted Waylan and the others.</p><p>With the dampener removed, I could now freely text whomever I wanted.</p><p>I could also share my location with the others.</p><p>In reality, I didn't really need the guys from the Monolith to lure the others in here, but that wasn't my only goal.</p><p>My goal in having the Monolith lure the others here was simple. I wanted to make it seem as though they were the ones responsible for the whole mess.</p><p>By doing so, I was trying to instigate conflict between Inferno and Monolith.</p><p>Having two of the main demon-contracted organizations fight against each other, how sweet was that?</p><p>Just thinking about it made me excited.</p><p>-...Ren</p><p>Disrupting me out of my thoughts was Waylan's voice.</p><p>Without even realizing it, Waylan had called me.</p><p>"I know."</p><p>He sounded a little absent-minded.</p><p>Most likely, he realized that our calculations were a little off.</p><p>But he wasn't a veteran for nothing. In a matter of seconds, he recomposed himself and asked.</p><p>-What do you suggest we do?</p><p>"I think we have no choice but to speed things up."</p><p>-I see...</p><p>A brief pause ensued.</p><p>Looking at the panel displaying the situation outside, I asked, "How are things on your end. You holding up well?"</p><p>'Last I heard, the Monolith should've already made it in. Did they do as I suggested?'</p><p>-Let's not talk about it. In fact, I'm quite relieved you're starting to move now. I think we underestimated the reaction of the dwarves regarding the sudden deaths of their comrades.</p><p>"That bad?"</p><p>Judging from his response, it seemed as though the Monolith had already started making its move.</p><p>-Yes. That bad.</p><p>"Damn..."</p><p>With the aid of Inferno, the members of Monolith infiltrated the city.</p><p>The process was a smooth one. They were able to do it under the dwarves' noses. But, the only reason why they made it in so easily was because of Waylan and Douglas. They gave them a little hand in secret.</p><p>After that, following the words that I had said, the members of Monolith started killing a few dwarves here and there.</p><p>Although their target was me, at the end of the day, Waylan and Douglas were also individuals that they wanted to get rid of.</p><p>They had no qualms with what Inferno asked them to do.</p><p>-If not for Douglas, I'm not too sure how I wouldn't have been kicked out of this place.</p><p>"What about the others? How are they faring?"</p><p>With the perception of humans becoming more negative because of the deaths, I hoped the others didn't get affected by it too much.</p><p>Fortunately, Waylan's next words relieved me a bit.</p><p>-Them? Hmm, their situation is a bit better. Since everyone's watched them fight with their life on the line, they are fairly respected. But I'm not sure how long that impression will last for...</p><p>Nodding, I replied, "I understand. Keep an eye on the members of Monolith. As soon as they move, proceed as planned."</p><p>-Wait...but are you going to be fine? The plan is proceeding way faster than anticipated, will you be able to handle the changes?</p><p>"Yeah, don't worry. Although it will be tough, I should be able to handle it," I reassured Waylan.</p><p>Although things were more annoying now. I wasn't completely helpless.</p><p>-Okay...if you say so.</p><p>Waylan replied, his voice sounding a little bit less concerned.</p><p>I guess the confidence in my speech helped him relax a little.</p><p>"Good. I'll contact you again when I'm about to make a move. Message me when the Monolith is going to make a move."</p><p>-Got it.</p><p>Turning off the communication device, I stood up and stared at the panel intently.</p><p>Then, turning to face Angelica, I muttered.</p><p>"I guess it's about time we start getting serious."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-338.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-340.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 436 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 436 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-435.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-437.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Begin!"</p><p>The referee's voice boomed throughout the arena as mana simultaneously burst from both Amanda and her opponent.</p><p>With both of her hands on the handle of the sub-machine gun like artifact, a subtle red glow suddenly enshrouded the artifact as the tip slowly started to rotate. With each rotation, the faster the barrel moved.</p><p>Tat.</p><p>Eventually, after the first rotation, a small energy beam suddenly shot out from the barrel of the weapon as slowly but surely more and more energy beams started to shoot out.</p><p>Tat. Tat. Tat.</p><p>It wasn't before long that three more energy beams shot out.</p><p>Amanda wasn't standing still while this was happening. With her back arched a little bit, she taunted the string of her bow back as three translucent blue arrows materialized on her bow.</p><p>The moment the first energy beam shot out, Amanda calmly stood still.</p><p>Her decision proved to be the correct one as the projectile quickly missed her, resulting in her hair to fluttered wildly.</p><p>Following the first beam, more and more beams started to shoot out from her opponent's artifact.</p><p>Even then, Amanda refused to release her arrows the mana around her started to twist.</p><p> Whenever a beam would come hurtling towards her, she would either take a step to the side or move a small part of the body. Her movements were minimal, however, each time she moved she was able to miraculously dodge the energy beam that was hurtling towards her at incredible speed. </p><p>Amanda's actions caused almost everyone that was watching to look at her in awe as her mesmerizing figure stood in the middle of the arena like an unbeatable war goddess.</p><p>Her nimble and yet minimal movements that helped her dodge the beams caused everyone to be at a loss for breath.</p><p>'So skillful'</p><p>Everyone thought as they watched her dance around her spot, like a beautiful butterfly.</p><p>The reason why Amanda was able to do all of this was because of her skill.</p><p>[[C] Mana sense]</p><p>A skill that essentially allowed her to sense the mana as well as see the disturbances around it. Not only did the skill help her determine the direction of her arrows when she shot them, but she was also able to sense the direction of where the attack of her opponent would go.</p><p>It was thanks to this skill that she was able to do what she was doing. However, this only worked for a short period of time. From a certain point, the projectiles would become way too fast to dodge even if she knew where they were coming from.</p><p>But fortunately, Amanda was ready.</p><p>Tat. Tat. Tat.</p><p>Barely dodging three more energy beams, the mana around Amanda's body burst out like a raging storm. Then, eyeing her opponent, she released two of the three arrows.</p><p>Xiu! Xiu!</p><p>The moment she released the two arrows, the air tore apart and the two arrows disappeared from the spot.</p><p>They were so fast that by the time Amanda's opponent could retaliate they were already upon her.</p><p>Letting out a low cry, a transparent shield suddenly materialized around the dwarven girl. However, what happened next was completely out of her expectations.</p><p>Right as the arrows reached her, instead of hitting her shield as she expected them to, they suddenly expanded and formed two thin blue barriers. Trapping her from above.</p><p>In the distance, pursing her lips, Amanda softly muttered.</p><p>"Contract."</p><p>Instantly the two thin shields started to contract. And slowly but surely, they reached the dwarven girl's shield, applying heavy pressure on it.</p><p>Crack. Crack. Crack.</p><p>It wasn't long before cracks started to appear on the shield of Amanda's opponent as a helpless look appeared on her face.</p><p>Raising her bow towards the air, Amanda finally let go of the final arrow. Once again, it disappeared from her bow, tearing through the air like a comet.</p><p>Crash!</p><p>The exact moment her arrow left her bow, the barrier around Amanda's opponent finally tore apart with a loud crash.</p><p>Before her opponent could even react, the dwarven girl suddenly felt a powerful mana fluctuation coming from above. Lifting her head up, she watched as a terrifying arrow came hurtling down on her.</p><p>It was so fast that she was unable to react on time.</p><p>Booooom!</p><p>A terrifying explosion ensued a couple of seconds after as Amanda's arrow came crashing down on her opponent, sending dust flying everywhere.</p><p>Once the dust settled, everyone watched as the referee appeared a couple of meters in front of Amanda's opponent with his hand raised. Behind him was the frightened opponent who couldn't stop trembling as she let go of her large weapon.</p><p>Thud.</p><p>"The winner of this match is Amanda Stern, she will pass to the round of sixteen."</p><p>***</p><p>"How strong..."</p><p>I softly said as I watched every second of Amanda's match. If I said I wasn't impressed by her performance, that would've been a lie.</p><p>Although her opponent wasn't exactly the strongest, for Amanda to one-sidedly beat her like that, was a testament to just how much she had improved over the years.</p><p>Taking my eyes away from the screen, I turned to glance at Angelica. With her head cocked to the side and a curious look on her face, Angelica also seemed to be entranced by Amanda's performance.</p><p>I smirked when I saw this.</p><p>"…by the way, did you really come here because you were bored?"</p><p>Honestly, I had a hard time believing this. Although yes, she had been isolated alone, given her resources and the fact that she wasn't a very social person, I was kind of doubting her answer.</p><p>Perhaps I was overthinking.</p><p>Brushing her hair behind her ear, Angelica slowly raised her head and looked at me. After a while, she shook her head.</p><p>"No."</p><p>"…oh?"</p><p>So there really was something else that she wanted to talk about. Now I was curious.</p><p>Before I could say anything else, turning her attention back towards the screen, she softly said.</p><p>"Silug has broken through &lt;S-&gt; rank and is planning on consolidating his strength before attacking both the orc chief and Marqiss ranked demon."</p><p>Her words rang like thunderbolts inside of my head as I started recalling all of the plans that I had set up in the past.</p><p>One of the plans was to turn Silug into the orc chief of Immorra so that I could use him to help me fight against the demon king who arrived during the third cataclysm.</p><p>"I see…that's great news."</p><p>Although I was happy, I didn't show too much of it.</p><p>Silug had only broken through, he had done none of the things that I had tasked him to do.</p><p>Not only was I unaware of where his true loyalties were, but I also sure hoped that he wouldn't die.</p><p>After all, he was planning on interfering in the war between two individuals whose strength wasn't inferior to his.</p><p>The only thing he had on them was the element of surprise, and even with that, I knew that his chances of winning were not very high.</p><p>They weren't low, but not high at the same time.</p><p>"Did he say anything about the time he will attack?"</p><p>"No."</p><p>Angelica shook her head. Pausing for a second, she added.</p><p>"But I don't think he will attack any time soon. He is trying to find the best way to deal with the situation."</p><p>"I see."</p><p>I thoughtfully nodded her head.</p><p>A part of me was glad that Silug was not rushing into the big fight as soon as his strength broke through, however, my worries weren't the least bit quelled.</p><p>After all, his death would put Angelica in jeopardy. I didn't want that to happen.</p><p>Placing my hand on my chin and taking a small glance in Angelica's direction, I softly said.</p><p>"You should probably turn yourself into a cat."</p><p>Angelica's brows knit when she heard my words.</p><p>"Why?"</p><p>"That's because people will come to visit me soon. I'm sure you don't want too much attention gathe—"</p><p>Before my words could even fade, we suddenly heard the sound of footsteps coming from the other side of the door.</p><p>Opening up her eyes, throwing me a glare, a black shadow cast over Angelica before her figure shrunk and she turned into a cat.</p><p>Following her transformation, she jumped up on the bed before resting on the top of the small ledge by the side of the window.</p><p>Clank—</p><p>Because she was now a full-fledged count-ranked demon, it only took a brief moment for her to transform.</p><p>Just as she sat on the ledge, the door swung open and Kevin entered the room. Upon entering the room, Kevin causally greeted me.</p><p>"Hey."</p><p>"Mhm."</p><p>I greeted back with a nod. Looking around the place, Kevin's feet suddenly came to a halt as he pointed in the direction of where Angelica was.</p><p>His brows jumped up in surprise.</p><p>"Is that…?"</p><p>"Yes, it's her."</p><p>I nodded my head. I had already briefed him about Angelica so it was no surprise that he was able to recognize her.</p><p>Raising my head, I asked.</p><p>"Did you just come back from visiting Emma?"</p><p>"Yeah."</p><p>Kevin replied as he sat down on the chair where Octavious and Angelica previously sat.</p><p>"Her condition seemed to have stabilized, however, she's still in a coma and hasn't woken up yet."</p><p>"I've heard."</p><p>Emma's situation, was how should I say, delicate? After all, I was somewhat responsible for what happened. Or rather, the entity that was inside of me was responsible, but deep inside I knew that was also to blame.</p><p>Had I realized that I was being controlled sooner, such things would've never happened.</p><p>This was especially so after realizing that there were plenty of flags indicating to me that something wasn't right.</p><p>"Emma aside, have you seen her father?"</p><p>Kevin's next words caused me to snap out of my own thoughts. Raising my head, I looked up for a moment before nodding my head.</p><p>"Yes, he's back in the human domain. Family problems."</p><p>Kevin's brows knit as soon as he heads my words.</p><p>"…Does he know about Emma's situation?"</p><p>"He probably doesn't."</p><p>I shook my head.</p><p>Because people couldn't communicate through the two places, Waylan probably had still not found out about the situation with Emma.</p><p>It also had to be noted that her match had not been broadcasted live, meaning that even if he paid attention to the tournament, he would have no idea.</p><p>Seeing how troubled Kevin looked, I reassured him.</p><p>"Don't worry, I did send a couple of people to inform him. But I'm not sure when he will get the message."</p><p>Those two individuals were Ava and Hein who were both out of the competition. Since they probably both missed their families a lot, I told them to just go back to the human domain and visit their parents.</p><p>On the way, I did remind them to tell Waylan about the situation with Emma.</p><p>It wouldn't feel right if he didn't know.</p><p>"That's good."</p><p>Visible relief appeared on Kevin's face as soon as he heard my words. Then, placing his hands on his knees, he slowly stood up.</p><p>"I just came to check up on you. Since you're fine, I'll take my leave."</p><p>Throwing one last glance at Angelica, he turned around and headed for the door.</p><p>Before leaving, halting his steps, he softly said.</p><p>"I saw your match with Kimor…"</p><p>My brow raised when I heard his words.</p><p>"What did you think of it?"I lazily replied with my back leaning on the comfortable pillow of the bed.</p><p>It took a while for Kevin to answer, but his next words surprised me a bit.</p><p>"...Let's just say that I'm not confident in my chances of beating you."</p><p>Before I could say anything else, opening the door, Kevin left the room, leaving me in my room staring in the direction of where he left with eyes wide open.</p><p>'Did he just say what I think he just said?'</p><p>I couldn't quite contain my surprise. Not many knew this, but Kevin was in fact extremely prideful.</p><p>He may hide it well, but it was deeply engraved in his body.</p><p>For him to suddenly say something like this, only meant one thing. He truly meant those words.</p><p>Honestly, I didn't know whether to be happy or sad.</p><p>"Haaa…"</p><p>In the end, letting out a tired sigh, I turned my head to once again stare at the scenery outside.</p><p>Although what Kevin said may have been true, at the end of the day, those were just words. Only when we fought each other for real would we truly know who was stronger between the two of us.</p><p>Clank—</p><p>After a while, as I was gazing at the scenery with Angelica, the door once again opened. Turning my head to see who the person was, I was pleasantly surprised to find Amanda walking in.</p><p>A smile appeared on my face.</p><p>"I saw your match, congratulations."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-435.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-437.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

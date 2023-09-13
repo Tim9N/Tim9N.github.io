@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 401 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 401 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-400.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-402.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Splash—! Splash—!</p><p>Splashing water onto my face I stared at my haggard figure in the mirror. Glaring dark circles bagged beneath my eyes as my mind felt numb.</p><p>Glink—!</p><p>Turning off the tap, I turned around.</p><p>My eyes paused on a certain book in the middle of the table.</p><p>My heart remained calm as I stared at the book...or rather, my head was too numb to process what was happening around me. Nothing excited nor stimulated my emotions.</p><p>Closing my eyes, I sat down on my bed and leaned forward.</p><p>"...Just what happened?"</p><p>Ever since waking up, I've been trying to make heads or tails of what had just occurred to me.</p><p>My head really hurt.</p><p>'For starters, the world I was in not too long ago was definitely not my own world...or did that world even exist in the first place?'</p><p>From the fact that I had no recollection of my parent's faces, my own name, and the fact that the prestigious university I wanted to go to was called 'Unversity A,' a name which itself seemed far too generic to make sense.</p><p>Putting everything together everything that I previously thought that I knew no longer started to make sense inside of my head.</p><p>"Aghhh."</p><p>'My head hurts.'</p><p>Grasping my head with my hands I ruffled my hair into a mess.</p><p>Everything was a mess. A mess I couldn't quite figure the answer to.</p><p>"There's also him..."</p><p>The previous Ren.</p><p>Just thinking about him spread uneasiness throughout my whole body.</p><p>There was definitely something odd about that guy. How did he know about the fact that the world was a novel? I never gave him the password of my laptop so it shouldn't have been possible for him to figure out that the world I was in was that of a novel I wrote.</p><p>Furthermore, how did he know to ask the right questions?</p><p>Like what my name was, whether I recalled my parent's faces and the name of the university I wanted to go to.</p><p>The order of the questions didn't really make sense...it was as though he already knew about my answers beforehand.</p><p>"Haaa..."</p><p>I suddenly stood up.</p><p>My head throbbed even more fiercely.</p><p>Pacing around the room, I started to think back to my first interaction with the previous Ren in search of an answer.</p><p>This wasn't hard, I had only interacted with him once throughout my whole life so I could still vividly remember what had happened.</p><p>It was the time he was showing me his past experiences with Matthew and what was going on with his parents...my parents.</p><p>I remember that time clearly.</p><p>I could see just how sad he was.</p><p>Was that a facade or was that really him? At this point, I no longer knew.</p><p>"Ugh."</p><p>I groaned.</p><p>Massaging my head, I thought even further.</p><p>'Ever since meeting him, did something strange ever happen to me?'</p><p>My brows knit tightly.</p><p>Placing my hand on my chin, I fell into deep thought.</p><p>"Something strange happening after meeting him..."</p><p>My brows which were knit together suddenly jumped up in shock.</p><p>"Wait...hold on..."</p><p>Looking back at any of the incidents that had occurred right after meeting the previous Ren, a thought suddenly occurred to me.</p><p>My head snapped upwards.</p><p>'There was one...'</p><p>My hands fidgeted all over.</p><p>"My thought process...it definitely changed after meeting him..."</p><p>It never occurred to me before, but, didn't my personality change moments after meeting him?</p><p>I may have not noticed it back then, but now that I look back at myself, right after meeting the previous Ren, I started to get this weird idea that everything around me was a chess piece and that everything was under my control.</p><p>'Where did that come from?'</p><p>If I looked back at my previous behavior, the moment prior to meeting the previous Ren, everything I did was completely different. My personality was different.</p><p>Never before had I had such thoughts about treating everyone as a chess piece and having everything under my control. It was odd.</p><p>I never put too much thought into it in the past because I never felt it. I never felt the change...but now that I was looking back at them, from this new perspective, it really did seem as though something within me had been forcefully changed.</p><p>It was as though someone was forcing traits and different ideologies inside of me. Ideologies that I had never once thought about.</p><p>A wild and crazy theory suddenly pierced through my brain.</p><p>My breathing evened out.</p><p>"....It can't be, right?"</p><p>Impossible. No, I refused to believe that. I shook my head repeatedly. It couldn't be. Yeah, there's no way something like that happened...right?</p><p>My toes curled inwardly.</p><p>TRIIIING—! TRIIIING—!</p><p>Amidst my anxiety, my communication suddenly rang, snapping me out of my thoughts. Lowering my head, I looked at the message. It was Waylan.</p><p>[Ren, the tournament will begin tomorrow, are you ready? Should I come to pick you guys up tomorrow morning?]</p><p>"Haaa...haaa...."</p><p>Closing my eyes, I suppressed all the anxiety inside of me. Taking my communication device, I quickly sent back a message.</p><p>[Yeah, that would do.]</p><p>After sending the message, I shut off the communication device.</p><p>"huuuu..."</p><p>Taking a deep breath, I took my jacket and put on my face mask. Then, I proceeded to head for the door.</p><p>I needed some fresh air to sort out my thoughts.</p><p>The thoughts were eating away at my sanity.</p><p>Ci Clank—!</p><p>Closing the door behind me, I walked down the stairs.</p><p>***</p><p>Ding—!</p><p>A loud chime rang inside of Kevin's head as he slowly opened his eyes. The first thing he saw as soon as he opened his eyes was a system notification.</p><p>[Synchronization complete]</p><p>Synchronisation : 34%</p><p>"Haaa..."</p><p>Sitting up straight, Kevin exhaled deeply. Covering his forehead with his hand, he supported his body with his other hand.</p><p>"...What in the world did I just see?"</p><p>The vision he saw was clear.</p><p>Kevin vividly remembered everything that he saw in the vision, and it was because he remembered that at the moment he couldn't quite grasp what was happening around him.</p><p>Sitting up straight, Kevin was able to calm himself down.</p><p>'That was me wasn't it?'</p><p>It had to be. The fact that he was desperately searching for Emma, and that the name of the black figure was 'Kevin', he didn't believe for one second that the vision wasn't about him, but...</p><p>The vision he saw, was not something he had ever experienced before.</p><p>'Could that have been a vision of the future?'</p><p> Leaning his head back, Kevin stared at the white ceiling of the room.</p><p>Just thinking back at the vision made his body tremble.</p><p>'If not the future, what else could it be?'</p><p>The more he thought about it, the more certain he was about his analysis. Whatever he just saw, it was the future.</p><p>"...Fuck."</p><p>Kevin's fists clenched tightly.</p><p>Just the thought of Emma dying on him hurt his very being.</p><p>"Haaa..haaa...who was that man?"</p><p>Kevin questioned. There was another part in the vision he saw. The features of the figure were obscured and so was his voice, but from what he saw, the figure was the one that killed Emma.</p><p>His words and the flask in his hands already gave him an idea of what had happened. The man had purposely killed Emma.</p><p>Kevin was sure.</p><p>His fists clenched even more tightly as anger rose within his body.</p><p>'...He needs to die.'</p><p>His eyes flashed with hatred as he recalled that scene. But there was only one problem, Kevin did not know who the man was.</p><p>He felt slightly familiar though.</p><p>As though he had met him before, yet, at the same time, he didn't. There was this chilly air surrounding the man that sent shivers down Kevin's spine.</p><p>'Could that have been Ren? ...No, he wouldn't do that.'</p><p>Kevin quickly shook his head, trying to discard such thoughts from his mind.</p><p>Although the two figures bore slight resemblances, Kevin knew Ren. He would never do such a thing to him.</p><p>"It couldn't be, right?"</p><p>Kevin weakly shook his head. Despite his many attempts at trying to deny what he saw, the confidence he had within him slowly crumbled apart.</p><p>Doubt started to creep into his mind.</p><p>"Haaa...What do I do."</p><p>Leaning forward, Kevin covered his face with both hands. He really did not know what to believe in at the moment.</p><p>***</p><p>Before I knew it, my footsteps stopped in front of the training grounds.</p><p>By the time I woke up from the 'dream' it was early in the morning. I thought about going around the city to explore the city.</p><p>To get my mind off of things, but having walked a couple of steps out of my residence, I subconsciously made my way towards the training grounds.</p><p>"This is good too..."</p><p>What I needed at the moment was to clear my head.</p><p>Training was a good way to do that.</p><p>Breathing out, I opened the gates of the training ground.</p><p>Xiu! Xiu! Xiu!</p><p>'Guess she's already here.'</p><p>Walking towards the changing area I could hear the sound of Amanda's arrows splitting the air apart.</p><p>Loosening up my shoulders, I quickly got changed before entering the training grounds.</p><p>Once I stepped into the place, Amanda appeared in my view.</p><p>With her glossy black hair tied behind her back exposing her neck, Amanda plucked her cherry lips together as she pulled the string of her bow, resting it right next to her chin.</p><p>With one of her eyes closed, her entire focus was on the target before her.</p><p>'...She still hasn't noticed me.'</p><p>A wicked thought suddenly crossed my mind as a smirk soon emerged on my lips.</p><p>Hiding my presence as much as I could, I tried to sneak behind her.</p><p>Fortunately, she was so focused on the target at the moment that I was easily able to get behind. It wasn't long before I was right behind her.</p><p>Staring at her figure from behind, just as she was about to release her pull of her bow, I softly whispered near her ear.</p><p>"What are you doing?"</p><p>"Kyaaaah!"</p><p>A shrill cry escaped from Amanda's mouth as her face paled. The scream was so loud and so uncharacteristic of her that I was taken aback for a moment.</p><p>Thump—!</p><p>What followed after the scream was a low thump as Amanda fell butt first on the ground.</p><p>'Oh shit.'</p><p>A moment of silence ensued as Amanda quickly regained her calm.</p><p>Turning her head, our eyes met.</p><p>With her cheeks blushing in embarrassment, Amanda glared in my direction.</p><p>"I'm sorry, I did not know you were going to be that scared. I thought you would've at most just flinched."</p><p>"..."</p><p>Supporting her body up with one arm, Amanda took her bow with the other hand.</p><p>Recovering from her embarrassment, her face became extremely cold.</p><p>Gulp—!</p><p>I swallowed a mouthful of saliva.</p><p>The aura the current Amanda gave off was extremely terrifying. Similar to that of a demon that was about to devour me.</p><p>Regret started to seep inside of my body.</p><p>I took a step back.</p><p>...and another one after that. Before I knew it, I took over ten steps back.</p><p>Thump—!</p><p>As I was taking steps back, my back suddenly bumped against something hard. Turning my head to look behind, my heart sank.</p><p>"Oh no."</p><p>Without realizing it, I had already moved back all the way to the other side of the training room.</p><p>Standing opposite me, Amanda's cold and emotionless eyes continued to glare in my direction.</p><p>Staring back at her, with a wry smile on my face, I raised my hands as a sign of defeat.</p><p>"Now Amanda, I know that you're mad...but, could you forgive me this one time?"</p><p>Without saying anything, a powerful wave of mana sprung forth from Amanda's body as she aimed her bow in my direction.</p><p>'Guess not.'</p><p>Suddenly, over a dozen or so translucent blue arrows materialized on her bow. Staring at her from the distance, I silently cursed.</p><p>"...Shit."</p><p>Xiu! Xiu! Xiu!</p><p>Not even a second after my words faded and Amanda released the string of her bow.</p><p>What followed after was an avalanche of arrows, my face quickly cringed at the sight.</p><p>To read more chapters please visit www.panda-novel.com</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-400.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-402.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

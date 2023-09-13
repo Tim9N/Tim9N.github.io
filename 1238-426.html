@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 426 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 426 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-425.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-427.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>On the same day, in a remote location in Issanor. </p><p>With tall trees covering the sky, the only light that came was from the sun above, which had to pass through the many leaves above, creating a yellow net of light. </p><p>Walking up ahead, and leading Amanda inside of the forest was an elegant elven male.</p><p>With a simple smile on his face, he pointed towards a certain direction and said.</p><p>"This way please." </p><p>Amanda gave a simple nod in response. </p><p>At the moment, Amanda had many questions she wanted to ask inside her mind. </p><p>Recalling everything that happened to her not too long ago, everything felt like a blur to her. She was just minding her business in her room, reading a book that she enjoyed when out of nowhere, the elf before her came to knock on her door saying that someone important wanted to meet with her.</p><p>She was a bit apprehensive about the whole situation but seeing how insistent he was being, she had no choice but to go. </p><p>Of course, she did give a heads up to Donna and Monica about her current situation. But apparently, they knew beforehand, dispelling all of her worries. </p><p>"We're here."</p><p>Stopping in front of a large ancient tree, the elven male placed his hand on the tree. It was at that moment that a green light exuded from his hand, and the ground trembled.</p><p>Rumble— </p><p>Following the low rumble, much to the shock of Amanda, the tree started growing in an upward manner.</p><p>This persisted for a couple of seconds before it finally stopped, revealing a small door.</p><p>Taking a step to the side, the elf opened the door and gestured for her to go in.</p><p>"Please."</p><p>Nodding her head, Amanda slowly walked in.</p><p>Upon entering the place, Amanda suddenly heard the sound of the door closing behind her. </p><p>Clank—</p><p>Turning around, she realized that the elf was no longer there and that she was the only person present.</p><p>Wariness instantly flashed across her face, but just as she was about to walk back to the door, a gentle voice entered her ears.</p><p>"Don't worry, we mean no harm."</p><p>Upon hearing her voice, Amanda's head snapped in the direction of where the voice came from, and when she did her eyes opened wide.</p><p>With long silver hair gently cascading down her back, and an otherworldly face that made anyone wonder whether she was a mortal or a goddess, stood a familiar figure.</p><p>A figure that Amanda had seen many times in the past.</p><p>She was none other than the elven queen.</p><p>Immediately upon realizing this, Amanda lowered her head and politely greeted her. </p><p>"I, Amanda Stern, greet the queen."</p><p>The queen smiled at Amanda's action as she raised her hand.</p><p>"There is no need for you to be polite with me."</p><p>"Hm?"</p><p>The moment Amanda heard the queen's words, her brows furrowed.</p><p>'No need for you to be polite with me?'</p><p>Was she just saying this out of politeness? If so, Amanda decided to continue being formal. </p><p>A helpless smile appeared on the queen's face when she saw this. </p><p>Pursing her lips, the eleven queen looked at Amanda. After looking at her up and down, a gentle smile emerged on her lips. </p><p>"You must be wondering why I suddenly summoned you, right?"</p><p>"...Yes."</p><p>After a brief moment of silence, Amanda nodded her head.</p><p>Upon seeing this, the smile on the queen's face receded a little.</p><p>"Come here, I will show you something."</p><p>Then, turning around, she walked deeper into the place. Staring at the queen's back, Amanda followed her from behind. </p><p>Walking for a couple of minutes, the two of them soon stopped in front of a small door. The door looked nothing special. It was just a simple door, but from where she was standing, Amanda could feel a gentle power coming from the room, causing her to instantly feel a warm and gentle sensation wash over her body. </p><p>Opening the door of the room, the first thing Amanda saw was a large pod surrounded by thick branches. On the other hand, deep roots etched onto the side of the room, as small leaves extended from them. </p><p>The room was quite small, and aside from the pod in the middle of the room, there was nothing else particular about it. </p><p>The moment she entered the room, Amanda could see a noticeable change in the queen's demeanor as she looked towards the pod with deep sadness in her eyes. </p><p>Pressing her feet on the ground, the queen moved towards the pod in the middle of the room and gently placed her hand on it. </p><p>Closing her eyes, silence descended on the room as the queen didn't say anything. </p><p>It was only after a while that she finally opened her mouth and said.</p><p>"There was a time, a decade ago when I was weak…"</p><p>Pausing, she looked in Amanda's direction.</p><p>"Back then, I was still in the process of inheriting my mother's powers and so was in a state of weakness." </p><p>"You may not know this, but in order for one to become the queen, one must have the purse of elven blood before inheriting the power of the former queen. This is something that has been happening for generations and generations of our race." </p><p>"Naturally, the demons who knew this tried everything they could to assassinate me. In fact, they almost succeeded."</p><p>Turning to look towards the capsule, the queen's eyes cast with sadness.</p><p>"That was until I met her…"</p><p>The moment her words faded, she looked in Amanda's direction and muttered.</p><p>"Your mother."</p><p>Bang—</p><p>Like a thunderbolt, the queen's words reverberated throughout Amanda's mind as she tried to process what she was saying.</p><p>Her indifferent demeanor crumbled slightly, as she turned to look at the capsule in front of the queen.</p><p>Seeing the look on Amanda's face, the queen motioned her to come.</p><p>"Have a look."</p><p>Without saying anything, Amanda slowly walked up to the capsule. The closer she walked to the capsule, the more difficult it became for her to walk. It felt as though heavy lead had been stuck on her legs, preventing her from moving forward. </p><p>But eventually, Amanda was able to reach the capsule. Once her footsteps paused in front of it, she took a deep breath.</p><p>Ba…thump! Ba…thump!</p><p>Staring at the capsule, she could feel her heart beating deeply inside of her own body. </p><p>Swallowing a mouthful of saliva, she slowly leaned her head forward, and peered through the small gap in the middle of the capsule. </p><p>"Ah."</p><p>A weird sound came out of her mouth the moment her eyes peered through the small gap of the capsules as she stumbled a couple of steps back.</p><p>Covering her mouth with both arms, Amanda's mind shook.</p><p>She couldn't understand what was happening. Recalling the face of the woman inside the capsule, Amanda was sure. She was her mother! </p><p>The resemblance with her was almost uncanny. However, if there was a difference, it was the fact that she looked younger and more beautiful than what she remembered in the past.</p><p>"You must have a lot of questions."</p><p>The queen suddenly asked, snapping her out of her thoughts.</p><p>Turning to look at the queen, Amanda weakly nodded her head. She was currently having a hard time making out what was happening. </p><p>Was this a trick? Was the woman over there really her mother? How did she meet the queen, and how was it possible for her to be here? </p><p>The number of questions Amanda had were endless. She didn't know where to start. </p><p>Seeing the confusion on Amanda's face, the queen once again smiled. Then, with her eyes still locked on the capsule, she suddenly asked.</p><p>"Do you know the reason why your mother left your side when you were young?"</p><p>"...Because she couldn't cope with the pressure coming from my father's guild."</p><p>Amanda answered after a short pause.</p><p>This was the answer that most people she asked told her, and was what she believed throughout her whole life.</p><p>However, in response to her words, the queen merely shook her head. </p><p>"No, it's not."</p><p>Amanda's body froze upon hearing this. Her mind followed along as it blanked out.</p><p>What did she mean, it's not?</p><p>Was the queen trying to insinuate that whatever reason her mother left her not because of what the others told her?</p><p>Her heart started beating even more wildly.</p><p>"Your mother left not because she didn't want to be with you, nor because she couldn't handle the pressure coming from handling such a big guild, but it was because she was...cursed."</p><p>"...Cursed?"</p><p>Amanda's brows jumped up in shock.</p><p>Staring at her, the queen nodded her head.</p><p>"Yes, you may already know what the curse is, it's queen a famous one, 'The mind breaker curse.'"</p><p>Opening her mouth, no words came out of Amanda's mouth as she struggled to find the right words to say.</p><p>Amanda wasn't dumb.</p><p>After hearing what the queen said, she already realized what happened.</p><p>The mind breaker curse was an infamous curse that the demons could apply to humans in order to control their life and death.</p><p>It was a curse that was famous for not having a cure.</p><p>Putting the pieces together, Amanda understood what happened. Somewhat and somehow, her mother got cursed by a powerful demon, and in order to keep her, and her father safe, she chose to directly flee with the excuse of not being able to handle the pressure.</p><p>As her thoughts paused there, Amanda felt a tear stream down her cheek as her heart started to hurt. </p><p>But before she could wipe the tear, she suddenly felt a soft hand touch her cheek. Lifting her head, she saw the elven queen stare at her with a soft smile on her face. </p><p>"It seems like you've figured out what happened."</p><p>Amanda nodded her head.</p><p>Her shoulders trembled at the thought of everything her mother went through.</p><p>Suddenly she felt a hand press onto her shoulder, without looking she knew that it was the queen.</p><p>"Your mother was quite a smart and brave woman." The queen said. "In order to stop the demon from using her to target your father, she directly pretended to not care about him and leave. Furthermore, in order to stop the demon from directly telling your father the truth, she fled out of the human domain and threatened to end her own life within a couple of days."</p><p>Caressing had hair back, the queen continued.</p><p>"You may not know this, but cursing someone with the mind breaker curse is not that simple. Especially the number one guild in the human domain. It probably took the demon an insurmountable amount of resources to even curse her." </p><p>"Not wanting to let go of their one chance to take control of the number one guild in the human domain and waste all the resources that they had invested, the demon pursued her, and during that pursuit, it was there that I met her."</p><p>Taking her hand away from Amanda's shoulder, the elven queen turned to once again look at the figure hiding behind the capsule. </p><p>"It was during her pursuit that she stumbled upon me who was quite injured. Taking pity on me, she took care of me and healed me up" </p><p>"During those days, we developed a close relationship with each other and that was how I was able to learn the truth. And, with her protecting me, I was able to successfully take in my inheritance and gain enough power to defend myself, but…"</p><p>Closing her eyes, the queen tried her best to suppress her emotions. But it was to no avail as Amanda could feel subtle fluctuations coming from the mana in the air. </p><p>"The moment I was able to take in my inheritance, the demon pursuing her realized that they could no longer do anything and just decided to end things by activating the curse."</p><p>The queen suddenly clenched her fist tightly as she bit her lips. Her usual calm expression crumbled slightly.</p><p>"I tried everything I could to save her, but the curse is simply too strong. Despite my powers, all I could do was watch as she slowly died from the curse. I even tried feeding her an elven tear once I brought her back to Issanor, but it was to no avail as her life energy continued to drain away at an alarming rate…"</p><p>Taking a deep breath, heavy sadness flashed across the queen's face as she mumbled.</p><p>"In the end, the best I could do was seal her here." </p><p>Lifting her head, the queen turned to look at the capsule that was connected to the many roots coming from above the room. </p><p>"The capsule over here will constantly feed her life energy keeping her alive, but in the end, despite all of the life energy that was entering her body, the curse is slowly eating away at it. Unless we can find a cure for the curse, there is no way to wake her up." </p><p>A heavy silence descended upon the room once the queen's words faded. </p><p>Having listened to every word the queen said, Amanda turned to look at her mother's figure that was peacefully resting inside of the capsule. Tears streamed down her face. </p><p>'I'm sorry.'</p><p>Amanda muttered inside of her mind as her shoulders shook even more.</p><p>'...and thank you for everything you did for me.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-425.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-427.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

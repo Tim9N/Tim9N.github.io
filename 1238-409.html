@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 409 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 409 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-408.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-410.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>As we were headed for the dinner location, I suddenly recalled something and my feet came to a stop.</p><p>"You go ahead without me," I said as I looked at Kevin.</p><p>Also coming to a halt, Kevin's brow jumped upwards. He was clearly taken aback by my words.</p><p>"You going somewhere?"</p><p>"Yeah, I forgot I had another appointment."</p><p>I replied while scratching the side of my cheek.</p><p>Prior to Kevin wanting to talk to me, I had already made an appointment with someone else. It was regarding a very important matter and so was something that I couldn't avoid.</p><p>Staring at me for a couple of seconds, Kevin shrugged his shoulders.</p><p>"…Suit yourself, you already know our location anyways. Just come when you're done."</p><p>"Sure."</p><p>I replied with a smile.</p><p>"Alright, see ya later."</p><p>Raising his hand, Kevin bid me goodbye before leaving.</p><p>Staring at his disappearing back, I deeply sighed.</p><p>'If only I could tell him about my secret.'</p><p>A little part of me felt guilty for not being able to tell him everything, but I had my reasons.</p><p>Although I appreciated the fact that Kevin trusted me to the point where he would share his biggest secret, I, unfortunately, wasn't the same.</p><p>I couldn't do it.</p><p>Even if I wanted to, I just couldn't.</p><p>At least, I wasn't comfortable sharing it now.</p><p>The repercussions behind my secret were just too big.</p><p>All the messed-up decisions I made in the past would quickly come back and haunt me, and a drift in our relationship would definitely appear.</p><p>I wasn't ready for that, nor could I afford to do that. In the first place, I was also unsure about my memories. Were they real or were they fake?</p><p>…I didn't know.</p><p>Until I figured my shit out, I was planning on keeping the secret regarding my reincarnation to the grave. Plus, his secret wasn't so much of a secret to me since I already knew it.</p><p>Gazing at Kevin's figure that had disappeared into the distance, I softly muttered.</p><p>"Sorry."</p><p>Then, lowering my head and staring at my wrist, I proceeded to head in the opposite direction.</p><p>Maybe one day.</p><p>***</p><p>An oil lamp burned within an undisclosed location, spreading a murky yellow light.</p><p>A middle-aged man with clean facial features and nice clothes sat upright behind a desk, expressionless as he gazed at the middle of the table where a holographic image stood.</p><p>Reflected behind it was an imposing figure. A cold and stern aura rose from between the figure's brows, while a faint pressurizing feeling spread outwards from his body, and this was despite the fact that he was behind a holographic video.</p><p>It was clear that he was someone of enormous power.</p><p>After a long silence, the middle-aged man sitting behind the desk finally opened his mouth and dully said.</p><p>"It seems like Fabian has also failed to make it past the rounds of elimination."</p><p>—I've heard that Emma had made it to the round of 64.</p><p>The man reflected behind the hologram replied.</p><p>He was none other than Micheal Parker, the man that had previously attempted to massacre the students of the Lock, back in Hollberg.</p><p>On the other hand, the middle-aged staring at the holographic video of Micheal was Jasper Roshfield, Emma's uncle.</p><p>Overheating Micheals's comments, Jasper's eyes narrowed slightly like a viper as he venomously spat.</p><p>"Despite everything that I have done to hinder her growth, she was still able to make it this far. Such stubbornness...she truly is his daughter."</p><p>Killing intent soon flashed across his eyes as he gazed back at Micheal Parker.</p><p>"Have all the preparations been made?"</p><p>—They have.</p><p>Micheal apathetically nodded his head behind the holographic image.</p><p>—She and her friends are currently headed out for dinner. I'm planning on personally going there in case something goes wrong. This is the chance we have been waiting for.</p><p>"There will be other people with you, right?"</p><p>—Yes.</p><p>Micheal replied in a cold and detached tone.</p><p>It was clear that he was still in a terrible mood after learning of his son's failure to qualify.</p><p>Listening to Micheal's words, Jasper frowned.</p><p>"If you go there, won't the elves be able to detect that something is wrong from the fluctuations of your body?"</p><p>Since the elves were so sensitive to mana, if Micheal acted, without a doubt they would quickly be able to sense him. This was a cause of concern for Jasper who wanted nothing more than for this plan to work.</p><p>As long as Emma died, the whole of the Roshfield household would be his.</p><p>He couldn't wait for her to die.</p><p>—They will.</p><p>Worry flashed across Jaspers' eyes as he asked.</p><p>"Are you not worried?"</p><p>The scale of the operation may not have been big, but any mistake could prove to be extremely deadly.</p><p>But to his surprise, Micheal merely shook his head.</p><p>—No.</p><p>"Why's that? Why are you not afraid of the elves finding out?"</p><p>—Why would they interfere?</p><p>Micheal coldly asked.</p><p>—This is a matter amongst humans. If they do notice that something is wrong, they will not do anything unless it directly involves other elves.</p><p>"...You make a good point."</p><p>Jasper nodded after a while. Secretly, he sighed in relief.</p><p>One of the few things that bugged him regarding the upcoming operation was the possible interference from the elves, but from the looks of it, he was probably overthinking things.</p><p>Why would they interfere in human conflicts? Unless they did something crazy, they would just let them be.</p><p>"Alright, when are you going to take action?"</p><p>—Now.</p><p>Bi—! Bi—!</p><p>Immediately after his words, the communication shut down.</p><p>With his gaze lingering in the area where Micheal's figure used to be projected, a sinister smile emerged from the corner of Jasper's lips before he coldly muttered.</p><p>"I hope you won't blame me for what I'm about to do next, Emma."</p><p>If there was a time to finally get rid of his niece, a thorn that he had been keeping for a long time, it was now.</p><p>Since they were no longer in the human domain, they were no longer bound by their restrictions.</p><p>If anything happened to Emma, no one would be able to say a thing.</p><p>Just the thought caused Jasper's smile to deepen.</p><p>It was finally time for him to take reigns of the Roshfield household.</p><p>***</p><p>At the same time.</p><p>"It took you a while."</p><p>Arriving at the designated location, Kevin quickly met up with the others who seemed to have already arrived a while back and were just waiting for him.</p><p>They were the usual people. Emma, Jin, Amanda, and Melissa.</p><p>Surprisingly though, Kevin also noticed the appearance of Arnold and Troy. He was a bit taken aback by their appearance as he had never hung out with them, but he was quick to recover.</p><p>It made sense, they were Jin's friends.</p><p>With her hat flipped backward and her hands in her short jeans, Emma walked up to Kevin and glanced behind him.</p><p>"Is he not with you?"</p><p>For the sake of remaining ambiguous regarding his identity as Troy and Arnold were present, Emma did not use Ren's real name and just referred to him as 'he' and 'him'.</p><p>Kevin quickly picked up her cue and also avoided using his name.</p><p>"He said he had something to do. He'll probably join us later."</p><p>"Oh, I see."</p><p>Emma nodded her head.</p><p>"By the way, where are we going to eat?"</p><p>Kevin curiously asked, trying to switch the topic. Glancing at him, Emma answered.</p><p>"I'm not too sure either, but it's a bit outside of the city. I've been told that it's a nice place to eat so I figured we may as well go there."</p><p>Surprise flashed across Kevin's eyes.</p><p>"Outside of the city?"</p><p>Just where in the world was Emma trying to bring them?</p><p>"...Well, not exactly outside of the city, within the borders of the barrier, but more in the more rural area."</p><p>Kevin's eyes squinted at her words. Not really sure how to respond.</p><p>Noticing Kevin's odd reaction, Emma shrugged her shoulders softly muttered. 'They said it was a good place, so don't judge.'</p><p>Then, turning her attention towards the others, she asked.</p><p>"Should we get going then?"</p><p>At her question, everyone proceeded to nod their heads. Having just fought intent battles, everyone was visibly hungry.</p><p>They didn't really care about the location of the restaurant. They just wanted something to eat.</p><p>Kevin was of the same sentiment as he quickly dropped the topic.</p><p>"Alright, let's go."</p><p>Understanding their feelings, Emma brightly smiled before taking the lead.</p><p>Without saying anything, Kevin followed behind as Emma lead everyone towards the place where they were going to eat dinner.</p><p>***</p><p>Outside of the human dorms.</p><p>"Is this the place?"</p><p>Going all the way to the residence where the humans stayed, I stopped in front of a certain room.</p><p>Glancing towards the side of the room, I double-checked the number.</p><p>"Room 839? I'm sure this is it."</p><p> After making sure that I was at the right door, raising my hand, I knocked on the door. </p><p>To Tok—!</p><p>Following the knock, for a short period of time, I was met with silence. However, that did not last for long as the door soon opened.</p><p>Ci Clank—!</p><p>"You're here."</p><p>Appearing on the other side of the door was a familiar figure. With the same calm and composed look from before, the figure was none other than Han Yufei.</p><p>Moments after our match ended, I asked him if he could meet me. He said that he had time today, so we decided to meet a couple of hours after the tournament.</p><p>I had almost forgotten about it due to the talk that I had with Kevin.</p><p>"...Come in."</p><p>Taking a step to the side, Han Yufei invited me into his room.</p><p>Nodding my head, I entered the place. As I entered, Han Yufei closed the door behind me.</p><p>Ci Clank—!</p><p>The moment I stepped foot into the room, a nice and aromatic herbal smell lingered in the air causing my body to relax at its smell.</p><p>I didn't know how to explain it, but it was just very relaxing.</p><p>Aside from the nice herbal smell in the room, there was nothing particularly special about the room as it was basically a downgraded version of my room. Perhaps the only difference was the fact that it was cleaner than my room.</p><p>As I was looking around the place, Han Yufei pointed toward one of the chairs in the room.</p><p>"Please have a seat."</p><p>"...Thank you."</p><p>Complying, I sat down on the chair.</p><p>Before I could even properly adjust my position, Han Yufei quickly got straight to the point and asked.</p><p>"What did you want to talk about?"</p><p>I was a bit taken aback by his abruptness, but I quickly regained my calm.</p><p>Resting both of my elbows on my thighs, I leaned my body forward.</p><p>"I came here to talk to you about something important."</p><p>I paused and raised my head to directly meet Han Yufeis's eyes. I wanted to properly gauge his reaction to what I was about to say.</p><p>Just in case, I also secretly channeled my mana. I knew for a fact that what I was about to ask of him was going to be outrageous. So outrageous that he might end up attacking me out of nowhere.</p><p>Of course, I came prepared as I wasn't just going to provoke him blindly, but I still had to be cautious.</p><p>"..."</p><p>Feeling my gaze, Han Yufei didn't reply as his brows tightened.</p><p>'How should I word this?... I don't think flowery words will work with him, so I guess I should just be straight to the point?'</p><p>I really wasn't sure, but after staring at Han Yufei and meeting his intense gaze, I knew that anything but that option would prove detrimental.</p><p>"Huuu..."</p><p>Taking a deep breath, and carefully wording my words, I went straight to the point.</p><p>"...I want you to teach me martial body. Your family for star and a half martial technique."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-408.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-410.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

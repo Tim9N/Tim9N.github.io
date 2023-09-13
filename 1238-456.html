@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 456 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 456 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-455.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-457.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'Ugh, I just woke up and this is the situation I find myself in.'</p><p>Melissa alone was enough to give me a headache, but the fact that almost everyone was here increased the pain in my head. Leaning back on the bed and dully staring at the ceiling of the room, for a moment I wished to slip back into a coma.</p><p>Would rather have that than be in this type of situation.</p><p>Unfortunately, this was only wishful thinking on my part as following Melissa's words, everyone's head snapped in my direction.</p><p>I could only bitterly smile at the sight.</p><p>"What are you looking at me for?"</p><p>Raising my hand, I pointed in Melissa's direction.</p><p> "Don't listen to anything she says. Especially when she's part of the harem." </p><p>"Huh?"</p><p>This time it was Melissa's turn to feel what I felt as everyone turned to look at her with strange looks on their faces.</p><p>Opening her eyes widely, Melissa glared at me.</p><p>Sensing her gaze, I slowly mouthed with my mouth.</p><p>'Trying to ruin me? I'll drag you down with me.'</p><p>As soon as I said those words, I could vividly see the side of Melissa's cheeks tense. I smirked when I saw this.</p><p>'That's right, I may have lost the battle, but I won the war.'</p><p>Like hell, I would ever let Melissa one-up me.</p><p>"Khh..."</p><p>Just as things were getting heated between Melissa and me, yet again, a throbbing pain coursed through my body, prompting me to let out a groan.</p><p>This instantly attracted the attention of everyone present.</p><p>As she was already seated next to me, the first one to help me was Amanda who worriedly asked.</p><p>"Are you okay?"</p><p>"...Somewhat."</p><p>I replied with a forced smile. To be honest, I was anything but fine. Although I had survived, the damage that my soul took was significant.</p><p>'I need to find something to heal my soul.'</p><p>Though extremely rare, there were definitely ways to heal someone's soul.</p><p>The damage to my soul wasn't to the extent that it would affect me in any way, but looking back at what just happened, I felt that I needed to somehow find a way to heal my soul.</p><p>The sense of discomfort that it brought wasn't something I quite liked.</p><p>Just as I was about to make my mind up about how to heal my soul, a sudden thought crossed my mind.</p><p>'Wait, what if this has also been planned by him?'</p><p>At this realization, my body froze completely.</p><p>Ever since meeting the other Ren, or to be more precise, the entity inside of my body, he had always been acting in a way that made it seem as though everything was going according to how he planned.</p><p>...and so far, it seemed to be true.</p><p>Everything that had happened to me seemed to have already been planned beforehand by someone. From the incident back at the hotel with Matthew to the dome incident. Everything just felt so warped and altered that made me think of the possibility of it being something that the other entity had planned.</p><p>It was only a hypothesis for now, but it wasn't one that I was willing to discard.</p><p>If it was truly like that, then it meant that my every move was being predicted.</p><p>Realistically speaking, the logical direction that I should take would be to heal my soul, but what if that was also part of the plan?</p><p>What if he wanted me to heal my soul? ...but if it was truly like that, why would he reveal to me that he had purposely damaged my soul so that he could have more control over it?</p><p>'This...'</p><p>The deeper I started thinking, the greater the throbbing sensation in my head became.</p><p>The other Ren, entity, or whoever he was, he was definitely trying to mess up the way I was thinking.</p><p>So much so that I finally realized why I had never been able to get the upper hand over him.</p><p>It wasn't that he had everything planned, but it was just that he was playing a psychological warfare against me.</p><p>Just like now.</p><p>Because of everything that he had said, I no longer had any idea how to proceed.</p><p>'Should I heal my soul...or not?'</p><p>Secretly, my fists clenched tightly. This was definitely not a pleasant feeling.</p><p>"He looks quite tired, I think we need to give him some space."</p><p>Whilst in thought, I suddenly heard a sweet voice from the distance. Turning my head, my eyes with Amanda's mother.</p><p>Once our eyes met, for a brief moment neither one of us spoke. Then, turning her head, she looked toward the elven queen.</p><p>"What was his name again?"</p><p>"Ren."</p><p>The queen answered.</p><p>Nodding her head, Amanda's mother turned her to face me one more time. Or rather, before that she glanced in Amanda's direction before looking back at me with a strange look on her face.</p><p>Her gaze felt weird.</p><p>"Alright, Ren, there are many things that I want to say to you, but it looks like you're in no condition for it, so I will cut it short."</p><p>Lowering her head slightly, she said.</p><p>"Thank you. Thank you for what you did for me."</p><p>Following her words, for a brief moment of time, silence enveloped the room. Raising my head and seeing that she still had her head lowered, I pursed my lips together.</p><p>"It's fine. You don't have to mention it."</p><p>Most of it was the other Ren's doing, but that didn't mean I wasn't ever planning on helping her. It was just that it would've taken a lot longer.</p><p>"Even then, I would still like to thank you. I was already grateful for the fact that you were willing to dispose of something so precious in order to heal me, but after seeing the sacrifice you've made just to heal me, I felt compelled to do this."</p><p>"It's fine, really."</p><p>I answered back, feeling a little bit awkward about the situation.</p><p>Raising her head, Amanda's mother's eyes paused on Amanda for a good while. Then, with a soft smile on her face, she headed for the door.</p><p>"Alright, I guess we should head back now. You should definitely get some rest."</p><p>"...What about her?"</p><p>Just as she was about to leave, the elven queen pointed in Angelica's direction. My face froze when I saw this.</p><p>As I had not yet woken up when she revealed everything to them, I had no idea about what had happened whilst I was asleep. My heart tensed when I saw the elven queen stare at Angelica.</p><p>Just as I was about to say something, Amanda's mother spoke up.</p><p>"Leave her be."</p><p>"Huh?"</p><p>A strange sound escaped from my mouth as I heard her words.</p><p>I wasn't the only one that reacted this way as almost everyone in the room aside from Melissa who had no idea about what was happening, showed a similar look.</p><p>Recovering from the shock, the elven queen asked.</p><p>"How come?"</p><p>Instead of answering the elven queen, Amanda's mother shook her head.</p><p>"There is no point. Since she's now contracted to that boy, I mean Ren, all I would be doing is adding trouble to the person who saved me."</p><p>"But this would've never have happened had it not been for her. We don't have to kill her, but we can still lock her up."</p><p>The queen replied, obviously displeased by Amanda's mother's words. Her displeasure was understandable. Being a queen, she naturally had to be more ruthless than others, and as a sovereign, being lenient towards enemies was a big taboo.</p><p>Glancing in the direction of the elven queen, Amanda's mother merely shrugged her shoulders.</p><p>"She's a demon, to begin with. She was just following orders. The people I should be angry about should be the ones behind her. Not her."</p><p>Pausing, she looked in Angelica's direction. Her brows furrowed a bit.</p><p>"Don't get me wrong, just because I'm not acting up doesn't mean that I have forgiven you. Had it not been for my daughter, I would've loved nothing more but to have followed Maylin's suggestions, but then again...such is life."</p><p>Following her words, closing her eyes and letting out a sigh, she said.</p><p>"It's also my fault for being careless. Had I been more attentive, none of this would've happened."</p><p>With a soft smile on her face, Amanda's mother took a step out of the room and left.</p><p>The elven queen followed from behind. There were still obvious signs of displeasure on her face, but it didn't look like she would go against Amanda's mother's wishes.</p><p>Following their disappearance, the next one to leave was Melissa. Still mad about the words I said to rebuke her, she only gave me a casual look before disappearing.</p><p>After Melissa, it was Kevin who left after a simple goodbye.</p><p>"You should get some rest."</p><p>Following Kevin, Amanda also left. She looked uncertain about whether to leave or not, but as soon as her eyes paused on Angelica, she quickly made up her mind and also bid me goodbye.</p><p>Clank—</p><p>Once the doors closed, the only people that remained in the room were Angelica and I. Lifting my head up with some difficulty, I bitterly said.</p><p>"Rough day, huh?"</p><p>***</p><p>Issanor, infirmary.</p><p>Silently gazing toward the city of Issanor from her bed, Emma's figure silently rested by the side of the bed. She had a dull look on her face.</p><p>Clank—</p><p>Suddenly the door opened up and Kevin walked in.</p><p>Walking into the room, the moment he saw Emma's condition, he softly sighed and sat beside her bed.</p><p>"You're still up."</p><p>"Mhm."</p><p>Emma softly nodded her head. Following her words, silence descended on the room.</p><p>Pursing his lips, Kevin tried to strike up a conversation.</p><p>"You know, I'm going to win the tournament soon. Once I get my hands on the elven tear, I ca—"</p><p>"Don't."</p><p>Before Kevin could finish his sentence, Emma quickly cut him off. Weakly turning her head, she replied.</p><p>"I don't want you to waste your chance on me. I'm only going to be holding you back. Use that opportunity to make yourself stronger."</p><p>"What are you talking about?"</p><p>Kevin's brows furrowed.</p><p>"Kevin, during this time that I had to myself, I came to realize just how useless I am. Not only do I always drag you into problems, but not once have I ever been of help to you."</p><p>As she was speaking, the corner of Emma's eyes started to water.</p><p>"I know my limit. I will at most reach &lt;S&gt; rank in my life while you will sooner or later reach a rank that is far above that. Use this chance to grow stronger. If you really want to heal me, do it after you've become strong enough to get the elven tear without wasting all of your achievements."</p><p>Clenching onto the bedsheets of the bed, Emma bit her lips.</p><p>"I...I can wait. If it means that you won't have to waste this opportunity that you've been given on me, then I can wait."</p><p>Listening to Emma's words, Kevin didn't know how to reply. It was only after a couple of seconds had passed that he finally said.</p><p>"Emma, I never thought of you like that."</p><p>Grabbing her hand, Kevin scratched the back of his head with his other hand.</p><p>"Also, I can't really do that."</p><p>"Why!?"</p><p>Snapping her head in Kevin's direction, Emma raised her voice.</p><p>"Why must you waste your opportunity like that? Just let me be like this. I've come to terms with reality. I'll just go back home and handle the matters there. It's not like it's the end of the world. I can wait till you get strong enough to heal me. Focus on yourself, and focus on helping me later."</p><p>Raising her hand, she repeatedly tapped her finger on Kevin's chest.</p><p>"You need to set your priorities straight. And right now your priority is to become stronger. If you don't want anything similar to happen again, just grow stronger. So strong that nothing like this ever happens again."</p><p>Grabbing onto Emma's finger, a bitter smile appeared on Kevin's face.</p><p>"Emma, do you know how I managed to get to where I am in the tournament?"</p><p>"Huh?"</p><p>A confused look appeared on Emma's face as she heard Kevin's words. As if stating the obvious, she replied.</p><p>"...By beating all of your opponents?"</p><p>The smile on Kevins' face grew even more bitter as he shook his head.</p><p>"No, it wasn't that."</p><p>Lowering his head, Kevin let out a long sigh. Matching Emma's gaze, he bitterly said.</p><p>"...The only reason why I've come this far in the tournament is because Ren was bored."</p><p>***</p><p>A/N : This arc is coming to a close, and so is Volume [3].</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-455.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-457.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

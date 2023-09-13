@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 429 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 429 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-428.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-430.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>What followed after Ava's match was a string of other matches.</p><p>As it was still not my turn, I sat back down in the stands and just enjoyed the matches. Since some of them could be my future opponents, I didn't want to miss a single detail regarding their fighting style.</p><p>Sat next to me was Amanda who was also focused on the other matches.</p><p>Matches aside, glancing around I could see no sign of the others apart from Jin who was sitting a few rows away from us. But it was to be expected. Ava was done with her match and so she rightfully decided to go back and rest whilst Kevin was about to have his match next.</p><p>Regarding Melissa...yeah...nothing else needed to be said.</p><p>On that note, turning my wrist and gazing at my watch, I also started to get ready for Kevin's upcoming match.</p><p>The moment that Kevin and Aaron would appear on the screen would be the time I reactivated the device.</p><p>After talking with Kevin last time I had a nagging feeling that he was about to do something to Aaron.</p><p>The extent of his action, I really didn't know. Maybe he would even go as far as killing him, but, well, considering the fact that people did not change overnight, I had my doubts regarding this possibility.</p><p>Either way, it didn't really matter.</p><p>I was ready for whatever the outcome of his match was.</p><p>"Oh, right, you were talking about your mother previously, what was that about?"</p><p>Thinking about Kevin's match, it was then that I suddenly remembered the previous conversation I was having with Amanda and turned to face her.</p><p>Upon hearing my words, Amanda focused her attention back on me.</p><p>Then, gazing in a certain direction, she leaned forward and softly mumbled near my ear.</p><p>"...I will tell you after today's matches end. Now is not the right place to say."</p><p>"Okay."</p><p>I nodded my head.</p><p>Amanda's words made sense. Considering that the topic at hand was something very personal, I understood that she may have been uncomfortable talking about it in this type of environment.</p><p>I was just happy that she was willing to share something like this.</p><p>It meant that she trusted me, right?</p><p>Maybe?</p><p>'Ugh, well whatever, I should focus on the matches at the end.'</p><p>And it was right at that moment when the intensity of the crowd's cheer increased marking the end of another match.</p><p>"It's Kevin's turn." Amanda suddenly said from the side as she directed her attention towards one of the platforms in the distance.</p><p>Matching her line of sight, I turned to look at one of the projections, and there I saw Kevin's image appear in it.</p><p>The moment he appeared, I subtly lowered my head and tapped onto the screen of my watch.</p><p> Once I did, raising my head, I looked in Kevin's direction once again. </p><p>'...I leave the rest up to you.'</p><p>***</p><p>Upper echelon platform.</p><p>Calmly seated amongst the other leaders of each respective race, Octavius's eyes were currently locked on a specific platform.</p><p>Kevin Voss vs Aaron Rhinestone.</p><p>There weren't many things that interested Octavious, but given Kevin's Voss enormous potential as well as the fact that he was part of the Union, he naturally held the upcoming match with more regard than the previous ones that had already occurred.</p><p>However, the same thing couldn't be said for the other people seated close to him, as neither Gervis, Brutus or the elven queen seemed particularly excited about the upcoming match.</p><p>TWIIIING—! TWIIIING—!</p><p>Just as the match was about to start, Ocatavious felt a small vibration coming from his watch.</p><p>Lowering his head and turning his wrist slightly, his brows furrowed upon seeing the message.</p><p>[We have once again received signals of 876's presence. We are currently in the process of locating him. How should we proceed?]</p><p>Tapping onto the side of his chair with his finger, Octavious replied briefly.</p><p>[Keep doing what you're doing. Once you locate 876, report it to me. I'll handle it.]</p><p>[Understood.]</p><p>Taking his attention away from his communication device, Ocatvious once again focused his attention on the upcoming match.</p><p>All thoughts about 876, disappeared from his mind.</p><p>***</p><p>'Why did I join the Union?'</p><p>Kevin wondered to himself as he stood at the edge of the platform.</p><p>The reason he joined the Union was for the sake of having an important backer. After the incident back at the Lock, where Ren died, Kevin wanted nothing more but to take revenge on Aaron.</p><p>After all, he was the one that caused the death of his friend.</p><p>Over the years, he had set himself a goal, and that goal was to get revenge on Aaron.</p><p>He had made a lot of preparations for it as well. In order to get revenge on Aaron, Kevin had to thoroughly research his backers and connections. It wasn't an easy task as Aaron's backing was extremely powerful.</p><p>Even then, Kevin did not give up and continued to deeply investigate him. It was then that he found a lot of material that he could use against him.</p><p>But just as he was going to further his plans, a mysterious red book suddenly materialized in his room and that was where he learned the fact that Ren had not died.</p><p>From there he managed to learn a lot of things about what had actually happened and came to the conclusion that Ren had other plans for Aaron and dropped all his previous plans altogether.</p><p>However, that was then, and this was now.</p><p>Things had changed, and he was no longer seeking revenge against Aaron for all the things he did in the past.</p><p>No.</p><p>Now, he was simply trying to eliminate a thorn that had grown too big for its own good.</p><p>FWUAP—!</p><p>With a low sound, materializing on the opposite end of the arena was a familiar figure. He looked the same as the day the incident with Emma occurred.</p><p>Disheveled hair, unfocused eyes, and glaring black circles underneath his eyes.</p><p>The moment he appeared, Kevin's eyes grew colder.</p><p>"It's been a while."</p><p>Aaron muttered the moment his eyes met Kevin's.</p><p>"Did you like what I did to your little friend last time? Is she okay? ...I really didn't mean to harm her. Was just an accident."</p><p>Every word that came out of his mouth was filled with mockery. He was obviously trying to get a rise out of Kevin.</p><p>Had it been the Kevin from before, then perhaps he would've gotten something.</p><p>But after having had that talk with Ren, Kevin spent a lot of time contemplating his previous actions, and it was then that he realized that he was too emotional and soft.</p><p>He realized that he needed to change in order to become stronger.</p><p>Therefore, every word that came out of Aaron's mouth simply went from one ear to the other.</p><p>This obviously did not go unnoticed by Aaron whose face twisted.</p><p>"Listen to me!"</p><p>He shouted. However, yet again, Kevin ignored him.</p><p>Closing his eyes, he extended his hand and a sword suddenly materialized in his hand. Like a ripple less aged well, his mind instantly calmed down and all the noise coming from the outside disappeared.</p><p>"Huuuuu..."</p><p>Taking a deep breath and opening his eyes once again, Kevin noticed the fact that the referee had appeared on the stage.</p><p>Meeting the referee's line of sight, Kevin nodded his head.</p><p>Turning his attention away from Kevin, the referee turned to look at Aaron who had calmed down, and nodded back.</p><p>Once he got consent from both sides, the referee raised his hand and shouted.</p><p>"Begin!"</p><p>Bang—!</p><p>Not even a second after the referee's words faded and Aaron's body disappeared from the spot. Well at least to those that couldn't keep up with his speed.</p><p>His speed was so fast that he had left an afterimage of himself on the spot he was previously standing. It was only after a couple of seconds that people realized it was an after-image, and once the realization came, Aaron's real figure suddenly appeared behind Kevin.</p><p>'So fast.'</p><p>Everyone thought in their mind as they focused their attention on Aaron.</p><p>Unlike the others, Kevin was able to instantly tell where Aaron left the moment he moved. Sensing something cold brush past the back of his neck, Kevin simply ducked down.</p><p>Swooosh—!</p><p>Right as his head moved down, a cold blade suddenly materialized, slashing in a horizontal manner. Unfortunately for him, Aaron's attack missed.</p><p>Despite missing his attack, Aaron quickly followed up with another attack. Using his other dagger, he slashed downwards.</p><p>But Kevin was one step ahead of him.</p><p>Pressing his foot onto the ground, the ground beneath cracked apart as Kevin propelled his body backward, slamming directly against Aaron's.</p><p>Bang—!</p><p>Once their bodies came into contact, Aaron's found his stance breaking apart.</p><p>This was what Kevin was aiming for. Giving a short glance in the direction of the referee, Kevin knew that he only had one shot at this.</p><p>'Overdrive.'</p><p>He softly muttered inside of his heart.</p><p>A tremendous wave of mana suddenly burst out of his body as his rank quickly rose to &lt;B+&gt; rank, almost reaching the threshold of &lt;A-&gt;.</p><p>This was not all, following the usage of [Overdrive] Kevin quickly bit his teeth where two advanced [Speed enhancing potions] were hidden. The moment he bit them, a wave of cold fluid instantly traveled throughout every corner of his body as the explosiveness of Kevin's muscles increased further.</p><p>If Kevin's previous speed was around &lt;A-&gt; rank, then it was currently even faster than that at &lt;A&gt; to &lt;A+&gt;! Of course, this was only for a very short period of time, but this was enough.</p><p>Everything that happened next was so fast that barely anyone could react. Rotating his body at a forty-five-degree angle, Kevin grabbed onto his broadsword with two hands and slashed upwards diagonally.</p><p>SHIIIIIING—!</p><p>'A curtain of red.'</p><p>That was what the viewers and the spectators would say when describing the scene that they were currently witnessing.</p><p>Everything happened so fast that the only thing they saw was Aaron's body freezing in the middle of the air. What followed after was a jet of red.</p><p>Spurt—!</p><p>Time seemed to have frozen at that moment.</p><p>With his eyes opened wide and still locked onto Kevin, the last thing Aaron saw was Kevin's blood-red eyes glaring in his direction.</p><p>The color of his eyes completely matched the red liquid dying his vision. Then, lowering his head, Aaron watched in horror as his lower body split apart from his body.</p><p>The ground soon inched closer and what replaced his vision was complete darkness.</p><p>Thud—! Thud—!</p><p>With two thuds, Aaron's dissected body fell onto the ground as blood continuously leaked from the waist down.</p><p>Swooosh—!</p><p>Not even a second after Aaron's body fell onto the ground, the referee suddenly materialized next to him and cast a spell on him. But it was already too late.</p><p>Aaron had died.</p><p>A deafening silence enveloped the arena as everyone tuned their focus on Kevin who stood in the middle of the arena, gazing at Aaron's body with an indifferent look.</p><p>As his eyes paused on the now dead Aaron, Kevin did not feel an ounce of happiness.</p><p>'...This is what I should've done a long time ago.' He thought inside of his mind.</p><p>Regarding the repercussions of having killed Aaron in front of the whole world? Kevin merely scoffed.</p><p>He was going to win the tournament. He was going to prove to the world his worth.</p><p>With the Union backing him and him showing just how valuable he was, so what if Aaron's parents were angry at him? To their anger, he would welcome it with open arms.</p><p>Since this was bound to happen one day or another, he may as well just destroy them as well.</p><p>'Too soft, huh?'</p><p>Taking one last look at Aaron's corpse, Kevin swore right then and there that he would destroy anyone that stood in his path.</p><p>Aaron's guild being his first stepping stone.</p><p>Whilst Kevin was deep in his own thoughts, with a complicated look on his face, the referee slowly stood up.</p><p>He was clearly not happy regarding the fact that he was unable to stop Aaron's death, but then again, killing was allowed.</p><p>He was only slightly embarrassed since the queen had previously told everyone to reduce the chances of someone dying. He could only blame his luck, however.</p><p>Who would've expected Kevin to suddenly pull such a move?</p><p>Shaking his head, the referee announced.</p><p>"Match winner, Kevin Voss. He will pass to the round of 16."</p><p>Following his announcement, the originally quiet arena suddenly burst with cheers as everyone stood up and applauded Kevin.</p><p>Although not many were able to see what had happened as it all happened too fast, they all realized something.</p><p>Kevin Voss was a lot stronger than they originally anticipated.</p><p>Once everyone realized this, almost every human forgot about Aaron's death as they all looked at Kevin with sparkling eyes.</p><p>Finally, hope ignited inside the heart of the many humans watching as they all shared the same thought. 'Could he perhaps win?' After witnessing what just happened, this became a very real possibility.</p><p>The human domain quickly boiled with excitement at this possibility.</p><p>***</p><p>While this was happening, standing beneath the platform, with my mouth wide open, I stared at Kevin's figure in the middle of the projections.</p><p>"Holy shit."</p><p>A curse inadvertently escaped from my mouth as I looked at Kevin.</p><p>'Although I did say to him that he was too soft, I didn't think he would change so much from such a simple talk.'</p><p>I was obviously shocked by the sudden development. Kevin had really changed beyond my expectations.</p><p>Honestly, I felt quite gratified seeing his change. It meant that he truly took the words I said to heart and took it upon himself to change for the better, or rather, for the sake of the future.</p><p>On a good note, Aaron's death did not interfere with any of my plans.</p><p>Lowering my head and staring at his watch, a yawn escaped from my mouth.</p><p>"Huam."</p><p>'Guess it's my turn to get ready.'</p><p>Following Kevin's match, there were two other matches, and after that was mine. Since there weren't any more matches for me to watch, I just decided to get ready for my upcoming match.</p><p>If there was one thing I was sure about, it was that if I didn't go all out, I might end up in a worse state than Aaron.</p><p>Therefore, taking one last look at Kevin's projection, I bid Amanda goodbye and quickly got ready for my match.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-428.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-430.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 433 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 433 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-432.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-434.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Human domain.</p><p>"…"</p><p>A deathly silence enveloped the studios where Zack and Lorena worked at as neither of them could open their mouths.</p><p>The scene that they had just witnessed, how could they describe it in words? It was so shocking that they were unable to say anything.</p><p>It wasn't just them, but everyone who was watching felt the same.</p><p>Especially the last few minutes of the match where they watched as Ren pummelled over Kimor's body, punching him until he completely passed out.</p><p>Each and everyone one of his punches deeply resonated with their palpitating hearts, further imprinting the scene into their hearts.</p><p>"Wh…what have we just seen?"</p><p>Zack softly mumbled as he slumped back down on his chair.</p><p>His eyes filled with disbelief.</p><p>He really couldn't understand what had just happened. At one moment he thought that it was going to be a one-sided beating, from then thinking that it was going to be a tie before finally ending in Ren's victory.</p><p>The whole match was like a roller coast of emotions for him, and for everyone that was watching.</p><p>It was simply mind-blowing.</p><p>'Could I have won if I was in the same position as him?'</p><p>Zack thought as he tried to recall the events of the match.</p><p>'No, it's impossible.'</p><p>He quickly shook his head.</p><p>He didn't think so.</p><p>Lifting his head, Zack stared straight into one of the cameras. For a good minute, he didn't say anything. He just quietly stared at the cameras.</p><p>Then, opening his mouth he said.</p><p>"He won."</p><p>The moment those words left his mouth, the eyes of all the viewers watching returned to him. Lifting his papers and stacking them up, Zack took a deep breath before solemnly saying.</p><p>"…Ren Dover has defeated Kimor and has passed to the round of sixteen."</p><p>***</p><p>Upper echelon platform.</p><p>"What an amusing fight."</p><p>Gervis boisterously laughed out loud as he stood up and praised. Staring at the arena down below, his eyes shine with deep interest.</p><p>Turning his head to look at Brutus, he couldn't help but throw a light jab in his direction.</p><p>"Who would've thought that your strongest warrior would be defeated at the hands of a human. You didn't see that one coming, right?"</p><p>Despite Gervis's taunts, Brutus's complexion remained the same as his heavy breathing resounded throughout the area.</p><p>"Khrrr…khrr…"</p><p>With his eyes locked onto the arena, more specifically Kimor, he turned to look in Ren's direction before saying.</p><p>"Khrr…the human deserved to win. A loss is a loss, and Kimor has lost."</p><p>"True."</p><p>Gervis nodded his head.</p><p>Although he had not interacted much with Brutus in the past, he had a good impression of Brutus. This was simply because of his honest personality. He wasn't the type of person that would hold grudges at a loss.</p><p>This was just how he, and the orcs were. They respected those that beat them without making any excuses.</p><p>Taking his attention away from Brutus, Gervis softly mumbled to himself.</p><p>"...That aside, the match was truly unexpected. I really didn't think that the human was this capable."</p><p>Gervis meant those words.</p><p>Although he knew that Ren was capable as he had seen firsthand his capabilities back in Henlour, that was only on a mental aspect.</p><p>He had actually never seen him fight.Do you want to read more chapters? Despite him having one of the largest merits in them being able to take down Inferno and stop the war, Gervis had not seen him fight once.</p><p>And having just witnessed how Ren fought firsthand, he really was left impressed by his performance.</p><p>Such talent...he really was envious.</p><p>"Hm."</p><p>Snapping out of his thoughts, Gervis suddenly remembered something.</p><p>Turning his head to look at where Octavious was sitting, for the first time ever since seeing him, Gervis finally saw a change in Octavious's facial expression.</p><p>Although it was still indifferent, there was this deep sense of solemnity hiding deep within them.</p><p> Massaging his beard, he decided to go to him. He had something he needed to say to him.</p><p>Walking up to him, he stopped a couple of meters away from him and coughed.</p><p>"Keum...keum..."</p><p>"..."</p><p>Hearing Gervis's cough, Octavious raised his head.</p><p>"Do you need something?"</p><p>Putting on an amicable smile, Gervis calmly sat down next to him.</p><p>Turning his head and staring straight into his eyes, Gervis suddenly asked.</p><p>"What did you think about the match?"</p><p>A hint of surprise appeared on Octavious's face upon hearing Gervis's question. What came after it was wariness.</p><p>"…it was good."</p><p>Even then, he still replied after a short pause. Gervis nodded his head upon hearing his words before leaning back on his chair.</p><p>"I totally agree with you. The match was very good. Especially that human youth over there that won. He's quite the talent isn't he?"</p><p>"He is."</p><p>Octavious replied.</p><p>Gervis nodded his head more fiercely when he heard his words.</p><p>"Right, right. He is also very smart and will probably be one of the future pillars of the human side if I'm not wrong?"</p><p>"...What are you trying to get at?"</p><p>Octavious coldly asked, his brows finally furrowing together and the air around him finally changing.</p><p>He had finally realized that the situation was not right.</p><p>For what reason was he trying to praise Ren?…was it truly an innocent act, or was he trying to imply something else.</p><p>It didn't take long for Octaviois to get an answer as Gervis calmly and slowly said.</p><p>Walking over the edge of the platform, he transmitted his voice inside of Octavious's head.</p><p>"You see, you may not know this, but that human over there helped me out quite a bit over the last year, and it would truly be a bummer if something happened to him…"</p><p>"..."</p><p>Upon hearing Gervis's words, everything started to click inside Octavious's head.</p><p>He had already received the reports of what had happened back in Henlour from Douglas and the Vice-Leader. He had a general idea of what happened and how they were able to defeat Inferno and stop the war.</p><p>The moment he heard Gervi's words, putting the pieces together, Octavious understood just what his words implied.</p><p>Once he did, Octavius's eyes chilled.</p><p>"Are you threatening me?"</p><p>"…am I threatening you?"</p><p>Walking back to his previous chair, Gervis sat back down, leaned back, and massaged his beard.</p><p>This behavior persisted for a good minute before eventually, he shook his head.</p><p>"No, I am not threatening you. I'm just telling you how the facts are."</p><p>Turning his head to face Ren's direction, he continued.</p><p>"…You need to realize that this whole conference would not have happened if not for his aid. It wouldn't be wise if something happened to him."</p><p>Standing up, Gervis took one last glance in Octavious's direction before leaving.</p><p>"He's waiting for you. You should go meet him. I'll be visiting him in the next hour, I sure hope he is still breathing when I visit him next."</p><p>As he left, his words directly entered Octavious's mind, causing his frown to tighten.</p><p>Crack—!</p><p>A cracking sound suddenly resounded as the Octaviois gripped onto the side of the chair with increased intensity.</p><p>***</p><p>Beneath the arena.</p><p>"Haa..."</p><p>Amidst the thunderous crowd, Amanda was sitting on a small bench collecting her breath.</p><p>Despite it soon being her turn, Amanda refused to go to the arena.</p><p>The reason for this was because of Ren's match.</p><p>The moment the match started, she couldn't take her eyes away from his figure.</p><p>The intensity at which he fought, the way he skilfully dealt with his opponent's moves, and the way he completely disregarded his own safety just to secure his own victory, Amanda's emotions were in a state of disarray.</p><p>Her current feelings were hard to describe.</p><p>On one hand, she could see just how much he had improved over the years when he went missing.</p><p>She had already seen a glimpse of his strength during the time she reunited with him, but it was only now that she fully understood the extent of his improvement.</p><p>The pain and suffering that he must've gone through in order to achieve such a level of strength, Amanda couldn't imagine, nor did she want to imagine.</p><p>Every time she did, an uncomfortable feeling would rise from deep within her heart.</p><p>She couldn't really explain what that feeling was. But, she didn't like it.</p><p>On the other hand, the stronger he became, the further he felt from her. She hated that feeling.</p><p>Secretly she was quite a competitive person, and so, as she watched Ren and the others drastically improve, a never seen before fire lit up inside of her heart, prompting her to want to train even harder.</p><p>"Amanda Stern, please make your way to the portal."</p><p>Snapping her out of it, Amanda's wrist suddenly lit up as a melodious voice reached her ears.</p><p>"..."</p><p>She stood up and looked down in the stands. Below, she could faintly see the outline of an elf standing next to a portal.</p><p>Portal [09]</p><p>Taking one last look in the direction of Ren's match, Amanda bit her soft cherry-colored lips before slowly making her way down towards the portal.</p><p>It wasn't long before she reached the portal. Raising her hand and presenting her wrist, the elf took a step to the side.</p><p>"You may go in."</p><p>Nodding her head, Amanda closed her eyes and took a deep breath.</p><p>Then, recalling Ren's fight, from the way he fought to the way he persevered throughout the end despite being at a clear disadvantage, she tightened the grip of her bow and stepped forward.</p><p>***</p><p>'…I see, so this is the gap between us.'</p><p>With his eyes locked onto the projection where Ren stood in the middle, Jin slowly closed his eyes.</p><p>He originally thought that he had managed to bridge the gap between the two of them but it soon became clear to him that it was merely his delusions.</p><p>The fight just now had clearly shown him the difference between himself and Ren.</p><p>It wasn't just that he was stronger, but the way he was quickly able to adjust to the situation and come up with solutions in that short period of time he was fighting, that truly shocked JIn.</p><p>One notable example of this was during this fight. During the last moments of their exchange.</p><p>Not many may have realized this, but the moment Ren was about to attack, he realized that Kimor was also preparing to unleash a terrifying attack.</p><p>Whilst in the air, and before activating whatever last skill he used, Kimor's axe was already swinging down on him.</p><p>In that split moment of time when Kimor's axe came down, Ren directly aimed the tip of his sword right at his axe.</p><p>The intent behind it was clear.</p><p>Disrupt the attack before it could gather even more energy!</p><p>In fact, now that Jin thought about it, this was probably the only move he could pull considering his position. Had he directly aimed for Kimor, although he may have perhaps been able to defeat him, he would've probably sustained injuries far more grievous than what he ended up with.</p><p>Jin might even push it as far as saying that he could've died.</p><p>Simply put, Ren far outstripped him in terms of experience. An aspect that Jin severely lacked in comparison to him.</p><p>'I won't give up.'</p><p>Even then, Jin suddenly clenched his fists.</p><p>Despite having come to the realization that the gap between the two was big, Jin still chose not to give up.</p><p>Like his father said.</p><p>'The moment one is satisfied with themselves, that is the moment their growth will stunt. '</p><p>And he firmly believed this.</p><p>***</p><p>Sitting up on my bed with bandages all over my arms, I calmly looked towards the outside of the window. Behind it were the beautiful landscapes of Issanor.</p><p>'Eight broken ribs, a fractured hand, shattered right hand, broken kneecap, and a concussion.'</p><p>Those were the extent of my injuries.</p><p>If not for the fact that the elves had cast on me multiple spells and I was given a couple of potions, I would've long passed out from the pain.</p><p>"Haa.."</p><p>I took a deep breath as a calm silence enshrouded the room.</p><p>The atmosphere unfortunately was soon broken by the presence of someone. It was so subtle and unnoticeable that the only reason why I was able to tell that someone had appeared was through the small reflection of the window glass.</p><p>Even then, I was not panicked.</p><p>Closing my eyes, I softly said.</p><p>"You've come."</p><p>"...So you're the famous 876."</p><p>A cold and emotionless voice responded back.</p><p>Slowly turning my head away from the window, my eyes met with Octavious Hall's. The number one ranked Hero in the human domain.</p><p>Lowering my head, I politely replied.</p><p>"In the flesh."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-432.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-434.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

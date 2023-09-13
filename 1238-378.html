@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 378 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 378 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-377.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-379.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Is that my sword?"</p><p>My eyes flickered slightly after opening. It took me a couple of seconds for my eyes to recover from the previous bright light.</p><p>But the moment I recovered, my eyes focused on the sword that was being dangled in Malvil's hands.</p><p>Standing up, I reached out for the sword.</p><p>"May I?"</p><p>"It's yours."</p><p>Malvil handed me the sword.</p><p>Buzz</p><p>The moment my hand touched the sword, intense light exploded from it. This time, I wasn't blinded.</p><p>Next, my eyes opened up in amazement as I watched the sword in my hand gain a faint green luster. At a single glance, I could see just how powerful the sword was as the mana in the atmosphere agglomerated towards it at terrifying speeds.</p><p> The sword was about half a meter in length, glossed in a matt black color, and gazing at its sharp body that made it seem as though it could cut anything, my lips curled up in satisfaction. </p><p>"It's pretty light."</p><p>I muttered as I focussed my attention back onto the sword and moved my hand up and down to test its weight.</p><p>It was a lot lighter than I had originally anticipated.</p><p>In fact, it was so light that I thought that was holding onto a feather.</p><p>"Try injecting mana into it."</p><p>Malvil said from the side. Sitting down on a stool, he rested his arm on the table behind him and nudged his head in my direction.</p><p>"Instead of checking it directly, why don't you try seeing for yourself just what the sword can do."</p><p>"Inject my mana?"</p><p>"Yeah."</p><p>"Okay."</p><p>With a slight nod, I did as Malvil instructed and channeled my mana into the sword.</p><p>Buzz</p><p>Another low buzz suddenly sounded. Then, without me noticing anything, the ground beneath me began to creak, as fine miniature crevices started to expand from the bottom of my feet.</p><p>"What the..."</p><p>After that, my hands which were holding onto the sword started to become heavier as my muscles bulged upwards, trying their best to keep the sword in position.</p><p>"What in the world!"</p><p>I shouted as I turned to look in Malvil's direction.</p><p>"What is going on?"</p><p>"Calm down."</p><p>With a calm look on his face, extending his hand in my direction, he pointed at the sword.</p><p>"That over there is the ability of your sword."</p><p>"This? Ability?"</p><p>Lowering my head, I focused my attention back on the sword in my hands.</p><p>'Is the ability that Malvil is talking about, the ability to change the mass of the sword as I will?'</p><p>This ability reminded me of the ability of one of the artifacts that I previously owned.</p><p>It was a ring if I didn't remember wrongly. It could change its mass upon changing its settings. I quite liked it too, but unfortunately, it was now long gone as it broke during the explosion that led me to…that place.</p><p>Taking a deep breath and stopping my mana flow, the sword in my hand returned to its normal mass and I glanced around the place.</p><p>"Let me test this in a different location."</p><p>I then turned to face Malvil.</p><p>"Do you perhaps have a scabbard?"</p><p>"A scabbard?"</p><p>"Yeah, I kind of need it…"</p><p>The Keiki style could still work without the scabbard, but I was just so used to it by now that it felt weird without it.</p><p>"Here."</p><p>Rolling his eyes, Malvil reached out for something in the desk behind him and threw me a black leather scabbard.</p><p>"Thank you."</p><p>Catching it with one hand, I thanked Malvil.</p><p>Then, without saying anything else, I left the workspace and headed out towards a rather secluded area to test out my new sword.</p><p>The area that I stopped was quite deserted, and the land was flat. Perfect place to test my new sword.</p><p>"Huuu."</p><p>Putting my new sword into the scabbard that Malvil had just given me, I took a deep breath.</p><p>With a thought, the mana in the air converged toward my hand that gripped onto the sword.</p><p>As mana started to flow, the sword gradually started to glow and my pants started to feel heavier.</p><p>Confirming that it was working, I stopped channeling my mana and the sword once again became lighter.</p><p>Taking a step forward, and focusing all of my mana on the tip of my finger, I tapped the grip of the sword.</p><p>Click—</p><p>A clear and crisp sound was heard in the air the moment I touched the grip of the sword.</p><p>Bang—</p><p>What followed after that was a loud explosion as the earth before me tore apart and a long line that stretched over the next couple of meters appeared in front of me.</p><p>A deep scar that sank at least a meter onto the ground appeared in my vision once the dust cleared out.</p><p>"Holy shit."</p><p>Staring at the damage, my mouth hung on in shock.</p><p>'Was that really something that I did?'</p><p>Lowering my head and staring at the sword in my hand, my heart started to beat faster.</p><p>Letting out a long breath and stabilizing my heartbeat, I stopped channeling my mana.</p><p>'Let me try without using the effect of the sword. Will there be a difference?'</p><p>Click—</p><p>A similar clicking sound rang in the air, but contrary to the previous attack, the ground did not break apart. Instead, a small line appeared in the distance, but that was all.</p><p>"The difference is huge…"</p><p>F = ma.</p><p>This was a formula that I previously thought was useless back when I learned it back in school. That was back then, now...now things were different.</p><p>Couldn't be any more grateful for it.</p><p>Thanks to the mass increase, accompanied by the acceleration that was brought from the Keiki style, a tremendous force was released from my sword, resulting in such a terrifying attack to occur.</p><p>Honestly, the more I thought about it, the fonder I grew of the sword.</p><p>It was the perfect fit for me.</p><p>"Looks like I've done a pretty good job, huh?"</p><p>Startling me out of my thoughts was Malvil's voice.</p><p>Turning around, I nodded my head.</p><p>"Yeah, it's amazing."</p><p>"Hehe."</p><p>Malvil laughed in satisfaction at my response.</p><p>Then, stroking his beard, he tilted his head and extended his hand.</p><p>"Give it back."</p><p>"Hm?"</p><p>This time it was my turn to tilt my head as I looked at him in confusion. But seeing just how serious his face was, without wasting any more time, walking in his direction, I handed him the sword.</p><p>"Here."</p><p>"Thanks."</p><p>Taking the sword, Malvil traced his finger over its body.</p><p>"Hmm, it looks like I still need to polish it. It's not exactly done. The fact that I had to seal it because of your rank is probably why."</p><p>"You sealed it?"</p><p>Throwing me a casual glance, Malvil rolled his eyes.</p><p>"You think someone like you can handle a sword of this caliber with your rank?"</p><p>"No."</p><p>I shook my head with a bitter smile. He was right.</p><p>At my current rank, &lt;B&gt; rank, I wouldn't be able to properly use the sword. Had he not sealed it, the mana consumption would just be too much for me.</p><p>On a good note, if it was sealed, it meant that my sword was still not at its fullest capabilities.</p><p>Just the thought made my eyes shine.</p><p>Focusing my attention back on Malvil, I suddenly thought of something.</p><p>"How long do you need to polish it?"</p><p>Giving me a long stare, Malvil smirked.</p><p>"I know what you're thinking about. Relax, I'll have it done before you leave this place. I'll hand it to you right before you leave."</p><p>"Is that so…okay."</p><p>It was only after hearing Malvil's words that my shoulders relaxed.</p><p>Since I had no idea for how long I would be in the elven domain as well as know when the next time I would be back in Henlour would be, the next time that I would meet Malvil again, years may have passed.</p><p>Fortunately, my worries were unfounded.</p><p>"Alright, I'll quickly get to work. You should also go back for now."</p><p>Hugging onto the sword which was double the size of his body Malvil turned around and headed back in the direction of where his workshop was.</p><p>"I'll get it done on time so relax."</p><p>"Got it."</p><p>I replied back, staring at his small figure slowly going back towards the main building.</p><p>'I guess I should start preparing myself as well.'</p><p>Once Malvil's figure completely disappeared, looking around the place, I decided to head back and pack up.</p><p>My stay in Henlour was coming to an end.</p><p>***</p><p>Since then, a week had officially passed and it was now the day I would head out for the elven domain.</p><p>"Are you guys ready?"</p><p>Standing in front of a large portal, Douglas looked in our direction.</p><p>We were nine people in total, him, Waylan, Ava, Hein, Smallsnake, Ryan, Angelica, Leopold, and me.</p><p>Originally we were supposed to go with the dwarves, but decided against it and just decided to head there an hour after.</p><p>The reason why we decided to head an hour after was because…</p><p>"Where in the world is Malvil?"</p><p>Ava muttered out loud as she leaned by the side of the wall.</p><p>Turning to face Ava, our eyes met and we both bitterly smiled.</p><p>"He told me that he'll be done by today."</p><p>"That's what he said to me too."</p><p>I wasn't the only one that was waiting for Malvil as Ava too was waiting for him.</p><p>Having worked on it for over a year now, the flute which I had given to her a while ago was almost completely fixed. Of course, just like my sword, Malvil had sealed it.</p><p>That being said, it was now a lot more efficient than before, and not only that, from what Ava told me, it could now even allow her to have more beasts under her control.</p><p>This was a massive boost in strength for me.</p><p>"He's here."</p><p>Just when we were about to directly head to his workshop to find him, in the distance we saw a glimpse of a familiar figure.</p><p>Running towards our direction, with sweat all over his face, was a young dwarf.</p><p>Instantly, our brows knit.</p><p>"Isn't that Malvil's disciple?"</p><p>Having seen him multiple times already, we were all able to recognize him instantly.</p><p>Running in our direction, his figure looked haggard and tired.</p><p>"Typical Malvil, letting his disciple do the heavy work. I feel bad for him. As his leader, and master, he should be more responsible..."</p><p>I muttered out loud as pity flashed across my eyes.</p><p>It was then that I suddenly felt a pair of eyes burning holes at the back of my head. Turning around, I found Smallsnake glaring daggers in my direction.</p><p>"What are you looking at me for?"</p><p>"You…"</p><p>Raising his hand and pointing it at me, Smallsnake opened and closed his mouth multiple times, seemingly struggling to get his words out of his mouth.</p><p>"Do you have any idea about the words that you've just—"</p><p>"Haaa…haaaa…here is your stuff."</p><p>But before Smallsnake could even finish his sentence, Malvil's disciple arrived before us, instantly drawing my attention away from Smallsnake.</p><p>With heavy breaths, he took out two objects that were wrapped in thin white cloths and handed them to me and Ava.</p><p>"Thanks."</p><p>"Thank you."</p><p>"Looks like we're ready."</p><p>Douglas said, standing by the portal.</p><p>"Since you guys have your stuff, we should get going."</p><p>Then, turning around, he proceeded to make his way toward the portal.</p><p>"Let's go."</p><p>"Wait."</p><p>But just before he could enter, Malvil's disciple spoke up.</p><p>Instantly everyone looked in his direction.</p><p>With all of our eyes focused on him, a bitter smile emerged on his face as he scratched the back of his head.</p><p>"Ehm…master told me to go with you."</p><p>"…"</p><p>Silence enshrouded the area around us. Before anyone could say anything else, he continued.</p><p>"Master said that I need to check on the two artifacts to see if there are any problems with them."</p><p>"I g—"</p><p>"Okay, you can come."</p><p>Before I could say anything, cutting me mid-sentence, Douglas gave his approval.</p><p>Looking at me, he tapped his wrist.</p><p>"We don't have much time and one more person won't hurt us, so let's go."</p><p>Vooom—</p><p>No longer wanting to waste any more time, Douglas directly stepped into the portal and vanished.</p><p>Following him was Waylan, and the others who also had no qualms with the sudden addition of Malvil's disciple.</p><p>'Well, since everyone is fine with it.'</p><p>Shrugging my shoulders, I followed the others into the portal. He may end up being useful.</p><p>Finally, the long-awaited conference was about to begin.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-377.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-379.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

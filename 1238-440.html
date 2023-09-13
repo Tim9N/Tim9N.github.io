@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 440 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 440 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-439.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-441.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Clank—!</p><p>The door closed, and silence enshrouded the room.</p><p>Leaning back on my bed, I looked towards the ceiling of the room.</p><p>"How troublesome…"</p><p>I muttered to myself. It wasn't long before I heard Angelica's voice inside of my head.</p><p>[Are you really going to drop out of the tournament, you know you could've just told her to wait after the tournament, right?]</p><p>"…about that."</p><p>Turning my attention back toward Angelica, a bitter smile flashed across my face. Before I could say anything, Angelica spoke up once again.</p><p>[If you had participated till the end, you would've most likely won the whole thing. That Kevin friend of yours, he's weaker than you.]</p><p>Closing my eyes and taking a deep breath, I couldn't really deny her words.</p><p>Even though we had not fought each other yet, I could tell that the current Kevin was weaker than me. Not only did I know the ins and outs of how he fought, but I also had plenty of experience when it came to fighting.</p><p>I didn't waste my time in Henlour after all.</p><p>Just the knowledge of how Kevin fought was enough for me to be able to beat him, let alone all the experience that I had accumulated.</p><p>[If you know that he's weaker than you, why are you just quitting the tournament?]</p><p>"…It's cause I'm tired."</p><p>[Tired?]</p><p>Angelica replied, her voice sounding surprised.</p><p>Brushing my hair back, my hand soon paused on a certain part of my head before I started to scratch it.</p><p>"Yeah, I'm tired of all the constant problems that keep popping out of nowhere. I just want to relax for once. Have a breather."</p><p>I had already exposed myself, and I had proven my strength. The opponents, I could probably beat the all.</p><p>There was no need for me to continue the tournament anymore.</p><p>Most importantly, and the real reason why I no longer cared about continuing the tournament, was that I no longer cared about the top prize.</p><p>The only incentive the tournament had was the top prize. It was the only reason why I ever joined the tournament in the first place.</p><p>However, this no longer applied anymore. After hearing from Amanda just how much the elven queen cared about her mother, I figured that my gesture might end up earning her favor.</p><p>If that happened, what was the point of winning the tournament? Might as well get this event over fast.</p><p>Just to clarify, the reason why I gave Amanda the Xurin fruit wasn't because I wanted to earn the queen's favor. The possibility of earning her favor only occurred to me after I handed her the fruit and hence why I no longer held the tournament with as much importance as before.</p><p>Stroking the bottom of my chin, my mind shifted toward a different topic.</p><p>"…Right, I should also breakthrough right about soon."</p><p>The higher ranked I was, the greater the possibility of me surviving. The only hope I had when this happened was for me to not suddenly lose a rank.</p><p>Though the chances weren't exactly high, it was still possible. In hindsight, even if I did end up losing a rank, I'd just go back to where I was now.</p><p>Also, that was only applicable if I truly did lose a rank.</p><p>There might be a slim chance that I might just have to suffer an inhuman amount of pain, and I was fine with that. Nothing could be worse than what happened to me at the Monolith, right?</p><p>…I hope so.</p><p>In the midst of my thoughts, I suddenly felt a shape gaze coming from my left side. I didn't need to look to understand to who the gaze belonged to.</p><p>"...Why are you looking at me like that?"</p><p>[I'm curious. Why didn't you tell the truth to that girl?]</p><p>"Truth?" I wrily smiled. "You do know that if the elven queen comes to know of your involvement with the situation, you might die without knowing how you died?"</p><p>Though I didn't think that Amanda would say anything, I really couldn't afford to lose Angelica. This was the best option that I could think of.</p><p>[I didn't think of that....]</p><p>Angelica eventually said inside of my head upon hearing my words. Her voice sounded much fainter.</p><p>"Yeah, we can't really afford to say too much."</p><p>Interlocking my fingers together, I extended my arms and stretched.</p><p>"Ugh...let me start making preparations."</p><p>Just as I had set my mind to prepare myself for the upcoming event, my watch suddenly vibrated.</p><p>'It's probably the matchups for the round of sixteen.' I thought when I felt the vibration.</p><p>TRIIIING— TRIIIING—</p><p>Lowering my head and staring at the message written in it, my face froze.</p><p>"…errr."</p><p>[What is it?]</p><p>In the midst of my sudden behavior, Angelica's voice reached my ears. Turning to look in her direction, a bitter smile appeared on my face.</p><p>Lifting my arm and turning my wrist, the smile on my face become even more bitter.</p><p>"My next opponent is a really thought one you see..."</p><p>[Round of sixteen]</p><p>Ren Dover vs Kevin Voss</p><p>"So much for the speech about being tired and all. Sigh, really, what kind of dog shit luck is this?"</p><p>For Kevin to be my next opponent, truly, I couldn't understand how luck was my highest stat.</p><p>Seriously.</p><p>***</p><p>Late night.</p><p>Inside a small room, quietly laying down on a bed, was a beautiful girl with auburn hair that scattered all over the pillow.</p><p>Her faint rhythmical breathing echoed throughout the lonesome room.</p><p>Twitch.</p><p>Suddenly, one of the girl's eyes twitched. It was very subtle and almost unnoticeable. As the room was currently empty, no one was unable to notice this.</p><p>Twitch. Twitch.</p><p>Ten more minutes passed, and after the first twitch came the second and then the third twitch.</p><p>Before she knew it, Emma opened her eyes, and then the first thing that she saw was a plain white ceiling.</p><p>'…What happened to me?'</p><p>She wondered to herself. Her memories were blurry, and she barely had any recollections of what had happened. That didn't last for long as memories soon started to flood her mind, reminding her of exactly what happened.</p><p>'Ah…I lost.'</p><p>Aaron's face suddenly popped up inside of Emma's head as the memories started crashing down on her head.</p><p>She could clearly remember the moment when he suddenly appeared behind her and stabbed her in the back.</p><p>Had it not been for the referee's intervention, she might've died there and then.</p><p>'…I was careless.'</p><p>Emma clenched her fist when she thought about her loss.</p><p>She already knew from the beginning that her chances of beating him were low. Because of everything that had happened with her uncle, a lot of her resources were cut out from her, resulting in her strength being a notch behind the others.</p><p>Secretly, this had been eating away at her. Watching her friends and people close to her slowly surpass her, leaving her behind, Emma truly felt inferior.</p><p>As a result, she decided to train even harder. The lack of resources truly made it hard for her to keep up with Kevin and the others, however, through her sheer willpower and perseverance, she was able to get to where she was now.</p><p> &lt;C+&gt; rank, almost &lt;B-&gt;. </p><p>It may have not been outstanding compared to Kevin and others, but it was still amongst the top in her generations.</p><p>The reason why she fought Aaron was that she wanted to prove herself.</p><p>She wanted to prove to Kevin and the others that she wasn't some dead weight.</p><p>Even if she might end up losing against Aaron, she thought that it would've been a great experience for her. It would help her identify her own weakness to later work on and develop.</p><p>Unfortunately, she had been too naive.</p><p>Just because Aaron was also a human, it didn't mean that he wouldn't try to kill her during the tournament. She had joined the tournament with the wrong mindset, and she ended up paying a heavy price for this naive thinking.</p><p>Lifting her head up and looking around the room, Emma wondered out loud.</p><p>"...Where are the others?"</p><p>But then, when she realized that was dark outside, she understood that they were most likely sleeping.</p><p>Massaging her head with her hand, Emma leaned her body to the side and tried to get out of bed.</p><p>"Huh?"</p><p>But as she tried to move, her face suddenly froze. Moving her arm down, she once again tried to get out of the bed.</p><p>Her face stiffened as soon as she tried to move her legs once again.</p><p>"I…I…I can't move my legs."</p><p>Her face dyed with horror as she came to a sudden realization.</p><p>She could no longer move her legs!</p><p>Lifting her body up with both arms behind her, Emma tried to shift her body around the bed, in hopes of seeing if she still had some feelings in her legs, but it was all to no avail as she eventually realized that she could no longer move them.</p><p>Once the realization dawned on her, instead of crying or panicking, she simply laid back on the bed with a listless expression on her face.</p><p>A deep silence enshrouded the room following this.</p><p>"Maybe this is for the better…"</p><p>She eventually murmured, breaking the silence.</p><p>Closing her eyes, she quickly accepted her circumstances. She knew that this was a result of her own failure and carelessness.</p><p>Staring at the ceiling of the room, her eyes eventually dulled as she thought.</p><p>'Maybe this really is for the better. I've already been holding everyone back with my problems.'</p><p>***</p><p>At the same time, in a lush green forest.</p><p>Bang—!</p><p>A thunderous sound echoed throughout the forest as a boulder shattered into dust particles. The leaves rustled, and the grass bent in a prostrating fashion.</p><p>"Haaa…haaa…"</p><p>With a somewhat rough breath, Kevin's crimson red eyes shined admitting the darkness as they locked onto the area where the boulder used to stand.</p><p>Raising his hand, he wiped the sweat that had accumulated on his forehead.</p><p>"Sigh."</p><p>A long sigh escaped from Kevin's mouth as he looked at his watch. Following this, a rare trace of solemness appeared on his face.</p><p>"Although I expected this to happen, I didn't expect for it to happen so soon…"</p><p>It had to be said that they were still in the round of sixteen. The chances of them meeting may have not been low at around 1/32, but still, Kevin had hoped that they would see each other much further down the tournament.</p><p>But alas, it was only wishful thinking on his end. The drawings were random, so he couldn't complain.</p><p>The only problem he had was however the elven tear situation. If he lost the match, then he would be unable to get them.</p><p>He thought about asking Ren to get it for him in the chance he lost, but he quickly shook his head.</p><p>Ren might do it if he asked, but Kevin had his own pride.</p><p>The elven tear was something he needed to win, not Ren, or anyone else. Furthermore, he didn't want Ren to go easy on him.</p><p>He truly wanted to fight him with the both of them going all out.</p><p>Kevin had a general idea of what Ren went through after his death, and he understood the difference between the two of them.</p><p>However, just because Ren had been through such hardship didn't mean that he had been standing idle.</p><p>Not only did he have Donna personally tutor him throughout the whole of the three years, but he had also gone through many missions where he had killed and gotten rid of Monolith-associated organizations.</p><p>The resources the system provided him were also boundless.</p><p>Simply put, although he knew that Ren was strong, possibly even stronger than him, Kevin was not scared the least bit.</p><p>Rather, he was excited.</p><p>Excited at the prospect of finally being able to determine who was better between the two of them.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-439.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-441.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 465 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 465 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-464.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-466.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Thud—! </p><p>Softly landing on the ground, Monica's hair gently fell over her shoulders. Opening her eyes, she lowered her head and glanced at her hand. </p><p>"So this is how it feels to break through to &lt;SS-&gt; rank." </p><p>She quietly mumbled. </p><p>The sensation was completely different from when she was &lt;S+&gt; rank. She couldn't quite explain it, however, if she had to put it into words, it felt as though her connection with the mana in the air had significantly improved. </p><p>With just a simple thought, she could will the mana in the air as she wanted. </p><p>Raising her hand, she waved it in the air. What followed after the simple gesture was an incredible scene. </p><p>The moment Monica's hand swiped right, the red particles that were floating in front of Monica all froze in the air. Following this, as though Monica's hand was a magnet, they all rushed toward her hand. </p><p>A thin bright red coating soon formed on Monica's hand, creating some sort of gauntlet. </p><p>Gazing at her newly formed gauntlet, a look of amazement appeared on Monica's face. </p><p>"....So this is how it feels to truly agglomerate mana." </p><p>Mana agglomeration. </p><p>A technique that she was able to replicate when she was &lt;S+&gt; rank and was supposed to be something that only &lt;SS&gt; rankers could use. </p><p>If before her technique was unrefined and still weak, it was now no longer that as the mana expenditure had decreased drastically, and so did the power that was held within it. </p><p>Clenching and unclenching her hands repeatedly, Monica looked towards the sky as her pupils started to shine with an orange glow. </p><p>Arching her back, Monica clenched her fists as tightly as possible and punched towards the sky. </p><p>At the exact moment she punched out, the space around her distorted and a massive orange beam shot towards the sky with unprecedented speed and power.</p><p>BOOOOOM—! </p><p>A defeating explosion akin to that of the sound barrier breaking apart rang through the sky as circular pressurized wind gales began to expand out from the area Monica punched out, spreading throughout the sky like forever expanding rings. </p><p>"...Not bad." </p><p>Gazing at the sky, Monica muttered in a satisfied tone. </p><p>"Let's try adding a little bit more power." </p><p>Still excited by her newfound power, Monica decided to test out her powers once again. </p><p>Arching her body backward once again, the red particles floating in the air gathered around her at an even faster rate as the glow around her arm intensified considerably. As a result of this, the gauntlet in her arm thickened up. </p><p>It didn't take long for Monica to gather enough mana to once again release another attack, however, just as she was once again about to punch out in the air, a voice rang from the distance. </p><p>"Monica stop!" </p><p>Frowning, Monica looked toward where the voice came from, and there she saw Donna looking at her from the glass window of the building she was previously in. </p><p>"Donna?" </p><p>The moment she recognized Donna, her eyes returned to their normal color and the glow in her hand disappeared. </p><p>"What's wrong?" </p><p>Monica curiously asked as she looked at Donna. In response to her question, Donna looked toward the ground. </p><p>"Have a look for yourself." </p><p>Following her line of sight, Monica's face froze. </p><p>"Wha...err." </p><p>Gazing at the sea of people that were staring at her from below, Monica finally realized just how much of a scene she had caused. </p><p>'I messed up...' </p><p>Pinching her nose in embarrassment, Monica took a step in the sky and reappeared in front of Donna. </p><p>The moment she appeared in the room, she instantly apologized. </p><p>"Sorry." </p><p>"I'm not the one you should be apologizing to." </p><p>Donna replied back as she let out a long sigh and proceeded to sit back down on a sofa. Once she sat down, her line of sight paused on an unfinished cup of wine that was resting on the table in front of her. </p><p>Moving her body forward, Donna grabbed the cup and leaned back on the chair. Taking a sip of the wine, and savoring the taste, Donna looked at Monica.</p><p>"&lt;SS-&gt; rank at the age of 32, you truly are a monster."</p><p>"Mhhh, it's not that." </p><p>Monica shook her head once she heard Donna's compliment. </p><p>Sitting down on the seat opposite of her, she looked at the crack in the sky. </p><p>"You've also felt it didn't you?... The fact that the mana in the air has suddenly become denser." </p><p>Taking another sip of the wine, Donna nodded her head. </p><p>"I have." </p><p>Smacking her lips together and putting the wine glass down, Donna's face turned solemn.</p><p>"I've already contacted the Union and Douglas about the situation, they've told me that they currently don't know anything about the crack and that they are still studying it. For now, they told us to stay put and conserve our strength in case something bad happened." </p><p>"That's a good idea." </p><p>Monica nodded her head. </p><p>Furrowing her brows, Donna decided to switch the topic. </p><p>"Those matters aside, now that you've reached &lt;SS-&gt; rank, you probably won't be able to help me with the request I previously asked." </p><p>"...You're right." </p><p>Monica had an awkward look on her face when she replied. Scratching her neck, she looked at the crack in the sky and softly muttered. </p><p>"...You can't really blame me for this though."</p><p>With both index fingers touching each other, Monica pursed her lips. </p><p>"You know yourself that I really can't control the fact that a huge crack appeared in the sky and the mana density of the world suddenly increased." </p><p>"No, I know you're not at fault." </p><p>Fully understanding Monica's situation, Donna did not blame her for the situation. Similarly glancing at the crack in the sky, she continued. </p><p>"This is a situation that none of us could've ever predicted, it's just a pity that you won't be able to help me. The situation would've been a lot easier had you been hel—" </p><p>"Wait." </p><p>Cutting Donna off, Monica's head snapped in her direction. Snapping her fingers, she suddenly said. </p><p>"Donna, there's a perfect replacement for me. Well, not perfect. After all, no one can replace me." </p><p>"Who are you talking about?" </p><p>"Isn't it obvious?" </p><p>With a mysterious smile, Monica leaned back on her chair and crossed her arms. </p><p>"Although he won't be as good as me, he should be good enough to help you. Plus, the mission isn't even that hard, and he owes the both of us for helping him..." </p><p>"Ah..." </p><p>The moment when Donna heard the last part of Monica's sentence, her eyes opened up as she finally caught on.</p><p>The smile on Monica's face deepened when she saw this. </p><p>"What do you say? He's the perfect replacement isn't he?" </p><p>Brushing her hair back, Donna smacked her lips before she closed her eyes and nodded her head. </p><p>"I hate to admit it, but your suggestion is quite a good one..." </p><p>"Oy, there was no need for that." </p><p>Ignoring Monica, Donna stood up. Taking out her phone, just as she was about to dial a number, she proceeded to lower her phone. </p><p>"You know what, I don't think this is the right time to tell him. I'll call him in a while to tell him about the situation."</p><p>[Ren Dover]</p><p>Staring at the caller ID that she was about to press, Donna smiled. </p><p>"I'll give him more time to rest, he must still be tired after all the time he has been away. It would be unfair of me to ruin his days of peace." </p><p>*** </p><p>"...It looks like the situation has calmed down." </p><p>Seeing that there was no more shaking, I finally relaxed and looked toward the others. After my words, everyone had managed to calm down, and everyone was no longer as tense as when the situation occurred. </p><p>Glancing in Hein's direction, I tapped on my bracelet and threw something in his direction. </p><p>"Hein, catch." </p><p>"Uh..what?!" </p><p>Caught off-guard, Hein who had his feet on the table almost fell off the chair. </p><p>"Watch it."</p><p>Fortunately for him, Ava was sitting next to him. Placing her hand behind his chair, she managed to stabilize the chair he was sitting on. </p><p>Thanks to that, Hein was able to easily catch the thing I threw at him. </p><p>Once he managed to catch the thing I threw at him, he threw a grateful look at Ava. </p><p>"Thank you." </p><p>However, Ava didn't seem to be too amused with Hein as she shook her head. </p><p>"Didn't I tell you to sit properly before?" </p><p>"What does that have to do with anything? I didn't expect him to throw something at me. I was just caught off-guard." </p><p>"Sure." </p><p>Ignoring her words and still seated with both legs on the table, Hein turned his hand and opened his palm revealing a small hexagonal-shaped flask.</p><p>"What's this?" </p><p>He curiously said as he examined the contents of the flask. </p><p>Tilting his head to the side, and raising his head to look at the bottom of the flask, the look of confusion on his face only deepened. </p><p>I smiled when I saw this. </p><p>"Hein, you should be a little bit more careful with that." </p><p>"Huh? Why?" </p><p>"Well, it's because I wouldn't really want to play with the one thing that can cure your father." </p><p>The moment my words faded, much to my amusement, Hein's face drastically changed as his mouth hung open and his eyes opened widely. </p><p>However, what followed after was the sound of something hitting the ground as Hein unknowingly dropped the flask on the ground.</p><p>"Noooo!" </p><p>Clank—! Clank—! </p><p>With a loud sound, the flask bounced up and down on the ground as Hein's face drained of all color. Jumping down from his seat, he quickly caught onto the flask and held it in between his hands as though it was the most precious thing in the world. </p><p>"..." </p><p>Speechlessly staring at the scene from my seat, I honestly couldn't find the right words to say. </p><p>Glancing around, I found that I wasn't the only one who was speechless as almost everyone looked at Hein with the same look. </p><p>The first one to break the silence was Ava who covered her face with her hands. </p><p>"Hein, are you stupid? Didn't I literally tell you to sit down properly?" </p><p>"...Was caught off-guard, okay?" </p><p>Ava's face twitched when she heard his answer. </p><p>"What caught off-guard? I literally told you two times to sit down properly." </p><p>"What does the seating arrangement have to do with the fact that I was caught off-guard?" </p><p>"Yo—" </p><p>Staring at the two of them, I let out a sigh. </p><p>"Calm it you two." </p><p>Then, turning to look at Hein, I quickly said. </p><p>"For now, it's best if you put the flask inside your dimensional space." </p><p>Fortunately for him, the flask was made out of a special glass, and so it was extremely durable. </p><p>Even if it fell from the top of a building the glass wouldn't break. </p><p>"Yes, yes." </p><p>Repeatedly nodding his head, Hein quickly put the flask away. </p><p>Once he put the flask away, I let out another sigh, this time, it was out of relief. </p><p>Turning my attention back to Nola who had her tongue out as she tilted her body left and right while playing a game, a chuckle almost escaped from my mouth.</p><p>Waving my hand and removing the barrier around her, I put my hand over Nola's head and patted her head. </p><p>"Nola, it's time to go home. Close the game." </p><p>"Um." </p><p>Tubbing her eyes, Nola nodded her head. Putting the phone down, she extended her hands in my direction. </p><p>Smiling, I first took my phone back before picking her up by the armpits. Once I picked her up, I looked at the others in the room. </p><p>"Alright, I think I already gave you guys the general overview of the situation. I will be leaving now."</p><p>Turning around, I headed for the exit of the room. However, just as I was about to leave, I suddenly recalled something and my footsteps came to a halt. </p><p>"Right, before I leave, I want you guys to keep something in mind. Unless it's an emergency, please don't contact me for the next week or so." </p><p>"How come?" </p><p>Smallsnake curiously asked. </p><p>Glancing toward the ceiling of the room, I pursed my lips and replied. </p><p>"...I think I'm going on a holiday." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-464.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-466.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

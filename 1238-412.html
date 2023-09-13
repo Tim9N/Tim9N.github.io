@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 412 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 412 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-411.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-413.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>A week ago, during the conference inauguration.</p><p>"D…dad."</p><p>Staring at the familiar figure standing before her, Emma had many words that she wanted to say. </p><p>'Where have you been? How are you doing? Where were you? Why did you leave without telling me?'</p><p>For each and every question she had in mind, she was dying to know the answer.</p><p>In fact, she felt a little bit of resentment as she thought about all the time that she had spent by herself, without him.</p><p>But the moment she gazed into her father's eyes, all the resentment disappeared in a flash.</p><p>"Dad!"</p><p>Before she knew it, her legs moved on her own and she ran up to her dad. Extending her hands, she hugged him tightly. </p><p>Tears streamed down the side of her face as she felt the familiar warmth that she had not felt for a very long time.</p><p>She really missed it.</p><p>"Emma."</p><p>The hug did not last for long however as she was pushed away by her father. </p><p>Raising her head and facing her father, she realized that his mood was off.</p><p>"...what's wrong?"</p><p>She asked. Worried that she might have done something wrong. Fortunately, his next words dispelled all of her worries.</p><p>"I'm sorry Emma…I've heard everything about what happened to you and about what Jasper did to you…"</p><p>Pausing, Oliver bit his lips hard. Trying to keep himself composed.</p><p>Taking a deep breath he stared Emma right in the eyes.</p><p>"Emma, I don't have much time so listen carefully."</p><p>As he spoke, his voice contained an unprecedented amount of solemness, causing Emma to quickly regain her composure as she nodded her head.</p><p>"The reason why I haven't been able to see you as soon as I came here was because I was paying close attention to Jasper."</p><p>"Uncle?" </p><p>"Yes." </p><p>Oliver nodded his head. </p><p>"As you already know, Jasper hates my guts. This was something that had carried on ever since we were young as he would always try to make trouble for me." </p><p>Emma nodded her head at his words.</p><p>She already knew about the relationship between the two.</p><p>The hatred that Jasper had for her father was something that almost everyone in the household knew. </p><p>Lowering his head, Oliver stared at his watch. </p><p>"Anyways, back on topic. In short, I've been spending my time closely watching Jasper, and I know for a fact that he's trying to pull something on you. You probably felt it too, right?" </p><p>"Yes." </p><p>Emma nodded her head. </p><p>Ever since arriving in Issanor, she felt that her uncle was planning something. She just couldn't understand what he was planning. </p><p>Staring at his daughter, Oliver continued. </p><p>"....After trying to find out what he was planning and looking deeply into him, I found something out. He is currently working together with the head of the Parker family, Micheal Parker." </p><p>Oliver's teeth gnashed together as he said those words. </p><p>The Parker family had a terrible relationship with the Roshfield family. In fact, you could say that they hated each other's guts.</p><p>For Jasper to ally himself with them, Oliver knew that the future of the family was in Jeopardy. </p><p>Jasper was essentially allying himself with a family of snakes. As soon as Jasper let his guard down, the whole of the Roshfield family might get swallowed up by them. </p><p>"...After finding out that they have allied themselves with the Parker family, and after investigating the matter even more thoroughly, I realized that they were going to make a soon. Most likely in the middle of the conference, depending on the results."</p><p>A chill spread throughout the room as Oliver spat the last few words. Unprecedented anger rose from deep within his body as he thought about what his daughter was going through.</p><p>Lowering and gazing in Emma's direction, Oliver raised his hand and caressed her on the head. </p><p>He could see from her eyes that she was worried. </p><p>"Don't worry. Now that I'm here, I won't let anything happen to you. I've already talked to Ren regarding the matter, and we've come up with a plan." </p><p>"Ren?" </p><p>Surprise flashed across Emma's face as she heard his last words. </p><p>"You know Ren?" </p><p>"Oh, right." </p><p>Oliver's face scrunched up a little.</p><p>He realized that he had messed up a little. Staring at his daughter who was looking back at him with questioning eyes, he sighed. </p><p>"Well, yes, I know him...in fact, I've spent over a year with him." </p><p>"Over a year?" </p><p>"Yeah. Back in Henlour, the capital city of the dwarven domain." </p><p>"...Oh." </p><p>Emma nodded her head. She already knew from Kevin that her father had been in the dwarven domain, however, what she didn't know was the fact that Ren was also there with him. </p><p>Gazing at his watch one more time, Oliver continued. Trying his best to shift the topic away from Ren. </p><p>Knowing Ren quite well, he didn't want him anywhere near her.</p><p>She might get corrupted by him. </p><p>"Enough about Ren. You've already seen him, he's doing...well, he's okay, just a little bit sick in the head. He should get better soon." </p><p>Oliver glanced at his watch one more time. Urgency filled his face. </p><p>"I can't hold you for any longer or Jasper will become suspicious. I will soon contact you when I find out more about the situation and tell you what you should do." </p><p>"Okay." </p><p>Emma nodded her head, signaling to him that she understood. Oliver smiled in response. Leaning forward, he gently kissed her on the forehead. </p><p>With a smile on his face, he muttered. </p><p>"Let's catch up once things are done." </p><p>Before Emma could say anything else, Oliver had already disappeared from her sight. </p><p>With her eyes lingering on the area where he used to stand, Emma, sighed before turning around and leaving. As she left, her face relaxed. </p><p>With her father now back, it felt as though the boulder that had been heavily pressing on her had disappeared. </p><p>*** </p><p>Towering trees stood within the gloomy forest while moist dirt carpeted the ground. A dangerous atmosphere enshrouded the surroundings as two groups stared at each other. </p><p>Of the two groups, two figures stood out the most. With their powerful auras completely overwhelming the auras of the other people present, one hooded figure and a youthful figure glared in each other's direction. </p><p>"Oliver Roshfield..." </p><p>The hooded figure muttered. His cold and detached voice filled with killing intent. </p><p>Raising his head and staring at him, Oliver nonchalantly said. </p><p>"There is no point in hiding your face, Micheal. I know it's you." </p><p>"..." </p><p>Placing both of his hands on his hood and pulling it down, a blonde male with blue eyes appeared in front of everyone's view. His features resembled that of Fabian, his son, and someone that almost everyone present knew. </p><p>"...How did you know?"</p><p> He asked as his deep voice lingered in the air for a few seconds. In response to his question, Oliver smiled. </p><p>"Are you asking how I knew that you were planning on coming?" </p><p>"..." </p><p>Micheal remained silent, but Oliver took it as a silent nod of approval and continued. </p><p>"You guys were too careless." </p><p>Oliver shook his head. Traces of disappointment flashed across his eyes. Standing next to Emma, Oliver patted her on the back. </p><p>"She was the one that noticed that something was wrong and called me. The only reason why she's here is because I told her to lead you guys here." </p><p>Indeed. Emma was not stupid to the point of actually following the advice of a stranger. She had only pretended to be lost before. </p><p>Micheal also seemed to have realized this as a deathly and icy silence enveloped the surroundings. </p><p>Staring at Oliver standing opposite of him, the air around Micheal chilled as the mana around him froze completely. </p><p>Raising his hand, he clenched it.</p><p>SHIIING—! SHIIING—! SHIIING—! </p><p>Following his movement, the ground beneath everyone shook uncontrollably and a tremendous force suddenly assaulted Oliver from all sides. </p><p>Micheal's attack was like a signal. A signal that signified the beginning of the battle. </p><p>With their weapons ready, and their eyes locked onto the coming hooded figures, everyone got into battle positions. </p><p>*** </p><p>[Han Yufei's residence.]</p><p>"...Y-you?" </p><p>With an astonished look on his face, Han Yufei stood up in shock and pointed his finger in my direction. </p><p>"Aren't you supposed to be dead?" </p><p>"I am, yes..." </p><p>Halfway through my words, frowning, I looked at him. </p><p>"You recognize me?" </p><p>It would be a lie if I said that I wasn't surprised. </p><p>It had to be said that I had not once interacted with Han Yufei back in the Lock. For him to instantly recognize me, I was quite surprised. </p><p>With his eyes locked onto me, Han Yufei nodded his head. </p><p>"Yes...I recognize you. Died in the first year of Lock, and inheritor of the Keiki style." </p><p>'Ah, right, there is that.'</p><p>I had almost forgotten the fact that I had revealed the Keiki style to the public. No wonder he managed to recognize me so quickly. </p><p>"Well, since you recognize me, it makes things easier." </p><p>Leaning back on my chair, I went through the details of the contract once again. </p><p>"I don't want to make things any longer than they should be. The offer is, I will give you a five-star sword manual...no, it's not the Keiki style." </p><p>Seeing his hope-filled eyes, I quickly shut him down. </p><p>I wasn't going to give the Keiki style to anyone else. That was my sword art, and mine alone. The more people knew about it, the more glaring its weakness would become. </p><p>"I know the circumstances in your clan are not good, and I also know that if I give you the sword art, your clan will experience a massive boost in strength...perhaps even surpass the four other clans." </p><p>Han Yufei swallowed a mouthful of saliva at my words. Even though I noticed this, I decided to not point it out and continued. </p><p>"Regarding the five-year contract, well, it's kind of obvious that the values of the two things arent exactly equivalent. If I give you the manual, in exchange for that, I would be coming up with a loss...and I don't like losing."</p><p>In fact, I loathed the idea of even losing. Perhaps in the past, I could stomach a loss or two, but now...I couldn't stand the idea of losing.</p><p>This was why I was planning on going all out in this tournament despite the fact that I was nowhere near the strongest individual. </p><p>Lifting my head and staring at Han Yufei whose face was filled with doubt, I continued. </p><p>"I know that you are apprehensive about the idea of joining me for five years, but I never said that you have to join immediately. In fact, you don't have to join if you really don't want to." </p><p>Han Yufei had so much potential. Perhaps even more than some of the people in my group. It would really be a bummer to let him go, but I also knew best that I couldn't have anyone join my group against their will. </p><p>Take Angelica for example. Although she was part of my group and she was under a five-year contract, she was doing so willingly. </p><p>Keeping someone who didn't want to be in the group was just not ideal when trying to form a synergy between the members. </p><p>In fact, it might even prove detrimental.</p><p>"You can first meet the others before deciding on whether to join or not. If you are really against the idea, we can change the deal to something else, but that would be such a waste." </p><p>Staring at Han Yufei straight in the eyes, I asked. </p><p>"So? ...What do you think?" </p><p>"Hmm." </p><p>With a deep frown on his face, Han Yufei didn't speak a single word for the next minute or so.</p><p>Secretly, I was relieved when I saw this. </p><p>Since he didn't reject me immediately, it meant that the offer had tempted him somewhat. </p><p>Recalling something, I added. </p><p>"Ah, right. I almost forgot to say this."</p><p>"Keep in mind that if you join my group, I'm not going to stop you from doing anything clan-related. Everyone is free to do anything. Of course, that is on the premise that you guys listen to what I say when the matter counts." </p><p>Once my words faded, standing up, Han Yufei looked straight into me and extended his hand. </p><p>"I won't accept the offer yet. I want to first understand what kind of person you are. Is that okay with you?" </p><p>My brows jumped at his words, but soon a smile emerged on my face. </p><p>"I have no problem with that. "</p><p>Standing up, I shook his hand. </p><p>Just like that, I was one step closer to recruiting my newest member. Han Yufei. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-411.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-413.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

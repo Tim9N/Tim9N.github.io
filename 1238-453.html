@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 453 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 453 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-452.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-454.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Yes, I won't let you die even if you wanted to die. I've already made the proper calculations."</p><p>"This..."</p><p>Hearing his words, I unconsciously took a step back as my eyes opened wide.</p><p>'It can't be...'</p><p>He had made the proper calculations? ...Didn't that mean that he already knew that I was going to act the way I was going to act?</p><p>How was that even possible?!</p><p>Furthermore, from what his words suggested, my life had never been in any danger. The only reason why I had passed out was probably him trying to drag me here.</p><p>Confirming my doubts was the other Ren's voice as he coldly said.</p><p>"Don't think too much. It's exactly what you think."</p><p>"...How!?"</p><p>I softly muttered, trying to suppress the shock within my body.</p><p>The shock didn't last for long. Clenching my teeth, I closed my eyes and took a deep breath. Then, lifting my head and meeting the other Ren's gaze, I opened my mouth.</p><p>"So it really was you who planned this whole thing..."</p><p>I already had a hunch before this when I linked up the scenario with Angelica and Amanda's mother.</p><p>The clues were there, from how Everblood had tried to manipulate her to come to me, to how she was able to have pictures of her mother back at the Lock.</p><p>Everything was a full circle, and it all led to the man in front of me. Of course, everything was just speculation on my part, but the more I looked at the other Ren, the more I was convinced about my conjecture.</p><p>As my thoughts paused there, my brows furrowed.</p><p>'If this is indeed planned by him, what would his real motive be?'</p><p> Could he be trying to separate me from the others? ...That was a plausible scenario, but I don't think it was the right answer.</p><p>From what I knew, his goal was to create a 'perfect' version of Kevin. An unfeeling Kevin that had no burdens and only aimed to kill the demon king.</p><p>That was the only goal I knew he had. Without a doubt, there were other goals he had, but I had no idea about what they were.</p><p>'...Wait.'</p><p>It was then that a thought suddenly struck me.</p><p>'Wasn't the reason why I was able to see him in the real world because of the damage that my soul took due to the contract breach? ...What if the real purpose in him trying to set this whole scenario up was to damage my soul...'</p><p>A cold chill ran down my spine as my thoughts paused there. Lifting my head, my eyes met with the other Ren's.</p><p>"Looks like you've figured things out."</p><p>The other Ren said as he calmly stood in the void with the chains rotating around his body, binding him down even more tightly.</p><p>With both of his hands locked down, he continued.</p><p>"My goal was indeed to damage your soul."</p><p>Upon hearing his confirmation, I became even warier of him. Taking a step forward, I coldly asked.</p><p>"Was the reason I made the decision that I did because of you?"</p><p>"...You can say so."</p><p>The other Ren indifferently nodded his head, admitting to every single thing that I was accusing him of.</p><p>This increased my wariness even more as my brows tightened even further.</p><p>If what the other Ren said was true, then didn't that mean that he had manipulated my emotions as well? The reason why I chose to forfeit the tournament, and my questionable feelings for Amanda, were also things that he had implanted into my mind?</p><p>Why and when did he do that?</p><p>"It was back when you activated Monarch's indifference."</p><p>Seemingly being able to read my thoughts, the other Ren answered the question that was inside of my mind.</p><p>"Back when you used Monarch's indifference, that was when I implanted the ideologies inside of your mind."</p><p>My body froze upon hearing his words.</p><p>'Did he just admit to the fact that he could affect my mind whenever I use Monarch's indifference?'</p><p>I already had my speculations in the past, and I was able to confirm this when I met him a while back, but who would've thought that during that time I activated it again he would take advantage of the situation to set up a few seeds inside of my mind?</p><p>The more I talked to this version of Ren, the more apprehensive I became. Whenever I thought I was one step ahead of him, I would later find out that he was ten steps ahead of me.</p><p>It was frustrating.</p><p>Just how much had he planned everything?</p><p>I secretly clenched my fists at the thought.</p><p>Unaware of what I was thinking, or at least pretending to not know, the other Ren continued.</p><p>"The choice of forfeiting the tournament was for the purpose of not allowing you to grow stronger when undertaking the contract breach. Had you been stronger, the damage that your soul would've taken wouldn't have been enough for me. Only at your current rank could I guarantee your survival as well as the optimal soul damage."</p><p>The more he spoke, the number my mind became.</p><p>The feeling of having every one of my actions carefully puppeteered to the will of someone else caused me this sense of loathing to rise from deep within my heart.</p><p>Thinking back, his words made perfect sense.</p><p>Had I waited until after the tournament ended, although it would've taken me nearly four months to reach &lt;A-&gt; rank, it would've definitely have increased my chances of surviving.</p><p>Regarding Amanda's mother's situation, I could've easily said that I needed to make some preparations that required me to reach &lt;A-&gt; rank.</p><p>My choice from back then didn't make sense...</p><p>Slowly my heart started to freeze.</p><p>The other Ren didn't seem to care about what I was thinking, as he continued to speak.</p><p>"Regarding your feelings for Amanda, the only reason why I planted them inside of your mind was so that I could create a perfect excuse for you to act the way that you did."</p><p>My heart squeezed when I heard this. Indeed, back then, I remembered doing what I did for the sake of not hurting Amanda. But taking a look at it back now, I was still uncertain about how I felt for her.</p><p>Compared to before, the feelings inside of my heart weren't as dominant. If that made sense.</p><p>Opening his mouth, the other Ren continued.</p><p>"I only amplified your feelings for her. Whether you like her or not, it's for you to figure out. I don't care if you like her or not."</p><p>Lowering his head, the other Ren's eyes once again met with mine.</p><p>"Frustrating isn't it?"</p><p>"..."</p><p>Gazing back into his eyes, I chose to remain silent. Tilting his head, the other Ren looked towards the darkness.</p><p>"Having someone control the flow of your life, it's frustrating isn't it?"</p><p>"Hm?"</p><p>Hearing his words, my brows jumped a little.</p><p>For the first time in a while, I heard emotions coming from the other Ren's voice. It was faint, very faint, but I could feel a mix of sadness and hate hidden within his voice as he gazed toward the distance.</p><p>My face changed slightly when I sensed this.</p><p>Opening my mouth I asked.</p><p>"Why are you telling me this? What's your purpose?"</p><p>From how he revealed to me that he had been manipulating me to how he revealed that he could influence my thoughts whenever I activated Monarch's indifference, what was his goal in telling me this?</p><p>Usually, someone with a hidden agenda would never reveal such things, yet, here he was, telling me everything that he had done.</p><p>Was he just stupid, or did he have something else in mind? Especially with Monarch's indifference.</p><p>Now that I knew that he could manipulate me through it, why would he ever think that I would ever use it again?</p><p>'Unless...'</p><p>A thought suddenly struck me as my head snapped upwards and I glared at the other Ren.</p><p>"Are you once again trying to influence my decision-making by telling me all of this?"</p><p>This sort of setup, it felt familiar.</p><p>Memories of the Monolith incident replayed back into my mind, or more specifically, the time when I was manipulating the commander into acting the way that I wanted him to act by acting in a way that made it seem as though he could predict my movements.</p><p>This was exactly what was happening.</p><p>The reason the other Ren was telling me all of this was so that I would be forced to act in a way that he could predict.</p><p>Once I realized this, my glare intensified.</p><p>But before I could say anything, the other Ren asked.</p><p>"Isn't it fun?"</p><p>Hearing his voice my body instantly froze as for the first time since ever meeting Ren, a smile crept up on his face and a cold chill ran down my spine.</p><p>"Fun?"</p><p>I questioned, swallowing a mouthful of saliva. What was so fun about the situation.</p><p>Clank. Clank. Clank. Clank. Clank.</p><p>Taking a step forward, the sound of the chains on his body rattling against each other reverberated throughout the void as the other Ren neared me.</p><p>CLANK—!</p><p>He was only able to take a couple of steps before his whole body was forced back with a loud 'clank', but it was enough to near me.</p><p>With a smile still on his face, the other Ren calmly said.</p><p>"Isn't it fun? ...Creating multiple threads and setting up different scenarios to entrap the person you wish to manipulate into doing your bidding?"</p><p>"Isn't it fun to watch them struggle as they try to desperately leave the grasp of our influence to only realize that they had just been running right into our trap?"</p><p>The smile on the other's face deepened as his eyes peered straight through my soul.</p><p>"Remember this...no matter what you do, no matter what decision you make, I know. I know everything."</p><p>"You think you will never use Monarch's indifference again after I told you that I can control you through it? ...Think again. There will come a day where you will use it once again, and it will be on that day that I will finally see the truth."</p><p>Clank. Clank. Clank. Clank. Clank.</p><p>Suddenly a familiar metallic sound reverberated throughout the void as the chains binding Ren started to move as they dragged him back to where he previously stood. Slowly, once the chains dragged him back to the spot, more chains sprung out from the ground as they dragged him toward the ground.</p><p>Ignoring the chains, the other Ren kept his gaze locked on me. The smile that was on his face had long faded away from his face as his cold and indifferent voice rang out in the void.</p><p>"I've already set up the pieces, now it's your turn to move."</p><p>Following his last words, the chains binding his body dragged him toward the ground and his figure quickly disappeared.</p><p>Before he disappeared, he managed to utter a few more words.</p><p>"I'll see you soon..."</p><p>Clank. Clank. Clank. Clank. Clank.</p><p>Following his disappearance, the sound of the chains rattling rang out for a couple more minutes before silence once again descended on the world.</p><p>"Huuuu..."</p><p>With my eyes closed, I took a deep breath.</p><p>His last words, I understood them. Although confusing, I understood exactly what he was trying to hint at.</p><p>The game he was playing, it was like a chess game.</p><p>One where two opponents would try to predict and try to influence the other's move.</p><p>So far, the game that we had been playing had been a one-sided one. Every move I made, he had already predicted or had made me move that way.</p><p>I naturally understood that I was at a disadvantage, but, clenching my fists, I glared in the direction of where the other Ren had disappeared.</p><p>Slowly my consciousness started to slip as I muttered softly.</p><p>"...You're right, it's fun."</p><p>It was fun beating an opponent that seemed to have everything under control.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-452.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-454.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

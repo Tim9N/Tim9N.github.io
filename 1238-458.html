@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 458 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 458 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-457.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-459.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Been a while since I've been here."</p><p>Standing on top of the boat that led to the enormous white building in the middle of the lake, lowering my head and taking a look at the crystal clear water of the lake, I marveled at the sight.</p><p>As the boat moved, the calm and still water of the lake rippled, and the imagery of the mountains in the distance reflected on the surface of the water distorted.</p><p>Taking my eyes away from the water, a calming breeze tickled my ear lobes as I could faintly hear it whispering something in my ears.</p><p>Every time the wind passed by, it left behind a scent of maple and berries so strong that it made my nose twitch. It smelt heavenly organic yet delightfully tasty. It reminded me of the sweet honey-like brew that the elves had to offer.</p><p>Tok—</p><p>It wasn't before long that we finally reached the other side of the lake as the front side of the boat gently touched the small wooden pier.</p><p>"We're here." The elf responsible for pushing the boat said.</p><p>Nodding my head, I hopped off the boat. Then, as I got off the boat, I extended my hand.</p><p>"Thank you."</p><p>Taking my hand, Amanda gently got off the boat as her feet landed on the wooden pier without making a sound.</p><p>Quickly letting go of my hand, Amanda headed toward the building in the distance.</p><p>As she moved toward the building, I noticed that her footsteps were quite rushed. Tilting my head, I asked.</p><p>"Are you in that much of a hurry to see your mother?"</p><p>"Mhm."</p><p>Without looking back, Amanda nodded her head. I found her behavior strange, but I didn't think too much of it. After all, she had just met up with her mother after fifteen years, so it was understandable for her to want to see her every day and catch up.</p><p>Swooosh—!</p><p>Suddenly another breeze blew and Amanda's hair swayed towards the side of the wind. The moment that happened, I noticed something peculiar.</p><p>Amanda's ears were red. I instantly pointed this out to her.</p><p>"Hey Amanda, your ears are red."</p><p>"...!?"</p><p>The moment those words came out of my mouth, Amanda's body suddenly jumped up in fright. Without turning around, in a stuttering voice, she said.</p><p>"..It's because it's cold."</p><p>"Oh, okay."</p><p>Raising my hand and feeling the breeze, I shrugged my shoulders. In a way, she wasn't wrong. It was pretty cold.</p><p>Following Amanda from behind, it wasn't long before the two of us arrived at the entrance of the building where a couple of strong-looking elves were waiting.</p><p>Sensing the power behind the elves guarding the structure, my back unknowingly straightened.</p><p>'They are without a doubt &lt;S&gt; rank.'</p><p>I may have reached &lt;B+&gt; rank, but &lt;S&gt; ranks were still an existence that I couldn't touch. Therefore, the pressure that came out of their body was quite overwhelming.</p><p>Not that I wasn't used to it.</p><p>As soon as Amanda and I arrived, taking a step to the side, the elves quickly led us toward the building.</p><p>"Please follow us."</p><p>The interior of the place was exactly as I remembered from a while back. Following a minimalistic style, plants and simple furniture decorated the place. Compared to the typical luxurious buildings back in the human domain, the decorations inside of this place were less extravagant.</p><p>Walking for about a minute, we soon arrived in front of a large hall. On the opposite end of the hall was a small flight of stairs.</p><p>A golden throne rested atop the flight of ornate stairs, looking over the entire hall. Upon that throne sat the Elven Queen, Maylin. Her long, silver hair gently cascaded down her back, highlighted by the ornate crown upon her head. She rested her hand upon her cheek, looking upon me and Amanda who had just entered the hall.</p><p>Standing next to her was Natasha whose lips curled in an upward manner when her eyes met with Amanda's. Her beauty not lose out to Maylin's at all.</p><p>The guard that had led us to the place knelt down on one knee. Following his example, Amanda and I did the same.</p><p>"You have arrived."</p><p>Maylin said as she tapped onto the armrest of the throne. A thin metallic sound rang throughout the space as her nails came into contact with the metallic armrest of the throne.</p><p>With my head still lowered, I suddenly felt her gaze from above.</p><p>"...Do you have any idea as to why I summoned you here?"</p><p>"No, I do not."</p><p>I flatly answered with a straight face.</p><p>Secretly, I was trying my best to hide the smile that was threatening to show up at any second.</p><p>Of course, I knew why she had summoned me. What else but to give me the reward for saving Amanda's mother?</p><p>Seemingly unaware of what I was thinking, Maylin slowly stood up from her seat.</p><p>With a simple wave of her hand, the doors of the hall burst open and five elves came into the hall.</p><p>Adorned with simple servant attire made out of thin silk, the hem of their clothes silently fell toward the bottom of their ankles. On each of the servant's hands was a red fluffy pillow, where an item rested in the middle.</p><p>Walking towards the elven queen, they stopped beneath the flight of stairs and knelt on one knee. With their heads lowered, the servants raised the pillows above their heads.</p><p>"Good."</p><p>Maylin softly said as her gaze swept over the items resting on top of the pillows. Pursing her lips together, I once again felt her gaze land on me.</p><p>Her sweet and crisp voice soon rang throughout the hall as she started speaking.</p><p>"Previously, because of circumstances, I was unable to thank you personally for saving Natasha's life. I'm sure that the fruit that you have given her must've been extremely rare and hard to find."</p><p>"Although I'm curious about where you have gotten such an item, I will not ask further as I don't want to put you in a difficult spot."</p><p>Taking a step forward, Maylin walked down the flight of stairs. Every step she took carried no sound as she soon stopped in front of the servants that were holding onto the pillows.</p><p>Sweeping her gaze over the items, she continued.</p><p>"Over here are some items that I think you might find useful. Originally I was planning on letting the winner of the tournament take the first pick, but I believe that you have done more than enough to get the first pick."</p><p>Extending her hand, a gentle sigh escaped from her mouth.</p><p>"Please, choose whichever item you want. You can pick whatever item is over here."</p><p>Raising my hand to cover my mouth, with a slight cough I stood up.</p><p>"Keum...It is an honor."</p><p>I then proceeded to calmly look through the items that were presented before me.</p><p>To be honest, I already knew what item I wanted from the very beginning, but if I acted too fast it would seem as though I had planned for this beforehand. Therefore, interlocking my hands behind my back, I carefully looked through each of the items presented before me.</p><p>Glancing at the items on the pillows, my eyes soon paused on a small hexagonal-shaped glass bottle. Inside of it was a crystal clear liquid that looked exactly like clean water fresh from the mountains.</p><p>The moment my eyes paused on the bottle, I was able to instantly recognize it as my eyebrows jumped up.</p><p>'Oh, that should be the elven tear.'</p><p>Maylin who had been staring at me from the beginning seemed to have noticed my reaction as she spoke.</p><p>"I heard that one of your friends is injured, you want to choose that?"</p><p>"No."</p><p>I shook my head. Before she could say anything else, I continued.</p><p>"That's Kevin's job."</p><p>"...Kevin? That handsome boy?" Suddenly, Natasha's voice reached my ears as she unknowingly appeared next to me.</p><p>Blinking a couple of times, I nodded my head.</p><p>"Yeah, I guess."</p><p>Then, tilting my head ever-so-slightly, I looked at Maylin through the corner of my eyes.</p><p>"He should have no problem winning the competition."</p><p>As expected. The moment those words escaped from my mouth, Maylin's face twitched.</p><p>This was to be expected. After all, I was basically saying that Kevin was going to win when Vaalyun, the elves' strongest competitor had still not been eliminated.</p><p>Well, I didn't care about how she felt as I reached my hand forward and grabbed onto a small black pill that had a nice yellow luster revolving around it.</p><p>As soon as I picked the pill up, a strange look appeared on Maylin's face.</p><p>"You're going to pick that?"</p><p>Staring at the pill in my hand, I slowly nodded my head.</p><p>"Yes, I will pick this."</p><p>"...Are you sure?"</p><p> Maylin once again asked. There was a weird look on her face as she said those words. </p><p>This was understandable though.</p><p>The pill that I had taken was the item that I needed from the very beginning. It was the item that could help me reach &lt;A-&gt; rank a lot faster than originally planned.</p><p>Pinching the pill in between my fingers, I turned to look at the queen.</p><p>"This is the item that I want."</p><p>Hearing my words, the queen's face turned even stranger as she carefully said.</p><p>"You know about the side effects of taking the pill right?"</p><p>"...Yes."</p><p>I firmly nodded my head. Before I could continue speaking, overhearing our conversation, Amanda suddenly spoke up.</p><p>"Side effects?"</p><p>Turning her to look at me, her eyes grew colder.</p><p>Feeling her intense stare, I raised my hands and quickly explained.</p><p>"Wait, it's not a bad side-effect. I will be in a weakened state for a while and lose all the hair on my body."</p><p>"..."</p><p>Silence.</p><p>Right as my words faded, silence descended on the hall as Amanda looked at me with her eyes wide open.</p><p>Staring back at her, I shrugged my shoulders.</p><p>"What? It's not like it's permanent. It will last till the effects of the pill wear out and I reach &lt;A-&gt; rank."</p><p>If I had to estimate how long it would take for me to reach &lt;A-&gt; rank, I would say it would take me about a month or two. Although I would find myself in a weakened state for a while, it wasn't the end of the world. I wasn't really planning on doing anything big for the next two months, so it didn't really matter.</p><p>Regarding the hair loss, I had the mask of Dolos with me. Could easily make it look as though nothing happened.</p><p>Pinching the pill even more tightly, I focused my attention back on the elven queen.</p><p>"Anyhow, I've made up my mind. I choose this."</p><p>***</p><p>The next day.</p><p>Sitting crossed-legged in the middle of the room, I stared intently at the pill in front of me.</p><p>"This is it..."</p><p>After selecting the pill as my reward, instead of hastily eating it right after I returned, I chose to wait a day to make enough preparations for it.</p><p>To be honest, as of right now, what I dreaded the most was the hair loss rather than the weakened state that I would find myself in. However, this was a necessary sacrifice.</p><p>Without the pill, I estimated that it would take me at least eight months to reach &lt;A-&gt; rank. Shortening that time to two months was definitely worth the small side-effect.</p><p>"Huuuu...Here goes nothing."</p><p>Letting out a long breath, I licked my lips.</p><p>Glancing around the place to make sure there was no one else present, I slowly picked up the pill and placed it in my mouth.</p><p>Touching the tip of my tongue, a sweet and sour taste instantly enveloped my taste buds as the pill slowly started to melt in my mouth like hard candy.</p><p>No longer hesitating, I popped the pill inside of my mouth and kept it on top of my tongue.</p><p>As the pill melted inside of my mouth, a wave of warm energy flowed into my body and slowly but surely, I felt my strength start to increase.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-457.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-459.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

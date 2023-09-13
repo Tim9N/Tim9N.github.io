@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 344 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 344 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-343.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-345.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>344 Beginning of the assault[2]</p><p>Ohmm— Ohmm—</p><p>A repetitive humming sound echoed, and what followed after were the tapping of footsteps, each sounding different. Some were heavier, some lighter, and others so faint that unless one paid close attention, they wouldn't be able to hear it.</p><p>Slowly, emerging from the portal that Douglas had set up, were the elders and the respective fighters of the other race.</p><p>"What's going on?"</p><p>"Where be ye?"</p><p>"Where is this?"</p><p>The moment they became aware of their surroundings, a multitude of different questions rang in the air. An atmosphere of anticipation and slight nervousness ensued.</p><p>"Please be quiet for now."</p><p>Waiting on the other side of the portal, Douglas tried to organize everyone present.</p><p>Because of the number of people present, it took quite a while for them to get out of the portal.</p><p>As the dwarves, orcs, and elves came out of the portal, the transparent shield that was enveloping them expanded. This of course was at the expenditure of Waylan's mana. However, for someone of his rank, this amount of mana was nothing worth taking note of. Plus, Waylan was willing to give it his all to make sure every step of the plan he was responsible for went flawlessly.</p><p> It took a lot of time to organize everyone, and by the time the last batch came out from the portal, only five minutes remained. </p><p>"…That should be the last group left."</p><p>Coming out of the portal, Waylan headed towards Douglas.</p><p>Glancing at everyone and making sure that there were no problems, Waylan asked in a calm tone that belied his inner emotions.</p><p>"Have you organized everyone properly?"</p><p>"There should be no problems for now."</p><p>Turning to face everyone present, Douglas looked at the leaders and elders of each group, beckoning them to come towards him.</p><p>Because they had always been focusing their whole attention towards them, the moment Douglas called for their attention, they immediately moved towards him.</p><p>"What have you gathered us here for?" Randur, one of the dwarven elders, asked.</p><p>With his brows tightly knit, he looked around the place.</p><p>"Where exactly are we?"</p><p>"You don't have to worry about that."</p><p>Waylan replied with a small smile.</p><p>"All you have to do is listen to us and we can get this over with without a hitch."</p><p>At Waylan's words, Randur stopped speaking.</p><p>Satisfied with the outcome, Waylan looked at everyone present and asked, "I'm sure most of you are wondering about what you are doing here. Am I right?"</p><p>Without giving them a chance to answer, Waylan glanced at his watch and continued to speak.</p><p>"Listen up closely. We only have about five minutes left before we start the operation."</p><p>Turning his attention towards Gernis, who was silently standing in the middle of the group, Waylan gave out instructions.</p><p>"We're going to separate into two groups. One group will consist of all the elite warriors that are here, and the other group will be made up of the strongest present here. The lowest rank amongst that group will be &lt;S&gt; rank, and we can only have a maximum of five people in the group."</p><p>Turning his head right, Waylan looked at Gernis.</p><p>"…Well, if we exclude me and you, it would be three."</p><p>"Hmm, so ye be basically asking me who the three we should send with ye guys should be?"</p><p>"Right. You're the only one I trust that can do this, Gernis."</p><p>"I see…"</p><p>With his brows locked into a tight frown, Gernis looked behind him, towards the group of elites he'd stuck with through thick and thin during the whole war.</p><p>Although Waylan's request was odd, because of the mana contract and the fact that they were already too deep into this, Gernis decided to not question any of their decisions and just went along with it.</p><p>Staring at the members present, he did not have any trouble selecting two of them.</p><p>"Aris, Utruk, would ye be so kind and go with them?"</p><p>The moment he called out the two names, everyone turned their heads and stared at the two individuals.</p><p>One was an orc while the other was an elf.</p><p>With long, silver-blonde hair, Aris, the elf that was called out by Gernis, stepped forward without hesitation. With a cold face, and long eyelashes, Aris looked incredibly stunning. As she moved forward, everyone could feel a tremendous pressure emanating from her small body.</p><p>"I have no problems with the arrangements."</p><p>She said as she walked towards Waylan and Douglas.</p><p>"Me too."</p><p>Following her words was a deep and powerful voice.</p><p>Stepping out of the group was a large orc; Utruk. It wasn't hard to spot him. The moment he stepped out, his towering and muscular figure pushed aside those that were next to him.</p><p>Compared to Aris who had a small figure, Utruk was the exact opposite of her. It was difficult to say who was the scarier one.</p><p>"It looks like this group will have the most fun role…"</p><p>Ignoring Utruk's last comment, Gernis nodded towards the team assembled so far and turned his attention back to the rest.</p><p>With one human, one dwarf, one elf, and one orc, the composition of the group was almost perfect. What they were now missing was a dwarf. Someone that was capable of handling multiple artifacts and help from both long and short-range.</p><p>Although Gernis could do this as well, he specialized more in defending due to all of his artifacts being defense-based.</p><p>Although he did have attack-oriented artifacts, his main role was to defend Henolur and evacuate everyone in case a disaster struck the city. It was also because of this reason that he was called the Metropolis Keeper.</p><p>Either way, selecting another dwarf was a lot more difficult for Gernis as he wasn't clear about what type of mission they were going to partake in.</p><p>But before Gernis could come up with a decision, Waylan spoke up, pointing at Randur, who had a surprised look on his face.</p><p>"If you're looking for a dwarf, we believe Randur is a perfect choice."</p><p>"Me?"</p><p>"Yes. If there's anyone that can help us, it would be you. I'm certain."</p><p>A small smile appeared on Waylan's face as he looked at Randur.</p><p>"Are you sure?" Gernis asked as he looked at Randur with a complicated look.</p><p>Waylan's decision was odd.</p><p>He had witnessed the amount of animosity Randur had with him these past few weeks, so for Waylan to choose Randur out of everyone present was odd.</p><p>But, in the end, he couldn't go against Waylan's decision. After all, he must have a reason for choosing Randur out of all people.</p><p>"I guess that's all for this group. The rest will form the other group."</p><p>Looking at Gernis, Utruk, Aris, and Randur, Waylan nodded in approval before turning his wrist and taking a glance at a certain watch.</p><p>[00H : 02M : 34S]</p><p>Turning his attention back towards Douglas, Waylan's face became incredibly solemn. The calm had been replaced by grim determination.</p><p>"Douglas, we don't have much time. Lead the council to a frontal assault. I'll start setting up the portal now."</p><p>"Okay."</p><p>Nodding in acknowledgment, Douglas waved his hand and removed the barrier that was enveloping everyone present.</p><p>Instantly, everyone's presence was no longer masked. Their auras sprung forth, forming a deafening pressure.</p><p>Raising his voice, Douglas calmly walked forward towards the end of the tunnel and opened his mouth to address the main group.</p><p>"Everyone, we will now start the assault. Please get ready for battle."</p><p>His calm voice traveled through the ears of each individual present, and even though many had questions such as who they were going to attack, the council decided to follow his instructions and took out their weapons.</p><p>No matter how the situation turned out, they would not be unprepared. They had been roped into this by the human, but they weren't wannabes; each one present had the means to secure their safety if things went awry.</p><p>They were the strongest elites of Henolur, not some wannabe soldiers.</p><p>On the other hand, throwing another device on the floor, a familiar scene appeared in front of Waylan and the others.</p><p>Turning towards Gernis and the rest, Waylan checked his watch one more time.</p><p>"Get ready. We're about to do something extremely dangerous. Even though I know you guys are strong, stronger than me, in fact, I can't guarantee that you will all make it back alive. I can just guarantee one thing…"</p><p>They were about to infiltrate Inferno, one of the most powerful organizations in the Dwarven domain.</p><p>Of course, not all would make it back.</p><p>Waylan took a deep breath and stared at everyone present.</p><p>"This war is about to end."</p><p>"Human, I like you! You say some bold things! I'm even more excited now, haha!" Contrary to what Waylan expected, Utruk burst into laughter, his eyes shining eerily as he stared at the slowly forming portal.</p><p>"If you're saying that it's dangerous then it must mean that we get to fight a lot, no? I'm all in."</p><p>"Since you said that this mission can stop the war, I would at least expect this much danger."</p><p>Gernis said from the side, seemingly unconcerned by the danger the mission proposed. Next to him, Aris and Randur did not show any reaction, indicating that they too were ready for what was about to come next.</p><p>"I guess you guys aren't powerful leaders for nothing."</p><p>Smiling, a huge portal formed behind Waylan. Turning his attention to the portal, Waylan checked his watch.</p><p>[00H : 00M : 02S]</p><p>"It's time."</p><p>Without wasting any more time, glancing toward the others, he took a step into the portal.</p><p>"I'll be going in first.</p><p>His figure had disappeared halfway.</p><p>"I'll wait for you on the other side."</p><p>Ohm—!</p><p>Once Waylan's words faded, he had completely disappeared into the portal.</p><p>***</p><p>A little bit before Waylan entered the portal.</p><p>Staring at the tracking device in his hands, the silver-haired male from the Monolith muttered, "How long has it been since we lost the signal again?"</p><p>"I would say about an hour."</p><p>The muscular member replied, his brows tightly furrowed.</p><p>"Compared to the previous occurrences, there has never been a time where we lost the signal for so long."</p><p>"True…" The silver-haired male replied, his words drawling as he suddenly felt an ominous premonition.</p><p>"Even still, if we follow the previous coordinates, we should be right around…here?"</p><p>The silver-haired male tilted his head and checked the tracking device again.</p><p>"Something isn't adding up."</p><p>Despite standing close to where 876's signal indicated, the only thing they saw was an endless dark tunnel. There was nothing in the vicinity.</p><p>"Strange…"</p><p>The muscular male said as he scanned the surroundings.</p><p>Taking a brief glance at the tracking device, he carefully inspected the surroundings.</p><p>Yet, wherever he looked, all he saw was just one long tunnel that led to nothing.</p><p>"Hmm…"</p><p>Walking towards one end of the corridor, he put his hand on the side of the wall.</p><p>"——!"</p><p>The moment he touched the side of the wall, he suddenly noticed something.</p><p>"Hey Miles, I think I know where that bastard is hiding."</p><p>"You found something, Lawrence?"</p><p>"Yes, have a look."</p><p>The silver-haired male, Miles, looked around in anticipation at the muscular male's words.</p><p>Once he turned his head, Miles had a sudden look of understanding.</p><p>"No wonder we couldn't see him…"</p><p>With half of Lawrence's hand inside the wall, it became clear to everyone present that there was more to the place than what met the eye.</p><p>"This appears to be an illusion. The rat is probably hid—huh!"</p><p>Before he could finish his sentence, the muscular male, Lawrence, froze in shock. Then, unprecedented fear clouded his face.</p><p>"What the-!?"</p><p>He wasn't the only one. Everyone showed a similar reaction as all the members seemingly froze in place.</p><p>Turning their heads towards the direction they came from, they suddenly felt a monstrous presence headed for their direction.</p><p>The pressure was so strong that even they had difficulty breathing.</p><p>"Let's go!"</p><p>Without thinking twice, all members rushed towards the illusionary wall.</p><p>Since the wall could hide their presence, they thought that this was their only option of escape.</p><p>Fear had clouded their judgment.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-343.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-345.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

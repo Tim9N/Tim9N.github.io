@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 405 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 405 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-404.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-406.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Crash—!</p><p>With a loud crash, an orc came crashing down on the hard ground.</p><p>"Haa...haa..."</p><p>'I will definitely make you pay for what you've done.' Kevin swore to himself as he stared at the orc opposite him. With his head on the ground and his eyes closed, the orc was knocked down cold.</p><p>"The opponent is knocked out cold, the match is over."</p><p>The referee's voice resounded across the grounds, marking him the victor of the duel.</p><p>"Winner, Kevin Voss. He will be advancing to the top 64 of the tournament."</p><p>Announcing his victory, the referee raised Kevin's hand in the air.</p><p>The loud cheers coming from the audience rang out.</p><p>Kevin in return smiled at the audience.</p><p>'...That piece of shit.'</p><p>Or at least pretended to smile.</p><p>In reality, he was still fuming about what had happened yesterday.</p><p>The humiliation and embarrassment he felt were something he had never felt before in his life. Just recalling what happened sent shivers down his spine. The embarrassment was just too much.</p><p>Turning his head and staring towards the distance where Ren stood, Kevin deeply sighed.</p><p>Then, turning his head, he looked towards Emma who was seated next to Ren. Noticing his stare, the two of them waved in his direction.</p><p>Staring at the two of them from the arena grounds, doubt crept inside of Kevin's heart.</p><p>'...Could the figure in the dream really be Ren?'</p><p>Part of him truly wanted to dismiss such thoughts from his mind, but after looking back at the past, Kevin realized that there was a chance that the figure in the vision was Ren.</p><p>The Hollberg incident, the time when they were attacked by demons when they were returning from the dungeon, and just a week ago when he lost himself.</p><p>In those times, Ren truly reminded Kevin of the figure in the vision.</p><p>No matter how many times he wanted to deny reality, he knew that he couldn't...but Kevin wasn't planning on letting those visions dictate his mind.</p><p>In the first place, he never truly understood what the visions signified. Were they a vision of the possible future?...or were they simply just visions?</p><p>He spent a lot of time trying to rack his brain over the matter, but regardless of how much he thought about it, he couldn't quite understand it.</p><p>In the end, he just stopped thinking about it.</p><p>He realized that thinking on the matter was simply going to be a waste of time.</p><p>Be it the present past or whatever the visions signified, Kevin was not planning on letting the visions corrupt his mind and turn his back on his friend.</p><p>Never...</p><p>***</p><p>"The real matches should begin now."</p><p>With my arms crossed, I solemnly gazed at the platforms below.</p><p>"...the real matches?"</p><p>"Yeah."</p><p>I nodded my head. Seated next to me was Emma who was leaning back with her cap held down, covering her face. A small shadow cast over her beautiful face.</p><p>Apart from the two of us, pretty much everyone else was fighting in the arenas below. Jin, Amanda, Hein, Ava, you name it, they were all fighting.</p><p>Somehow, I ended up stuck with Emma whilst waiting for our turns.</p><p>"What I mean is that the next opponents are going to be extremely hard to deal with."</p><p>"Munch...much..."</p><p>The repetitive munching sound of her chewing on her gum rang out. From the way she was acting, she didn't seem to be the least bit worried.</p><p>"Munch...much...I'll still win."</p><p>"Say that when you get matched up with Kevin."</p><p>Pop—!</p><p>Emma's bubble burst apart.</p><p>"...Even better. This way he will finally fight me seriously for once."</p><p>Lifting her head, a fire appeared in her pupils. It was clear that she was excited at the prospect of fighting Kevin.</p><p>"Suit yourself."</p><p>'If Kevin really goes all out against you, you'd probably lose in a single move.'</p><p>I thought as I shrugged my shoulder. She didn't need to know anyway. The chances of her going against Kevin were the same as going against me.</p><p>The only difference was that I wasn't planning on going on easy on her if she did go up against me.</p><p>"Oh look, Kevin's looking at us."</p><p>I waved in Kevin's direction.</p><p>"Really?"</p><p>Raising her hat and staring at Kevin, Emma waved her hand too. With a forced smile on his face, Kevin waved back.</p><p>"...He still looks embarrassed from yesterday."</p><p>I muttered out loud as I stared at Kevin's forced smile. Overhearing my words, Emma's face cringed as she lowered her hat.</p><p>"Ugh, don't remind me."</p><p>"Winner, Kegigoth. He will be advancing to the top 64 of the tournament."</p><p>Following her words, the referee announced another winner and my previous joyous mood shifted.</p><p>Lowering my head, a deep frown emerged on my face.</p><p>'He's strong.'</p><p>Walking back to his area was an enormous orc. His very presence attracted the attention of the spectators as his frightening display of power over the tournament had made people realize that he was a fearsome contender for the top spot.</p><p>"Winner, Sarfu. He will be advancing to the top 64 of the tournament."</p><p>"Winner, Vaalyun Venmoira. He will be advancing to the top 64 of the tournament."</p><p>"Winner, Borerlig Barrelbeard. He will be advancing to the top 64 of the tournament."</p><p>Following him, a series of new names started getting called up.</p><p>A trace of solemness appeared on my face as I stared at the individuals whose names were being called up.</p><p>'They are all higher ranked than me.'</p><p>I could tell from a simple glance that they were all &lt;B+&gt; rank from the undulations of mana surrounding their bodies.</p><p>"Winner, Gilbert Von Dexteroi. He will be advancing to the top 64 of the tournament."</p><p>Yet again attracting my attention was another announcement, and the frown on my face deepened. This time, it was out of annoyance.</p><p>'...How troublesome.'</p><p>Proudly standing in the arena was Gilbert who basked in the cheers of the crowd. With a calm and composed look, he walked back to his stands.</p><p>With a rank of &lt;B+&gt;, he was someone that I needed to watch out for.</p><p>"...I can't believe that scum is also participating."</p><p>Looks like I wasn't the only one that felt annoyed by Gilbert's appearance as Emma lifted her hat and threw a disgusted look in his direction.</p><p>"Well, he is only 25. He just barely made it to the threshold."</p><p>The maximum age one could participate was 25 years, and Gilbert just barely made it.</p><p>"Tsk, sometimes I forget that he's only a couple of years younger than us."</p><p>Emma clicked her tongue before once again lowering her cap and basking in the sunlight coming from the sun.</p><p>Following her words, a few more people's names were called up. Those were the names of the winners of the first half of the round of 128.</p><p>Ten minutes after the winners were announced, it was time for the second half of the matches to begin.</p><p>"Guess it's my turn now."</p><p>Standing up, I stretched my shoulders.</p><p>So far the matches had been smooth sailing, but I knew that whoever my next opponent was, it was going to be someone powerful. I could no longer hold back as I did before.</p><p>"Platform 13, Caeruleum vs Han Yufei."</p><p>"Please may the contestants make their way to the platform."</p><p>Hearing my alias being called out, my hands froze mid-stretch.</p><p>Abruptly lifting my head and staring towards the designated platform, I saw a youth slowly walk to it with a calm and composed look.</p><p>A calm yet dangerous aura spread throughout his whole body as walked toward the platform.</p><p>"Shit..."</p><p> I silently cursed underneath my breath. </p><p>Although I did expect someone strong, I didn't think they would be at this caliber.</p><p>Han Yufei, &lt;B-&gt; rank, and a former classmate of mine.</p><p>Someone whose combat talents were on the same level as the protagonists, and someone who I had been keeping in mind for a while.</p><p>"Oh, this is going to be an exciting match to see."</p><p>Emma muttered from behind as she lifted her hat. Turning my head, I rolled my eyes.</p><p>"...Right."</p><p>'Well, she isn't entirely wrong.'</p><p>Han Yufei was definitely someone who I would definitely have trouble fighting.</p><p>My matchup did not attract that much attention. With the people having already witnessed the same repetitive magic card attack system from me, there really wasn't any excitement for my match as I headed down to the platform.</p><p>Stepping onto the arena, I removed all unnecessary thoughts from my mind as I focused my attention on my opponent. Han Yufei.</p><p>Standing opposite me with his hands behind his back, Han Yufei gazed in my direction with a small frown on his face. Seemingly trying to peer through me.</p><p>I merely smiled at his stare.</p><p>With a frown on his face, Han Yufei opened his mouth.</p><p>"...Are you going to use those cards to fight me?"</p><p>"Mhm, who knows."</p><p>I replied in a playful tone.</p><p>'...I most likely will.'</p><p>Of course, the playfulness was merely a front I was putting on as I knew that he was going to be an extremely tough opponent for me.</p><p>"I see."</p><p>At my words, Han Yufei nodded his head before he stopped speaking. A brief moment of silence ensued.</p><p>However, the silence did not last for long as it was soon broken by the referee's shout.</p><p>"Match begin!"</p><p>Bang—!</p><p>In the next instant, Han Yufei's body shot out.</p><p>Appearing halfway through the arena, with a stomp of his left foot, Han Yufei's body rose in the air. His leg ripped through the air with a crackling sound, filled with outstanding force. Like a whip, it venomously aimed for my head.</p><p>A powerful wind blew past my face as the kick swiftly headed my way.</p><p>In response to his kick, I merely raised my hand. I wanted to see just how powerful his attack was.</p><p>Bang—!</p><p>A powerful blast spread as my arm came into contact with his kick. The power of his kick was so strong that my arm recoiled back.</p><p>Han Yufei quickly followed up after his first attack as he thrust his hand forward. With his fingers linked together, like a sharp dagger, they headed straight for my neck.</p><p>'Dangerous.'</p><p>I thought as I stared at the incoming attack. Channeling my mana towards the tip of my fingers, I flicked my left hand and a card popped up in front of Han Yufei's hand.</p><p>Bang—!</p><p>A powerful blasting sound resounded throughout the square as a wild and powerful wind unfurled throughout the arena. Following this, an enormous ice pillar appeared.</p><p>Cracka! Cracka! Cracka!</p><p>The pillar did not stay for long as it soon cracked apart before shattering completely.</p><p>Crash—!</p><p>Standing a few meters away from me, surprise flashed across Han Yufei's face as his movements came to a stop.</p><p>"From the way you reacted after my attack I can tell that you are hiding your strength."</p><p>He carefully moved his head up and down as he scrutinized me from head to toe.</p><p>"You are far stronger than you let out. I can tell this from the way you were able to react to my attack."</p><p>Leaning forward, Han Yufei took a pose as the air around him changed completely.</p><p>"I don't understand why you are hiding your strength, but I will now take things up a notch."</p><p>'...This might be dangerous.'</p><p>I thought as I looked at Han Yufei.</p><p>If before he looked like a calm and composed individual, right now he looked like a terrifying dragon that wanted to devour me alive.</p><p>Then, taking a deep breath, Han Yufei muttered.</p><p>"Martial body."</p><p>The moment Han Yufei uttered those words, mana surged over from all around and poured into his body.</p><p>Strands of mana light swirled around his body as the ground beneath his feet started to crack. His entire presence changed completely as heavy solemness descended on my face.</p><p>However, amidst the solemness was a trace of excitement.</p><p>That was because finally, I could see one of the techniques that I had been coveting for a very long time.</p><p>'Martial body.'</p><p>A secret ancient Chinese technique that would push the body to the limit and forcefully raise the sub-rank of a person by one.</p><p>It was a godly technique that once mastered could even help someone train faster than before.</p><p>"Get ready."</p><p>Snapping me out of my thoughts was Han Yufei's cold voice rang out. Following this, with a loud 'bang', his body suddenly disappeared from where he was standing before reappearing right before me.</p><p>Bang—!</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-404.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-406.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

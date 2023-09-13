@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 372 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 372 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-371.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-373.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang—! Bang—!</p><p>The sound of small shockwaves resounded as circular pressurized wind gales pushed outwards from the point of contact between a fist and a punching bag.</p><p>"Haa!"</p><p>Letting out a cry, drawing a beautiful arc in the air, the instep of his foot collided against the punching bag.</p><p>Bang—!</p><p>This time, a louder sound resounded as an even more powerful shockwave swept through the private training grounds.</p><p>Thump—!</p><p>Following the kick, the punching bag fell onto the floor as a large tear appeared by the side of its body. Black sand spilled out from it.</p><p>Lowering his head and staring at the punching bag below him, Jin's breathing was a bit rough.</p><p>Having spent the most part of the afternoon training, he was understandably tired.</p><p>"Thank you."</p><p>Grabbing onto a towel that a servant girl offered, Jin thanked her. Then, putting it on his face, he wiped the sweat that had accumulated on his face.</p><p>It was only after Jin was done drying up that the servant lady finally spoke up. Her tone was extremely respectful.</p><p>"Young Master, the items you requested have arrived."</p><p>"Oh?"</p><p>Jin raised his brow and stared at the servant lady. Wearing a black suit and having long blonde hair that perfectly complemented her emerald-colored eyes, she looked very beautiful. But of course, Jin wasn't in the least bit interested in her beauty.</p><p>Without saying anything, he handed the towel back and headed for his office space.</p><p>Sure enough, sitting on his desk was a large box. Walking towards the box and carefully opening it, Jin took out a pair of clean daggers.</p><p>On closer inspection, one would discover faint lines that spread throughout the set of daggers. These lines gave out a strange feeling as the mana in the air trembled slightly at its presence.</p><p>The grip of the dagger felt rather rough, but it was to ensure a proper hold. On the other hand, the main body of the dagger was extremely sharp. Just from a casual glance, Jin could tell that the daggers were extremely well-crafted.</p><p>"This should be of good use to me."</p><p>Jin nodded in satisfaction before putting the daggers away.</p><p>Ci- Clank—!</p><p>Right as he put the daggers away, the same servant lady from before entered his office space.</p><p>Bowing down slightly, she quietly stood by the side, without saying anything.</p><p>Used to such a scene, Jin didn't say anything and sat down on his desk.</p><p>Tapping onto its surface, a series of holographic images materialized before him.</p><p>Briefly looking at them for a moment, Jin turned his attention back to the servant lady and asked in a neutral tone, "If I don't recall incorrectly, you said that the Union is about to make a big announcement in the following month?"</p><p>"That is correct." The servant lady replied in a monotonous tone and proceeded to take something out from her pocket. It turned out to be a small white envelope, which she promptly handed to Jin.</p><p>"What's this?" Jin asked as he took the envelope from her hands. He sounded slightly curious.</p><p>Tearing the seal, Jin took out the letter inside the envelope and read through its contents.</p><p>"An invitation from the Union?"</p><p>"That is correct. In the wishes of the guild master, you are to participate with him in the event," the servant lady replied from the side.</p><p>"I see."</p><p>Jin tapped his fingers on the table, unsure of what to make of the invitation.</p><p>It was no secret at this point that something huge was about to happen, but everyone was still in the dark.</p><p>He had tried asking Kevin, who was now working at the Union, for information, but even he had no idea about what was going on.</p><p>Staring at Jin, who was in deep contemplation, the servant lady patiently waited for him.</p><p>It was only after she saw his brows relax that she finally spoke up.</p><p>"Young master, there is another thing that I would like to brief you upon."</p><p>"What is it?" Jin said as he casually glanced at the lady.</p><p>"Amanda from the Demon Hunter guild has tried to get in contact with you. What would you like me to do?"</p><p>"Amanda?"</p><p>A surprised looked flashed on Jin's face. Then, his brows knit tightly as he quietly muttered, "She must be trying to talk to me about that matter…"</p><p>He already had an idea of what Amanda wanted to talk about.</p><p>During the past year that he had spent in the guild, there was only one thing that had been annoying him to no end.</p><p>The emergence of demon pills. A pill that essentially acted like a devil fruit and boosted the power of whoever consumed it.</p><p>It was essentially like steroids, but much worse. The individuals who consumed the pill would be exposed to demonic energy, forcing them to crave more of it.</p><p>It was a drug that spread throughout the whole human domain this last year, and essentially forced the Union and Central government to act upon it as the consequences of the pill were enormous.</p><p>He didn't know much about it before as he was still in the academy, but after graduating from the academy three months back, and joining the ranks of his guild, he had a firm idea about what was going on.</p><p>Lifting his head up, Jin tapped on the holographic device in front of him.</p><p>Then, swiping a couple of times, he gently pressed on a certain profile and called Amanda.</p><p>Right before calling her, turning his attention back towards his attendant, he glanced at the door.</p><p>"Would you please?"</p><p>"As you wish."</p><p>Understanding the meaning of his words, the lady bowed slightly before leaving the room.</p><p>Even though she had been working for the Horton family for over a decade, she still understood that there were some things that someone of her rank couldn't listen to.</p><p>Ci- Clank—!</p><p>It was only after she left the room that Jin turned his attention back towards the holographic device and finally called Amanda.</p><p>***</p><p>"How many does that make?"</p><p>A crisp and melodious voice sounded at the top of a wide rooftop.</p><p>The veil of the moonlight sprinkled down on her fair and pretty face, making her look especially attractive.</p><p>With her eyes locked onto the building in front, her delicate brows knit into a tight frown.</p><p>"That's the third one we've found in the past month, young miss."</p><p>A solemn voice replied from behind the girl. He was Maxwell, Amanda's servant.</p><p>"They have become more and more rampant over the last year. All the other guilds have also tried shutting as many facilities down as possible, but as soon as one is destroyed, a new one is built."</p><p>"That is quite troublesome," the girl, Amanda, replied. Then, extending her hand forward, a bow appeared in her grasp.</p><p>A thick and powerful wave of mana suddenly sprang out from Amanda's body as the sound of the bow string being stretched echoed in the surrounding area.</p><p>Following which, a translucent arrow materialized in-between her fingers.</p><p>Closing one of her eyes, Amanda aimed her bow at the warehouse in the distance.</p><p>She was about a kilometer away from the warehouse, and it was deep into the night, but Amanda had no trouble staring at the building as her eyes locked tightly on a particular window.</p><p>Before releasing the string, she softly asked, "Have you evacuated all the residents and people nearby?"</p><p>"Yes. There will be no innocent victims."</p><p>"Okay."</p><p> At Maxwell's confirmation, she finally released the bowstring.</p><p>Kacha!</p><p>With the sound that was reminiscent of that of a thunderclap, the arrow suddenly disappeared into the quiet night.</p><p>Xiu!</p><p>A faint and muffled projectile-like sound reverberated through the air as a blue translucent streak of light headed towards the warehouse in the distance.</p><p>It didn't take long for the arrow to arrive at the warehouse. It reached the place in a matter of seconds.</p><p>Then, without missing an inch, the arrow broke through the window with a crash, and what followed after was a tremendous explosion that shook the surroundings.</p><p>BOOOOM—!</p><p>A mushroom cloud sprung up in the air as the warehouse was obliterated into nothingness.</p><p>Lowering her hand holding onto the bow, Amanda quietly stared at the scene from afar.</p><p>Before long, the shockwaves that originated from the explosion swept past her, and her clothes and hair fluttered slightly.</p><p>"You have improved quite a lot, young miss."</p><p>Maxwell complemented from the side as he stared at the remains of the warehouse in the distance.</p><p>"Check if there are any survivors," Amanda said, her eyes still locked on the building in the distance.</p><p>"Will do."</p><p>Maxwell's words echoed through the rooftop as he disappeared from the spot he was standing.</p><p>Finally relaxing her brows, Amanda closed her eyes and tried to recuperate the mana she lost.</p><p>Vrrr— Vrrr—</p><p>But before she could even do that, she felt her phone vibrate.</p><p>Letting out a sigh, Amanda took out her phone and checked the caller ID. It was Jin.</p><p>'Jin?'</p><p>She was a bit surprised by the fact that Jin had called her at this hour, but she nevertheless answered.</p><p>She had, in fact, been trying to reach him for quite a bit, but he had always been busy handling guild matters that he barely had any time to answer her calls.</p><p>The moment she answered, Jin's voice reached her ears.</p><p>—Am I disturbing you?</p><p>"No." Amanda replied as the sound of sirens and the raging fire sounded in the background.</p><p>—Hm? I can hear something in the background? Did you perhaps just partake in the destruction of another trade spot?</p><p>"I did."</p><p>—How many does that make this month for you?</p><p>"Three," replying to Jin, Amanda's answers were short and concise.</p><p>—I've heard that you've been trying to reach me. What do you need?</p><p>Turning her head to face the building in the distance, her black, obsidian pupils directly reflected the raging fire that came out from the warehouse in the distance.</p><p>"I want to cooperate with Starlight Guild."</p><p>Her voice was faint, but one could feel the resoluteness in it.</p><p>"We're short of hands right now, and we can't take care of all of the trade points. If we cooperate together, we can spare our forces and save time."</p><p>Her words contained some truths and falsehoods.</p><p>Them cooperating together would indeed save them both of them some time but at the same time, the reason why Amanda was short of force was because of a different reason.</p><p>Jin had an idea, but he didn't say anything about it.</p><p>—That's a tempting offer.</p><p>Jin's voice remained calm despite what he said.</p><p>His next reply came after taking a few seconds to deliberate over Amanda's offer.</p><p>—Taking care of the trading points has been quite an annoying problem for us. If not for the bounties offered by the central government, we wouldn't have even bothered with it.</p><p>"That's why I'm offering to collaborate," Amanda spoke bluntly, her bow disappearing from her hand.</p><p>"Are you in or not?"</p><p>—Give me time.</p><p>"How much?"</p><p>A short pause lingered before Jin replied back.</p><p>—I'll give you an answer during the Union's big announcement next week. I'm sure you've gotten the invitation, right?</p><p>"I have."</p><p>As one of the representatives of the Demon Hunter guild, Amanda had indeed received an invitation from the Union about an important announcement.</p><p>Her position in the guild wasn't actually that high as the elders mostly took care of the important stuff, but once the invitation came, they all insisted that she wanted in their stead.</p><p>That aside, she did try asking Kevin what it was all about, but he didn't know.</p><p>In hindsight, Kevin was only still a recruit, so it was understandable as to why he didn't know anything.</p><p>—I'll have an answer for you by then.</p><p>'Okay."</p><p>After Amanda's response, Jin ended the call.</p><p>As soon as Jin ended the call, Amanda lowered her hand and put her phone away.</p><p>Then, taking a step forward, she jumped down the rooftop.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-371.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-373.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

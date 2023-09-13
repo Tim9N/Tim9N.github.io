@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 357 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 357 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-356.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-358.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Leviathan building, Lock.]</p><p>Bang—!</p><p>Kevin hastily entered his room, smashing the door against the side of the wall.</p><p>"Goddamn it, Where is that book?!" He repeatedly muttered out loud in haste.</p><p>Dashing towards his room, Kevin ran up to his bookshelf and threw all the books down from it as he looked for the red book.</p><p>[01 : 37 minutes]</p><p>With the timer by the side of his vision, Kevin couldn't be any more worried.</p><p>He was running out of time.</p><p>"Here it is!"</p><p>Finally, after getting rid of most of the books on the bookshelf, Kevin found the red book and placed it on the table.</p><p>Without wasting any second, he opened the book towards the last page and started reading.</p><p>"I…will…kill…you!"</p><p>Before Ren could even react, Durara aimed her staff in his direction. What followed after was a bright white light that shot in his direction, and time froze.</p><p>…Or, at least, Ren wished for it to have stopped.</p><p>Shooting at him like an unstoppable tsunami, the bright light came towards him, enveloping his entire body.</p><p>Although he couldn't tell for real, Ren felt his whole existence disappear like that.</p><p>…It all happened too fast.</p><p>What followed after the white glow was total darkness.</p><p>"Oh shit…"</p><p>Staring at the book, Kevin's face paled considerably, his arms trembled in shock. His knees buckled slightly and he uncontrollably sat down on his chair.</p><p>'The system was right… Ren really did die… This…not again…'</p><p>"What do I do, what do I do?"</p><p>Flipping through the pages of the book, Kevin had no idea about what to do next.</p><p>The system said that he had to change the outcome, but…Ren was nowhere near him! How was he supposed to help?</p><p>"How am I supposed to do this!?" Kevin shouted in desperation as he looked at the system interface in front of him.</p><p>The Quest said to use the time codex, but what exactly was that? It was the red book, wasn't it...? But, how was he supposed to use it?</p><p>He had no idea.</p><p>"System!" Kevin shouted, his voice filled with urgency and helplessness as he tried asking the system for help.</p><p> But it was useless. No matter how much Kevin asked, the interface wouldn't respond to him.</p><p>The only thing he saw was the timer slowly ticking down on him.</p><p>"Shit…shit…"</p><p>Kevin's voice echoed in the room as he flipped the book around and tried to look for anything that could help him.</p><p>At the moment, Kevin did not know how to help Ren, nor did he know how to prevent the world from ending if the demon king truly descended in two years' time as the system told him.</p><p>It had never lied to him before, so he knew that if he didn't save Ren, the demon king would truly descend in two years' time.</p><p>Even though he had many questions to ask, such as how Ren's death was correlated to the demon king's ascension, Kevin had no time for such questions.</p><p>"Ahh… Just what I am supposed to do...?" Kevin muttered as a helpless expression appeared on his face. He wanted to do something-anything-to help Ren. But what?</p><p>Ding—</p><p>Just as Kevin was about to succumb to despair, a familiar chime rang in his ears.</p><p>At the sound of the chime, Kevin abruptly lifted his head and a new window popped up in front of him.</p><p>Simultaneously, the book in front of him flipped open and a golden hue enshrouded the whole room.</p><p>The pages of the book continued to flip rapidly, until, finally, stopping at the last page. A message window appeared in front of Kevin.</p><p>On it was one question.</p><p>[Do you wish to make changes?]</p><p>"Yes…yes!"</p><p>Kevin hastily nodded his head.</p><p>"Change!"</p><p>He said out loud.</p><p>Once his words faded, the hue enveloping the book brightened up considerably, forcing Kevin to raise his hand to block the bright light reaching into his eyes.</p><p>It was blinding.</p><p>Ding—</p><p>Another chime rang, and the window in front of him updated.</p><p>[What do you wish to change?]</p><p>"Ren's death."</p><p>Kevin quickly answered, his voice filled with hope.</p><p>Ding—</p><p>[Invalid command. The command is too vague and the user does not have enough mana.]</p><p>His hopes were soon dashed as the glow around the book diminished slightly and a new interface popped up in front of him.</p><p>"Bullshit!"</p><p>Bang—!</p><p>Kevin shouted in frustration as his fist heavily pounded the table.</p><p>"Huff...huff..."</p><p>'I need to calm down.'</p><p>His frustrations only lasted for a short bit as Kevin forcefully calmed himself.</p><p>Every second mattered, and the more time he wasted the less time he had to save Ren and prevent the impending doom.</p><p>'The command is too vague... not enough mana...'</p><p>With his mind now calm, Kevin quickly analyzed the two sentences that appeared on the screen in front of him.</p><p>'Let's think about this logically. Since it says that the command is too vague, just saying that Ren should be alive is not enough. Furthermore, it also says that my mana is not enough… Does that mean, in the future, the stronger I get the more variables I can change? Maybe even stop a whole event from happening?'</p><p>With his skill activated, Kevin's thought process was quick. In a matter of a short second, he had carefully analyzed the words in front of him.</p><p>That was why after another two short seconds passed, Kevin lifted his head and looked at the book.</p><p>"94%? Haa... That's go—"</p><p>A certain sentence written in the book caught his attention.</p><p>'What if...'</p><p>An idea suddenly popped up inside of his mind as he grabbed the book with his hands.</p><p>Flipping the pages of the book, his eyes scanned the whole text in a lightning-fast manner as he quickly read through the numerous pages.</p><p>"Ukh!"</p><p>Kevin suddenly let out a pained groan. The more he read, the greater his headache became.</p><p>Although his skill enabled him to think and process things at a rate far higher than normal, it also came with downsides. One such downside was the fact that the skill put a heavy strain on his brain.</p><p>By the time Kevin read two pages, the pain in his head had almost become unbearable.</p><p>It felt as though someone had tried to split his head in half.</p><p>The pain was agonizing.</p><p>If not for Kevin's strong mental strength, he would've long crumbled on the ground.</p><p>"Haaa…haaa…"</p><p>Slowly, his breathing became heavier.</p><p>But finally, after reading fifteen pages, he was able to understand what was going on.</p><p>Putting the book down, and placing his palms by the desk, Kevin supported his exhausted body.</p><p>'I see… So you're basically trying to shut down the dampening system so that you can gain access to the portal. If so, if that 94% changed to 100% you'd survive, right? Right, Ren?'</p><p>He didn't sound confident. But, after racking his brains over the matter, it was the most plausible solution he could come up with.</p><p>[00 : 35 seconds]</p><p>Lifting his head and seeing that time was slowly running out, Kevin no longer hesitated.</p><p>Swallowing a mouthful of saliva, Kevin glanced at the system interface and softly said.</p><p>"System, change the 94% to 100%."</p><p>His words were short and concise, straight to the point. He didn't want to be rejected once more for being too vague in his command.</p><p>Ding—</p><p>Right as his words faded, another chime rang in his head, and a new window appeared in front of his eyes.</p><p>[Command invalid. User does not have enough mana.]</p><p>Kevin's heart sank completely.</p><p>With a trembling mouth, he mumbled out loud, "What...do you mean not enough mana...? Is my mana still n-not enough? What is the amount of mana required in order to change the outcome?"</p><p>He didn't have much hope when he asked that question, but contrary to his expectations, the system message changed as another chime rang in his ears.</p><p>Ding—</p><p>[C rank.]</p><p>"C rank?" Kevin voiced out in a surprised tone.</p><p>But the surprise only lasted for a brief second as his brows then knitted together into a tight frown.</p><p>That was because he was still &lt;C-&gt; ranked.</p><p>He estimated that his rank would increase within a month's time, but still not yet.</p><p>Massaging his forehead, Kevin started to think.</p><p>'&lt;C&gt; rank... I cant breakthrough in my current condition. What do—Ah! right, I have those!'</p><p>Just as the situation seemed hopeless, Kevin suddenly remembered something.</p><p>Extending his hand towards the air, Kevin took out a few chalks of bluegrass from his system's dimensional space.</p><p>"…I still haven't used these guys yet."</p><p>It was the sky grass he had gotten from his trip to Immorra with Ren. He had tried one small piece, but he felt that it was a waste to use it when his rank was still low.</p><p>After all, sky grass was also useful when someone was at &lt;B&gt; rank.</p><p>"With this, I should be able to forcefully breakthrough to &lt;C&gt; rank." Kevin softly muttered as he looked at the sky grass in his hands.</p><p>Without hesitation, Kevin put the sky grass in his mouth and chewed it.</p><p>Typically, one would make a lot of preparations before ingesting such an expensive herb, but Kevin did not have the luxury of doing so.</p><p>The moment Kevin chewed on the sky grass, a warm energy entered his body, spreading through every corner of his body, from his bones to the muscles.</p><p>[00 : 15 seconds]</p><p>"!"</p><p>As he swallowed the sky grass, Kevin made sure to check the time, and when he noticed that he had only fifteen seconds left before Ren's inevitable death, he did not hold back and forced all the energy around his body.</p><p>Usually, when breaking through, the last thing someone would do was what Kevin chose to do.</p><p>Not only would it damage his internal organs, but it would also lead to a lot of the energy from the medical item to get lost completely.</p><p>Sadly, although Kevin knew this, he couldn't afford to do that. He was forcing himself to breakthrough.</p><p>"Haaaaa!!"</p><p>Because he was so close to breaking through already, it didn't take long for Kevin to finally reach &lt;C&gt; rank, but the moment he did, an agonizing scream escaped his mouth as he collapsed on the floor.</p><p>"Haa...haaaa..."</p><p>His breathing was extremely rough, and his whole body ached. Kevin could tell that the forceful breakthrough had damaged his internal organs.</p><p>But he didn't care.</p><p>Mustering every last bit of strength, Kevin lifted his head from the ground and muttered.</p><p>"System, change the 94% into 100%…please."</p><p>As soon as his words faded, Kevin's vision distorted. Soon, his vision turned dark.</p><p>Slowly, he started to lose consciousness.</p><p>Ding—</p><p>As he was losing consciousness, a small chime rang in his ears, and a bright light enveloped his closed eyes.</p><p>Ding—</p><p>[Quest completed.]</p><p>[The reward will be assigned shortly.]</p><p>A window appeared in his vision.</p><p>What followed after were a series of similar windows and chimes.</p><p>Ding—</p><p>Reward : Synchronisation +5%</p><p>Ding—</p><p>[Processing reward…]</p><p>Ding—</p><p>[Reward processed. The reward will be granted shortly. The user will fall into a coma state for the next two weeks.]</p><p>The screens continued to appear in Kevin's vision. But at this point, Kevin was unable to process what was happening around him. His mind was in a state of burnout.</p><p>"I…did it…didn't I?" Kevin softly muttered, using the last remaining energy inside of his body.</p><p>Although he couldn't really tell what was going on, from catching a small glimpse of the status windows in front of him, he knew that he had succeeded in changing the future.</p><p>He had many questions about what had just happened, but at the moment, he could barely think straight.</p><p>He was slowly losing all of his feelings. From his sense of touch to smell, hearing, and vision.</p><p>With a weak smile on his face, right before he lost consciousness, Kevin muttered inside of his mind.</p><p>'Ah…I…did good, right, Ren? You...damned cockroach.'</p><p>His consciousness quickly slipped, and darkness completely enveloped his world.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-356.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-358.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 450 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 450 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-449.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-451.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>About an hour had passed since Ren had told Angelica to leave the room, and after not sensing any movement coming from inside of the room, Angelica decided to head back into the room to check if anything happened.</p><p>Clank—!</p><p>Opening the door to the room, Angelica walked in.</p><p>She wasn't really sure what to expect to see when entering the room but seeing that Ren had already paid the consequences of the contract, she didn't think that anything bad had happened.</p><p>Perhaps he only wanted some time alone to recover from the wounds.</p><p>"!"</p><p>Unfortunately, it seemed as though she had thought wrong as the first thing she saw once she came into the room was Ren's passed-out figure in the middle of the room.</p><p>Twitch. Twitch.</p><p>Furthermore, his body was repeatedly spasming on the floor as white foam escaped from his mouth. Angelica was instantly alarmed when she saw this as her body disappeared from the spot she was standing before reappearing right in front of him.</p><p>The first thing she did was immediately check his condition.</p><p>"…Hmm."</p><p>Her brows knit tightly as she checked him. His situation was not good. Angelica could vividly feel his vitals dropping at an alarming rate.</p><p>"Can't let this happen."</p><p>Angelica solemnly said as worry flashed across her eyes.</p><p>If Ren died then she would also suffer heavily. After all, their lives were connected.</p><p>If she was in prime condition she may not exactly have died, but she wasn't. She was currently quite weakened from having suppressed the after-effects of the curse. If Ren died right now, she was in no state of being able to survive the consequences of the contract breach.</p><p>Staring at Ren who was spasming on the floor, Angelica bit her lips.</p><p>'…Should I just wait?'</p><p>Ren had specifically told her to not contact anyone when undergoing the pain, but she wasn't really sure if that was applicable at the moment. After all, he was currently on the verge of death. If she waited any more, she was afraid that Ren might actually die.</p><p>Twitch. Twitch.</p><p>In the end, after contemplating the matter over the next few minutes, Angelica realized that she couldn't stay still. If she did stay still, Ren would without a doubt die.</p><p>Standing up, Angelica reached out for the nearby table and took Ren's communication device.</p><p>He had set it there beforehand in case the situation really got out of control. He had only told her to use it when she thought that he was going to die.</p><p>It was supposed to be a last moment resort, but it appeared as though it was the right decision,</p><p>"How do I use this?"</p><p>The communication device was quite light and small, however, to Angelica this object was quite foreign. She had seen Ren and the others use it every day, but she had never truly had any interest in it.</p><p>Fortunately, she wasn't completely clueless. Ren did tell her exactly what to do in the case the worst-case scenario happened.</p><p>Fiddling with the communication device in front of her, it wasn't long before she saw the words [Kevin Voss/Emma simp] on the screen.</p><p>Unaware of what the words meant, she immediately pressed on the name and a low ring suddenly echoed out from the speakers of the communication device.</p><p>Riiing—Riiing—</p><p>Calling Kevin was also part of the instructions that Ren had given her.</p><p>As she was calling the number, Angelica suddenly regretted telling Ren about the third option.</p><p>In reality, the reason why she had told him about the third option was because she also wanted to get rid of the curse.</p><p>The reason why demons didn't often use the mind-breaker curse was because it would put a massive toll on the demon's body depending on what rank their victims were.</p><p>If they were regular humans, the burden wasn't anything note-worthy. In fact, anything below &lt;C&gt; rank did not put any particular burden on the demon that had cursed them.</p><p>However, in Angelica's case, the person she cursed was quite highly ranked. Around &lt;B+&gt; rank, and this was back when she was still a Baron. Had it not been for the main clan's help, she would've never have been able to curse Amanda's mother.</p><p>It was also because of this that she now understood why she had been unable to increase her rank for over fifteen years. Amanda's mother had actually not died as she had originally thought.</p><p>Had it not been for the resources she had managed to get thanks to Ren, she believed that she would've been stuck in the same rank forever.</p><p>When she found out about this, she told Ren about the third option so that she could get rid of the burden on her body to further her strength even more. However, it backfired on her as Ren was now on the verge of death.</p><p> ***</p><p>Bang—!</p><p>With a loud explosive sound, the punching bag in front of Kevin swung all the way back as it crashed against the ceiling of the training grounds before falling back down.</p><p>"Huuup!"</p><p>Arching his back, once the punching bag was about to fall back down, Kevin prepared himself to punch it one more time, however, before he could do that, his communication device suddenly started to ring.</p><p>TWIIIING—! TWIIIING—!</p><p>Taking a step to the side, Kevin swiftly avoided the punching back. With sweat trickling down his face, he moved toward the other side of the room and checked the communication device to see who was calling him at this hour.</p><p>It was Ren.</p><p>Previously Ren had told him and the others that he was going to be by himself for the next day or so and that he wasn't going to be able to communicate with them in the meantime.</p><p>Since he said that, it was a bit strange for him to call him, but Kevin nevertheless answered. Perhaps he was done earlier than expected.</p><p>"Hello?"</p><p>—…</p><p>No response.</p><p>Kevin's brows knit when. Opening his mouth, he asked again.</p><p>"Ren? Did you call me?"</p><p>—…</p><p>Yet again he was met with no response.</p><p>'Strange, did he call me by accident?'</p><p>He was a little bit doubtful, but this seemed like the most likely scenario to him as he shrugged his shoulders and hung up.</p><p>It happens.</p><p>TWIIIING—! TWIIIING—!</p><p>But just as he hung up, his communication device once again started to ring. Kevin's brows knit even more as he once again picked up the call. The caller ID was still Ren.</p><p>"Ren?"</p><p>—…</p><p>To Kevin's frustration, no one spoke once again. At first, Kevin thought that it was an accident, but now he was starting to doubt this possibility.</p><p>The first time yes, but this was the second time that he had called him. Multiple different possibilities coursed through his mind as he opened his mouth to ask.</p><p>"Ren is something going up?"</p><p>His voice was more solemn this time.</p><p>Perhaps it was also a mistake again and Ren simply had his communication device in his pocket and was just accidentally calling him, but Kevin also didn't exclude the possibility of something going on.</p><p>After all, Ren did say that he wasn't going to be able to contact anyone for the next few days.</p><p>"Ren, if you are fine say something."</p><p>—…</p><p>Yet again he was met with no response. Closing his eyes, Kevin turned off his communication device.</p><p>He decided to check for himself.</p><p>Click—!</p><p>'Hopefully, I'm wrong.'</p><p>Taking a towel to clean his sweat, Kevin headed out of the training grounds. Since they were quite close to Ren's living area, it only took a few minutes for Kevin to head there.</p><p>"hmm…"</p><p>To Kevin's surprise, as soon as he neared Ren's apartment, he found the door open. Alarm bells instantly rang in his head as he quickened his pace.</p><p>"Shit!"</p><p>Once Kevin entered the room, his eyes instantly opened widely a curse escaped from his mouth.</p><p>Spasming all over the ground, Kevin saw Ren on the floor with an extremely pale look and foam escaping from his mouth. He looked to be on the verge of death!</p><p>Kevin was fast to react. Snapping out of it, like a shadow, his body disappeared from the spot before reappearing right in front of him.</p><p>Bending down on one knee, he quickly checked Ren's pulse.</p><p>"This is not good!"</p><p>Kevin's heart sank.</p><p>As soon as he checked his pulse, he realized just how dire the situation was. Not only was his heartbeat extremely weak, but so was his breathing. Extending his hand, he quickly took out a potion form his dimensional space and fed it to Ren.</p><p>It was an advanced potion that cost a lot of money, but Kevin didn't really care. Kevin wasn't one to care about money.</p><p>As soon as Kevin fed Ren the potion, his condition slowly started to stabilize. However, he was not in the clear yet as Ren had still not woken up. Furthermore, the spasming had still not stopped.</p><p>Ruffling his hair into a mess, Kevin took another potion from his dimensional space and fed it to Ren, however, contrary to the effects of the last potion this one didn't seem to have had any effect on him as he still continued to spasm on the ground.</p><p>In fact, it seemed as though his condition had only worsened.</p><p>Seeing just how dire the situation was, Kevin grabbed Ren by the armpits before dragging him towards the bed. As he dragged him towards the bed, lowering his head and staring at him, he couldn't help but blurt out.</p><p>"What in the world did you do!?"</p><p>Just what exactly had Ren done to reduce himself to this state!?</p><p>Placing Ren onto the bed, Kevin placed his hand over his chin as his right leg repeatedly tapped the floor.</p><p>'Damn it, what should I do?'</p><p>Ren's situation was extremely dire, and seeing that potions didn't work on him, Kevin was left completely helpless.</p><p>'System.'</p><p>He muttered inside of his mind as a familiar interface suddenly materialized in front of him.</p><p>Pressing his finger on the interface, Kevin quickly looked through the system shop in hopes of finding anything useful that could help him assess the situation, but as he looked through the many items the shop had to offer, he realized that this was all futile.</p><p>He didn't know what Ren's condition was, so how could he help him!? It was like he was searching for a needle in a haystack.</p><p>"huh?"</p><p>Ding—!</p><p>Just as he was about to close the system, he suddenly received an alert. Following this, the system interface changed and Kevin's eyes opened widely.</p><p>[Emergency quest.]</p><p>Save Ren.</p><p>Reward : +5% synchronisation.</p><p>Penalty : Demon king ascension → - 2 years.</p><p>"What in the world?...This again?"</p><p>Kevin took a couple of steps back as he looked at the screen.</p><p>His mission only consisted of two words, yet, they were enough to make Kevin understand just what he needed to do. But what really made Kevin confused was the fact that this mission was oddly familiar to the one he previously received a couple of years ago.</p><p>If before he had a feeling that the system was somehow connected with Ren, he was now sure. Ren and the system were definitely linked!</p><p>Unfortunately, he didn't have time to contemplate the matter as Ren's condition suddenly worsened. His body started to spasm even more intensely than before!</p><p>"Fuck."</p><p>Another curse escaped from his mouth as he became more restless.</p><p>Scratching his head, he decided to call everyone else. He was currently incapable of handling the situation and he figured that maybe with the other's help he might be able to figure something out.</p><p>The more brains the better.</p><p>Riiing—</p><p>The first person he called was Melissa. With her being an expert in potions and stuff of the sorts, Kevin concluded that she was the best person to call in case something like this happened.</p><p>The only problem he had when calling Melissa was the fact that she tended to ignore his calls most of the time. Fortunately, he was in luck as not a couple of squeals after, her groggy and annoyed voice rang out from the speaker of the communication device.</p><p>—What is it? Do you know what fucking time it is?</p><p>Kevin's eyes lit up as soon as he heard her voice. In a rushed voice, he replied.</p><p>"Melissa, I need your help. Quickly come to the location that I sent you."</p><p>Without giving a chance for Melissa to rebuke, Kevin quickly hung up the call.</p><p>Having known Melissa for quite a while now, he knew that the best way to make her say yes was by not giving her a chance to say no. Therefore, before letting Melissa say no to him he quickly closed the call and sent her the location.</p><p>Following this, he quickly dialed every number he knew.</p><p>As this was happening, Kevin was unaware that in the corner of the room two bright yellow eyes were staring at him and Kevin intensely. Those eyes belonged to none other than Angelica who worriedly looked at Ren.</p><p>At this moment, she knew that if Ren died, so would she. She could only hope that his friends would be able to do something about the situation.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-449.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-451.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 448 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 448 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-447.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-449.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"A...Amanda?"</p><p>Natasha's voice shook, as she looked at the girl standing before her. She looked so much older than when she had last seen her.</p><p>She was fully grown up now.</p><p>Natasha couldn't really explain the emotions she was feeling right now. Thinking about how she had lost the chance to see her daughter grow up, she felt a deep sense of sadness. What mother didn't want to see their child grow up? ...She knew that this was inevitable, but she couldn't hide the sadness she felt when seeing her daughter.</p><p>However, seeing just how beautiful and healthy her daughter had turned out, she was more gratified than sad.</p><p>Placing both of her hands by the side of the capsule, Natasha tried to get out. But as she tried to lift her hands, she found it extremely hard to do so as she had trouble coordinating her brain with her hand movements.</p><p>"Wait up."</p><p>Maylin who noticed this, waved her hand and the capsule enveloping Natasha tore apart. A gentle white glow enveloped Natasha as she levitate in the air.</p><p>Waving her hand once again, Natasha slowly moved toward the ground.</p><p>As Natasha's feet touched the ground, she stumbled a couple of steps. Amanda did try to offer her a hand, but raising her hand, Natasha refused.</p><p>"Let me."</p><p>Taking two steps forward she was somehow able to stabilize her body.</p><p>Having stayed in a coma for over fifteen years, this sort of reaction was understandable. Her brain needed to get adjusted to her muscles once again.</p><p>"Haa..."</p><p>Taking a deep breath, Natasha finally stood straight. Then, staring at Amanda and getting a proper look at her, the smile on her face became extremely gentle.</p><p>"...You've grown up so well."</p><p>With a face mixed with many different emotions, Amanda lowered her head. A smile also blossomed on her face.</p><p>Seeing this, Natasha raised her hands and motioned her to come to her.</p><p>"Come here, let's get a better look at you."</p><p>Complying with her mother's wishes, Amanda slowly walked up to her mother who placed both of her hands on her cheeks and slowly started to pinch. Her next comments caused Amanda's face to turn red in embarrassment.</p><p>"Mhh, very soft and smooth, not bad, not bad."</p><p>Letting go of her cheeks, Natasha looked at her up and down and commented.</p><p>"You've also developed quite nicely in all other departments. Very good, very good. There must be a lot of boys chasing after you, eh?"</p><p>"...Uh?"</p><p>Natasha's sudden words caused Amanda to freeze on the spot. What in the world was happening? She had not expected her mom to be so bold!</p><p>"You must be around how old now?"</p><p>Without waiting for Amanda to speak, Natasha placed her hand on her chin and pondered.</p><p> "I left you when you were just about to turn five, so you should be around nineteen to twenty years old. Five years younger than me from back then." </p><p>Natasha's brows furrowed when she thought that far.</p><p>Amanda may have been her daughter, but she was only five years younger than her if you took into account the fact that she had been frozen for fifteen years of her life. Her mentality and personality were still that of her twenty-five-year-old self.</p><p>"You're around nineteen to twenty years old if I'm not guessing wrong?"</p><p>"Mhm, I'm twenty years old."</p><p>Amanda replied with a soft hum.</p><p>She naturally understood why her mother was acting the way she was, and so was able to somewhat adjust to her mother's personality. To be honest, she felt more like a sister to her than her mother, but it wasn't like she could do anything about it.</p><p>"Twenty years old...huh, I can't believe my daughter is so old already."</p><p>Bitterness flashed across Natasha's eyes as she said those words, but it left as fast as it came as she looked back at Amanda. She was curious about something.</p><p>"Amanda, how were you able to come here?"</p><p>She had left Amanda when she was young and so she didn't know about the current world's circumstances. However, from what she recalled humanity wasn't on good terms with the elves. For what reason was Amanda here?</p><p>Did Maylin perhaps tell her about her situation and brought her here?</p><p>"About that..."</p><p>Before Amanda could explain, Maylin cut in and quickly told Natasha about the world's circumstances.</p><p>About how they had invited the humans into their domain and how they were contemplating the possibility of letting them in the alliance.</p><p>Listening to Maylin's recount of the situation, Natasha covered her mouth with her hands.</p><p>"Such thing happened?"</p><p>"Yes."</p><p>Maylin nodded her head before putting both of her hands behind Amanda's shoulders.</p><p>"Amanda over here made it to the round of eights of the tournament."</p><p>"She did?"</p><p>Surprise flashed across Natasha's eyes as she took another look at her daughter. Sensing the mana revolving around her, the surprise in her eyes only intensified.</p><p>"&lt;B-&gt; rank?"</p><p>Since Amanda was not hiding her strength, it only took a moment for Natasha to distinguish her rank. Once she realized that Amanda was &lt;B-&gt; rank at just the tender age of twenty, she was left stunned. Even she, who was supposed to be one of the most talented humans back then was only &lt;B+&gt; rank at the age of twenty-five.</p><p>At the rate at which Amanda was progressing, Natasha didn't doubt that she would reach her strength far earlier than her!</p><p>"...It's no wonder you were able to make it so far in the tournament," Natasha said with a tone filled with astonishment.</p><p>Her level of progress far outpaced the level of progress of humanity in the past.</p><p>As her thoughts paused there, Natasha suddenly remembered something she was extremely curious about.</p><p>"Oh, right, the curse. How were you able to find a cure for it?"</p><p>As far as she knew, there was no cure for the mind-breaker curse. She knew best since she had spent countless days trying to find a way to remove it. In the end, after going through countless books and papers, she was unable to find anything regarding the cure for the mind-breaker curse causing her to make the decision that she did.</p><p>Not wanting to be taken hostage and used as a bargaining chip for her family, she was forced to run.</p><p>"...Someone I know gave it to me."</p><p>Amanda curtly replied. Her answer caught Natasha off-guard as her eyes instantly squinted.</p><p>"Someone gave it to you?"</p><p>"Mhm."</p><p>"Is it a boy?"</p><p>Natasha's words were sharp, but Amanda didn't seem to have noticed it as she nodded her head.</p><p>"...Yes."</p><p>"I see, I see. You are indeed at that age."</p><p>Glancing around the room and seeing that there was no one else, she asked.</p><p>"Where is this so-called boy?"</p><p>"...Eh?"</p><p>Amanda tilted her head as she looked at her mother with a confused look on her face.</p><p>"Why do you want to know where he is?"</p><p>"Of course, I want to know where he is. He is the one that saved me after all!" Natasha replied, her voice raising a couple of pitches. "If I didn't thank the person that was able to help me reunite with you, then what would the others think?"</p><p>"Oh."</p><p>Amanda had a sudden look of understanding. She simply wanted to thank Ren. Before she could reply, her mother asked.</p><p>"By the way, is this so-called boy also in the tournament?"</p><p>"He is."</p><p>Mayling replied for Amanda before a small look of displeasure flashed across her face.</p><p>"But he has not made it past the round of sixteen."</p><p>Maylin's look of displeasure didn't go unnoticed by Natasha who inwardly thought. 'Ah, I see, so he's weaker than my girl, moreover, Maylin seems to dislike him. I should definitely pay more attention to this matter.'</p><p>Even though she had been absent for over fifteen years, Natasha was still a mother at heart.</p><p>Although she wasn't certain that the boy was someone that was courting her daughter, she definitely wanted the best for her daughter.</p><p>Even though he was the one that had helped her get rid of the curse, she wasn't just going to hand her daughter to him on a silver platter. He needed to meet her criteria, and so far she was quite uncertain about this so-called 'boy'.</p><p>Unaware of Natasha's delusions, Amanda was just about to add a comment with regards to why Ren had not made it past the round of sixteen, but before she had the chance to do so, her mother's next words caused her to freeze on the spot.</p><p>"How is your dad?"</p><p>Seeing her daughter's complexion pale at her question, Natasha's heart sank as she softly asked.</p><p>"...Did something happen to your dad?"</p><p>Biting her lips, Amanda raised her head and looked at her mother. Seeing the worry in her eyes, Amanda closed her eyes for a moment. Honestly, she didn't want to tell her mother about what had happened to her father.</p><p>It wasn't because she didn't want to tell her out of spite, but because her mother had just woken up from a long coma.</p><p>She was already shocked enough about the fact that fifteen years had passed, if she found out that her father had been missing for over three years, she wouldn't know how she would react.</p><p>However, seeing the worried look on her mother's face, Amanda didn't have the heart to lie to her.</p><p>Closing her eyes and taking a deep breath, she slowly started to recount to her the dungeon incident that happened three years ago, and how although he was still alive, he was trapped inside of the demon realm, with no way out.</p><p>"...N..no way."</p><p>Listening to her daughter's words, Natasha's legs weekend and she almost fell back. Had it not been for Maylin's timely intervention, she would've most likely fallen over.</p><p>Taking a look at her daughter and seeing that she was not lying, tears started to gather in the corner of Natasha's eyes. However, not wanting to look weak in front of her daughter, blinking her eyes a couple of times to get rid of the tears, she quickly calmed herself down.</p><p>Then, moving towards Amanda she slowly brought her in her embrace and mumbled.</p><p>"He's going to be fine."</p><p>Biting her lips, she repeated.</p><p>"He's definitely going to be alright."</p><p>***</p><p>"Huaakk!"</p><p>Letting out another scream, I crashed against the ground and heavily gulped for air. Lowering my head slightly, I could see the veins on my hands wiggle uncontrollably.</p><p>Blood started to seep out from every part of my skin as my neck twisted at a weird angle.</p><p>A strange and radiating pain coursed throughout my whole body making it hard for me to breathe.</p><p>At this point, I had already lost track of time. Hours may have passed, and perhaps even days could've passed by now.</p><p>Fortunately, I didn't have to worry about others coming to me as I had said to them that I was going to be busy for the next couple of days. Furthermore, the room was soundproof meaning that no one would be able to hear my screams.</p><p>"Khhhaaa!"</p><p>Clenching my heart one more time, I crawled forward towards the area where the potions were.</p><p>Reaching out my hand grabbing onto a potion, I uncapped it and brought it to my mouth.</p><p>"S..shit!"</p><p>But just as I put the potion in my mouth I realized that it was already empty. Clenching my teeth, I threw the bottle to the side and reached for another one, but the same thing happened.</p><p>"Khhh..."</p><p>The pain in my heart intensified as I felt something cold run down my nose. I didn't need to look to understand that my nose was bleeding.</p><p>Raising my hand to wipe my nose, I looked around the room. My eyes were unfocused and I could barely process what was happening around me, but seeing the bloody mess around me I understood that I had run out of potions, and when this happened, my heart sank completely.</p><p>Not even a second after coming to this realization, another wave of pain suddenly attacked me causing my back to arch back and another scream escaped from my mouth.</p><p>"Khuuauuuua!"</p><p>Thud—!</p><p>Landing hard on my back, my arms spasmed and I had a hard time controlling my body. I didn't know for how long this attack lasted, but it was by far one of the most excruciating ones that I had experienced.</p><p>"Haaa...haa..."</p><p>With my back on the floor, facing the ceiling, I heavily gulped for air as the pain slowly subsided.</p><p>The pain was not constant. It would come and go in short bursts of intervals, however, with each burst the pain would intensify, and at the moment I was only waiting for the next burst to arrive.</p><p>While I was waiting, sensing something, I slowly turned my head to face the right. 'Is Angelica done?'</p><p>Angelica didn't breach the contract and therefore the pain that she had to go through was not as bad as mine. It wouldn't be strange for her to be done by now.</p><p>"...Huh?"</p><p>However, as I turned my head what met my sight was not Angelica. My blood instantly froze as my eyes paused toward the distance.</p><p>Calmly sitting on a small red sofa inside of the room was a figure that bore a striking resemblance to me. Crossing his legs and leaning his body on the armrest of the chair, he coldly said.</p><p>"Took you long enough."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-447.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-449.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

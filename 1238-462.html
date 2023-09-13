@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 462 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 462 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-461.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-463.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Inside of a pitch-black void. </p><p>With his eyes closed, a figure bearing striking resemblances to a human sat in the middle of the void. He had ashen-grey white hair and a cold merciless look that chilled anyone that looked in his direction. </p><p>Sitting crossed-legged in the middle of the void, the figure's eyes were closed. </p><p>For an unknown period of time, the figure remained seated without moving a single muscle of his body. Had it not been for the rhythmical movement of his chest, someone could've easily mistaken him for dead. </p><p>How much time passed since then, no one could tell as the concept of time had become null in that black void.</p><p>Twitch.</p><p>With a small twitch, the figure's eyes suddenly moved. </p><p>Following the first twitch came the second twitch, and before long the figure's eyes suddenly sprung open revealing two blood-red pupils. </p><p>"…"</p><p>Blinking a couple of times, the area surrounding the figure suddenly froze.</p><p>Glancing around the place, the figure had an apathetic and cold look on his face. </p><p>It was then that his lips tugged upwards as he slowly opened his mouth.</p><p>"You've weakened haven't you."</p><p>Drifting throughout the void was the figure's cold, yet arrogant voice. A deep chill permeated the place as the figure slowly stood up.</p><p>Taking a look at his surroundings, the figure closed his eyes and raised his hand. With a simple swipe of his hand, the space in front of him tore apart.</p><p>C...crack! </p><p>Once the space tore apart creating a small crack in the fabric of space in front of him. Following the space tear, a shocking scene was revealed behind it.</p><p>Over thirty or so different figures stood behind a large honeycombed sphere that was currently surrounding the white haired figure. Each figure emitted a tremendous pressure that caused the surroundings to distort at their mere breath. </p><p>Staring at the figures standing behind the sphere, the ashen white haired individual smiled.</p><p>"What an interesting welcome." The figure muttered before he closed his eyes and took a step toward the crack. </p><p>Before entering the crack, he mouthed a couple of more words. </p><p>"It looks like the two of them have already partially awoken. It's time for me to do my part." </p><p>***</p><p>"Welcome back." </p><p>"Congratulations on your victory." </p><p>"Your performance was amazing." </p><p>The moment Kevin entered the Union headquarters, he was instantly greeted by his colleagues who flattered and applauded him for his achievements at the conference. </p><p>No one mentioned his loss with Ren, but this was understandable. Kevin was part of the Union while Ren wasn't. Furthermore, Kevin was the rising star of the Union; no one wanted to get on his bad side.</p><p>With a calm smile on his face, Kevin thanked everyone that complimented him. He was already prepared for such a scenario and therefore wasn't the least bit flustered.</p><p>"Thank you, thank you." </p><p>After thanking everyone, Kevin quickly headed for the changing room. Today he was tasked with the role of entering a dungeon with another small team from the Union. </p><p>It was a simple reconnaissance mission. With the Union owning over a thousand different dungeons, every once in a while they needed to do a small check to see if any demon had infiltrated or if the dungeon was still stable. </p><p>Arriving at the changing room, Kevin opened his designated locker room and took out a special suit. </p><p>Clank—</p><p>He quickly put it on. </p><p>The suit was made from the skin of a rare beast that could only be found on the outskirts of the human domain and had to be personally hunted. What made the skin so special was its special properties that allowed for it to absorb 10% of the damage inflicted by an &lt;A&gt; ranked individual.</p><p>It didn't sound like a lot, but for Kevin, this amount was something that could potentially save his life. </p><p>As he put on the suit, he secretly thought to himself. </p><p>'Even though I won the competition, they only gave me a few days' rest. How ungrateful.'</p><p>Not even a couple of days had passed since his return to the human domain and the Union had forced him to go on this small excursion.</p><p>He was honestly quite tired, but a job was a job, and thus. </p><p>Ziiiip! </p><p>Zipping the back of his suit up, Kevin calmly walked out of the changing room. Then, turning right of the room, Kevin headed for a special room where several people were already waiting for him, all wearing similar suits to him. </p><p>Upon arriving in the room, Kevin glanced towards the other and solemnly asked. </p><p>"Everyone's already gathered?" </p><p>With their backs straights, all of the recruits simultaneously shouted. </p><p>"Yes sir!" "Yes sir!" "Yes sir!" </p><p>"Good." </p><p>Kevin nodded his head in satisfaction when he saw this. Extending his hand, Kevin asked. </p><p>"Give me the report on the dungeon." </p><p>"Yes sir!" </p><p>Taking a step forward, a young girl with long brown hair tied in a ponytail and a chubby figure handed Kevin a small tablet. </p><p>"Thank you."</p><p>Taking the tablet from the girl with a polite smile, Kevin quickly looked through the information written on the tablet.</p><p>"&lt;B&gt; rank dungeon, Asmdeous's call." </p><p>Swiping right of the tablet, he read the details of the dungeon aloud.</p><p>"The dungeon is a land-type dungeon. Its setting is in the grassland of the demon realm, and the monsters that can be found in the dungeon are, the Mongslow, Cobarweb, Ascentiatic scorpion..." </p><p>As Kevin read through the list of monsters found inside the dungeon, his brows couldn't help but furrow. </p><p>'This dungeon is a lot more difficult than I had originally anticipated.' </p><p>It was only now that he looked through the list that Kevin realized that the dungeon he had been assigned to was on the higher spectrum of the &lt;B&gt; rank dungeons. In terms of danger, this dungeon could even rival some low leveled &lt;A&gt; ranked dungeons. </p><p>"Alright, I get the gist of the situation." </p><p>It was only after he read through the information a couple of more times that Kevin finally put the tablet away and turned his attention back toward the recruits.</p><p>With a solemn look on his face, he looked at everyone present. </p><p>"I'm not exactly sure why the heads of the department chose to hand this mission to us, but from the l—Hm?" </p><p>In the midst of his speech, Kevin's eyes suddenly shrunk as the whole room suddenly started to shake uncontrollably. </p><p>Rumble— Rumble—</p><p>"Huh?!" </p><p>"What's going on?" </p><p>"An earthquake?"</p><p>At the exact moment the trembling happened, everyone inside of the room became alarmed as they grabbed onto something to keep themselves steady. </p><p>Grabbing the side of the portal, Kevin also wondered what happened. Channeling the mana inside of his body, he kept his body upright and looked around the room in wonder.</p><p>However, before he could even have time to process everything, a low chime suddenly rang inside of his head as multiple red labels materialized in front of him, startling him completely. </p><p>"What the..." </p><p>Di— Di—</p><p>[Warning.] [Warning.] [Warning.]</p><p>===</p><p>[Demon king ascension] : 5 years : 8 months : 2 days : 57 seconds. </p><p>===</p><p>Staring at the system interface in front of him, Kevin's mouth hung open as his mind blanked completely.</p><p>"W...what's going on!?" </p><p>Everything happened so fast and unexpectantly that it took time for him to understand what the message meant, and when he did, his eyes opened widely and a curse escaped from his mouth.</p><p>"Shit..." </p><p>It was at that moment that Kevin understood that something terrible must've happened. </p><p>***</p><p>"Bye Nola." </p><p>"Bye Brother." </p><p>Dropping Nola at school, I bid her goodbye with a smile on my face. </p><p>Having spent the last couple of days with her and my family I felt much more relaxed.</p><p>Because I had been away from her and my parents for a very long time, there was a lot I had to catch up with them. During the days that I returned, I spent most of my time at home catching up with them. From there, I was able to learn a lot of new things such as the fact that Nola was now in kindergarten and that my parents were now no longer in any debt. </p><p>In fact, with the world now knowing of my identity, they received multiple sponsorship deals from large conglomerates, in hopes of trying to get on their goods sides. </p><p>I originally thought that this was a good deal for them, however, it appeared as though the two of them were satisfied with what they had and refused all of the offers that came their way. </p><p>Despite me telling them that it was okay for them to accept the offers, they adamantly refused, and so, shrugging my shoulders, I could only accept their decision. </p><p>"...I should probably get going." </p><p>It was only after I watched Nola's figure disappear in the school that I finally left the school premise. </p><p>Clank—! </p><p>Heading for my car, the moment I arrived a couple of meters away from it, the car door slowly rose in an upward manner. </p><p>Following this, I quickly entered the car and stepped onto the accelerator. My next destination was the group headquarters. </p><p>It had been a while since I had met the others, and it was time that I started making preparations for the future. </p><p>That, and the fact that I needed to take care of a couple of problems. Primarily, Everblood and Aaron's parents. </p><p>Now that I was back in the human domain, I decided to quickly eliminate all possible threats before they got to me. </p><p>Rather than wait for them to come at me, the best decision was to go at them before they even had the chance to come at me. </p><p>There was also the Monolith, but they weren't an organization I could simply touch as I wished. I was still far too weak to handle them. </p><p>"Hm?" </p><p>Coming to a stop in front of a traffic light, my brows suddenly furrowed. Staring toward the sky, I suddenly saw a horde of birds flying in the air in a weird manner. To make things even weirder, I suddenly felt a weird fluctuation in the mana in the air. </p><p>Twisting the keys of my car, I turned off the engine of the car and stepped out of the car. Placing my hand on the top of the car, I looked at my surroundings. Everything felt normal, yet different at the same time. </p><p>It was hard to explain, but...it felt as though this was the calm before the storm. </p><p>Ba...thump. Ba...thump. </p><p>Unknowingly my heart started to speed up. </p><p>Rumble— </p><p>Before I could make heads or tails of the feeling that I was feeling, the ground started to shake and startled screams rang everywhere. </p><p>"Shit." </p><p>A curse escaped from my mouth as I channeled the mana inside of my body and kept my feet planted on the ground. </p><p>Rumble— Rumble— </p><p>As seconds passed the ground started to shake even more fiercely and people started to fall over. Their panicked screams rang throughout every corner of the city, and the cars around me started to beep uncontrollably. </p><p>Cra...Crack. </p><p>Just when I thought things couldn't get any worse, my ears twitched as I heard the sound of something tearing apart. </p><p>Slowly lifting my head, my pupils instantly dilated as I watched the sky tear apart and a huge tear appeared in the sky. </p><p>Swallowing a mouthful of saliva, I opened and closed my mouth repeatedly. </p><p>"It can't be, this event..." </p><p>Before I could even finish my sentence, the crack in the sky opened up even more widely, and suddenly, the mana in the air thickened up considerably. </p><p>Instantly the pores of my body opened up and my body started to greedily absorb the mana in the air. My strength which had been growing at a steady pace increased by a notch or two.</p><p>Normally I would've been happy about this development, however, I was anything but happy. Rather, a heavy solemness enshrouded my body as I quickly got back into my car and turned on the engine. </p><p>Pressing onto the gas peddle, I quickly turned back and headed back to the kindergarten. </p><p>As I sped through the streets, I couldn't help but repeatedly curse aloud. </p><p>"Fuck, fuck, fuck..." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-461.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-463.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

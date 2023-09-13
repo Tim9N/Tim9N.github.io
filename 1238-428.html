@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 428 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 428 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-427.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-429.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Begin!"</p><p>The moment the referee's words faded, both Ava and Amelia simultaneously moved.</p><p>Raising his hand, the mana in the air agglomerated towards the palm of Amelia's hand creating a circular pressurized wind ball. Within a couple of seconds the ball turned the size of a basketball before with a low shout, Amelia directed the ball in Ava's direction.</p><p>Swooosh—!</p><p>With a low hissing sound, the ball quickly headed in Ava's direction as it pierced through the air at a terrifying speed. It was so fast that the spectators below were unable to see a thing. </p><p>At the same time Amelia was preparing to attack, holding onto three blue cards, Ava quickly channeled her mana into them and threw them in front of her. As she did so, she pressed her foot on the ground and pushed her body back. </p><p>SHIIING— SHIIING— </p><p>The moment the cards left her hand, three massive ice pillars materialized in front of her.</p><p>Bang—!</p><p>It was then that the ball came into contact with them and a terrifying explosion resounded throughout the whole arena. But it had to be noted, Ava was two minor ranks lower than Amelia, and so were the cards.</p><p>The moment the ball came into contact with the pillars they instantly broke apart into pieces like broken glass, creating a small mist in the air. </p><p>Fortunately, Ava already knew about the fragility of the ice pillars. The only reason she used them was to buy herself enough time for her next move, which was exactly what she did. </p><p>Taking out her flute, she quickly blew at its ip </p><p>Tootle too~</p><p>A melodious tune suddenly rang throughout the whole arena grounds. </p><p>Meanwhile, as Ava was blowing onto the flute, Amelia's attack never stopped. The only thing that was different about the attack was that its momentum had slowed down. This was of course a result of the ice pillars. </p><p>Within a couple of seconds, the attack was already in front of Ava. However, it was then that something happened.</p><p>Just as the attack was land on her, a massive boulder-like creature materialized in front of her and crashed onto the ground with a loud bang.</p><p>Booom—</p><p>Then, following the appearance of the creature, a terrifying explosion resounded throughout the arena as the ball came into contact with the creature. Dust and debris flew in the air, blocking the sight of all parties present. </p><p>As this happened, the hearts of every human that was watching tightened as everyone wondered.</p><p>'Was Ava able to stop the attack or not?'</p><p>Fortunately, all doubt seemed to resolve over the next few seconds as the dust settled down revealing an enormous beetle-like creature standing in front of Ava.</p><p>With its anterior opened wide and only a few scratches on it, the creature looked completely unharmed. Furthermore, standing behind it was Ava who had her flute pressed by her lips. </p><p>Confusion instantly appeared on the viewers faces as they looked at the creature standing in front of Ava.</p><p>Fortunately, the announcers were not just there for show as Lorena quickly commented.</p><p>"That right there is a metal-plated beetle. A creature that has low attacking power, but incredible defensive power. Simply put, they are tremendous tanks." </p><p>Nodding his head, Zack quickly followed up from the side. Excitement flashed across his eyes.</p><p>"Right, as you've just seen, despite only being a low ranking creature it was still able to withstand the impact from Amelia. Ava's opponent." </p><p>"Oh, it looks like Ava is going to summon more creatures," Lorena added as she pointed toward the screen in front of her.</p><p>And just as her words faded, Ava once again blew on the flute.</p><p>Tootle too~</p><p>Following her blow, a subtle glow enshrouded the flute as three more creatures suddenly materialized next to her. As the creatures appeared, Ava's face paled considerably.</p><p>Once the three creatures appeared, a look of realisation appeared on Zack's face as he softly muttered.</p><p>"Interesting, so Ava is going the defensive route."</p><p>The creatures that Ava had just summoned were known as the steel-webbed spiders, a terrifying &lt;C&gt; class creature that could shoot out webs that were as sturdy and powerful as steel.</p><p>As soon as Zack's words faded, Amelia who had not been standing idly, attacked once again.</p><p>This time, he summoned three balls. It only took him a couple of seconds to create them, and once he was done with them, he quickly sent them in Ava's direction. </p><p>Unfortunately for him, Ava was ready. Snapping her fingers, the three steel-webbed spiders she summoned quickly distanced themselves into a small triangular formation. From how fast and readily they got in their position, it became apparent to everyone present that Ava had practiced this formation many times. </p><p>Lowering their lower body, the spiders quickly shot out spider webs in the direction of where the attacks were coming from, creating a large resplendent net.</p><p>But this wasn't all, following the appearance of the next, the metal-plated beetle quickly moved a couple of meters behind the web. This was of course at the instructions of Ava who orchestrated everything from behind. </p><p>And just as the metal-plated bottle arrived, the three attacks came into contact with the webs. Just like a parachute, the moment the balls came into contact with the webs, they inflated by a large margin. </p><p>Snap—! Snap—!</p><p>In the end, however, it appeared as though Amelia's power was still too strong for the likes of some webs to stop. </p><p>Low snapping sound resounded throughout the whole arena as the spiderwebs quickly came undone. However, the purpose of the nets wasn't to stop the attacks, but only to disrupt their momentum.</p><p>Once the energy inside of the hall dissipated, Ava turned to look in the direction of the metal-plated beetle that quickly dashed forward and met the attacks head-on.</p><p>Booom—! Booom—!</p><p>Loud explosions once again reverberated throughout the arena as the metal-plated beetle skid back all the way towards the edge of the area.</p><p>Tssss.</p><p>The moment the beetle skid back and the audience was able to get a look at its appearance, everyone drew a cold breath.</p><p>With its outer layer completely cracked, the metal-plated beetle was worse for tear. Trying to stand, its body stumbled down repeatedly, and eventually, unable to hold on for any longer, it quickly dropped to the ground with a low 'thud.'</p><p>Gazing in the direction of the metal-plated beetle, Ava softly said.</p><p>"Come back."</p><p>Tootle too~</p><p>Blowing onto her flute, the beetle quickly disappeared from arena and entered the small pocket dimension inside of the flute.</p><p>Following its disappearance, Ava's complexion became incredibly solemn. It was clear that she hadn't expected for her beast to lose this quickly.</p><p>Swooosh—!</p><p>To make matters worse, Amelia who was standing at the back with a smug look on his face, once again attacked. </p><p>Pointing his finger in the sky, the air suddenly fumbled towards the tip of his finger as a terrifying pressure descended on the arena. </p><p>Following his movement, he gazed in Ava's direction before pointing his finger towards her.</p><p>"Go."</p><p>He mumbled under his breath before he attacked.</p><p>Like a raging storm, the attack came crashing down on Ava and her beasts. Unlike the previous attacks, this attack covered almost half of the arena and so both her and her beast were quickly swept inside of it. </p><p>Staring at attack, Ava didn't attack. Instead, placing her mouth on the flute once again, she blew it. </p><p>Tootle too~</p><p>A subtle melodious sound rang out, following which, all the spiders disappeared from the arena.</p><p>This was not all, blowing onto the flute one more time, Ava turned around and run towards the edge of the arena. Once she arrived at its edge, without turning back, she jumped out of the arena, much to the shock of everyone present.</p><p>"This…"</p><p>Witnessing Ava jump out of the arena, Lorena and Zack who were watching from the studio stood up in shock as their hands pressed onto the table.</p><p>Then, glancing at each other for a good second, they looked back at the cameras and slumped back on their chairs.</p><p>"Ladies and gentlemen it appears as though contestant Ava Leafz ha—"</p><p>"Wait, look."</p><p>Cutting Zack off, Lorena suddenly stood up and pointed towards the screen where displayed on it was Ava standing right behind Amelia who was looking at the referee with a look of anticipation. It was clear that he was waiting for him to announce the victor. </p><p>And just as the referee was about to say something, Amelia suddenly felt an ominous premonition. But it was too late as he suddenly felt a powerful mana fluctuation coming from behind him. </p><p>Turning around in a lightning-quick manner he extended his hand towards where the source came from, but by the time a magic circle appeared in his hand, five large fire pillars engulfed his entire body.</p><p>The source of the fire pillars was none other than Ava who quickly followed up by blowing onto her flute. Six beasts simultaneously appeared in front of her. </p><p>Of the six beasts, three of them were the same spiders from before while the other three were ferocious wolves that quickly dove in the direction of Amelia who was currently being engulfed by the flames.</p><p>A look of total shock appeared in the eyes of the spectators watching the scene. At one moment they thought that Amelia had won when suddenly Ava turned the tables and was now winning! </p><p>And just as the wolves were about to dive onto him, a hand came sweeping down from above, blowing everyone away, including the fire engulfing Amelia.</p><p>Once the fire disappeared, Amelia's haggard figure appeared on the stage. With heavy breaths and disheveled and burned clothes, he glared in Ava's direction.</p><p>"You bitch!"</p><p>He snarled as he weakly stood up. But before he could do anything, the referee's voice resounded throughout the arena.</p><p>"Match winner, Amelia. He will pass to the round of 16."</p><p>"…eh?"</p><p>"Huh?"</p><p>The moment everyone heard the referee's voice, looks of confusion appeared on the faces of the spectator. This was especially so for the human spectators who started throwing curses at their screens.</p><p>How could Ava have lost when she clearly destroyed her opponent?! </p><p>Was the referee blind? </p><p>As this was happening, Zack had a thoughtful look on his face as he looked at the screen. Next to him, Lorena noticed this and asked.</p><p>"Have you figured something out?"</p><p>Staring at the screen for a couple more seconds, Zack eventually nodded his head with a complicated look. </p><p>"I have."</p><p>The moment the viewers heard this, they instantly shut up.</p><p>With a deep sigh, Zack followed up by pointing towards the edges of the arena.</p><p>"If I'm not wrong, the moment Ava jumped out of the arena, she must've summoned some sort of aerial beast to carry her all the way towards the other side of the arena. In short, the reason why she was able to go to the other side was because she flew at the bottom of the arena." </p><p>Everyone nodded their heads upon hearing this evaluation. Most people had also come with this conclusion upon seeing her appear all the way towards the other side of the arena.</p><p>Shaking his head, Zack regretfully said. "Unfortunately, according to the rules, the moment the contestant's head falls below the arena grounds, they will be out of bounds, and as Ava's head did in fact fall below the arena grounds, I can only regretfully say that she has lost." </p><p>Looks of understanding appeared on the faces of everyone who was listening as they finally understood why she lost.</p><p>"That being said, Ava performed spectacularly and we can say that she did not put us to shame. Had it not been for the rules, she would've won."</p><p>Zack added as he stood up and started clapping his hands. Following his example, everyone in the studio did the same. </p><p>***</p><p>"Great job."</p><p>"Thanks."</p><p>Greeting Ava at the bottom of the tree, I raised my hand and we high fived.</p><p>Pack—! </p><p>Once we high-fived, passing by me, Ava softly muttered.</p><p>"I did as you've told me to do."</p><p>"Mhm, I saw."</p><p>A smile crept up on my face once I heard her words. </p><p>What happened just now was intentional.</p><p>From the very beginning Ava and I knew that there was a low probability of her beating her opponent. That being said, I told her to still try and if things didn't work out to just do as I planned which was what happened.</p><p>Go underneath the arena and basically ambush Amelia from behind.</p><p>After looking through Amelia's files, I realized that he was one of Vaalyun's right hand man. You know, the nice elf I met a day ago.</p><p>Naturally, when I learned of this, my inner pettiness flared up.</p><p>'In the off chance that you deem your opponent too strong to beat, jump off the arena, use newton to carry you all the way to the other side and go ham. Don't hold back, destroy him.'</p><p>Those were the exact words I told her.</p><p>Since Amelia knew the rules, he probably wouldn't have thought that Ava would do such a silly mistake, and exploiting this fact, well, what just happened...happened. </p><p>Plus, given Ava's innocent looks, no one would blame her for this. </p><p>Gazing in the direction of where Amelia was, completely humiliated and pissed off, the smirk on my face rose up.</p><p>Then glancing in the distance where an elf with silver hair stood, I softly muttered inside of my mind.</p><p>'Don't worry, there's plenty more where that came from.'</p><p>This was merely the start. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-427.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-429.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

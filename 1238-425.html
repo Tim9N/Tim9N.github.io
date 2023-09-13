@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 425 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 425 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-424.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-426.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>At the moment I was currently sitting down inside a famous elven shop where one could enjoy the fantastic scenery of the city from above. Sat with one of my legs crossed, I enjoyed the nice northern breeze. </p><p>"Hey." </p><p>Taking a sip of the famous elven honeydew drink, I greeted Jin who was walking over with a serious look on his face. </p><p>Squinting his eyes, Jin wordlessly sat on the seat opposite of me. </p><p>"What's with the serious look?"</p><p>I asked.</p><p>He looked like someone that was just about to fight his biggest enemy. How strange. </p><p>"...You still haven't told me why you're meeting up with me."</p><p>Pausing, Jin placed his hand on the table and leaned forward. </p><p>"What exactly do you want?" </p><p>There was deep apprehension in his eyes as he looked at me. My hand which was holding onto the cup froze. </p><p>"What?"</p><p>The moment I processed his words, I instantly became confused. I then proceeded to put my cup down. </p><p>"What makes you think that I called you here with any intent?" </p><p>"...So you just called me here for the sake of calling me." </p><p>"Yeah, pretty much. I was bored." </p><p>Opening and closing his mouth, Jin tried to say something, but from the looks of it, my answer had made him speechless. </p><p>Seeing him like that, I forced myself to not laugh.</p><p>"I'm joking, I actually do have something to talk about." </p><p>Jin's brows furrowed upon hearing this. Before he could say anything else, I continued. </p><p>"Aside from being bored, there was actually something that I wanted to talk about. It's regarding our next opponents. Since you train so much, I figured that you didn't know much regarding our next opponents, Plus..." </p><p>Lowering my head, I looked at my watch. </p><p>"We should get our matchups soon." </p><p>In about ten minutes or so. </p><p>That aside, Jin was the type of person that would not make any preparations prior to when fighting an opponent.</p><p>It wasn't that he didn't want to, but it was because he just preferred using that time to train. Ever since meeting him, I noticed that he had become a training fanatic. </p><p>Either way, the reason why I was telling him about the next opponents was because I wanted to avoid a similar scenario to that of Emma's and also increase the chances of him winning. </p><p>I wanted to make sure no other slip-ups happened. </p><p>Humanity joining the alliance was a must. Even if Kevin and I performed well if Jin and the others didn't perform well, the probability of the other races allowing us to join would drop drastically. </p><p>At my words, Jin finally showed some interest. </p><p>"Continue." </p><p>Nodding my head, I proceeded to take out my tablet and placed it on the table. </p><p>Then, tapping on its screen, a holographic projection appeared before the two of us. On it were the different profiles of the top thirty-two contestants. </p><p>"So, here are the people that you need to watch out for. As you probably know, the strongest representatives from the three other races are in a league of their own. Honestly, given our current rank, it would be quite hard to beat them, but it's not entirely impossible." </p><p>Pausing, I looked at Jin who was staring at the profiles next to me.</p><p>"How much of your five-star manual have you learned?" </p><p>"Huh?" </p><p>Surprise flashed across Jin's face as his head snapped in my direction. </p><p>With his brows furrowed tightly, he asked. </p><p>"How do you know that I practice a five-star manual?" </p><p>I rolled my eyes at his question. </p><p>"Don't tell me the Horton family doesn't have a five-star manual?" </p><p>"...They do." </p><p>"Right, and given your talent, there's no way they wouldn't give it to you." </p><p>Although he still did not look convinced by my words, Jin eventually let it go and slowly answered. </p><p>"Greater realm of mastery." </p><p>"Mhhh..."</p><p>Leaning back on my chair, I crossed my arms. </p><p>"Greater realm...you must've not gotten your art for a very long time." </p><p>If I had to be honest, it was kind of low. </p><p>Well, this was understandable. Although Kevin and I were in the Essence realm of mastery, we did get our manuals a lot earlier than him. </p><p>"About a year and a half," Jin answered. </p><p>"I see." </p><p>This was going to be difficult. </p><p>TWIIIING—! TWIIIING—!</p><p>Just as I was about to open my mouth to say something, both of our watches suddenly started to vibrate. </p><p>Staring at each other for a second, we quickly checked our watch. </p><p>"It looks like the matchups are out." </p><p>"...Yeah." </p><p>'Alright, let me see my match up.'</p><p>Lowering my head, I proceeded to look at my match-up, but the moment I saw who my opponent was, my eyes opened wide. </p><p>===</p><p>[Tournament round of 32 | matchups.] </p><p>.</p><p>.</p><p>Ava Leafz vs Amelia. </p><p>.</p><p>.</p><p>Kevin Voss vs. Aaron Rhinestone. </p><p>.</p><p>.</p><p>Caeruleum vs. Kimor. </p><p>.</p><p>.</p><p>Jin Horton vs. Artian. </p><p> .</p><p>.</p><p>Amanda Stern vs Ivona. </p><p> ===</p><p>Raising his head, Jin's eyes met with mine. A smirk soon emerged on his lips. </p><p>"Looks like you got the short end of the stick." </p><p>"Fuck off." </p><p>I irritably said as I turned off my watch and leaned back on my chair. </p><p>'God damn it. Out of all people, I am matched up with one of the strongest in the tournament. Talk about crappy luck.' </p><p>If there was someone that I did not want to meet, then it would without a doubt be Kimor. </p><p>Not only was he ranked higher than me, but he also fought wisely. He wasn't like the other orcs that fought without thinking about their next move. </p><p>He was not someone I couldn't fight without pulling every single card in the book. </p><p>Be it Keiki style, The one, Eyes of Chronos, he wasn't someone I couldn't fight without going all out. </p><p>It didn't take long for me to come to terms with reality as I eventually let out a long sigh. </p><p>"Oh, well, it's not like I was planning on hiding for long." </p><p>The thing that bugged me the most however was not that, but it was Kevin's matchup. He was against Aaron. </p><p>Flashbacks of what we said last night replayed inside of my mind as I thought of the possibility of Kevin possibly even going as far as killing Aaron in the matchup. </p><p>If he really did that, then I had to alter a few things in my plan. </p><p>"It's about time you showed your real strength." </p><p>Jin commented from the side, snapping me out of my thoughts. Raising my brows, I looked at him. </p><p>"What do you mean?" </p><p>"...I want to see you fight at full strength." </p><p>As he said those words, Jin's green eyes burned interest. I was a bit taken aback by this, but after thinking for a bit, I realized why. </p><p>'So he's still hung up about the Hollberg incident.'</p><p>During the time that I held him by the throat, and said a lot of things. Considering Jin's personality it made sense for him to want to know about my current strength.</p><p>Taking a sip of my drink, I softly said. </p><p>"Guess you won't have to wait for long, really." </p><p>Letting out another sigh, I glanced around and looked for the waiter. I was planning on ordering something powerful. </p><p>But just as I was about to call out for the waiter, the place suddenly became quiet as everyone's attention drew towards a certain individual. Behind him were five other individuals. </p><p>Leading the five individuals, with long silver hair cascading down his back, and a porcelain-like face, was an elf who walked into the establishment. Wearing fine-silk clothing, he exuded a regal and almost otherworldly aura. </p><p>Behind him, the other five individuals, although lacking a bit compared to the leading man, also exuded a noble presence. </p><p>The moment they entered the establishment, all eyes fell on him. </p><p>Without needing to be told who he was, I instantly recognized him. He was none other than Vaalyun, the strongest participating elf. Someone that was on par with Kimor in terms of strength. </p><p>Seated from where I was I could feel the respect and awe the others had for him.</p><p>I wasn't the only one that felt this way as Jin shifted his body on the chair. </p><p>Glancing at him from the corner of my eyes, I mumbled. </p><p>"Looks like we've found your elven brother." </p><p>"What?" </p><p>Jin replied in confusion. Leaning slightly, I elaborated.</p><p>"Not too long ago, you acted exactly like him. In fact, you still do." </p><p>That arrogant and smug look seemed to favor the respectful stares from the others. He really did act like the old Jin. </p><p>The moment he heard my comments, Jin's eyes squinted.</p><p>He had obviously understood what I meant and was obviously not pleased. Then, thinking of something, he raised his head and nudged in the direction of one of the elves following the silver-haired one. </p><p>"...guess we also found your family. You pretty much acted like them not too long ago." </p><p>"Pah."</p><p>I scoffed. But as I took a closer look at the people following behind Vaalyun, who looked just like extras, perhaps Jin did have a point. </p><p>Not that I was going to admit it.</p><p>"Hm?"</p><p>Blinking a couple of times, I suddenly noticed Vaalyun glance in our direction for a brief moment.</p><p>Then, nudging his followers from behind, he headed in our direction.</p><p>Blinking a couple of times, I turned to look at JIn. </p><p>"...Is it just me or are they coming our way?" </p><p>Shaking his head, Jin solemnly said. </p><p>"It's not just you." </p><p>And he was right, not even a couple of seconds after his words faded, Vaalyun came our way. </p><p>'Oh god.'</p><p>Staring at him who was coming our way, I couldn't help but secretly curse at my continuous string of bad luck. </p><p>Despite the fact that elves tended to act less arrogantly than the orcs, and perhaps even other races, that didn't mean that there weren't arrogant elves.</p><p>They did in fact exist, and unfortunately, Jin and I crossed paths with one of them today. </p><p>Halting his steps in front of our table, he gave us a brief glance before saying. </p><p>"You must be Jin Horton and C something." </p><p>'C something?'</p><p>Was my alias really that hard to remember? </p><p>"What do you want?" </p><p>Jin coldly answered by the side. His words were quite blunt, but I knew he could already tell from a glance that Vaalyun was looking for trouble with us. Hence why he quickly discarded all forms of courtesy from the get-go. </p><p>Pausing his eyes on Jin, Vaalyun calmly replied. </p><p>"What I want is simple. Give up on the tournament." </p><p>"...Ah?" </p><p>Listening to his demand, I almost spat out the drink that I had in my hand.</p><p>My sudden action did not go unnoticed by Vaalyun who showed a displeased expression. </p><p>"Is there something funny about what I just said?" </p><p>Tilting my head back, my face turned strange. </p><p>Without answering him, I leaned closer to Jin. "Are you sure he's not part of your family? I swear, he really does act like you." </p><p>The similarities were almost impeccable. </p><p>"Shut up." </p><p>Raising his hand, Jin pushed me back to my seat. I clicked my tongue in response.</p><p>Having watched the whole exchange from the beginning, Vaalyun's face twisted in disgust as he muttered. </p><p>"Savages." </p><p>Despite having heard his words, I continued to ignore him. </p><p>He may not know this, but I had plenty of experience when it came to dealing with arrogant people. All thanks to the Lock which was riddled with them. </p><p>Still, unlike them, I had to be careful when dealing with him. He was of a noble elven lineage, and therefore beating him up here would only bring trouble. Not that I could easily do it since he was ranked higher than me and had people behind him. </p><p>What a pain in the rear...</p><p>As I was pondering over the situation, I realized that there really wasn't much I could do. Considering the bigger picture, if I acted out too much at the moment, it would only be detrimental for me and the others in the tournament. </p><p>Jin also seemed to have understood this as he forced himself to hold back. </p><p>Turning my attention towards him, leaning on the table with my arm, I asked. </p><p>"Say, why do you want us out of the tournament?" </p><p>"Because it's an embarrassment," Vaalyun replied with a voice filled with scorn. "If they allow people like you to make it far, it would only devalue the power of our races." </p><p>"...Okay." </p><p>Nothing he said really made sense, but I pretended to nod at his words. </p><p>"So what do we get for forfeiting the match? You must offer us something, right?" </p><p>The moment I said those words, a powerful pressure suddenly bore down on both Jin and me. It was so sudden and unexpected that we weren't able to react on time. It felt as though a heavy track had suddenly been parked on top of our backs. </p><p>"Ukh." </p><p>A groan escaped from my mouth. </p><p>'Guess he has a lot more self-control than I originally anticipated.' I muttered inside of my mind as I felt the heavy pressure on me lighten up. </p><p>Was really hoping he would do something stupid and exploit it, but I guess he wasn't as dumb as he looked. </p><p>"What do you get from forfeiting the match?" Vaalyun's face twisted even more savagely. "You get to keep your honor intact. I'm not saying this for my sake. I'm saying this for your sake." </p><p>He hatefully spat. </p><p>Before I could say anything else, Vaalyun turned toward one of the waitresses in the establishment. </p><p>"Kick the both of them out." </p><p>And just like that, giving us one last cold look, Vaalyun left and sat down at a table further away from us. Following his actions, two waiters came to us and politely told us to leave. Since I didn't want to cause any trouble I obediently left the establishment with Jin. </p><p>Once we were a couple of meters away from the place, Jin's cold voice rang from behind me. </p><p>"Are you just going to let him get away with what he did?" </p><p>"Get away?" </p><p>A chuckle involuntarily escaped from my mouth as my eyes flashed coldly. Turning to look in Jin's direction, I softly muttered. </p><p>"...Don't worry, I'm definitely not going to forget about this." </p><p>If there was one thing that most people close to me knew, it was that I was the epitome of pettiness. </p><p>What happened today. </p><p>Definitely was not going to forget.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-424.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-426.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

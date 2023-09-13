@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 422 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 422 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-421.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-423.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Raising his hand, Kevin knocked on the door of Ren's apparent.</p><p>To Tok—</p><p>However, upon knocking on the door he was met with no response.</p><p>To Tok—</p><p>Frowning, Kevin knocked once again. But, yet again, he was met with no response.</p><p>'Is he not back yet? Could he perhaps be training?'</p><p>Although Ren seemed like a slacker he was in fact someone who worked hard, therefore, Kevin quickly came to the assumption that he was training at the moment. Well, at least to him, that was the most probable location of where he could be.</p><p>As his thoughts paused there, he started hesitating.</p><p>'Should I? ...or should I not?'</p><p>If he was training, then he didn't really want to disturb him. He knew just how annoying it was when someone interrupted him in the middle of his training.</p><p>"Screw it."</p><p>But after thinking things through, he decided to go anyways.</p><p>He desperately needed answers.</p><p>The doubts that were rising within him were starting to eat at his sanity.</p><p>He had to deal with them right now.</p><p>And so, after once again checking to see if Ren was present in the room or not, Kevin decided to head to the training grounds.</p><p>***</p><p>At the same time.</p><p>Opening my eyes, I found myself back in the training room.</p><p>Di—! Di—!</p><p>[00 : 00]</p><p>What followed after was the repetitive sound of the alarm ringing, signaling that the training session was over. What followed after was a subtle clicking sound and the door opened.</p><p>"haaa...haaa..."</p><p>Leaning my head back, I breathed heavily.</p><p>At the moment my mana was completely drained and I had trouble moving my body.</p><p>As I had left my bracelet back in my apartment, I did not have anything to refuel my mana with. This was a precaution I took in the chance that the other Ren took over my body.</p><p>Fortunately, nothing happened, but I didn't want to take the risk.</p><p>Closing my eyes, instead of leaving the room I remained seated and channeled the mana in the surroundings towards myself.</p><p>As I was recuperating my mana, I started thinking back on my experience.</p><p>'Looks like I was right, Monarch's indifference is not a simple skill.'</p><p>For me to suddenly be brought to a weird void the moment I activated the skill, I could tell that there was now more to it than it looked on the surface.</p><p>My apprehension towards it grew even more.</p><p>Not only that but the fact that I was somehow able to get the skill made me question reality. Did I really get the skill by simple coincidence? ...If so it wouldn't make sense. How could such a skill suddenly fall in my hands like that?</p><p>The more I thought about it, the more questions I had.</p><p>But if there was one thing I was now certain about, it was the fact that I was being manipulated.</p><p>Whoever the other Ren was, he was trying to make me act like he wanted to. Disgust washed over me as my thoughts paused there and my eyes opened.</p><p>'Is this how others feel when I manipulate them?'</p><p>Disgusting.</p><p>Scratching the side of my head till my hair became messy, I coldly muttered.</p><p>"...Want to treat me as a pawn?"</p><p>Raising my head, I clenched my fists tightly.</p><p>"Fine, so be it, use me as a pawn. I'll show you just what happens when a pawn does not move the way that you want it to move."</p><p>If everything that I was doing was being directly predicted and controlled by him, then all I had to do was do something completely out of his expectations.</p><p>I wasn't just going to let someone manipulate me.</p><p>Propping my body up with the aid of the wall, I stretched my body.</p><p>Despite the fact that I was still low in mana, having recuperated some of it in the meantime, it was now at a manageable level.</p><p>Walking to the door and opening it, my feet came to a sudden stop. My brows furrowed tightly as my eyes locked onto a figure in the distance.</p><p>"What are you doing here?"</p><p>Standing opposite me, all the way towards the other side of the entrance of the gym was Kevin.</p><p>The moment my eyes lay on him, I was instantly taken aback.</p><p>'There's something wrong with him.'</p><p>The way he was looking at me. It didn't feel right.</p><p>Extending his hand, Kevin pointed it at me.</p><p>"You."</p><p>Kevin spoke.</p><p>His words sounded quite cold.</p><p>Taking a step in his direction, I tried to figure out what was going on.</p><p>"Hey, what's going on? Are you still worried about Emma?"</p><p>The shock he got from what happened to Emma must still be haunting him. Perhaps he came here to train and get his mind off of things.</p><p>But as I took a step forward, he took a step back.</p><p>"Don't come any closer."</p><p>"What's wrong?"</p><p>I was instantly taken aback by his reaction.</p><p>The confusion in me only grew as he continued to stare in my direction.</p><p>It was then that he suddenly opened his mouth and asked.</p><p>"…Ren, I want to ask you something."</p><p>As he asked, his face was extremely serious.</p><p>Though confused, I stopped moving and nodded my head.</p><p>"Ask."</p><p>I put on a friendly smile.</p><p>"If you have anything to ask you can just ask me. I will do my best to answer your questions."</p><p>"Okay…"</p><p>Kevin softly nodded his head.</p><p>Then, staring deeply into my eyes, his voice suddenly became cold.</p><p>"Did you have any part in what happened with Emma?"</p><p>"...eh?"</p><p>My face froze and the smile on my face quickly receded. Lowering his head and staring at me from the top of his eyes, Kevin repeated.</p><p>"I said, did you have any part in what happened to Emma?"</p><p>"W…what?"</p><p>'Did he figure something out?'</p><p>Ba...thump! Ba...thump!</p><p>Unknowingly, my heart started to speed up.</p><p>Staring back at him, I forced a smile.</p><p>"...What makes you think that?"</p><p>Without saying anything, Kevin took out his tablet and turned on the holographic function where a replay of Emma's fight materialized in front of me.</p><p>Moving his finger across the hologram, the video changed and it soon paused at the time where Aaron stabbed Emma in the back.</p><p>"Take a look at Aaron's mouth."</p><p>Slowing down the footage, Kevin pointed his finger towards Aaron's mouth.</p><p>"…I hope you send Ren your greetings for me."</p><p>He slowly mouthed as his cold voice rang throughout the training ground.</p><p>My heart sank at those words.</p><p>'Shit...'</p><p>Once the video stopped playing, Kevin put the tablet away. Tilting his head, he curiously asked.</p><p>"You said that Aaron shouldn't have remembered anything, yet why did he suddenly say those words?"</p><p>"That…"</p><p>Lifting my head and meeting his gaze, I really didn't know how to answer.</p><p>'Should I just tell him that someone inside of me is trying to manipulate me and Kevin to do his bidding? Would he believe me when I say it?'</p><p>Biting my lips, I struggled to find a way to explain to him what was going on. But I knew that I had to reveal to him the truth.</p><p>Like I've said before, in order to get out of the other Ren's influence, I had to do something that he couldn't possibly predict.</p><p>And out of all the things that he couldn't possibly predict that I would reveal everything to Kevin. Regarding the matter about my reincarnation, and all the fucked up shit I did in the past.</p><p>I knew that in order to escape his influence, I had to do something that I would normally not do.</p><p>"…So it really was you."</p><p>But before I could say anything, a powerful aura suddenly erupted from Kevin's body.</p><p>Feeling his powerful aura, I took a step back and raised my hands.</p><p>"Wait, Kevin."</p><p>But it was already too late. With a loud 'bang' Kevin's body suddenly disappeared before reappearing right in front of me.</p><p>Opening my eyes wide, I saw his fists hurtling in my direction like a cannonball. What followed his fist was a muffled boom.</p><p>'Damn it!'</p><p>Seeing that it was too late for me to speak, gritting my teeth, I pressed my foot on the ground and sidestepped, narrowly voiding his fist by an inch.</p><p>Successfully dodging the attack, channeling the small amount of mana I had in my hand, I softly placed my palm on his abdomen. My movement was so fast and fluid that Kevin was unable to react on time.</p><p>Booom—</p><p>With a loud boom, like a missile, Kevin's body slid backward till his back crashed against the side of the wall. From where I was standing I could hear a muffled groan coming from out of his mouth.</p><p>"Haaa…haaa…"</p><p>'Damn it, I used too much mana!'</p><p>With heavy breathing, I gazed in the direction of where Kevin crashed.</p><p>"Kevin wait a minute. Let me explain!"</p><p>"What is there to explain?!"</p><p>Kevin's loud voice reverberated throughout the whole training ground before once again dashing in my direction. This time, his speed was a lot faster than before.</p><p>'Damn it, he's lost control of his emotions.'</p><p>I cursed inside of my mind as I gazed at Kevin who was quickly rushing in my direction.</p><p>I knew that I was in a lot of trouble at the moment.</p><p>I had no sword, and barely any mana left in me. At the moment fighting Kevin was impossible!</p><p>Swooosh—!</p><p>Feeling a powerful breeze near my face, using the last amount of energy inside of my body, I pressed my feet on the ground and jumped backward.</p><p>Booom—</p><p>Right as I dodged, Kevin's fist came crashing down against the hard ground. Fine miniature cracks formed around the area he punched. A small crater resembling the structure of Kevin's fist appeared on the ground.</p><p>Staring in the direction of where Kevin's fist landed, I secretly sighed in relief.</p><p>'Had that hit me, I would've been seriously injured.'</p><p>Fortunately, because Kevin was not in the right state of mind, I was able to somewhat predict his movements and hence why I was able to dodge his attack.</p><p>Had this been the usual calm Kevin, I would've lost back in the first exchange.</p><p>Staring in Kevin's direction, before he could follow up on his attack, I screamed at the top of my lungs.</p><p>"Kevin stop! Let me explain!"</p><p>"Explain?"</p><p>Kevin's feet came to a pause. I was relieved to see this. However, that relief did not last for long as Kevin said.</p><p> "What is there to explain? Your expression tells me everything. You were responsible for what happened."</p><p>Gritting his teeth, Kevin's voice raised.</p><p>"Tell me. Tell me why I should believe anything that comes out of your mouth!!??"</p><p>"Haaa…"</p><p>Instead of answering him, I breathed out and sat down on the ground.</p><p>"I give up."</p><p>My abrupt action startled Kevin.</p><p>"Give up? What are you talking about?!"</p><p>Crossing my legs, I channeled the mana inside of my body. A faint glow manifested around my body. Eying him from the side of my eyes, I raised my hand and showed him the fact that I was out of mana.</p><p>"...As you can see I am in no condition to fight."</p><p>I then proceeded to extend my arms outwards, whilst waving my hands inwardly. In a motioning manner.</p><p>"Come, do it. Beat me up. As you can see, I'm currently weakened. You're angry at me? Fine, be angry. I won't fight back. Do as you fucking please."</p><p>A powerful aura sprang out of Kevin's body as he glared in my direction. This persisted for a minute before gradually, Kevin forced himself to calm down.</p><p>Despite having calmed down, Kevin's glaring never receded as his chest moved up and down repeatedly.</p><p>"You calm?"</p><p>I asked, still seated on the ground.</p><p>"…"</p><p>He didn't respond. Not minding this, I motioned him to sit down opposite me.</p><p>Then, raising my head and staring towards the ceiling where the lights were, I closed my eyes and took a deep breath.</p><p>'...I guess I have no choice.'</p><p>Ba…thump! Ba…thump!</p><p>My heart started to speed up.</p><p>Opening my eyes, and gazing in Kevin's direction once again, I finally opened my mouth and said.</p><p>"…I think it's about time I tell you the truth. The truth about me and everything that happened."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-421.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-423.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

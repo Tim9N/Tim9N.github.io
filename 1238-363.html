@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 363 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 363 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-362.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-364.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p><strong>Chapter 363 - Everything coming together [2]</strong></p><p>[One month ago, Douglas's residence.]</p><p>"No, I would like it if her presence still remains a secret."</p><p>"Oh? Why is that?" Douglas curiously asked.</p><p>Tap. Tap. Tap.</p><p>Leaning back on my chair, I tapped on the wooden armrest.</p><p>"Why?"</p><p>Briefly glancing at Angelica from the corner of my eyes, I calmly opened my mouth.</p><p>"Because we can use her presence to our advantage…"</p><p>"To our advantage?"</p><p>Both Douglas and Waylan frowned at my words.</p><p>Douglas's calm gaze directed itself back towards the defiant Angelica.</p><p>"How can she be of help?" He asked. </p><p>Plack—!</p><p>Tapping onto my bracelet and taking out a wooden mask from the dimensional space, I placed it on the table for everyone to see.</p><p>"What's this?" Waylan questioned. Douglas, who was beside him, leaned forward to get a better look at it.</p><p>I extended my hand towards the mask.</p><p>"Rather than me telling you, how about you guys have a look yourself."</p><p>Raising his eyes, Douglas didn't say much and grabbed the mask. The moment his hands touched its surface, Douglas's calm face trembled slightly. </p><p>"Interesting…" He muttered, his eyes rippling slightly.</p><p>It was clear that the mask had surprised him.</p><p>Waylan obviously did not miss this and took the mask from Douglas's hands.</p><p>"Holy shit."</p><p>Unlike Douglas, his words were a lot cruder, but it was also clear that he was as surprised as him when he saw the effects of the mask.</p><p>"…This is way better than the skin masks we use."</p><p>Putting the mask on his face, the moment it touched his face, his appearance slowly started to morph before changing to that of one of the guards I met back in the Monolith.</p><p>To be precise, it was the guard I had killed during my escape from the infirmary.</p><p>"This feels weird," Waylan muttered as he touched his face. Touching his nose and pinching it slightly, Waylan's hand traced his jaw. </p><p>"I don't feel like I'm wearing the mask at all, but I can tell that this is not my face. This is amazing…"</p><p>I could feel hints of jealousy in his voice as he spoke those words. To be honest, I couldn't really blame him.</p><p>I too would've been jealous if someone else showed me the mask. It was just that good.</p><p>"Anyway, what did you want to tell us by showing this mask?" Waylan said as he removed the mask from his face and placed it on the table. </p><p>"Since you've showed it to us, it must mean that you've got a plan." Douglas calmly added from the side, his eyes never leaving the mask on the table.</p><p>Staring at him from my seat, I could see that Douglas's eyes contained no trace of desire as he looked at the mask. </p><p>They did contain hints of curiosity within, but nothing else.</p><p>Taking my eyes away from Douglas, I nodded in affirmation.</p><p>"I do."</p><p>"Care to share?" Waylan asked, leaning back on his chair. </p><p>"It's just a rough plan for now… What if I infiltrate Inferno?"</p><p>"…"</p><p>A chilly silence shrouded the room as both Douglas and Waylan looked at me with open eyes. Sitting up straight, the first one to speak was Waylan.</p><p>"Are you crazy? Are you trying to get yourself killed?"</p><p>Raising my hand, I pointed at Waylan in a shaking manner.</p><p>"In response to your questions, yes and no, respectively."</p><p>"Elaborate."</p><p>"Think about it. The way that we're going, the result of the war will remain uncertain. In fact, it'll probably last for at least a couple more years."</p><p>Turning my head to face Douglas, I posed a question.</p><p>"Don't you want to go back to the academy instead of being here?"</p><p>Before he could answer, turning my head towards Waylan, I asked him something else.</p><p>"Don't you want to meet Emma?"</p><p>Crossing my legs and staring at both Waylan and Douglas who had complicated looks on their faces, I spoke up, striking while the iron was hot.</p><p>"I know what I'm proposing is absurd, and what I have in my head is just a rough plan, but I do believe we have the necessary means to accomplish this."</p><p>Finished speaking, I stared at both Waylan and Douglas, waiting for them to speak. </p><p>After a while, the one who first broke the silence was Douglas. He leaned forward slightly and carefully asked, "How confident are you in accomplishing this task?"</p><p>"It depends. It's not that I'm not confident… It's just that we'll first need Jomnuk to agree with it. Without him, a major part of the plan wouldn't work, and as I've said before, Angelica could be of big help to me."</p><p>Unblinkingly staring at me from his seat, Douglas didn't say anything for the next minute. Waylan, who was sitting beside him, also kept silent as they both contemplated on the matter at hand.</p><p>After a while, standing up, Douglas took out a communication device from his dimensional space and tried to get in contact with Jomnuk.</p><p>"I'll try arranging a meeting with him. If you can manage to convince him, then we can proceed with what you've planned."</p><p>"That's all I'm asking for," I gratefully said to Douglas as he smiled back in kind.</p><p>"Since you're one of my students, it's my duty as headmaster to give you a helping hand…"</p><p>Pausing, Douglas recalled a sudden detail before his lips parted and a small smile appeared on his face.</p><p>"…Even if you're no longer attending the academy."</p><p>As soon as he finished saying those words, walking out of the room, Douglas quickly got in contact with Jomnuk.</p><p>***</p><p>"How interesting," Jomnuk muttered as he scanned the mask of Dolos in his hands.</p><p>Putting the mask down, he looked towards Douglas sitting next to me.</p><p>After arranging a meeting with him, we quickly headed to where he was. For obvious reasons, I disguised myself as someone else since 'Ren' could not meet Jomnuk just yet. </p><p>"So, you want to use this mask to pretend to be me and infiltrate the headquarters of Inferno?"</p><p>"In short, yes," Douglas replied.</p><p>"After discussing it for a while, we think that this is the best way to deal significant damage to Inferno as well as stop the war," he added.</p><p>Leaning back on his chair and crossing his legs, Jomnuk stroked his beard.</p><p>"Interesting…" He softly muttered, "Not only do you want to pretend to be me but you also want me to give you the method of disabling the system beacons?"</p><p>"Just two beacons," Douglas corrected from the side.</p><p>"That's still a pretty huge thing you're asking of me. You must know that each time a beacon is disabled, the barrier protecting the city weakens as a result."</p><p>"We know, but this is the best way to make them believe that you were truly kidnapped," Waylan said as he joined in on the conversation.</p><p>"I don't disagree, but…"</p><p>Jomnuk's brows furrowed.</p><p>"This is not enough to ensure the plan goes smoothly. There are too many loose factors at the moment."</p><p>"I also agree with this, and that's why we came to talk to you. If we have an elder supporting us, we can increase our chances even further. I'm sure you know someone you would trust your back to, don't you?" Douglas asked, his eyes looking straight at Jomnuk who knit his brows in thought.</p><p>"Haaa… Although I don't know how he'll react, we can give it a try."</p><p>Sighing, Jomnuk took out a small box from his dimensional space and put it in the middle of the table.</p><p>Pressing the top of the box, it lit up, and a holographic image soon materialised before everyone. </p><p>"Jomnuk? Hm? Who are you with?"</p><p>A rough voice sounded from the other side of the hologram before the image of a dwarf appeared before everyone.</p><p>"Randur." Jomnuk greeted him with a smile on his face.</p><p>Facing Jomnuk, Randur's brows furrowed.</p><p>"You're using an encrypted line. Do you have something important to say?"</p><p>"Yes, listen here…" Nodding, Jomnuk slowly started recounting the things Douglas had told him during the meeting.</p><p>He started from how we were planning on swapping me with him and subsequently infiltrating Inferno. Of course, he didn't leave out the fact that we requested to have him hand over the methods of deactivating two beacons in order to gain the duergars' trust.</p><p>"…And that's it. What do you think? I've thought about it and it does seem like a good method, but it lacks support. That's why I called you, my friend. You're someone I trust with my life." </p><p>Finished speaking, heavy silence descended over the room as Randur's brows furrowed tightly.</p><p>"This is quite the plan…" He muttered, his tone sounding a bit uncertain.</p><p>Lifting his head up, he calmly looked at everyone present in the room before his eyes paused on Douglas.</p><p>"If I say yes, what do you want me to do? I can support you, but what will my role be?...Don't get the wrong idea human. I'm only asking to get a better idea, I'm not agreeing to anything just yet."</p><p>"That—" </p><p>"We want you to betray the dwarves."</p><p>I cut in before Douglas could even start speaking. The moment my words faded, both Jomnuk and Randur snapped their heads in my direction, shock displayed on their faces.</p><p>Waylan and Douglas shook their head slightly. </p><p>Before letting the others misunderstand, I continued speaking.</p><p>"It's simple, really. Since you're good friends with Jomnuk, what would you do if he suddenly gets kidnapped?"</p><p>"I'd do everything in my power to get him back," Randur replied in a matter-of-fact tone.</p><p>I nodded in response.</p><p>"Exactly… And we can exploit this."</p><p>"You mean…"</p><p>Both Jomnuk and Randur raised their brows at my words as they slowly started to understand where I was getting at.</p><p>"Yes, there's a high chance that once Jomnuk gets kidnapped, Waylan will go under persecution. In the most likely case, he will not suffer any major setbacks since he is only partly to blame for Jomnuk's kidnapping—"</p><p>"And so you want me to pretend to be extremely enraged and eventually propose a deal with Inferno to trade Jomnuk in exchange for betraying the dwarves."</p><p>Randur completed the sentence for me, shaking his head in interest. </p><p>I gave a slight nod. </p><p>"Exactly it. You can even propose a mana contract with them, telling them that if they hand over Jomnuk, you will betray the dwarves."</p><p>"But the contract will not work since you're the Jomnuk that they have kidnapped… Yea, I see. That works…" Randur repeatedly nodded as he mused over the plan. </p><p>After a while, staring at Jomnuk, he slowly said, "The plan is doable. I'm not against it."</p><p>Everyone's eyes lit up the moment he said those words. </p><p>"So you're willing to help?" Waylan asked. </p><p>Turning to face Waylan, Randur nodded in reassurance.</p><p>"Why not? The plan is still a bit crude, but once we take care of the minor problems, it can deal a massive blow to Inferno and end the war."</p><p>Pausing, Randur's face suddenly turned serious. </p><p>"We have to keep this meeting amongst ourselves and never let anyone else apart from the five of us know about the plan. Not even Gervis or the others must know. The fewer people know about this, the higher the chance of this plan working will be."</p><p>"I agree," I said, nodding my head.</p><p>Like the idiom said, in order to deceive your enemy, deceive your allies first. </p><p>***</p><p>"…You were careless. Since you never kidnapped Jomnuk, the contract was never active. All it took was one small detail to completely have you within my grasp."</p><p>Randur uttered as he brought his face close to Orion. </p><p>"Ukhh…"</p><p>Staring at Randur with wide-open eyes, Orion had trouble formulating any words as the poison in his body slowly started corroding his organs.</p><p>Even though he was higher ranked than Randur by one sub-rank, Orion was unable to defend himself from the sudden sneak attack that had been mixed with an extremely potent poison. </p><p>Had he not been as strong as he was now, he would've probably died already.</p><p>But even the strongest could not escape their fate, as Orion slowly slumped on the ground, to the shock of everyone present in the room. </p><p>As he fell on the floor, Orion's face was filled with horror and indignation. </p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-362.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-364.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

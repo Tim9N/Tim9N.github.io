@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 413 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 413 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-412.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-414.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huaaam."</p><p>Letting out a yawn, I walked away from Han Yufei's apartment. </p><p>'I won't accept the offer yet. I want to first understand what kind of person you are. Is that okay with you?'</p><p>That was what he said to me. In short, he had neither accepted nor rejected my offer but has instead delayed the answer. </p><p>To be honest, that worked well for me as well. </p><p>It would take me a while to collect the Gravar style anyways.</p><p>I wasn't in a rush.</p><p>Lowering my head and staring at my watch, alarm flashed across my eyes.</p><p>"Oh crap, I should probably join the others before they get too pissed."</p><p>Before I knew it, I had spent almost half an hour talking with Han Yufei. </p><p>'If I'm not wrong, Waylan told me before that today was the day that he was going to take care of his family problems.'</p><p>This was something that he had been planning ever since coming here. The reason why I knew this was happening was because I helped him out here and there when coming up with the plan. </p><p>It took a while for me to convince him that Jasper would definitely exploit Emma's naivety to lure her somewhere unknown, thank god he listened to me. </p><p>As I was walking, I suddenly had a thought. 'Right about now, the fight should've already started. If they found out that I knew that this was going to happen and that I deliberately didn't go because I had other stuff to do...'</p><p>A cold shiver ran down my spine. </p><p>"Yeah, I need to go." </p><p>Lowering my head and staring at the map of the place, I quickly picked up the pace. </p><p>*** </p><p>Booom—! </p><p>A powerful energy blast resounded in the air as Micheal attacked Waylan. In order to prevent any 'friendly fire,' the two of them distanced themselves from the others. </p><p>Not minding the explosion, Kevin's crouched body was stretched taut while his eyes fixed themselves on one of the hooded figures standing opposite him. </p><p>The rank of the individual was &lt;A-&gt;, a rank quite a bit higher than his. Next to him were two other individuals, each about &lt;B&gt; rank.</p><p>A heavy solemness descended on the field, as the two groups stared off. Judging from the body structure of the hooded figures, Kevin realized that they were all most likely males. </p><p>Turning his head slightly, Kevin looked at Emma. </p><p>"Emma, since your father said that he already knew they were coming, how come he didn't take into account that the enemy before us is stronger than us?" </p><p>The other &lt;B&gt; ranks, fine. However, the &lt;A-&gt; ranked individual was not someone that Kevin could beat without suffering heavy injuries. Of course, he wasn't entirely worried about him, but the fact that they had to deal with one &lt;A-&gt; rank and two &lt;B&gt; ranks baffled him. </p><p>Did he have that much trust in their strength?" </p><p>"Ehm." </p><p>Listening to Kevin's words, Emma frowned before softly muttering. 'He said that he had already calculated everything perfectly, I didn't know he would make such a mistake too.' </p><p>Her voice was soft, but everyone heard it. Instantly, the atmosphere became grimmer. </p><p>Bang—!</p><p>Startling everyone out of their thoughts was a loud bang as the &lt;A-&gt; ranked individual finally made its move. Following after the hooded figure was the other two figures. </p><p>Sch! Sch! Sch! </p><p>Melissa was the first one to react as she threw three pale blue magic cards in the air.</p><p>Three large ice barriers erected in front of everyone. </p><p>Crash—! </p><p>But the barriers were unfortunately too weak. As though they was made out of glass, the ice barriers shattered apart.</p><p>Fortunately, the purpose behind erecting the barriers was to create enough time for everyone to distance themselves. </p><p>Taking out his sword, Kevin clenched its grip tightly. Glimpsing towards where the others were, Kevin commanded. </p><p>"Emma, Amanda, and Melissa, you three focus on the &lt;B&gt; ranked individuals." </p><p>Turning his head, his eyes met Jin's. </p><p>"We deal with the &lt;A-&gt; ranked individual."</p><p>Knowing everyone's capabilities well, Kevin knew that this was the optimal formation to guarantee victory. </p><p>Listening to his commands, everyone nodded their heads. Including Jin who quietly melted into the shadows. </p><p>"Good." </p><p>Red mana light swirled around Kevin's sword as he viciously slashed in the direction of where the hooded figures were. </p><p>Curling his fist into a ball, the &lt;A-&gt; ranked figure punched out, and his fist met with Kevin's sword. </p><p>Thump! </p><p>With a soft 'thump' Kevin's body was swept backward, only managing to stabilize himself after taking a couple of steps. The difference in strength was made quite clear from the first exchange. </p><p>Ignoring the burning pain from his hand, Kevin took a stance and slashed out. </p><p>As he slashed, his sword swept at a horizontal angle while all the mana in his body surged out and poured into his sword. </p><p>"First movement!" </p><p>Kevin cried out as his sword once again met the hooded figure's fist. </p><p>Clank! </p><p>A dull metallic sound swept out as Kevin's hand flew back. The power behind the attack was evidently not enough to deal any significant damage to the figure before him. However, Kevin wasn't discouraged. </p><p>"Second movement." </p><p>With another low cry, he slashed out again. This time, the red hue shrouding his sword, became visibly brighter. </p><p>Clank!</p><p>Yet again, the result was the same. However, there was a slight difference this time as his attack became more powerful and faster. Of course, Kevin did not care in the slightest bit about this as he once again slashed. </p><p>"Third movement." </p><p>Kevin once again slashed out, and the moment he did, a beautiful white arc drew in the air.</p><p>The arc was so beautiful that it looked as though he was drawing in the air. The red glow enshrouding his sword became even brighter. </p><p>Clank! </p><p>Sadly, the attack once again seemed to be useless as the hooded figure effortlessly blocked the attack. </p><p>Following the block, a powerful wave of mana suddenly sprang out from his body as he stared in Kevin's direction. It became clear that the hooded figure had realized that there was something wrong with Kevin's attacks. </p><p>Pressing his foot on the ground, just as the hooded figure was about to attack Kevin, he suddenly felt something and ducked down. </p><p>Sch! </p><p>Materializing above his head was a sharp dagger that cut through the air horizontally. The speed behind the dagger was no joke as Kevin had difficulty following its movement. </p><p>Thud. </p><p>Landing on the ground with a soft 'thud', Jin coldly looked at the hooded figure before him.</p><p>Extreme solemness clouded his face. </p><p>Raising his head and staring at Kevin, Jin mouthed.</p><p>'I'll buy you time.' </p><p>Following his words, his figure quickly melted into the darkness. </p><p>Gazing in the direction of where Jin disappeared, Kevin took a deep breath before he once again raised his sword. </p><p>"The fourth movement." </p><p>An even more powerful pressure escaped from the tip of his sword as he slashed down.</p><p>Having already recollected himself, the hooded figure seemed to be extremely pissed as his aura skyrocketed.</p><p>A pressurized wind gale shot out from his body causing the nearby grass to bend down at a forty-five-degree angle. </p><p>Pressing his foot onto the ground, his body suddenly appeared before Kevin. His movement was so fast that Kevin was unable to react. Curling his fist tightly, the hooded figure punched out. </p><p>Staring at the incoming fist, Kevin remained calm. Rather, there was no once of anxiety in his body. </p><p>Sch! </p><p>Right before the fist was about to connect with Kevin's face, Jin once again materialized beside the hooded figure. With a lightning-fast movement, his dagger aimed for the back of the neck of the hooded figure. </p><p>Sensing the ambush, the hooded figure's fist came to a halt. Twisting his foot, he bent his torso and kicked out. The kick was not a simple kick. With strands of mana revolving around it, the kick blasted through the air as it ruthlessly smashed in Jin's direction. </p><p>Still in the air, it was almost impossible for Jin to block such an attack. However, he, just like Kevin was not worried </p><p>SHIIIIING—! </p><p>Coming to his aid, Kevin quickly slashed down as a tremendous force bore down on the hooded figure. </p><p>Sensing the sudden attack, the hooded figure's kick slowed down a notch as he raised his hand to block Kevin's attack. This distraction proved to be crucial as Jin took advantage of this distraction to once again melt into the shadows. </p><p>'It's working.' </p><p>A smile crept up on Kevin's face as he looked at Jin's disappearing figure. </p><p>Despite their differences, Kevin and Jin worked extremely well together. Having been training together for two years, their teamwork was seamless as understood each other's fighting styles perfectly. </p><p>It was because of their perfect coordination that they were able to evenly fight against an &lt;A-&gt; ranked individual. Of course, this only worked when the both of them were going all out. </p><p>In the fight against Ren not too long ago, they did try to replicate this method, however, it was to no avail as Ren's style completely countered Jin's fast style, resulting in their cooperation crumbling apart before it could even start. </p><p>Catching glimpse of Jin's disappearing figure, the hooded figure finally spoke up. His voice was eerily dark and filled with rage. </p><p>"I'll kill you!" </p><p>Once again curling his fingers into a fist, the hooded figure punched out as a sonic boom rang out. </p><p>Bang—!</p><p>"Fifth movement." </p><p>But a similar scene occurred. Just when the fist was about to connect, Jin would appear and the two of them would create an opening for each other.</p><p>Jin would also sometimes fake out his attacks, sending the hooded figure into confusion. </p><p>"Sixth movement." </p><p>"..." </p><p>"Eight movement." </p><p>"..." </p><p>"Twelfth movement." </p><p>"..." </p><p>"Twenty-ninth movement."</p><p>With each and every one of Kevin's strikes, his figure became more and more mesmerizing as the speed of his attacks and power drastically increased. </p><p>It wasn't long before he reached the twenty-ninth movement, and he was now on equal terms with the hooded figure in terms of speed and power much to his horror. </p><p>Clank—! </p><p>Once again meeting Kevin's sword with his fist, to its absolute shock, the hooded figure was suddenly pushed back one step. </p><p>"Jin!" </p><p>This did not go unnoticed by Kevin who quickly shouted Jin's name and raised his sword in the air. </p><p>Heavy sweat trickled down his face as a powerful glow revolved around his sword. </p><p>Sensing the danger, the hooded figure reciprocated by releasing all of his energy outwards. However, just before it could make its move, Jin showed up from out of nowhere. </p><p>Spotting Jin, a sinister smile crept up underneath the hood of the figure as he shouted. </p><p>"Got you!" </p><p>He was ready this time. </p><p>Having been subjected to Jin's constant attacks, he had already managed to somewhat decipher Jin's attack patterns. Therefore, he quickly punched out towards his right side.</p><p>Following the punch, his fist connected with something solid. </p><p>Bang—! </p><p>"Yes!" </p><p>Feeling that his fist connected with something solid, the hooded figure cried out in joy. </p><p>"Huh?!"</p><p>However, the joy did not last for long. As he watched his fists penetrate Jin's figure, he suddenly realized that there was no blood coming out from him. </p><p>Something was wrong! </p><p>Sadly, the realization came too late as he felt a powerful energy coming from Kevin's direction. </p><p>Turning his head, his face became clouded with horror as he watched the surrounding mana surge over and pour into Kevin's body. His clothes flapped wildly as a red mana light flowed out from his body, covering the entire sword from top to bottom. </p><p>Lowering his head and staring at the hooded figure, Kevin muttered. </p><p>"Thirtieth movement." </p><p>Taking a step forward, Kevin slashed out and the ground beneath him shook violently. </p><p>The moment he slashed out, the air in front of his sword ripped apart as an overwhelming force spurted out. </p><p>"Impossible!" </p><p>The hooded cried out in astonishment as he stared at the incoming attack. How could someone only ranked &lt;B&gt; rank pull such a move? Kevin's attack was not any weaker than that of an &lt;A&gt; ranked figure! </p><p>Bang—! </p><p>The hooded figure wanted to react, however, before he knew it, his body was sent flying backward like a cannonball as he spat mouthfuls of fresh blood and a terrifying scar traced from the side of his body. </p><p>"Khh..." </p><p>Lifting his head and ignoring his injuries, he crawled up, in hopes of running away. However, before he could even move, a subtle clicking sound rang out and his body froze. </p><p>Click—! </p><p>The last thing the hooded figure saw before losing his consciousness was a black-haired youth with two deep blue eyes. </p><p>With his hands on his knees, he briefly glanced in his direction before muttering. </p><p>"Haa...haa...I'm not too late, right?" </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-412.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-414.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 337 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 337 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-336.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-338.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>337 Setting the pieces in motion[1]</p><p>''Two months..? Why? Since it takes you about two days for each beacon, shouldn't you be able to complete this in a month's time?" Durara asked in wonder. She seemed confused.</p><p>In response to her question, I shook my head in denial.</p><p>"That would only apply if I sorted all of Jomnuk's information. Unfortunately, I didn't. It will take a bit of time for that."</p><p>"I see."</p><p>Orion nodded in acknowledgment from the side, understanding what I was trying to say.</p><p>"Orion, I don't think it matters much whether it will take two months or not."</p><p>One of the elders spoke up, looking at Orion. He was Hutrud, the elder who'd previously doubted my capabilities. I still remembered him.</p><p>With both hands interlocked together in a display of thought, Hutrud's eyes remained fixed on the table where a small projection of the outside appeared.</p><p>He then pointed at the beacons outside of the walls.</p><p>"If we change our plans, as long as my estimate is right, once we manage to deactivate eight of the fifteen beacons, we can break the barrier completely. By then, the barrier will be too weak to withstand a full-frontal assault."</p><p>"That's true..."</p><p>Durara muttered from the side, her head repeatedly nodding in agreement.</p><p>Then, she turned to face me once more.</p><p>"I guess that's settled. Do your best in deactivating the rest of the beacons. As I've said before, you will be granted authority at the level of senior advisor. Do as you please."</p><p>"Thanks."</p><p>I replied with a disinterested look.</p><p>Since I was Karl, I had to act the part.</p><p>And it soon became apparent that my acting wasn't too far off from the original Karl. The elders merely turned a blind eye to my blatant show of disrespect.</p><p>"Since you're here, let me hear about your opinion on a certain matter."</p><p>It was then that Orion opened his mouth.</p><p>"Wait, are you planning on asking him about that matter..?"</p><p>Opening her eyes wide, Durara looked at Orion with an incredulous look.</p><p>Orion then glanced at her and the other elders present.</p><p>"Even if he's not an elder, it doesn't hurt to ask. The matter has little to no significance to us anyways."</p><p>Orion shrugged.</p><p> However, Orion wasn't being completely honest.</p><p>"I'm just asking for his opinion since he seems to have a bright head on his shoulders. Who knows, perhaps he can even come up with a good plan."</p><p>He wanted another opinion because he couldn't get rid of a nagging feeling in the back of his head.</p><p>"Well..."</p><p>"I think Orion makes a valid point, Durara.</p><p>Hutrud spoke up.</p><p>Tap.Tap.Tap.</p><p>Tapping on the table with his small, chubby blue hand, he looked at Durara and the other duergars present.</p><p>"Since he's smart enough to be able to find a way to deactivate the city's defensive system, he should be able to come up with reliable input regarding those humans."</p><p>'Humans?'</p><p>Standing by the side, the moment I heard Orion mention humans, my brows knit in consternation. Albeit, for but a single moment.</p><p>'Something's off.'</p><p>"...He has just been promoted to senior advisor, so I guess it's fine to tell him."</p><p>Durra eventually relented and turned to glance at Orion, who looked straight at me.</p><p>The moment our eyes met, a cold chill ran down my spine, but I kept my cool.</p><p>Opening his mouth, Orion started to speak.</p><p>"Alright, if anyone is against the decision of asking Karl for his opinion, please let me know."</p><p>Once his words faded, a deathly silence permeated the hall.</p><p>Though I wasn't sure what was happening, I listened attentively to what they were trying to say.</p><p>From the looks of it, they want to ask me about my opinion on something that was somehow related to humans.</p><p>As such, I just patiently waited for them to speak. Perhaps this was going to be important information.</p><p>Fortunately, the wait did not last for long as no one spoke up.</p><p>Nodding his head slightly, Orion glanced at me from the side.</p><p>"Since the others have agreed, I will now be asking you about a certain matter. Since about a month to two months ago, a human organization…."</p><p>It was then that Orion slowly started recounting to me what had happened moments prior to me entering.</p><p>From how the Monolith was trying to contact them in order to get their help in infiltrating Henolur to how they were apparently searching for someone, Orion told me everything.</p><p>'As expected of them. They've finally moved...'</p><p>The more I listened, the greater my indifference.</p><p>This development, I expected it. Ever since I killed Xavier back in the forest and provoked Mo Jinhao directly, I was sure that they wouldn't let go of the matter.</p><p>In fact, I took this factor into account when making my plans, and the timing couldn't have been more perfect.</p><p>Originally, my plan was to bring it up to the elders once I rose to a high enough position, but it looks like that was no longer needed.</p><p>"...And that is how it is. What do you think Karl? Should we accept the offer or not?"</p><p>Disrupting me out of my thoughts was Orion's voice.</p><p>"Let me think..."</p><p>Scratching the side of my head, I pretended to think for a moment.</p><p>As I was thinking, I could feel the eyes of every elder present, scanning me from top to bottom.</p><p>Although I was confident in the mask, my heartbeat couldn't help but increase.</p><p>Finally, raising my head, I looked at Orion and the other elders in the room.</p><p>"Accept it."</p><p>"Oh?"</p><p>My answer seemed to have been unexpected as both Orion and the elders showed a surprised expression.</p><p>The first one to recover was Orion. He leaned forward, his eyes sparkling with interest.</p><p>"Tell me more, I'm interested. Why should we accept?"</p><p>"…Okay."</p><p>Under everyone's expectant gazes, I started to speak.</p><p>"The reason why I believe that accepting the offer is ideal is because, aside from the favor that you receive from them, we can also use their presence to our advantage."</p><p>"Are you referring to the other humans?"</p><p>Hutrud finally spoke up.</p><p>Compared to the last meeting, he had spoken considerably less.</p><p>"That is correct."</p><p>Either way, nodding my head, I continued.</p><p>"As you probably know, there's a couple of powerful humans working together with the dwarves. What if we use the chance to create internal conflicts amongst them? Although there aren't many humans present, we could take advantage of the situation and create a scenario in which we frame the humans and pit them against the dwarves."</p><p>Just like the dwarves could replicate demonic energy with the aid of an artifact, so could the duergars accomplish the opposite.</p><p>If they helped the Monolith members infiltrate the city and have them disguise themselves as non contracted humans, the duergars could have them go around killing random soldiers here and there.</p><p>Of course, every time that would happen, they would need to do it in a way so that the others would realize humans were responsible for it</p><p>Slowly, as that continued, the duergars could have the Dwarf race and other races turn on the humans.</p><p>Given Waylan's failure at saving Jomnuk, this time, he might face severe repercussions even if he was innocent.</p><p>At that point, Waylan and Douglas would have no choice but to fight back, resulting in the dwarves suffering damage internally.</p><p>On a long term perspective, they would also lose all possibility of allying with the humans.</p><p>"...aside from that, doing this would without a doubt, further damage the dwarves' morale."</p><p>From the barrier slowly breaking down and everyone turning their backs on the humans, the morale of the Dwarf race as a whole would decrease rapidly.</p><p>They would be surrounded on all fronts. It would be a despairing situation.</p><p>Pausing and glancing at everyone to make sure that they were following along what I was saying, I continued.</p><p>"Although it is hard and a lot of sacrifices will be made, if we manage to succeed in this operation, we might be able to completely destroy the dwarves before we can even remove the barrier."</p><p>"...."</p><p>Moments after I finished speaking, the hall was once again enveloped in silence.</p><p>Glancing towards each other, the elders showed pensive looks.</p><p>Standing in the middle of the hall, I kept a straight face.</p><p>'I've already said what I needed to say. Now, all I have to do is wait for their answer.</p><p>Although it looked like I was purposely screwing Waylan and the others, this was only on the surface.</p><p>If there was one thing the elders didn't know, it was that I was the individual the Monolith was looking for.</p><p>All those words I just said were just me trying to convince Inferno to let Monolith in.</p><p>My real goal was to lure them to me.</p><p>The location of Inferno was unknown, and despite all of the dwarves' efforts in trying to find it, they couldn't.</p><p>But what if Waylan and Douglas knew about the arrival of the Monolith members and quietly followed them from a distance?</p><p>Since the tracker led to me, and I was in Inferno, their location would soon be exposed, and that was when the true fun would begin.</p><p>Normally this wouldn't have been possible since the building was encircled by a tracking dampening system, however, things were different now.</p><p>I now had a higher authority, and with the excuse of it interfering with my beacon deactivation, I could have a small area around me where the dampening system wouldn't work, meaning that the chip inside of my head would indeed work even in this highly secured place.</p><p>Just thinking along those lines threatened to cause the edges of my lips to curl upwards.</p><p>Slowly the pieces were falling together, setting up the perfect board.</p><p>Fortunately, I was able to keep a steady face throughout the whole time the elders were discussing.</p><p>At this point, they no longer cared about my input, but even then, each second they discussed felt agonizing.</p><p>Their decision was going to dictate the future of my plans. And although I did have a backup plan, ideally, I wanted the first one to work.</p><p>Fortunately, I did not have to wait for long.</p><p>Sitting back on their seats, the elders nodded to each other, signaling that they had come up with a decision.</p><p>With both hands on the table, Orion spoke up.</p><p>"It looks like we all agree about our next course of action."</p><p>Lowering his head, and staring at me, Orion's eyes squinted slightly.</p><p>"...Since we've got nothing to lose with this plan, we have all agreed on executing it. "</p><p>***</p><p>Click! Clank-!</p><p>Closing the door behind me, I walked towards the center of the room where Jomnuk' was strapped to a seat.</p><p>Squinting, I glanced around, trying to make sure that the surveillance system was still down.</p><p>'Looks like they heeded my words…</p><p>Prior to leaving, I had told the guard to not enter the place or I would kill them.</p><p>Looks like my threat worked as nothing seemed to have been touched. Even the surveillance system.</p><p>"Haa..."</p><p>-Plop!</p><p>Slumping down on a chair, the mask came off my face and I finally relaxed a little.</p><p>It was then that a voice rang from behind me.</p><p>"How was it?"</p><p>"Alright."</p><p>Without even looking, I knew who the voice belonged to.</p><p>Rummaging through my pockets, I threw a small ring in Angelica's direction.</p><p>"Here."</p><p>"What is it?"</p><p>Catching the ring, Angelica narrowed her eyes. As she looked at the ring, she quickly realized that it was a dimensional storage.</p><p>Upon realising this, she unceremoniously checked the contents of the ring.</p><p>"_ _!"</p><p>Her eyes shot wide open.</p><p>Turning my head and seeing Angelica's shocked expression, I smiled.</p><p>"Those things are pretty useless to me, but I figured you might like them..."</p><p>Since we were in an organization controlled by those that signed contracts with demons, the rewards I received were things I could use, like the devil fruit.</p><p>But just because I could use it didn't mean that Angelica couldn't.</p><p>The things stored inside of the ring should definitely boost her strength, and given her current reaction, it seemed like I wasn't wrong.</p><p>Knock- Knock-</p><p>But just as Angelica was looking through the contents of the ring in shock and elation, someone suddenly knocked on the door of the room.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-336.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-338.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

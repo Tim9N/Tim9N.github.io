@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 359 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 359 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-358.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-360.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p> Voooom—</p><p> "Haaa...haaa..."</p><p> Stumbling out of the portal, before I could even catch my breath, I forcibly raised my hand and pointed at the portal disc underneath the ground.</p><p> "...Quickly change the coordinates of the portal before they get here."</p><p> If we could enter the portal, so could they.</p><p> "On it."</p><p> Being the last one that stepped out of the portal, Waylan immediately bent down and twisted the bottom-half of the portal, changing its coordinates.</p><p> Click! Click! Click!</p><p> After twisting the bottom half of the portal three times, the mana in the air finally stopped gathering towards the portal. Only then did we relax.</p><p> "Shit..."</p><p> Waylan cursed as he slumped down on the ground. His already pale face paled even more, and his body trembled.</p><p> "You okay?"</p><p> I asked, leaning by the side of the wall.</p><p> "khhh..."</p><p> A groan suddenly escaped my mouth as a head-splitting pain coursed through my brain.</p><p> 'W-What the-?!'</p><p> The pain was so strong that my mind blanked for a brief moment.</p><p> "Hey, Ren, are you okay?"</p><p> Waylan worriedly asked as he moved towards me, reaching his hand out in support.</p><p> "Don't touch me."</p><p> "Wha-?!"</p><p> Smacking Waylan's hand away, I weakly stood up.</p><p> '...It...hurts!'</p><p> "Khhh..."</p><p> A throbbing, constant, and unrelenting pain coursed through every area of my head as I had difficulty breathing.</p><p> The pain was so unbearable that for a split second I had thoughts of ending myself. Flashbacks of what happened back at the Monolith replayed inside of my head repeatedly, threatening to eat away at my sanity.</p><p> But before things got to that point, using the last shred of sanity within my body, I activated Monarch's Indifference.</p><p> Instantly, the moment I activated Monarch's Indifference, my emotions dulled. Although the pain remained, most of the negative thoughts disappeared from my mind.</p><p> ***</p><p> "Ren...?"</p><p> Waylan carefully called out as he looked at Ren who was standing opposite of him.</p><p> Ever since reappearing from the portal, he had been acting weird. He looked to be in extreme pain, but that did not last for long, as he soon calmed down.</p><p> "Ren, are you okay?" Waylan carefully asked once more, his concern only increasing.</p><p> "I'm fine." Ren emotionlessly replied as he turned to face his direction.</p><p> "I see, I'm glad."</p><p> 'He must be tired.'</p><p> Waylan didn't think too much of Ren's sudden switch in behavior.</p><p> They had just been through a lot. They had almost died, and Ultruk had lost his life...</p><p> Thinking about Ultruk, Waylan sighed in discomfort.</p><p> He had not known him for long, but he still felt a little bit down about his death. If not for him, they would've all been dead by now.</p><p> In fact, he wasn't sure what his death meant for the upcoming plans.</p><p> Lifting his head and looking at Ren, Waylan asked in a somber tone, "What do we do now, Ren? Now that Ultruk is dead, do we have to switch our approach?"</p><p> "Him?"</p><p> Briefly glancing at Waylan from the corner of his eyes, Ren shook his head.</p><p> "He already served his uses. His death was inevitable."</p><p> "...What?"</p><p> Ren's cold voice repeatedly rang inside of Waylan's ears as he tried his best to process what Ren had said.</p><p> It was only after he realized what he said that Waylan stood up in rage.</p><p> "What do you—"</p><p> "Stop."</p><p> But before he could vent his anger, a delicate white hand touched him on the shoulder.</p><p> Without turning around, Waylan knew who the hand belonged to.</p><p> Slowly turning his head and glaring in her direction, Waylan coldly spoke, his voice forming a deep contrast with the burning rage inside of him.</p><p> "What do you mean, 'stop'?"</p><p> Unfazed by Waylan's unfriendly look, Angelica pointed at Ren and calmly explained, "The demonic energy in his body has started corroding his brain... I can feel it."</p><p> "What?...Already?" Waylan replied, his brows jumped up in surprise.</p><p> Turning his head to take a closer look at Ren, it was only then that he noticed fine threads of demonic energy lingering around his body.</p><p> "This is a problem," Waylan said with a troubled look, his anger previous subsiding completely.</p><p> 'What do I do?'</p><p> If Ren was not in the right condition, the next and last part of the plan would be even harder to achieve, especially since Ultruk was...dead.</p><p> "There's no need to worry too much."</p><p> Angelica took her hand away from Waylan's shoulder.</p><p> "What do you mean?" Waylan asked, sounding baffled. He couldn't understand why Angelica said that.</p><p> "He's currently using a skill to mitigate the effects of the demonic energy, but it's only partially working."</p><p> Extending her hand forward, the threads of demonic energy lingering outside of Ren's body slowly moved towards her direction, connecting to the tip of her fingertips.</p><p> "I'm not exactly sure about what skill he's using, but, at least for now, he is okay."</p><p> "I see."</p><p> Angelica's words eased some of Waylan's worries. His brows relaxed, the frown disappearing from his face.</p><p> "Do you have any idea why his brain suddenly started to get affected by the demonic energy? It has only been a week since you and he had signed a contract."</p><p> As the threads of demonic energy continued to extend towards her fingertips, Angelica's brows furrowed as she fell into deep thought.</p><p> After a while, Angelica opened her mouth to answer Waylan's question.</p><p> "Demonic energy feeds on the negative thoughts a person has inside of their mind. The darker someone's thoughts, the faster the process."</p><p> "You don't mean...?" Waylan muttered in a stunned voice.</p><p> He wasn't stupid. Waylan knew exactly what Angelica meant by her words.</p><p> "Is Ren perhaps..."</p><p> Lowering her hand, the threads of demonic energy revolving around Ren's body had diminished significantly.</p><p> She then waved her hand and collected all of the demonic energy in the air.</p><p> "Ren's mind is not clean, but it's not to the point where the demonic energy would corrode him this quickly."</p><p> A black hue sprang forth from Angelica as the small threads of demonic energy agglomerated towards her body.</p><p> "There's another way for demonic energy to corrupt someone quickly. It is when their mind is unstable. Prior to coming here, Ren suffered a traumatic experience, scarring his mind quite badly"</p><p> Angelica turned her head.</p><p> "In short, Ren's head is not in the right state."</p><p> "...I see," replied Waylan with a worried look.</p><p> Unaware and uninterested in the things the two of them were talking about, taking out a small communication device from his pocket, Ren powered it on and quickly got in contact with someone.</p><p> Vrrr—! Vrrr—!</p><p> Before long, the communication device stopped vibrating and a familiar voice rang out in the room.</p><p> —Have you guys done it?</p><p> "We're done. I'll send you the coordinates briefly."</p><p> —That's perfect. We'll start immediately, then.</p><p> The voice behind the communication device sounded relieved as it learned of the mission's success.</p><p> —By the way, is everything alright? No one died, righ—</p><p> Di—! Di—!</p><p> But before Douglas could even finish his sentence, Ren switched off the communication device.</p><p> "That was uncalled for," Waylan frowned.</p><p> Although he knew that Ren was currently in the right state of mind, Douglas was asking an important question.</p><p> They had to let them know that Ultruk had died.</p><p> "We don't want their morale to fall. Answering his question is detrimental." Ren spoke while staring into Waylan's eyes, not a hint of remorse or emotion inside. It was soulless.</p><p> Without giving Waylan a chance to reply, Ren turned around and headed out of the room.</p><p> Clank—!</p><p> Closing the door behind him, Ren left the room.</p><p> '....This is going to be harder than I thought.'</p><p> If not for Angelica's previous words, Waylan would've been unable to stay quiet.</p><p> The current Ren was making it very hard for him to remain calm.</p><p> ***</p><p> Di—! Di—!</p><p> Douglas looked at the communication device in his hand with an awkward look.</p><p> He had not expected Ren to shut him off before he could finish speaking. Especially not when he was with the representatives from the other races.</p><p> But Douglas was a man with a lot of experience. In a matter of seconds, he was able to quickly recompose himself.</p><p> Di- Ding—!</p><p> Shortly after, his communication device once again rang.</p><p> Taking a small glimpse, he smiled at the others and took out multiple teleportation devices from his dimensional space.</p><p> 'Could it be Gervis?'</p><p> All the dwarven elders wondered to themselves as they looked at the teleportation devices Douglas held.</p><p> Teleportation devices were not like any other artifacts. They were incredibly hard to make, and fairly rare in the world.</p><p> Unless you were a dwarven elder, having more than one teleportation device was almost unheard of. The fact that Douglas was able to pull out four at once shocked most of the people present.</p><p> It was only now that they understood that someone with high standing was backing him.</p><p> Uncaring for the stares, Douglas fiddled with each teleportation device in his hand.</p><p> As he worked with them, Douglas would, from time to time, check his communication device.</p><p> '...They should already be aware that the dampening and surveillance systems are down.'</p><p> The duergars would be stupid to not realize that they had been compromised from the insides.</p><p> The plan was rather simple; create four different groups and have them infiltrate the facility from four separate locations.</p><p> If there was a better time to strike, it was now.</p><p> Chaos must've seeped in the heart of Inferno as their dampening system, as well as their surveillance system, had been shut down. Attacking at this moment would ensure the greatest chance of success.</p><p> "Done."</p><p> After a couple of short minutes, Douglas hastily threw the teleportation devices in the air.</p><p> Clanck—! Clanck—! Clanck—!</p><p> As he threw the devices in the air, at the bottom of them, three clamps expanded outward, hooking themselves onto the ground tightly once they landed.</p><p> Once the teleportation devices hooked themselves onto the ground, the mana in the air spiraled towards the center of the portal devices.</p><p> WIIIIIIING—!</p><p> Right as the portal started to form, a terrifying energy burst forth from one of the individuals present, catching almost everyone off-guard.</p><p> The energy was in the form of a small blood bead that whistled through the empty space. Although everyone present was extremely powerful, none were able to stop the sudden attack as it came too fast, and unexpectedly.</p><p> WIIIIIIING—! WIIIIIIING—!</p><p> But that wasn't the only attack that came whistling down from the individuals in the crowd. Two more quickly followed up with a similar lightning-fast attack.</p><p> Finally, the three attacks smashed against the teleportation devices in front of the many watching eyes. At that moment, everyone's heart suddenly tightened.</p><p> "It looks like your plans have crumbled instantly."</p><p> One of the individuals responsible for the sudden attack said as a wild laugh escaped his mouth, but that laugh had barely started when it was suddenly halted.</p><p> Standing opposite of him with a bored look, Douglas looked at the destroyed teleportation devices on the ground and took out four more from his dimensional space.</p><p> Casually glancing at the individuals responsible for the attack, his lips twisted upwards, forming a sly smile.</p><p> "Looks like I accidentally used defective products. Thank you for reminding me."</p><p> He had expected this from the very beginning.</p><p> There was no way the spies planted by Inferno would stay put and do nothing when he started setting up the portals. Therefore, prior to coming here, he got himself four defective teleportation devices that no longer worked and used them as dummies to bring out the spies.</p><p> Although they were surely not all of the spies hidden amongst the individuals present, they were most likely a large part of them.</p><p> Now that everyone was aware that there were spies hidden amongst them, they had become a lot more alert.</p><p> No way would the spies be able to pull off a similar stunt again.</p><p> This made him a lot more relaxed.</p><p> "Take care of them, please," Douglas said as he pointed at the three individuals who had attacked previously.</p><p> Immediately, the spies were thrust under heavy magical bombardment and several attacks. It seemed like the crowd of elites was angry.</p><p> 'Let's finally end this war.'</p><p> With the Duergar spies' cries as the backdrop for his work, Douglas turned around to the explosions occurring behind him and once again fiddled with the portals in his hands.</p><p> ***</p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-358.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-360.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

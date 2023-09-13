@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 354 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 354 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-353.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-355.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p><em>Booom—! </em></p><p>The metallic door that led to the room shook as a thunderous explosion rang out. </p><p>"…They're already here." </p><p>Focusing my attention on the door, my face turned solemn. </p><p>After that, turning my attention towards the window that displayed the percentage of progress, I mused to myself. </p><p>'The rate of progress at the moment is about 1% for every five seconds. The current progress is 7%, and therefore, we would need to stall them for about four hundred and sixty-five seconds. That's a little bit under eight minutes.'</p><p>With the aid of the chip inside my head, I was able to calculate the time we needed to stall the duergars in seconds.</p><p>Although it did not sound like a lot of time, given our current circumstances and the opponents we were up against, it was too long. The stakes were up against us.</p><p>In fact, I wasn't sure whether we would be able to defend for such a long period of time, especially since we needed to take into account our current surroundings.</p><p>If the stick inside of the panel broke, we'd be screwed.</p><p><em>Booom—! </em></p><p>Disrupting me out of my thoughts was the sound of another explosion. It came from the other side of the door. </p><p>As the explosion rang, a narrow gap appeared by the edge of the door, exposing what was happening outside. Although it was only a small glimpse, I could tell that there were several duergars waiting for us outside.</p><p>I didn't even need to check whether an elder was present, because I could feel a threatening aura from outside of the door.</p><p>It was almost on the same level as Durara. Almost. I could feel that the elder was a bit weaker than her.</p><p>It seemed like I wasn't the only one who noticed that, as Ultruk's face eased up a little. But only just a little.</p><p>The odds were still stacked against us.</p><p>"The door won't last for long, you need to eat those fruits now. The more time you waste the less time you'll have for recovery." I said while pointing at the bag in Ultruk's hands. </p><p>"I can understand that you don't want to eat them, but we can't afford to have you conserve the fruits," I smiled and added, "If you want more, I'll get you some later." </p><p>"You will?" </p><p>Ultruk's head snapped in my direction. It was so fast I thought his head could have popped off.</p><p>Seeing how he reacted to my words, I knew that I had the crux of the problem in my grasp.</p><p>"Well...yes. I think I should be able to get more later. I won't make any promises, but I'll keep it in mind."</p><p>I had to go back to Immorra one day or another, so getting him more of those fruits wouldn't really be hard for me.</p><p>Well, that was as long as Silug did as planned.</p><p>If not, there'd be no point in me going to Immorra where a Marquis ranked demon was eagerly waiting to roast me alive.</p><p><em>'I wonder how Silug is doing...I hope he's secretly getting strong, as planned-'</em></p><p>Ultruk's voice disrupted me out of my thoughts.</p><p>"...That is good enough for me." </p><p>After getting some form of confirmation from me, no longer hesitant, Ultruk rummaged through the bag and stuffed his mouth full with the fruits from Immorra. </p><p>Scrunch! Scrunch! </p><p>Juices flowed down from the edges of his mouth as he devoured the fruits as though he was drinking water. </p><p><em>Booom—! </em></p><p>The door shook once more. </p><p>"Damn it, why couldn't they have made the doors more durable?!" I shouted out loud as I stared at the door which was slowly breaking apart.</p><p>For a door that was supposed to lead to the dampening control system, it was a little too loose.</p><p>"Well, in the first place, they didn't expect anyone to be able to infiltrate their own base. Although the dwarves have indeed planted some spies, they wouldn't expect them to pull off a stunt of this caliber."</p><p>Waylan murmured from the side, responding to my previous words.</p><p>"I guess you're right…"</p><p>If not for the fact that the elder behind the door had still not made a move, the door would've already crumbled.</p><p>The only reason why he didn't was probably out of caution; fear that we might end up ambushing him out of nowhere.</p><p><em>Booom—! Booom—!</em></p><p>The door shook even more fiercely as multi-colored lights flashed from the narrow gap in-between the door. </p><p>Putting my hand in my pocket, I threw Angelica towards the corner of the room.</p><p>'Get ready.'</p><p>I, of course, did not forget to throw her a few devil fruits. </p><p>They were ones she had managed to loot from the duergars earlier. Unfortunately, they weren't very high-quality fruits, so I didn't know how useful they'd be.</p><p>'Try to recuperate as much demonic energy as possible. It looks like we're in for a tough battle.'</p><p>Because they were busy staring at the door, both Waylan and Ultruk did not notice what I did. Even then, it wouldn't have mattered. </p><p>Once I made sure Angelica was okay, turning my head towards Waylan, I asked in a serious tone, "How long do you think the doors will be able to last?"</p><p>"Not sure. Maybe a minute?… And that's me being optimistic. If an elder is personally making a move, I'd give it half a minute."</p><p>"That's too little time…"</p><p>We needed to stall for at least the next seven minutes. One minute was not going to cut it.</p><p>"Let's not wait before acting. The more time we waste the better."</p><p>"…Okay." Nodding in agreement, I took my attention away from Waylan and checked my dimensional space.</p><p>'Let's see…'</p><p>Because I didn't have enough time, I had still not checked what I'd gotten from killing those duergars. Perhaps, there might just be something that could prove to be useful to me.</p><p>It was then that I finally spotted something.</p><p>"I've got something!"</p><p>My eyes lit up in glee as I took out a couple of things from my dimensional space.</p><p>Tapping Waylan on the shoulder, I showed him three familiar metal boxes. </p><p>"I think I've got something that might be able to help us stall for time."</p><p>"What is it?"</p><p>"Remember this?" I said as I channeled my mana to the metal boxes.</p><p>The moment my mana entered the black boxes, they lit up with a strange light and expanded. Before long, a large barrier formed before us. </p><p>"Where did you even get that from in the first place?" Waylan asked with a look of surprise on his face.</p><p>"Looting, obviously," I responded with an obvious look whilst walking towards the door, and placing the metal boxes by the side, close to the hinges.</p><p>One in front, another on the left, and the last one on the right side.</p><p>After that, I channeled my mana into them and three barriers formed. </p><p>As I was setting them up, turning to look behind me, I asked, "These things were able to block your attacks, right? It should be able to stall for a bit of time."</p><p>"…You're right." Pausing, Waylan furrowed his brows. </p><p>"But I don't know just how useful it will be against &lt;SS&gt; ranks. The gap between each stage is massive."</p><p>"That's fine, we just have him to hold him back for a little bit."</p><p>I pointed at Ultruk who was eating the fruits and slowly recovering his aura.</p><p>"As soon as the door breaks, Ultruk will stall the strongest duergar while we defend against the weaker ones."</p><p>"It's a bit risky…" Waylan muttered reluctantly. With a serious, contemplative look, he glanced at the shaking door.</p><p>"What are we going to do once we shut down the system?"</p><p>"That… There's no need to worry about that. I've already got a solution."</p><p>"Is that so?"</p><p>"Yup, so all we have to do now is de—"</p><p><em>Boooom—!</em></p><p>Not even allowing me to finish my sentence, the door broke apart, revealing the duergars standing behind.</p><p>Holding onto several different artifacts oozing with power, they didn't even wait for the door to fully fall before starting to mercilessly shoot in our direction.</p><p><em>Xiu! Xiu! Xiu!</em></p><p>The energy blasts from their weapons shot in our direction at terrifying speeds. </p><p>They were so fast that I was unable to react in time. If not for Waylan who was next to me reacting in time and activating the barriers, I would've seriously been injured.</p><p>"Huarg!"</p><p>What followed the first attack was Ultruk's shout as his voice reverberated throughout the whole room. </p><p>Without wasting any time, his figure shot towards the duergar who had the most powerful aura. </p><p>Holding onto a massive hammer that was way bigger than he himself, the duergar raised it and met Ultruk's attack head on.</p><p>BANG—!</p><p>A circular, pressurized wind spread out from their collision, sending everyone nearby flying away.</p><p>Only a few were able to remain standing, and of those, I wasn't one. My body crashed against the back of the room, knocking the air out of my lungs.</p><p>"Khhh…"</p><p>"You okay?" Waylan asked as he looked back at me.</p><p>"I'm… fine." Sliding down, I raised my head and reassured Waylan that I was still somewhat intact.</p><p>"Fuck, that hurt." I cursed. Wiping the side of my mouth, I weakly stood up. </p><p>'Damn it. If not for the barrier I had set up beforehand, I would've most likely died there…'</p><p>Just a simple attack from the two of them almost cost me my life.</p><p>That was how scary &lt;SS&gt; ranks truly were. People were collateral damage to them.</p><p>Fortunately, they both held back a bit. Had they truly gone all out, not only I would've died, but the other duergars present would have joined me in the afterlife too. </p><p><em>BANG— BANG—</em></p><p>The loud banging sound from the fight never ceased as both Ultruk and the duergan elder continued to fight in the distance. With each attack, they would progressively get further away from us.</p><p>It became evident to us that they each wanted to avoid letting their own side suffer from the aftermath of their attacks. </p><p>During their exchange, neither held the upper hand and although Ultruk was in fact one sub rank higher than the elder he was fighting, their fight at the moment was even because he had still not fully recovered his aura. He was fighting conservatively.</p><p>"Watch out."</p><p>Waving his hand forward and creating a small barrier around me, Waylan deflected the wind gales that arose from the conflict between Ultruk and the elder, as well as some of their residual energy. However, it came at a cost, as Waylan's face paled a tiny bit.</p><p>Breathing out, he urgently said, "Ren, quickly get up. We don't have much time!"</p><p>Standing opposite to us were the duergars from before with their weapons ready. All of their weapons varied, ranging from guns to hammers and even swords or axes. </p><p>A bright glow enveloped their weapons as they all glared in our direction.</p><p>Staring at the duergars' opposite, Waylan's face became grim. </p><p>"I don't have much mana in me. I don't know for how long I'll be able to hold them back."</p><p>Once again wiping the side of my mouth, I walked up to Waylan and reassured, "Don't worry too much. We've got help."</p><p>The moment my words faded, and right as the duergars were about to attack the barriers, their movements suddenly became sluggish as a bone-chilling pressure enveloped their bodies. </p><p>"…What?"</p><p>Spotting this, Waylan's eyes jumped up. Sensing something, Waylan turned his head and looked behind him. </p><p>With her hand raised, standing right behind me, Angelica held a couple of fruits in her left hand.</p><p><em>Kracka! Kracka!</em></p><p>Taking out a long metal stick, my reward for defeating the duergar in the artifact testing facility, I grasped it tightly and let my mana flow in it. Then, with a confident tone, I spoke while looking at the enemy.</p><p>"She should be able to lend us a hand."</p><p>***</p><p>A/N : Another chap within next thirty minutes. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-353.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-355.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

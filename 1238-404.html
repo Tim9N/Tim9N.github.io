@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 404 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 404 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-403.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-405.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Hatred.</p><p>Pure hatred.</p><p>If there was one feeling to describe how the current Melissa felt, it would be pure hatred.</p><p>At the moment, about a quarter of the arena grounds' attention was drawn towards her. Clenching her fists and staring at Ren who was still standing on the arena grounds with a smirk on his face, Melissa's eyes turned into crescent moons.</p><p>For a brief moment of time, Melissa looked back at the time when Ren was presumingly dead. The good old days as one might call them.</p><p>Not even a week after he reappeared and he was already causing her problems.</p><p>Fortunately, with the preliminaries in full swing and the others couldn't approach her yet. She was still safe. At least for now.</p><p>"Ugh, my head hurts."</p><p>Just imagining what was going to happen once the first day ended, Melissa felt her head throb uncontrollably.</p><p>Without a doubt, she was going to be hounded from all sides, all trying to gain information regarding the magic cards.</p><p>"Haaa..."</p><p>She deeply sighed at the thought. Still, it wasn't the end of the world.</p><p>She naturally understood what Ren was trying to pull. By displaying the power of the cards in front of everyone, he was essentially advertising to all four races the effects of the cards.</p><p>Having spent over a year mass producing the cards, she had plenty to give away.</p><p>If she could secure a deal with the other races, she wouldn't need to worry about money for the rest of her life. She had to admit, Ren's plan was quite smart, 'ugh', Melissa's stomach suddenly churned at that thought.</p><p>The words 'smart' and 'Ren' being put together left a bitter taste in her mouth.</p><p>"Number 456, Amanda Stern vs Number 096 Kodiak"</p><p>As Melissa's stomach churned in disgust at the thought of having complemented Ren, Amanda's name was suddenly called up.</p><p>Seated next to her, with her bow in hand, Amanda stood up.</p><p>As she stood up, instantly, half of the stares directed at Melissa lingered on Amanda who indifferently walked down the stands.</p><p>Melissa sighed in relief as she saw this. With half of the stares gone, she felt much more comfortable.</p><p>***</p><p>[At the upper echelon section.]</p><p>"…interesting."</p><p>Gervis muttered as he stared at the human in the distance. The cards in his hand had truly left him surprised. Never had he seen such artifact technology. Update faster, please come to Novel His inner dwarven mind instantly became excited at the prospect of analyzing the cards.</p><p>'I'll ask him to give me a sample.' Gervis thought as his eyes focused on the human standing in the middle of the square. He already knew who it was, but he just pretended to not know him.</p><p>This was obviously at his request.</p><p>Turning his head, he glanced at Octavious and complimented him.</p><p>"That's some peculiar technology. I didn't know you humans were able to create such artifacts."</p><p>"…It is indeed an interesting piece of technology." Octavious calmly answered from the side. His eyes never left Melissa who was currently everyone's center of attention.</p><p>Despite the attention she was drawing from everyone present, he remained completely indifferent to it. As though he didn't care about her current predicament.</p><p>'What a strange human…' Gervis thought as he studied Octavious from the side.</p><p>He had interacted with many humans before, but none were as weird as Octavious. To Gervis, his composure was something admirable. It made it harder for people to understand what he was thinking.</p><p>Even he had difficulty reading his expression.</p><p>"Number 456, Amanda Stern vs Number 096 Kodiak"</p><p>It was at that moment that the referee announced the next contestant and a young human female stood up.</p><p>The moment Amanda stood up, the elven queen's brows jumped up. Throughout the whole tournament, she had always remained seated with a stoic and indifferent look on her face.</p><p>Despite all of the exciting matches that had occurred her expression not once changed, yet, the moment Amanda appeared, her facade crumbled slightly.</p><p>This did not go unnoticed by the others who stared at the queen with hints of surprise on their faces. Then, turning their attention towards Amanda in the square, they all wondered, 'Why would the queen react like that at her appearance?' Everyone believe that there was more to it than she let out.</p><p>Ignoring them, the elven queen leaned her body forward. A rare trace of solemnity emerged on her face.</p><p>"…it can't be."</p><p>***</p><p>Hearing her name being called up, Amanda headed toward her designated platform.</p><p>"Good luck."</p><p>"Mhm."</p><p>Passing by Ren who had a smug look on his face, Amanda nodded back. But just as he passed her, Ren didn't forget to whisper something in her ear.</p><p>"…If you want to win, all you have to do is pull the same move like yesterday. Trust me, you will never lose if you use that move."</p><p>Amanda's feet came to a pause and her head snapped backward only to see Ren's figure quickly headed for his seat.</p><p>Staring at his figure, Amanda gently bit her lips.</p><p>Recalling the events of yesterday in the training grounds, a slight blush appeared on her cheeks. Lowering her head, and letting the hair cover her face, Amanda's eyes flickered slightly.</p><p>'I concede, you win. Forgive me. I will never do it again, okay?'</p><p>Flashbacks of him begging for forgiveness replayed in her mind.</p><p>'…Was yesterday not enough?'</p><p>The grip of her bow tightened slightly.</p><p>If he really wanted to try her moves again, she was all in for it. With her head still lowered, unbeknownst to her, the corner of her lips tugged upwards.</p><p>Arriving before the platform, tensing her legs, Amanda jumped up. Her foot soon softly landed on the hard ground.</p><p>Stabilizing her body and brushing her hair back, Amanda looked at her opponent.</p><p>Standing opposite her was an orc. Just like any other orc, he had a well-built body and a ferocious look on his face. Staring at her with his ferocious gaze, her opponent, Kodiak, flexed his muscles, exposing his muscular body.</p><p>Lowering her bow, Amanda closed her eyes.</p><p>Swooosh—!</p><p>A soft wind blew and Amanda's clothes fluttered. Following this, the referee's voice rang out.</p><p>"Begin!"</p><p>The orc was the first to move following the referee's voice.</p><p>Bang—!</p><p>Taking a step forward, the ground beneath the orc cracked apart. His clothes flapped about, while a dark green hue swirled on the surface of his body creating a rather imposing sight.</p><p>Feeling the tremendous power bursting from the orc opposite of her, Amanda remained motionless with her bow hung low.</p><p>Perhaps feeling offended by Amanda's nonchalance, the former's foot pushed off the ground and he shot in Amanda's direction at incredible speeds.</p><p>Within seconds his body had appeared in front of Amanda, his enormous fist which was coated in a dark green hue quickly smashed in her direction. The orc's attack was extremely swift and ferocious, reaching Amanda's face in the blink of an eye. It was clear that he was trying to deal serious damage to her!</p><p>However, just as the fist was about to land on her pretty face, Amanda raised her hand, the one which held onto the bow, and took a step back.</p><p>The movement was so abrupt and masterful that the attack narrowly missed as it brushed past her nose. What followed after was the orc's fist entering the middle of her body. With cold eyes, Amanda twisted the bow up and bent the orc's arm, trapping it.</p><p>"Ukek!"</p><p>The orc let out a pained cry as his arm twisted upwards. A faint green line appeared on the part where his skin touched with the string of her bow.</p><p>Pushing her body up and tensing her core, Amanda agilely moved around the orc's massive body before her legs hooked onto his neck and she squeezed with all of her might.</p><p>"Khhhh..."</p><p>Caught off-guard, the orc let out another groan as his face turned a deeper shade of green. Raising his hand, he gripped Amanda's leg and tried to remove it away from his neck.</p><p>Gritting her teeth, Amanda raised her elbow and smashed it towards the orc's stomach.</p><p>Thump—!</p><p>A muffled sound rang out as the orc's eyes went wide with pain. Not missing this opportunity, Amanda increased the strength of her hook even more as her body bent backward.</p><p>"Khh..."</p><p>As time passed the orc's movements became more and more sluggish as the air was starting to get cut off his brain.</p><p>Thud—!</p><p>With a large 'thud' the orc soon kneeled on the ground with his eyes completely white. He had clearly passed out.</p><p>"Number 456, Amanda Stern wins."</p><p>Only after the referee announced her victory did Amanda finally release her leg hook and the orc fell face-first onto the ground.</p><p>"Haaa...haaa..."</p><p>Aside from her rough breathing, Amanda had flawlessly beat her opponent. Update faster, please come to Novel What was more impressive was the fact that throughout the whole time, she had done this while fighting in close range, rather than long-range which was her specialty.</p><p>"Huuuuu."</p><p>Lifting her head and staring into the sky Amanda took a deep breath before standing up.</p><p>***</p><p>'...Remind me to never piss her off.'</p><p>A cold chill ran down my spine as I stared at Amanda choking the orc.</p><p>Although I knew that Amanda could be fierce at times, now that I saw it firsthand, I realized that I had been playing with fire.</p><p>Overall, the match only lasted a total of two minutes before she emerged victoriously.</p><p>'She truly has improved a lot over the years that I haven't seen her.' I thought as I stared at her figure basking in the cheers of the crow. She looked especially dazzling standing underneath the bright sun from the sky.</p><p>"...That was a good match."</p><p>I greeted Amanda once she returned. Out of precaution, I scooched over to the side.</p><p>Turning her head and staring at me, Amanda raised her brow. 'You saw what I did there, didn't you?' That was what her face implied as I looked at her.</p><p>Nodding, my lips pursed together.</p><p>'I shouldn't have provoked her.'</p><p>Me and my big mouth.</p><p>Avoiding her eyes, I looked at the weather.</p><p>"Beautiful day isn't it?"</p><p>"...It is."</p><p>Sitting down next to me, Amanda nodded her head as a faint and proud smile hung on her lips.</p><p>My eyes squinted at the sight, but I decided to not say anything. I had already learned my lesson.</p><p>Following this, neither of us spoke as we just stared at the intense battles in each of the various arenas.</p><p>An explosive atmosphere shrouded the surroundings as defeating cheers began to erupt whenever a winner was decided.</p><p>As time passed, more and more people began to be eliminated. However, the remaining individuals were becoming increasingly more powerful, causing the battles that followed to naturally be even more entertaining.</p><p>Even I had to admit that some of the fights were extremely engaging.</p><p>Over this period, I had three more matches. There were no upsets regarding my outcome. Using the magic cards I was able to swiftly dominate my matches.</p><p>There were some protests regarding my means of victory, but at the end of the day, magic cards were regarded as artifacts and therefore all arguments were quickly shut down since many used their own artifacts. This was perfect for me as I could continue advertising the power of the cards and at the same time keep my main cards hidden.</p><p>My actions did attract quite a bit of attention, but it was soon overshadowed by the performance of a few other individuals. Especially Kevin who practically dominated every single one of his matches.</p><p>Before I knew it, I had entered the top 128.</p><p>However, not all was smooth sailing. Out of the 128 competitors, only a meager fifteen were humans. Yes, only 15 out of the 128 participants were human.</p><p>The faces of most humans darkened at the thought.</p><p>Already expecting such an outcome, I was fairly relaxed. Originally, in the novel...'this world really comes from a novel, right? Yeah, novel. There was no need to doubt this.'</p><p>As I was saying, originally, there were only supposed to be eleven participants, but the addition of me, Hein, Ava, and Troy had given humanity four more participants...not that it really mattered anymore.</p><p>Appearing in the middle of the battlegrounds, was the same elven lady from before.</p><p>Glancing towards her spectators, her eyesight briefly lingered on us. Or at least, it looked like it did.</p><p>Taken aback, I glanced towards the other to make sure I wasn't seeing things.</p><p>"Am I seeing things or did she just look at us?"</p><p>"...Yeah, you weren't seeing things," Kevin replied with a deep frown on his face. "I don't know if its because—"</p><p>Before he could continue his sentence, the elven lady spoke up, and all forms of noises ceased.</p><p> Glancing toward each other, we both smiled and shrugged. Couldn't be helped. </p><p>"There have been a lot of exciting and entertaining matches, truly."</p><p>"Your outstanding performances have truly impressed the higher-ups, and I'm pleased to announce that this is the end of the preliminaries."</p><p>Silence descended upon the arena grounds as her words drifted through the ear of each individual present. Amidst the silence, leaning slightly, I whispered into Kevin's ear.</p><p>"Kevin you're supposed to clap once she ends."</p><p>"Really?"</p><p>"...Yeah."</p><p>"Oh, I see."</p><p>Kevin innocently nodded his head in understanding. With a stoic face, I returned to my usual position.</p><p>"With that being said, this will be it for today. The main competition will begin tomorrow. I hope you have a good day"</p><p>Once her words faded, for a brief moment of time, silence once again descended upon the arena grounds before the sound of someone clapping their hand suddenly resounded across the place.</p><p>Clap—! Clap—!</p><p>Instantly countless gazes directed themselves in Kevin's direction.</p><p>"...Huh?"</p><p>Noticing that something was strange, Kevin let out a surprised sound. Feeling a slight tug on his clothes, with her cap lowered to the maximum, trying to hide her expression, Emma whispered in his ear.</p><p>"Kevin, clapping is a human thing."</p><p>"..."</p><p>Kevin's face froze at her words as his face paled and his mouth trembled.</p><p>Turning his head, Kevin's two red eyes glared in my direction. Trying my best to keep my face straight, I shook my head.</p><p>"Kevin, that was embarrassing, don't do that again."</p><p>Speechless, Kevin raised his hand and pointed at me.</p><p>"Y..you!"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-403.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-405.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 342 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 342 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-341.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-343.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>342 Taking the initiative［2]</p><p>"...I've got a way to stop the war."</p><p>A palpitating almost chilling silence enveloped the hall as everyone stared at Waylan in the middle of the room.</p><p>Before anyone could speak or voice out their objections, Waylan continued speaking.</p><p>"Yes, I know what you guys are thinking. Is he crazy? Is he out of his mind? Is he right in the head?…I'd also think the same if I were to be put in the same position as you all."</p><p>Waylan looked around before his eyes soon paused on Gernis, the Metropoliskeeper, and leader of the dwarfs.</p><p>"I know what I'm saying I absurd, but I really do have a way to end this war. You don't have to be-"</p><p>Unfortunately for Waylan, in the end, not everyone could keep themselves from voicing out their objections.</p><p>Standing up, one of the elders shouted.</p><p>"What n-"</p><p>"Quiet!"</p><p>A sharp voice echoed throughout the hall, cutting the elder off before he could formulate a sentence.</p><p>Glaring at the elder, Gernis solemnly said.</p><p>"I will nae permit any talking until he be done speaking."</p><p>His deep voice traveled through the ears of each individual present. A strong pressure came along the voice.</p><p>"...I apologize."</p><p>Reprimanded by Gernis, swallowing his pride, the dwarf apologized to Waylan who merely smiled in response.</p><p>Turning his attention back to Waylan, Gernis gestured for him to continue.</p><p>"Sorry for tha disturbance, ye may continue."</p><p>"Thank you." Waylan thanked. "As I was saying. I have a way to end this war. I know that you all must be doubting my words, hence why I came prepared."</p><p>Swiping his hand in the air, a scroll suddenly materialized out of nowhere.</p><p>"...What in the."</p><p>"A mana contract."</p><p>"Is that a mana contract?"</p><p>Everyone instantly recognized the scroll that appeared in Waylan's hands.</p><p>It was a mana contract.</p><p>Something that most individuals present in the hall had used once before, except the orcs of course.</p><p>"Correct."</p><p>Waylan said as he reached out for the contract in the air.</p><p>Grabbing the contract, he slowly unraveled it for everyone to see.</p><p>"Since none of you might believe me, I thought to myself. Is there a way to convince you guys that I'm not lying to you and that I truly know of a way to stop the war?"</p><p>Glancing at everyone in the room, Waylan flashed a smile.</p><p>"...Well, guess what? There truly is a way."</p><p>Waylan raised the hand that held onto the Scroll.</p><p>"This over here is the highest-ranked mana scroll that I could find. Meaning that it is of the highest rank available. If by any chance I breach the contract, according to the contract, I will instantly die, regardless of my rank."</p><p>As Waylan spoke, the eyes of the individuals in the room finally changed.</p><p>At the mention of the contract, the individuals who had previously treated this meeting as a mere joke finally had to change their stance.</p><p>The moment he took out the contract, they knew that this could no longer be a job.</p><p>Almost everyone in the room knew how a mana contract worked; therefore, they knew the severity of Waylan's words.</p><p>There were no falsehoods in his words, that was unless he didn't value his life.</p><p>At this moment, everyone in the room understood one thing, Waylan was putting his life on the line. He was putting his life on the line to prove to everyone present that he truly knew of a way to end the war.</p><p>"...You're being real?"</p><p>The first one to speak up was Randur. The dwarf that had been giving Waylan a hard time in the previous meeting.</p><p>Glancing at Randur, Waylan looked towards Gernis who was looking back at him.</p><p>His face clouded with unprecedented solemness.</p><p>After a while, opening his mouth, Gernis asked.</p><p>"Can I see tha contract?"</p><p>"Yea you can."</p><p>Waylan nodded with a smile. Evidently prepared to have been asked such a thing.</p><p>"Here you go."</p><p>Walking up to Gernis, Waylan handed him the contract.</p><p>As he moved, Waylan noticed everyone's eyes focus on him, or more specifically towards the contract in his hands.</p><p>"Let me have a look."</p><p>Taking the contract from Waylan's hands, Gernis started looking through it.</p><p>"Let me see just how valid your words be.."</p><p>Staring at Gernis who was looking through the contract to see if there were any loopholes, Waylan merely smiled.</p><p>He was confident that regardless of how much Gernis looked, there wouldn't be any loopholes.</p><p>Before singing it, he had gone through it with Douglas and Ren. As they were checking, they made sure to remove anything that the dwarfs could use as a point to dismiss his contract.</p><p>Fortunately, it seemed like they had indeed managed to remove all loopholes as an astonished look soon appeared on Gernis's face.</p><p>"You…to go this far..."</p><p>"What is it? Let me have a look."</p><p>Randur impatiently said as he eagerly looked at the contract in Gernis's hands.</p><p>"Have a look at it yourself."</p><p>Taking his eyes away from the contract, not minding Randur's attitude, Gernis passes the contract onto him who quickly snatched it and went through its contents.</p><p>"What in the..."</p><p>But just like Gernis, a shocked look appeared on his face as he looked through the contract.</p><p>"This...If I, Waylan Roshfield, do not have a way to stop the war, will die. If I, Waylan Roshfield, backstab the dwarves in any way, will die. If I, Waylan Roshfield..."</p><p>Opening his mouth, he started reciting the contents of the contract for everyone that was present in the room.</p><p>The more he spoke, the more shocked he was.</p><p>The contract was truly straight to the point. If he breached even a single point of the contract, he would die. He was leaving himself with no leeway to lie.</p><p>No matter how much Randur looked at it, there were no loopholes.</p><p>The others in the room also realized this as they all looked at Douglas with shocked eyes.</p><p>'Does he really know of a way to end the war?'</p><p>Everyone wondered.</p><p>Noticing the changes that were happening in the room, Waylan smiled in satisfaction.</p><p>'...Everything is going just as planned.'</p><p>Signing a mana contract was in fact his idea.</p><p>Although Ren was the one that came up with most of the plans, that didn't mean that he and Douglas were useless.</p><p>They also contributed to the plan by either polishing it or expressing their inputs on areas that needed to have further consideration.</p><p>One of the areas they needed to cover was how to have the leaders believe their words, and it was Waylan's idea to use the mana contract to shut everyone up.</p><p>Since everyone knew what it was, no explanation needed to be said when presenting it to the leaders.</p><p>The move worked flawlessly.</p><p>"...If I, Waylan Roshfield, break any one of these statements, I will die."</p><p>Disrupting him out of his thoughts was Randur who finally finished reciting the contents of the contract.</p><p>A heavy silence descended in the hall as Randur's words fade. The silence did not last for long as not long after, total chaos erupted in the hall.</p><p>"Is that really a mana contract. Do you really have a way to stop this war?"</p><p>"Human, tell us immediately how we can stop this war!"</p><p>"Is that a real mana contract?"</p><p>Everyone fervently looked at Waylan who was standing in the middle of the hall. All at once, everyone in the room kept asking question after question.</p><p>Under the barrage of questions, Waylan was a bit taken aback as he wrily smiled.</p><p>"...Please ask one at a time. I can't answer everyone at the same time."</p><p>He helplessly said.</p><p>"Silence everyone."</p><p>Coming to Waylan's aid was Gernis.</p><p>His powerful voice and aura spread throughout the whole hall, silencing everyone present.</p><p>Finally, much to Waylan's relief, all forms of noise ceased.</p><p>Nodding his head, turning his attention back towards Waylan, Gernis asked.</p><p>"Waylan, now that everyone is quiet, tell us what you want us to do."</p><p>To those in the hall, Gernis's words sounded normal, but Waylan knew what he meant when he said 'tell us what you want us to do.</p><p>Rather than asking Waylan about the plan, he had directly asked him about what they were supposed to do.</p><p>The implication behind those words was clear to Waylan.</p><p>'Avoid speaking about the plan, and just speak about what we need to do.'</p><p>It was clear to see that Gernis was aware of a possible spy hiding in their midst. If Waylan said all of his plans, there was a good chance that their plans would be exposed to the enemy and would end up no longer working.</p><p>"Yes, I will."</p><p>Nodding towards Gernis to gesture that he understood his intentions, Waylan looked towards everyone in the room.</p><p>"The plan is simple. In two days, come to this place. Make sure you bring as many subordinates as possible. Preferably, ones that can fight. The more the better."</p><p>His words instantly created another buzz in the hall as everyone started to discuss amongst themselves.</p><p>"Subordinates?"</p><p>"Ones that can fight?"</p><p>It wasn't long before someone asked him a question.</p><p>"Are you sure we should be bringing our strongest warriors? What about the barrier outside who is going to defend that?"</p><p>Expecting such a question, Waylan answered swiftly.</p><p>"Good question but you don't have to worry about that. The barrier is strong and sturdy enough to last at least a couple of days of constant attacks."</p><p>That was true, in fact, the barrier could probably last even a week.</p><p>The plan was going to be put in motion in a couple of days. By the time they were done with the operation, they wouldn't have to worry about the barrier not holding up anymore.</p><p>"How sure are you that this operation will succeed?" Randur asked from the side. "If something goes wrong with the operation, by the time we come back Henlour, the barrier is gonna be weakened to the point that we will be surrounded by all the demons. It's basically a do or die type of plan, no?"</p><p>At Randur's words, Waylan's merely smiled.</p><p>"You're correct; however I am confident in our chances of winning. You don't really have to worry about the barrier. It's a gamble. But it's a gamble that will guarantee you victory. From how things are going, even if the barrier does hold up, we are set to lose."</p><p>Though Waylan's words were harsh, he was merely speaking the truth.</p><p>From the way things looked, The probability of the dwarfs winning was quite low.</p><p>Even if the beacons still worked at the end of the day the number of demons attacking the city was endless.</p><p>Everyone in the room also understood this, hence why, after a brief silence, much to everyone's surprise, Randur spoke up.</p><p>"Okay. I will do as you said."</p><p>The moment Randur spoke, a look of shock appeared on the faces of some of the elders present.</p><p>It had to be noted that Randur was one of the dwarfs that were most vocal against Waylan, for him to suddenly agree, the other dwarven elders had no idea on how to respond apart from also agreeing.</p><p>"I will also do the same."</p><p>"Me too."</p><p>Soon, more and more joined in and agreed to the proposition.</p><p>***</p><p>"Looks like everything is set..."</p><p>Staring at the communication device in my hand, a smile crept up on my face.</p><p>I then glanced towards Angelica who was standing on my right.</p><p>"Get ready, we're about to move."</p><p>"Okay."</p><p>Right as those words faded, black smoke released from Angelica's body as she rapidly shrank.</p><p>Tick-</p><p> Once the black fog faded, what remained was a small tooth.</p><p>Bending over, I picked it up.</p><p>Cracka!</p><p>"Kh..."</p><p>Touching one of my teeth, I yanked it out of my body. Though it was painful, I did not show it outwardly.</p><p>This was nothing compared to what I went through at the Monolith.</p><p>Replacing the tooth with Angelica, I bit my teeth a couple of times before glancing at the room behind me.</p><p>A day has passed since Waylan told me that he had managed to convince the elders, now, I had just received a report from him telling me that the Monolith members seemed to be close to the Inferno headquarters.</p><p>According to Douglas, the one that was following them, they seemed to be closer to their 'target'.</p><p>Closing my eyes, I numbed down my emotions. Thereafter, I activated the chip inside of my head. Instantly, my brain functions sped up and everything became much clearer to me.</p><p>Ca Clank-</p><p>Extending my hand forward, I opened the door and exited the room.</p><p>'...time to piss off another major organization.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-341.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-343.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

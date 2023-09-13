@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 441 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 441 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-440.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-442.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Then high noon sun was blazing intensely hot, as the world was enveloped by a bright light.</p><p>Two days had passed since the round of thirty-two, and today was the round of sixteen. Right now, the area below the tree where the tournament was held was packed with people.</p><p>A bustling and boisterous atmosphere enshrouded the place.</p><p>Seated amongst the many spectators, Han Yufei quietly gazed in the direction of where the tournament stage was.</p><p>Replays of Ren's match against Kimor flashed across his mind as his fists clenched tightly.</p><p>'…I was right in admitting defeat to him last time.'</p><p>The reason why he had given up when fighting Ren was because he felt that he was holding back when fighting against him. Turns out his speculation was correct.</p><p>Ren had truly been holding back when fighting him.</p><p>The image of him pummelling down Kimor was deeply engraved inside Han Yufei's mind, and he could never take it away from his sight. It would forever be engraved in his mind.</p><p>"Crazy..." Han Yufei ended up muttering to himself.</p><p>They were both the same age, yet, the gap between them was so big.</p><p>He now understood where his confidence came from when he met him last time. He was confident that he could convince him through his domineering strength!</p><p>...and Han Yufei had to admit. He truly had won him over in terms of strength.</p><p>Just recalling how he had won the match, Han Yufei's heart couldn't help but be moved. It made him rethink about the offer. If before he was sure about refusing, now...he wasn't so sure.</p><p>However, before he could think things through, a new shocking development happened.</p><p>Kevin Voss vs Ren Dover</p><p>This piece of news, completely shook Han Yufei who couldn't help but feel his heart palpitate with excitement.</p><p>There was another person that Han Yufei couldn't properly gauge the strength of, and that was Kevin.</p><p>Regardless of how much he trained for the whole three years he had been at the Lock, he had never once been able to come close to him.</p><p>He had always been reaching out his hand, trying to grab onto his back, but not once had he ever come close to his level.</p><p>Being the heir of the Han clan, Han Yufei was naturally proudful, but whenever he tried to compare himself to Kevin and now even Ren, he couldn't fathom how in the world he was going to come close to their level.</p><p>Even so, Han Yufei was not the jealous type.</p><p>Just because the two of them had surpassed him, it didn't mean that he felt any jealousy or envy against them.</p><p>He just simply wanted to be like them, and recalling the conversation with Ren, Han Yufei had an inkling feeling that Ren might truly be able to help him reach his limits.</p><p>Crossing his arms and leaning back on his seat, Han Yufei took a deep breath.</p><p>He had finally decided.</p><p>If Ren won this match or truly convinced him of his strength, then he, Han Yufei, will talk it out with his family about the possibility of joining him.</p><p>***</p><p>Human domain.</p><p>Click—!</p><p>Turning on the channel that broadcasted the tournament, a boiling atmosphere enshrouded the human domain.</p><p>Kevin vs. Ren</p><p>Banners and posters spread across every street as heavy excitement flashed across the faces of many individuals who were all eagerly waiting for the upcoming duel.</p><p>There were some dissatisfactions about the matchup since there could only be one winner, and both sides were human, but those were only in the minority.</p><p>At the moment everyone just wanted to see who between the two youths was the strongest.</p><p>Was it Kevin?</p><p>The individual who had many accomplishments to his name and was named to be the next generational talent, or was it Ren, a dark horse that had emerged from out of nowhere?</p><p>Everyone wanted to know.</p><p>"Welcome everybody, thank you all for joining us today."</p><p>It was then that two familiar faces finally showed up on the screens of everyone's devices. The two individuals were none other than Zack and Lorena.</p><p>With a bright smile on her face, Lorena spoke up.</p><p>"I'm sure you're all tuned in today for one reason, and one reason only."</p><p>Extending her hand, she proceeded to tap onto the table. Two holographic images appeared in front of her when she did so.</p><p>The two holographic images were the images of Ren and Kevin. By the side was a brief overview of their data. From the description of how they looked, height, age, and what weapon they specialized in. It covered most of the basics.</p><p>"This match was a long time coming. Even though it happened a lot faster than it was originally intended, it was still inevitable for us to see the clash between these two giants. Ren Dover, and Kevin Voss."</p><p>Lorena said as she swiped her hand. At her action, images of the arena grounds appeared by the side of her face.</p><p>Then, turning her head towards her colleague, she asked.</p><p>"Zack, who do you think will win the match between the two of them?"</p><p>The moment she asked that question, almost all of the viewers dropped whatever they were doing and paid close attention to Zack's answer.</p><p>Although he was only an &lt;A&gt; ranked hero and did not have as much battle awareness as &lt;S&gt; ranked ones, Zack was an expert in the field.</p><p>After having watched many matches in the past, he somewhat was able to give an accurate analysis of the situation, and therefore, clearing his throat, Zack began to speak, sharing what he thought to the world.</p><p>"Keum...Keum...It's hard to make a proper assessment."</p><p>"Let's take aside the fact that not much is known regarding the contestant Ren Dover, we also do not know the limits of the other contestant, Kevin Voss."</p><p>"All we've seen him do is kill Aaron with one move, and that was only for a split second, we truly didn't see the limit of his power. Even then, what we did was truly something extraordinary.</p><p>Extending his hand, Zack pressed onto the table and multiple magazines appeared on the side of the screen.</p><p>"Even though Kevin has not shown much in the tournament, the same couldn't be said for when he was here in the human domain. In fact, most of you viewers have already seen his exploits in the past."</p><p>Extending his hand, he pinched his fingers and dragged a specific article toward himself. Following this, he pinched in an outward manner causing the article to expand in front of him.</p><p>"Just a year ago, back when he was still &lt;C&gt; rank, Kevin managed to clear out two large demon pill warehouses. Not only that but it is also stated that he managed to defeat two &lt;B-&gt; ranked individuals in the process."</p><p>"Let me repeat, a &lt;C&gt; rank defeating two &lt;B-&gt; ranks. That's almost similar to his opponent Ren Dover who defeated his opponent whose rank was &lt;A-&gt; at &lt;B&gt; rank."</p><p>Once again extending his hand, Zack grabbed multiple news articles and expanded them for the audience to see them.</p><p>"This isn't even the first time this happened. As you can see there are several similar accidents in the past where Kevin Voss displayed his immaculate talent."</p><p>"The Sanabria accident, the Kolain tower accident...the list goes on and on."</p><p>Taking his eyes away from the articles, Zack stroked his hands together.</p><p>"What I'm trying to say is that Kevin has an incredible amount of combat experience. Especially when dealing with opponents that far outstripped him in power."</p><p>Clenching his hand into a fist, the articles disappeared, and Zack once again turned to look at the camera pointing in his direction.</p><p>"There is nothing to doubt about Kevin's skills. If he was put up against Kimor, there is a chance he could've won as well. Especially after his match with Aaron."</p><p>Pressing onto the table, replays of Kevin's match with Aaron appeared on the screens of the viewers. Following this, he dragged his finger across the screen to slow down the video as much as possible, and continued.</p><p>"During that fight, his speed skyrocketed to almost &lt;A+&gt; rank. Without a doubt, he has the capabilities to beat Ren, whom we know not a lot about apart from what he's shown."</p><p>Extending his hands, he looked at the cameras and concluded.</p><p>"Don't get me wrong, I'm not belittling Ren's abilities, but I simply don't know enough about his abilities to make a proper assessment. All I can do is tell you how I feel things are, and from what Ren has shown he might not be able to beat Kevin."</p><p>Nodding her head by the side, Lorena brightly smiled before adding.</p><p>"Talking about what he's shown, he's the inheritor of the famed Keiki style. A style that pursues absolute speed, right?"</p><p>"You're absolutely right, Lorena."</p><p>Zack nodded his head, placing both of his hands on the table.</p><p>"He is indeed the inheritor of the Keiki style, a famous five-star art that was previously thought to have been lost."</p><p>Raising his head and massaging the bottom of his chin, Zack concluded.</p><p>"From what we've seen in their fight, Ren is an incredibly strong individual whose specialty lies in his quick thinking abilities, and sword style. On the other hand, Kevin's style is somewhat similar, but his swordsmanship seems to be a lot more refined and well trained. Coupled with his other incredibly assets, I'm still of the opinion that Kevin will win this."</p><p>A confident smile appeared on Zack's face when he said that.</p><p>He had thought things through thoroughly, and after a lot of contemplation, the result of his analysis was that Kevin would inevitably end up beating Ren.</p><p>He was almost certain of this.</p><p>"It will be a close fight, but I give the edge to Kevin."</p><p>By his side, Loren nodded her head in agreement.</p><p>"I'm also with you on that one."</p><p>Before she could say anything else, the two of them suddenly saw two figures appear on the arena grounds and immediately sat up.</p><p>"Ladies and gentlemen, it looks like the long-awaited match will finally be starting."</p><p>***</p><p>Issanor, arena grounds.</p><p>"Ugh, what luck right?"</p><p>Kevin said with a wry smile on his face. He was currently standing opposite me, and he had a casual look on his face.</p><p>But having known him for long enough, I knew that he was currently on his highest guard.</p><p>I shook my head when I saw this.</p><p>"It really is terrible luck…"</p><p>Ever since the day of the matchup, I had been unable to see Kevin, and today was the first time that I saw him after a long time.</p><p>Looking at each other in the eyes, we could tell that we both thought of this situation as ridiculous, but at the end of the day, we really couldn't do anything about it.</p><p>It was what it was.</p><p>"Hey, Ren."</p><p>Kevin called out for me, his voice sounding extremely serious.</p><p>"What is it?"</p><p>"You better not hold back on me."</p><p>"...Yes, yes, I know."</p><p>My eyes rolled when I heard this.</p><p>Wasn't planning to. I wanted to see just how much stronger I was compared to Kevin.</p><p>Also, knowing Kevin's personality, he would probably end up getting mad at me if I didn't take him seriously.</p><p>He had his own pride after all, but I mean, who didn't? If I had to be honest, I had a pretty big ego myself, and this probably explained where my pettiness came from.</p><p>So, being the respectable person that I was, I was going to beat him up.</p><p> Swoooosh—! </p><p>A soft breeze suddenly brushed past my body as I closed my eyes for a brief moment. Once I opened up my eyes again, I found the referee standing in the middle of the arena.</p><p>Silence descended in the arena at the appearance of the referee.</p><p>Turning his head to glance in both of our directions, Kevin and I both nodded our heads. Following this, raising his hand the referee shouted.</p><p>"Begin!"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-440.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-442.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

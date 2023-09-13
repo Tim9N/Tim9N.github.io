@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 382 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 382 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-381.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-383.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Step— Step—</p><p>Walking through the city of Issanor, silence enshrouded our group as no one spoke. A somber and tense atmosphere enveloped the area around us.</p><p>"Pftt…"</p><p>The silence did not last for long, however, as a small laugh soon escaped from my mouth.</p><p>The instant my laugh sounded, Waylan shot a glare in my direction. </p><p>"You done?"</p><p>"Y…yeah…"</p><p>But that didn't help me in any way as my lips trembled even more. A memory sudden flashed inside of my mind and it wasn't long before I was unable to contain my laughter anymore and I laughed out loud.</p><p>"Hahhahaha."</p><p>Holding onto my belly, I laughed as I had never before. Tears slowly started to gather by the side of my eyes, as I couldn't help but slap my thigh. </p><p>"I can't believe she called you a creep and looked at you that way…hahaha, I can't."</p><p>The more I laughed, the darker Waylan's face became.</p><p>I of course knew my limits. Just when Waylan's face was about to explode, I raised my hands in defeat. </p><p>"Alright, alright, I'll stop…pfttt."</p><p>Unfortunately, I was unable to keep my face straight. Before long, another laugh escaped from my mouth and Waylan's face became even darker. </p><p>What was supposed to be an emotional cliche moment where Waylan would stare at his daughter with longing eyes from the distance, expressing his sorrow about his inability of not being able to meet her, turned into a moment where he was scorned and called a creep by her.</p><p>Recalling that moment, another laugh escaped from my lips as pity flashed across my eyes.</p><p>Obviously, Waylan was not pleased by the laugh as he venomously stared at me.</p><p>"Another word and you're done."</p><p>His threats may have worked on someone else, but as someone who had been with him for over a year, such threats were no longer effective.</p><p>Walking up to him I patted him on the shoulder.</p><p>"Don't worry too much. You should be happy instead."</p><p>"Happy?" Waylan raised his brow and coldly looked at me. "Why should I be happy about the fact that my daughter treated me like some sort of creep?"</p><p>"Because it means that you've taught her well."</p><p>"What?"</p><p>Taking my hand off of his shoulder, I explained. </p><p>"Well think about it, why in the world would she recognize you when you're wearing a mask to hide your features. Had she looked back at you with the same eyes as yours I'd be worried."</p><p>My words seemed to have some sort of effect on Waylan as he calmed down and logically thoughts things through. </p><p>Then, his shoulders slumped down in defeat.</p><p>"You're right…"</p><p>"Of course I'm right."</p><p>If I were in the same situation as he and Nola reacted differently, I'd start to worry.</p><p>'Actually, what if I was in Waylan's spot and Nola reacted the same way?' </p><p>As my thoughts paused there, I instantly started to realize what kind of pain Waylan was going through, and the pity I previously had for him turned into sympathy.</p><p>"…Still hurts that I was called a creep."</p><p>Once again placing my hand on Waylan's shoulder, I apologized.</p><p>"I'm sorry for laughing at you before. Now that I've thought things carefully, I can understand your pain somewhat."</p><p>Lifting his head up, Waylan turned to face me and our eyes met. </p><p>"Thank you…"</p><p>"Pftt, never mind."</p><p>Unfortunately, I was still unable to hold my laugh back as I took a look at his face and recalled the previous moment. </p><p>It was just too funny.</p><p>Smack—</p><p>Smacking my hand away, Waylan distanced himself from me. </p><p>"Dont talk to me." </p><p>"Oh come on, I was just messing around."</p><p>Following Waylan from behind, I tried to apologize, but all my words went to death ears as Waylan completely ignored me.</p><p>'This is nice.'</p><p>I thought with a smile as I followed him from behind. This was the first time in a while that I had a relaxed day without fighting or training.</p><p>Just these casual jokes helped me alleviate some of the mental burdens I was suffering from.</p><p>Even though I was no longer contracted with Angelica, and as such no longer had any demonic energy inside of my body, my mind was still broken. It was slowly healing...but the scars and traumas that I had gone through couldn't just be overwritten that easily. </p><p>If that was possible, I wouldn't need to worry about the frequent nightmares and thoughts that would haunt me from time to time. </p><p>It was moments like this where I could feel my mind slowly start to heal. Or at least, delude myself into thinking that. </p><p>I...was suffering. </p><p>"Huu..." </p><p>Exhaling deeply, I tried to calm my mind down and thought back to the previous meeting. Trying to distract my mind away from the dark thoughts. </p><p>'I'm also glad that they're doing fine.'</p><p>Soon, a serene smile appeared on my face. </p><p>Although I wasn't able to see them for long and was not able to get a clear look at them, just the fact that they looked to be doing fine lifted something off of my chest. </p><p>Especially Amanda, at first I thought that she was going to turn even colder than before, with everything that happened with her father and her guild, but seeing how serene and calm she looked, I felt relief. </p><p>Do they even still remember me? I had only known them for a year, and we hadn't spent much time together, but that one year was unreplaceable to me.</p><p>To them, I might just be another extra that had died along with the many others that died during their life, but to me, they were the first friends I had made in a very long time. </p><p>Even if they may have forgotten about me, I..I, .was really happy that they were doing fine. </p><p>"Ugh." </p><p>Rubbing my eyes, I tried to think of something else. </p><p>'I wonder where Kevin is? Since they were here, he must also be in the city, right?'</p><p>I already knew that the humans would be coming in batches, therefore, I wasn't worried that he wasn't coming. </p><p>'I'll see him soon.'</p><p>There were plenty of opportunities for me to meet with Kevin and the others. I may have missed this one, but there would always be a second. </p><p>"Hm?" </p><p>Snapping out of my thoughts, lifting my head, and staring at the others that had walked quite a fair distance away from me, I called out for them. </p><p>"Hey, wait up. Don't leave me behind."</p><p>Lightly pressing my foot onto the ground, I followed them from behind. </p><p>***</p><p>"You guys have finally made it."</p><p>Greeting Emma, Melissa, and Amanda in front of a large white building were Kevin and Jin who had just come out from their training session. </p><p>Leaning against one of the pillars of the building, Emma closely scrutinized Kevin. She then turned to face Jin.</p><p>"Did you guys just come out of training?"</p><p>"You can tell?"</p><p>"What do you think? You're soaked from top to bottom."</p><p>Lowering his head, Kevin looked at his shirt which had a huge sweat mark, and scratched his head.</p><p>"Guess you're right. Was supposed to be a light spar, didn't know we would get this sweaty."</p><p>"The smell is the worst part." </p><p>Melissa added from the side, taking off her sunglasses and staring at Kevin and Jin with a not so pleased look.</p><p>Listening to Melissa's words, stretching his white shirt, Jin sniffed it.</p><p>The same went for Kevin who mimicked Jin's movements. </p><p>"I'm not even going to say anything."</p><p>Staring at the duo, Melissa shook her head before she decided to head for her room. </p><p>"Don't disturb me for the next couple of days. Ive got important things to do." </p><p>Then, without waiting for anyone to say anything else, she directly left.</p><p>Once Melissa left, Emma took the opportunity to switch the topic.</p><p>"Kevin you won't believe what happened while we were coming here." </p><p>"Oh? What happened?"</p><p>An intrigued look appeared on Kevin's face. </p><p>"On our way here, we met another group of humans."</p><p>"You met another group?" </p><p>Kevin's brows knit at her words. Nodding her head, Emma continued.</p><p>"Yeah, I didn't count how many there were, but hear this, once we were passing with their group, a middle-aged man in the group suddenly leered in my direction."</p><p>Hugging her body, Emma's face cringed.</p><p>"Ugh, just recalling the way he looked at me sends shivers down my spine."</p><p>"Emma."</p><p>Kevin's serious voice snapped Emma out of her story. Staring at Kevin's face which was incredibly serious, Emma noticed that something was wrong.</p><p>"What's wrong?" </p><p>"Did you just say that you saw another group of humans?"</p><p>"Yes, I did."</p><p>Emma nodded. Then, her head snapped in Amanda's direction. </p><p>"You saw it too, right? They were humans for sure."</p><p>"They were."</p><p>Amanda softly replied. Her delicate face was also solemn.</p><p>Seeing the changes in Kevin's face, she knew that something was up at the moment.</p><p>Her previous feelings couldn't have been wrong.</p><p>Ba…thump…ba…thump.</p><p>Her heart started to beat faster as she thought of a possibility.</p><p>'It couldn't be him, right?'</p><p>For Kevin to react like that, there must be something, right? </p><p>His demeanor, and the way he carried himself…there was only one person that Amanda thought acted like that.</p><p>"Emma, that middle-aged man was probably your father."</p><p>But, pouring cold water into Amanda's thoughts was Kevin's voice as he revealed a shocking piece of news.</p><p>"E..eh?"</p><p>A weird noise came out of Emma's mouth as her face paled and she took a step back.</p><p>Halting her steps, Emma's face suddenly brightened up as she patted Kevin on the shoulder.</p><p>"Ah, ha, ha, I see what you did there, you must be joking. Nice joke."</p><p>Her strained laugh rang in the air.</p><p>"Hahaha, I didn't take you for a joker Kevin..." </p><p>Her facade quickly crumbled as soon as she saw how serious Kevin's face was. </p><p>"…haha, you're joking right?"</p><p>Her voice sounded even more strained. Kevin shook his head. </p><p>"I'm not joking. Apart from you guys, all the humans that have arrived should be in this building. They won't let anyone wander around until everyone has gathered." </p><p>Kevin paused.</p><p>"Didn't I tell you how your father was safe, and on a secret mission."</p><p>"…mhm."</p><p>Emma weakly nodded her head. Trying her best to process the information that Kevin was telling her.</p><p>"From what I know, he was on a secret mission in the dwarven domain, and from the rumors I've heard, there's a human group over here that came from the dwarven domain...." </p><p>"…ah."</p><p>Weakly leaning onto the side of the pillar, Emma's mouth trembled.</p><p>She wasn't stupid. She instantly understood what Kevin was trying to say, and it was because of this that all of a sudden, all of the energy drained out of her body. </p><p>"It can't be…is, he really…"</p><p>Tears started to gather by the side of her eyes. Visible relief and disbelief dyed her face as she tried to process what Kevin was telling her. </p><p>It wasn't long before her knees gave out and she stumbled onto the ground. </p><p>"Ha...dad.." </p><p>Walking up to her, Kevin kneeled down and patted her back.</p><p>"It's okay. He's finally here. He's not dead. "</p><p>Hearing Kevin's words, as if a dam had burst, Emma let go of all of her pent-up stress and tears started to stream down the side of her cheeks. </p><p>"I'm glad…I'm so glad…"</p><p>Staring at Emma from the side, Amanda turned her head slightly and secretly wiped the corner of her eyes.</p><p>Closing her eyes, she bit the bottom of her lips.</p><p>'Where are you father?'</p><p>It had been over three years since she had last seen him. </p><p>With the orb in her hand, she knew that he was fine, but the worry hidden within her was still there. </p><p>With no idea where he was and how he was doing, Amanda was only pretending to be strong on the outside. </p><p>Inside, she was just as fragile as she was when he first left her. Emma's current situation reminded her that her father was still out there, somewhere, fighting for his way back.</p><p>That being said, she was genuinely happy for Emma. Going through the same hardship she was going through, she could familiarise herself with her circumstances. She could feel the relief in her voice. </p><p>Breathing out, Amanda looked up at the sky.</p><p>'I miss you, father.'</p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-381.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-383.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

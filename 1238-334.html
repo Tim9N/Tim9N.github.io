@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 334 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 334 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-333.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-335.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>334 Infiltration (2)</p><p>"I propose for Waylan Roshfield to be exiled from Henlour."</p><p>A rough voice echoed inside of the hall.</p><p>The owner of the voice was a dwarf who sat on the right side of the semi-circular table. He had light grey hair, a long beard, and his face was filled with wrinkles. His bushy thick brows were currently locked into a tight frown as he glared at Waylan who was standing in the middle of the hall.</p><p>The more he looked at Waylan, the darker his face became.</p><p>Raising his hand, he pointed at him and looked towards the other dwarfs sitting on the table.</p><p>"Because o' his incompetence we now have a huge liability on our back. In fact, we may very well have lost tha war!"</p><p>Spit flew from the dwarf's mouth as he spoke.</p><p>Everyone in the hall could feel the anger in the dwarf's voice as he spoke.</p><p>Leaning back, he threw a disdainful look towards Waylan.</p><p>"I'm already being generous enough by nae proposing his execution!"</p><p>After he finished speaking, the hall was enveloped in a brief moment of silence.</p><p>However, the silence did not last for long as it was soon broken by another dwarf.</p><p>"I concur with Givor."</p><p>The dwarf was a female, and she too sat on the right side of the table. A couple of seats away from the dwarf that had just spoken, Givor.</p><p>Nodding towards Givor, she continued.</p><p>"I believe that exiling him would be the best decisio-"</p><p>"I disagree."</p><p>But before she could even formulate her sentence, she was promptly cut by someone.</p><p>With bushy fiery red eyebrows, the dwarf had a sturdy and muscular build.</p><p>BANG-!</p><p>Banging his fist on the table, he raised his voice.</p><p>"By exiling him yer basically exempting him from all o' his crimes."</p><p>"What crimes? He did not commit any crime, Randur."</p><p>Givor spoke up from the side.</p><p>Turning his head to face Givor, the red eyebrowed dwarf, Randur glared.</p><p>"His crime was his negligence! Had he been more attentive, We wou"ve never been under such a situation!"</p><p>"He can't be blamed for the insiders."</p><p>The dwarven lady from before spoke up.</p><p>"Although it was indeed his negligence that caused all o' this, we're also at fault here. One for trusting him an' two for being unable ta realize that there was a spy among us."</p><p>"Hmph"</p><p>At her words, Randur's face sank.</p><p>Crossing his back and leaning back on his chair, Randur shook his head.</p><p>"Naive. You're too naive. It's because of dwarves like you that we're currently suffering this much."</p><p>"What did you say!"</p><p>The dwarven lady stood up and also violently pounded at the table.</p><p>BANG-!</p><p>Pointing at Randur she shouted.</p><p>"I dare ye ta say that again! see what will happen ta ye!"</p><p>"Oh, now I'm really interested. I want ta see how rusty ye got ever since our last fight, alga."</p><p>Standing up, Randur looked at the dwarven lady, Alga, with a provoking look.</p><p>"You d-"</p><p>"Enough!"</p><p>Just as the exchange was about to heat up, a powerful voice shook the room, all forms of noise ceased.</p><p>Soon, the attention of all of the individuals in the room focused on an elderly dwarf that sat in the middle of the hall.</p><p>A look of respect and revere was present in the eyes of many of the dwarves present as they looked at the elderly dwarf seated at the table.</p><p>Not minding the stares, the elderly dwarf looked at Randur and Alga.</p><p>"Let's nae argue amongst ourselves. Dinna forget why we're here."</p><p>His aged voice smoothly entered the ears of each and everyone present, calming them down, or rather, completely suppressing their fighting spirit.</p><p>Eventually, the two dwarves that were arguing, Randur and Alga, calmed down and sat down back on their seats.</p><p>"Fine."</p><p>"Alright."</p><p>"Good."</p><p>Nodding his head slightly, the elderly dwarf turned his attention towards Waylan who was standing in the middle of the hall.</p><p>Studying him for a couple of seconds, he soon opened his mouth.</p><p>"Waylan Roshfield, as ye have heard, there be many who wish for ye ta either be exiled or punished for your negligence."</p><p>The elderly dwarfed interlocked his hands on the table as his calm voice drifted across the hall. reaching Waylan's ears.</p><p>"Let me ask ye, what do ye think we should do with you?"</p><p>The moment the elderly dwarf spoke, the eyes of many of the dwarves present opened widely.</p><p>Was he seeking the opinion of the human they were supposed to put on trial? What was going on?</p><p>Instantly the sound of murmurs rang across the hall as each dwarf looked at the elderly dwarf with growing confusion.</p><p>Just what was he thinking?</p><p>With a calm and composed face, Waylan looked at the elderly dwarf and bowed his head slightly.</p><p>"It is an honor to finally meet you, Metropoliskeeper, Geris Lasfront."</p><p>Respect could be felt in Waylan's voice as he spoke.</p><p>He knew exactly who the dwarf before him was. Gernis Lasfront, also known as the Metropoliskeeper; the highest status a dwarf could get.</p><p>Raising his head, Waylan looked at Gernis in the eyes.</p><p>"Regarding your question. Are you asking me what sort of punishment I should receive for my mistake?"</p><p>"That's correct."</p><p>Geris flatly replied.</p><p>Smiling, Waylan fearlessly looked at Gernis and said.</p><p>"Then, I would like for you to give me a chance to redeem myself."</p><p>The moment he spoke those words, heavy silence distended the hall.</p><p>However, the silence did not last for long as it was soon broken by the sound of a table being heavily slapped.</p><p>BANG-!</p><p>"What nonsense is this!"</p><p>A dwarf stood up and shouted; he was none other than Randus.</p><p>Staring at Waylan, Randus's face was completely red.</p><p>"Y-you!"</p><p>He was so angry that he had trouble finding the right words to say. It was only after a couple of seconds that he managed to formulate a complete sentence.</p><p>"...Redeem yourself!? After what ye've done? Be ye sure yer nae trying ta hinder us instead o' helping us?"</p><p>"Randus calm down."</p><p>Genis raised his hand towards Randus, gesturing for him to calm down.</p><p>"But-"</p><p>"Later."</p><p>Genis shook his head and cut him Off.</p><p>Although Randus tried to protest, Genis had long forgotten about him and focused his attention back on Waylan.</p><p>His words had caught his interest.</p><p>"Redeem yourself? Elaborate more on that."</p><p>With his eyes still locked with Genis's, Waylan suddenly smiled.</p><p> "What if I told you that I have a way to win the war?"</p><p>***</p><p>[Honelur, fourth level, Utility center.]</p><p>"Yer want me to fix this?"</p><p>Malvil said as he held onto a pale green flute.</p><p>His brows tightly knit as he analyzed the flute in his hand.</p><p>On the outside the flute looked ordinary, in fact, there were a couple of cracks around it, signifying that it was damaged.</p><p>But to Malvil, whose eyes had seen all types of artifacts, he knew that this was no ordinary flute.</p><p>Turning around to face Ava, he asked.</p><p>"This is yours?"</p><p>"...Yes."</p><p>Ava replied as she curiously looked around the place. As she looked around, she spoke.</p><p>"Ren said that if there was anyone that could fix it, it would be you."</p><p>Taking his eyes away from the flute, Malvil raised his brow.</p><p>"...He said that?"</p><p>"Yes."</p><p>"I see."</p><p>Malvil smirked before turning his attention back towards the flute.</p><p>"Did he also tell ye that bootlicking me doesn't work? he shou' know this firsthand."</p><p>"No, he did not tell me this."</p><p>Ava replied, scratching the side of her face.</p><p>"Heee..."</p><p>'How peculiar.'</p><p>The more he stared at the flute, the more fascinated he became with it.</p><p>It had to be noted that it took a lot to impress someone like him, one of the world's most skilled blacksmiths. The fact that the flute was enticing him so much was a testament to just how unique of an artifact it was.</p><p>Tracing his finger across a large crack at the bottom of the flute, Malvil muttered.</p><p>"The damage seems to be pretty extensive."</p><p>As he analyzed the flute, Malvil's brows progressively knit.</p><p>That was because the flute seemed to be a lot more damaged than he had originally expected. In fact, because of the damage, the artifact seemed to have regressed in grade by quite a lot.</p><p>'Interesting...'</p><p>But the more challenging it looked, the more Malvil wanted to fix it.</p><p>Not many knew this about him, but Malvil was a fanatic of artifacts.</p><p>Especially when it came to fixing complex artifacts like this.</p><p>By trying to fix it, he was going to see what sort of technique the crafter used to make it, and perhaps even learn a thing or two from it.</p><p>After all, for someone to make a flute-like this, they had to at least have a similar skill level to that of Malvil.</p><p>Just the thought of it excited him.</p><p>Turning his head to face Ava, Malvil put the flute on a nearby table.</p><p>"I won't promise anything, but I'll take a look at tha flute. Whether I will be able ta fix tha flute or nae will be a discussion for later."</p><p>Although he was busy with the war and all, he could definitely make time to play with the flute.</p><p>Malvil then pointed towards a stool in the distance.</p><p>"For now have a seat or go back. I will need a lot of time to fix this."</p><p>***</p><p>[Inferno, unknown location.]</p><p>'Now, if I'm not wrong, I should do this...'</p><p>With a tight frown, I looked at a long complex code in front of me. My eyes darted around, trying to see if there was anything missing in the code.</p><p>Gulp-!</p><p>Reaching my hand towards the right side of my waist, I put my hand inside of the pouch that the guard had given me and took out a potion which I immediately swallowed.</p><p>The potion was a mana recovery potion and it was one of the things that I had asked the elders to give to me whilst I was trying to deactivate the beacon.</p><p>Although I was now C+ rank and my mana capacity had risen considerably, the mask of Dolos, being an &lt;A&gt; ranked artifact, still consumed an incredible amount of mana.</p><p>This was understandable though.</p><p>Unlike the mask Jomnuk used to disguise himself as me, the mask of Dolos was unique as in, it completely changed the skeletal structure of my face, unlike the one Jomnuk wore.</p><p>In order to avoid having Angus scan him, I pretended to throw a fit at Angus. Furthermore, since the result saw no changes in my skeleta structure, Angus did not see the need to scan 'Ren'.</p><p>That was a big mistake.</p><p>That aside, the mana consumption of the mask was still too great for me. I could now sustain it for at least half a day, but compared to the two-day time limit that I had said I could deactivate the beacon, it was not enough time.</p><p>Hence why I asked them to bring me mana recovery potions.</p><p>'Still, I'm not sure if this is a good idea...'</p><p>Frowning, I put the empty potion to the side.</p><p>Closing my eyes, I felt the mana inside of my body and shook my head slightly.</p><p>The rate at which my mana was consuming was a lot faster than the mana that I was recovering due to the potion.</p><p>As such, after deliberating over the matter for a bit, I decided to speed things up and get it done within a day.</p><p>In reality, I could've done this in just a matter of minutes, but I was trying to buy time for Waylan to get his stuff sorted.</p><p>After all, he was probably going through a rough time.</p><p>Di. Di. Di.</p><p>Increasing the speed at which I was typing on the keyboard, I inwardly prayed that Waylan would complete his part of the plan before I could activate the beacon.</p><p>As long as he managed to convince the elders of his plans, we would finally be able to deal a massive blow to the demons.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-333.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-335.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

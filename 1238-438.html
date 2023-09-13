@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 438 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 438 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-437.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-439.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"...If you don't want to die, you need to stop her from curing her mother."</p><p>Angelica's words echoed throughout the room, and my body froze as a result of her words. Following which, my head snapped in her direction.</p><p>"What are you talking about?"</p><p>I will die if Amanda cures her mother? What in the world was she on about?</p><p>Sitting back down on her chair and crossing her legs, Angelica nodded her head. A heavy solemness descended upon the room.</p><p>Sitting up straight, I waited for her to speak.</p><p>After a short pause, Angelica opened her mouth and asked.</p><p>"Do you remember when we signed a contract?"</p><p>"Yes."</p><p>How could I forget?</p><p>It was a couple of days after I managed to defeat her and wanted to make her join my group. But why was she suddenly asking about this?</p><p>Pursing her lips, Angelica's delicate brows knit together before she finally let out a long sigh.</p><p>"I'll cut straight to the point, the person who has cursed Amanda's mother was me."</p><p>"...huh?"</p><p>My eyes instantly opened wide upon hearing her words. Out of nowhere Angelica suddenly dropped a bombshell on me.</p><p>My mouth opened and closed repeatedly, as I struggled to find the right words to say.</p><p>I finally understood the meaning of her previous words.</p><p>[In no way shape or form can Party A harm Party B and viceversa]</p><p>This was one of the clauses in the mana contract that we signed, and me giving Amanda's mother the cure would be a direct breach of the contract, as it would directly harm Angelica.</p><p>This clause was also the reason why Angelica told me about the situation. If she didn't tell me, she would also be breaking the clause.</p><p>"This..."</p><p>I had many questions that I wanted to ask. However, I knew that I couldn't let my emotions get the best of me.</p><p>Closing my eyes and calming my uneven heartbeat, I opened them again and looked around.</p><p>Then, glancing at Angelica from the corner of my eyes, I spoke inside of my mind.</p><p>'In case someone overhears our conversation, it's best if the two of us telepathically talk.'</p><p>[Okay.]</p><p>Angelica nodded her head. After which, demonic energy suddenly sprung forth from her body as she once again returned to her cat form.</p><p>Jumping onto the bed, she once again made a move for the ledge of the window. Once she settled down, she proceeded to look out of the window.</p><p>While this was happening, taking another deep breath and trying to calm my mind which was currently in shambles, I proceeded to question Angelica.</p><p>'Please tell me the full story so that I can make a proper judgment.'</p><p>There were many things that I wanted to ask her, but instead of asking them, I opted to listen to her side of the story first. From there, if there were any more things I was uncertain of, I would proceed to ask.</p><p>Before then, I just wanted to hear what she had to say for herself regarding the matter. I didn't want to make any rash decisions.</p><p>Raising her pow and caressing her head, mimicking a cat's movement, Angelica nodded her head before her voice entered my mind.</p><p>[It happened a while back. About fifteen years in the past if I don't remember wrongly.]</p><p>My brows furrowed.</p><p>'Fifteen years back...that was quite a while ago, was Amanda's dad even highly ranked back then?'</p><p>It had to be noted that humans didn't live for as long as demons did, and therefore, fifteen years was quite a lot of time. If it was fifteen years ago, I doubted that Amanda's father was even &lt;S&gt; ranked.</p><p>However, that still wouldn't be able to explain how she was able to curse Amanda's mother. After all, he may have not been &lt;S&gt; ranked, but the disparity in strength should've been big.</p><p>[Back then, I was only a Baron ranked demon, and was newly elected as the Matriarch of the charm tribe. As the newly elected Matriarch, I was very ambitious, and an opportunity presented itself.]</p><p>Angelica paused and looked at me. Pinching the middle of my brows, I proceeded to ask.</p><p>'Could that opportunity have anything to do with you cursing Amanda's mother?'</p><p>Turning her head and twirling her tail in the air, Angelica softly replied.</p><p>[It is exactly that.]</p><p>Upon hearing her words, the confusion within me grew.</p><p>'Tell me more about this opportunity. I mean no offense, but I seriously doubt that you have the ability to actually be able to curse her mother.'</p><p>Even if it was fifteen years in the past, Angelica shouldn't have been strong enough to do that.</p><p>Fortunately, Angelica's next words managed to resolve some of my doubts.</p><p>[Your words are correct. I was indeed too weak back then to actually curse her mother. Although Amanda's father was not the guild leader just yet, the security around her mother was simply too much for a Baron-ranked demon like me, even if I had the support of my tribe.]</p><p>'Well, yeah. That is to be expected.'</p><p>Amanda's mother was the wife of the guild master of the number one guild in the human domain.</p><p>Regardless of how weak humanity was, it was still a powerhouse that most demons wouldn't dare touch without proper preparations.</p><p>'Since the security was so tight, how were you able to curse Amanda's mother?'</p><p>[I had support.]</p><p>Angelica quickly replied. My head jumped up when I heard this as an idea suddenly formulated inside of my mind.</p><p>'Could it be the Lust clan?'</p><p> [Indeed.]</p><p>Angelica nodded her head, and I covered my face with my hand.</p><p>'Fuck, no wonder you were able to curse her.'</p><p>Unlike the Charm tribe, the Lust clan was an enormous demon organization. If I had to estimate its power, it was probably stronger than the current Union, and not just stronger, but incomparably stronger.</p><p>It also had to be noted that there were six other clans of similar strength. If not for the other races being the priority, humanity would've long been wiped out.</p><p>In the midst of my thoughts, Angelica continued.</p><p>[The Lust clan is enormous and powerful. Moreso than you can ever imagine. The tribe that I was in, the Charm tribe, is a small tribe that was branched out to the human domain in order to expand the influence of the clan.]</p><p>Angelica suddenly paused and turned to look at me, trying to make sure that I understood. Giving her a slight nod, she continued.</p><p>[As the representative of the Charm tribe, I was selected as the demon who was going to place the curse on Amanda's mother. The main purpose of this was, as you probably already figured out, was to try to take over the number one guild in the human domain.]</p><p>'I get that, but why you? Couldn't they have chosen a stronger demon?'</p><p>[Can't.]</p><p>Angelica shook her head.</p><p>[Back then, the stronger demons were busy still busy trying to settle down on earth and were also fighting against the other races.]</p><p>Listening to her words, I still had some doubts.</p><p>Honestly, I really didn't buy the whole idea of Angelica being selected out of all the other demons that could've been chosen.</p><p>There was most likely something that she didn't want to tell me, and although I wanted to know, I didn't push it. There was probably a reason why she didn't want to tell me.</p><p>Since the mana contract stated that she couldn't think of doing any harm to me in any way shape or form, I could tell that she wasn't divulging this with me in order to protect me. Or perhaps something else. I really wasn't sure at this point.</p><p>Scooting my body back, I placed my hand over my chin and fell into thought. After a while, I looked at Angelica and shared my findings.</p><p>'In short, I can already predict what happened next. With the aid of the Lust clan you were somehow able to curse her, however, the moment you tried to threaten her, instead of following your orders, she directly ran away. Not wanting to disappoint the Lust clan, you tried to chase after her, and somehow failed, resulting in you activating the curse.'</p><p>'Upon activating the curse, you thought that she had died and forgot all about her.'</p><p>It didn't really take a genius to get the gist of the situation, and when I was done recounting my speculation, Angelica could only helplessly nod her head.</p><p>[That's correct. However, back then, I really thought that I had killed her.]</p><p>'...I get what you mean.'</p><p>Amanda's mom could count herself lucky. Had it not been the queen that was next to her, she would've died a long time ago.</p><p>Raising my head, a sudden thought occurred to me.</p><p>'Hold on, was this failure the reason why you chose to attack Amanda a while back?'</p><p>Turning her head, Angelica's voice softened.</p><p>[...yes.]</p><p>'I see.'</p><p>A petty one I see. Because of her failure with Amanda's mother, it seemed like she held a grudge against Amanda.</p><p>Still, this sudden revelation by Angelica caused the gears of my brain to turn. Something about this situation was odd. Very odd.</p><p>For a situation like this to have occurred, I felt that something wasn't right.</p><p>From my memories of Amanda's mother being completely gone to Angelica's sudden involvement with me.</p><p>It felt as though this scenario had been carefully set up in order to trap me and stop me from healing Amanda's mother.</p><p>Raising my head, I turned to look at Angelica before asking.</p><p>'Angelica, remember the time when you said that someone gave you a photo of me, telling you that I was the one responsible for Elijah's death?'</p><p>Upon hearing my words, Angelica's eyes turned into thin slits as her voice became slightly colder.</p><p>[Of course, I didn't forget.]</p><p>My mouth twitched when I heard the coldness hidden in her voice. However, as thick-skinned, as I was, I decided to just pretend to not have felt it.</p><p>'You said that you don't exactly remember what happened since your memories of that time were cleared out, however, you did say that the individual involved was a demon, right?'</p><p>[Correct.]</p><p>Angelica replied, her voice a little bit less cold.</p><p>Upon hearing her words, only one name popped up inside my mind.</p><p>'...Everblood.'</p><p>Back then, when I was trying to figure out who was responsible for instigating Angelica to attack me, I remembered calculating the possibility of Everblood being the one responsible for the whole scenario, and not too long ago, I also came to the conclusion that Everblood may have been a pawn set up by the other entity.</p><p>After all, he was the demon responsible for getting my hands on [Monarch's indifference.] It was a far-fetched theory, but this event strengthened that hypothesis.</p><p>Not only was the scenario a bit too coincidental, but thinking about how that entity knew the ins and outs of my personality, I didn't for once doubt that me picking up Angelica and making her my partner was a part of his plan.</p><p>'Just how much have you planned out?'</p><p>Over three years had passed ever since contracting Angelica, and not once had I ever thought that such a possibility was possible, for how long had the entity inside of me planned everything?</p><p>My stomach churned at the thought.</p><p>"Fuck."</p><p>Eventually, a curse escaped from my mouth.</p><p>It had finally dawned on me just how serious the situation was.</p><p>Turning my head to look at Angelica, my head started to hurt. Just how was I going to solve this situation?</p><p>Should I just tell Amanda the truth and hope for her to accept the fact that I was working with the demon responsible for tearing her family and childhood apart, or should I just make up a random excuse and tell her to wait for a couple of years, till the contract ended?</p><p>Clenching my head with both hands, I groaned out loud.</p><p>"Ugh, this is the worst..."</p><p>Was there really no other way out?</p><p>Just as I was losing all hope, Angelica suddenly spoke up. A complicated look appeared on her face when she said those words.</p><p>"...Actually, there might be a way."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-437.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-439.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

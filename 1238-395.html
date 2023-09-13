@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 395 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 395 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-394.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-396.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Raising my head, a large white building appeared in my vision. The building was located on the outer side of the city, and it was where the other humans resided.</p><p>"Is this the place?"</p><p>"Yes."</p><p>Amanda's soft voice rang from next to me.</p><p>She was currently accompanying me to the place. I wasn't the only one that was called, as Amanda received a similar message not long after.</p><p>Since both of us received the same message, I already had an idea about what Melissa wanted to talk about. </p><p>It was just a hunch, however. I could've been wrong.</p><p>"What do you think Melissa called us for?"</p><p>Touching her chin, Amanda thought for a moment before she shook her head.</p><p>"…unsure."</p><p>"Guess we'll find out when we meet her."</p><p>Walking up the stairs of the residence, we soon paused in front of a certain door.</p><p>Looking around to make sure that no one was present, I pointed at the door.</p><p>"This is the one, right?"</p><p>Lowering her head and staring at her communication device, Amanda nodded.</p><p>"Yes."</p><p>"…okay."</p><p>Raising my hand, I knocked on the door.</p><p>Tok— Tok—</p><p>***</p><p>If Melissa had to describe her relationship with her father in one word, it would be 'terrible'.</p><p>She wasn't mistreated or anything of the sort, but her father was someone who always strived to be the best.</p><p>He was someone that was not satisfied with being second. He was also someone that desired for his children to be the best.</p><p>Melissa was never interested in such matters ever since young. She only cared about her research and nothing else. As such, because of their clashing personalities, they never got along.</p><p>Their relationship wasn't anything complicated, it was just that. But it was enough to create a distance between the two.</p><p>"What a troubling matter."</p><p>Leaning back on her chair, Melissa stared at the ceiling.</p><p>Thinking back to what happened a couple of nights ago, she took out a potion from her dimensional space and stared at it.</p><p>'Should I? Or…should I not?'</p><p>She was tempted to try the potion, but after staring at it for a few seconds, she deeply sighed.</p><p>'Better not. If I take too many, I'll end up going crazy.'</p><p>Honestly, she was quite addicted to the potions by now. Having taken so many of them, it was almost like a routine for her. </p><p>It was so bad that she would get withdrawal symptoms when she skipped a day. She knew she had to stop. </p><p>"…hm?"</p><p>Putting the potion away, Her brows furrowed not long after as she turned to look at the door.</p><p>"Do they think I have all the time in the world for them? Just what is taking them so long?"</p><p>Standing up, Melissa checked her watch.</p><p>"Tsk."</p><p>They were at least a couple of minutes late. </p><p>Tok— Tok—</p><p>"Finally!"</p><p>Fortunately, she didn't have to wait for long as someone soon knocked on the door.</p><p>Fixing her glasses, Melissa headed for the door and opened it.</p><p>Ci— Clank—</p><p>"Took you two long enough."</p><p>Standing opposite her was Amanda, and Ren, under disguise.</p><p>"Sorry for the intrusion."</p><p>Before Melissa could fully open the door, barging into the place as though it was his home, Ren gave an empty apology to Melissa and sat down on the chair she was previously sitting on.</p><p>Turning his head and glancing in her direction, he casually said, "So, what did you want to talk about?"</p><p>Following him, Amanda also entered and sat in another seat.</p><p>Melissa's brows twitched. </p><p>"Huuuu…"</p><p>She then took a deep breath, trying to calm her nerves.</p><p>'…maybe I really should've taken the potion.'</p><p>Regret had started to kick in. </p><p>Not even a minute had passed since she talked to him, and she was already on the verge of losing it. </p><p>Ci— Clank—</p><p>Taking another deep breath, Melissa closed the door behind her, albeit a bit forcefully.</p><p>Then, she sat down next to Amanda. Once she did, Ren spoke up again. </p><p>"What did you want to talk about? I'm sure someone as busy as you wouldn't call us for nothing."</p><p>There was sarcasm hidden within his voice. One that Melissa was all too familiar with. </p><p>"You're right."</p><p>Melissa nodded before mumbling something underneath her breath.</p><p>"I'd rather die of suffocation than do this."</p><p>"What did you say?"</p><p>But it appeared as though Ren had somehow managed to hear her words. Ignoring him, Melissa leaned back on her chair with a solemn look.</p><p>"I'll get straight to the point. My father knows."</p><p>"…Knows?"</p><p>Wariness flashed across Ren's face. Sitting up straight, he leaned forward.</p><p>"What does he know?"</p><p>Extending her hand, Melissa took a few cards from her dimensional space and slapped them on the table.</p><p>Smack—</p><p>"He knows about the magic cards."</p><p>For more, visit: MtNovel.com</p><p>"He what?"</p><p>Contrary to the reaction she expected him to have, Ren only tilted his head. </p><p>Melissa pointed at the cards on the table. </p><p>"Do you not get me? I'm saying that he knows about them."</p><p>"You're talking about your father, right?"</p><p>"Who else would I be talking about?"</p><p>"…Oh?"</p><p>Ren's shoulders relaxed as he leaned back on his chair. On the other hand, Amanda's eyes were fixed on the cards at the table. Her brows twitched slightly.</p><p>'Why is he not surprised?'</p><p>Melissa looked stultified by Ren's reaction. Her brows jumped up slightly. </p><p>Did he perhaps not know just who her father was? Maybe that was it.</p><p>Just to make sure, she asked Ren in a clear and slow voice, "You do know who my father is, right?"</p><p>"Octavious Hall, number one ranked hero."</p><p>Ren's reply came as soon as her words ended. Surprise flashed across Melissa's face.</p><p>"If you know, why aren't you worried…?"</p><p>"Did he ask you to give him the cards?"</p><p>"…No."</p><p>Melissa shook her head. </p><p>So far he only mentioned it as a passing matter. But that was worrying enough. If he truly wanted to get his hands on the magic cards, things would get really troublesome.</p><p>"Then, what's the problem?"</p><p>But it was clear that Ren didn't think the same way as he stood up in a relaxed manner. </p><p>Lowering his head, his eyes paused on the cards at the table. They were currently neatly piled up together. Courtesy of Amanda, who sorted them out while she was talking to Ren.</p><p>Melissa didn't put much thought into it. Amanda had minor OCD, so she had seen her do similar things back at the Lock. </p><p>On the other hand, lowering his hand and picking one of the cards up, Ren curiously studied the card in his hand before asking, "Can I try this?"</p><p>"No."</p><p>Melissa's blunt reply came immediately.</p><p>She then pointed at the door of the room.</p><p>"If you want to try it, do it outside, not in my room."</p><p>If he activated the magic card now, the whole room would end up going in flames. Melissa had a lot of valuable stuff in the room. She wasn't too keen on having it all destroyed.</p><p>"Tsk."</p><p>Ren clicked his tongue, prompting Melissa's brows to twitch.</p><p>"You've got a problem with my arrangements?"</p><p>"Nope."</p><p>Shrugging his shoulders, Ren headed for the door. Staring at his back from her seat, Melissa took out a potion and chugged it.</p><p>In the end, she couldn't resist the temptation and finally gave in. </p><p>Gulp—</p><p>Chugging the potion down, her emotions instantly calmed down.</p><p>Standing up, she followed Ren.</p><p>"So far, I've managed to create three grades of magic cards. Not sure about their naming, but the last grade has a power equivalent to a &lt;C&gt; rank attack."</p><p>"…that's kind of weak."</p><p>Ren commented. Stopping in front of the door, he pulled the handle back and opened it.</p><p>Click—</p><p>"I'm the only one working on this project, what do you expect?"</p><p>Melissa retorted. She could've hired more people to help her with the magic card development, but since she wanted to hide the news from her father, she chose to do it by herself.</p><p>Even if she had them under a mana contract, the more people that knew, the higher the chances of her father finding out became.</p><p>In the end, it was all for naught. It turned out that her father still found out.</p><p>"Sigh, whatever. Just go out and try them. I've encrypted four different magic circles on the card. Choose whichever one you want."</p><p>"Sure."</p><p>Exiting the room, Melissa followed him out. Amanda also quietly followed from behind. Melissa could see keen interest in her eyes as she followed after.</p><p>***</p><p>Bang—</p><p>Not even a couple of steps out of Melissa's room and I heard a 'bang' come from below the residence. </p><p>Curious, I moved towards the wooden handrail and looked below. </p><p>"What is he doing here?"</p><p>Surprise flashed across my eyes as I spotted a familiar figure standing below. </p><p>Dust and smoke rose in the air, masking most of his features. But from the way he was holding onto his shield and his body size, the guy standing beneath was definitely Hein. </p><p>'...What happened to him?'</p><p>I wondered to myself as my brows knit in thought.</p><p>He had his own residence, what did he have to come here for?</p><p>"What are you doing here?"</p><p>A deep voice reverberated, following which, a tall and muscular figure walked out from the dust. He looked quite familiar, but I wasn't able to recognize him instantly.</p><p>"John Berson."</p><p>Thankfully, Amanda recognized him. Turning her head to look at me, she explained.</p><p>"Currently &lt;C+&gt; rank, he was one of the exchange students that came in the first year. At the moment, he seems to be an extremely promising candidate for the next &lt;S&gt; rank tanker type hero."</p><p>"…oh."</p><p>I now finally realized who the person was. It was the same guy that beat Hein back at the tournament. </p><p>Leaning on the handrail, I chose to observe. </p><p>"What are you doing here? I know for sure you were not one of the five hundred people selected to come to the conference."</p><p>His deep and loud voice attracted the attention of the other residents. One by one, a small crowd formed. </p><p>Not minding the crowd, John continued.</p><p>"Since you aren't one of the people on the list, you must've somehow managed to sneak in."</p><p>'That's kind of stupid.'</p><p>There was no way one could have sneaked in. In order to make sure there was no one from the Monolith, the Union strictly checked everyone going in and also made sure to only teleport 500 people.</p><p>It was impossible to have another person.</p><p>"Wait, I didn't sneak in."</p><p>Hein finally spoke, trying to defend himself.</p><p>"Then, why are you here?"</p><p>"That…"</p><p>A complicated looked flashed across Hein's face. He looked unsure of how to answer. </p><p>"So, you can't even answer that." </p><p>A burst of mana suddenly sprang out of John's body. </p><p>"Since you can't answer, I'll—"</p><p>Before John could finish speaking, having enjoyed enough of the show, I finally spoke up. </p><p>"I brought him here."</p><p>"…hm?"</p><p>Instantly everyone's attention was drawn to me. Since I was wearing a mask, I honestly didn't mind the attention. </p><p>Turning his head, the mana inside of John's body faltered.</p><p>Squinting, his eyes met with mine.</p><p>"Who are you?"</p><p>"…eh, you don't need to know that."</p><p>I pointed my hand at Hein.</p><p>"Let him go for now. If he had truly sneaked in, you think the elves wouldn't have noticed?"</p><p>"What do you know?"</p><p>John frowned at my words. I facepalmed at his reaction.</p><p>Turning my head, I looked at Melissa. Flashing the cards in my hand, I decided to ask a question.</p><p>"I'm allowed to use this, right?"</p><p>Surprise flashed across her face for a brief moment of time. It wasn't long before an innocent smile appeared on her face.</p><p>"I've always tested the card on robots. I never tried it against a human…"</p><p>Her innocent smile suddenly looked a lot more devilish. A cold chill ran down my spine. </p><p>"I'm actually quite curious about its effects."</p><p></p><p> --&gt;</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-394.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-396.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

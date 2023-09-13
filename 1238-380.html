@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 380 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 380 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-379.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-381.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Woahhh."</p><p>Taking a step out of the portal, Emma looked at the scene presented before her with amazement.</p><p>Wearing a white baseball hat along with a simple shirt and shorts, Emma's curiosity piqued as she looked around the place with an excited gaze.</p><p>"Curb your excitement."</p><p>Exiting the portal after her was Melissa. Squinting her eyes and taking out her glasses, she glared in the direction of the sun.</p><p>"If only that damned bastard didn't force me to come here…"</p><p>She muttered out loud, obviously not hiding the displeasure in her voice.</p><p>Overhearing Melissa's comments, Emma turned around and asked, "What's wrong about coming here?"</p><p>"I would've much rather spent my time finishing my project.</p><p>"And what's fun about that? You never go out. Just look at you, you remind me of a vampire."</p><p>Pausing, Emma pointed at the sun.</p><p>"The first thing you did as soon as you got out was glare at the sun!"</p><p>"Shut up."</p><p>Rolling her eyes, Melissa put her glasses back on.</p><p>As the two of them were bickering, not far from them, the other group members were slowly coming out of the portal.</p><p>It wasn't long before eight more people exited the portal. Once the last person came out, an elf came to greet them and led them to an area outside of the portal where there were others waiting.</p><p>As they were headed towards the larger group, Emma was instantly able to spot Amanda.</p><p>"Amanda, you're already here."</p><p>This part wasn't hard since she stood out quite a bit.</p><p>The fact that most of the males' gazes were directed at her also didn't help since it only made it easier for Emma to spot her.</p><p>Walking up to her, Emma tried to hug her, but Amanda swiftly dodged, prompting Emma to pout.</p><p>"Hey!"</p><p>"Save that stuff for Kevin."</p><p>"Hey!"</p><p>Emma shouted even louder as her cheeks turned rosy.</p><p>"How long have you been waiting here?" Emma asked, in hopes of trying to switch the topic.</p><p>Fortunately for her, Amanda had tact. Pretending to have not seen anything, she casually answered, "It's been about three hours since we arrived."</p><p>Lifting her head and staring into the distance, toward the direction of where Emma came from, Amanda continued.</p><p>"Besides you, we should be waiting for one more group before they will bring us to the city."</p><p>"Another group?"</p><p>Emma turned her head and stared in the same direction as Amanda.</p><p>"Any idea who it is?"</p><p>"They are from another city."</p><p>"Oh? Which one?"</p><p>"I'm not too sure myself."</p><p>"They're already here." Melissa said from the side, gazing into the distance where another group was slowly headed in their direction.</p><p>At the forefront of the group was a young man with black hair and blue eyes. He may have been the youngest of the group, but his demeanour was unmatched as it contained this rare elegance to it that made him the focal point of the group.</p><p>"Aaron… so it's him."</p><p>A rare of solemnity appeared on everyone's faces as their eyes paused on him.</p><p>They all naturally knew who he was. After all, it was hard for them to not have heard of him when he had been a thorn on their side during their first year. Second and third year for Emma and Melissa.</p><p>Walking in small strides, Aaron's eyes soon paused on their group, and a surprised look flashed across his face. It wasn't long before a smirk followed after as he walked up to them.</p><p>"It's been a while since I've seen you guys."</p><p>Pausing, Aaron's eyes soon stopped on Amanda. His brows knit for a second before they relaxed.</p><p>"You must be Miss Stern. I think we maybe briefly met during your first year. It was unfortunate that you left after and we were unable to see each other."</p><p>"Okay." Amanda replied with a short and indifferent acceptance of his words.</p><p>Not expecting such a reaction from Amanda, Aaron's smile froze for a very short second before he regained his calm.</p><p>"It seems like Miss Stern isn't too keen on talking to me, so I will take my leave."</p><p> Smiling at Amanda, Aaron turned around and left.</p><p>Staring at his back from behind, Emma turned to look in Amanda's direction.</p><p>"Hey, are you sure you want to treat him like that? His guild is pretty powerful. You sure you won't regret this in the future?"</p><p>"No."</p><p>Amanda shook her head as she stared at Aaron's back.</p><p>She knew very well what type of background Aaron had. He was the heir of the most powerful guild in Lutwig city, one of the four great cities in the human domain.</p><p>In terms of power, his guild was not as great as hers, but in terms of influence, it was very powerful. They were not someone that the current Amanda could deal with if they truly decided to attack them.</p><p>Lowering her head and staring at Emma, Amanda softly said, "The reason I'm doing this is because he is already working with another diamond-graded guild in Ashton city."</p><p>"He is?"</p><p>Surprised flashed in Emma's eyes at this revelation.</p><p>"Why would they reach out for the other guilds?"</p><p>"Because they are greedy."</p><p>Amanda coldly replied, her voice taking a chilly tone.</p><p>News about her father's dissapearance had now spread wide, and not just the guilds in Ashton city, but even the other guilds from outside wanted to have a slice of her guild.</p><p>Amanda was obviously enraged by this, but she was also helpless at the same time.</p><p>"Thank you for coming all of the way here to Issanor."</p><p>Disrupting Amanda out of her thoughts was a crisp and melodious voice that came from the distance.</p><p>Lifting her head, Amanda's eyes paused on an elf standing far ahead of the group.</p><p>As he addressed them, he seemed to be very polite.</p><p>"Sorry for the long wait. Now that everyone has gathered, I will escort you to the main city. So, if you would please follow me."</p><p>Turning around, the elf started to walked along a pathway that led to the city.</p><p>As he left, one by one, the other people present slowly started to follow him.</p><p>"Let's go."</p><p>The first one to move out of the three girls was Emma who quickly lined up and followed the others into the city.</p><p>Excitement flashed across her eyes.</p><p>"Here, take this."</p><p>Just as Amanda was about to follow Emma, grabbing her shoulder, Melissa handed her a couple of things.</p><p>"Since you will be displaying your talent to everyone, you might as well be useful and advertise this as well. The better the performance, the richer we become."</p><p>Finished speaking, Melissa also lined up.</p><p>Staring at Melissa in confusion, lowering her head, Amanda stared at her hand where several different cards of various colours rested.</p><p>Blinking a couple of times, her lips tugged upwards ever so slightly.</p><p>***</p><p>Clank—!</p><p>A metallic ring sounded throughout a small room as a broadsword crossed against two sharp daggers.</p><p>A circular pressurized wind sprang out from the point of contact between the blades as the two individuals distanced themselves from each other.</p><p>Gazing at each other from the distance, the individual holding onto the broadsword lowered it and complimented his sparring partner.</p><p>"You've improved a lot."</p><p>"You too."</p><p>The two individuals were none other than Kevin and Jin.</p><p>After arriving early to the elven domain and meeting up together, they decided to spend most of their time sparring against each other.</p><p>As they had been doing this for the past two years back at the Lock, both of them were quite familiar with the way the other fought, hence why they were able to fight against each other evenly.</p><p>Although they had not sparred together ever since leaving the Lock, the both of them were still quite familiar with each other's styles. Hence, they were able to make the most out of their training.</p><p>If there was one thing that was different about the two, it was that Jin was now a rank lower than Kevin, at &lt;B-&gt;.</p><p>This wasn't due to a lack of training, however. Jin had been training harder than ever. The reason for his current rank was that he had acquired a five-star dagger technique not long ago.</p><p>Since he was now more focused on improving his dagger art, the time he spent on improving his rank lowered significantly.</p><p>And it was because of this that he lagged behind Kevin, in terms of rank.</p><p>Wiping the sweat that had accumulated on his forehead, Kevin put away his broadsword.</p><p>"This should be enough for today, the others will be coming here soon."</p><p>"Okay."</p><p>Putting his daggers away, Jin nodded in response.</p><p>Moments prior to their spar, they heard from the others that they had already arrived.</p><p>Pulling his hair back, Kevin turned around and headed out of the room.</p><p>"They should be here soon. Let's go meet them."</p><p>Without saying anything, Jin followed him from behind.</p><p>***</p><p>At the same time, in another part of Issanor.</p><p>"You guys have finally made it."</p><p>Welcoming us with open arms was Randur.</p><p>Turning his head to face my direction, he asked, "Did you guys sort everything out?"</p><p>"Yeah." I nodded.</p><p>"We managed to get it in the nick of time. In fact, we also brought someone else with us."</p><p>Taking a step to the side, I proceeded to point at a certain someone who stood at the back.</p><p>That person was none other than Malvil's disciple, whose name I still did not know.</p><p>"Ho ho, isn't that Malvil's disciple?"</p><p>A look of surprise flashed across Randur's eyes as his gaze paused on the only dwarf in our group.</p><p>He of course also knew who the dwarf was. Given Malvil's fame, it was hard for the elders to not pay attention to him.</p><p>After all, if one of their most famous blacksmiths had a disciple, he would most likely become someone important in the future. As an elder, Randur had to pay close attention to such things.</p><p>"Good, good. This will be a great experience for him."</p><p>What followed after the surprised look was a satisfied one as he repeatedly nodded in approval.</p><p>"With him around, we won't have to worry about our weapons breaking." He jokingly said as he patted him on the shoulder multiple times.</p><p>After saying a couple more things to Malvil's disciple, he focused his attention back on us.</p><p>"Alright, now that you are all here, I presume that you guys have already seen your rooms, correct?"</p><p>"Yes, we have. We're currently going to go for a stroll around the city to get a better idea of the place," Waylan replied. At the moment, he was wearing a skin mask in order to hide his face.</p><p>He wasn't the only one wearing a mask as we were all wearing one.</p><p>Although the chip inside of my head was disabled, I didn't want to take any chances and therefore chose to wear a mask.</p><p>If someone recognised me, things would get troublesome.</p><p>The only one missing from the group was Douglas, who joined Gervis to talk with the higher ups of the elves.</p><p>Anywho, the reason why we were currently going out was, just as Waylan said, to get a better look at the city.</p><p>Just like in Henlour, I wanted to get a better idea of the environment I was in so that if trouble arose in the future, I would have more options open for me.</p><p>Information was key to everything.</p><p>Actually, the real reason was because we wanted to know where the others were staying. But what I previously said wasn't that far from the truth.</p><p>"I see…"</p><p>Stroking his beard, Randur pursed his lips before nodding in agreement.</p><p>"That's a good idea. I've got a map of the place if you want. That can help you familiarise yourself with the place better."</p><p>"That would be ideal," Waylan replied, taking up on Randur's offer.</p><p>"Very well."</p><p>Laughing a little, Randur threw Waylan a small device which contained the map of the city.</p><p>"Enjoy your little tour."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-379.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-381.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

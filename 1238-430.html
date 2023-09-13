@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 430 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 430 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-429.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-431.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Inside of a small room.</p><p>With his head lowered, Octavious studied Aaron's dissected body.</p><p>Next to him was a man with neatly combed black hair and squared glasses. He was currently wearing a white lab coat with blue gloves in each hand.</p><p>Beep—! Beep—!</p><p>In his hand was a small transmitter that repeatedly beeped throughout the room.</p><p>The man was called Conrad Johnson, and he was the one assigned with the task of finding traces of 876. The wanted fugitive that the Union and the Monolith had agreed on hunting down together.</p><p>The first time he saw traces were a few matches back in the tournament. Before he could get a proper read on them, the signal quickly disappeared.</p><p>Then, after that, he was able to find traces once again, and as he had reacted quickly, he was able to find where the traces came from, but when he did, he was left with more questions than answers.</p><p>"You're saying that the transmitter the Monolith gave us is indicating that 876 is none other than Aaron?" Octavious asked as his deep and emotionless voice rang throughout the whole room.</p><p>"Yes, yes, it appears to be so.</p><p>Conrad nodded his head in a helpless manner before placing the transmitter next to Aaron's head. Beep—! Beep—!Beep—! Beep—!The moment the transmitter touched his head, the transmitter started to beep even more loudly.</p><p>With a complicated look on his face, Conrad took out a small tube that was about the size of a finger. Then, taking a small sample of his blood, he put it in the tube and shook it.</p><p>This process only lasted for a couple of seconds before he stopped.</p><p>Once he stopped, he turned to look at the tube and when he did, he shook his head.</p><p>"His blood is also contaminated just like the Monolith said."</p><p>Doubt started to creep inside of Conrad's head as he softly and carefully asked.</p><p>"...It's him, isn't it? 876 is Aaron."</p><p>But contrary to his expectations, Octavious shook his head.</p><p>"It's not him."</p><p>"Not him?"</p><p>Conrad replied with a confused look on his face.</p><p>Be it the tracking device and blood test, all evidence pointed that he was indeed 876, so he really couldn't understand.</p><p>Without sparing him a glance, Octavious continued.</p><p>"Aaron's whereabouts during the time 876 was in the Monolith can easily be found. It is impossible for him to be 876."</p><p>Before the tournament started, Octavious paid close attention to all the promising contestants and so he naturally knew that it was impossible for Aaron to be 876.</p><p>Once his thoughts paused there, with a frown on his face, Octaviois suddenly thought of something.</p><p>What if...</p><p>Placing his hand over Aaron's face, he suddenly squeezed it.</p><p>Crack—</p><p>The sound of bones breaking resounded throughout the room as blood spurted all over the room.</p><p>Conrad, who had been watching the whole time, opened his eyes in shock as he couldn't quite make out the situation.</p><p>Before he could say anything, Octavious retrieved his hand back.</p><p>It was then that Cornard suddenly noticed it. A small device that was resting in the middle of his finger.</p><p>Supposedly, this was the tracking device.</p><p>Calmly analyzing it for a good minute, Octavious handed it to Conrad.</p><p>"Analyze it. See if there is something hidden inside of it."</p><p>"Y…yes."</p><p>With trembling fingers, Conrad took the chip and weakly nodded his head.</p><p>After that, giving Aaron one last look, Octavious left the room.</p><p>***</p><p>Ashton city.</p><p>Inside a private residence owned by the demon hunter guild, two people sat in front of a sofa, staring at a holographic projection in front of them.</p><p>Displayed on the projections were the images of the tournament.</p><p>Of the two people seated on the sofa, one was a male while the other was a female. With blonde hair and blue eyes, the woman looked stunning.</p><p>On the other hand, the male looked less impressive, however, his solemn and sharp look did give off his own charm.</p><p>With her left hand on the male's thigh, the woman, Samantha Dover, covered her mouth with her hand as she muttered.</p><p>"...I'm glad we didn't let Nola see this."</p><p>"Yes."</p><p> Ronald nodded his head. He completely agreed with her words. </p><p>This was especially so after the last match where they saw a contestant being cut in half by someone. The scene was just too gruesome for someone as young as Nola to see.</p><p>Pressing her hand on her cheek, Samatha wondered.</p><p>"I wondered when it will be Ren's turn."</p><p>As she said those words, a look of anticipation flashed across her eyes.</p><p>Originally, the both of them weren't very interested in the tournament, however, upon receiving an anonymous tip from someone that Ren was going to participate, they dropped everything they were doing and decided to watch the tournament together.</p><p>"He should be coming soon."</p><p>Ronald replied briefly. Despite sounding stoic, Samantha could feel the excitement and nervousness in his voice as he anticipated his son's performance.</p><p>Excitement at the prospect of seeing his son shin in the tournament, and nervousness at the dangers that lay in the tournament. Especially after having seen so many injuries and even deaths.</p><p>But not even a second after he said those words, the front doorbell of their house rang.</p><p>Ding—! Dong—!</p><p>Turning to look at each other, the duo curiously turned to look in the direction of the door. Then, standing up Samantha calmly walked towards the door.</p><p>"Oh my."</p><p>Checking the camera to see who it was, a look of shock appeared on Samantha's face not long after as she quickly headed for the door and opened it.</p><p>Ci clank—!</p><p>With a brilliant smile on her face, she greeted the guests.</p><p>"Welcome."</p><p>***</p><p>At the same time.</p><p>Standing near the portal that would transmit the contestants to the platforms, Kimor had a calm look on his face. Or rather, he looked bored.</p><p>He did not have any excitement about his next opponent.</p><p>He was merely &lt;B&gt; rank after all.</p><p>He would've previously dismissed him for being human, but after witnessing Kevin's strength not too long ago, he decided to no longer look down on them as much.</p><p>He acknowledged the fact that not all humans were useless.</p><p>Even then, he still did not have high regard for his next opponent. After all, it was already rare enough for the humans to have someone as strong as Kevin, but to have two? Kimor did not believe in the chances.</p><p>As his thoughts paused there, his line of sight met with one of the people managing the portals.</p><p>Then, taking a step forward he slowly entered the portal.</p><p>***</p><p>"What's with that look?"</p><p>Staring at Kevin who had just come out of the portal, my face leaned back a little as my eyes squinted.</p><p>The way he came out of the portal, just...well, how should I describe it? It felt as though he was trying to purposely act like a tough guy.</p><p>The moment Kevin heard my words, his brows twitched a little.</p><p>"What are you on about?"</p><p>"...You know exactly what I'm talking about."</p><p>I replied with a meaningful look. Raising his brow, Kevin glanced towards his right and left before he leaned his body forward slightly and whispered.</p><p>"Actually, I was trying to imitate you."</p><p>"Imitate me?"</p><p>"Yeah."</p><p>Kevin nodded his head repeatedly."</p><p>"You know...when you go all edgy and stuff, and to be honest, I think I did a very good job."</p><p>"Eh?"</p><p>Kevin's response was so out of my expectations that I was unable to reply to him properly.</p><p>It was then that a victorious smirk appeared on Kevin's face as he patted me on the shoulder.</p><p>"I'll wait for you at the stands. If you can, try ending the match as fast as I did."</p><p>Before I could say anything back, Kevin bid goodbye to me and directly left.</p><p>There were a lot of things that I wanted to say to him before he left, like how he had doped himself to victory, but then again, they were within the rules so I really couldn't say anything.</p><p>Unlike the tournaments at the Lock, this was not a children's tournament.</p><p>Apart from the out-of-bounds rule which was set up purposely with the intent of limiting the contestant's space, there were very few rules placed in the tournament.</p><p>This was obviously done on purpose. After all, in a real fight, rules did not exist.</p><p>Be it artifacts, potions, killing, or anything that would've normally been banned in tournaments held in the human domain, everything was allowed here.</p><p>The referees were only there to initiate and end the match.</p><p>Deaths were inevitable, and so if someone died, although it would look bad on them, it was really nothing worth mentioning.</p><p>Couldn't say I was against this, to be honest. After all, only through these types of tournaments would someone truly be able to display their full power.</p><p>This was no soft tournament where everyone just cuddled with each other after the end of each match. No, this was a real tournament.</p><p>A tournament meant to replicate reality.</p><p>"Caeruleum please make your way to portal 7."</p><p>Snapping me out of my thoughts was the voice of one of the people responsible for watching over the gates.</p><p>Upon hearing his voice, I immediately followed his instructions and headed for the portal, and entered.</p><p>*</p><p>Swooosh—</p><p>The moment I stepped out of the portal, a familiar breeze brushed past my body as I took a look at my surroundings.</p><p>It was then that I suddenly felt a terrifying pressure coming from the opposite end of the arena.</p><p>I didn't need to look to realize that it belonged to my opponent. Kimor.</p><p>Standing tall with his back straight, wearing leather armor that covered the bottom part of his body as well as his chest, Kimor gazed into the distance with languid eyes.</p><p>Subjected to his pressure, I merely frowned. Although the pressure he was releasing was strong, it wasn't anything that I wasn't used to.</p><p>Surprised flashed across Kimor's eyes as his languid eyes became a little bit clearer.</p><p>It was then that a referee suddenly materialized in the middle of the arena.</p><p>Once the referee appeared, extending my hand, Malvil's sword appeared in my hand. Given the current circumstances, I had no choice but to use the sword, and even then, since our terrain was limited, I wasn't too worried about its short length.</p><p>Placing my sword on the right side of my waist, I raised my head and stared at the referee.</p><p>Once I was all set up, I nodded my head.</p><p>As soon as I nodded my head, the referee turned to look at Kimor. Feeling the referee's gaze, turning his eyes away from me, Kimor nodded his head.</p><p>Raising his hand, the referee shouted.</p><p>"Begin!"</p><p>Bang—!</p><p>Once the referee's words faded, as though a grenade had exploded, a terrifying sound resounded throughout the whole arena as Kimor's body disappeared from its spot.</p><p>Everything happened so fast that I had barely any time to react. Fortunately, I wasn't helpless.</p><p>'Eyes of Chronos.'</p><p>The moment I heard the loud explosion, I activated Eyes of Chronos. Following this, everything around me suddenly slowed down significantly.</p><p>'Shit.'</p><p>Once time slowed down, my face paled slightly as I was left shocked by the fact that Kimor was already only a couple of feet away from me.</p><p>It had to be noted that I had activated my skills the moment I heard him leaving. For him to have moved this far, it could only mean that his speed was frightening.</p><p>Fortunately, I was not helpless.</p><p>With my hand by the side of my waist, I decreased the intensity at which time slowed down. Once that happened, Kimor's body started to once again move in my direction.</p><p>Just as he was a couple of meters away from me, I activated my other skill.</p><p>'The one.'</p><p>Kimor's body faltered, and a small opening appeared right next to his right shoulder. The opening was so small, that if I didn't have Eyes of Chronos, I would've never been able to find it.</p><p>Thankfully I did and I quickly pulled out my sword.</p><p>With time still flowing slowly, I watched as my sword smoothly came out from my scabbard before coming into contact with Kimor's body. Once it came into contact with his body, I deactivated all my skills.</p><p>Time which was previously flowing slowly, instantly became faster and I suddenly felt a terrifying pressure bear down on my hand which was holding onto the sword.</p><p>Spurt—!</p><p>Following this, green blood dyed my vision as my body skid all the way back before coming to a halt near the edge of the arena.</p><p>Once my body came to a stop, raising my head, I watched as Kimor looked at me with his eyes wide open in shock. With his hand pressed onto his shoulder that was continuously leaking blood, his originally languid eyes completely changed, and so did the aura around him.</p><p>The arena which was originally loud also became extremely quiet as I felt multiple eyes land on me.</p><p>With a bitter smile on my face, I placed my hand on my face and clenched it.</p><p>'Guess the cat is out of the bag.'</p><p>No point in hiding anymore.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-429.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-431.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 406 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 406 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-405.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-407.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Bang—!</p><p>A large palm appeared in my vision, magnifying in front of me at an incredible speed.</p><p>A powerful wind pounced on me, causing my heart to tremble a little. The fact that Han Yufei was fifth-ranked in the Lock was definitely proof of his strength.</p><p>Staring at the incoming palm, I immediately decided to use one of my skills.</p><p>'Eyes of Chronos.'</p><p>Upon activation, the world around me started to slow down significantly. In fact, it came to a complete standstill. But, even though time had slowed, it had only slowed down from my eyes. My body was also frozen. Fortunately, my brain could keep up with everything that was happening around me.</p><p>'I can't avoid it.'</p><p>Carefully staring at Han Yufei's incoming attack, I realized that it couldn't be avoided.</p><p>The attack was simply too fast and too close to me at this point in time for me to avoid it.</p><p>Although faint, I could also see a small suctioning force coming from Han Yufei's palm. Even if I somehow managed to dodge the attack, the result would still be the same.</p><p>As such, after deliberating on the many different scenarios presented before me, I opted for the simplest solution.</p><p>'The one.'</p><p>Activating for 'the one' for a split second, I simultaneously deactivated 'Eyes of Chronos.'</p><p>Han Yufei's hand faltered. It was only for a split second but it was enough to buy me enough time to cross my arms together in a defensive posture.</p><p>Boom—!</p><p>Han Yufei's palm heavily landed on my arms, a tremendous power came pouring down on me.</p><p>"Khhh..."</p><p>Feeling the tremendous impact of his attack, my body shook and I slid all the way back to the edge of the arena, only stopping at the very edge of the arena.</p><p>As my feets stopped at the edge of the arena, lifting my head, I shook my arms which were completely numb from the pain at this point.</p><p>'Man that hurts.'</p><p>I may somewhat be used to intense pain by this point, but the power behind the attack was no joke.</p><p>It felt as though the bones in my arms had completely shattered. That was just how powerful the attack was.</p><p>It also had to be noted that Han Yufei had only attacked me with a simple palm attack. It was not a fancy skill or technique. Just a regular palm strike.</p><p>Yet, the power hidden within that simple strike was incredible.</p><p>"Huuuu…"</p><p>Lowering my hands, I took a deep breath.</p><p>Slowly, the mana in the atmosphere began to converge into me.</p><p>Bang—!</p><p>Without giving me enough time to recuperate, taking a step forward, bending his body forward like a predator that was about to hunt its prey, Han Yufei's body shot in my direction.</p><p>This time he was even faster than before as an after-image of his lingered in the air for a brief moment of time.</p><p>Staring at the incoming Han Yufei, pressing my foot onto the ground, the mana around me swirled wildly, creating a faint green coating around my body. Then, releasing the tension in my foot, my body shot in Han Yufei's direction.</p><p>A cold light flashed across Han Yufei's eyes as he stared at my approaching figure. Raising both hands in the air, tangible mana began to swirl and emerge from his hands, creating sharp energy blades.</p><p>As he moved, his clothes flapped out while the muscle hidden beneath his clothes exploded outwards. An imposing aura began to spread out from his body.</p><p>Thump! Thump!</p><p>In a short span of less than a dozen seconds, Han Yufei and I exchanged a total of twenty moves. No longer holding back my strength, I fully unleashed my &lt;B&gt; ranked aura, matching his aura under the state of 'martial body'.</p><p>Although I couldn't pay attention to the surroundings, I knew that our fight was drawing the heads of everyone present as the force behind each and every one of our attacks increased for every exchange.</p><p>It had gotten to the point where powerful sonic booms echoed throughout the arenas as the both of us remained on equal footing with each other.</p><p>Boom—!</p><p>My fist connected with Han Yufei's. A wild wind spread from the point of contact between our fists.</p><p>Boom—! Boom—! Boom—!</p><p>Separating from each other, our fists repeatedly met. This continued for the next five minutes as blood soon started to drip down on both of our knuckles.</p><p>Lowering my head and staring at my fist, I thought.</p><p>'Should I use the Keiki style?'</p><p>Had I been using the Keiki style, there was a high chance for me to defeat him. But that would expose my identity to the Union and especially Aaron.</p><p>That was a no-go for me as all the preparation I had made this past week in Issanor would go to waste.</p><p>Boom—!</p><p>Meetin Han Yufei's fist once again, the both of us once again separated from each other. Taking a look at Han Yufei whose breathing was quite rough, I grinned.</p><p>"Let's—"</p><p>"I concede."</p><p>But before I could even finish speaking, Han Yufei turned his attention toward the referee and directly forfeited the match. My face froze slightly.</p><p>"Are you sure you wish to surrender?"</p><p>The referee asked. Turning his head toward my direction, Han Yufei's eyes lingered on my body for a short second before he nodded.</p><p>"Yes, I am positive."</p><p>"Very well."</p><p>The referee nodded before pointing in my direction.</p><p>"Winner, Caeruleum. He will be advancing to the top 64 of the tournament."</p><p>Thunderous cheers broke out as the referee announced the result of our match. I could feel the eyes of numerous individuals look at me with renewed interest.</p><p>Not caring for the stares one bit, I ran to Han Yufei.</p><p>"Oy, hold on, why did you give up?"</p><p>"...I do not wish to fight a fight where my opponent is not even taking me seriously."</p><p>Han Yufei calmly replied before directing his attention toward my hands.</p><p>"I can tell from a glance that you do not specialize in body combat."</p><p>Raising his hand, Han Yufei opened up the palm of his hand. To my surprise, it was devoid of any calluses.</p><p>"This is how the hand of a someone who has trained in hand-to-hand combat should look like, yours is nowhere near that." Han Yufei explained. "Yours is filled with calluses, an obvious sign of weapon usage. If you are on the same level as me when I'm using one of my strongest techniques, I don't see the need to continue this farce."</p><p>Before I could say anything, Han Yufei hopped off the stage and left.</p><p>'...Well, that was unexpected.'</p><p>I thought while scratching the back of my head. I really didn't think that he would have been able to tell this from our brief exchange.</p><p>Shrugging my shoulders, I turned around and similarly hopped off the stage.</p><p>"What devious trick did you use to make him surrender?"</p><p>The first one to greet me was Melissa who immediately threw a jab in my direction. Her eyes were filled with malice. Evidently clear that she was still resenting me for what I did yesterday,</p><p>"At least I didn't pretend to lose just like a certain someone."</p><p>I quickly shot back.</p><p>In order to avoid participating in the fights, Melissa deliberately lost her matches yesterday. Had to say, her acting skills were superb. When she got eliminated, it truly seemed as though she had used all of her strenght to fight.</p><p>"...sounds like a smart move to me."</p><p>Melissa replied with a yawn.</p><p>Turning my attention away from her, I glanced at Amanda who had been staring at me all along. Meeting her gaze, I couldn't help but say.</p><p>"What's wrong? Have you perhaps been charmed by my fighting prowess?"</p><p>It took a moment for Amanda to process my words, and when she did, her face cringed back in a way that made it obvious to me that she was trying to imply, 'As if.'</p><p>To add insult to injury, she added.</p><p>"Han Yufei is much more charming."</p><p>"...Is that so?"</p><p>My brows knit.</p><p>That actually bugged me quite a bit...I swear my charm was higher than his.</p><p>Glancing at Kevin who was talking to Emma for a brief moment, I decided to sit down and stare at the next few matches.</p><p>'Oh, it's Hein.'</p><p>My attention instantly gathered towards one of the platforms where Hein stood. His opponent seemed to be pretty strong, but with his sturdy build and perfect timings, Hein was able to swiftly defend himself from the opponent's attack.</p><p>'He really has improved a lot.'</p><p>I thought in admiration as I watched him from the stand. Sadly, I knew that his strength was not enough for him to place in the top tens. At least not now that I took a good look at who the opponents were.</p><p>They were simply in a different league than him.</p><p>For the next ten minutes, Hein defended while his opponent continuously attacked. Hein's battle strategy was simple, wear out his opponents before dealing the finishing move...and that was exactly what he did.</p><p>Gathering all of his mana towards his shield, he quickly smashed it against the opponent's body, sending him crashing against the other side of the arena.</p><p>Following this, the referee checked up on his opponent before finally declaring him the victor of his match.</p><p>'Not bad, not bad.'</p><p>I thought as I saw him head for a different section in the stands.</p><p>"....Oh?"</p><p>It was then that I spotted Jin. Seated next to Arnold and Troy, he appeared to be carefully analyzing the matches happening below.</p><p>If there was one person that changed the most after my absence, it was without a doubt Jin.</p><p>Compared to before, he was a lot more attentive to detail, and never took things for granted as he did in the past. His changes were so drastic that Troy, someone who was supposed to turn on him in the original timeline, actually still stuck with him.</p><p>Honestly.</p><p>I was pleasantly surprised by this development.</p><p>'...Now that I think about it, apart from him and Emma, I pretty much antagonized everyone present.'</p><p>This...</p><p>I really didn't know.</p><p>***</p><p>'Should I, or should I not?'</p><p>Staring at Ren who was deep in thought, Kevin's foot nervously tapped onto the hard ground.</p><p>'Should I tell him about my visions?'</p><p>Now that he had decided to trust Ren, Kevin was struggling to decide on whether to come clean to him or now. What he meant by clean was that he wanted to come clean to him with regards to his visions and what he saw in them.</p><p>There was only one thing stopping him from doing so.</p><p>And that was the fact that he might have to reveal some of his secrets to Ren.</p><p>Despite the fact that he didn't want to reveal them as it might expose Ren as well as him to danger, Kevin felt that this was necessary.</p><p>If he wanted to prevent the vision from ever happening in the future, Kevin believed that he had to come clean to Ren...and show him that he trusted him.</p><p>From the way things were going, Kevin felt a crack appear in his trust towards Ren. This was not something he wanted.</p><p>Whenever the vision flashed back in his head, anger would rise from deep within his body. He had to resolve this problem quickly.</p><p>"What are you thinking so hard about?"</p><p>Snapping him out of it was Emma's voice. Raising her hat and staring at him, Emma continued.</p><p>"Since yesterday I've seen you with that look on your face. Is there something wrong? You know you can talk to me."</p><p> Kevin smiled at her words. He promptly shook his head.</p><p>"Thank you, but I can't really tell you what is happening."</p><p>"..Oh? Is that so?"</p><p>Lowering her hat and crossing her arms, Emma closed her eyes.</p><p>"Well, if you're ever planning on telling me what's going on, I'm over here."</p><p>"Thank you."</p><p>Kevin smiled. Then, turning his attention back towards Ren, he stood up.</p><p>He had made up his mind. He was going to have a serious talk with Ren regarding his visions.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-405.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-407.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 356 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 356 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-355.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-357.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>BOOOOOM—!</p><p>The hall flashed, turning white, as a torrential wave of energy burst forth from Durara's staff. A rumbling, thunderous roar resounded continuously as the energy shot forward, towards Ren's direction.</p><p>Everything happened so fast that barely anyone present in the hall could react.</p><p>Not Waylan, not Angelica, and especially not Ren, who could only helplessly watch as the attack quickly headed in his direction, enveloping his body completely.</p><p>Under the eyes of everyone present, be it the duergars, Waylan, or Angelica, Ren's figure slowly disappeared under the terrifying energy's onslaught.</p><p>It was so fast that he could not even scream.</p><p>BANG—</p><p>Once Ren's figure disappeared, a thunderous explosion rang out once more.</p><p>Ripples of energy spread apart once Durara's attack hit the other side of the hall.</p><p>Once the energy ripples dissipated, what was left behind was only a long trace on the ground, marking the direction of where the attack headed.</p><p>Dust and smoke diffused in the air.</p><p>"Haaa…haaa…"</p><p>Durara's heavy breaths rang out throughout the corridor as she supported her body with the aid of her staff.</p><p>Her hair was disheveled. One could tell she was in a terrible state.</p><p>Thud—</p><p>Despite her menacing facade, it was apparent that she was on her last straw. Mere seconds after she released her attack, falling to one knee, Durara fell face first on the ground.</p><p>Whether she was dead or alive, no one no longer knew.</p><p>"This…"</p><p>On the other hand, with a pale look, both Waylan and Angelica stared in the direction of where Ren used to stand.</p><p>Apart from the now melted rod, the only thing visible was the long mark that traced all the way to the other side of the hall. There was no sign of him.</p><p>"…It…no…way…"</p><p>Waylan fumbled on his words as he stared in the direction of where Ren once stood. He couldn't find him anywhere. His gaze wasn't just directed there, he also looked at Ultruk who was impaled by Durara's long staff.</p><p>Despair overtook him.</p><p>"This…can't be it, right?"</p><p>Where did everything go wrong?</p><p>A look of resignation and defeat appeared on his face as he tried his best to process what was happening.</p><p>Everything was going so well just a few minutes ago. Yet, everything changed within a second.</p><p>Ultruk and Ren had died.</p><p>To make matters worse, Waylan's condition had regressed.</p><p>Having just exerted some mana to fight against the duergars, he was on his last legs.</p><p>Thud—</p><p>His right knee gave out.</p><p>"Huaaaaaa!"</p><p>Snapping him out his thoughts was a high-pitched scream of agony that sounded not so far from where his position.</p><p>Turning towards the direction of where the scream originated from, Waylan's eyes stopped on Angelica. Staring at her condition, his mouth opened like a fish, as his throat dried up.</p><p>'Right, she's connected to Ren…'</p><p>He instantly understood what was going on with her.</p><p>The resignation in his eyes deepened.</p><p>He could no longer deny the inevitable reality.</p><p>"Haaaa!"</p><p>Angelica's agonizing screams echoed in the lifeless hall. Her desperate cries tore at Waylan's heart. Alas, he could only watch and stare as she met her demise.</p><p>Clenching onto her stomach, Angelica's knees buckled, her blood and saliva mixing as it dropped on the floor. Her hair scattered all over her face, painting a desperate visage crying for momentary respite. Yet, Angelica's eyes never left the place where Ren once was. She weakly extended her hand in that direction, as if trying to grasp a fleeting phantom.</p><p>"Haaaa…haaaa…"</p><p>Her screams never stopped. But, what came next was arguably worse. Angelica's whole body slowly started to crumble under everyone's watch. Soon, her voice thinned out, sounding faint, before completely disappearing alongside her body.</p><p>Waylan wished he wasn't there to see it.</p><p>As the final ashes of Angelica's body disappeared, it left behind a small, cracked core in the middle of the hall.</p><p>Crack-a! Crack-!</p><p>But that too soon disappeared as fine, miniature cracks enveloped the core like small spider-webs.</p><p>Bang—</p><p>Exploding into a million tiny particles, the core completely shattered.</p><p>"…It's over. It's all over." Waylan muttered to himself. The last shred of hope he had in him completely disappeared.</p><p>Since Angelica had signed a mana contract with Ren where his death would equate to hers, her disappearance was evidence that Ren had died, bringing her alongside with him.</p><p>Now, he was completely alone.</p><p>Surrounded by multiple duergars as well as an elder whose rank was above his, Waylan could only resign himself to his death.</p><p>But…</p><p>Despite his cruel fate…</p><p> He wasn't going down without one last fight.</p><p>"Haaaa!!!!"</p><p>Letting out an almost heart-wrenching scream, Waylan raised his broadsword in the air. Forcing himself to stand, a bright luminous light glowed from the body of the sword, lighting up the whole room like the sun.</p><p>Pouring all the mana he had in his body towards the sword, Waylan's body slowly shriveled up. His muscles thinned out, his appearance aged.</p><p>To the eyes of everyone present, they watched Waylan transform into a weak and frail on the verge of death man. Yet, none dared to underestimate him. His aura was frightening.</p><p>Seeing that there was no way out for him, Waylan no longer hesitated. He decided to supplement his sword with all the remaining life force in his body.</p><p>He was planning on dying.</p><p>The glow enveloping his sword became even brighter, blinding the eyes of almost everyone present.</p><p>'I'm sorry, Emma… My beloved daughter…'</p><p>In his final moments, a small tear fell down by the side of his sunken cheeks.</p><p>…Just when he thought he was so close to once again seeing his daughter, everything came crashing down.</p><p>He felt indignant.</p><p>But it was already too late to feel regret.</p><p>Within a fraction of a second, his attack was ready.</p><p>Glaring at the duergars near him, who had their weapons aimed at him, Waylan's enraged shout echoed throughout the whole hall as he slashed down. This time, his words weren't a mere act.</p><p>"I will kill you all!"</p><p>WIIIIIIING—</p><p>A terrifying energy exploded from the tip of his broadsword as a bright light once again enveloped the hall.</p><p>***</p><p>[Lock, Class A-25.]</p><p>"There are many different ways one can control psyons. Some can channel the psyons in the air in a way that they conjure a spell or some can control psyons in a way that it coats their weapon…"</p><p>A crisp and melodious voice sounded inside of a classroom.</p><p>The voice belonged to none other than Donna, as she explained the concept of psyon control to the over one hundred students present in the classroom.</p><p>Raising her right hand, a subtle purple glow enveloped it.</p><p>"Although it is hard, once one reaches a certain level of control, they can freely move their psyons to wherever they please…."</p><p>As she spoke, the glow around her went from enveloping her entire hand to just enveloping one of her fingers. Moving her fingers, the glow would move from one finger to another.</p><p>"Kevin."</p><p>The glow disappeared, and Donna called out to Kevin, who was listening to the lecture with his cheek rested by his arm.</p><p>"Huh?! Yes…?"</p><p>Called out by Donna, Kevin sat up straight.</p><p>"Did I do something wrong?" He asked in a worried tone.</p><p>Although his posture wasn't good, and he already knew most of the stuff she was talking about, Kevin had been paying attention to the whole class from the beginning.</p><p>He didn't think he did anything wrong.</p><p>Lowering her hand, Donna shook her head.</p><p>"No, you didn't do anything wrong. "</p><p>Raising her hand, she pointed at the front of the classroom.</p><p>"I called you out because I wanted you to demonstrate to the others how you control psions to cover your weapon. If I do it, others will just assume I can do it because it's me. If you do it, people will have a better idea of how to follow up. So, quickly get down from there and demonstrate for the whole classroom how you can cover your sword with psions."</p><p>'Are you sure you're not picking on me?'</p><p>Was what Kevin wanted to say when Donna asked him to demonstrate in front of the whole classroom how to coat their weapons with psions.</p><p>But those were only his thoughts. He didn't actually say them out loud. No way would he do that.</p><p>He valued his life after all.</p><p>"…Okay."</p><p>Standing up, Kevin walked towards the bottom of the classroom and stopped right on the spot that Donna had told him to stay at.</p><p>Extending his hand and taking out his broadsword, without saying anything, Kevin slowly channeled his mana into it.</p><p>With all eyes focused on him, Kevin calmly channeled his mana out of his body before connecting it with his broadsword.</p><p>A red hue slowly materialized in front of everyone's gazes. Under Kevin's fine control, it slowly started to diminish until it formed a thin red veil that coated the body of the broadsword. It seemed perfectly stable.</p><p>"Excellent."</p><p>Standing by the side, Donna smiled in satisfaction.</p><p>Turning her attention towards the classroom, she pointed towards Kevin's sword and resumed her lecture.</p><p>"As you can see, once you reach a certain degree of control over your psyons, you can create this small protective film around your weapons. Now, why is this important?" Donna rhetorically asked the students present.</p><p>Before anyone could answer, Donna continued, "The reason why it's important is because not only will it increase the strength of your attacks, but it also helps you reduce the amount of mana you waste while attacking. As many of you know, during battles, this is very…."</p><p>While Donna was explaining to the whole classroom the importance of mastering their control over psyons, Kevin stopped channeling his mana into the sword. In response, the red hue enveloping it slowly disappeared.</p><p>Although he made it look easy to everyone in the class, what he did was anything but easy.</p><p>The amount of concentration someone needed in order to have all the psyons move the way they wanted was absurd.</p><p>There was a reason why not many could pull off this move.</p><p>Right as Kevin stopped channeling his mana, something shocking suddenly happened to him.</p><p>Ding— Ding— Ding—</p><p>"Huh!?"</p><p>Startling him, A repetitive chime rang inside of his ears, almost as though an alarm had just sounded.</p><p>Following three rings, a familiar transparent window appeared in front of his vision.</p><p>[Emergency quest.]</p><p>Use the time codex to alter Ren's death.</p><p>Reward : +5% synchronisation.</p><p>Penalty : Demon king ascension → - 2 years.</p><p>Time limit : 10 : 00 minutes.</p><p>'Ren's death? Time codex? Demon king ascension? Reward synchronization?'</p><p>A million questions emerged in Kevin's mind as his body froze and his eyes locked onto the screen in front of him.</p><p>Nothing made sense to him at the moment. His mind couldn't process what was present before him, but the moment he saw the time limit and the penalty, his heart sped up and he activated his skill [Mind Cleansing].</p><p>Instantly, the moment he activated the skill, Kevin's mind started to process everything faster.</p><p>'Ren… died?'</p><p>'Time codex? Could it be referring to the book?'</p><p>If Kevin hadn't activated [Mind Cleansing], he would have remained in shock for much longer.</p><p>Before long, Kevin was able to come up with an idea of what was going on. And the moment he did, Donna's voice rang in his ears, startling him for the umpteenth time that day.</p><p>"Kevin? Are you okay?"</p><p>Staring at Donna with a blank look on his face, Kevin's mouth opened and closed repeatedly. But, regardless of what he wanted to say, he was unable to muster the right words to form a reply.</p><p>In the end, he put his sword away and apologized to Donna.</p><p>"Ah…eh… Sorry, I need to go."</p><p>"Wha—"</p><p>Before Donna could even finish her sentence, Kevin turned around and ran out of the room, much to the shock of everyone present in the class.</p><p>Clank—</p><p>The loud sound of the door smashing rang in everyone's ears, and Kevin's figure soon disappeared from sight.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-355.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-357.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

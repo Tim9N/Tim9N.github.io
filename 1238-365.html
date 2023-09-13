@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 365 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 365 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-364.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-366.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Vrr— Vrr—</p><p>"Hmm?"</p><p>Waking me from my slumber was a low buzzing sound coming from my right side.</p><p>It was quite subtle, reminiscent of a bee's buzz. Needless to say, it was fairly annoying.</p><p>Opening my eyes slightly and lowering my head towards the direction of where the buzzing sound was coming from, my sight soon paused on the communication device tightly held in my right hand.</p><p>Vrrr— Vrrr—</p><p>The buzzing sound continued, and as my mind cleared up, I could feel my hand vibrate slightly.</p><p>'How long have I been sleeping for?'</p><p>My thoughts felt groggy as I propped my body up with the aid of the wall.</p><p>'Since the communication device is working, they should already be done by now…'</p><p>Lowering my head and turning the communication device on, I spoke in a thick, hoarse voice.</p><p>"Hello? You guys done already-"</p><p>—Ren!</p><p>The moment I answered the communication device, Waylan's voice sounded from the speaker, cutting me off.</p><p>His voice was quite loud and sounded a bit panicked. Instantly, my head sobered up and my brows furrowed tightly. My body tensed slightly.</p><p>"What happened while I was gone? Did something go wrong? Did the enemies perhaps have a secret weapon that we were not aware of?"</p><p>Many possibilities rushed through my head as my heart sank.</p><p>Thinking of all the possible things that may have gone wrong while I was asleep, my previous relaxed attitude completely vanished as I prepared for the worst.</p><p>—What are you talking about?</p><p>"Huh? What do you mean? Did something go wrong or not?"</p><p>But it looked like I was overthinking too much as Waylan's words allayed my fears.</p><p>—No, everything is fine. I'm only calling because we were worried that something happened to you. You just left out of nowhere, without even telling us what you were going.</p><p>"Ah…"</p><p>'Right, the dampening system was back on and I couldn't quite tell them that I was taking a nap.'</p><p>Smiling wryly, I scratched the back of my head.</p><p>"Sorry about that… I was taking a nap. Since I couldn't participate in the fight, I figured that I may as well just go to a random room and sleep. I was gonna be a burden anyway."</p><p>Silence.</p><p>Once my words faded, I was met with total silence.</p><p>Even though he wasn't present at the moment, I could vividly imagine Waylan opening and closing his mouth, speechless, trying to find the right words to say.</p><p>It might have looked amusing to an onlooker, but I was feeling a bit guilty...just a little.</p><p>The silence continued for a brief moment before Waylan repeated.</p><p>—…A nap? Did you just say…that you were taking a nap?</p><p>His voice was filled with incredulity. As though he couldn't quite comprehend what I just said.</p><p>Being the good guy that I was, I nodded to confirm my previous words, even though he couldn't see it.</p><p>"Yes, that's exactly what I said. I took a nap."</p><p>—Y…you…</p><p>Struggling to find the right words to say, Waylan fumbled before eventually giving up, letting out a long, exhausted sigh.</p><p>—Haaa, what should I do with you? If not for the fact that I don't have the slightest idea of where you are, I'd have already strangled you to death.</p><p>"That's a bit harsh, no? I was just taking a small nap, I don't think that warrants getting strangled over."</p><p>—You know what? I give up. Where are you? Send us your coordinates, we'll send someone to pick you up.</p><p>"Sure, give me a second…"</p><p>Lowering my head and checking the coordinates of the room with the aid of a small device, I quickly sent Waylan the location of the place.</p><p>Once I sent the message, lowering my hand to stare at the communication device, I asked, "Did you get it?"</p><p>—Give me a moment… Ah, yes, I've got it.</p><p>"Good. Need something else from me?"</p><p>Leaning against the side of the wall, I once again slid down and propped my hand over my knee.</p><p>—We don't need anything else, just stay out of trouble…</p><p>A brief pause ensued. After a couple of seconds, in a low whisper, Waylan said.</p><p>—…and thank you for your hard work. Had it not been for your help, the war would've never been over.</p><p>"No problem. Not like I did everything myself anyway." I tiredly said, closing my eyes.</p><p>After checking the time, I realized that I had only slept for a total of three hours. This was clearly not enough as my mind was still quite groggy.</p><p>—I'll hang up now. Soon enough, someone should come to pick you up. Once they knock on the door, open it, okay?</p><p>"Sure…sure…" I replied, my eyes stinging slightly from the lack of sleep.</p><p>—I'll see you soon. Great job.</p><p>"Mhm…you too."</p><p>Those were the last words I said before turning off the communication device, and my eyelids slowly came to a close.</p><p>***</p><p>After the events of Inferno, the raging war that took place on the outer walls of Henolur came to a halt as the demons stopped their assault and retreated.</p><p>Although not many knew what had happened, once Gervis, alongside the others, returned and announced the end of the war, everyone in the city rejoiced as the citizens and warriors alike basked in a joyous atmosphere.</p><p>One point of concern was the fact that the demons had still not fully retreated, but they had stopped attacking and even showed signs of giving up did not go unnoticed by the dwarves, who rejoiced boisterously.</p><p>The bars and taverns were filled with dwarves, orcs, and even elves as they happily chatted amongst each other.</p><p>It was clear that the war, although brought great suffering, had also strengthened the bonds of those who participated in it. They all held each other in high regard.</p><p>Sitting inside of a particular tavern in Henolur, on a round table, were six hooded figures in black.</p><p>"So you're saying that on your way to the dampening system you encountered a duergan lady, and she's still alive?"</p><p>One of the hooded figures spoke up in shock, his body trembling slightly.</p><p>"What have you done with her? Have you told the others about her…? Or, do only you guys know?" The hooded figure asked, his tone containing a great depth of solemnity.</p><p> "We weren't the only ones present back then since we had another dwarf escort us to the location you sent us. That's also where we met her… But her condition seemed quite critical. She looked to be on the verge of death when we met her."</p><p>"What was the Duergar's rank?" The hooded figure asked. His serious tone made the atmosphere on the table turn somber.</p><p>"If I don't recall wrongly, she was S ranked. Her injuries were quite serious…"</p><p>"I see…" The hooded figure muttered with a complex frown on his face. He lifted his face slightly, revealing the features of a young man with pale blue eyes resembling the ocean. It was Ren.</p><p>He was currently seated with his members of Caïssa: Ava, Hein, Leopold, Smallsnake, and Ryan.</p><p>The duergar they were talking about was probably Durara, the one who killed Ultruk.</p><p>Recalling that piece of information, Ren's face paled slightly, but he was able to recompose himself quite quickly.</p><p>Turning to glance at the others on the table, Ren carefully worded his reply, "She's extremely dangerous. You must be extremely careful around her. In fact, have you even restrained her mana yet?"</p><p>"Don't worry, we're not that stupid."</p><p>But from the looks of things, his worries were unnecessary as Leopold and the others gave him confirmation that they had indeed sealed her up.</p><p>"Where is she?" Ren asked.</p><p>"She's currently locked up, thanks to the dwarves," Hein responded, taking a small sip of the ale in front of him.</p><p>"She's locked up?" Ren's brow raised a little before he leaned back on his chair.</p><p>Stroking his chin, Ren had a thoughtful look on his face.</p><p>Curious as to what he was thinking, Smallsnake opened his mouth, deciding to ask directly. He had an ominous premonition.</p><p>"What are you thinking so hard about? You can't be…"</p><p>"Can't be what?" Ren asked, raising his head, a sly smile appearing on his lips.</p><p>All too familiar with the smile, Smallsnake raised his hands and shook them in panic.</p><p>"You… No, I'm against it! Whatever you're planning, I'm totally against it!"</p><p>"What's wrong, Smallsnake?" Ren asked, his smile only growing.</p><p>"What's up with you? What are you talking about?"</p><p>The others, or to be more precise, Leopold and Hein, grew confused at Smallsnake's sudden outburst.</p><p>Raising his hand and pointing it in the direction of Ren's face, Smallsnake raised his voice.</p><p>"You see that smirk over there? No? Well, I've seen it plenty of times. Whenever he smiles like that, you should know that nothing good will come. Trust me, I've experienced it too many times for you to imagine."</p><p>Listening to Smallsnake's words, Ren innocently tilted his head.</p><p>"What are you talking about, Smallsnake?"</p><p>Right as he said those words, the corners of his mouth moved up slightly.</p><p>This did not go unnoticed by Smallsnake. He slapped the table and once again pointed his finger in Ren's direction.</p><p>"You see it? That smirk over there! That's the smirk of a devil! The Devil, I say!"</p><p>"Tsk."</p><p>Clicking his tongue, Ren turned his head and muttered quietly, "Relax, Smallsnake. I'm not planning on doing anything you're thinking about just yet."</p><p>"Yet… I don't like that 'yet'. Are you telling me that you're planning something later!?" Smallsnake muttered in panic, his complexion paling.</p><p>Just recalling the events in the past made Smallsnake's body tremble.</p><p>Frowning slightly, Ren briefly glanced in Smallsnake's direction and didn't answer.</p><p>"As I was saying, I won't have time to do anything crazy…"</p><p>"Oh dear god, save me."</p><p>Smallsnake clasped his hands together and looked up towards the ceiling, praying in earnest.</p><p>"What have I done to deserve this?"</p><p>Taking a glimpse at Smallsnake from the corner of his eyes, Ren paused and secretly shook his head.</p><p>'Am I really that bad?'</p><p>He really couldn't understand where Smallsnake was coming from.</p><p>Although he did do some crazy stuff, it worked out most of the time. He was merely overreacting, in his opinion.</p><p>"Anyways, as I was saying, we're going to be attending the mourning ceremony tomorrow, and in two weeks' time, once they are all done with the mourning, the elders have invited us along Waylan and the others to commemorate our achievements."</p><p>Leaning forward slightly and pinching his fingers, Ren looked at everyone in the eyes and softly said, "You know what I mean, right?"</p><p>"…"</p><p>Everyone's brows twitched as they looked at Ren. They all understood what he implied. They had to admit, they were also tempted by the upcoming rewards. But to be so blunt about it…</p><p>Only Ren could do it.</p><p>While the others looked at him in disgust, Ren took a sip of his ale.</p><p>"Ukhh…"</p><p>But the moment his lips touched the ale, his face cramped up.</p><p>"Ugh, it's so bitter..."</p><p>"What do you expect?" Smallsnake said, taking a big swig of the ale in his hands. An odd look appeared on his face as he looked at Ren opposite of him.</p><p>It had been an hour since Ren entered the tavern, and he barely drank the ale.</p><p>He kept trying, but the result was always the same. His face cramping up, and then him muttering about how bitter his drink was.</p><p>Annoyed by the stares coming from the others, Ren stood up and lightly glared at them.</p><p>"Well, whatever. You guys do yourselves. I'm done drinking. I'm going to rest up a little more."</p><p>Although a couple of days had passed since the war had 'ended', Ren was still tired.</p><p>In fact, now that he thought about it, he did not even have a single moment of rest after escaping the Monolith, as he was repeatedly dragged into complicated situations.</p><p>Now that the situation in the city had calmed down, Ren was planning on using this time productively. And that was by resting as much as he could.</p><p>He had earned himself a little bit of rest.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-364.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-366.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

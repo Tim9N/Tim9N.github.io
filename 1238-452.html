@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 452 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 452 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-451.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-453.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Where am I?"</p><p>My mind was a mess. I couldn't really think properly. My body was numb, and the moment I opened my eyes, all I saw was darkness.</p><p> A pitch-black darkness. </p><p>A darkness that seemed to completely eat the world around me.</p><p>Placing my hand on the ground, or what seemed to be the ground, I propped my body up.</p><p>"...What is happening?"</p><p>I muttered out loud.</p><p>Glancing around me, and only seeing darkness, at first I was confused. However, recalling the events that had happened not too long ago, I was able to instantly realize that what was happening to me was definitely connected to the other Ren.</p><p>'This place, I have been here before.'</p><p>Once I made the connection with the other Ren, everything started to make more sense as I realized that I had been in this place before.</p><p>It wasn't that long ago as well.</p><p>Around the time when I had activated Monarch's indifference to test my theory and communicate with the other Ren.</p><p>Once my thoughts paused there, I instantly looked around the place in hopes of finding the other Ren, but regardless of how much I looked, I couldn't find him.</p><p>My brows knit.</p><p>"Where are you."</p><p>I muttered out loud. From what I recalled, the last time, when I called him, he instantly appeared before me. Perhaps it was the same now.</p><p>"..."</p><p>Unfortunately, I was only met with silence.</p><p>Just as I was about to call out for him again, I closed my mouth as I suddenly recalled something.</p><p>'Could it perhaps be the chains?'</p><p>Right before I appeared in this place, I remembered the other Ren being bonded by a series of chains. Was the reason why I couldn't find him because of this?</p><p>This was a plausible scenario.</p><p>Taking a look at my surroundings one more time, I took a step forward and walked towards the darkness. Even though I wasn't sure of where I was headed, it was better than staying in the same place.</p><p>After all, there was nothing but darkness around me.</p><p>Right now, my priority was going back.</p><p>***</p><p>"What in the world did he do?"</p><p>"That..."</p><p>Hearing Melissa's question, Kevin opened his mouth and tried to say something, but he proceeded to helplessly shake his head.</p><p>"I really don't know if I have to be honest. I was coming back from training and this is how I found him."</p><p>As he said those words, from the side of his eyes, Kevin eyed a black cat in the distance. At the moment, she was the only person that knew about what happened to Ren.</p><p>Unfortunately, for some reason, she refused to say anything or even show up.</p><p>Listening to Kevin's words, Melissa raised her brow.</p><p>"You don't know?"</p><p>"I don't."</p><p>Kevin earnestly replied, staring straight into Melissa's eyes. This persisted for a couple of seconds before Melissa eventually gave up.</p><p>"Alright, if you say so."</p><p>Then, turning around she walked out of the room, much to Kevin's surprise.</p><p>"Wait, where are you going?"</p><p>Halting her steps, Melissa glanced at Kevin.</p><p>"Where else? I'm going back."</p><p>"What about him?"</p><p>Kevin pointed at Ren's sickly figure that was laying down on the bed. Staring at him, Melissa scornfully looked at Kevin.</p><p>"Who told me to come here without telling me what type of situation this was? I only came here with the basic stuff. You expect me to have the right tools to heal him?"</p><p>Reprimanded by Melissa, Kevin wanted to say, '...But it's because you would've refused if I didn't do it this way.' However, he knew that this wasn't the time or place to fight against Melissa as he could only apologetically lower his head.</p><p>"Had you actually told me that Ren was in danger I would've come here with more potions and preparations? Had you told me I would've been able to save so much time, and now because of you, I'm forced to go back to get the proper potions that might help him get through this."</p><p>"You're right, you're right, I'm wrong."</p><p>For every word that Melissa said, Kevin lowered his head and apologized. Honestly, all of Melissa's words went from one ear to the other, and the only reason he was apologizing was just to appease her anger.</p><p>He really couldn't care less about her complaints. But he knew that there was a time and place to act up.</p><p>Fortunately, Melissa's anger did not last for long. As she too realized how dire the situation was, saying a couple more discourteous words, she directly left the room, finally leaving Kevin alone once again.</p><p>Clank—!</p><p>"Haaa..."</p><p>Once Melissa left the room, Kevin powerlessly sat back down on the sofa as he let out a long and tired sigh. Turning to look at Ren whose condition seemed to have stabilized, Kevin forced a smile.</p><p>"Seriously, just what in the world did you do to suddenly find yourself in this kind of situation?"</p><p>Kevin knew Ren well. He was an extremely cautious person that would try to not take any risks at all. For him to find himself in such a situation, Kevin just couldn't understand what had happened.</p><p>Right as he was about to take another long sigh, a charming voice suddenly entered his head, startling him.</p><p>[Soon Amanda will come with the elven queen and her mother, when that happens, I want you to take their attention.]</p><p>"Huh!?"</p><p>Jumping back in shock, Kevin almost bumped his head against a nearby table as he looked around the room. It wasn't long before his eyes paused on a black cat in the distance.</p><p>"Did you just talk inside of my head?"</p><p>Kevin asked. Nodding her head, Angelica sat down on top of the shelf and continued.</p><p>[Once the elven queen and Amanda's mother come in, if they do find out about me, which they probably will since the queen's perception is strong, I want you to tell them that I'm contracted with Ren.]</p><p>Kevin's brows jumped up a little. He naturally understood the implications in Angelica's words. She was trying to tell them that if anything happened to her, Ren would die. Kevin did not doubt her words as he knew that the two of them were under the same contract.</p><p>For her to say such words, it felt as though the queen was going to do something to her if she found out about her existence.</p><p>Alarm bells instantly rang inside of Kevin's head, as he suddenly asked.</p><p>"Do you have something to do with Ren's situation?"</p><p>"..."</p><p>Silence.</p><p>Kevin's question was met with silence as Angelica simply stared at him.</p><p>"So?"</p><p>Kevin asked once again. However, yet again, he was met with silence.</p><p>[Just know that the reason why I called you first is because Ren told me to do so. Your job is to stop them from killing me.]</p><p>"But why would they kill you?"</p><p>Kevin asked. However, yet again he was met with silence.</p><p>Angelica's lack of answers caused frustrations to rise from deep within Kevin's body. All Angelica did was order him around without telling him exactly what was going on. Had it not been for his friend's situation, he would've flipped out by now.</p><p>In fact, he was already irked by Melissa's attitude, and Angelica's attitude did not help at all!</p><p>'Calm down, calm down, I'm bound to find sooner or later. Since she told him that he needed to protect her for when the elven queen and...huh?'</p><p>Snapping his head in Angelica's direction, Kevin suddenly asked.</p><p>"Wait, did you just say Amanda's mother?"</p><p>[I did.]</p><p>Angelica replied causing Kevins' eyes to open widely.</p><p>"How is that possible?!"</p><p>Being friends with Amanda, Kevin knew about her mother's circumstances. About how she had left her when she was young to never appear again. For her to suddenly appear in Issanor, Kevin was naturally shocked.</p><p>Opening his mouth again, he incredulously asked.</p><p>"How in the world did she appear here?"</p><p>[That's b—]</p><p>Clank—!</p><p>Before Angelica could reply, the door burst open and three figures walked in. Before Kevin had the chance to see who the three figures were, one vanished from the spot before reappearing in front of Ren.</p><p>Bending down on the bed, a look of worry flashed across Amanda's eyes as she stared at Ren's pale figure on the bed.</p><p>Taking a couple of seconds to take a good look at him, Amanda bit her lips before turning to look at Kevin and asking.</p><p>"W...what happened!?"</p><p>***</p><p>For how long did I walk for? ...I really wasn't sure at this point.</p><p>It felt as though I had been walking for over a day, yet at the same time, knew I didn't. The darkness around me made me lose my sense of time and direction as I aimlessly wandered around the darkness.</p><p>A thought suddenly occurred to me as my feet came to a pause.</p><p>'Does the other Ren live in this world?'</p><p>If so, his behavior made sense. To be trapped in this voidless world for such a long time, anyone would go crazy. I was already starting to feel that way, and yet I had only been here for a day at most.</p><p>How long had the other Ren been here for?</p><p>My thoughts continued to wander astray as I continued to move around the never-ending darkness.</p><p>At some point, I just continued to walk for the sake of walking. I had long stopped thinking and was just blankly staring at the black void before me.</p><p>'How long must this go on for?'</p><p>I wondered as I took another step.</p><p>'Is there anything else apart from darkness here?'</p><p>'Just how big is this place?'</p><p>'Am I walking in circles?'</p><p>Question after question popped up inside of my mind as my eyes dulled and my feet came to a stop.</p><p>'I can't do this anymore.' I thought as I lowered my head. The loneliness and purposeless wondering made it hard for me to continue walking. What was the point in moving forward when there was no direction to move?</p><p>"haaa..."</p><p>I let out a long exhausted sigh before sitting down in the void.</p><p>"Hm?"</p><p>Clank. Clank.</p><p>But just as I sat down, my ear picked up a faint sound coming from the distance. Making sure that the sound was real, vitality quickly returned to my face.</p><p>"This..."</p><p>Clank. Clank. Clank. Clank.</p><p>"This sound, it sounds familiar."</p><p>The more I heard the sound, the surer I was that I had heard it before. It didn't take me long to figure out what the sound was as I immediately stood up and moved in that direction.</p><p>Clank. Clank. Clank. Clank.</p><p>With each step I took, the louder the sound became. It wasn't long before the sound fully reached my ears, and I finally spotted a familiar figure in the distance.</p><p>With chains moving all over his body, binding him together toward the ground, I finally saw Ren again.</p><p>Seemingly being able to sense my presence, turning his head toward my direction, his deep blue eyes locked onto me before he softly said.</p><p>"Took you long enough."</p><p>Walking up to him, my footsteps came to a halt. My eyes furrowed as I heard his words.</p><p>"Took me long enough? Were you expecting me?"</p><p>"Didn't I say it before? That we'd see each other soon enough?"</p><p>The other Ren indifferently said as he gazed at his arms and legs which were currently being bonded by thick metallic chains. Taking his eyes away from them and raising his head once again, he muttered.</p><p>"We just have enough time..."</p><p>"Enough time?"</p><p>My brows furrowed even more. Recalling just what kind of state I was in before entering this place, I shook my head.</p><p>"What time? Right about now I should be on the verge of death because of you."</p><p>But contrary to my worries, the other Ren simply said.</p><p>"It's fine, you won't die."</p><p>"I won't die?"</p><p>Hearing his words, I grew confused. Before I could say anything else, the other Ren added.</p><p>"Yes, I won't let you die even if you wanted to die. I've already made the proper calculations."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-451.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-453.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

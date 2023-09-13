@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 340 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 340 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-339.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-341.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>340 Setting the pieces in motion [4]</p><p>Ci Clank!</p><p>Exiting the room I was staying in, I calmly looked at my surroundings.</p><p>'It's a lot quieter than I thought,' I thought.</p><p>Now that I was done with the deactivation of the beacons, it was now time that I properly scouted the place.</p><p>Since I had to suddenly hasten my plans, I decided to get everything ready within the next day or so.</p><p>The first step was to know the environment well.</p><p>Although I knew the general layout of the place thanks to some of the things Waylan had sent me, I wanted to get a proper look myself.</p><p>After all, seeing in person was much better than seeing through a small map. Moreover, the map was created by the spies sent by the dwarves. With everyone being strictly monitored, they were bound to miss something.</p><p>"Karl? What are you doing?"</p><p>But just as I took a couple of steps outside of my room, someone called out for me; it was the guard that had been assigned to me.</p><p>Turning around, I irritably said.</p><p>"What do you care what I do?"</p><p>My unfriendly tone was done so that the guard would get the idea, and leave me alone.</p><p>Unfortunately, the guard didn't seem to care.</p><p>Unfazed by my tone, he calmly said.</p><p>"I am your guard, of course, I care. Right now you're probably one of the most wanted duergar in the whole of Henlour. I was told never to leave your side."</p><p>'...ah, right, should've expected this.</p><p>In hindsight, he wasn't wrong. Being the one responsible for shutting down the beacons, my life was in quite a bit of danger.</p><p>Saying that I was the most wanted duergar wasn't a lie. I truly was.</p><p>Although I could probably defend myself now that I was &lt;C+&gt; rank. with my every move being watched, I couldn't carelessly kill anyone at the moment.</p><p>Plus...</p><p>Eyeing the guard next to me, I knew that his only goal wasn't just to guard me.</p><p>Most likely, he had been sent by the elders to keep watch of me.</p><p>It seemed like they still did not fully trust me.</p><p>Unaware of what I was thinking, the guard continued talking.</p><p>"We've already managed to stop two assassination attempts that were aimed for your life. If you go alone, I won't be able to protect you, and the elders would not let me go. For my life, I have to follow you."</p><p>"...Ugh, fine."</p><p>Listening to him continuously speak, I eventually relented.</p><p>His presence wasn't the worst thing ever. At the very least, he could protect me.</p><p>It would be pretty ironic if I died at the hands of a dwarven spy.</p><p>Since only a few individuals knew of my presence here, as of this moment, I was the enemy of all dwarfs.</p><p>"Thank you for understanding!"</p><p>Seeing me agree, the guard sighed in relief and thanked me.</p><p>He then proceeded to run up to me.</p><p>"So, where are you headed?"</p><p>He asked, finally catching up to me.</p><p>Glancing at him from the corner of my eyes, I responded.</p><p>"Just casually looking around. I've been in the room for too long. Need a breath of fresh air."</p><p>"Ah, I see."</p><p>The guard repeatedly nodded his head in understanding.</p><p>He then started complimenting me out of nowhere.</p><p>"With what you've achieved, getting a little bit of rest is the least you deserve. Your achievements are truly something noteworthy. With you, we might very well be able to finally cleanse this place of those bastards."</p><p>"...right."</p><p>Listening to the guard speaking, I kept an indifferent and stoic face.</p><p>Whatever he was saying, just went from one ear to the other.</p><p>After a while of this nonsense, just as I was about to get fed up bv his bootlicking. a thought suddenly struck me.</p><p>'Wait, why don't I put the guard to good use?'</p><p>since he insisted on following me, might as well have him be my guide.</p><p>As he was a guard, without a doubt he knew the ins and outs of the place.</p><p>Perhaps this may turn into a more fruitful opportunity than I imagined.</p><p>Making up my decision, turning my attention back to the guard, I opened my mouth and ordered.</p><p>"Oy, give me a tour of the place."</p><p>"You what?"</p><p>At my unexpected request, the guard halted his steps and looked at me with an incredulous expression.</p><p>Also halting my steps, I looked back and asked in confusion.</p><p>"What's wrong?"</p><p>"A tour? ...have you not seen the place already?"</p><p>"No."</p><p>I shook my head and continued to move forward.</p><p>Stroking my long beard, I muttered.</p><p>"I spend most of my time doing research. I've never bothered to check this place out so I've got no clue about where I'm going. Since you like talking so much, be useful and tell me about the place."</p><p>As I was talking, I secretly glanced at the guard from the corner of my eyes, hoping that he didn't notice anything strange.</p><p>Although my request sounded a bit suspicious, given Karl's character, I was probably not that far off from the truth.</p><p>After all, in his description, it did say that he was a research fanatic. Never left his room as he wanted to continue his research on memory extraction.</p><p>In fact, he spent so much time researching that not many knew how he acted. This was why I was able to somewhat get away with the things I was doing.</p><p>The fact that the guard didn't seem too shocked by my request was a testament to this, much to my fortune.</p><p>"Ah, I see."</p><p>And I was indeed correct.</p><p>After the initial shock of my request and thinking things through, the guard quickly recovered before nodding his head.</p><p>"I would be more than delighted by this request...if you would please."</p><p>Picking up his pace, he started walking ahead of me.</p><p>As he walked, he said.</p><p>"I'Il make sure to give you a detailed tour of the place. By the end of it, you will know the whole place as if it was your own house."</p><p>Walking behind him, upon hearing his words, I suddenly smiled.</p><p>"I couldn't ask for anything better."</p><p>***</p><p>[Lock, Class A-25]</p><p>"Hey, what have you been doing this past month? You've been acting awfully suspicious."</p><p>Emma poked Kevin who was packing up beside her.</p><p>Standing up and putting both hands on the table, she looked at Kevin who was still seated.</p><p>"You also seem a lot more cheerful than before...did something good happen?"</p><p>"Not particularly."</p><p>Kevin replied, putting his notebook and tablet away in his dimensional space.</p><p>"Then why are you acting so suspiciously? Going out of the academy repeatedly, spending more time training in your room rather than at the training grounds, and even laughing to yourself at random times…Something isn't adding up."</p><p>The more she spoke, the smaller her eyes became.</p><p>Lifting his head and staring at Emma's beautiful face, Kevin thought for a moment before standing up.</p><p>"Follow me, I've got something to tell you."</p><p>"Wa-wait!"</p><p>But before Emma could protest, grabbing onto her wrist, he dragged her out of the classroom.</p><p>"Kevin what are you doing? Let go of me!"</p><p>Ci Clank-!</p><p>Exiting the building, Kevin soon headed for a rather secluded area.</p><p>"Kevin let go of me!"</p><p>Along the way, Emma would protest, but regardless of how much she protested, Kevin did not let go.</p><p>On another note, Emma's resistance was pretty weak. If she wanted to she could've easily gotten herself free.</p><p> Stopping in a rather secluded area, one devoid of any students, Kevin finally let of Emma's wrist.</p><p>"W-what are you trying to do."</p><p>Holding onto her wrist, Emma looked at Kevin; her face was dyed red in embarrassment.</p><p>Her thoughts were running wild.</p><p>'W-what do I do!? Is he planning on doing what I think he's doing…is he planning on confessing to me?'</p><p>Holding onto the side of her face, Emma could feel her cheeks burning up.</p><p>Staring at Kevin who was in front of her, Emma's continued to have wild thoughts as she couldn't help but fall into her own delusions.</p><p>'...should I say yes or no? although I do like Kevin, I don't know if this is the right time. We've just become third years and...'</p><p>Unaware of what Emma was thinking, Kevin, checked his surroundings to see if there was anyone present.</p><p>Then, waving his hand, he formed a small barrier around them.</p><p>"Good, no one is her-"</p><p>"A...are perhaps trying to..."</p><p>Emma shyly said from the side, cutting Kevin off.</p><p>Tilting his head, Kevin asked.</p><p>"Hm? Trying to do what?"</p><p>"You know c..con-"</p><p>"Emma I know where your father is."</p><p>Before Emma could finish her sentence, Kevin cut her off and went straight to the point.</p><p>"Con...c-What?"</p><p>Throwing Emma off guard, the moment she processed Kevin's words, her body froze and her face stiffened.</p><p>Turning her attention back towards Kevin, her face frosted. Gone was her previous flustered appearance.</p><p>"What did you just say?...You better not be messing with. I will never forgive you if you do that."</p><p>Looking back into Emma's eyes, Kevin answered seriously.</p><p>"I'm not joking, I know where your father is."</p><p>"...how?"</p><p>Biting her lips, Emma's shoulders trembled slightly. The side of her eyes reddened slightly.</p><p>Raising her hand, she pointed her finger at Kevin.</p><p>"Y...you better not be messing with me, Kevin. I am warning you."</p><p>'I am not. I know where he is."</p><p>Grabbing onto Kevin's shoulders, Emma desperately said.</p><p>"Tell me...please...I want to know."</p><p>Three years.</p><p>She had not seen her father for three years.</p><p>Ever since his disappearance, her life had slowly become miserable.</p><p>Rumors that her father had died continuously spread throughout her family, and her position slowly started to fall more and more.</p><p>It had gotten to the point where she couldn't even step foot into that place before someone would try looking for trouble with her.</p><p>She couldn't take it anymore.</p><p>Moreover, she couldn't accept her father's death. How could he, one of the strongest humans in existence die? Emma couldn't accept it.</p><p>But as time passed, and after receiving no contact from him for the past three years, her belief in her father slowly started to fade away.</p><p>'Perhaps he truly died.'</p><p>Emma thought to herself sometimes in her room multiple times. Perhaps he had truly died and the reason he couldn't contact her was because he couldn't.</p><p>And the more time passed, the more she started to believe this.</p><p>But just when she had given up and was starting to come to terms with it, Kevin suddenly dropped a bombshell on her.</p><p>How could she not be this shocked?</p><p>"Is he okay? ...did something happen to him?"</p><p>The number of questions she wanted to ask were endless, but what she wanted to know the most was whether he was okay or not.</p><p>All that mattered to her was whether her father was doing well or not.</p><p>"Calm down."</p><p>Grabbing onto Emma's wrist, Kevin smiled.</p><p>"He's doing fine."</p><p>Emma raised her head.</p><p>Her weak and fragile figure pained Kevin's heart.</p><p>"...h...he is?"</p><p>She weakly said, tears dripping down the side of her cheek.</p><p>Wiping one of the tears from her face, Kevin smiled.</p><p>"He is doing well."</p><p>The moment he said those words, as though all of the pain and resentment she had bottled up over the past few years had disappeared, Emma finally smiled.</p><p>"I...is that so...I'm glad....I'm so glad..."</p><p>It was a smile filled with relief.</p><p>But to Kevin, who was standing opposite to her, the smile looked like the most beautiful thing he had ever seen.</p><p>"Kevin?"</p><p>It was only after Emma called out for him that he realized that he had fallen into a trance.</p><p>Scratching the back of his head, he tried his best to hide his embarrassment.</p><p>"Ah, yes, as I was saying, your father is currently with the headmaster of the academy on a mission in the dwarven domain..."</p><p>And so Kevin soon started telling Emma about what he knew.</p><p>He of course did not tell her about Ren and the fact that a war was happening, but the more he talked, the bigger her smile became, and the more entranced he became with it.</p><p>***</p><p>At the same time, Leviathan building, Lock.</p><p>Clank-!</p><p>The window of a particular room opened up and the sound of light footsteps echoed across the empty room.</p><p>Step. Step. Step.</p><p>It wasn't long before the footsteps halted.</p><p>As the footsteps stopped, a large shadow cast on the wooden floor of the room, right next to a large wooden desk.</p><p>Extending his hand, the shadow reached out for the bookshelf on top of the wooden desk. Soon the shadow took a small rectangular object.</p><p>Upon touching the rectangular object, the shadow halted for a second. Then, putting it on the table, the shadow's long and slender fingers were revealed.</p><p>Flip- Flip-</p><p>Soon, a sound similar to that of pages flipping sounded.</p><p>The sound continued for a couple of seconds before the shadow's body started to tremble uncontrollably.</p><p>What followed after, was a raspy voice that chilled the whole room.</p><p>“...ku, ku, ku, I've finally found you."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-339.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-341.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

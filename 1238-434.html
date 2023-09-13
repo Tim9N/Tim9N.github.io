@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 434 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 434 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-433.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-435.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Upon confirming that I was indeed 876, the very air in the room chilled by a few degrees.</p><p>When I felt this, I merely smiled.</p><p>There was not an ounce of nervousness inside of my body.</p><p>Octavious Hall was a pragmatic man. He was someone who calculated profits above all else. Although he didn't look like it, from where I sat, I could tell that he was fuming.</p><p>If there was one thing that Octavious hated, it was losing control.</p><p>In a way, he was like me, except that he sought a different type of control. He sought control for the sake of his minuscule pride, while I sought control for the sake of being able to quickly adjust over the slightest of changes.</p><p>Even then, seeing his current complexion, I couldn't help but think to myself.</p><p>'Guess Gervis overdid it…'</p><p>There could only be one reason I could think of for him to be like this, and that was because he had been threatened by Gervis.</p><p>Well, it was inevitable. I had to guarantee my own life, after all.</p><p>"Does your confidence stem from Gervis's backing?"</p><p>Octavious finally spoke, his cold voice reverberating throughout the whole room.</p><p>I tilted my head for a second before eventually nodding.</p><p>"In a way, yes."</p><p>"So you're not afraid I will ignore his warning and kill you right here on the spot?"</p><p>"Yup, not at all." I shook my head. Then, glancing at him from the corner of my eyes, I softly added. "To be honest, I fear Melissa more than you."</p><p>This was not a joke.</p><p>As I've said before. Octavious was a pragmatic man. He wasn't the type to act rashly.</p><p>Since Gervis had obviously threatened him, it was clear that he couldn't make any rash moves, and as such, I wasn't worried about my safety.</p><p>But unlike him, Melissa would attack me even if she was threatened. There was a clear difference between the two.</p><p>"I see."</p><p>Octavious nodded. Surprisingly, he didn't look too fazed by the fact that I mentioned his daughter.</p><p>Did he perhaps already figure out that I was the one working with her regarding the magic cards…? If so, things were going to be even easier than I thought.</p><p>After a brief moment of silence, he opened his mouth again. His voice sounded much calmer than before.</p><p>"Your goal is freedom, isn't it?"</p><p>My brows knit.</p><p>"…Yes."</p><p>At my confirmation, Octavious quickly followed up with another question.</p><p>"And you're trying to frame Aaron as 876 in order to gain freedom, correct?"</p><p>"Right."</p><p>It was pretty much the gist of it, yes.</p><p>Guess he had fully understood what I was planning. However, his next words caused the frown on my face to deepen.</p><p>"What about your family?"</p><p>"… Don't worry about them."</p><p>I coldly replied. However, it seemed as though it went to deaf ears as Octavious continued.</p><p>"By now, I'm sure that it is not just I who figured out that you're 876. The Monolith must have found out as well. Since they can't come here, in all likelihood, they are going to target your parents. Was this the freedom that you wanted?"</p><p>Closing my eyes, I calmly looked back towards the scenery of Issanor.</p><p>"They won't do shit."</p><p>I replied after a while. A smile soon crept up on my face.</p><p>"Do you believe I didn't think this far ahead?"</p><p>I wasn't that naive to think that he would be the only one to figure things out.</p><p>From the very beginning, I knew that the Monolith would find out about my identity the moment I revealed my face.</p><p>I had already made preparations a long time ago. At the moment, they should be in safe hands.</p><p>Turning my attention back towards Octavious, I lazily said, "My family is safe, and they won't have any trouble with you or Monolith."</p><p>To my surprise, instead of displaying anger, Octavious merely closed his eyes and nodded.</p><p>"So you've thought things through."</p><p>Opening his eyes once again, he leaned back on his chair.</p><p>"If you've thought that far, then I have no choice but to listen to what you have to say."</p><p>Octavious interlocked his fingers.</p><p>"So, tell me. Why should the Union help you?"</p><p>"… Why should you help me?"</p><p>My eyes opened wide before I eventually laughed. Turning to look at Octavious, I looked around the room before I pointed toward myself.</p><p>"Are you messing with me? ...I need your help?"</p><p>Did he smoke something before coming here?</p><p>When in the world did I ever say that I needed their help?</p><p>Did they actually think that I would seek help from the one organization that turned its back on me?</p><p>How laughable.</p><p>Lifting my head up, I stared straight into Octavious's eyes. The smile on my face completely disappeared as I leaned in closer.</p><p>"Listen well, and listen good."</p><p>"Let's make something clear. I never needed your help, nor do I need it now. All I'm doing right now is giving you a choice."</p><p>It seemed as though he had completely misunderstood the situation. I didn't ask him to come to me for my sake, no, it was for their sake.</p><p>Lowering my hand and shifting my body forward a little, I asked, "I'm sure by now you've seen my worth, have you not?"</p><p>Octavious didn't answer. I continued.</p><p>"You've seen my fight, have you not? You've also seen that I'm on good terms with the dwarves, and not only that, I've saved the asses of some of your precious people a while back."</p><p>The more I spoke, the sharper my words became.</p><p>I was simply venting out my frustrations. Not only did I see Monica and the others back at the Monolith, but I also had many other qualities that should prove my worth.</p><p>Lowering my head and gazing at my watch, I tapped on the screen and a holographic image appeared before us.</p><p>Presented in the holographic image was a replica of the contract Octavious and the others had signed with the Monolith.</p><p>Once I took out the contract, Octavious's face finally changed a little. His voice turned deep, and he asked, "Where did you get a copy of that?"</p><p>"You probably already know," I replied. The answer was obvious anyways. It was from Waylan.</p><p>I had already briefed him on my situation with the Union, so he knew of my circumstances. The moment we arrived in Issanor, as the Vice-Leader of the Union, he helped me get a copy of the contract.</p><p>It was only after reading through it that I was able to find the holes within it.</p><p>Regarding Waylan, things would've been easier if he was here, but he headed back to the human domain the moment he got rid of Jasper. He had to sort out his house after all.</p><p>Concerning the contract, it was just a copy and not the real thing, but it was enough.</p><p>"Have a look over here."</p><p>Raising my hand, I pointed toward two highlighted parts in the contract.</p><p>"The terms of the contract will be null if Party A (Union) fails to provide adequate effort in the capture of wanted fugitive 876, dead or alive."</p><p>I slowly recited before pointing toward another section of the contract.</p><p>"Because Party A does not have the means to properly identify 876, Party B will provide Party A with a tracking system as well as a blood measuring system that will verify the identity of the captive. If the two criteria are met, Party A is requested to bring the individual to Party B."</p><p>Pausing, I raised my head and looked at Octavious.</p><p>"I wonder what these two things could be?...You know, the tracking system, and blood measuring system."</p><p>I proceeded to cross my arms before sarcastically saying.</p><p>"Maybe the device that was found in Aaron's head or even possibly the traces of serum found inside of his body?"</p><p>In response to my question, Octavious merely closed his eyes and continued to not say anything.</p><p>I shrugged it off.</p><p>'Party B will provide Party A with a tracking system as well as a blood measuring system that will verify the identity of the captive.'</p><p>These words in the contract were what made me act the way I did back then when I attacked Aaron.</p><p> I wasn't just venting out my emotions on that day. Even though a part of the reason was because of that, it wasn't the main reason why. </p><p>No, I had taken that time to implant a chip inside of his head as well as inject a dosage of the serum into his body in order to meet the criteria that the Monolith had set for when capturing 876, or to be more precise, me.</p><p>The reason why the criteria was set as such was because the Monolith feared that the Union would just send over a dummy and say that he was 876.</p><p>They had to be more specific with their demands, hence why they set those two criteria. After all, the Monolith was sure that the Union couldn't replicate the serum as well as the chip.</p><p>They had every reason to believe that the criteria was enough, but unfortunately for them, they had not taken into account that Ryan was able to replicate the chip inside of my head and that I still had a couple of dosages of the serum on me.</p><p>Furthermore, the contract was signed before I even went to the dwarven domain, which was about to go to war at that time.</p><p>Never in their wildest expectations did they believe that I would be able to gain their favor and create a small replica of the chip.</p><p>"If, in any way, Party A tries to tamper with the evidence, the contract will nullify, and Party A will suffer heavy penalties."</p><p>Tapping onto the screen of my watch, the hologram disappeared.</p><p>"I'm not part of the Union, so the contract terms have still not been breached," I stated. "Furthermore—"</p><p>"Since the contract has not been breached, once I hand Aaron over to them, the truce will still last and the Monolith won't be able to do anything," Octavious said as he cut my words off.</p><p>"...Right."</p><p>I nodded, not the least bit offended by the fact that he had cut me off.</p><p>That was pretty much the gist of the plan.</p><p>Although yes, the Monolith would know that the one they were handing over was not the real 876, but, because he met all of the criteria they had set up, they could only swallow the bitter pill.</p><p>Added with the fact that the contract wouldn't breach when doing this, not only did I have to not worry about the Monolith for a couple of years as they were still in a truce where they couldn't attack the human domain, the same would apply to the Union if they chose to support me.</p><p>Staring into Octavious's eyes and seeing a trace of clarity within them, I understood that he was weighing down his options.</p><p>Well.</p><p>'… As if he has any.'</p><p>He had no choice but to agree with my terms.</p><p>The only thing he could hold against me was the fact that one of the biggest diamond-graded guilds would hold a grudge against the Union if they choose to hand Aaron over, but it had to be noted that Kevin was the one who killed Aaron.</p><p>And where did Kevin belong to?</p><p>That's right, the Union.</p><p>This meant that they had already offended the diamond-graded guild! Furthermore, considering Kevin's talent and Octavious's pragmatic way of thinking, there was no way he was going to hand him over to them.</p><p>The bridge between the Union and Aaron's guild had long been burned down.</p><p>This meant only one thing.</p><p>He had no choice but to choose me. There was no other alternative and he understood that. I'm sure he did.</p><p>This became notable to me from how silent he was being.</p><p>'Checkmate.'</p><p>Leaning back on the bed, I once again gazed into the distance.</p><p>All the threads I had set up had finally closed down, trapping Octaviois completely. Unless he was demented, he had no choice but to say yes.</p><p>"… So, what are you going to do?"</p><p>I eventually asked.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-433.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-435.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

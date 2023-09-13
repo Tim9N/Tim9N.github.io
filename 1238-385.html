@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 385 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 385 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-384.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-386.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Stepping into the building, an amazing scene presented itself before my sight.</p><p>A sweet fragrance instantly invaded my nostrils as I took a step into the building. The hall was bathed in the hues of nature, a story told in strong browns and forest greens, making one feel close to nature itself. It was the kind of space that let the calm rise and breathe.</p><p>Walking around the venue, orcs, elves, dwarves, and humans appeared everywhere. There were even quite a few familiar faces that I had not seen in a while.</p><p>Han Yufei for example.</p><p>I had not seen him ever since leaving the Lock, and judging from the aura that he gave off, he had gone through quite the improvement over the years.</p><p>"Douglas!"</p><p>It wasn't even long before we walked into the building that a high-pitched voice sounded in the air. Following which, like a bullet, something shot in Douglas's direction.</p><p>"Calm down Monica."</p><p>But before the 'thing' could even get close to Douglas, raising his hand, the 'thing' came to an abrupt halt revealing the features of a beautiful girl with orange-colored hair. It was Monica.</p><p>Staring at Douglas with her big eyes, she raised her hands and tried to hug him.</p><p>But as if there was an invisible in front of her, she was blocked. Stopped her a few meters away from Douglas.</p><p>"Oh come on, we haven't seen each other for so long!"</p><p>Monica complained as she calmed down. Putting her hands on her lips, she pouted in annoyance. Her reaction prompted a smile to appear on Douglas's face.</p><p>He then looked around the hall.</p><p>"There is a time and place for that kind of stuff Monica. Now, as you can see is not the right time."</p><p>"Hmph."</p><p>Monica snorted and turned her head.</p><p>"You're still the same as back when I used to teach you."</p><p>Douglas merely smiled at her antics. He knew just how she was.</p><p>Recalling something, he suddenly asked.</p><p>"By the way, I don't see Donna anywhere?"</p><p>"Donna?"</p><p>"Mhm."</p><p>Turning around, Monica squinted her eyes.</p><p>"Mhh, she was just here with me. I can't see her anywhere." Looking around for Donna, Monica eventually shrugged her shoulders. "She's probably with Amber, can't seem to see her."</p><p>A look of understanding appeared on Douglass's face.</p><p>"That's right, I remember. You, Donna, and Amber were inseparable back in the academy days. It's nice that you guys are still so close."</p><p>"Well, we see each other a lot less because of w—hm?"</p><p>Abruptly halting her words, Monica's head snapped in my direction and our eyes met.</p><p>Blinking a couple of times, and cocking her head towards her right and left, her eyes suddenly opened wide.</p><p>Raising her hand, she pointed it in my direction.</p><p>"Yo—"</p><p>"Shhhh."</p><p>But before she could say anything, putting his finger on his mouth, Douglas shook his head. Indicating to her to not say anything.</p><p>Blinking a couple of times, Monica raised and lowered her hand multiple times before she let out a long breath and calmed herself down.</p><p>Then, turning her head towards Douglas, with a curious look on her face, she pointed in our direction, more precisely, mine, and asked.</p><p>"So, who are they? New disciples of yours?"</p><p>"Well…you can say so."</p><p>As he said those words I suddenly felt a tap on my shoulder. Turning my head, I realized it was Douglas.</p><p>With a smile, he patted my shoulders.</p><p>"At least he is."</p><p>"Oh, nice, nice, I was once your disciple so you can say that I'm their senior."</p><p>Monica slowly walked in my direction. Stopping right in front of me, and realizing that she was as tall as my shoulders, she looked up slightly.</p><p>A smile appeared on her face.</p><p>To the others, it looked like an innocent smile, but to me, who was being subjected to it, I could feel the malice hidden in it.</p><p>'This doesn't look too good.'</p><p>She definitely recognized me, didn't she? I took a step back.</p><p>With her hands behind her back, she leaned her body closer in my direction.</p><p>"So you must be Douglas's new disciple, right?"</p><p>I took another step back.</p><p>But that didn't seem to work, as with each step back I took, she would match my tempo and take a step forward.</p><p>It wasn't long before she arrived before me and placed her hand on my shoulder. Once she did, a brilliant smile appeared on my face.</p><p>"So very nice to meet you."</p><p>"Ukh."</p><p>I suddenly let out a pained groan.</p><p>"Oh my, what's going on here?"</p><p>Monica cocked her head to the side with an innocent look on her face. Her hand still pressed on my shoulder, squeezing my collar bone tightly.</p><p>"You seem to be in pain. Perhaps Douglas has been overworking you, hasn't he?"</p><p>"R…right…"</p><p>I struggled to reply as the pain in my collar bone intensified.</p><p>Fortunately, Monica did not hold for long as she soon released her grip. With her hands behind her back, she twirled around.</p><p>"Well, I'm glad you're doing okay, and…"</p><p>Halting her steps, she mumbled something softly. It was almost inaudible, but with my now improved hearing, I could make out her words.</p><p>"Thank you…thank you for last time."</p><p>Right after saying those words, she waved goodbye to Douglas and joined the other people in the hall.</p><p>Staring at her disappearing back, I touched my shoulder and muttered.</p><p>"That hurt."</p><p>I was lucky that she didn't mean to seriously injure me. Still hurt though.</p><p>As I was massaging my collar bone, I suddenly heard Douglas's voice from the side.</p><p>"She seems to care a lot for you."</p><p>"Doesn't look like it to me."</p><p>Did she really? My collar bone says otherwise.</p><p>"Hahaha"</p><p>Douglas chuckled slightly.</p><p>"I know that girl too well. If she really didn't care about you, she would've never have expressed her emotions like that. She may be childish, but the only reason why she acted like that with you is because she's comfortable enough with you to do that."</p><p>"If you say so."</p><p>Actually, I didn't need to be told by Douglas to know this. Her expression and words at the end were enough for me to understand this much.</p><p>Brushing my hair up, I looked at Douglas and my expression turned serious.</p><p>"Those matters aside, regarding the thing I asked…"</p><p>"I have."</p><p>Douglas solemnly replied back. His voice sounded extremely serious.</p><p>Closing his eyes for a brief moment, he turned to look at me.</p><p>"Ren, although I've done what you've asked of me...I want to ask you to not cross the line. If you cross the line, the consequences would be dire for you even if I try to help you."</p><p>"Relax," I reassure Douglas. "I know my limits. I won't go as far as you think I will."</p><p> Squinting his eyes and taking a closer look at me, trying to read my intentions, I stared back at him. Taking a deep breath, I once again tried to reassure Waylan. </p><p>"Trust me. I won't go as far as you think I will."</p><p>"…Okay, you have half an hour."</p><p>Douglas eventually relented and nodded his head. A brilliant smile appeared on my face as soon as I heard his words.</p><p>"Thank you."</p><p>Lowering my head and bidding goodbye to the others, I fixed my clothes and headed deeper into the building.</p><p>Once I was far enough from them, lowering my head and walking through the hall, I thought back at the conversation with Douglas.</p><p>'It won't count as a lie if I plan on crossing the line far into the future?'</p><p>All I did was promise Douglas that I wouldn't cross the line today, but I never said I wouldn't do it in the near future.</p><p>After all, I planned on taking my sweet time for what I was about to do.</p><p>***</p><p>Staring at Ren's slowly disappearing back, Douglas's face turned even more solemn. He then opened his mouth.</p><p>"What do you think?"</p><p>"He's mind is unstable."</p><p>Waylan replied from the side. A similar look to Douglas appeared on his face.</p><p>With his hands in his pockets, he muttered.</p><p>"I don't think he will be able to hold back."</p><p>"I think the same. I'm worried he will do the exact thing he told me he won't do, should I cancel?"</p><p>"No."</p><p>Waylan shook his head.</p><p>"He needs to overcome the demons in his mind. If we stop him, it'll only aggravate his mind. Ill go take a look at him."</p><p>"You will?"</p><p>"Yeah, just so that he doesn't end up doing something stupid."</p><p>"That would be ideal."</p><p>Douglas replied. His face finally relaxing.</p><p>"With you watching him, I won't need to worry about him doing anything out of or—hm?"</p><p>Douglas suddenly stopped speaking. Squinting his eyes and staring into the distance, a surprised look appeared on his face.</p><p>"...Maybe you won't have to interfere after all."</p><p>***</p><p>In another part of the hall.</p><p>Taking a sip of a drink that was inside of an elegant glass cup, Kevin smacked his lips together.</p><p>"This tastes pretty good."</p><p>The liquid inside of the cup was pale yellow in color; it had a honey-like scent that sweetly diffused in the air.</p><p>Staring at the drink in his hands, Kevin turned to his right where Emma was. Behind her, were the others who were looking at her with a mix of confusion on their faces.</p><p>"You're still looking for him?"</p><p>"Yeah."</p><p>Emma bluntly replied, her eyes darting all over the hall. It was clear that she was looking for someone.</p><p>'I should help her.'</p><p>Kevin took another sip of the drink. He understood just how much Emma was missing her father, and he had the right skill to help her.</p><p>[[C] Inspection.]</p><p>A skill that enables user to inspect an object or individual.</p><p>It was a skill he purchased from the system shop, back in his third year of the Lock. Right before he was going on a field trip to the Clayton ridge.</p><p>It was a pretty powerful skill. One that enabled Kevin to see the names of everyone present.</p><p>He could also see their stats, but that required a tremendous amount of mana. The stronger they were, the more mana he needed.</p><p>Turning to face Emma, Kevin asked.</p><p>"What's the name of your father again? Was it Oliver?"</p><p>"Yeah, why?"</p><p>"Just curious."</p><p>Taking note of her father's name, Kevin activated his skill.</p><p>'Inspection.'</p><p>He muttered in his mind as small name screens suddenly started to appear on the top of each individual present.</p><p>There were quite a lot of people, and so it was quite difficult for Kevin to go through the names of each person present. Fortunately, since he was looking for humans, he was able to narrow down a lot of his search.</p><p>'Oliver Roshfield…Oliver Roshfield…Ol—mh?'</p><p>Kevin suddenly paused.</p><p>Blinking a couple of times, his pupils suddenly shrank as his eyes locked onto a certain individual in the distance.</p><p>Quietly passing through the hall, the individual had brown hair and green eyes. He looked quite ordinary, someone that you wouldn't remember after seeing once. This was someone that Kevin had never seen before, but…</p><p>[Ren Dover]</p><p>Staring at the top of the individuals and seeing the name, Kevin's heart quickened.</p><p>"E…excuse me."</p><p>Forgetting everything, Kevin headed in the direction of where he saw Ren. His speed increased with each step he took.</p><p>"Kevin?"</p><p>Emma called out from behind as she noticed Kevin's odd behavior. She wasn't the only one that noticed this as Jin, Amanda, and Melissa all frowned.</p><p>"Excuse me, excuse me."</p><p>Ignoring the others, Kevin continued to rush in the direction of where Ren was going. His eyes locked onto his back. He was here.</p><p>"Excu—ukh."</p><p>Pushing through the crowd, Kevin suddenly bumped against something hard.</p><p>"Ah, sorry."</p><p>Lifting his head and seeing that the individual was an orc who shot a glare in his direction, Kevin quickly apologized. Stepping to the side, Kevin's footsteps came to a sudden halt.</p><p>'Where is he?'</p><p>Frantically looking around, Kevin looked for the browned hair individual from before, but no matter how much he looked, he couldn't find him.</p><p>"Fuck, where did he go?"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-384.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-386.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

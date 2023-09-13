@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 437 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 437 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-436.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-438.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Thank you."</p><p>Amanda replied with a soft smile as she heard Ren's words.</p><p>Directly coming out of her own match she was quite tired, however, thinking back at her own mother's situation, she quickly discarded all of her tiredness and chose to visit Ren.</p><p>Aside from the fact that she wanted to make sure he was okay, she also wanted to see if he could help her.</p><p>Amanda understood her situation well.</p><p>She knew that her mother's situation was dire, and she also knew that if she did nothing the problem wouldn't solve itself.</p><p>Instead of keeping the problem to herself, she took it upon herself to try asking for help, and the first person that came to her mind was Ren.</p><p>She did also think about asking Kevin, but she felt more comfortable asking Ren first.</p><p>Even though she was comfortably around Kevin, she felt more at peace when she was around Ren.</p><p>Furthermore, having talked to him, Amanda knew that he had just come back from the dwarven domain. She also knew that his relationship with them was good, and therefore, after carefully thinking things through she decided to ask him if he had a way to solve the mind-breaker curse.</p><p>Her hopes were low, but nevertheless, it wouldn't hurt asking.</p><p>Sitting down, placing both of her hands on her laps, Amanda took a good look at the place before her eyes suddenly paused on a small black cat sitting by the edge of the window.</p><p>"Pudding?"</p><p>She called out in surprise. A flood of memories suddenly flashed through her head as the surprise in her eyes grew only bigger.</p><p>'How is she here?' She thought at first, but after that, staring at her fluffy fur, her right hand instantly twitched as she had a sudden urge to pet her.</p><p>However, the moment Amanda's words faded, pudding's body suddenly twitched as the room froze for a second before a wry smile appeared on Ren's face.</p><p>Scratching the back of his head, Ren forced a laugh before scooching his body away from pudding.</p><p>"Haha, yes, it's pudding."</p><p>He turned his head to look away from her.</p><p>Amanda tilted her head once she saw this, but recalling the purpose of her visit, she stopped paying attention to pudding and cleared her throat.</p><p>"Keum…keum…"</p><p>Her soft coughs rang through the room, attracting Ren's attention. Sensing the shift in Amanda's mood, he sat up straight.</p><p>"What's wrong?"</p><p>Brushing her hair behind her ear, Amanda softly said.</p><p>"...Do you remember the conversation we were having back at the tournament stands?"</p><p>"Tournament stands?"</p><p>Placing his hand on his chin, a thoughtful look appeared on his face as he tried his best to recall the previous conversation he had with her.</p><p>As he was thinking, gazing at him from where she was sitting, Amanda took a good look at him.</p><p>'He's changed.'</p><p>She thought. Amanda wasn't the type to care about someone's looks, however, if she had to say something, it was that the current Ren was a lot more handsome than in the past.</p><p>Not only were his facial features sharper and more chiseled out, but so was his body which previously used to be very skinny.</p><p>Unknowingly, the side of her cheeks heated up forcing her to turn her head to the side.</p><p>Fortunately, the embarrassment did not last for long as Ren's loud voice echoed throughout every corner of the room.</p><p>"Ah! You mentioned something about your mother!"</p><p>His face quickly turned serious.</p><p>Recollecting herself, Amanda nodded her head.</p><p>"Yes."</p><p>"…Did something happen to her?"</p><p>Ren proceeded to ask before he raised his head and carefully looked around the place.</p><p>"You said that she was here, but I don't see her anywhere."</p><p>Ren's sudden action caught Amanda off-guard as she couldn't help but smile at his actions. The way he was moving his head around to look for her mother was funny. After all, there was no one else but her in the room.</p><p>He was clearly overacting for nothing. But it was because of such things that she was comfortable with him.</p><p>But her smile did not last for long as the smile soon wiped away from her face and her face darkened.</p><p>"...She's sick."</p><p>Amanda eventually said, and Ren finally stopped moving. Following this, worry and surprise flashed across his eyes.</p><p>Leaning forward, he asked.</p><p>"…If I may ask, what happened to her?"</p><p>Amanda nodded her head. She had already braced herself to tell everything that had happened to him.</p><p>Bitting the bottom of her lips she took a deep breath before she started to recount to him everything that had happened not too long ago with the elf queen.</p><p>From how she brought her to this strange place, to how she told her about the situation with her mother, and how she had saved the queen's life. As she spoke, she made sure to not miss out a single detail.</p><p>"...After reaching the place, I saw my mother resting inside of a large capsule. Although she didn't look exactly like in my memories, I could still tell that she was my mother..."</p><p>With every word that Amanda spoke, the heaviness in her chest slowly started to lift away as her words became clearer.</p><p>It felt as though a heavy burden had been lifted away from her, making her talk more calmly.</p><p>"…the queen said that my mother is currently under the mind breaker curse and that if nothing is done, she will forever be trapped in the capsule, without any hope of ever waking up again."</p><p>It wasn't long before she finally finished recounting everything. With her head lowered she had a bitter look on her face.</p><p>Clenching her fist, she softly muttered.</p><p>"I know that you probably don't know anything about my current situation and that I'm probably adding to your burdens, but I'm glad you listened to what I had to say."</p><p>A bitter and sad smile soon appeared on her face.</p><p>To her, this felt more like a venting session. From the beginning, she never placed much hope in Ren being able to have a solution to her problem, but even then, she wanted him to at least know her current situation.</p><p>Lifting her head up and preparing herself to leave, her body suddenly froze when she saw Ren's face.</p><p>***</p><p>"This..."</p><p>Staring at Amanda who was looking back at me, I was left momentarily speechless.</p><p>Recalling the words she said to me as she recounted the events that led to her finding out that her mother was alive, I really couldn't help but be inwardly shocked.</p><p>'There was such a story?'</p><p>This was the first thought that came to my mind. Moreover, what was even more shocking was the fact that I didn't know of such an important matter.</p><p>Especially if it was regarding Amanda, one of the main characters of the story. 'Was it purposely left out by the entity?' I thought to myself as I tried to make heads or tails about the situation.</p><p>Although it was a far-fetched possibility, I knew that I needed to take this matter into consideration. As far-fetched as it was, the possibility of it biting me in the ass in the future wasn't impossible.</p><p>However, it was then that I suddenly recalled something important. Focusing my attention back towards Amanda who looked extremely down, I softly said.</p><p>"...Actually, I know of a way to cure the curse of your mother."</p><p>"Huh?"</p><p>It took a moment for Amanda to react, but the moment she processed those words she stood up in shock and looked at me with eyes filled with a mixture of shock and surprise.</p><p>"Really?"</p><p>She asked with a voice filled with hope. I nodded my head.</p><p>"Yes, I do."</p><p>The mind-breaker curse. Thinking back to the past when I went to Immorra with Kevin to collect the cure, I would've never thought that I would have to use them again.</p><p>'Actually, now that I think about it, wasn't there someone that was supposed to be healed by the fruits?'</p><p>The whole reason why Kevin went to Immorra was to collect the Xurin fruits in order to heal someone from the mind-breaker curse. Was that someone Amanda's mother? ...If so, why did I know nothing about this?</p><p>Moreover, if I pieced everything together, Kevin went to Immorra when he was &lt;B&gt; ranked, and the timing perfectly coincided with the current timing...was I missing something?</p><p>The more I thought about it, the more perplexed I became. Was that information purposely omitted? ...I really didn't know, and I wasn't too happy about this.</p><p>However, even though I wanted to think more about it, staring at Amanda who seemed to be looking at me with eyes filled with hope, I smiled at her.</p><p>"You don't have to worry too much about your mother's situation. I have a cure for her."</p><p>Amanda's shoulders suddenly started to tremble upon hearing my words, but before I could say anything else, she quickly closed her eyes and calmed herself down. Soon, opening her eyes once again, a calm look appeared on her face. It became clear to me that she didn't want to let her emotions take control of her rationality.</p><p>A smile appeared on my face when I saw this. She was a strong girl, and I quite liked her for that.</p><p>"Thank you."</p><p>She softly whispered before sitting back down on her chair. There was a mixture of relief, gratitude, and even something else in her voice that I couldn't quite understand.</p><p>"Here."</p><p>Taking out a small card from my dimensional space, I tossed it towards Amanda who caught it with one hand.</p><p>Lowering her head, she looked at the card with a confused look on her face.</p><p>"What is this?"</p><p>"Those are the keys to my room." I calmly replied. "If you go to my room, there should be a safe over by the room. The passcode is [887930], and over there you should be able to find my dimensional bracelet. In it is the fruit that can cure your mother of the curse."</p><p>As I had a very big match, afraid that my dimensional space would break during the fight, I decided to store all my important items inside of another dimensional space before putting it inside of a safe. The red book was also stored inside of the safe.</p><p>I would've gone in her stead, but at the moment, I wasn't really in the condition to go, so I could only have her go for me.</p><p>Clenching onto the card with her hand, Amanda gratefully looked in my direction before she took a deep breath.</p><p>Biting her lips softly, she once again muttered.</p><p>"Thank you."</p><p>"Don't mention it."</p><p>Waving my hand, I leaned back on my bed. Although the Xurin fruit was worth quite a lot, I didn't regret giving it to Amanda.</p><p>Aside from being one of the closest people to me, she was also someone that went through a lot. In fact, the situation with her father was probably a result of my own actions, and I felt a little bit guilty about that.</p><p>Yes, her father would've always gone to the demon realm, however, it wasn't meant to be that early. My actions changed the future and as a result, caused him to go under even more danger than he was supposed to.</p><p>Standing up, with the card to my room tightly clenched inside of her hand, Amanda mumbled something before leaving the room.</p><p>"...I will definitely pay you back."</p><p>It was faint, but I heard it. Before I could say anything else, opening the door, Amanda directly left the room, once again leaving me alone with Angelica inside the room.</p><p>Covering my face with my hand, I leaned back on the bed as I thought.</p><p>'I'm glad I was of help.'</p><p>Right as I was about to go to sleep, a shadow cast over me. Frowning, and opening my eyes, I was left startled by Angelica's presence. With both of her brows locked tightly, a complicated look flashed across her face.</p><p> Realizing that something was wrong, I opened my mouth and asked. </p><p>"What's wrong?"</p><p>However, I wished I never said those words as her next words caused my body to freeze entirely.</p><p>"...If you don't want to die, you need to stop her from curing her mother."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-436.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-438.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

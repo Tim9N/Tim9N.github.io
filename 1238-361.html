@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 361 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 361 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-360.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-362.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>[Outside of Inferno headquarters.]</p><p>As powerful blasts shook the air, spreading a powerful gust of wind throughout the expansive battle. Thick residuals threads of mana lingered in the air, carrying themselves in the form of color smoke.</p><p>Suddenly, a subtle chime rang amidst the fierce battlefield.</p><p>Di Ding—!</p><p>"We've got a message!"</p><p>Bang—!</p><p>Raising his hand and pointing his gun towards one of the duergars in the distance, Leopold pulled the trigger and a powerful energy blast shot towards the duergar killing it instantly.</p><p>Without paying much mind to it, turning his head and looking towards the others, Leopold flashed his communication device.</p><p>"It's time to get a move on. Looks like its finally our turn."</p><p>Clang—!</p><p>"G...got it!"</p><p>Blocking an incoming energy blast, Hein replied with a low grunt. Taking a step back, he looked towards Ava who calmly dealt with the duergars with her pets.</p><p>But, there was a big difference to how she fought compared to her previous fights up above. During the demon waves.</p><p>Tootle too~</p><p>"Khrrr." "Khrrr." "Khrrr."</p><p>The movements of her pets were a lot more fluent and Ava was able to keep blowing onto the flute for a lot longer than before.</p><p>'Looks like Malvil has done a good job at fixing the flute.'</p><p>Hein thought to himself as he stared at Ava.</p><p>Had it not been for Malvil who had repaired a small part of the flute, Ava would've had a lot more trouble fighting against the duergars at the moment.</p><p>With her now utilizing less mana with each use of the flute, she could now fight for a prolonged period of time.</p><p>—I'm done setting up the portal.</p><p>A voice suddenly sounded in Hein's ear.</p><p>The moment the voice reached his ears, Hein's eyes instantly became sharp as he looked at Leopold and Ava who also looked back at him.</p><p>"Let's go."</p><p>Without wasting a single second, he twisted the heel of his foot and smashed his shield against one of the duergars behind him, opening up a path for him and the others to go through.</p><p>***</p><p>Ohm— Ohm—</p><p>Slowly exiting the portals, Douglas alongside a few other members carefully scanned their surroundings.</p><p>The walls of the room they were teleported in were coated by a tough metallic alloy. Plastered by the sides of the walls were all sorts of different holographic devices displaying all sorts of geometric shapes and patterns that morphed continuously.</p><p>They were a total of seven members present at the moment. For obvious reasons, they couldn't bring all the members in. If they did, not only would the elders upstairs realize they were in, but the situation outside would crumble within a short second.</p><p>In fact, their very presence at the moment was a risk in itself.</p><p>Ohm—</p><p>The last one to step out of the portal was Alga who curiously looked around.</p><p>"Where exactly are we?"</p><p>She asked, joining up with the group.</p><p>"Inside of Inferno."</p><p>Douglas replied with a calm rippleless tone.</p><p>To the other present, his voice was nothing but calm as it powerfully rang inside of their minds.</p><p>"What did you just say?!"</p><p>"Did you just say that we're inside of Inferno?"</p><p>"Are you playing a joke, human?"</p><p>Voices filled with disbelief and shock echoed throughout the room as everyone had a hard time understanding just what was going on. Raising his hand to calm the people down, Douglas patiently said.</p><p>"We don't have time to waste discussing whether I'm lying or not."</p><p>Lowering his head and staring at the communication device in his hands, Douglas once again opened his mouth to speak.</p><p>"I've already gotten the coordinates of where we need to go. Follow me, and I'll prove to you that we're inside of Inferno."</p><p>Gently pressing his foot onto the ground, he walked towards the door of the room and calmly exited the room.</p><p>In his hands, the communication device where the location of the duergan elder council was located.</p><p>Gazing at Douglas's back from behind, the others looked at each other before deciding to follow him.</p><p>Although they were initially in shock, they weren't elites for nothing. In matters of seconds, they were back to their usual selves.</p><p>***</p><p>"Wait here."</p><p>Gazing at a familiar door in the distance, I extended my hand and stopped Waylan from taking a step further.</p><p>Coming to a halt, Waylan's brows tightly knit as he looked at the door at the end of the long corridor.</p><p>We were still quite far, about a couple of hundred meters away, but with our vision, we could clearly see that the door was now half-opened.</p><p>The reason why I decided to stop right here was because I didn't want to run the risk of getting exposed just yet.</p><p>"The others must've already gone in..." I muttered, staring at Waylan who was gazing at the door with his eyes squinted.</p><p>Although there were no energy fluctuating coming out from the room in the distance that indicated that a fight was going on, judging from how the door was half-opened, I could tell that Gevir and the others had already entered the elder hall.</p><p>"Are you planning on waiting for the others?"</p><p>Waylan asked from the side.</p><p>Lowering my head and starting at the communication device in my hands, I nodded slightly.</p><p>"Yeah. Realistically speaking, if we go in now, we'll be nothing but a burden."</p><p>"You're right."</p><p>Waylan replied with a bitter smile on his face, signifying that he too agreed with my words.</p><p>Quickly chugging a mana recovery potion, I added.</p><p>"...Not only that, but we also have to give them time to sort everything out."</p><p>"Which side?"</p><p>"Both."</p><p>I mysteriously said as I glanced towards his left. A smile soon crept up on my face.</p><p>"Looks like they're already here."</p><p>Right as my words started to fade, coming from the other side of the hall were the figures of multiple people headed our way. At their lead was Douglas who calmly led them through the dark corridors of Inferno.</p><p>"Did you guys encounter any trouble on your way?"</p><p>Waylan asked, walking up to Douglas.</p><p>Briefly nodding in Waylan's direction, Douglas's steps came to a halt as he calmly said.</p><p>"We met quite a few duergars on our way here, but we cleanly wiped them out. With the communications and surveillance system down, the elders are probably unaware that we're here."</p><p>Pausing, Douglas's brows knit for a brief second as he scrutinized Waylan from top to bottom.</p><p>"What happened to you? You're injured?"</p><p>"No, my mana is severely depleted at the moment."</p><p>"Okay..."</p><p>Turning his head Douglas looked at the others behind him.</p><p>"I guess only the elders and I can put up a fight against us at this point."</p><p>"Right..."</p><p>Waylan nodded his head in agreement as he stared at the group behind Douglas.</p><p>Even though they were all currently suppressing their auras in order to not attract the attention of the elders in the distance, the pressure they give out was no joke.</p><p>Catching a glimpse of the door in the distance, Douglas raised his hand and pointed at it.</p><p>"I presume that's the place we need to go right? Should we get going? The more time we waste here, the more people die outside."</p><p>Since they had taken a large chunk of the elite from the battle outside, every second they wasted here would worsen the situation outside.</p><p>Facing the door in the distance with unprecedented solemness, Douglas along with the others quietly headed for it.</p><p>"Alright, let's go."</p><p>Waylan nodded his head in agreement.</p><p>Then, turning his head to face me, he whispered.</p><p>"Let's go."</p><p>"Yeah, give me a second."</p><p>Sending a quick message through my communication device, I took a deep breath before following Waylan and the others into the room.</p><p>'If everything goes according to the plan, everything should end in the next hour.'</p><p>***</p><p>Thud—</p><p>With a dagger stabbed deeply into his back, Gervis fell onto the cold hard floor with a small thud.</p><p> With his eyes open wide, Gervis gazed at Randur who was standing on top of his body with a cold look on his face. </p><p>"You should've thought better about your previous decisions. This is on you."</p><p>Randur uttered with a look filled with Malice.</p><p>Bending down and retrieving the dagger that was stabbed Gervis's back, Randur stared at the blood that dripped from the sharp body of the dagger.</p><p>Taking his eyes away from the dagger, he glared at Gervis.</p><p>"I can't forgive you for leaving Jomnuk behind and not punishing the ones responsible for his kidnapping."</p><p>Raising his foot, Randur kicked Gervis's body with his foot.</p><p>Thump—!</p><p>"Why did you leave him at the hands of those idiots!"</p><p>Thump—! Thump—!</p><p>Randur relentlessly continued to kick Gervis's body.</p><p>The sound of his foot smashing against his body repeatedly sounded throughout the hall as Orion stared at the scene with amusement.</p><p>Glancing behind him, where a duergan elder was busy setting up a portal, he thought back at his previous encounter with Randur.</p><p>Many did not know this, but he was in fact very close friends with Jomnuk.</p><p>The dwarven engineer they kidnapped in order to gain access to the beacons. It was thanks to his kidnapping that they were even able to shut down two beacons.</p><p>It was at that moment that they thought that they were going to win the war, but unfortunately, things didn't end up that way.</p><p>Before they knew it, their headquarters had been infiltrated and a massive army suddenly showed up out of nowhere.</p><p>Fortunately, they were aware that the dwarves were planning something as Randur has been in constant contact with them. He originally wasn't on their side, but in a desperate bid to save his friend, Jomnuk, he decided to betray the dwarves and backstabbed Gevir at the very last moment.</p><p>"Like we agreed. I've gotten rid of him. Now, tell me where Jomnuk is."</p><p>Randur's voice reverberated throughout the hall, snapping Orion out of his thoughts.</p><p>With his eyes locked onto him, Randur continued to speak.</p><p>"We've signed a mana contract. As long as I betray the dwarves and kill Gervis, you will give Jomnuk to me."</p><p>He then pointed at Gervis who was lying down on the ground, dead.</p><p>"I've held up my end of the deal, it's your turn."</p><p>Wordlessly staring at Randur from his seat, Orion propped his elbows on the table.</p><p>Interlocking his fingers and resting his chin on it, his eyes paused on Gervis's lifeless body.</p><p>Channeling his mana towards his eyes, he made sure to check if Gervis was truly dead.</p><p>'...His heart has stopped beating.'</p><p>Only upon confirming that he was truly dead that he finally relaxed.</p><p>Although he had already signed a mana contract with Jomnuk, it was only after the deed was done that Orion know that Randur was on their side. At least for now.</p><p>A huge sense of relief washed over his body as he thought back at the long agonizing years he had suffered due to Gervis.</p><p>Even though he had not been the one who had killed him, the fact that Gervis had died knowing that one of his closest aides was the one responsible for his death pleased him just as much.</p><p>Just recalling his face before death pleased Orion to no end.</p><p>"So? Did you not hear what I said? Where is Jomnuk!"</p><p>Once again disrupting Orion out of his thoughts was Jomnuk's powerful voice.</p><p>"Where is he!!!"</p><p>"Calm down, calm down."</p><p>Orion lightly said as he raised his hands, trying to calm the anger-stricken Randur.</p><p>"We'll let you meet soon enough. You know we signed a mana contract. Since you've held your end of the deal, so will I—Hm?"</p><p>Suddenly, his brow raised. Lowering his head and staring at the small panel attached to his desk, his brows furrowed slightly.</p><p>"Hm, it looks like we have guests coming."</p><p>Bang—!</p><p>As soon as his words faded, the door of the room burst open and multiple figures slowly walked in.</p><p>"...Ah."</p><p>But the moment they all entered, they all froze in shock at the sight that was presented before them.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-360.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-362.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

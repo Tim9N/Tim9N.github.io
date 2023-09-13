@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 417 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 417 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-416.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-418.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Gazing at my opponent, I bitterly thought.</p><p>'Looks like I can no longer afford to fight like before...'</p><p>He was simply way too strong for me to not use my sword against.</p><p>SHIIIIING—!</p><p>Unsheathing my sword from my scabbard, I distanced myself from my opponent who did not give chase. It was clear that he became a little bit warier once he saw me release my aura.</p><p>This was good.</p><p>It bought me enough time for me to prepare myself.</p><p>Lowering my head and glancing at my sword, which was not the same sword Malvil gave to me, I took a deep breath.</p><p>"Huuuu..."</p><p>Slowly, I calmed my mind as I felt the grip of the sword in my hand.</p><p>The sword felt a bit unfamiliar, but it was still alright. I wasn't planning on using the [Keiki style] just yet, so there was no need to work myself up over the unfamiliarity.</p><p>Despite the fact that Malvil said that the sword was ready for use, in reality, he was only partially right.</p><p>Setting aside the fact that it was still sealed, its body was too short for me to properly use.</p><p>It was about half a meter in length.</p><p>Supposedly, it was supposed to lengthen the more seals I unlock. In fact, according to Malvil, one of its feature unlockable features was that it could lengthen to whatever size the owner wanted.</p><p>Sounded neat, but, yeah, I needed to unlock the first seal before being able to do that.</p><p>Bit of a pity since I really liked its main feature.</p><p>"Huuuu..."</p><p>Taking another deep breath, I moved my sword forward and drew a circle in the air. The time it took me to draw a circle was just but a mere half a second.</p><p>As I drew the circle in the air, a translucent ring suddenly materialized in front of me. Following the first ring, using as little time as possible, I drew more rings.</p><p>Within a couple of seconds, I had already formed three rings.</p><p>Bang—!</p><p>By the time the third ring formed, with a powerful bang, the orc once again dashed in my direction. It had probably already scrutinized me enough.</p><p>'...How in the world is he so fast!?'</p><p>I exclaimed inside of my mind as I caught a glimpse of the orc coming in my direction.</p><p>Despite his size, the orc's speed was extremely impressive. Before I knew it, he had already appeared before me.</p><p>Raising his fist he once again punched out in my direction.</p><p>Catching a glimpse of his attack from the corner of my eyes, I instantly realized that his attack was a lot faster and more powerful than the previous attack he used on me.</p><p>Fortunately, this time I was ready.</p><p>"Haaa!"</p><p>Letting out a scream, and glancing behind me where the massive drop was, I took a step back, towards the nothingness.</p><p>The moment I took a step back, the orc's fist and movement faltered, and audible gasps could be heard from the bottom of the arena.</p><p>This was the exact reaction I was looking for.</p><p>"Go."</p><p>Waving my fingers, with a soft rushing sound, one of the rings moved toward my left, right beneath my right foot.</p><p>Swooosh—!</p><p>Following the first ring, another ring moved towards my right side. About waist level. Tensing my left leg, I jumped up and used the ring as support for my right foot.</p><p>The orc who had now realized what was happening once again punched out in my direction as a sonic boom followed after his punch. Unfortunately, it was already too late. Propelling myself off of the ring, I flipped in the air and softly landed behind the orc.</p><p>The moment I landed on the ground, I clenched my fists and muttered.</p><p>'Gravitational pull.'</p><p>It was at that moment that the rings behind me suddenly glowed and the orc found his movements suddenly become sluggish.</p><p>Taking advantage of that moment, raising my sword in the air, I drew more and more circles. Each time I drew a circle, I would propel it in the direction of the orc as the gravitation pull effect activated.</p><p>"Khuuuuua!"</p><p>Behind me, the orc's enraged shout reverberated throughout the whole platform. As more rings were added, the more sluggish his movements became.</p><p>However, despite his shouts, I continued to draw more and more circles. After deliberating for a while, I found that this was the best tactic I could use outside of going all out using the [Keiki style], and it seemed to be somehow working.</p><p>Unfortunately, there were still not enough rings.</p><p>I could tell that the current amount of rings I had set up wasn't enough to keep him at bay, thus, briefly glancing in his direction, I activated 'the one'.</p><p>"Stay put."</p><p>I icily said as I glared at my opponent.</p><p>It was only for a moment, but the moment I activated 'the one' and uttered those words, the orc's movement came to a sudden halt. Deep fear hid beneath his eyes as he involuntarily took a step back.</p><p>I didn't let go of this opportunity as I drew more and more rings before sending them in his direction.</p><p>Having reached the essence realm for [Ring of vindication] not too long ago it took about fifteen seconds for each ring to dissipate in the air, therefore, by the time I drew the twentieth circle, the orc was finally unable to move anymore.</p><p>Despite the orc's many attempts at moving, it was all to no avail as the gravitational pull behind each ring forced the orc into place.</p><p>"Khhhhh!"</p><p>Realizing that he was in a deep predicament, the orc's desperate and enraged shout shook the entire platform.</p><p>As he screamed, his bloodthirsty eyes glared in my direction. He had a look on his face that made me think he wanted to eat me whole.</p><p>Of course, I merely shrugged it off.</p><p>If looks could do anything, I would've died the moment I met Melissa.</p><p>Lowering my sword, I could feel the mana inside of my body drain at a rate that I had never felt before.</p><p>'I guess keeping twenty rings active at the same time is still too much for me.'</p><p>The expenditure behind keeping this many rings was nothing to scoff at as I estimated that my mana would ran out in about a minutes time.</p><p>I had to end this quick.</p><p>Still, keeping my face straight, I walked up to the orc. Arriving before him, I stopped at around a meter's length away form him.</p><p>Glaring in my direction, the orc snarled and gnashed his teeth loudly as he repeatedly screamed.</p><p>"KuuahkkK!"</p><p>"Good match."</p><p>Raising my foot upwards till the sole of my foot touched his chest, I softly pushed the orc outside of the arena.</p><p>"Khuuuuuua!"</p><p>Unable to resist, the orc bitterly watched as his body fell off of the arena and plummeted to the ground at a terrifying speed. Fortunately for him, there was someone waiting for him below.</p><p>With a simple wave of their hand, a soft wind blew beneath the orc and his body came to a sudden halt.</p><p>Since each and everyone present was a representative from each race, the elves tried their best to save as many people as possible from dying. This of course did not mean that you couldn't kill your opponent, but it would be quite a hard thing to do with the referees present.</p><p>Making sure that my opponent was fine, the referee raised her hand and shouted.</p><p>"Match winner Caeruleum, he will proceed to the round of 32."</p><p>The moment the referee's voice faded, thunderous cheers rang from below.</p><p>Closing my eyes, I secretly sighed in relief.</p><p>Thankfully, I only had to expose [Ring of vindication] instead of the [Keiki style]. This was good for me as I could still keep it a secret for when I met an opponent that was far above my league.</p><p>For example, someone whose rank was in the &lt;A&gt; rank range.</p><p> They...yeah, they were opponents where I may end up being forced to go all out. </p><p>"Contestant, please make your way back towards the stands."</p><p>Snapping me out of it was the referee's voice. Turning to face her, I politely nodded my head and did as she told me.</p><p>Moving towards the edge of the arena, I jumped.</p><p>*</p><p>"Looks like you've won your match."</p><p>Upon arriving back at the waiting area, I found Jin quietly sitting by himself, solemnly staring at the large projections of the other ongoing fights.</p><p>Seeing that Amanda was still not here, only meant that her fight was still ongoing.</p><p>"Huuuuuua!"</p><p>But not even a minute after I said those words, loud cheers once again reverberate throughout the arena as a profile appeared in one of the projections.</p><p>"Guess she won"</p><p>Reflected in the projection was none other than Amanda who had an aloof look on her face. Seemingly unfazed by her victory. Despite that, staring at her from below, I could tell that she was visibly tired by the uneven movement of her chest.</p><p>Taking my eyes away from Amanda, I turned to look at Jin. At the moment his eyes were locked on a specific projection.</p><p>"What are you looking at?"</p><p>Staring in the direction of where he was looking, my eyes instantly lit up with interest.</p><p>"Hm? Kevin vs Gilbert. Now that's an interesting one."</p><p>Given all of the drama that had happened between the two, there was a lot of animosity between them.</p><p>Without a doubt, it was going to be a good match.</p><p>The match had still not started, but from the screen, I could see Gilbert talking trash against Kevin who just stood there with an indifferent look on his face. Not caring for the slightest bit about the things he was trying to say.</p><p>Crossing my arms, I looked at Jin.</p><p>"Where are the others? Are they also having their match?"</p><p>"Over there."</p><p>"Oh."</p><p>Raising his hand, Jin pointed toward three different projections. They were respectively, Ava, Hein, and Emma.</p><p>At the moment all of their fights had not started as they were waiting for the matches from the first batch to finish.</p><p>'It looks like Ava is fighting against a dwarf while Hein is fighting against an elf.'</p><p>Carefully looking at their opponents, my brows knit.</p><p>As I had already memorized the profiles of every contestant present, I could tell that they were up against tough opponents.</p><p>Out of the two, Ava was the one that got the short end of the stick as her opponent was &lt;B&gt; rank.</p><p>Although Ava was a beast tamer and she didn't fight by herself, I still found it hard to believe that she could win her fight. The gap just seemed too big.</p><p>On the other hand, Hein's opponent was &lt;B-&gt; which was somewhat manageable. But, it was still tough for him as he, just like Ava, was only &lt;C+&gt; rank.</p><p>In fact, unless they got really lucky, I didn't see the possibility of them winning.</p><p>'...I better keep watch of them now.'</p><p>Who knows, they might just be able to pull an upset.</p><p>After all, they did have a lot of experience under their belt after having trained with me for a very long time.</p><p>Perhaps I was being way too pessimistic.</p><p>Taking my eyes away from them, glancing around the other projections, my eyes soon paused on a specific projection.</p><p>My brows instantly furrowed extremely tightly.</p><p>"That should be Emma, just who is her opponent...eh?"</p><p>After a while, my eyes opened wide as I saw Emma stare off against her opponent. At first, I didn't pay too much attention, but after taking a second look at her opponent, my heart skipped a beat.</p><p>Locking my eyes on Aaron's figure, I stood up from my seat.</p><p>'...Oh crap, although I took this possibility into account, I really thought it wasn't going to happen.'</p><p>Sneaking a peek towards Kevin's arena, lowering my head, I sent Ryan a quick message.</p><p>[Give me the command, quickly.]</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-416.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-418.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 341 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 341 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-340.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-342.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>341 Taking the initiative [1]</p><p>Halting his steps in front of a large metallic door, the guard paused for a moment.</p><p>Placing his small blue hand by the side of the door, the metallic structure rumbled and slowly opened up.</p><p>Rumble-</p><p>Once the door was halfway open, the guard started talking.</p><p>"This over here is the artifact testing area. As you're probably aware, this place is dedicated to testing artifacts and their power."</p><p>"Oh? I've heard of this place."</p><p>Walking into the room, I pretended to be unamused by what I saw.</p><p>In truth, I was beyond shocked. With all sorts of complex machinery around the room, duergars could be seen testing all sorts of artifacts.</p><p>BANG-</p><p>Covered in sophisticated equipment, the duergars tested weird-looking artifacts against some sort of odd machinery. Displayed on the machine was all sorts of data which other duergars looked at by the side, taking notes on their holographic- looking devices.</p><p>Some of the artifacts were so powerful that I could sense the mana in the air convering towards it.</p><p>Keeping a straight face had never been more difficult for me.</p><p>'...I wonder if I can steal them.'</p><p>I thought to myself.</p><p>Oddly enough, that was the first thing I thought as I looked at the artifacts. I couldn't be blamed though.</p><p>Each one of the artifacts present would sell for astronomical prices back in the human domain.</p><p>To be honest, the probability of me being able to steal them was low, but a man could dream, right?</p><p>'Mhm... Actually, it's not impossible for me to steal them...'</p><p>A wild thought suddenly entered my mind.</p><p>If everything proceeded as planned, then, perhaps, I may be able to take some of the stuff here.</p><p>Unaware of the thoughts I was having, standing next to me, the guard patted the side of the walls.</p><p>"The walls of the facility are made of Rhimestone, ensuring some solid safety. This way, our researchers can conduct experiments without restraint."</p><p>"Rhimestone?"</p><p>I raised my brow in mild surprise.</p><p>From what I remember, Rhimestone was an incredibly sturdy rock that could withstand heavy impacts.</p><p>It was also ridiculously expensive.</p><p>Tracing his finger across the wall, the guard nodded in affirmation.</p><p>"That's correct. This whole place is made of Rhimestone. Because of it, we don't have to worry about the facility if the artifacts ever do malfunction. The walls over here can withstand the full-blown attack of an &lt;SS&gt; ranked artifact."</p><p>"They'd be stupid if they didn't do this much."</p><p>I responded, trying my best to memorize the layout of the place.</p><p>This place might turn out to be more useful than I thought.</p><p>"Is this place isolated from the other areas?" I carefully asked.</p><p>Depending on his answer, I could probably make up for the sudden time increase.</p><p>Now, it was no longer a matter of greed. This place could be instrumental to my plans.</p><p>"Isolated? Are you asking whether the mana fluctuations and the like reach outside of this place?"</p><p>"Yea."</p><p>"Ah, got it. In that case, no. Everything in this place is completely isolated. Take a look over there."</p><p>The guard pointed towards the corner of the room, where a lone monitor stood.</p><p>"That machine over there measures the mana density in the room. When the mana density reaches a certain level, it will trigger a defensive mechanism and activate the security system, which in turn will shut the whole place down."</p><p>"If it shuts down, what about the ones stuck inside? Do they have a chance to flee? I assume this must happen in a matter of seconds."</p><p>"Ah, them?" The guard looked at the duergars working on the artifacts in the distance before shaking his head. "They'll be sealed inside, and probably die. We don't want to take any risks. For better or worse, everyone here knows how the system works so they come prepared to die at any time."</p><p>Pity flashed across the guard's eyes as he looked at the researchers in front of him.</p><p>"Either way, if they do end up surviving, the system will deactivate as soon as it judges that the mana density in the room is at safe levels."</p><p>"...I see."</p><p>'That's quite ruthless of them.'</p><p>In order to make sure the threat would not go outside of the room, they were prepared to have anyone inside die.</p><p>Though I didn't really care about what happened to the people here, I did feel that Inferno had taken some excessive measures.</p><p>They were ready to sacrifice their own, after all.</p><p>It would be a pity to lose so many talented researchers.</p><p>Still, the information was actually quite useful to me.</p><p>The plan that I had previously envisioned became much more feasible.</p><p>"Shall we go to the next area?"</p><p>The guard called out to me, moving towards the door of the facility.</p><p>Taking one last glance at the facility, nodded.</p><p>"Yes."</p><p>***</p><p>[Leviathan building, Lock]</p><p>Ci-Clank-!</p><p>"Haaa..."</p><p>Returning to his room, Kevin let out a long, extended sigh.</p><p>It took a while for him to calm her down as the news had truly shocked her, but Kevin did not regret telling the truth to Emma.</p><p>Remembering her relieved smile, a small smile of his own appeared on Kevin's lips.</p><p>"I'm glad she's feeling better."</p><p>Because of what was happening with her family, Emma had been going through a lot of stress.</p><p>For her to finally show a happy smile, Kevin felt warmth in his heart.</p><p>"Huam… I'm tired."</p><p>Yawning, Kevin headed towards his room.</p><p>This morning, he had trained with Jin and Donna for over six hours. Kevin was understandably tired.</p><p>Although it was only seven in the afternoon, Kevin decided to head to bed.</p><p>Pomf!</p><p>Slumping on the bed, Kevin felt the soft covers gently embrace him.</p><p>'I should be able to rank up soon.'</p><p>Kevin thought as he stared at the ceiling of the room.</p><p>He had broken through to &lt;C-&gt; rank not too long ago, but he felt that he could already breakthrough to &lt;C&gt; within a month's time.</p><p>His rate of progress was nothing short of astonishing. The only one that could keep up with his speed was Jin.</p><p>With all of the resources at his disposal, thanks to his family, Jin's rate of improvement was just as impressive.</p><p>Kevin estimated that by the end of the year, he and Jin would at least reach &lt;B-&gt; or &lt;B&gt; rank.</p><p>After that, though, he estimated that his rate of progress would slow down considerably.</p><p>According to the professors, once someone reaches &lt;A&gt; rank, the rate of progress would decrease dramatically.</p><p>'Right…I wonder what rank Ren is. It's been a while since I had last seen the book.'</p><p>Lifting his head up, Kevin looked towards his bookshelf right above the desk.</p><p>"Hm?"</p><p>Suddenly, his brows knit in consternation.</p><p>Standing up, Kevin walked towards his desk. His face was extremely serious.</p><p>Walking towards his desk, he looked through the bookshelf. However, despite how hard he looked, he couldn't find the red book.</p><p>"What in the..."</p><p>Frantically looking through his bookshelf, Kevin tried to find the red book. But, no matter how much he searched, he couldn't find it.</p><p>'No… this cannot be!'</p><p>Despair momentarily took hold of Kevin's heart, until he felt something hit his feet.</p><p>-Tock!</p><p>"Huh?"</p><p>Looking down, much to Kevin's surprise, he found the red book on the floor, open and facing upwards.</p><p>"Did it drop?"</p><p> Looking up towards his bookshelf, he found it plausible.</p><p>Bending over, Kevin picked up the book.</p><p>Looking at the book in his hand, Kevin had an ominous feeling.</p><p>But, he couldn't quite understand where it was coming from.</p><p>"Oh, well."</p><p>After a while, shaking his head, Kevin opened the book and proceeded to read through its contents.</p><p>***</p><p>[Henolur]</p><p>Waylan made a call through an encrypted line.</p><p>"The members of Monolith seem to be on the move. They are heading towards your location. Should I proceed as planned?"</p><p>-Yes. When you're ready, message me.</p><p>The voice belonged to none other than Ren.</p><p>"What other plans do you have?" Waylan asked.</p><p>-I found some useful information while I was looking around the place today. I'm going to set up a different portal over there. Get those that you trust to join you in the operation. Whilst everyone iS distracted outside, we will attack from the inside.</p><p>"Haaa…"Waylan let out a sigh, "Are you confident?"</p><p>-No, not really. But...</p><p>Ren responded after a short pause.</p><p>Hints of doubt could be felt in Ren's voice.</p><p>It looked like he wasn't too confident with the operation. Still, the small 'but' at the end intrigued Waylan.</p><p>"But what?"</p><p>-...But I can make it work. It'll be hard, but I can do it.</p><p>"Ren."</p><p>Waylan's face turned serious.</p><p>"I have no choice but to trust you. Me and Douglas, both our asses are on the line. The reason we chose to put ourselves in this situation is because we believe in you and your plan."</p><p>-Having second thoughts?</p><p>Ren teasingly answered from the other side of the call.</p><p>"No. I trust you."</p><p>So far, everything went according to Ren's plans.</p><p>Ignoring the fact that if the mission failed he truly would be in big trouble, Waylan was impressed with what Ren had shown him.</p><p>Ren was a sort of strategist and a man of action. He had already proven to him his capabilities. There was no time for doubt.</p><p>"You've already shown me enough to believe in you... Be careful, though. I don't want you dying on me just yet."</p><p>-Well, let's just say that it takes a lot to kill me. I'm a bit of a cockroach, you see...</p><p>"Odd thing to compare yourself to, Ren."</p><p>Waylan shook his head with a smile.</p><p>"I'll do as you said. I've got to go now. I need to go speak to the elders."</p><p>-Got it. Best of luck.</p><p>"You too."</p><p>Di. Dun-</p><p>Waylan put the communication device away.</p><p>"Haaa..."</p><p>Letting out a deep breath, Waylan fixed his clothes and proceeded to make his way towards a large familiar door in front of him.</p><p>The door couldn't be considered large in the conventional sense, as it was about five meters in height. But given that it was made for dwarves, in a way it was.</p><p>Arriving in front of the door, Waylan put both hands on it and pushed.</p><p>Cla- Clank-</p><p>Upon pushing the door open, a familiar sight met Waylan.</p><p>Sitting around a large, semi-circular wooden desk, he saw all of the higher ranked elders and individuals of the dwarven domain.</p><p>The Council of Dwarves.</p><p>However, the dignity and passion they held themselves with seemed to have dimmed. Compared to the last time he saw them, they had haggard, tired looks. It seemed as though the situation with the barrier had made them go through sleepless nights.</p><p>The moment Waylan stepped in, all eyes were on him. Some were neutral, some even unfriendly. Yet, there were few filled with curiosity.</p><p>But, in general, most gazes were filled with resentment. It was understandable, though. If not for his failure in protecting Jomnuk, none of this would have ever happened.</p><p>Feeling the resentment-filled stares, smiling, Waylan paid no heed to them and walked towards the center of the room.</p><p>Upon arriving in the middle of the room, with his back straight, Waylan looked at everyone present. His gaze unafraid, he stood tall and proud.</p><p>No matter what, Waylan couldn't look weak.</p><p>After a brief pause, he opened his mouth to address the Dwarven Council.</p><p>"Thank you for granting me your time despite the predicament you face.."</p><p>Pausing, Waylan looked at each and every individual present. Be it dwarf, orc, or elf, all eyes were on him.</p><p>No one talked or disrupted him in the brief silence.</p><p>His eyes soon paused on Douglas. He encouragingly nodded in his direction with a calm smile. Yes, Waylan might have forgotten it for a second.</p><p>He had someone to support him here.</p><p>Smiling back, Waylan spoke with even greater suave.</p><p>"The reason why I've gathered you here is simple. In two days..."</p><p>Everyone stared at him. None ignored him. This was it.</p><p>"I plan to end this war."</p><p>The moment Waylan bet his own life had come.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-340.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-342.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

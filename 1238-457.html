@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 457 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 457 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-456.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-458.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>A red sky enshrouded the world.</p><p>Rubble and debris appeared everywhere as corpses and limbs sprawled all over the ground.</p><p>Absolute silence enshrouded the world.</p><p>"Haa...haa..."</p><p>Breaking the silence was the sound of someone's rough breathing echoing throughout the space.</p><p>White hair, dull grey hair, and a presence that completely enshrouded the world. A man stood on top of a broken building.</p><p>With his right hand missing, and a long scar tracing down his well-built body, the man coldly looked towards the distance.</p><p>There laid a figure who had similarly colored white hair and red eyes.</p><p>With black blood seeping down from his mouth, and his body laying down on a broke building, the figure blankly stared toward the sky as a cruel smile sprung up on his face.</p><p>"...It's no use, you won't be able to kill me."</p><p>His playful words rang throughout the world as he proceeded to raise his hand.</p><p>The moment he raised his hand, the world seemed to have come to a standstill as demonic energy gathered towards the palm of his hand, forming a small ball the size of a basketball.</p><p>"Stay put."</p><p>But before the black orb could fully form, the white-haired figure with dull grey eyes, raised his hand and motioned it in a downward manner.</p><p>Crack. Crack.</p><p>As though gravity had been warped, cracks formed beneath the red-eyed figure as his body crushed against the ground hard as a crater formed beneath him.</p><p>Even though the force of the impact was huge, the red-eyed figure remained completely unfazed as he gazed in the direction of the grey-eyed man.</p><p>The smile on his face only deepened.</p><p>"...Stop with your useless struggle. I've already won."</p><p>"Shut up."</p><p>The grey-eyed figure replied as the area him pulverized into bits.</p><p>Whilst this was happening, standing not so far from the two figures was a male with jet-black hair and crimson red eyes. He was none other than Kevin.</p><p>Holding onto the left side of his arms, he dully looked at two figures before him. Then, turning his head he looked at the world around him.</p><p>Devastation.</p><p>Wherever his eyes looked, all he saw was pure devastation as the world he once knew had been turned into nothing but a desolate place. Recalling the memories of how the world was in the past, Kevin stumbled a couple of steps.</p><p>Having fought a terrifying battle for the past couple of days, he was on the verge of death, and right now the only reason he was even able to move was because of the effects of [Overdrive] which was slowly eating away at his life-span.</p><p>'H...how did things turn out like this.'</p><p>He thought as he slowly moved towards the two figures.</p><p>As he was walking forward, sensing his presence, the grey-eyed figure turned to look in his direction as he coldly muttered.</p><p>"Your turn."</p><p>With the palm of his hand motioned downwardly, he kept the other figure in check. However, it was painfully obvious to Kevin that his power wasn't enough to contain the other figure for long as his hand slowly started to shake more and more.</p><p>"What are you waiting for, end him."</p><p>The grey figure once again said. His voice sounded a little bit more rushed this time.</p><p>Turning his head to glance in the red-eyed figure's direction and then looking towards his surroundings, Kevin's lips trembled.</p><p>"I...is this the outcome that you wanted?"</p><p>"What are you talking about?"</p><p>The white-haired figure replied back. His brows furrowed tightly, and his voice became even colder.</p><p>Clenching his teeth, Kevin pointed towards the distance.</p><p>"Take a look at the world. It's completely destroyed! Almost all of humanity has been destroyed because of your actions, and yet, you don't seem to care!?"</p><p>Kevin's voice powerfully rang throughout the world as his fists clenched tightly.</p><p>"For the sake of killing him! You decided to sacrifice the whole of humanity! What's the point of killing him when there's no one left? What's the fucking point!?"</p><p>Quietly listening to Kevin's words, the grey-eyed figure answered.</p><p>"...Because I don't care."</p><p>"You don't care?"</p><p>A powerful red hue suddenly sprang out of Kevin's body. The hue that sprang out of his body was very faint and almost invisible, but the pressure that came out of it was nothing to scoff at.</p><p>"You don't care about the fact that because of your actions humanity is on the verge of extinction?"</p><p>"What are you doing?"</p><p>Ignoring his words, the grey-eyed figure dully asked.</p><p>Raising the palm of his hand, Kevin pressed onto the space next to him and replied.</p><p>"Something that I should've done the moment I remembered everything."</p><p>Clank. Clank. Clank. Clank. Clank.</p><p>Right as his words faded, much to the shock of the grey-eyed figure, black chains suddenly sprang out from the ground beneath him clasping onto his legs and arms.</p><p>Finally, for the first time in a while, the grey-eyed figure's face crumbled apart as he looked at Kevin who was staring back at him.</p><p>"What do you think you're doing?!"</p><p>Raising his hand, the grey-eyed figure tried to move his body, but regardless of how much force he applied, he couldn't move his body at all. The mana inside of his body had been sealed completely.</p><p>Realizing just how much of a predicament he was, his voice raised.</p><p>"What did you do to me!?"</p><p>Ignoring his words, Kevin turned to look at the other white figure who was watching the scene with an amused look on his face. Although he was also on the verge of death, there was a triumphant look on his face as he looked at Kevin and the grey-eyed figure.</p><p>"...It looks like it's going to be another failure."</p><p>Clenching his teeth, Kevin proceeded to ignore the figure.</p><p> "khh..." </p><p>Stumbling forward, he could feel his vitality slowly leaving his body. The hue around his body slowly started to fade as Kevin's figure paled.</p><p>"Kill him now, end this now! End it!!!! You know full well that you're the only one that can stop him! What are you waiting for!?"</p><p>Once again the grey-eyed figure's words reverberated loudly as he glared intensely in Kevin's direction. A look similar to desperation flashed across his face as he shouted those words.</p><p>"It's always the same with you..."</p><p>Taking one more step forward, Kevin's feet came to a pause a couple of meters away from the grey-eyed figure.</p><p>Clank. Clank. Clank.</p><p>As he walked, the chains wrapping around the grey-eyed figure became more numerous as his whole body stopped moving.</p><p>Seeing that his words couldn't reach Kevin, the grey-eyed figure stopped shouting. His face which was originally cold dulled completely.</p><p>Lowering his head and glaring in Kevin's direction, the grey-eyed figure monotonously.</p><p>"You think this will be enough to stop me?"</p><p>"I don't know."</p><p>Kevin shook his head.</p><p>"But we will find out soon. At least for now, you won't be able to do anything."</p><p>Spurt—!</p><p>Raising his hand, Kevin suddenly pierced right through his own chest. Instantly, blood leaked out from his body.</p><p>Staring at Kevin, the grey-eyed figure's eyes grew colder.</p><p>"How d—"</p><p>The moment Kevin's life slipped away, the world turned white and everything crumbled.</p><p>***</p><p>"Haa...haa...."</p><p>Abruptly sitting up from his bed, Kevin's breathing was ragged as sweat trickled down the side of his face.</p><p>Glancing around the place, it was only after he realized that he was back in his own room that he finally calmed down.</p><p>"What just happened?"</p><p>He muttered out loud as he clenched his chest tightly.</p><p>"Khhhh..."</p><p>Letting out a groan, he hunched his body over as he felt his chest throb intensely.</p><p>'W...what's going on?!'</p><p>The pain left as fast as it came, but the sensation was deeply etched inside of Kevin's brain as recollections of the vision flashed across his mind.</p><p>Sorting out the memories, his mind became a mess.</p><p>He knew that this was part of the synchronization reward that he had gotten from the previous quest, but he couldn't quite understand what exactly had happened.</p><p>The number of questions he had inside of his mind only caused his head to throb even more as he held his head with his hands.</p><p>Blinking a couple of times, sweat continued to trickle down the side of Kevin's face as a multitude of different scenarios presented inside his mind.</p><p>Lowering his hands and clenching onto his bedsheets, he bit his lips.</p><p>"...What should I do?"</p><p>***</p><p>Two days quickly flew by and the tournament resumed.</p><p>Seated down in the spectator's stands, wearing a mask to hide my identity, my face flinched from time to time.</p><p>'Damn, it still hurts like hell.'</p><p>Despite the fact that a few days had passed since the incident, the discomfort that came from the damage my soul took was still affecting me now.</p><p>From time to time it would feel as though a large needle pricked through my heart, sending shivers all over my body.</p><p>Unfortunately, as I was still on the fence on whether to heal my soul or not, I had to endure the pain.</p><p>"Are you really okay?"</p><p>In the midst of my pain, a soft voice rang from beside me. With my head still lowered, I forcefully nodded my head.</p><p>"...Yeah. I'd like to think I am."</p><p>"That doesn't sound very convincing."</p><p>Turning my head and staring at Amanda, I could only force a smile. Ever since the incident, she had been a lot more attentive toward me.</p><p>It sort of got to the point where she was now acting like my personal nurse. I didn't dislike it, but it felt very weird to me.</p><p>"Amanda, I get that you feel compelled to help me because of what I did, but really, I'm fine."</p><p>Despite my words, Amanda retained her stubborn look as she refused to leave my side, and thus, letting out a long sigh, I decided to switch topics.</p><p>"That aside, are you sure you're not going to fight?"</p><p>"Yes."</p><p>Amanda nodded her head.</p><p>Closing my eyes and leaning back in my seat, I softly muttered.</p><p>"I see."</p><p>Before I could say anything else, Amanda added.</p><p>"The main reason I am forfeiting is not because of what happened. I'm forfeiting because I know my limit. My opponent is too strong for the current me to face."</p><p>"I know."</p><p>There was no need for her to say that. I naturally understood the reason for Amanda's forfeit.</p><p>The reason was because her opponent was none other than Vaalyun.</p><p>The strongest contender left, alongside Kevin and Jin.</p><p>A part of me was glad that she chose to forfeit. After all, I did humiliate Vaalyun in front of everyone. Though unlikely since Amanda had the elven queen's backing, what if a situation similar to Emma's occurred?</p><p>A situation where she would almost die happened? Just the thought made me uncomfortable.</p><p>I couldn't allow another fiasco to happen.</p><p>Turning my head to gaze in the direction of the tournament, just as I was about to look for Kevin, I felt a slight tap on my shoulder.</p><p>"What is it?"</p><p>"...Maylin wants to speak to you after the matches for today are over."</p><p>Amanda's voice reached my ears from the side. Hearing her reply, my brows furrowed.</p><p>"Maylin?"</p><p>"The elven queen."</p><p>"Oh."</p><p>I had a sudden look of understanding as my head moved back. Secretly, I was trying to hide the smile that was threatening to appear on my face.</p><p>'It's time I get what I want, right?'</p><p>As I've previously mentioned, there was a reason why I wanted to participate in the tournament, and the only reason why I forfeited was because I knew that I could still get it without winning.</p><p>Most likely, at the moment the elven queen had called for me in order to thank me.</p><p>Was definitely planning on using this situation to my advantage.</p><p>Snapping me out of my thoughts was the boisterous sound of the crowd cheering as I saw Jin's and Kevin's profiles suddenly appear on the large projections.</p><p>"Oh, it looks like Kevin and Jin both passed the round."</p><p>Standing up, I clapped with the crowd.</p><p>The matches had not even lasted a couple of minutes and they had already won. That was really impressive.</p><p>Patting my hands together, I stretched my shoulders and glanced in the direction of where the elven queen sat.</p><p>"Guess I need to get ready to meet the queen."</p><p>'...and claim me rewards.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-456.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-458.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

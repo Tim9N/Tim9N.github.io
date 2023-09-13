@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 373 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 373 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-372.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-374.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>News about the Union's upcoming announcement spread like wildfire throughout the whole human domain.</p><p>It was the first time in a long time that the Union declared such an event.</p><p>'An event that will completely change the fate of humanity.'</p><p>Was what the Union proclaimed when announcing the event.</p><p>All TV broadcasts and news stations were called up to stream the event so that everyone in the world could see what exactly the Union was planning on announcing.</p><p>Judging from the scale of the event and the Union's words, everyone in the human domain paid close attention to the date of the ceremony as they eagerly anticipated the announcement.</p><p>Of course, not everyone was happy with the news, such as the Monolith, but they could do nothing about it.</p><p>Having signed a ceasefire agreement that would still last for a bit, they could only watch the events unfold.</p><p>Of course, they already knew what it was about since the demons were aware of what was going on.</p><p>Since the announcement happened, a week had passed and it was now the day of the event.</p><p>"Let me in."</p><p>"I've got an invitation, look here."</p><p>"Don't cut in line."</p><p>A bustling crowd stood below the entrance of the Union as reporters swarmed the place.</p><p>"Please stay in a single line."</p><p>Helplessly staring at the crowd that was trying to get into the premises, wearing a black tuxedo, Kevin tried to keep their huge numbers in check.</p><p>Although he was invited to attend the ceremony, he was still a rookie. He needed to wait by the door and check all of the invitations before he could actually attend the ceremony.</p><p>"It's the Starlight guild!"</p><p>It was right then, that too out of nowhere, the busy crowd split apart and paved the way for a handsome youth with blonde hair and emerald-colored eyes.</p><p>With respect and solemnity, everyone watched as Jin slowly made his way toward the entrance of the ceremony area.</p><p>"Here."</p><p>There were around fifteen attendants, but out of the fifteen of them, Jin chose to head towards Kevin's side.</p><p>As he handed him the letter, the edges of his lips curled upwards a little.</p><p>This obviously did not go unnoticed by Kevin, who forced himself to smile with all his might.</p><p>"Jin Horton, is it?"</p><p>He said, trying his best to keep his formalities. But that obviously didn't last for long as Jin raised his brow and pointed at the invitation, where the words 'Jin Horton' were imprinted.</p><p>"You blind or something?"</p><p>Kevin's face instantly crumbled apart.</p><p>"Yo—"</p><p>"I guess we're done here."</p><p>But just as Kevin was about to say something, snatching the letter from his hands, Jin calmly walked into the venue.</p><p>Turning his head and staring at Jin's figure from behind, Kevin's chest heaved up and down unevenly.</p><p>For a moment, he was about to lose it.</p><p>"Here."</p><p>But not even a moment after Jin left, a crisp voice sounded from behind him.</p><p>"Amanda?"</p><p>Turning around, he immediately recognized the identity of the person. It was none other than Amanda.</p><p> At that moment, the light from the top of the building shifted towards her. Faint particles danced within the light, giving a sparkle to Amanda's face.</p><p>Her long eyelashes gently fluttered as her black hair cascaded down her shoulders, towards the back of her black dress that seemed to sparkle underneath the light.</p><p>She, just like Jin, attracted the attention of everyone present. And just like him, she attracted attention for both her status and looks.</p><p>"Here you go."</p><p>She was a lot kinder compared to Jin, as she calmly handed Kevin the invitation. Throwing Amanda a grateful look, Kevin checked her invitation before letting her in.</p><p>"You may go."</p><p>"Thank you."</p><p>Taking the invitation back, Amanda's figure slowly disappeared into the building. It was only after she entered that the people waiting outside of the building once again riled up and chaos ensued.</p><p>"Here you go, this is my letter."</p><p>"I was first."</p><p>"Wait guys, please calm down."</p><p>Kevin's brief moment of peace ended as fast as it came, as he, alongside the other attendants, had a difficult time trying to calm the raging crowd.</p><p>But just as things were about to turn for the worst, a delicate hand touched him on the shoulder. Following this, an airy and crisp voice sounded from behind his ear, startling him.</p><p>"Do you need help?"</p><p>"Miss Donna?"</p><p>Familiar with the voice, Kevin instantly recognized her, his face lighting up in surprise.</p><p>Turning his head, he caught a glimpse of her standing behind him. Wearing a dark-purple dress that perfectly outlined the curves of her body, Donna didn't need a moment to attract the attention of every male present.</p><p>Next to her was Monica, who had dark circles underneath her eyes. Wearing a red dress that perfectly complimented her hair, Monica also looked beautiful.</p><p>Staring at Kevin with her beautiful amethyst-colored eyes, Donna's lips curled.</p><p>"You're no longer my student. You shouldn't be referring to me with the word miss anymore."</p><p>"Ah, that's right."</p><p>With a wry smile, Kevin scratched the back of his head.</p><p>Turning her head to face the direction of the people, Donna's delicate brows knit into a frown.</p><p>"It looks like things are out of control. Let me lend you a hand."</p><p>Her eyes suddenly shined, and everyone present froze on the spot.</p><p>"Please form a single line and calmly hand in your invitation without making a mess."</p><p>Her gentle voice traveled through the ears of everyone present. Be it, man or woman, all of them looked at Donna in a trance as they nodded their heads in affirmation.</p><p>"Great."</p><p>With a smile on her face, Donna tapped Kevin on the shoulder before turning around.</p><p>"I'll see you at the event."</p><p>Then, with Monica next to her, the two entered the venue.</p><p>Following this, much to Kevin's joy, the line was a lot more controlled as everyone calmly handed their tickets. It wasn't long before the line slowly diminished and the time for the event began to near.</p><p>"Here you go, have a pleasant night."</p><p>Sending back the last person, Kevin finally sighed in relief.</p><p>'Too bad Emma can't come.'</p><p>With the whole situation happening back at her home, Emma couldn't come for obvious reasons. But, she was much more relaxed now, thankfully.</p><p>With the fact that her father was now alive, she was no longer worried about her family situation.</p><p>'I think her uncle is here?'</p><p>Now that he thought about it, her uncle was probably going to be attending the event today.</p><p>He needed to take a good look at him, for one of the reasons why he joined the Union was to set him back in his place.</p><p>"Alright."</p><p>Fixing his clothes, Kevin looked around one last time to make sure that no one else was present before heading back in and closing the door behind him.</p><p>It was time for the ceremony to begin.</p><p>***</p><p>Bright white lights enveloped a large hall, where multiple figures, all wearing expensive dresses, walked around, observing and reveling in the ambiance.</p><p>Some held onto small, thin wine cups and would take a sip of their drinks from time to time.</p><p>Every single person present in the hall was someone with a large background. They were akin to celebrities to the outside world.</p><p>"So, have you come up with a decision?"</p><p>Standing opposite each other, holding onto a glass filled with champagne, were Amanda and Jin.</p><p>"Hmm…"</p><p>Taking a small sip of his drink, Jin wordlessly stared at Amanda. His eyes were composed, and no ounce of desire was hidden within them. One couldn't guess his thoughts easily.</p><p>It was clear that he was just trying to gauge her mind.</p><p>Amanda too was looking back at him as the two stared at each other for a good couple of seconds. With the both of them being the future representatives of the number one ranked guild and the second-ranked guild respectively, they had to gauge each other properly in order to best benefit their respective guilds.</p><p>They were no longer fellow students like in the past. At the moment, all they had to think about was the interest of their guild.</p><p>Finally, putting the glass down, Jin opened his mouth.</p><p>"Sixty-forty. No negotiations."</p><p>He only said two words, but Amanda, who was standing opposite him, instantly understood the meaning behind them.</p><p>Placing her cup down, Amanda's face remained indifferent, preventing Jin from reading her expression.</p><p>"You want sixty percent of the rewards?"</p><p>"That's exactly what I said," Jin casually replied.</p><p>"I've thought about it. Although it will be a hassle, we don't need to work together with you guys. I think it's only fair that we take a little bit more, else the costs just wouldn't match our losses." He added, taking a sip of his drink.</p><p>"…"</p><p>Listening to Jin's words and staring at him for a good couple of seconds, Amanda's eyes squinted lightly.</p><p>"No negotiations?"</p><p>"No negotiations."</p><p>Brushing her hair behind her ear, Amanda's eyelashes fluttered briefly, before eventually, she nodded her head.</p><p>"I can agree to that."</p><p>"Oh?"</p><p>Not expecting Amanda to agree so readily, Jin raised his brow.</p><p>"Did you just agree?"</p><p>"I did."</p><p>"I see…"</p><p>Normally, Jin would've been happy with this development as he had gotten exactly what he wanted, but he felt that something was off.</p><p>"Well, fine. Since you've agreed, I can't say much else."</p><p>In the end, he shrugged his shoulders and went along with it.</p><p>Reading Amanda's expression was impossible. Since this deal ended up benefitting him and his guild, it was something worth celebrating anyway.</p><p>"I guess we should set up an appointment later after this event to sign the agreement."</p><p>"Okay." Amanda expressionlessly nodded.</p><p>Secretly, however, she was smiling.</p><p>From the very beginning, she had expected this sort of 'unfavorable' deal. In the first place, her goal wasn't money, but the workforce.</p><p>Because most of her members were busy dealing with the demon pill incident, the available heroes that she had was low.</p><p>For a guild of her size, it was unacceptable. This was why she readily agreed to Jin's terms.</p><p>It may seem unfavorable, but in reality, not long ago, she received word that Melissa's magic card system was ready to be launched. And owning a small portion of the profit, Amanda knew that the 10% she lost from Jin was worth nothing.</p><p>As long as the magic card system was launched in the market, she could quickly make up for the loss.</p><p>In the end, this was a win-win situation for both Jin and her.</p><p>Taking another drink from one of the waiters in attendance, raising his glass towards Amanda, Jin looked at her.</p><p>"I guess that settles it, we can—"</p><p>"Attention."</p><p>But before he could finish his sentence, cutting him off suddenly, a soft voice echoed throughout the hall. The voice was neither loud nor overbearing, but the moment it sounded, almost everyone in the hall quietened down.</p><p>Turning their attention towards the center of the stage, they spotted a tall man with masculine features, broad shoulders, a black suit, and blonde hair that was neatly pulled back. Faint lightning bolts crackled around his body as he imposingly stood in the middle of the stage. His entire presence overwhelmed most of the people present.</p><p>He was none other than Maximus Von Dexteroi, one of the seven heads of the Union and the Number 3 in the hero ranking.</p><p>"Cough…"</p><p>Coughing to get everyone's attention, Maximus's eyes scanned the whole venue before he slowly opened his mouth.</p><p>"I'm very happy that many of you were able to come to today's event."</p><p>As he spoke, all of the cameras pointed toward his direction as everyone paid close attention to his words.</p><p>"As you've all been told beforehand, today, we will be making a huge announcement."</p><p>Pausing, Maximus looked toward one of the cameras.</p><p>"An announcement that will shake the foundations of the human domain."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-372.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-374.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

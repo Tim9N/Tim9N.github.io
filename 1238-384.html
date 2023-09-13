@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 384 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 384 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-383.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-385.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Four days later.</p><p>"Ugh, not this again."</p><p>My face darkened as I looked at myself in the mirror.</p><p>Wearing the same suit as when I met the other elders in Henlour, I once again struggled to tie my tie.</p><p>There were improvements, however.</p><p>Staring at my reflection in the mirror, turning around, and touching my tie multiple times, I nodded in satisfaction.</p><p>"It's not too bad."</p><p>Compared to last time, when I struggled quite hard to tie it, there were massive improvements.</p><p>Remembering how Douglas had tied my tie, I was somewhat able to mimic his movements. Thanks to that, I was able to somewhat do a good job. Was well satisfied with it.</p><p>Of course, it wasn't perfect, but it was better than nothing.</p><p>Staring at myself in the mirror and fixing my hair which was still quite long, my hand paused slightly.</p><p>'They should also be there…'</p><p>Kevin, and the others. I was finally going to see them properly.</p><p>This time, not from afar.</p><p>"Huu…"</p><p>Thinking about them, I let out a long breath.</p><p>'I guess it's time.'</p><p>After thinking things through, I decided to finally reveal myself to the others.</p><p>There was no point in hiding myself from the others. Sure, the high-ranking members of the Union were there, but it wasn't like they could instantly tell that I was 876.</p><p>With the chip disabled, it would be quite difficult for them to figure out who I was.</p><p>This was why I decided to stop pretending. Of course, I was only planning on revealing myself to them. Not the Union.</p><p>Despite the fact that the chip was now disabled, and there being no concrete evidence linking me to 876, there were still many loopholes in such thought.</p><p>For example, the last sighting of 876 was in the dwarven domain. I came out of the dwarven domain. 876 is a human, I am a human...there were just too many links for my comfort.</p><p>'It's too risky to expose myself completely.'</p><p>The more I thought about it, the more I realized just how much of a risk my exposure was, but…</p><p>'I'll still meet them.'</p><p>My mind was made, and I wasn't going to change it, even if the risks were there.</p><p>I just needed to be more careful.</p><p>Fixing my clothes, and reaching out for my mask by the side of the table, I pressed it against my face and my face soon morphed into that of someone else.</p><p>"But before that, I need to take care of something else…"</p><p>There was something very important that I needed to take care of before meeting with the others again.</p><p>***</p><p>"Hurry up, we're going to be late.</p><p>Emma's voice rang from below the residence as she looked up towards a certain window.</p><p>Ci Clank—</p><p>Opening the window of the room, Kevin leaned out of it and shouted.</p><p>"Give me a minute! I'm coming."</p><p>"Wha—"</p><p>Clank—!</p><p>Kevin closed the window before she could even speak. This obviously did not sit well for her as she Crossed her arms together, and pouted in dissatisfaction.</p><p>"How is he slower than me? It's not like he's putting on any makeup."</p><p>"Maybe it's his hair?"</p><p>"What hair? It shouldn't take this long to do his hair."</p><p>Emma snappily replied to Amanda who was standing beside her. She was currently wearing a beautiful black dress that sparkled under the veil of the moonlight, perfectly outlining her curves.</p><p>Most notable about her was her hair, which was being held by a small pin, exposing her slender neck.</p><p>"Hmmm…"</p><p>Squinting her eyes, Emma leaned forward to take a closer look at Amanda.</p><p>"Now that I take a closer look, it's the first time that I've seen you with your hair tied. It suits you."</p><p>"Thank you."</p><p>Amanda replied with a smile.</p><p>"I'm serious, you look really beautiful," Emma circled Amanda multiple times before placing her hand on her chin and muttering. "Maybe I should try it as well…"</p><p>Gli Clank—</p><p>It was then that the both of them heard the sound of a door closing. What followed after was Kevin's apologetic voice.</p><p>"Sorry for the wait. I was having trouble putting on the suit."</p><p>"Took you long enough."</p><p>Melissa commented from the side. Wearing a pale yellow one-piece dress, Melissa leaned by the side of the residence.</p><p>It was rare for Melissa to not wear any glasses, and today, for the first time in a while, she decided to wear contacts, exposing her beautiful crystal clear eyes that sucked one in if they stared at them for too long.</p><p>At the moment, she looked pretty annoyed as her brows were slightly knit a frown. But at the same time, she always looked annoyed. This was probably why no one paid much attention to her words.</p><p>Walking down the stairs and arriving before the others, Kevin looked around before saying.</p><p>"Looks like everyone is here, shall we get going?"</p><p>Checking the time on her watch, Emma replied with a nod.</p><p>"We should, or we'll end up being late."</p><p>"Okay."</p><p>And so, once Emma's words faded everyone headed towards where the ceremony was being held.</p><p>But just as they had taken a few steps, Kevin suddenly recalled something and his footsteps came to a sudden halt.</p><p>"Wait, what about Jin?"</p><p>"…"</p><p>"…"</p><p>"…"</p><p>Following his words, everyone stopped walking and an awkward silence enveloped the group.</p><p>It was only after a couple of seconds that Emma finally opened her mouth.</p><p>"Eh…I kind of forgot he was coming…or rather, forgot about his existence."</p><p>***</p><p>The location where the ceremony was being held was in the enormous white building in the middle of the lake.</p><p>Apparently, that was the only place that could host the event. The sheer number of attendees was far too many for a simple building to contain.</p><p>It was supposed to be the place where only the high-ranking elven members stayed, but they made a special exception this time, just for the ceremony.</p><p>"All done?"</p><p>"Yeah."</p><p>Fixing my suit, I met up with Douglas in front of my residence.</p><p>Besides him were the others who also were dressed in formal clothes.</p><p>Even Ryan was there. He looked quite uncomfortable with a suit, but whenever he tried to complain, Smallsnake would elbow him from the side.</p><p>"Your clothes are all wrinkly."</p><p>"It's fine, it's fine. Stop pestering me."</p><p>Quite a comical sight if I had to say.</p><p>The only one that was missing was Angelica. This was mostly her choice, but it was also the most appropriate one as she was a demon.</p><p>She may have helped the dwarves back in Henlour, but that didn't mean that the orcs and elves still fully trusted her. Perhaps some could trust her, but many were still against the idea of keeping a demon close to them.</p><p>It also had to be noted that this was for her safety too. Since Angelica had helped the dwarves, she was considered a traitor to the demons. We managed to hide this back in Henlour, but the same couldn't be said in the elven domain.</p><p>Exposing her too much would only be detrimental to her safety.</p><p>"Is there anyone missing?"</p><p>Douglas asked, looking around.</p><p>Wearing a different suit compared to the one that he wore back in the dwarven domain, Douglas still looked as imposing as before.</p><p>In fact, he looked even more imposing than last time.</p><p>Shaking my head, I replied.</p><p>"No, I think everyone is here."</p><p>"Did you forget anything?"</p><p>Patting my suit, I shook my head.</p><p>"No, I have everything with me.</p><p>"Okay then, we may leave now."</p><p>Turning around, Douglas headed towards the lake in the faraway distance.</p><p>Matching his pace, I walked beside him.</p><p>"Have you met with the others yet?"</p><p>"You mean with Donna and Monica?"</p><p>It had been a while since I had last seen him. Since the time we split up when we first arrive. I was genuinely curious if he had met up with the others yet.</p><p>"Yeah."</p><p>"No, not yet." Douglas shook his head."I've been too busy attending meetings with the others that I had no time to look for them."</p><p>Douglas's eyes suddenly focused on the enormous white building in the distance that was becoming clearer by the minute.</p><p>"The both of them should already be aware of my presence. I'll meet them at the ceremony."</p><p>"You don't look that nervous…"</p><p>Pausing, I turned my head and looked at Waylan who was quietly following us from behind.</p><p>Wearing a skin mask, he looked to be in his own thoughts.</p><p>A look akin to a soldier that was about to embark on a long war appeared on his face. Quite frankly, he looked quite haggard.</p><p>'Looks like he didn't get much sleep, huh?' I muttered in thought, before turning my attention back to Douglas and pointing at Waylan behind me.</p><p>"…at least not compared to him."</p><p>"Haha." Douglas let out a small chuckle. "The difference between the two of us is that I'm not worried about Donna and Monica making any attempts on my life."</p><p>"Hee, Emma won't go that far."</p><p>Or, at last, she won't be able to...right?</p><p>"His looks say otherwise."</p><p>"Maybe you're right, but he deserves it. "</p><p>Our conversation continued for the rest of the way and it wasn't long before we arrived at the edge of the lake of Issanor.</p><p>"Wow."</p><p>I muttered underneath my breath as I looked at the lake in the distance.</p><p>It was currently nighttime in Issanor, and the moonlight gently shone above the surface of the crystalline lake. As the water rippled, faint sparkles of light appeared on the surface of the lake, mimicking the stars in the sky.</p><p>It was a breathtaking sight.</p><p>Staring at the opposite side of the lake, where the building was, my brows knit.</p><p>"How do we cross the lake?"</p><p>"There are boats over there."</p><p>Replying to my question, Douglas pointed toward the right where multiple wooden boats appeared.</p><p>It was only after Douglas had pointed them out for me that I realized they were boats. The reason why I was unable to see them was because they were quite far in the distance.</p><p>Turning his wrist, Douglas checked the time. Then, without further ado, he headed for the boats in the distance.</p><p>Naturally, we all followed him from behind.</p><p>***</p><p>At the same time, not far from where Ren was.</p><p>Standing at the edge of the boat, Emma gazed into the distance. Turning her head towards the end of the boat where an elf calmly stood, she turned to look towards the others.</p><p>"Doesn't this remind you of Nuova Roma?"</p><p>"Nuova Roma?"</p><p>A look of contemplation appeared on Kevin's face.</p><p>"Are you talking about the Italian city?"</p><p>"Yeah."</p><p>"Oh? What about it?"</p><p>Emma pointed at the boat.</p><p> "When I was looking for a place to tour, I remembered checking a couple of cities and Nuova Roma had something similar to this. According to the history, they were trying to create something similar to Venice, an old Italian city that was wiped away after the first cataclysms. They had similar boat rides over there."</p><p>"Interesting, I didn't know that."</p><p>"Yeah, yeah, what's mor—"</p><p>To— Tok—</p><p>Halting Emma mid-speech was a low knocking sound. The sound was a bit softer than when knocking on a door.</p><p>"We've arrived."</p><p>Following the knocking sound, the elf that stood at the back finally opened his mouth and his crisp and melodious voice entered the ears of everyone present.</p><p>Tak—</p><p>Then, the boat came to an abrupt halt.</p><p>"Wow!"</p><p>Emma who was caught off guard almost fell off the boat. Amanda who was quietly sitting down calmly stood up and Kevin who was next to Emma helped her rebalance herself.</p><p>"Thanks."</p><p>Hopping off the boat, Emma looked back at Kevin and thanked him.</p><p>"…whew."</p><p>Wiping her forehead, she then turned to look at the building in the distance where multiple figures could be seen slowly entering.</p><p>Unable to contain her excitement, Emma went ahead of the others.</p><p>"Let's go!"</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-383.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-385.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

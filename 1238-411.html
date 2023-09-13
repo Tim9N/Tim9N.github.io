@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 411 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 411 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-410.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-412.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'You will be the next heir of the Han clan.'</p><p>'You must work hard to support your clan in the future.'</p><p>'You are the hope of the Han clan. Make sure to always think of the clan ahead of anything else. Even yourself.'</p><p>Ever since he was little, all Han Yufei heard were those words. He had become so used to them, that he had now started to firmly believe in those values. </p><p>However, just as much as he believed in them, there were times when he really wanted to give up. </p><p>Expectations, expectations, expectations, and even more expectations.</p><p>Being the sole heir of the Han clan, one of the four major clans in [Xin Shijie], the Chinese main city in the human domain, he shouldered the heavy expectations of his clan. </p><p>The Han clan was a powerful clan that was equivalent in power to any diamond-graded guild. Perhaps not as strong as the Demon hunter guild during its peak years, but if all four clans joined hands, such comparisons wouldn't be unwarranted. </p><p>Despite the fact that they were often compared to famous guilds, they were also not the same.</p><p>They operated differently than guilds, but their influence and power were nothing to scoff at. Unlike guilds that mainly hired individuals from anywhere, clans only took in individuals who were of the same blood. </p><p>That aside, not all things were peaceful for the Chinese clans.</p><p>With the land they were covering being quite small, all the top clans were in conflict, in hopes of trying to gain more land and becoming to biggest power in the Chinese region of the human domain. </p><p>Some of the clans worked together, but at the end of the day, the alliances formed were only alliances on paper.</p><p>The end goal of every Chinese clan was to become the sole remaining clan.</p><p>Of course, Han Yufei, being the heir of one of the four main clans in the conflict, was no stranger to these types of conflicts as he had seen them throughout his whole life. </p><p>And because he was familiar with these kinds of stuff that he was also familiar with negotiations. </p><p>He had witnessed many negotiations happening in the past with his father and clan elders.</p><p>As such, he knew when he was seeing a good and a bad deal. </p><p>"Yeah. I will give you a five-star manual in exchange for your family art. That simple." </p><p>"In short, for five years, you will join my mercenary group. I made it this way since what I'm offering is actually of higher value than what you are offering." </p><p>'Ridiculous'</p><p>That was the only word that Han Yufei could think of as he looked through the contract proposed to him. </p><p>Yes, the value of the goods that he was offering was indeed higher. A five-star manual in exchange for a four-star one...but, the five-year contract? That was what alarmed Han Yufei. </p><p>It said that he was going to join a mercenary group.</p><p>But what about it? Setting aside the fact that he first needed to gain permission from the elders of the clan, Cassia? What in the world was that? </p><p>He had never heard of such a group before. From the looks of it, they were either a hidden group or a new group that he had no clue about.</p><p>He also seemed to be of the belief that by joining him, he was going to see massive boosts in strength.</p><p>Was he really just telling him that an unknown clan can teach him better than his own clan? </p><p>Arrogant, Han Yufei thought. </p><p>The more Han Yufei thought over the matter the more apprehensive he became. </p><p>Lifting his head and staring at the figure opposite him, Han Yufei finally opened his mouth. </p><p>"I reject your offer." </p><p>There was firmness in his voice as he said those words. </p><p>The offer was tempting, but Han Yufei saw too many things that were wrong with the individual before him to fully trust him. </p><p>Following his rejection, for a brief moment of time, silence descended on the room as the two of them looked at each other. </p><p>However, it had to be noted that, Caeruleum, the figure who had proposed the deal to him, seemed completely unperturbed by the rejection.</p><p>It was as though he had already expected such an answer for him. </p><p>'Why does he still look so confident despite the fact that I rejected him?'</p><p>There was this strange sense of confidence revolving around him that made Han Yufei uncomfortable. </p><p>Unaware of what he was thinking, leaning back on his chair, Caeruleum calmly asked. </p><p>"...Why did you reject my offer?" </p><p>Han Yufei did not answer. Instead, he asked a different question. </p><p>"Who are you? You suddenly ask for me to meet you, and yet, I still know nothing about you. Do you think I will accept the offer of someone who I know nothing about?"</p><p>Caeruleum.</p><p>This was what he called himself back at the tournament. </p><p>Just who was he?</p><p>Regardless of how much Han Yufei tried to find information about him, he had nothing on him. This was a point of concern. </p><p>Someone so strong and so young, yet he, and almost everyone else, knew nothing about him? Something was definitely suspicious about him, and Han Yufei wasn't stupid enough to agree to join a total stranger's proposal. </p><p>In all fairness, he proposed signing the contract using a mana contract, but that was not nearly enough to convince Han Yufei. </p><p>"Ah, right. How rude of me." </p><p>Realizing the crux of the problem, Caeruleum smiled and uncrossed his legs. </p><p>Leaning forward, he apologized. </p><p>"I'm sorry. You see, I'm so used to wearing this by now that I completely forgot about it." </p><p>Placing his hand over his face, he slowly pulled away at his face. A subtle smacking sound resounded throughout the room as he pulled his face away. </p><p>With his long black hair gently falling by the side of his shoulders, the features of a pale youth with jet black hair and deep blue eyes were revealed.</p><p>Extending his hand forward, Caeruleum smiled. </p><p>"Nice to meet you. My name is Ren."</p><p>"Ren Dover." </p><p>***</p><p>"Shit."</p><p>Kevin cursed as he stared at the hooded figures that had suddenly appeared from out of nowhere.</p><p>Encircling them completely, the situation looked grim. </p><p>"Stay behind me." </p><p>Placing his hand to the side, he instinctively pushed Emma behind him as he took out his sword. </p><p>In response to his actions, Emma didn't say anything and merely stared at the hooded figures before her.</p><p>"Hmmm." </p><p>With her eyes squinted, she swept her gaze over each and everyone one of the figures before her sight finally paused on a certain individual. </p><p>A cold chill ran down her spine as her eyes landed on the hooded figures. She felt this indescribable suffocating feeling coming from him that made her almost lose sight of herself. </p><p>Fortunately, she was able to quickly snap out of it. </p><p>Tugging Kevin's clothes, she pointed in his direction. </p><p>"Kevin, he looks like bad news." </p><p>But it seemed as though Kevin had already spotted the figure. </p><p>With his eyes also locked onto the figure in the distance, Kevin solemnly nodded his head. </p><p>"...You're right." </p><p>Staring at Kevin from the side, Emma turned her attention back at the hooded figure in the distance, trying to peek through the shadow cast over his face, in hopes of finding his identity.</p><p>But regardless of how much she tried to peek, she was unable to identify the individual. </p><p>'Bummer.'</p><p>She thought as her shoulders slumped down. </p><p>"...Who are you?" </p><p>The first one to speak was Jin.</p><p>With both daggers in his hands, thin threads of dark mana revolved around his daggers, creating a rather imposing sight. However, his radiance did not last for long. </p><p>With a simple gaze from the hooded figure, the mana threads revolving around Jin's daggers jumped up wildly and Jin's face paled considerably. </p><p>"khhh..." </p><p>Taking a step back, Jin spat on the ground. His face grimaced in pain. </p><p>Turning his gaze in Kevin's direction, Jin darkly said. </p><p>"Haaa...haaaa...shit, he's too strong. At least &lt;S&gt; rank." </p><p>Overhearing Jin's comments, the atmosphere instantly froze up. </p><p>The strongest person present was Kevin, and he was merely &lt;B&gt; rank. For an &lt;S&gt; rank to suddenly show up, everyone understood just how serious the situation was. </p><p>"What is an &lt;S&gt; class doing here?" </p><p>Melissa spat. On her right hand was her spear while on her other hand were a multitude of different colored cards.</p><p>Squinting her eyes, she calmly analyzed. </p><p>"From his body structure, the figure seems to either be a human or an elf." </p><p>"Yes." </p><p>Besides her, Amanda quietly gazed in the direction of the other enemies, her bow drawn to the fullest. </p><p>Step. Step. Step. </p><p>Taking a couple of steps forwards, the leading figure, the &lt;S&gt; ranked individual finally paused a couple of steps away from Kevin and the others. </p><p>As he was doing so, Kevin's eyes darted all over the place, in hopes of finding a way out of the situation. However, before he could figure anything out, the hooded figure finally spoke. </p><p>"... It's useless. You're already trapped. There is no point in trying to escape." </p><p>His cold and detached voice traveled through the ears of everyone present. </p><p>Firming the grip of his sword, Kevin glared at the hooded figure as he once again asked. </p><p>"Who are you?" </p><p>But his words were met with silence as the figure refused to answer him. Then, turning his attention towards the other hooded figures, the hooded figure raised his hand.</p><p>Just as he was about to gesture for them to attack, someone suddenly spoke up. </p><p>"Excuse me, but are you perhaps my uncle?" </p><p>The voice belonged to none other than Emma who nonchalantly took a step forward. Not a shred of worry clouded her face. Instantly, all attention was drawn toward her. </p><p>Not minding the attention, gazing in the direction of the leading figure, Emma tilted her head. </p><p>"Hmmm, judging from your strength, you don't seem to be my uncle. Who exactly are you?"</p><p>The calmness and perhaps even playfulness hidden behind her words shocked almost everyone present. 'Just how could she be so calm in such a life-threatening situation?' Everyone thought as they stared at her with open eyes. </p><p>The one who was most shocked by this development was of course Kevin who quickly pushed her behind him. </p><p>"Emma, what is wrong with you? Now is not the time for this." </p><p>"Hm?"</p><p>Emma innocently looked at Kevin before turning her attention back toward the hooded figures.</p><p>Taking one last sweep of the place, she clicked her tongue. </p><p>"...Well, since that coward isn't here anymore, the whole thing lost purpose." </p><p>As soon as her words faded, a figure suddenly materialized next to her, startling everyone present apart from the leading hooded figure who remained calm. Or at least that was what he showed on the surface, but the slight fluctuation in the mana around his body did show that he had indeed been slightly startled by the new figure's appearance. </p><p>It was clear that he had been unable to detect him.</p><p>Recollecting himself, he asked in a threatening tone. </p><p>"Who are you?" </p><p>A fiercesome wave of mana sprung out from his body, enshrouding the whole surroundings before heading in the direction of where Kevin and the others were. </p><p>Woooosh! </p><p>However, with a casual wave of his hand, the pressure that was trying to bear down on everyone present quickly dissipated.</p><p>It quickly became clear to everyone present that whoever the figure was, he was someone of equivalent strength, if not, even stronger. </p><p>A palpitating tension suddenly engulfed the surroundings as the two figures stared at each other. </p><p>"...I asked who are you?" </p><p>The hooded man repeated. This time, the mana revolving around his body became even thicker. </p><p>"..." </p><p>Without answering the hooded figure, the man that stood beside Emma placed his hand on his face and took off his skin mask, revealing the features of a young male that looked to be in his mid-twenties.</p><p>However, the moment the figure took off his skin-maks and his features were revealed, almost everyone present jumped out in shock. </p><p>There was a simple reason for this.</p><p>...and that was because everyone knew who the figure was. </p><p>He was none other than Oliver Roshfield. Emma's dad. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-410.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-412.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 362 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 362 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-361.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-363.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p><strong>Chapter 362 - Everything coming together [1]</strong></p><p>"Gervis…"</p><p>Staring at Gervis's lifeless corpse, Douglas shuddered slightly, his voice strained.</p><p>What followed his words was an intense chill that shrouded the entire hall.</p><p>It didn't take a genius to understand what had happened, especially with Randur standing not so far from Gervis with a dagger in his hands, dripping with blood.</p><p>Lifting his head, Douglas's eyes paused on Randur.</p><p>"Why have you decided to betray us?" Douglas asked in a tone bereft of emotion.</p><p>His voice was calm and composed, but everyone in the room could feel the anger hidden within. The air around him trembled.</p><p>"Why did you do that…Randur?"</p><p>"…"</p><p>Silence.</p><p>Douglas was only met with silence. Randur just kept staring at him in the eyes.</p><p>After a while, raising his small, bulky hand, Randur pointed it at Waylan who was standing next to Ren.</p><p>"This is all your fault, human. If not for you, I would've never been forced into such a situation." Randur mouthed as he turned his head to face Douglas. </p><p>"If not for your companions' negligence, Jomnuk would've never have found himself in such a situation!"</p><p>His voice thunderously rang throughout the whole hall.</p><p>It contained all sorts of different emotions, with pain and agony being the primary ones as Randur mourned for the kidnapping of his friend.</p><p>Lowering his head and staring at Gervis's dead body, Randur's expression turned to that of disgust.</p><p>"And him… Despite the fact that Jomnuk had been kidnapped, one of the most important members of the city, he failed to punish the human responsible for the blunder and instead give him the power to take control of the operation because of some flowery words he spoke through the use of a mana contract?"</p><p>Walking up to him, Randur kicked his lifeless body.</p><p>Thump—</p><p>"Bullshit, I say! In the first place, the war could've been won with Jomnuk's barrier alone." Randur shouted as he glared at each and every person present in the room. </p><p>"The barrier could've lasted for at least six more months. If Jomnuk was with us, we could've figured out a way of extending it for even longer…yet you chose to give up on him and even supported the one responsible for his loss!"</p><p>Spit flew from Randur's mouth as his face turned red the more he spoke.</p><p>Everyone could feel the deep-rooted anger he had within him from just his voice alone.</p><p>"You call me a traitor? What bullshit?! The only traitors here are those who gave up on Jomnuk and chose to follow this human who has made nothing but mistakes…"</p><p>No one disrupted him as he spoke. A deafening silence enveloped the hall. </p><p>Everyone quietly listened to everything he said. </p><p>Some of the dwarven elders lowered their heads in shame as they heard Randur's words. They knew just how close he was with Jomnuk. They understood where he came from.</p><p>They felt a little bit of sympathy for him. </p><p>But whether they agreed with him or not, that was a different argument.</p><p>Everyone knew that Randur was merely deceiving himself when he said that they would've been able to win the war with Jomnuk. It was far from the truth. </p><p>"Haaa…haaa…"</p><p>Eventually, the sound of Randur panting heavily resounded across the hall as he poured all of his resentment on the others.</p><p>After a while, taking a deep breath, Randur calmed down and looked at everyone present in the hall.</p><p>"I don't care about what you guys thinking about me from now on. I've already said what I wanted to say. Call me a traitor for all I care. At the end of the day, to me, you're the traitors." </p><p>Then, walking towards Orion and the others, he calmly halted his steps in front of them.</p><p>Placing the palm of his hand on the table and leaning forward, he muttered, "Have I proven myself enough? I've killed Gervis already. You better let me see Jomnuk as we've agreed." </p><p>Calmly staring at Randur who was standing opposite him, Orion pointed at the people standing behind. More specifically, at the forces of Henolur.</p><p>"That'll be a bit difficult right now. He's locked in another room, and the portal needs a few seconds to set up."</p><p>Turning his head and staring at Douglas and the others, Randur faced Orion once again.</p><p>"How much time do you need?"</p><p>He didn't need to be told what he needed to do. He understood exactly what Orion wanted him to do next.</p><p>Seeing that Randur had perfectly understood his intentions, Orion suddenly smiled. </p><p>"Not much. A portal doesn't take too long to function. We should be able to bring you to Jomnuk within a couple of minutes." </p><p>In fact, it took a bit longer than that to set up a portal since they were currently trying to set up a portal that could teleport more than ten people at the same time.</p><p>But they had already been setting it up before the attackers came. Therefore, the time they needed to waste was a lot less.</p><p>Orion suddenly frowned, the smile wiped away from his face.</p><p>"We've already wasted too much time here waiting for you to get rid of Gervis."</p><p>Raising his hand and lifting one of his fingers, he solemnly said, "One minute. All I want you to do is help me stall them for one minute. Can you do that?"</p><p>His question made it sound like he was asking for nothing difficult, but that would only be applicable under normal circumstances.</p><p>Normally, a minute's time would've been nothing, but given the current circumstances where both sides had extremely powerful individuals ready to fight at any moment, a minute was an incredible amount of time.</p><p>Within that short minute, anything could happen. It sounded simple, yet it was anything but simple.</p><p>"Okay."</p><p>Randur nodded before walking behind Orion and the other elders.</p><p>Taking out a large axe from his dimensional space, a powerful energy burst out from his body.</p><p>"I'll help you guys buy time while we wait for the portal to open."</p><p>At his words, Orion suddenly burst out laughing. </p><p>"Hahah, That's all I—</p><p>"Pfttt…"</p><p>Suddenly, disrupting the hall and cutting Orion mid-sentence was the sound of a subtle laugh that quietly sounded throughout the whole hall, catching the attention of everyone present.</p><p>Turning their attention towards where the sound came from, everyone's eyes paused on a human standing at the end of the hall.</p><p>Lifting his head and staring at everyone who was looking at him, the youth, Ren, realized his mistake and quickly shook his hands.</p><p>"Ah, don't mind me. I'm just doing my thing. You guys keep doing your thing. I was just thinking of something funny."</p><p>Unfortunately for Ren, despite his words, no one took away their attention from him. </p><p>The very air chilled even more.</p><p>Raising his hand and pointing it in Ren's direction, Orion's mouth opened and closed like a goldfish, struggling to form a sentence.</p><p>"You…You're…"</p><p>"Yes, I'm the guy who pretended be Karl if that's what you're trying to ask me."</p><p>Ren finished Orion's sentence for him.</p><p>At this point, there was no point in keeping it a secret, and he was also wearing a skin mask, so even if they did try to look for him later, all they'd have on him would be an image of his fake face.</p><p>Glaring in his direction, Orion slowly stood up.</p><p>Next to him, the other duergan elders did the same as they all glared in Ren's direction, with undisguised malice.</p><p>Because they had been in the room the whole time, they had not understood how the whole situation had happened. The situation that led to the current fiasco.</p><p>But now they did. </p><p>It was all that human's fault!</p><p>Had it not been for him tricking the elders into thinking that he was one of them, none of this would've happened.</p><p>The human opposite to them had disguised himself as Karl and created this whole mess. </p><p>Just the mere thought caused the blood of some of the elders present to boil as their jaws clenched tightly. </p><p>Even though they had managed to kill Gervis, the strongest dwarven elder in the city, they had still suffered tremendous losses.</p><p>Not only did they lose several important elders, but they were also forced to retreat from the war because of what had happened.</p><p>The demons were not pleased by the development at all. In fact, they were beyond enraged.</p><p>Not only were they unable to conquer the city, but they also suffered tremendous losses without even being able to do anything. </p><p>Their rage was understandable. </p><p>As they stood up, all of the duergan elders focused their attention on Ren.</p><p>Especially Orion, who couldn't control himself and muttered out loud. </p><p>"This… Everything is because of you. If not for you…we would've never been in such a situation!"</p><p>A powerful energy burst forth from Orion's body as he stared daggers at Ren.</p><p>Following his example, the other elders also did the same as multiple powerful auras sprang forth from their small bodies, heading towards Ren's direction. </p><p>"Not on my watch."</p><p>Stepping in between the elders and Ren, Douglas waved his hand and the aura that shot towards Ren was neatly cut in two. </p><p>A powerful gust of wind blew over Ren as his long hair became undone. </p><p>Following this, everyone in the room took out their weapons and multiple oppressive auras burst forth from the body of each individual present in the room.</p><p>A terrifying and chilling stand-off ensued as both sides prepared to kill each other. </p><p>And just as the air was starting to get incredibly tense, a ringing sound rang out.</p><p>Di— Ding—</p><p>The sound once again originated from Ren's direction. He nonchalantly took out a small communication device from his dimensional space and answered it. </p><p>"Hello?"</p><p>His relaxed, even lazy, voice rang inside of the hall, much to the confusion of everyone present. </p><p>Glancing at the others, he lowered his head in apology, his voice never dimming. </p><p>"I see, so you're also done. Okay. I'm a bit busy at the moment, but I'll tell the others about your accomplishments."</p><p>The call was quick. It only lasted a few seconds, but the last words he said caught the interest of some of the people present.</p><p>They weren't stupid. Something was up.</p><p>Putting the communication device back in his dimensional space, Ren slowly turned his head to face Orion and the others.</p><p>Scratching the back of his head, he opened his mouth and rhetorically asked, "So, you know the dampening system that caused you a lot of problems before?"</p><p>Without waiting for him to answer, turning his head slightly, Ren's eyes paused on Randur.</p><p>"Well, I've set it back up, so you don't have to worry about leaving this place."</p><p>"What do you m—"</p><p>The moment his words faded, the portal being set up in the distance disrupted. </p><p>It wasn't long before everyone realized that the connection with the portal was fading away as the portal continued to morph in a vivid, pulsating manner.</p><p>This continued for the next few seconds. It slowly dawned on everyone present, that Ren's words were no joke. The dampening system was back up. </p><p>Staring at the portal, trembling all over, Orion snapped his head towards Douglas and Ren's direction. </p><p>"You—"</p><p>Spurt—</p><p>But before he could even finish his sentence, Orion suddenly felt a stinging sensation in his back. The pain was only slight, but it soon covered his entire body. Before he knew it, Orion's body started to slowly stiffen and paralyze.</p><p>Turning his head, his pupils dilated as he saw Randur standing behind him with a familiar dagger in his hand.</p><p>"Y-you…"</p><p>With a cold smile on his face, Randur muttered, "Unlike that one, I'm using a different kind of poison. A poison that actually kills the ones who come into contact with it…"</p><p>Following his words, Gervis, who everyone thought was dead, slowly stood up. </p><p>Glaring at Randur for a split second before turning his attention back to Orion, Gervis's lips parted, a voice that came back from the dead echoing in the hall.</p><p>"…Even though I have no idea about what happened, it looks like this is our win."</p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-361.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-363.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

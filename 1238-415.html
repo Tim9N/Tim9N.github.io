@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 415 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 415 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-414.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-416.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>'Was I too harsh?'</p><p>I thought while my feet came to a sudden stop and I looked behind me where the others were. </p><p>Thinking back at the words I said to Kevin and the others, I thought that perhaps I may have been a little bit too harsh on them...but, thinking back at their behavior after my actions, I didn't regret what I said one bit. </p><p>If what I said helped them become aware of their mentality then so be it. </p><p>They could think whatever they wanted about me.</p><p>At the end of the day, what mattered was that they became strong. Strong enough to defeat the demon king. </p><p>Taking a deep breath, I leaned my body against the three and waited for the others to come. </p><p>Fortunately, I didn't have to wait for long as Amanda was the first one to come.</p><p>Walking underneath the moonlight, Amanda held her bow with her right hand. Her fine black hair draped over her shoulders, while the moonlight shone behind her, enhancing her delicate features. </p><p>The beautiful scene was akin to a painting. </p><p>Smiling at her, I opened my mouth and asked. </p><p>"...You guys done sorting your stuff out?" </p><p>"Mhm." </p><p>With a simple nod, she greeted me. But right as she nodded, her head tilted a little as her delicate brows knit together. </p><p>Noticing the change in her expression, I asked. </p><p>"What is it?" </p><p>"...your face."</p><p>She bluntly said.</p><p>My brow raised at her unexpected answer.</p><p>'Is there something wrong with my face?'</p><p>Touching my face with both hands, I found nothing wrong with it. Staring at me from a few steps away, Amanda sighed as she took a step forward.</p><p>Before I knew it she was a few inches away from me. Raising her hands she put her hands on my face, squishing my cheeks softly. </p><p>"Whwat are yowu doiwng!?" </p><p>I instantly became startled by her actions. But before I could say anything else, Amanda placed her finger on her lips. </p><p>"Shush." </p><p>'What do you mean shush?!'</p><p>I internally mouthed as Amanda's face was a few inches away from mine. Unknowingly my heart sped up a little. </p><p>Compared to the past, Amanda had only gotten more beautiful, and now that she was almost an adult, her features had become even more stunning. It took my breath away. </p><p>'Fuck, what's going on?'</p><p>Staring at her face which was extremely close to me, for the first time in a while, I was at a loss for words about what to do as my eyes darted left and right, in hopes of finding something to help me out of my predicament. </p><p>But it appeared as though I was the only one who felt this way as Amanda's expression remained unperturbed. </p><p>"Done." </p><p>It wasn't long before Amanda took her hand away from my face, and I could finally relax. </p><p>Quickly recomposing myself, I touched my face. </p><p>"...Done?" </p><p>Done with what?</p><p>I was so confused that I did not notice what she was trying to do. </p><p>"Mhm." </p><p>Amanda nodded.</p><p>Noticing my confusion, she pointed toward her face. </p><p>"You didn't put your skin mask well." </p><p>"Ah." </p><p>Realization finally dawned on me. </p><p>'So it was about my mask.' </p><p>Was it because I was in a rush? I wasn't sure, but it appeared as though I had somehow not placed my mask properly. </p><p>Still, my brows knit as I looked at Amanda. </p><p>"...You know, instead of doing it, you could've just told me and I would've been able to fix it myself." </p><p>A thought suddenly struck me as my brows knit. </p><p>Was she teasing me?...No, Amanda wasn't the type of girl to do this..actually, I really wasn't sure anymore. </p><p>"Is that so?" </p><p>Amanda innocently tilted her head.</p><p>From the way she was looking at me, it didn't seem as though she did what she did on purpose. </p><p>My eyes squinted in doubt. </p><p>'...did she really unknowingly do that...or is she teasing me?'</p><p>I really couldn't tell.</p><p>After staring at her for the next second, I decided to let it go and looked towards the distance where I could see the faint outlines of the others coming in our direction. </p><p>'...Just to be sure.'</p><p>Tilting my head slightly, I tried to peek in Amanda's direction. </p><p>"Aha!" </p><p>It was then that from the corner of my eyes, I saw the corner of Amanda's mouth lift up slightly. My head instantly snapped in her direction, unfortunately, Amanda was quick to react as her face quickly returned to its serious self.</p><p>"I saw that." </p><p>"Saw what?" </p><p>"Tsk." </p><p>Seeing that she had returned to her usual poker face, I clicked my tongue. She had definitely done that on purpose. </p><p>Talking about her poker face, I had a sudden thought as I looked at Amanda. </p><p>"Say, now that I think about it, have you ever played poker?" </p><p>Slightly taken aback by my question, Amanda didn't answer immediately. It was clear that she was trying to see if I was trying to retaliate against her or not. </p><p>It was only after a couple of seconds had passed that she finally answered. As she answered, her voice was filled with vigilance. </p><p>"...yes, with Emma." </p><p>"What was the result?" </p><p>"She called me a menace to the poker community." </p><p>"...That far?" </p><p>"Mhm." </p><p>"Pftt..." </p><p>A laugh escaped from my lips as a scenario of Emma throwing a tantrum at Amanda flashed in my mind. </p><p>Guess I found myself a new way to earn money.</p><p>Glancing at me from the side of her eyes, Amanda's red lips opened up slightly as she asked. </p><p>"Why did you ask?" </p><p>"Just curious." </p><p>I replied with a simple smile.</p><p>Her eyes squinted in doubt, but in the end, she didn't say anything. </p><p>"So that's where you guys were." </p><p>It wasn't long before I heard Kevin's voice coming from the distance.</p><p>"Took you long enough." </p><p>"What do you mean? You do know that there were three more bodies to dispose of, right?" </p><p>"Yeah, sure." </p><p>I replied with a lazy look. </p><p>Judging from how he was still okay despite the words that I said to him, it looked as though he took the words I said to heart. Or at least, took them into consideration. </p><p>I smiled at this. </p><p>The stronger Kevin became, the brighter my future was. </p><p>***</p><p>Inside of a private residence. </p><p>"Has he completed the mission or not?" </p><p>Pacing around the room, Jasper tried to remain composed. However, the mere thought of the mission failing caused him endless amounts of anxiety. </p><p>If there was a chance to get rid of Emma, it was now. There was no better time. If they failed the mission, he would never truly be the main leader of the Roshfield house as there were still some who were loyal to Oliver. </p><p>With his current influence, he could have easily kicked them out of the house, however, that would drastically lower the forces of the family and so he couldn't afford to do that. </p><p>The only way he could fully control the house was through Emma's death. </p><p>"Damned him." </p><p>Jasper gnashed his teeth in hatred. Just the mere thought of Oliver angered him to no end. </p><p>Despite the fact that he had disappeared to who knows where he still created troubles for him everywhere.</p><p>Veins popped out from his forehead as he thought about the troubles that Oliver's influence still caused him to this day. </p><p>Placing the palm of his hand on his desk, Jasper glanced at the door and muttered. </p><p>"What is taking him so long?"</p><p>Getting rid of a bunch of children should take no time for an &lt;S&gt; rank like him. Not even a minute. What could've taken him so long? </p><p>Fortunately, Jasper did not have to way for long as someone quickly knocked on the door. </p><p>Knock—! Knock—! </p><p>Jasper's eyes lit up with glee at the sound. </p><p>Recomposing himself and straightening out his clothes, he sat down on his chair and opened his mouth. A cold and authoritative voice traveled in the air. </p><p>"Come in." </p><p>Ci Clank—! </p><p>Once his words faded, opening the door, a familiar figure walked in. </p><p>Brightly smiling, Jasper stood up and extended his hands in a hugging motion. </p><p>"Micheal, I'm glad you're finally here." </p><p>Giving Jasper a casual glance, Micheal returned the greeting with a simple nod and did not say a single word. </p><p>Not minding Micheal's attitude, Jasper pointed towards the seat opposite him. </p><p>"Have a seat, have a sit. You must be tired from the mission." </p><p>Pulling the chair back, Micheal sat down and crossed his legs. Once Micheal sat down, Jasper did the same. </p><p>"So, is the matter complete?" </p><p>A trace of anticipation and impatientness hid in Jasper's voice as he looked at Micheal. </p><p>Silently staring at him for a couple of seconds, Micheal nodded his head. </p><p>"It is." </p><p>"Great!" </p><p>Unable to contain his excitement at the news, a bright smile emerged on Jasper's face and he soon burst out laughing. </p><p>"Ahaha, wonderful, wonderful." </p><p>Micheal smiled at Jasper's excitement. </p><p>"Are you that happy that Emma died?" </p><p>"Of course I am." </p><p>Jasper replied. The smile on his face grew even bigger. </p><p>"Wither her gone I can now have full control of the house. Those old bastards can't prove that I am the one that got rid of her, and so will be forced to listen to my or—Eh?" </p><p>Before he could finish his sentence, Jasper's eyes grew wide open as he watched Micheal slowly place his hand on his face. What happened after caused his complexion to turn ashen white as his body trembled uncontrollably.</p><p>"I...impossible." </p><p>Smack—!</p><p>With a loud smack, a wooden mask appeared on the table as a figure that bore striking resemblances to Emma, his niece, appeared in front of him. </p><p>That figure, he knew...of course, he knew, how could he not know? It was the same figure that he tried to surpass throughout his whole life! </p><p>"H-how!?" </p><p>With a smile on his face and staring deeply into Jasper's eyes, Oliver replied. </p><p>"Jasper, it has been a while, hasn't it?"</p><p>***</p><p>In a certain room. </p><p>Crash—!</p><p>Aaron's eyes were bloodshot as he smashed everything in the room. It was a long time before he finally stopped, panting for breath. His face twisting savagely.</p><p>Bang—!</p><p>Raising his fist, Aaron punched a hole through the wall of his room as he snarled through gnashed teeth. </p><p>"Get out of my fucking head!"</p><p>His scream was filled with resentment and helplessness. </p><p>Ever since that day, Aaron had been unable to sleep. His head itched all the time and 'that face' beating down on him would resurface in his mind over and over again as though someone was haunting him.</p><p>"Fuck, fuck, fuck." </p><p>Rubbing his hair till it became messy, Aaron's face turned ashen as the back of his head started to itch more and more. </p><p>Covering his face with his hands, blood trickled down his forehead as his nail deeply dug onto his skin. </p><p>Faint recollections of the pain he felt that day continued to flash in his mind, sending him into an agonizing spiral of pain. </p><p>"Arghhh!" </p><p>He screamed in agony as his breathing became even heavier. </p><p>Clenching his fist tightly, Aaron stumbled towards his table and looked through the list of contenders for the round of 64. Scrolling through the list, his eyes soon paused on a certain profile. </p><p>[Caeruleum]</p><p>His hands shook uncontrollably. </p><p>A subconscious fear rose within him when he saw that profile. </p><p>Nothing was known about him apart from the fact that he was a human. </p><p>Having made it to the round of 64, Aaron naturally paid close attention to everyone's profile, and when he saw Caeruleum, something within him itched. After observing him more and more, a horrific realization dawned on him. </p><p>What if what he experienced was not a fabrication of his dream?</p><p>From the way he interacted with Kevin, Jin, and the others, there was a very real possibility that that was 'him'.</p><p>The mere thought caused Aaron to have sleepless nights as glaring black circles formed underneath his eyes. </p><p>"...No...it can't be...Impossible..." </p><p>Raising his hand, Aaron slowly started to bite his nails. Curling himself onto the ground, he continued to bite the nails of his fingers. </p><p>'I must kill him...he must die...make his life miserable for making me suffer so much...only after he dies will all the nightmares stop'</p><p>A strange voice entered his mind as he continued to bite onto the nails of his fingers. </p><p>Slowly ideas started to implant themselves into his mind as Aaron soon started to bite onto the top skin of his fingers. </p><p>"You...must...die!" </p><p>***</p><p>Early morning. </p><p>A soft chill blanked the city of Issanor, causing white steam to come out from the mouth of the people present whenever they took a breath.</p><p>"Huaaam."</p><p>Stretching my body, I let out a large yawn.</p><p>After the events of last night, we all headed out for dinner and went back straight to bed right after. Reason being that today we were going to have our next matches. </p><p>With these rounds being more important than the previous ones, a new area was selected to hold the tournament. </p><p>Arriving at the place, an enormous field sprawled across the place.</p><p>Most shockingly, an enormous tree stood in the middle of the field. Raising my head and staring at the tree, I was totally shocked by its size as it was at least as tall as some of the tallest buildings in the human domain. </p><p>At the bottom of the tree were thick roots that deeply etched themselves onto the ground. On the other hand, by the side of the tree were eight thick branches that stretched outwardly. Placed at the very edge of them was an enormous platform.</p><p>Most likely the platforms where the fights were going to take place. </p><p>At this current movement, surrounding the tree was a sea of people. Practically all of the faction leaders as well as citizens of Issanor had gathered here. </p><p>Appearing before them were large circular mirror-like spells that displayed the view of the platforms above. They essentially acted like large monitors. </p><p>Thunderous noises echoed across the field. </p><p>The moment I appeared beneath the tree, I instantly attracted the attention of the many people.</p><p>I didn't need to wonder why they were looking at me as a large projection of my face, well, the one of me with the mask, appeared. </p><p>Pursing my lips, I shook my head and headed towards the center of the tree. </p><p>It was finally time for the real tournament to begin. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-414.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-416.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

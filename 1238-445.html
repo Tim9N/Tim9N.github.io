@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 445 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 445 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-444.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-446.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Upper echelon area. </p><p>"Hahahahaha!" </p><p>A boisterous laugh resounded across the platform as Gervis slapped the side of the chair and helplessly held onto his stomach, trying his best to contain his laughter. </p><p>However, as he recalled Ren's actions, his laugh only became louder. </p><p>It took a couple of minutes for him to finally calm down, and when he did, wiping the side of his eyes, he commented. </p><p>"This is great!" </p><p>Even though Ren's words were extremely arrogant and offensive, Gervis didn't take them to heart. He was all too familiar with him and knew he probably had his reasons for whatever he did. </p><p>Also, dwarves weren't particularly known for their combat prowess so he wasn't offended at all. </p><p>Calming himself down, Gervis stroked his beard and turned to look at Brutus who was wordlessly sitting on his seat. </p><p>"You saw that right?" </p><p>"...Yes." </p><p>Brutus unperturbedly replied. </p><p>"His words aren't wrong." </p><p>"Oh?" </p><p>Gervis showed a look of surprise. He didn't expect such an answer from him. </p><p>"You really think that there isn't anyone else worth fighting?"</p><p>"Khrr...khrr...correct."</p><p>With a deep and unfathomable look on his face, Brutus calmly nodded his head. </p><p>"After he defeated Kimor...khrr...khrr...the victor of the tournament had already been decided. What is said is true. There isn't anyone that is worth fighting." </p><p>Gervis's eyes squinted when he heard Brutus's words, but he decided to stay silent.</p><p>There was no point in him saying anything else as he too somewhat agreed with what he said. </p><p>As the two were conversing, the elven queen had a weird look on her face. Even though she wasn't particularly offended by what Ren did, she was not entirely pleased. After all, he had humiliated Vaalyun in front of the whole world. </p><p>He was supposed to be the best prodigy that the elves could offer. At an age that was similar to that of Ren in human years, he had already broken through to &lt;A-&gt; rank. He was supposed to be a generational talent that was rarely seen, yet he had been completely overshadowed and even turned into the butt of the jokes for those that were watching. </p><p>"Sigh." </p><p>Still, it wasn't like she could do anything about it. Given her status, if she did something, it would look bad on the whole race. Not that she was planning on doing anything in the first place. </p><p>To her, this was a good opportunity to humble Vaalyun a notch. He had become a little bit too arrogant for his own good. If this humiliation served to calm him down a bit, then the queen could turn a blind eye to what happened. </p><p>Furthermore, Amanda had already told her about the Xurin fruit. Even though she was still unclear about whether it was real or not, if that was truly the Xurin fruit that could cure Natasha, Amanda's mother, then she owed him a big favor. </p><p>Whatever was happening to Vaalyun, the queen could only pretend to have noticed. </p><p>"..."</p><p>The only one of the four that didn't show any reaction to Ren's victory was Octavious who quietly gazed toward the arena with an indifferent look on his face. </p><p>There was no visible change in his expression as he looked at the arena, however, if one looked closely, they might be able to see a more resolute look on his face. </p><p>He had finally made up his mind. </p><p>***</p><p>After Ren left, the excitement over the next few matches died down a little. </p><p>There were two reasons for this, one, the matches were not as tense as Ren's and Kevin's matches, and two, they were all still riled up at Ren's words, making it hard for them to truly enjoy the other match. </p><p>It was still the round of sixteen and so the top contenders had not fought yet, but in their hearts, everyone already knew that the purpose of the tournament had faded. Especially after seeing Ren's performance. </p><p>If there was only one thing that everyone was focusing on at the moment, it was Kevin's potential match with Vaalyun, who was now synonymously known as Vacuum throughout the whole human domain. </p><p>Unbeknownst to him, he had become the butt of the jokes to all humans as they all replayed the last moment when Ren's words caused his pride to crumble apart. </p><p>Click—! </p><p>Pressing onto the remote controller, Smallsnake turned off the television and sat back in his seat. </p><p>*Puff* </p><p>Recalling Ren's last words during the tournament, Smallsnake's face twisted. </p><p>"Ugh, is he trying to piss all of the races at once?" </p><p>He could already feel a massive headache coming his way. Not only had Ren's last words provoked the other races, but he had done it in a way that pretty much maximized the hate directed at him. </p><p>Smallsnake at the moment could only pray that this incident wouldn't come back and bite him in the ass. However, knowing Ren's personality, Smallsnake already knew that this was a pipe dream. </p><p>*Puff* </p><p>"Ugh." </p><p>His head started to hurt. Massaging his forehead with his hand, Smallsnake lamented over his luck. "Just why do you always have to cause me so much trouble." </p><p>*Puff* </p><p>"Can you stop?" </p><p>Smallsnake's head snapped towards his right. There, with his legs on the table and holding onto a massive cigar, Smallsnake watched as Leopold repeatedly took big puffs of the cigar. </p><p>*Puff* </p><p>Ever since returning from Issanor, there was not a single moment when Leopold didn't stop smoking. At this point, Smallsnake questioned whether his lungs were made out of smoke or were even still there. </p><p>The amount Leopold smoked was simply too much! </p><p>*Puff* </p><p>Taking another puff of the cigar, Leopold shrugged his shoulders. </p><p>"Can't help it. I'm just making up for the time when I couldn't smoke back in Issanor." </p><p>Recalling the days when he couldn't smoke back in Issanor, Leopold's body shivered. It had completely traumatized him. </p><p>"You—" </p><p>Just before Smallsnake could say anything else, the door of the warehouse opened and Ava, Hein, and Ryan entered the office space. </p><p>The moment they entered the place, Smallsnake noticed that they all had a haggard and tired look on their faces. </p><p>Clank—! </p><p>"...Hey." </p><p>"Hey Smallsnake." </p><p>"mhh..."</p><p>"What's up with you guys?" </p><p>Smallsnake questioned with a strange look on his face. Halting her footsteps a couple of meters away from Smallsnake, Ava sat down on a sofa and leaned her head back. </p><p>"Family, that's what happened."</p><p>Ava tiredly said, as Hein and Ryan similarly sat down next to her. They all had similar looks on their faces. </p><p>Covering her face with her hand, Ava groaned. </p><p>"Ever since coming back, no matter how much I tried to leave they wouldn't let me!" </p><p>Raising her head to look at Smallsnake, Ava continued her rant. </p><p>"To make matters worse, my family has already alerted the whole neighborhood about the fact that I participated in the tournament! The moment I came back, all I did was spend countless hours greeting strangers who I have never seen before in my life!" </p><p>"Same for me." </p><p>Hein said with a sympathetic look on his face. </p><p>"My father was the same....I-I wish I could have my time returned to me." </p><p>Listening to their stories, Smallsnake felt a little bit of pity for them. Turning his head to look at Ryan, he didn't even need to ask to understand why he looked the way he did. Given how doting and protective his mother was, he could already guess what happened. </p><p>He was less sympathetic for him though. Ryan deserved what he had coming to him. Especially since he had been annoying him for a whole year. </p><p>Leaning back on his chair, Smallsnake smiled. </p><p>"Well, I'm glad that you have all settled down back here." </p><p>It had been quite a while since everyone had returned to the human domain, and it looked like they had all finally settled down. </p><p>After going through such hardships back in Henlour, this was a well-deserved rest that everyone earned. </p><p>Of course, Smallsnake knew that this wouldn't last for long as half of the people here were already famous. If they took into account Ren, who was probably the most famous human at the moment, then Smallsnake could already guess how grim the future was looking for him and the others. </p><p>*** </p><p>After leaving the arena grounds, taking out the mask of Dolos, I quickly changed my face and clothes before heading back to the arena grounds.</p><p>Walking around the place, I soon spotted a familiar figure and sat down next to her.</p><p>"When is your match?"</p><p>Startled, Amanda gave me a cold look before proceeding to ignore me. </p><p>At first, I was confused about why she ignored him, but then I realized why. Smiling, I once again said. </p><p>"Ah, it's me."</p><p>This time, I used my regular voice. </p><p>Amanda's delicate brows knit at my words. She then proceeded to stand up and proceeded to leave. Not even sparing me a second glance. </p><p>Seeing this, I grabbed onto her hand and said.</p><p>"Hold up, it's me!" </p><p>"Let go."</p><p>Amanda coldly said. An icy hue began to sprout out of her body. </p><p>My mouth twitched when I saw this.</p><p>"Oy, you don't recognize me?"</p><p>Although I didn't look the same, she should still recognize me from my voice. However, it soon dawned on me that the arena grounds were too loud. I wrily smiled when I realized this. </p><p>The hue revolving around Amanda intensified by the second, and it wasn't long before she attracted the attention of some of the people present. </p><p>Realizing just how much of a predicament I was in, I had a sudden thought.</p><p>"Wait, hold up."</p><p>Tapping onto my bracelet, I took out my student ID card and briefly flashed it to Amanda. It was the only thing I could possibly show her to prove my identity.</p><p>Fortunately, it somehow seemed to have worked as Amanda quickly calmed down. The hue revolving around her body disappeared, and it was then that it finally dawned on her that I was, well, me.</p><p>Once she realized this, much to my confusion, she lowered her head and softly said.</p><p>"…Can you let go?"</p><p>"What?"</p><p>I asked. Because of the noise around me, I could barely hear her words. </p><p>Pursing her lips, Amanda pointed towards my hand which was still holding onto her wrist. Realization soon dawned on me, and I yanked my hand back.</p><p>"Sorry, I didn't mean to do it on purpose.</p><p>I quickly apologized. </p><p>"Mhm."</p><p>With a soft nod, Amanda proceeded to sit next to me. An awkward atmosphere revolved around us.</p><p>Coughing slightly to get rid of the weird atmosphere, I decided to ask. "How are the preparations for your mother?"</p><p>Hearing my words, Amanda's face turned serious. Turning her attention back toward the arena, Amanda replied in a low tone. </p><p>"We will do it today, after my match."</p><p>"Oh."</p><p>I absentmindedly nodded my head. Taking a deep breath, I tried to calm myself down. </p><p>"Do you want to come?"</p><p>Snapping me out of my thoughts I suddenly heard Amanda's voice. Taking a couple of seconds to process her words, a complicated look appeared on my face before I proceeded to shake my head.</p><p>"No thank you. It wouldn't be right for me to intrude on your family reunion time. Although I know that you feel indebted to me because I gave you the fruit, you should take this moment to reunite with your mother. I'll eventually meet her after she's healed."</p><p>"I see.."</p><p>Amanda lowered her head. It was clear that she was disappointed, but I couldn't help it.</p><p>The moment that Amanda gave the fruit to her mother, I was going to suffer the backlash of the contract breach. </p><p>Since I didn't want her to find out about what I had done, I could only politely reject her.</p><p>Raising my head, my eyes paused on the tournament platform. Recalling the order of the fights, I turned to look at Amanda.</p><p>"If I don't recall wrongly, after this match is your match, right?"</p><p>Lifting her head and staring at the arena, Amanda nodded her head.</p><p>"Mhm."</p><p>Then, taking out a hairband and tying her hair back, she slowly stood up.</p><p>Raising my hand, I wished her luck.</p><p>"Good luck."</p><p>"Thank you."</p><p>With a soft smile, Amanda proceeded to head for the tournament grounds. Staring at her figure from my seat, I sighed.</p><p>"So it's tonight huh?"</p><p>I really dreaded this moment, but letting out another sigh, I firmed my mind. Perhaps this would turn into a good opportunity for me. </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-444.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-446.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

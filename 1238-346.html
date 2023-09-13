@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 346 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 346 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-345.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-347.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>346 Beginning of the assault[4]</p><p>"…well fuck."</p><p>Staring at the barrel of the gun right in front of me, the world around me froze.</p><p>Despite of the fact that I had a gun barrel aimed at my head, I was calm. My eyes paused on the hole of the narrow barrel where I could see a small energy blast forming at the very end of it. Upon closer look, I noticed a small bundle of spherical mana agglomerating towards the very end of the barrel, forming a small pink ball.</p><p>Not taking my eyes away from the ball, the chip inside of my head started processing at full power, and all sorts of different scenarios materialized inside of my head.</p><p>All the scenarios had different survivability probabilities.</p><p>Some high, some low.</p><p>All the processing and analyzing happened within a short second, and before the ball had fully formed, I already knew what to do.</p><p>'…and I really wanted to conserve my mana.'</p><p>In the end, after simulating the many scenarios inside of my head, I decided to go with the most efficient method.</p><p>Although I really didn't want to do this as I had to conserve as much mana as possible, I was left with no choice but to do this.</p><p>Slowly lifting my head, I inwardly muttered.</p><p>'The one.'</p><p>The moment my words faded, the duergar standing opposite to me abruptly came to a halt as the hand that held onto the gun shook. The energy beam that was forming at the end of the barrel suddenly twisted and disappeared into the air like smoke.</p><p>Calmly placing my left hand on the gun, I moved it slightly. Then, leaning my head backward, I head-butted the duergar right in the face.</p><p>"Huek!"</p><p>Thud—</p><p>Falling butt first onto the ground, the duergar let out a strange sound and let go of the gun.</p><p>Without giving him any chance to recover, I stomped my foot on the ground.</p><p>Spurt—</p><p>A gory scene appeared in my vision as blood and pieces of flesh covered the ground below me.</p><p>Unemotionally staring at the scene below me, deactivating the effects of the one, I walked towards my sword and picked it up.</p><p>Tapping on my bracelet using my left hand, taking a potion out from my dimensional space, I uncapped the lid and chugged it down.</p><p>Gulp—</p><p>"Haaa…"</p><p>Downing the whole potion in one go, my shoulder slowly started to heal. Unfortunately, the process was not a quick one as my whole shoulder had almost gotten blown away.</p><p>It was so bad that I may as well have had my whole arm amputated. At this point, it was practically useless.</p><p>According to my estimates, I would need at least a couple of hours for it to fully heal.</p><p>Normally I wouldn't have had a problem with this, but that was on normal occasions. Unfortunately for me, this was no longer a normal occasion.</p><p>With everything that was going on, time was of the essence, and the fact that my dominant hand was no longer working was a cause of concern.</p><p>'To think that things have gone wrong this early into the plan…'</p><p>From how I practically lost my right arm to how I used more mana than I had originally anticipated.</p><p>Things were not going as smoothly as I had anticipated.</p><p>BANG—</p><p>Fortunately, this was only coming from my end as Angelica swiftly dealt with the last remaining duergar.</p><p>Crashing onto the side of the walls, blood splattered everywhere, and a gory scene once again presented itself before my eyes.</p><p>"Hm?"</p><p>Once she disposed of the duergar, turning her head to face my direction, the first she noticed was the state of my shoulder.</p><p>Raising her hand, she pointed at it.</p><p>"What happened to you?"</p><p>"A little accident."</p><p>I replied whilst heading towards the alarm system of the place. The one that the guard had previously pointed out to me during the tour.</p><p>Once I arrived at the place, turning to face Angelica, I nudged her with my head.</p><p>"Security should already be aware of the fact that the surveillance system is down, wait at the door while I try to activate the system. Kill anyone that comes in."</p><p>Around thirty to forty seconds had passed since we attacked and disposed of the duergars in the room. If my estimate was not wrong, within a couple of seconds, a bunch of guards would quickly head in our direction.</p><p>Given that I had to activate the system as well, and the fact that my right hand was no longer working, I could only leave the matter of defending the place to Angelica.</p><p>"…"</p><p>Without saying anything, much to my relief, Angelica understood the situation and headed toward the entrance of the facility.</p><p>Briefly glancing at Angelica's parting figure, I focused my attention back on the emergency system and tried my best to recall all of the information that the guard had previously said when I was here.</p><p>'According to what he said, the system activated whenever it feels like an explosion might happen by measuring the mana that is lingering in the room, therefore, if I want it to activate, I need to mess with the sensor…'</p><p>Fortunately, I didn't have a hard time recalling what the guard had said. With the aid of the chip inside of my head, remembering word for word what the guard had said not too long ago was not hard as I went straight into action not long after.</p><p>'It should be over there…'</p><p>Scanning the area I was in, I immediately spotted the mana sensory system. It wasn't far from where I was and it also wasn't hard to spot.</p><p>With a label right above it, I would be dumb not to spot it.</p><p>[00H : 00S : 21S]</p><p>"——!"</p><p>Checking my watch and noticing that I barely had any time left, I rushed towards the sensor.</p><p>'Assuming that the sensor scans then mana density that is lingering inside of the whole room, I'd estimate that the sensor will only activate once the mana that is dispersed throughout the whole room reaches a certain level. If I channel my mana right above the sensor, I should be able to distort the data and replicate a scenario where it looks like an explosion is happening.'</p><p>As my thoughts were running wild, I soon arrived before the sensor.</p><p>BANG—</p><p>But just as I arrived at the sensor, a terrifying explosion resounded from behind me, without turning back I knew that security had finally arrived.</p><p>Without wasting any time, I raised my left hand and touched the sensor with my finger. Upon touching the sensor, I channeled all the mana inside of my body towards it and a white thread that detached from my body sank into the sensor.</p><p>BANG— BANG—</p><p>While I was busy trying to interfere with the sensor, the sound of fighting behind me rang even more powerfully as Angelica's demonic energy shrouded the whole room.</p><p>"What are you doing demon!"</p><p>"What have you done!?"</p><p>"Why are you interfering with us?"</p><p>The angered shouts of the duergars behind me powerfully rang throughout the whole facility.</p><p> 'Come on…come on…'</p><p>Staring at the sensory system, I fully concentrated on the task at hand and channeled even more mana into the system.</p><p>[00H : 00M : 09S]</p><p>Briefly glancing at my watch, my heart rate sped up and I felt a strong sense of urgency.</p><p>Although I had managed to do the most important step of the plan, which was to gather the attention of everyone, that was the problem.</p><p>Douglas had still not attacked yet, meaning that everyone's attention was on me. If the security system did not work, I would find myself in a scenario where I would end up facing the elders of Inferno.</p><p>Only when the security system activated would I truly be saved, albeit temporarily.</p><p>Di Ding— Diiii—</p><p>Just when I thought I wouldn't have enough time to activate the system, a large chime rang out and red lights flashed.</p><p>Rumble—</p><p>What followed after was a small rumbling sound as the doors of the facility started to shut down.</p><p>"The system activated!"</p><p>"Hurry!"</p><p>The moment the doors started closing, the duergars became alarmed and attacked even more fiercely. But how could Angelica let them?</p><p>Channeling all of her demonic energy, raising her hand, a small ball materialized in her hand. The ball was about the size of a baseball, but the energy that emanated from it was no joke. With threads of demonic energy encircling it, Angelica pushed the ball forward, towards the attacking duergars.</p><p>"Shit! Move back!"</p><p>Realizing the threat of the ball, all duergars moved backward and tried to avoid the attack. It had to be noted that this was a full-powered attack coming from a Count ranked demon. The energy contained within the attack was not someone that anyone could take.</p><p>Clank—</p><p>Before Angelica and I could see whether the attack had any effect or not, the doors of the room shut down.</p><p>With my hand still channeling mana in the sensory system, I looked at Angelica and muttered.</p><p>"Did we do it?"</p><p>BOOOM—</p><p>Before Angelica could even reply, a terrifying explosion rang from outside of the facility and the whole room shook.</p><p>"Ah…I guess we did."</p><p>Still touching the sensory system, my shoulders relaxed a little.</p><p>"…it has finally started."</p><p>The war between the dwarves and Inferno had officially begun.</p><p>***</p><p>Moments before the explosion.</p><p>"What in the world…"</p><p>"Is this what I think it is?"</p><p>Crossing through the illusion set up at the end of the tunnel, Douglas, alongside the many others that had followed him, were left speechless by the scene that they were presented with.</p><p>Deeply etched into the walls was an enormous structure resembling a large gate with all sorts of engravings by its side. The infrastructure was enormous, and standing outside it were three tall large statures, depicting two duergar killing a dwarf.</p><p>"This…"</p><p>It didn't take a genius to realize where they were, and the moment they did, the faces of everyone present changed.</p><p>Some of the faces of the individuals paled significantly while the faces of others shone brightly.</p><p>Still, their appearance did not go unnoticed. The moment they appeared, the gates of the enormous structure shut down. What followed after was even more alarming. The sides of the structure opened up and cannon-like devices slowly came into everyone's view.</p><p>"Get ready."</p><p>Staring at the cannons in the distance, Douglas's face became incredibly serious.</p><p>Extending his hand forward, a terrifying pressure suddenly engulfed the entire area as the mana in the air thickened up and agglomerated towards his hand, coating it completely.</p><p>A similar scene appeared in the distance as small colorful spheres made out of mana entered the barrels of the cannons, converging towards the middle where a large colorful sphere formed.</p><p>[00H : 00M : 01S]</p><p>As both sides accumulated energy, glancing at his watch, with a grave face, Douglas pushed his palm out.</p><p>A whistling sound arose, and what followed after was a boundless force. Like a tsunami, the force obliterated anything that crossed its path.</p><p>In response to Douglas's attack, the cannons also shot out a fierce attack. All of them whistled down at the same time. A rumbling thunder roar resounded continuously.</p><p>Different colors lightly flashed across the surroundings. Immediately after, the two forces met in front of everyone's eyes.</p><p>BOOOM—</p><p>A terrifying explosion instantly rang out, and energy ripples spread from the point of collusion. The tough ground immediately burst apart, covering the place with dust.</p><p>***</p><p>Ohm— Ohm—</p><p>At the same time, emerging from out of a portal, were five figures.</p><p>WHIIII— WHIIII—</p><p>The sonorous sound of sirens rang, as the whole facility flashed in red.</p><p>Staring at the unfamiliar environment, Gernis alongside the others questioned.</p><p>"Where are we?"</p><p>Standing opposite of the others, Waylan waited for everyone to appear before answering. Rather than saying it multiple times, it was better to only just say it once.</p><p>Ohm—</p><p>It didn't take long for the last person to exit out of the portal. Once the last member stepped out of the portal, Waylan looked at everyone and smiled.</p><p>"You guys must be confused about our current location, right?...Hm?"</p><p>Without giving the others a chance to reply, taking notice of a small piece of paper that was resting on the table of the room, Waylan raised his brows and picked it up from the table.</p><p>Opening it, he slowly read through it.</p><p>After a while, scrunching the paper in his hands, he turned his attention back towards the others.</p><p>"If you guys have still not figured it out, I'll make the instructions quick."</p><p>Burning the paper in his hand, Waylan pointed at the door of the room.</p><p>"If you haven't still figured it out. Welcome to Inferno."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-345.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-347.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

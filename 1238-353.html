@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 353 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 353 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-352.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-354.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Let me have a look."</p><p>Moving towards the control system that overlooked the dampening system, I placed my palm on the holographic screen.</p><p>Right as my hand touched the hologram, a map of the entire building presented itself before me. Marked on it were a multitude of red dots that depicted the areas where the dampening devices were installed.</p><p>The range they covered was also displayed on it.</p><p>Scanning the holographic map before me, my brows knit tightly. </p><p>Placing my hand under my chin, I softly muttered, "Hmm… This is a lot more troublesome than I had expected."</p><p>Tapping one of the red dots marked on the map, a small window popped up in front of me.</p><p>On the window were a series of complicated numbers and words. </p><p>As I looked through the long, complex numbers and words displayed on the window, the chip inside of my head started processing the information in my mind.</p><p>But it was useless. Even with the chip inside of my head, I could barely understand what was happening.</p><p>The more I looked the greater the frown on my face became.</p><p><em>'…I should've expected this from the beginning. There's no way the dampening system wouldn't have some sort of defense mechanism installed.'</em></p><p>Getting into the place was the first hurdle, and the second hurdle was now deactivating the system, which, honestly, I knew very little about.</p><p>Massaging my forehead, I tried my best to make heads or tails of the data before me.</p><p>Turning my head, my eyes paused on Ultruk. He was lying on the ground, breathing heavily.</p><p><em>'…No, that won't do.'</em></p><p>I thought about asking him if he knew anything, but after remembering that orcs weren't the brightest of creatures, I promptly gave up.</p><p>"Here."</p><p>But just as my head was about to ache even more, Waylan arrived next to me and passed me a small, black-coloured rectangular object.</p><p>"What's this?" I asked in wonder as I took the device from Waylan's hands. </p><p>Feeling it in my hands, the black object was sized and shaped to resemble a USB device. It wasn't exactly a USB though, since it looked like a black metallic stick.</p><p>Flipping it around and seeing nothing particularly special about the stick, I lifted my head and looked up at Waylan.</p><p>"…What exactly is this supposed to do?" I repeated, sounding mildly curious.</p><p>With a weak smile, Waylan explained, "Before coming, Jomnuk gave me this. He seemed to have already known that you would have trouble figuring out how to disable the system."</p><p>"He did? Well…"</p><p>Turning to look at the window filled with numbers, I couldn't deny Waylan's words. Or Jomnuk's, for that matter.</p><p>"Although Jomnuk did say that you could've done it by yourself, he also added that by the time you'd be done, hours would've already passed… And so, before coming here, he told me to pass it to you."</p><p>"Good idea…"</p><p>For a moment, I thought that I was going to be spending the next couple of hours trying to figure out how to enter the system. </p><p>Fortunately, Jomnuk had great foresight. He had given Waylan the necessary equipment to help me disable the system.</p><p>Given that time was of the essence, it was nothing short of a life-saving grace.</p><p>Pointing at the holographic map in front of me, Waylan explained to me the uses of the stick.</p><p>"According to him, all you have to do is put this thing over there and it should automatically disable the system within the next couple of minutes."</p><p>Listening to his words, I nodded my head repeatedly before opening my mouth and saying, "That's simple enough."</p><p>"It is. Just stick it in and let it do the rest."</p><p>"Got it, I'll do it now."</p><p>Without wasting any time, I inserted the USB stick-looking device inside of a small socket at the bottom of the holographic system.</p><p><em>Clink—</em></p><p>The moment I inserted the device into the socket, the panel flashed and a small tab opened up.</p><p>[Database synchronisation]</p><p>0%________________100%</p><p>Upon seeing the message window, my eyes lit up in glee.</p><p>"It worked."</p><p>"Looks like Jomnuk was right." Waylan smiled in relief from the side, "We would have been in trouble if that didn't work."</p><p>"You're right. But, we're not in the clear yet," I responded from the side, cooling down my initial excitement.</p><p>Taking a look at the panel tab that had now moved up to 2% progress, I solemnly said, "I'm sure that the elders have been made aware of what happened here by this time. If my estimates aren't wrong, they'll send a couple of them to us soon…"</p><p>Looking at Waylan, whose complexion was extremely pale, and Ultruk, who, well, still looked green but had a tired look on his face, I could tell that in the state they were currently in, another fight would only lead to our imminent loss.</p><p>"Oh, right."</p><p>It was then that a thought suddenly occurred to me as I looked at Ultruk's direction.</p><p>Tapping on my bracelet, I took out a small bag and walked up to him.</p><p>Tapping him on his broad shoulder to get his attention, I pushed the bag in his direction.</p><p>"These might help you recover a bit."</p><p>"Huh?"</p><p>Turning to face me, Ultruk briefly glanced at my face before looking at the bag in my hands.</p><p>"What are these?" His deep voice echoed throughout the room. </p><p>"Just a few things I picked up in a certain place."</p><p>The place was none other than Immorra, but he didn't need to know that.</p><p>After taking everything that I could possibly get from that place, there were a few things I had no use for.</p><p>Especially the fruits that were inside of the bag, they were useless to me. I wasn't exactly sure on how precious they were because I could not ingest them, but they would hopefully be of some use to Ultruk whose aura was low right now.</p><p>Since potions didn't really exist for orcs, as they used aura, the orcs couldn't recover like we did with mana. They consumed special fruits like the ones in my hands.</p><p>In retrospect, they did recuperate their aura at a much faster rate than us, but it still took a bit of time.</p><p>By giving Ultruk the fruits, I was hoping that he would have a much easier time recovering his strength for when more enemies arrived.</p><p>"Show what is inside, human."</p><p>Though initially sceptical, Ultruk took the bag in my hand and looked through it.</p><p>"——?!"</p><p>The moment he opened the bag and saw what was inside of it, his eyes opened wide in shock.</p><p>Seeing Ultruk's rapidly changing facial expressions was so amusing I couldn't hold back a smile.</p><p>Pointing at the bag, his eyes darted between me and the bag. </p><p>"This… How… No, where did you get this!?"</p><p>He said with slight excitement in his voice.</p><p>Standing up from the ground, Ultruk hurriedly moved towards where I was and grabbed me by my shoulders before he started shaking me a little violently.</p><p>"Where did you get this stuff?! Answer me, human!"</p><p>Unable to free myself from Ultruk's grasp, I was left powerless as he shook my body around like a doll.</p><p>"H-Ho-ld…on! Wait a… minute! Stop!"</p><p>For a brief moment, I felt my life flash before my eyes as Ultruk shook my body repeatedly.</p><p>To make matters worse, no matter how much I tried to free myself from the grasp of his hands, they wouldn't budge an inch. It was as though Ultruk's hands were stuck on me like glue.</p><p><em>'…I'm starting to understand Durara's pain.'</em></p><p>"Ultruk, stop. You're killing him."</p><p>It was only after Waylan spoke to him that Ultruk realised what he was doing to me. </p><p>Letting go of me, he scratched the back of his head and apologised, "Oh, sorry. I was a bit too excited."</p><p>I was a little surprised by the sincerity in the huge orc's tone. It felt a little odd. </p><p>Putting his hand inside of the bag, Ultruk took out a pale fruit. Somehow, the fruit looked really beautiful.</p><p>Looking at me and Waylan, Ultruk admired the fruit in his hand. As he looked at it, hints of nostalgia could be seen in his eyes.</p><p>"You may not know this, but this fruit over here is a rare delicacy I have not seen in over five decades. Back when we were still in our own world, I would eat this everyday with my comrades and friends. It was a time where we basked in the sunshine, and enjoyed the afterglow of the sunset. I'd almost forgotten those days until I saw this again…"</p><p>The nostalgia in the orc's tone became even more apparent the more he talked. I had never seen him talk so much, especially in such a tone.</p><p>"Over five decades?" Waylan asked in surprise. Turning his attention towards the fruit, he tilted his head.</p><p>"Strange, I don't feel any mana fluctuations coming from it."</p><p>"That's because this fruit is not something you can consume."</p><p>Splitting the fruit in two, a subtle energy sprang forth from inside it.</p><p>It was a familiar energy that Waylan knew all too well.</p><p>"Aura…"</p><p>"Correct."</p><p>Nodding his head, Ultruk took a bite of the fruit. With the fruit's juices dripping from his large hands, Ultruk showed a delightful expression.</p><p>"It tastes just as I've remembered it."</p><p>"So? Did it help you recover a bit?" I asked.</p><p>"Recover?"</p><p>"Yes. I mean, did the fruit help you recuperate some of the aura you lost?"</p><p>"Hmm…"</p><p>With his other hand holding onto the fruit, Ultruk closed his eyes. After that, for a brief moment of time, he did not speak.</p><p>It was only after a minute had passed that he opened his eyes.</p><p>Raising his hand and devouring the other side of the fruit, Ultruk opened his mouth.</p><p>"The grade of this fruit is good. But, it is still too little for me to make a full recovery."</p><p>"…Is that so?" I said with a little bit of disappointment.</p><p>Pointing at the other fruits in the bag, I asked again, "What about if you eat all of those fruits?"</p><p>The moment I finished saying those words, Ultruk's face hardened. </p><p>"…Finish?"</p><p>"Yeah, you said that it helped you recover a bit. What if you ate them all?"</p><p>"…"</p><p>Staring at the fruits in his hands, Ultruk's face contorted. </p><p>After a while, he grimly responded.</p><p>"I should be able to recover half of my aura."</p><p>"That's good!"</p><p>My eyes instantly lit up at his words. If he recovered half of his aura, it would make things a lot easier for us going forward.</p><p>Turning my attention towards the panel and seeing that it was still only at 5%, I knew that we would soon be going through another tough battle.</p><p>The goal was to disable the whole dampening system. Once that happened, communications would return and the tides of the battle should start shifting towards our direction.</p><p>As my thoughts paused there, turning my head to face Waylan, I asked, "How about you? How long will it take for you to recover your strength?"</p><p>"Me?"</p><p>Placing his hand on his chin, Waylan closed his eyes for a brief moment before shaking his head.</p><p>"At least one more hour. I wont be able to help much in the next hour."</p><p>"One hour?"</p><p>Frowning, I looked towards my right arm. Shaking my head, I said, "I'm the same. Not that it really matters, since you guys are way stronger than me."</p><p>Well, I could just take care of the mobs. That would make things easier for them.</p><p>Although they wouldn't be able to do much harm to Waylan and Ultruk, they could still prove to be annoying. And, in a tough battle, such distractions could even prove fatal.</p><p>It was best if I could recover quickly as well.</p><p>"Okay, eat the fruits now and recover quickly. We never know when they are going to come at us. By now, the enemy should already be aware that something happened to Durara, so we should probably get ready."</p><p><em>Booom—!</em></p><p>But just as my words faded, a large explosion sounded and the whole room shook. </p><p>Opening my eyes wide, I stared at Ultruk and Waylan. Their gazes interlocked with mine.</p><p>Then, turning towards the panel and seeing that it had only moved to 7%, my face sank.</p><p>"…They came a lot faster than expected."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-352.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-354.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

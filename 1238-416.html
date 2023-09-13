@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 416 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 416 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-415.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-417.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huuuu."</p><p>Placing my hands in my pockets, I exhaled as white steam rose from my mouth.</p><p>A chilly breeze brushed past me as the cold air made me involuntarily shiver. Had to say, the mornings in Issanor were quite cold.</p><p>"You guys here pretty early."</p><p>Moving through the crowd, my footsteps soon came to a halt as I gazed into the distance where Hein, Ava, Leopold, Smallsnake, and the others were already waiting.</p><p>I smiled at them.</p><p>'Looks like everyone is here.'</p><p>Well, everyone apart from Angelica.</p><p>Kind of felt bad for her but it seemed as though she was happy with this arrangement.</p><p>Gazing in Hein's and Ava's direction, I asked.</p><p>"Are you two ready?"</p><p>"Yes."</p><p>"Um."</p><p>The both of them firmly nodded their heads. They looked quite confident in themselves.</p><p>Especially Ava whose eyes burned with fighting spirit as she tightly held her flute in her right hand.</p><p>On the other hand, standing beside her, Hein looked a little bit more anxious as hugged his shield with both arms.</p><p>It had to be noted that a white cloth covered the whole of his shield from top to bottom. The intent behind it was clear.</p><p>"We will try our best."</p><p>Hein said, trying his best to look confident.</p><p>"...That's good,"</p><p>Pretending to not have seen the cloth covering his shied, I replied with a straight look.</p><p>"I really hope you pass..."</p><p>Internally, I was a bit worried.</p><p>After having checked the contestant's list, I knew that the chances of Hein and Ava passing this round were not as high as the both of them thought. The opponents were nothing to scoff at.</p><p>Plus, to make things worse, one guy was a shield user and the other was a beast tamer, not really the best for one on one competitions.</p><p>"Haaa..."</p><p>At the thought of it, a sigh escaped from my lips as once again vapor rose from my mouth.</p><p>Gulp—!</p><p>What followed after the sigh was a low gulping sound. Turning around, my eyes met with Leopold's as he stared at the slowly rising water vapor.</p><p>My mouth twitched.</p><p>'...I don't even know what to say.'</p><p>His relapses were starting to become worse and worse.</p><p>'Oh, right.'</p><p>Right as I was about to say something to him, I suddenly recalled something and turned to look at Ryan who was currently standing next to Smallsnake.</p><p>"Ryan has the matter been settled."</p><p>"The matter?"</p><p>Upon hearing my words, Ryan tilted his head, evidently unsure about what I was trying to say. Seeing his confusion, I elaborated.</p><p>"Regarding what I asked you to do back in Henlour and that I told you to keep close attention to..."</p><p>"Ah!"</p><p>A look of realization suddenly flashed on Ryan's face as he nodded his head.</p><p>"Yes, everything is already done. I can turn on the connection whenever you want."</p><p>"Perfect."</p><p>The edges of my lips curled upwards.</p><p>If everything went according to what I had set up, I may be able to finally regain my freedom. Of course, this was only granted on the fact that my plan worked and the people involved acted the way that I wanted them to act.</p><p>If not, everything would be for naught.</p><p>"Oy!"</p><p>Snapping me out of my thoughts, I heard someone calling out for me. Without needing to look in the direction of where the voice came from, I already knew who it belonged to.</p><p>It was Kevin.</p><p>Following behind him were the others.</p><p>Since they were coming from the same dormitory, it was only right that they came together.</p><p>Stopping a couple of meters away from me, Kevin looked around the place. Lifting his head and staring toward the platforms on the thick branches of the tree, Kevin opened his mouth in amazement.</p><p>"How in the world are we going to get up there?"</p><p>"Portals."</p><p>I said as I pointed towards the distance where multiple small portals were being set up.</p><p>Turning his head, Kevin's eyes squinted into small slits as he tried to get a better look at the portals in the distance.</p><p>"Oh, that makes sense."</p><p>Then, turning his head to look behind me, his eyes soon paused on Ava.</p><p>"Huh? Isn't that Ava?"</p><p>Kevin didn't try to hide his shock as his words were quite loud, attracting the attention of everyone present.</p><p>"Ava?"</p><p>Shock appeared on the faces of everyone present as their eyes paused on Ava.</p><p>"Eh? That's Ava?"</p><p>"Is that her? She looks different?"</p><p>Their shock was understandable, after all, Ava was indeed someone who used to be in our class.</p><p>However, there was something that I didn't understand.</p><p>Glancing at Kevin, I pointed in Ava's direction.</p><p>"Wait, you just noticed? You know she made it to the top 64 of the tournament..."</p><p>"Did she?"</p><p>"Yeah."</p><p>There weren't that many people that made it this far. For him to have not even noticed her was a testament to his unpreparedness.</p><p>This just went to show that we operated differently. Unlike him, before every round, I would spend a lot of my time studying the profiles of each and every contestant present.</p><p>It was a must.</p><p>Kind of baffled by the fact that Kevin still did not do this.</p><p>"You've got to be more prepared, Kevin."</p><p>Glancing at him, I shook my head in disapproval.</p><p>In response to my words, Kevin scratched his head in embarrassment.</p><p>'Was Ava's presence that small?'</p><p>Perhaps it wasn't even that that he didn't come, but that Ava changed too much compared to her time back at the Lock.</p><p>In hindsight, the Ava of back then had little to no presence whatsoever. Compared to her past, the current Ava looked completely different.</p><p>I too wouldn't have recognized her if I were in Kevin's position.</p><p>"I think it's probably because we just met you again and so we didn't notice her."</p><p> Shaking my head at his failed attempt at trying to remedy the situation, I shrugged my shoulders. </p><p>"Well, alright, it's not really that important."</p><p>Taking a step to the side, I decided to introduce Kevin and the others to my group.</p><p>"You guys probably already know her, she's Ava."</p><p>"Hey."</p><p>Staring at the others, Ava greeted them with a confident smile. Surprise flashed across their eyes as they stared at her.</p><p>'Is that really her?'</p><p>Was what their faces were saying as they looked at her.</p><p>Smiling, I pointed in Hein's direction.</p><p>"This guy over here is Hein, he has also made it to the top 64. He's a great meat shie...keum, I mean, he's great at taking blows."</p><p>Almost slipped there.</p><p>Ignoring Hein who was glaring in my direction, I introduce the others.</p><p>"This drunkard over here is Leopold, this little child is Ryan, and...yeah, well, this guy is Smallsnake."</p><p>"...Did you seriously have to introduce me in such an unenthusiastic way?"</p><p>Smallsnake complained from the side.</p><p>I scoffed at him.</p><p>"As if—Huh?"</p><p>Before I could say anything else, Kevin abruptly walked up to Smallsnake and hugged him tightly.</p><p>"...It's okay. I understand your sorrows. I know just how much of an ass he can be."</p><p>Smallsnake's mouth trembled as he bit his lips and hugged back.</p><p>"You too?"</p><p>"...Yeah."</p><p>My face froze at the sight.</p><p>Alternating my gaze left and right to make sure I wasn't seeing wrongly, I remained speechless for a good minute.</p><p>Once Kevin and Smallsnake separated from their hug, the way they looked at each other reminded me of two old comrades finally meeting each other after a long war.</p><p>'The hell...'</p><p>"So is this some sort of club you created to inflate your ego?"</p><p>While I was looking at Smallsnake and Kevin, I suddenly heard a faint voice coming from my right side. Without needing to look I knew that it was Melissa.</p><p>I instantly rolled my eyes.</p><p>"Yes, yes, wanna know its name?"</p><p>"N—"</p><p>"Well that's too bad, it's called the Melissa fan club. A club dedicated wholly to worshipping you."</p><p>"Dissolve it."</p><p>Melissa immediately said as her face cringed and her head rolled back.</p><p>"That's kind of rude. That what you say to your fans?"</p><p>"Want to die?"</p><p>"Already have."</p><p>Figuratively and literally.</p><p>"Have you two had enough? Stop bickering, the tournament is about to start."</p><p>Emma commented from the side as she stood next to Amanda who looked at the both of us weirdly.</p><p>After Emma spoke, the noises in the background suddenly became louder as the sound of a gong reverberated throughout the area.</p><p>Dong—!</p><p>As the gong reverberated across the area, a visible excitement enshrouded the surroundings.</p><p>Staring into one of the magical monitors in the distance, the elven lady from before appeared at the center of one of the platforms, mana surging from out of her body as her sweet and melodious voice rang out in everyone's ears.</p><p>"Participants for the round of 64, please ascend towards one of the platforms when your bracelet lights up."</p><p>Just as her words faded...Vrrrr—! Vrrrr—!The bracelet on my wrist lit up. I wasn't the only one in the group whose bracelet lit up as Amanda, and Jin also had their bracelets light up.</p><p>"To the contestants that had their bracelets light up, please make your way towards the designated arena."</p><p>Following her words, figures immediately moved towards the teleportation areas set up beneath the tree.</p><p>Amongst the loud cheers coming from the spectators, one by one, figures materialized on the platforms above.</p><p>"Guess that's my cue to go."</p><p>Moving next to me and patting me on the shoulder, Kevin said.</p><p>"Good luck."</p><p>"Thanks."</p><p>Thanking Kevin, lowering my head, and staring at my bracelet, I headed towards the portal that lead to platform [3], the area where my fight was.</p><p>*</p><p>Swoooosh—!</p><p>Materializing on the top of platform [3], a gentle and cold breeze brushed past me as my clothes fluttered. Because it was so high up, the air felt a lot colder than when I was below.</p><p>'What a view.'</p><p>I inwardly muttered in amazement as I gazed at the platform.</p><p>The platform was circular, and it was extremely wide, with a radius of about 40 meters. Walking towards the edge of the platforms, I cringed a little as I gazed at the massive drop below.</p><p>FWUOP—!</p><p>As I was checking the platform, it was then that a touring figure materialized opposite me. It soon became clear to me that my opponent was an orc.</p><p>My brows instantly knit as soon as he appeared.</p><p>That was because his entire presence radiated danger. If I had to estimate his strength, it was about &lt;B&gt; to &lt;B+&gt;, about the same as mine.</p><p>"Are you two ready?"</p><p>Out of nowhere, another figure suddenly showed up on the stage. It was the referee.</p><p>Hearing her words, without wasting any time saying any words to each other, the both of us nodded our heads.</p><p>"Begin!"</p><p>Once the referee's words faded, pressing his large foot onto the ground, my opponent shot in my direction at a breathtaking speed.</p><p>With his fist raised, a murky green hue enshrouded the orcs fist. Arriving before me, he punched out.</p><p>"Shit."</p><p>I cursed as I stared at the incoming fist.</p><p>It was so fast that I was unable to react on time and thus was forced to cross my arms together in a defensive stance.</p><p>Bang—!</p><p>Soon his fist connected with my arms and I felt a bone-breaking pain course through my body as my body skid back all the way towards the edge of the platform.</p><p>Stopping near the edge of the platform, I grit my teeth as I tried to suppress the groan that was about to escape from my lips.</p><p>Inevitably, I failed as I groaned out loud.</p><p>"Ughhh!"</p><p>The pain was just too much for me to bear. It felt as though all the bones in my arms had been broken.</p><p>Shaking my head, I quickly recomposed myself.</p><p>Lifting my head and staring at the orc in the distance, the mana inside of my body sprung out as I released all of my power. Wariness instantly flashed across the orc's face.</p><p>Placing my hand by the side of my waist, I rested my hand on the grip of the sword.</p><p>'Looks like I can no longer afford to fight like before...'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-415.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-417.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 336 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 336 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-335.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-337.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>336 Infiltration [4]</p><p>[Utility center, fourth level.]</p><p>"This is a lot more complicated than I first thought."</p><p>Malvil muttered under his breath as he studied the pale green flute in front of him.</p><p>After completing his work for the day, he had spent most of his free time analysing the flute.</p><p>It was then that he realized that the flute was even more sophisticated than his original estimates.</p><p>"...Just how did they manage to make the mana flow this way?"</p><p>Touching the shaft of the flute, a white hue emanated from his finger, entering the object.</p><p>The moment mana circulated in the flute, it lit up and Malvil was able to see thin vein lines inside. His eyes locked intensely on it, his gaze enraptured.</p><p>"I see….. So, in order to create an oscillating sound, the mana is stored and released in short bursts that causes the frame of the flute to burst..."</p><p>Taking out a piece of paper, Malvil started to sketch an image of the flute.</p><p>Although there was technology that could perfectly capture an image of the flute, Malvil was the type of dwarf who preferred to use a regular pen and paper.</p><p>Sitting by the side, Ava curiously looked at Malvil. He seemed to have completely forgotten her presence. The dwarf was utterly fascinated by the flute in front of him.</p><p>Having stayed in the workshop for almost a day, she was understandably tired. Moreso than Malvil, even.</p><p>Hein and Leopold were still in the facility, but they were currently looking through the other sections, having a merry time.</p><p>It was currently just her and Malvil in the room.</p><p>"...Excuse me."</p><p>"Hm?" Malvil turned, looking at Ava curiously.</p><p>"Yer still here?" A hint of surprise in his voice.</p><p>"Yes..."</p><p>"You should probably go back, it will still take me a while before starting to fix this thing."</p><p>That was a half-truth.</p><p>Although it would indeed take him a while to fix the flute, in reality, Malvil wanted to spend more time analyzing it. Therefore, he was planning on slowing down the rate at which he was going to fix the flute.</p><p>It was selfish, but there was nothing in the world that could stop a dwarf from his craft.</p><p>'Consider this as a small payment for fixing the flute.'</p><p>Malvil mused as he put more mana into the flute.</p><p>Typically, he would've never done this kind of job, but the situation at hand was an exception.</p><p>The flute was just that intriguing.</p><p>"I can already tell you now, I won't be able to fully fix this thing immediately."</p><p>"Is that so..."</p><p>Ava dejectedly lowered her head. Her small frame looked pitiful at that moment. There was so much depending on the flute. Without it, her power would drop considerably.</p><p>With the current ongoing war, Ava couldn't wait long for the flute to be fixed. She simply didn't have that much time.</p><p>Staring at Malvil, she asked quietly, "How long do you think it will take?"</p><p>"Hmm..."</p><p>Stroking his beard, Malvil put the flute down and pondered more to himself than Ava, "Given that I still don't quite fully know the structure of the flute and the fact that I'm quite busy with other repairs, I would estimate that it would take me at least a year to fix this."</p><p>"A year?!"</p><p>Ava's eyes widened in shock, her jaw nearly dropping to the ground. Malvil's reply was beyond her wildest imaginations.</p><p>A year was far too long! She could've understood if it was just one week or a month, but one year was far too much for her.</p><p>If she left the flute here to get fixed, then she wouldn't be able to participate in the war. It would be extremely detrimental both to Ava and her team.</p><p>Noticing the look of dejection on Ava's face, Malvil instantly understood her worries and reassured, "Don't worry. Although it will take me over a year to fix the flute, that doesn't mean you can't use it whilst I'm fixing it."</p><p>Lifting her head up in surprise, Ava hurriedly asked, "Really.? I can use the flute even when you're still repairing it?"</p><p>"Ye."</p><p>Malvil nodded. A slight smile played on his lips.</p><p>"Whenever you need the flute, you can just come and take it. It's not like the flute will stop working once I'm fixing it, haha."</p><p>Malvil's words brought some much- needed relief to Ava. She put her hand on her chest and sighed in relief.</p><p>"Okay, if it's like that then there is no proble-"</p><p>Rumble-!</p><p>Before she could finish her words, the whole structure started to shake violently.</p><p>"_ _!"</p><p>"What is going on?"</p><p>Both Malvil and Ava panicked. Holding onto the side of the table, the two of them tried to remain standing.</p><p>"Just what in the..."</p><p>With difficulty, while maintaining an uneasy footing, Malvil took out a small device from his dimensional space and switched it on.</p><p>Soon, a holographic image appeared before him, depicting the situation outside.</p><p>"Oh, god almighty..."</p><p>The moment Malvil witnessed what was happening outside, his jaw dropped in shock. The colour of his face paled slightly.</p><p>His behavior did not go unnoticed by Ava who was standing next to him.</p><p>"What is going on?"</p><p>Leaning her body slightly, Ava took a peek at the holographic image.</p><p>"Ah!"</p><p>But at that very moment, when her eyes fell upon the image, Ava wished she had been in the dark.</p><p>That was because the barrier protecting the city from the outside slowly became fainter.</p><p>Outside the borders of the barriers were a wave of black demons that stretched all the way till they couldn't see.</p><p>The scene looked horrifying.</p><p>***</p><p>"So, what you're saying is…. you want us to help you infiltrate Henolur?"</p><p>A raspy voice sounded inside of a dark hall.</p><p>"...That is correct."</p><p>A cold and emotionless tone rung back.</p><p>"What are you trying to achieve by infiltrating Henolur?"</p><p>An aged female voice sounded; it belonged to none other than Durara, one of the elders of Inferno.</p><p>At the moment, all of the elders were present, and their gazes remained transfixed at the hologram before them</p><p>Displayed on the hologram was an old man with dull grey eyes. He was a human.</p><p>"You do realize that we're currently in the middle of a war? We, by ourselves, face great difficulty infiltrating the place. What makes you think that we can help you enter? In fact, why do you think we would even consider helping you?"</p><p>Durara spat.</p><p>Her voice was filled with annoyance due to the unreasonable demand.</p><p>Unfazed by Durara's words, the old man in the hologram spoke up, "I'm trying to look for a human. He's someone that the Monolith is paying special attention to."</p><p>"Oh? And why should we care?"</p><p>Another Duergar spoke up.</p><p>Wearing a monocle, the Duergar had thin white hair on top of his balding head.</p><p>His name was Orion, and he was one of the elders of Inferno.</p><p>"Why should we care about helping you look for a human? You're not planning on asking us to do this for free, right?"</p><p> Orion's words were met with nods of approval from some of the other elders.</p><p>It would take a lot of resources, including but not limited to the time and logistical constraints Inferno currently faced, to get someone to infiltrate Henolur. Moreover, they had nothing to gain from this.</p><p>Unless there was a reward, the elders of Inferno did not see the need to approve of the request.</p><p>Staring at the duergars present in the hall from the holographic projection, the human, Mo Jinhao, squinted his eyes and spoke in a cold, dead tone devoid of the slightest trace of emotion, We can compromise then. Help us capture the human. In exchange, we will owe you one."</p><p>"Owe us one?"</p><p>"Yes."</p><p>"…What does this human look like?" Orion inquired, his interest in the human piqued. To be owed a favor by such a large organization, the leaders interest were piqued.</p><p>"We're uncertain as of right now, but we have a tracking system on him. With it, you should be able to locate him."</p><p>"I see..."</p><p>Propping both elbows on the table, Orion interlocked his hands together.</p><p>Taking a look at the other duergars present in the hall, confirming their expressions, Orion spoke up, his voice and words on behalf of the council.</p><p>"Alright, we'll give it a thought. We'll contact you later to let you know of our decision."</p><p>"I understand."</p><p>Mo Jinhao replied with an indifferent tone. Moments after, his projection disappeared from the hall.</p><p>silence fell in the hall moments after.</p><p>"What do you think? Should we accept the offer?" Orion asked.</p><p>"I don't really care, but..." Durara was the first to speak up as she expressed her opinion, "If they really can locate that person with a tracker, then things would be a lot easier for us. For them to owe us a favor in exchange for something like that doesn't like a bad deal at all."</p><p>"I concur."</p><p>Another druegar spoke up.</p><p>"If it takes little to no effort, then I don't see why we shouldn't take the deal. Those humans have their uses."</p><p>"Hmm."</p><p>Resting his chin in his hands, Orion fell into deep thought.</p><p>What the others were saying made sense. The reward was decent and the risk low, yet, as he thought about it, he couldn't quite get rid of this nagging feeling at the back of his head.</p><p>For an organization as big as the Monolith which, although weaker than Inferno, could still be considered a powerhouse in their own right, to have trouble finding this one guy, just how troublesome was he?</p><p>He was afraid of perhaps inviting a storm inside of his own house.</p><p>The situation was already too delicate for them. Inferno couldn't invite danger carelessly.</p><p>"I think we sh-"</p><p>But before he could address the matter, the door suddenly burst open.</p><p>Clank! Clank-</p><p>Entering the hall, a dwarf wearing a guard's uniform halted in his steps and straightened his back.</p><p>"Elders, Karl is here!"</p><p>The guard shouted, gathering the attention of all the elders present inside of the hall.</p><p>Before long, an old druegar came into the room.</p><p>Staring at the elders of Inferno present in the room, Karl had a fearless look on his face as he addressed them.</p><p>***</p><p>Entering the hall, I found all the leaders of Inferno looking at me with fervent, eager expressions.</p><p>"Karl. You did not disappoint me."</p><p>Durara was the first to speak. A large and pleased smile hung on her face.</p><p>"I always had faith in you."</p><p>'...I guess she's not wrong.'</p><p>Out of all the elders present, Durara was the only one who believed I could deactivate the beacon.</p><p>In fact, the thought most likely never crossed her mind. but that didn't matter to me.</p><p>At that moment, I was eagerly waiting for my reward. That would allow me to enable the next step of my plans.</p><p>Unaware of what I was thinking, Durara suddenly stood up and banged both of her hands on the table in front of her.</p><p>"Karl Kallum, in light of recent events, you are now granted the position of senior advisor. On top of that, you will be granted this ring."</p><p>Extending the palm of her hand, Durara revealed a black ring.</p><p>The moment she revealed the ring, surprised expressions appeared on the elders present.</p><p>The reason for their reaction lay in the significance of the ring's contents. It was not just any regular ring, but actually, a dimensional space filled with money, artifacts, and potions. Every elder present knew just how valuable the things inside of the ring were.</p><p>They would definitely help me break through to the next level.</p><p>"Satisfied?"</p><p>"...Yea. I'm very satisfied with the reward."</p><p>"That's good."</p><p>Interlocking her fingers, she looked in my direction and eagerly asked, "So? When can you take the rest of the beacons down?"</p><p>Lifting my head up and staring back at Durara, musing for a moment, I made up a lie.</p><p>"…Give me two months, and I'll be able to do it."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-335.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-337.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

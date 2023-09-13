@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 381 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 381 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-380.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-382.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Say, demons are not going to suddenly show up out of nowhere and attack us, right?"</p><p>Walking through the city, a rough voice sounded next to me. It was Leopold.</p><p>"What do you mean?"</p><p>"Well, just that…"</p><p>Leopold looked around and lowered his voice.</p><p>"I'm kinda tired of dealing with demons, and I was wondering if another situation similar to Henlour might happen."</p><p>Oh, it was about that. I nodded.</p><p>"Not sure, to be honest. But unlike the dwarves, elves are much better at detecting demons since they are super sensitive to mana, so there's a chance that no such thing will happen."</p><p>"…what do you mean?"</p><p>"Just like I said, elves are much more sensitive to demonic energy. Therefore, it is a lot easier for them to spot demons. In fact, didn't you notice the barrier before?"</p><p>Squinting, Leopold looked behind him.</p><p>"The one at the bridge?"</p><p>"Yeah, that alone should stop most of the demons."</p><p>Had Angelica not worn the special bracelet, she would've easily been found out. Even if she had turned into a ring form there was a chance for her to get spotted.</p><p>During The Conference, in the novel, it was because of this that no demons managed to interfere. That being said, never say never. </p><p>"That's reassuring."</p><p>Leopold finally relaxed and took a deep breath of the fresh air. </p><p>Then, his footsteps suddenly halted as he brought his hands closer to his face. A clicking sound repeatedly rang in the air.</p><p>Click— Click—</p><p>"What are you doing?"</p><p>"Ah, shit."</p><p>With an embarrassed look, Leopold lowered his hands and scratched the back of his head.</p><p>"I was trying to have a smoke, but I forgot we can't do that here."</p><p>"…."</p><p>Seriously?</p><p>Before coming here, I remember expressively reminding Leopold that he couldn't smoke lest he wanted to piss off the elves. I even took away his cigarettes in order to make sure he didn't. He was just that addicted. </p><p>Plus, with how nature oriented the elves were, any form of littering or smoking was a big no-no. </p><p>"Right, sorry."</p><p>Putting the lighter away, Leopold's face scrunched up a little. </p><p>Staring at him, I shook my head. </p><p>'He's already suffering withdrawal symptoms.'</p><p>The last time he smoked was not that long ago, maybe half a day? Just how addicted was he?</p><p>Shaking my head, I followed the rest of the group around the city. </p><p>Ignoring Leopold's progressively worsening face, we continued our tour of the city. </p><p>Most of the city was accessible to us apart from a few places, like the enormous building that stood in the middle of the lake.</p><p>Apparently, that place was where the elders held important discussions, and since we were not that important, we could not go there. That was probably where Douglas went. </p><p>"I wonder if we're going to be participating in the tournament…" Hein murmured from the side. It was audible enough for everyone present to hear.</p><p>"You want to participate?" Ava curiously lifted her head. "From what I've heard, we don't really need to participate."</p><p>"We don't," I replied with a nod. </p><p>"We've already proven our qualifications to the others, so, realistically speaking, we don't have to participate, but…"</p><p>"But?"</p><p>'Looks like everyone is interested.'</p><p>Seeing everyone stare in my direction, my lips tugged upwards.</p><p>"…but no one said we couldn't. I mean, if you guys want to participate, go. Do your thing. In fact, use this chance to see how much you guys have improved over the past month."</p><p>If there was one thing my group had an edge over all the other people their age participating in the tournament was true combat experience.</p><p>Sure, some might have a bit of experience fighting against demons and the like, but who could proudly say they had fought a war against a full-on attack from the demons and came out on top?</p><p>I don't think there are many.</p><p>"I heard that the winners from each respective age range will get quite a reward…"</p><p>'Oh right, there's that too.'</p><p>Snapping my head towards Hein, I grabbed his shoulder.</p><p>"Hein, remember how I told you that there's a way to cure your father?"</p><p>"You don't mean…?"</p><p>With my eyes locked onto Hein's, I nodded.</p><p>"Yes, one of the top prices for the tournament is in fact the elixir that can cure your father of his disability."</p><p>There were many prices granted to the top winner of the tournament, and if I didn't recall it wrong, one of them was the elixir that Hein could use to heal his father.</p><p>Honestly, with how much the dwarves favored us, there was a possibility of them giving it to us if we just asked, but that might result in the elves losing favourability with us. </p><p>Plus, this was a good way to motivate Hein into joining the tournament and even win. </p><p>It was time to finally let the world see just how talented he was. </p><p>"You're…not joking, right?"</p><p>Hein's voice sounded rather weak. Completely different from his usual deep and confident one. </p><p>'He must care a lot about his father.'</p><p>I thought with a smile before patting him on the shoulder.</p><p>"We've already signed a contract, why would I lie to you?"</p><p>"I se—"</p><p>Click— Click—</p><p>It was then that we heard a clicking sound coming from the side. When we turned our heads, we saw Leopold with his hand on his mouth, trying to light up a non-existent cigarette.</p><p>"Anyways, this is the opportunity that I promised you. It's up to you whether you will grasp it or no—"</p><p>"No, I will take it."</p><p>A resolute looked appeared on Hein's face as his fists clenched tightly.</p><p>"Having spent over a year with you guys, I had almost forgotten my one true goal, and that was to save my father…"</p><p>Hein said as the air around him changed. He gave out an aura of a man who was about to go to war.</p><p>'Looks like he's made up his mind.'</p><p>As long as Hein resolved the one knot that was tying him down, his family, his growth would reach a new, unprecedented level.</p><p>This was what I was waiting for.</p><p>"Well, I'm glad that y—"</p><p>Bang—</p><p>Mid way through my speech, my body crashed against something soft and hard. </p><p>"Ow."</p><p>Massaging my head, I slowly looked up. It appeared that I had bumped against Waylan.</p><p>"Hey, is everything okay?"</p><p>I was met with no response. Waylan stood motionless in the middle of the streets, prompting me to frown.</p><p>'Just what in the world…'</p><p>Sensing that something was wrong, I looked in the direction of where he was staring at. </p><p>"Ah…"</p><p>It was then that I let out a strange noise, as my face froze. </p><p>Walking on the opposite side of the street, far into the distance, was a certain group. </p><p>But that wasn't the reason for my reaction.</p><p>"…they're here."</p><p>***</p><p>"As I was saying, if we're going to meet each other during the tournament, I'm going to go all out and won't hold back."</p><p>Emma's energetic voice rang out. </p><p>Having crossed the bridge with the group and entering the city, once she got a close look at the place, Emma couldn't hide her excitement, curiously looking at everything like a newborn child.</p><p>"Oh wow, look at that!"</p><p>Taking out her phone, she snapped photos of the place. </p><p>Once she took enough pictures, Emma put her phone away.</p><p>"What was I saying again…?"</p><p>Trying to recall what she was trying to say before, Emma's brows knit, forming a frown.</p><p>"Ah, right!"</p><p>Then, hitting her right fist on the palm of her left hand, she turned to look at Amanda and Melissa with a challenging look on her face.</p><p>"If we meet each other in the tournament, don't expect me to hold back. I'll show you how much stronger I've gotten during the time we've not seen each other."</p><p>"I'm not fighting."</p><p>With a scornful look, Melissa took her glasses out and replaced them with sunglasses.</p><p>Squinting, Emma looked at Melissa and muttered out loud, "Those don't really fit you." </p><p>"As long as they do the job, it doesn't really matter."</p><p>Lowering her head and staring in Emma's direction, Melissa repeatedly nodded her head.</p><p>"Yup, yup, I can no longer see you."</p><p>It took a while for Emma to get her comment. Once she did, she shot a glare in Melissa's direction.</p><p>"It's obvious that you can still see."</p><p>"Who's talking? Is someone there?"</p><p>"You…"</p><p>"Please stop."</p><p>Before things got heated, Amanda decided to step in.</p><p>"Save this stuff for later when we're in private."</p><p>Fortunately, Amanda now had plenty of experience in handling these sorts of situations. </p><p>With her having an active role in her guild, she was well-versed in handling disputes amongst guild members. </p><p>She was also quite familiar with the two of them, so it wasn't that hard for her to calm Emma down. </p><p>"We're soon going to meet up with the others and—"</p><p>"Who are they?"</p><p>Amanda's footsteps came to a sudden halt. Emma's voice attracted her attention. </p><p>Turning her head, her eyes paused on a certain group in the distance who was, at the moment, looking at them as well.</p><p>"Are they looking at us?"</p><p>Emma turned her head left and right before her eyes paused on Amanda who nodded in affirmation.</p><p>"They are…"</p><p>Although they were quite far from each other, Amanda was able to get a good look at the people in the other group, and she could tell that the two of them were staring in their direction.</p><p>The two staring were people she had never seen before. One was a middle-aged man with dark gray hair and a goatee, while the other was a young man with light brown hair and green eyes.</p><p>'Why does he feel familiar?' Amanda thought, her eyes squinting. </p><p>That young man… He felt familiar. But, how? His demeanor reminded her of someone, but at the same time, it wasn't exactly the same.</p><p>There were differences. </p><p>Still, that nagging feeling continued to grow in Amanda's heart as she stared in their direction.</p><p>"Creep."</p><p>That was, however, disturbed by Emma's comments as she stared at the middle-aged man in the distance with a scornful look.</p><p>Turning her head, Amanda saw Emma visibly shiver as she took a step back. </p><p>"Ugh, I thought I was used to the stares, but when an old man stares at me like that, it's still creepy."</p><p>Paying close attention to Emma's words, Amanda turned her attention back towards the group in the distance.</p><p>"They're gone."</p><p>But they were already gone before she knew it.</p><p>"I'm glad they are."</p><p>Emma replied by the side, still visibly shaken by the experience. </p><p>"That guy's eyes were totally creepy. He was looking at me with—ukh, I'd rather not talk about it."</p><p>Shivering from cringe, Emma vented her frustration to Amanda. </p><p>"Did they also look at you like that?"</p><p>"I'm not sure," Amanda replied. She had been so distracted by their appearance that she had not seen the looks on their faces. </p><p>"They're probably from another group that came earlier. Anyway, let's go."</p><p>With her hands in her pocket and styling her sunglasses, Melissa followed the group. </p><p>Turning her head, Emma followed Melissa.</p><p>"I have to agree with you for once…"</p><p>Stopping next to Melissa, Emma tilted her head and asked, "Hey, are you not creeped out by what you just saw?"</p><p>"Someone talking to me?"</p><p>"You!"</p><p>Brushing her silky black hair behind her ear, Amanda's eyes continued to linger towards the previous spot where the humans stood.</p><p>'Strange…'</p><p>The more she thought about it, the stronger the familiar feeling she felt when looking at him grew.</p><p>It was starting to invade her mind, as she stood in a daze, trying to piece the puzzle together, but before she could do that, a voice called out to her. It was Emma.</p><p>"Amanda, are you coming or not…?"</p><p>Turning her head and seeing that the group was quite a distance away from her, taking one last glance at the previous spot, she followed the two.</p><p>"I'm coming."</p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-380.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-382.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 446 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 446 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-445.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-447.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Late at night.</p><p>The sun had already begun to set, and slowly darkness enveloped the city of Issanor.</p><p>Following Ren's match, Jin and Amanda also went next. After a long and arduous fight, the both of them were able to come out on top and thus make it to the rounds of eight. This may have been something noteworthy in the past, but Ren's actions had completely overshadowed their achievements. The same could be said for the other contestants as well.</p><p>Not that Amanda cared as after winning her round, the first thing she did was change her clothes into more comfortable ones. Following this, she was led by an elf toward a restricted area in Issanor.</p><p>As she had already been to the place before, Amanda was already quite familiar with where she needed to go, and before long, stopping in front of a familiar tree, the elven guard she came with placed their hand on the tree causing it to move upwards and revealing a familiar entrance.</p><p>Rumble—!</p><p>Giving a polite nod to the guard, Amanda entered the place. Through her memories, she navigated the place and paused before a certain room.</p><p>Raising her hand, she knocked on the door.</p><p>To Tok—</p><p>"Come in."</p><p>A smooth and pleasant voice spoke up as soon as Amanda knocked on the door.</p><p>Getting confirmation from the queen, Amanda entered the room where the first thing she saw was the elven queen standing beside the capsule her mother was resting in.</p><p>With her hand over the capsule, the queen stared at Amanda's mother with sadness in her eyes.</p><p>Then, turning her head to look at Amanda, she smiled.</p><p>"You're finally here."</p><p>"Mhm."</p><p>Amanda nodded; she was still a little bit reserved with the queen as she had not known her for long, however, from the way she was treating her mother, Amanda knew that she truly cared for her.</p><p>Unaware of what Amanda was thinking, the smile on the queen's face deepened as she raised her hand and revealed a familiar-looking fruit. With doubt on her face, she looked at Amanda.</p><p>"I've checked out the fruit that you've given me. I can't really tell if it will work or not, but are you sure that the individual that has given you this is trustworthy?"</p><p>"He is."</p><p>Amanda firmly nodded her head. Not for one second did she believe that Ren would try to lie to her about the fruit.</p><p>Seeing the resolute look on Amanda's face, the queen sighed before softly mumbling.</p><p>"I see."</p><p>Honestly, despite Amanda's confirmation, she was still on the fence about the fruit.</p><p>The moment Amanda explained to her how she got the fruit, and who gave it to her, the queen quickly had her servants do a background check on Ren.</p><p>The matter was far too important for her to take lightly.</p><p>Her servants were fast and efficient. By the time they came back, they had already compiled all possible data about him, from what he had achieved back on earth to even his exploit in Henlour. They had left nothing behind. There was even a report about him passing through their borders a year back.</p><p>The queen was truly surprised when she saw his exploits, however, that still posed a question to her.</p><p>How was he able to get his hands on a fruit that in no way shape or form the dwarves could've ever had nor could be found in the human domain?</p><p>'Was it just out of luck?' The elven queen wondered, but she quickly shook her head. It didn't really matter if it was luck or not at this point. What mattered was whether it worked or not.</p><p>The queen was especially worried since Natasha had been in this state for over fifteen years. She truly hoped that the fruit would work.</p><p>"Did he tell you what sort of preparations are needed for the fruit?" The queen asked Amanda, who nodded her head in response.</p><p>"Yes, he said that squeezing the fruit and extracting the juice will be enough."</p><p>"Okay."</p><p>Casually tossing the fruit in the air, the fruit halted mid hair. A white glow slowly enveloped the queen's hand as she twisted her fingers slightly, crushing the fruit completely.</p><p>Viscous golden liquid immediately dropped down from the fruit as elven queen completely crushed it with her hands.</p><p>As the liquid dropped toward the ground, right when it was about to touch the ground, twisting her fingers in a circular motion the juices came to a stop. Then, bending her fingers in her direction, the liquid moved in her direction, slowly accumulating together and forming a small golden ball.</p><p>Once she was done extracting all of the liquid from the fruit, the elven queen motioned with her fingers and the ball in front of her wobbled.</p><p>Slowly, a golden line formed in the air as the queen controlled the juices with her extreme control over psyons. Pointing towards Natasha who was laying down on the capsule, the liquid slowly seeped through the small hole at the top of the capsule before making its way towards Natasha's mouth.</p><p>Once the liquid stopped before her, the queen turned to look at Amanda and nudged her head.</p><p>"Open her mouth please."</p><p>"Okay."</p><p>Following the queen's orders, Amanda walked up to her mother and pressed her thumb underneath her chin. Applying a little bit of pressure, she slowly opened her mouth and the liquid the queen was controlling quickly entered her mouth.</p><p>It took about three seconds for all the liquid to completely enter Natasha's body, and once it did, Amanda finally let go of her mother's chin and looked at her with eyes filled with anticipation.</p><p>The queen also had a similar look on her face, as her eyes were also filled with hope. She wanted nothing more than for her savior to wake up.</p><p> One second.</p><p>Two seconds.</p><p>Three seconds.</p><p>Slowly time started to tick away, and it wasn't before long that a couple of minutes had passed.</p><p>"Did it not work?"</p><p>Disappointment flashed across the faces of both Amanda and the queen as the two of them had a hard time hiding their disappointment.</p><p>Although only a couple of minutes had passed, Ren had previously mentioned that the curse would break as soon as the liquid was ingested, and ever since giving her mother the fruit, she had not once shown signs of improvement, indicating to them that something had gone wrong.</p><p>Twitch.</p><p>However, just when they thought that all hope was lost, Natasha's eyes twitched.</p><p>"!"</p><p>With the queen's insane perception she was naturally able to pick up the twitch, and when she did her head snapped in Natasha's direction.</p><p>Twitch. Twitch.</p><p>With another twitch, Natasha's eye once again twitched and her pale complexion slowly turned rosier. It wasn't before long that Natasha's complexion returned to a healthy young glow, raising hope for both Amanda and the queen.</p><p>Twitch. Twitch.</p><p>With a couple more twitches, Natasha finally opened her eyes revealing her beautiful obsidian black eyes that seemed to suck the soul away of anyone that was looking at them.</p><p>The moment Natasha opened her eyes, she had to squeeze her eyes multiple times to get adjusted to the bright lights coming from above. Then looking around the room, she opened her mouth and asked in a croaky, borderline hoarse voice.</p><p>"...Where am I?"</p><p>***</p><p>"Ugh, I really didn't think this through enough."</p><p>Staring at the potions in front of me, my face twisted slightly. To be honest, despite having made so many preparations, I still felt the threat of death looming over me.</p><p>Aside from a couple of advanced potions I had prepared in advance, there were also a few powerful pain killers. The hope was so that they could help me endure the pain more easily, but I didn't hold too much hope.</p><p>The contract would directly eat at my soul, and so this was not something any potion or pain killer could really alleviate.</p><p>Still, it was worth a try. Perhaps I would be left pleasantly surprised.</p><p>Taking a deep breath, I turned to ask Angelica who was standing in the corner of the room.</p><p>"Are you ready?"</p><p>I wasn't the only one that needed to make preparations. Angelica was also preparing to undergo some pain.</p><p>Since the curse was going to break she was also going to suffer the after-effects of it. However, since she was now a count-ranked demon, the effects of the curse break wouldn't be as damaging as what I would go through, but it would still hurt a lot.</p><p>"Haaa…"</p><p>Leaning back a little, a long sigh escaped from my mouth.</p><p>At this point, I was starting to question whether choosing the Keiki style was really the really move as I started thinking that maybe, just maybe, the Gravar style suited me more.</p><p>With all the pain and suffering that I had been going through as of late, I was honestly baffled by the idea that maybe, had I practiced the Gravar style, all of these experiences would've only made me stronger.</p><p>If I had to be honest, however, it was thanks to all these experiences that I was able to beat Kevin.</p><p>Compared to me, he should've been much higher ranked than I was. Since he had the perfect environment for him to train, he wouldn't have had trouble reaching a higher rank than me.</p><p>I figured that the reason why he was lagging behind me was because I took the seed of limit from him. The fruit as well.</p><p>Had he taken those two items, without a doubt, he would've been a rank or two higher than me.</p><p>In terms of experience, I'd still give myself the edge.</p><p>Lowering my head and checking my watch, my brows furrowed as I muttered.</p><p>"Just how long will it take for this thing to kick in."</p><p>Every second honestly felt nerve-wracking to me. I mean, I currently felt like a death-row inmate that was waiting for the time they would be killed. It was anxiety-inducing.</p><p>Fortunately, or should I say, not so fortunately, I got the answer to my prayers not too long after.</p><p>With a muffled groan, black threads of demonic energy suddenly sprung out from Angelica's body as her face twisted in pain.</p><p>Her hair instantly scattered in the air, and her eyes started to become red. Although I was interested in what was happening to Angelica, I, unfortunately, could not afford to do that.</p><p>A second after Angelica started to get affected by the side effects of the curse, my body suddenly froze.</p><p>Honestly.</p><p>From this point on, everything felt like a blur. The pain was so intense and strong that my brain was unable to process it.</p><p>It just couldn't.</p><p>Sitting down dumbly, the world turned white, and my breathing stopped. Not only that, but most of the other functions of my body stopped working as my body started to twitch uncomfortably.</p><p>I didn't know how long I was in this state, but it wasn't long before I finally started to feel the pain, and once I did, I wished I had never felt it.</p><p>What I was going through just couldn't be explained in words. Even though I wanted to scream, no words escaped from my mouth as my head rolled back and my body started to spasm all over the floor.</p><p>It was only after an unknown period of time had passed that I was finally able to somehow control my body, as my chest heaved up and down unevenly. Gritting my teeth, I grabbed onto the carpet beneath me and clenched it will all my might. But that didn't seem to work as soon enough, another wave of pain suddenly coursed through me, resulting in me momentarily passing out from the pain.</p><p>"Aaaaaghhhhh!"</p><p>What followed after was a blood-curling scream. I tried, I really tried to hold my scream back, but it was hopeless. The pain I was currently experiencing was not something I could explain in words.</p><p>But.</p><p>If I truly did have to put the feeling into words, it would be, 'Never before did I ever wish to die as much as of right now.'</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-445.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-447.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

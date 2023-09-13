@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 387 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 387 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-386.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-388.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"You remember me?"</p><p>A chill ran down Aaron's spine as he heard those words. Those indifferent and cold eyes, menacingly staring at him from a few meters away…and that familiar face. A face he thought he would never see again.</p><p>"I…impossible…"</p><p>Aaron muttered, pointing in the direction of where the other person stood. His hands shook slightly. Still unable to process what was happening before him.</p><p>"You should've been dead!"</p><p>He said out loud as he took a step back.</p><p>"How is possible? I've watched you die…You can't be alive!"</p><p>A crazed look flashed in his eyes as he recalled the day of the incident, around three years ago when he used his ability to swap with him. He saw him get engulfed by the flames, it should've been impossible for him to have survived that kind of impact.</p><p>It was impossible</p><p>"Why would I be dead?"</p><p>Ren cocked his head to the side, unmoving from his spot.</p><p>"Y..you…y…"</p><p>Aaron opened and closed his mouth multiple times, seemingly struggling to find the right words to say. But regardless of how much he wanted to speak, no words came out of his mouth. The shock was too much for him.</p><p>For a brief moment of time, his eyes just focused on the figure before him. The figure that should've been dead.</p><p>"Huuuu…"</p><p>'I need to calm down.'</p><p>But the shock did not last for long as letting out a long breath, Aaron forced himself to calm down. He had been trained for incomprehensible situations such as these, and thus he knew best that he had to remain coolheaded.</p><p>Losing his mind at the moment would not benefit him in the slightest.</p><p>And so, lifting his head up and staring at Ren right in the eyes, he coldly muttered.</p><p>"I don't know how you are alive...but it doesn't matter."</p><p>Turning his head and staring at the building in the distance, calmness returned to his face.</p><p>"You think you'll be fine if you do anything to me? You forget who is inside of that building?"</p><p>The edges of his lips curled upward. Confidence rose in his voice, as he realized that Ren couldn't do anything to him.</p><p>The situation was strange. For Ren to have been able to get some people to lead him here, he definitely must've asked a few favors, but that didn't really matter. He knew just how valuable his life was, and his death would only lead to his eventual death.</p><p>Aaron clicked his tongue multiple times.</p><p>"Tsk, tsk, tsk, you should've stayed dead. Now that I know that you're alive, I'll do anything within my power t—"</p><p>Bang—</p><p>With a loud bang, Aaron's vision suddenly went dark as he felt a tremendous impact on his head.</p><p>The air was knocked out of his lungs, and a forced sound escaped from his lips.</p><p>"Uahk!"</p><p>An iron-like taste lingered inside the back of his mouth as his head throbbed.</p><p>'…what happened?' Aaron wondered to himself as his mind became clearer.</p><p>Everything happened too fast for him to understand what had happened.</p><p>It was only after his vision returned and he saw a large hand in front of him that he finally understood that he had been smacked against the ground.</p><p>"Get up."</p><p>A cold voice entered his ears. Lifting his head up, he saw Ren standing a few meters away from him. His deep blue eyes locked onto him from the distance.</p><p>"Khhh.."</p><p>Aaron gritted his teeth.</p><p>'…I was just caught off-guard.'</p><p>It had to be that. If he wasn't caught off guard, he would've never been taken down.</p><p>How could he lose? Ren was someone that he had already defeated. Plus, he had not been slacking during the time the incident happened. He was miles stronger than most people his age. How could someone like Ren, whom he had already defeated in the past manage to knock him down? He definitely just caught him off-guard.</p><p>Yes, it had to be that.</p><p>Aaron repeatedly reassured himself. His confidence slowly rose back</p><p>With his hands behind him, Aaron slowly stood up. As he stood up, his eyes never left Ren who was standing opposite him.</p><p>It wasn't long before Aaron was once again standing.</p><p>SHIIIING— SHIIIING—</p><p>Taking a pair of daggers from his dimensional space, Aaron took a stance and Ren once again spoke.</p><p>"Come at me. Show me how much you've improved."</p><p>Ren's posture seemed rather leisurely and his facial expression unchanging. Seemingly treating this brief exchange as nothing worth his eyes.</p><p>'Is he looking down on me?'</p><p>Wiping the corner of his mouth, Aaron looked at his finger where he saw a smear of blood. His fists clenched into a fist.</p><p>Then, without saying anything else, pressing his toes into the ground he appeared right behind Ren.</p><p>'See if you can keep up with my speed.'</p><p>Twisting his torso, he swung his dagger towards Ren's temple area. His movement was so fast that it left after-images behind.</p><p>Swoosh—</p><p>But just as the dagger was about to hit Ren in the temple, Ren's eyes flickered slightly and he leaned his head back.</p><p>"Huh."</p><p>All Ren did was a simple movement, there was nothing special about it, but Aaron's attack, which was going at speeds faster than a bullet, shockingly missed completely. Landing in the grass, Aaron looked behind him where Ren stood. His eyes opened wide in shock.</p><p>"That's it?"</p><p>Two words.</p><p>Ren only said two meager words, yet when Aaron heard them, it felt as though two thunderbolts had struck his mind, sending him into a daze.</p><p>'H...how?'</p><p>Clenching his teeth, Aaron stared at Ren who was standing before him before he suddenly burst into a fit of laughter. A crazed looked flashed in his eyes.</p><p>"Haha, fine, fine. I'll show you something you won't be able to dodge."</p><p>Pressing his foot onto the ground, a low 'bang' sounded as Aaron jumped in the air. Then, as he was in mid-air, Aaron proceeded to twist his body into a spiral. His two cold daggers shone underneath the moonlight.</p><p>It was then that his eyes locked on Ren and he smirked.</p><p>'Swap.'</p><p>Fwop—</p><p>The mana inside of Aaron's body suddenly drained and his body disappeared, reappearing right in the spot Ren was standing.</p><p>Following this, Ren appeared in the air, where Aaron previously was. That's right, Aaron had just used the skill responsible for causing everything.</p><p>Using the momentum he had accumulated from the spin, as soon as he reappeared, Aaron threw both daggers in his direction.</p><p>Xiu! Xiu!</p><p>Like unstoppable missiles, the two daggers split the air apart with a low 'bang', breaking the sound barrier.</p><p>The daggers then arrived before Ren in a matter of seconds. They were so fast that it was as though they had teleported before him.</p><p>"Hap!"</p><p>Letting out a low cry, Aaron forcefully stopped his body and planted both of his feet on the ground. Lifting his head, he stared at Ren.</p><p>But…</p><p>Clank— Clank—</p><p>Raising his hand, Ren merely grabbed the two daggers with his hands, from the sharp side as blood spilled from his hands. Then, with a low 'thud', he softly landed on the ground and threw the daggers away.</p><p>Lifting his head, Ren looked at Aaron.</p><p>"Disappointing."</p><p> He muttered.</p><p>"W…what."</p><p>Aaron took a step back.</p><p>'How did he stop that?'</p><p>Aaron's mind blanked, and his heart started to race uncontrollably.</p><p>That attack he had just used was one of his strongest moves. Not many individuals could stop that move as the speed of the daggers were just too much for people to stop.</p><p>He believed that when someone was at least in the &lt;A&gt; rank they could stop it. But how was he able to stop it?</p><p>'It can't be…'</p><p>Fear finally started to set as realization suddenly dawned on Aaron.</p><p>The man before him was far stronger than he was.</p><p>Once Aaron realized this, without hesitation, he turned around and tensed his legs. He was going to make a run for it.</p><p>'Fuck it, as long as I get back into the building nothing will happen to me.'</p><p>He was confident in his speed.</p><p>So long as the others were made aware of his presence he wouldn't have to worry about the man before him.</p><p>'In fact, I'll ask them to kill him for me.'</p><p>Having made up his mind, Aaron pressed his foot onto the ground and shot towards the building in the distance, but before he could even cover a meters distance, he suddenly felt a large hand grasp him by the back of his neck.</p><p>"Ukkh!"</p><p>Bang—</p><p>Following this, his head once again came into contact with the hard ground knocking him unconscious for a split second. All thought processes in his mind came to a sudden halt.</p><p>"Khaaa!"</p><p>It was only after a couple of seconds that Aaron finally screamed out loud. The pain had finally set in.</p><p>"Uahk."</p><p>But before he could think of anything else, Aaron suddenly felt Ren's hand grasp the back of his hair.</p><p>Bang—</p><p>His face once again smashed against the hard ground.</p><p>Riiiiiing—</p><p>His ears started to ring, and Aaron's mind blanked.</p><p>"Huuu…huuu…stop…"</p><p>He begged.</p><p>At his words, Ren finally let go of his hair and twisted Aaron's body upwards, to face the sky. His two cold and emotionless blue eyes staring at him from above.</p><p>"Do you want to know why I'm still alive?" He asked.</p><p>The very sound of his voice chilling every part of Aaron's body.</p><p>Before Aaron could even reply, Ren squatted down and continued.</p><p>"You see after you swapped bodies with me…I went through a lot. I was burned alive, had to scar my face with extremely powerful poison, had to be injected with mind-breaking serums…and had many of my bones shattered and broken in the process."</p><p>Lowering his head, Ren stared at Aaron who was looking back at him. Unable to utter a single word back.</p><p>"…and one might think, how could someone who has gone through this much possibly still be sane?"</p><p>Raising his head, Ren pointed it towards his head. His lips trembling.</p><p>"Unfortunately, I'm no longer sane...you took that away from me."</p><p>Snap—</p><p>Following his words, Aaron suddenly heard the sound of a finger-snapping, and a warm sensation enveloped his body.</p><p>"Haaaaaaaa!!!!"</p><p>He suddenly let out a scream. It was an agonizing scream that came from the depth of his heart as he felt his whole body be completely engulfed in flames.</p><p>"Make it stop! Make it stop! Make it stop!"</p><p>Aaron screamed as he rolled around the grass in hopes of extinguishing the flames that were engulfing his body. As he rolled around, Aaron was able to see Ren's blue eyes staring at him from above. No emotions laid beneath them.</p><p>"Kill me!! I want to die…I want tdh die…I wanthd to diehw!"</p><p>He shouted once with all his might as his throat started to become sorer.</p><p>Snap—</p><p>Before Aaron knew it, another snapping sound rang and the fire in his body finally extinguished.</p><p>"Huuup!..Huuuup!…Huuup!"</p><p>A weird nasal sound came from Aaron as he tried to take a deep breath.</p><p>The pain had already completely overwhelmed his body. He couldn't move, nor think properly. The only thing he could do was stare at Ren who was staring at him from above, with his deep blue eyes.</p><p>Aaron opened his mouth.</p><p>"Mhsg….mjahudi"</p><p>'Please stop.'</p><p>A zombie-like sound escaped from his lips as he was unable to speak properly.</p><p>"It hurts right?"</p><p>Ren's word sounded right next to his right ear.</p><p>"Imagine me. I went through this pain twice."</p><p>SHIIIING—</p><p>Aaron suddenly felt something cold trace his face.</p><p>"Don't think for one second that what you went through was the worst pain you've experienced. What you've experienced is only the tip of the iceberg."</p><p>Following those words, Aaron felt something on his face. Suddenly, his neck stiffened and electricity coursed through his body as he felt even more agonizing pain run through half of his face.</p><p>His eyes flung wide open.</p><p>"Hua…hua…huaaaaaa!"</p><p>'No…no…Noooooo!'</p><p>His desperate echoes reverberated throughout the whole forest.</p><p>***</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-386.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-388.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

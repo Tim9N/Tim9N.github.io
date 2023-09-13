@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 408 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 408 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-407.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-409.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>An unbearable silence descended upon the room as Kevin and I struggled to find the right words to say.</p><p>I really didn't know what to say. I was just that shocked by the fact that Kevin could see the red book and knew what it was.</p><p>Just when I had thought things had calmed down, something as unexpected as this suddenly happened.</p><p>It really made one wonder how I managed to cope with the constant shocks.</p><p>"…Have you always been able to see the red book?"</p><p>Kevin finally broke the silence.</p><p>Lifting my head and staring at him, I didn't answer him immediately.</p><p>My mind was currently a mess.</p><p>Glancing at the red book in the distance, many questions came into my mind, but out of all of them, one, in particular, stood out to me.</p><p>'How come he can see the red book now and not before?'</p><p>I had used the red book many times in front of him before. Yet, in all the times I had used it, Kevin never showed signs of ever being able to see the book.</p><p>So why now?</p><p>"Ren?"</p><p>"Ah, right."</p><p>Snapping out of it, I looked back at Kevin who gazing at me with a face filled with questions.</p><p>"How much do you know about that book?"</p><p>I asked whilst breathing out.</p><p>Depending on what he answered, I was going to decide whether to tell him the truth or make something up.</p><p>Gazing in my direction for a brief moment of time, Kevin walked up to the book and placed his hand on it.</p><p>Seeing that there was no reaction, Kevin sighed in relief. Then, opening it, he carefully flipped through its pages.</p><p>"…it's empty"</p><p>He muttered out loud. His brows furrowing tightly. Then, putting the book back down, with his back facing me, he started speaking.</p><p>"The first time I got the book was when I was returning to my dorm."</p><p>I sat up straight at his words. This was important information.</p><p>"I was very surprised by the fact that a random book magically showed up in the middle of my room. Of course, it was only after I touched the book that I realized that the book was special. It was also during that time that I had my first vision."</p><p>Kevin paused. But he didn't need to say anything. I had the notes with me, and I already knew what the vision he was referring to was about.</p><p>Flip—</p><p>I flipped through the notes before finally pausing on a certain page.</p><p>It was the vision where I was supposed to have died.</p><p>"Ku, Ku, ku, this is on you."</p><p>"I am the sin you created."</p><p>"…I am the consequence of your actions."</p><p>"…never forget…I am the one sin…you will never get rid of…"</p><p>As I looked through the notes, Kevin continued speaking.</p><p>"The first vision was different compared to the others. I could move there, and it wasn't just like any other of the visions I saw later"</p><p>Kevin's brows knit tightly.</p><p>"…but it was also the oddest of the other visions."</p><p>"I can tell."</p><p>I solemnly replied whilst looking through the notes he wrote. As I read, a thought suddenly occurred to me.</p><p>'If I died in in this vision, does that mean that the visions are not entirely accurate?'</p><p>Possible.</p><p>However, that was beside the point as my entire focus shifted towards the description of the demon responsible for killing 'me.'</p><p>"Say…"</p><p>Flip—</p><p>I flipped to the next page.</p><p>"This demon that you saw in the vision, can you describe it for me? What did it look like?"</p><p>Kevin nodded.</p><p>"…he was a black humanoid figure. A demon. Red blood eyes and a sadistic smile on his face."</p><p>Hearing the description, my brows furrowed.</p><p>To be honest, what he was describing to me was just how any regular demon acted and looked.</p><p>I really had no idea who the black humanoid figure was. Despite having crossed many demons, none really left an impression on me…well, there was Angelica, but that was abou—right, there was Everblood too.</p><p>Now that I thought about him, he was a bit of a mystery to me. I had only seen him once in my life, and that was back at the dungeon.</p><p>Ever since then, I had never seen him. Yet, for some strange reason, he seemed to have developed an obsession with me.</p><p>'Could the figure be Everblood?'</p><p>I thought. But after a while, I shook my head.</p><p>'That's impossible, Everblood is just some random Baron ranked demon I can get rid of any time I wanted. Furthermore, the only reason he developed a connection with me was because I ruined his plans back at th—'</p><p>My brain suddenly froze. My heart sped up a little bit.</p><p>'Now that I think about it, wasn't Everblood the reason I got Monarch's Indifference?'</p><p>Had I not been able to meet him and defeat him, I would've never gotten my hands on Monarch's Indifference.</p><p>Could there be a link? There couldn't be, right?…it just didn't make sense.</p><p>"Do you have something in mind?"</p><p>Snapping me out of it was Kevin's voice. Lifting my head and staring in his direction, I shook my head.</p><p>"No…at least not yet."</p><p>The Everblood theory was just too far-fetched. There were some connections, but they weren't enough for me to make a proper deduction.</p><p>Still, I was planning on keeping track of this matter. I had a nagging feeling that there was more to it.</p><p>"Okay."</p><p>Kevin nodded his head before he continued narrating to me each and every one of his visions.</p><p>From the way he was talking, I could tell that he was leaving nothing behind.</p><p>The more I listened to him, the tighter the frown on my face became. That was because I understood nothing.</p><p>I originally thought that as the author of the novel...or whatever this world was, I would know most of the stuff regarding this place, yet, listening to what Kevin was telling me, I really couldn't understand anything.</p><p>It was a strange feeling.</p><p>"…and lastly was the vision regarding the figure that resembled you. The cold one."</p><p>Kevin finally concluded.</p><p>Before I could say anything, Kevin once again opened his mouth.</p><p>"There's another thing that I haven't told you."</p><p>"…Something else?"</p><p>"Mhm."</p><p>Kevin nodded his head before taking a deep breath. The atmosphere in the room tensed significantly.</p><p>"Huuuu…"</p><p>Taking another deep breath, Kevin lifted his head and directly met my gaze.</p><p>"Ren, you know about my past right?"</p><p>"I do."</p><p>I replied with a short nod. Nodding back, Kevin continued.</p><p>"…than you must know that the village that I came from was invaded by demons and I lost my parents."</p><p>"Yeah."</p><p>This was the general setting of Kevin in the novel.</p><p>Demons kill parents, he becomes the sole survivor, and he gains a system. Nothing particularly special.</p><p>"…there's one thing that I never told you."</p><p>My brows suddenly jumped up as I abruptly lifted my head.</p><p>'He couldn't be…'</p><p>"Ever since that day, some weird phenomenon occurred and I'm not sure exactly when, but I received this strange interface that essentially helped me get to where I am now. That interface, it's called the system."</p><p>"Ah."</p><p>I could only reply to his words with a weird sound. I really couldn't understand what was happening at the moment. Did Kevin just reveal to me his biggest secret?</p><p>"…System?"</p><p> Of course, even though I knew about the system, I pretended to look both shocked and confused. </p><p>"Yeah. It's because of it that I managed to push myself to where I am now."</p><p>"Oh."</p><p>'Kevin isn't the type to reveal something like this. There must definitely be something else.'</p><p>My eyes squinted.</p><p>It just wasn't in Kevin's nature to do something like this. There was definitely more than he was currently letting out.</p><p>"Yes. It works similar to a status window, and it assigns me quests from time to time. Once I complete them, I get rewarded by the system through either rank upgrades or materials."</p><p>"I see…but why are you telling me this?" I suddenly asked, trying to get the crux of the matter immediately.</p><p>"You caught on fast."</p><p>Kevin smiled.</p><p>Raising his hand, Kevin flashed the red book.</p><p>"It's because of this."</p><p>"The book?"</p><p>"…yeah, or to be more precise, the time codex."</p><p>"Time what?"</p><p>Confusion once again dyed my face as I wondered what in the world he was talking about.</p><p>Where in the world did he get the name 'Time codex' from?</p><p>"Time codex."</p><p>Kevin once again nodded his head, reaffirming the fact that the book was called the time codex.</p><p>I was still a little bit doubtful if I had to be honest as I couldn't help but ask.</p><p>"...Are you sure?"</p><p>"That was what the system called the book. The time codex."</p><p>Most of my doubt was dispelled at those words.</p><p>"Time codex? …so that's what it was. Is this why you revealed to me about your system?"</p><p>"Yeah."</p><p>Kevin nodded his head.</p><p>"…Since you know that I can look into the time codex, you probably know that when I had it, I could look into what you were doing."</p><p>"Right…"</p><p>An uncomfortable feeling washed over me at the thought of Kevin having looked through what I was doing.</p><p>Yes, although I did the same for Kevin, being on the receiving end did not feel so good.</p><p>"You probably don't know this, but you died before."</p><p>Before I could even recover from my initial shock about knowing that Kevin could see the book, Kevin suddenly dropped a bombshell on me and my eyes widened.</p><p>Abruptly lifting my head, disbelief clouded my face.</p><p>"When was this?!"</p><p>"Back in the dwarven domain when you were infiltrating the place. The dwarven lady killed you before you could deactivate the dampening system."</p><p>"Shit…really?"</p><p>I naturally understood what Kevin was referring to. It was probably the time when Durara suddenly showed up out of nowhere and attacked us.</p><p>Thinking back, it truly was an event where we were hanging on a by a single strand.</p><p>If I died during that moment, it wouldn't have been strange for us to have died.</p><p>'…So I really died.'</p><p>A cold chill ran down my spine.</p><p>Had Kevin not interfered, I would've truly been dead.</p><p>What was even scarier was the fact that till now I didn't know what had happened. Turning my head to look at Kevin, I thanked him.</p><p>"Thank you."</p><p>Leaning back on the table and crossing his arms, Kevin repeatedly nodded his head.</p><p>"Yup, you died, and if it wasn't for me, you wouldn't be here right now talking to me."</p><p>The shock on my face soon faded and my brows furrowed.</p><p>"Just so you know you died too."</p><p>"When?"</p><p>Kevin's face froze as he stood up straight. His reaction was quite similar to mine.</p><p>"Back at the dome, before the incident. The reason why I rushed to you was because the time codex replayed your death."</p><p>A strange feeling of superiority rose from within me as I spoke.</p><p>"Not only that, but I also saved Jin's life back in Hollberg."</p><p>"Jin?"</p><p>I nodded before explaining.</p><p>"Yeah, he was going to die and so I decided to help him. That was also the time you noticed me I think."</p><p>"…you're right," Kevin replied with a thoughtful look on his face as he tried to remember the time we met. "No wonder you were acting like that. So it was to save Jin."</p><p>TWIIIING— TWIIIING—</p><p>Almost at the same time, both of our communications vibrated.</p><p>Glancing at each other for a brief moment, we both looked down and checked our communication devices.</p><p>The first one to lift his head was Kevin who asked.</p><p>"It's Emma. She's inviting everyone for dinner. Want to go?"</p><p>"…Yeah." I nodded. "All of this talk made me quite hungry."</p><p>"Same."</p><p>Brushing his hair back, Kevin headed for the door of the room.</p><p>I followed from behind.</p><p>Halting his steps in front of the door, Kevin turned around.</p><p>"Regarding what we discusse—"</p><p>"Do I look like someone who would snitch?"</p><p>"Never mind. We should talk more about it later, I'm still confused about many things."</p><p>"Yeah."</p><p>Ci Clank—</p><p>Extending his hand, Kevin opened the door and left the room. I followed after him.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-407.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-409.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

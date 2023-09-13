@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 396 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 396 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-395.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-397.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Huuup!"</p><p>Jumping down from the building and softly landing on the ground, I walked over to Hein.</p><p>"You okay?"</p><p>"…Yeah."</p><p>He replied, his eyes darting all over the shield. My brows furrowed at his actions.</p><p>"What's wrong?" </p><p>"...Nothing." </p><p>Taking out a handkerchief, he slowly wiped away the dirt that was on his shield. </p><p>A sigh escaped from my lips once I saw this. Ever since Henlour, he had always been acting up like that whenever his shield got dirty. I didn't even know how to react at this point. </p><p>That aside, apart from minor dust on his body and shield, he truly did look fine.</p><p>"We'll talk more later. For now, step back."</p><p>"Wai—"</p><p>Cutting him off, I extended my hand and turned my head.</p><p>"Don't worry, I'm only borrowing him. You can fight him later."</p><p>My goal was to test the magic cards. I wasn't going to kill him. Hein could easily fight against him in the future. Plus, at the moment John was still stronger than Hein by one minor rank. </p><p>"…fine."</p><p>What I said seemed to have some effect on Hein who eventually stepped back. I nodded in satisfaction.</p><p>Looks like he still had some respect for me. </p><p>"You still didn't answer me, who are you?"</p><p>John's voice rang from behind as a powerful wave of mana sprung from his body.</p><p>Ignoring him, lowering my head, I stared at the cards in my hand.</p><p>'Fireball, Ice wall, quake, and blind.'</p><p>They were the spells enchrypted in the magic cards. They were quite the simple spells, but they were still quite powerful. At least, they were powerful enough to deal with the person in front of me. </p><p>The reason why Melissa chose to encrypt these spells was because the others were just too complicated for her current level of development. </p><p>Lifting my head and staring at the place which was surrounded by people, I looked back at John.</p><p>"Looks like a big crowd has formed around us."</p><p>"That's good."</p><p>John lowered his body and took out his shield. He took a stance that looked similar to that of Hein. But, if I had to say, It was a bit more refined. Not sure if it was a bit more efficient though. </p><p>"I'll keep you in check until the others come. See how you can explain the fact that you are here despite not being one of the people participating." </p><p>I rolled my eyes at his words.</p><p>Honestly, if I explained to him properly, I could resolve this whole conflict, but…why would I? </p><p>Had the perfect testing material right in front of me. Why would I miss such a good opportunity? </p><p>Turning my head, I looked at Hein and softly muttered.</p><p>"Pay close attention."</p><p>Bang—! </p><p>Then, pressing my foot onto the ground, I shot in John's direction. Within a couple of seconds, I was already before him. </p><p>"Huuup!"</p><p>Reacting to my sudden burst of speed, taking a step forward, the ground beneath John cracked apart and small pieces of rock shot upwards. </p><p>Dodging the pieces of rock, I swiftly arrived before him. As I arrived before me, in my view, all I saw was a massive shield. It looked as though I was facing a massive tortoise. </p><p>Quite frankly, despite my experience, I saw no openings. Still, I wasn't disheartened by this. </p><p>'Let's see.' </p><p>Taking out the 'fireball' magic card, I channeled my mana into it. Then, turning my body sideways, I skid before the shield and smacked the card right on it. </p><p>Smack—! </p><p>Since I didn't want him to notice that I had attached the card to his shield, I put quite a bit of force into my attack. The moment my hand smacked against the shield, a circular pressurized wind gale outwardly shot from the contact point between my hand and the shield. </p><p>Swoooosh—! </p><p>As a result, the ground around us bent down. </p><p>Then, pressing my foot on the shield, I jumped up and did a backflip, distancing myself from him. </p><p>"Was that it?" </p><p>Once I distanced myself from him, lowering his shield, John looked at me. Confusion flashed across his face. </p><p>"Was that the strength of your attack?" </p><p>He once again questioned. The edges of his lips tugged upwards. </p><p>Without saying anything, I touched my chin. </p><p>'Is one enough?' </p><p>From what Melissa told me, it would take one second and a half to activate the card.</p><p>However, if I wanted to, I could also delay the activation of the card by ten more seconds by channeling my mana inside of a specific area that would delay the flow. This was a feature that I suggested to her a while back and the one that I wanted to test out. </p><p>Glad she listened. </p><p>"Try attacking again." </p><p>John taunted. </p><p>Ignoring his taunts, I took out another magic card and once again dashed in his direction. The speed at which I was going was the same as before. </p><p>Bang—</p><p>Right as I arrived before the shield, stomping my left foot on the ground, my body shot toward the right side and I once again smacked a card on his shield. </p><p>Smack—!</p><p>Another powerful wind gale shot out between the point of contact between my hand and the shield. Despite this, John remained unmoved. </p><p>'I think two is enough.' </p><p>Distancing myself away from John once again, I stopped. Since the time limit was only ten seconds, there wasn't enough time to add a third one. </p><p>But considering my opponent's strength, this was enough. </p><p>"Are you done playing around?" </p><p>Standing upright, John halted his steps. Furrowing his brows tightly, he glared in my direction. </p><p>"I don't know what you just di—" </p><p>"I'd be careful if I were you." </p><p>SHUUUUA—!</p><p>Before he could even finish his sentence, his shield glowed, and a bright flame suddenly erupted, enveloping his body completely.</p><p>He didn't even have enough time to scream before his whole body was entrapped by the flames.</p><p>Actually, though faint, I could hear a small scream coming out from his lips. </p><p>"...Oh shit." </p><p>As seconds ticked, and the flames engulfing John grew, my eyes opened wide. </p><p>The flames were a lot stronger than I had originally thought. </p><p>Turning my head in Melissa's direction, I found her looking at John's burning body with excitement.</p><p>With a notepad in front of her, she scribbled a bunch of stuff on it. Next to her, Amanda had a helpless expression on her face. </p><p>Turning her head, our eyes met and I shrugged. </p><p>'What did I expect?' </p><p>"What's going on here?" </p><p>It was then that a familiar voice suddenly sounded.</p><p>Turning my head, I spotted a familiar figure rushing in our direction. Long black hair, amethyst color hair, it was Donna. </p><p>Swoooosh—!</p><p>Appearing right before John, Donna waved her hand and the flames engulfing his body completely disappeared. </p><p>"Haaa..haaa..." </p><p>Once the flames disappeared, John knelt down on the ground. His breathing was extremely rough, and a part of his hair was burnt. Fortunately, that was the extent of his injuries.</p><p>I sighed in relief once I saw that.</p><p>'Fortunately, he specialized in defense.'</p><p>Had he truly been heavily injured, I would've found myself in a bit of trouble. It wouldn't be to the extent of me getting kicked out by the Union or anything like that, but it would still be bothersome. </p><p>"Did you do this?" </p><p>Snapping me out of my thoughts was an airy voice. Turning my head, my eyes interlocked with Donna's. She had an icy glare on her face as she looked at me. </p><p>Gulp—!</p><p>Stared at by Donna, I swallowed a mouthful of saliva. She may have not been releasing any pressure, but the aura that her body gave off was no joke. It felt suffocating, to say the least. </p><p>Fortunately, it wasn't anything too bad.</p><p>Having been close to &lt;SS&gt; ranks before, the pressure she gave out wasn't anything I wasn't used to as I quickly regained my composure. </p><p>'Guess I have no choice.' </p><p>"Huuuu..."</p><p>Taking a deep breath and lowering my head, I muttered inside of my mind. </p><p>'Monarch's indifference.' </p><p>***</p><p>The tournament was coming up in a couple of days and Donna was supposed to give a roundup to the participants about who their opponents were and how the structure of the tournament worked. </p><p>But just as she was about to arrive at the residence, she suddenly saw a bright flame in the distance.</p><p>Though faint, she could also hear a muffled scream. </p><p>Without hesitation, she dashed in the direction of where the noise came from. </p><p>Once she arrived, it was then that she saw two males fighting against each other. One seemed to be fine, while the other was completely engulfed in powerful flames. </p><p>Without hesitation, she raised her hand and quickly removed the flames away from the individual's body.</p><p>Thankfully, the flames quickly dissipated away, revealing the features of a young man close to his twenties. </p><p>'John Berson.'</p><p>Donna instantly recognized him.</p><p>He was one of the few people she paid close attention to due to his outstanding talent. </p><p>Once she made sure that he was okay, she turned to face the perpetrator of the incident. </p><p>Her brows instantly knit as soon as her eyes laid on him. </p><p>'I've never seen him before.'</p><p>Donna had memorized the faces of all the five hundred participants, and yet, the face before her was not someone on that list. </p><p>Instantly she became warier. </p><p>"Who are you?" </p><p>She asked whilst secretly channeling the mana inside of her body, ready to be utilized at a moment's notice. </p><p>"You don't need to know." </p><p>Opening his mouth, a cold and emotionless voice rang through the air. </p><p>Donna's eyes suddenly opened slightly. </p><p>'That look.'</p><p>It felt familiar. Cold eyes, and an emotionless voice. She remembered seeing a similar look in the past. </p><p>The mana around her body faltered slightly. Calming down, she took a closer look at him. </p><p>He had blonde hair and green eyes. He didn't look particularly handsome, but he was still attractive in his own right. Moreover, he looked to be in his mid-twenties. He didn't look like anyone she knew, yet, the aura he currently gave off was oddly familiar, yet at the same time it wasn't. </p><p>She couldn't quite tell since he was hiding his aura, but Donna could tell that the male in front of her was strong. Maybe not as strong as her, but compared to John, he was on a whole different level. </p><p>'He also doesn't seem to be wearing a skin mask.' </p><p>This was another thing she noticed. Had he been wearing a skin mask, Donna would've been able to tell with a quick glimpse, but he wasn't, meaning that he truly was someone she had never met before. </p><p>But that made things even stranger.</p><p>How could someone as talented as him go unnoticed for so long? Something just didn't add up. </p><p>Calming down, she asked. </p><p>"I've never seen you on the list of people that should be here. I just want to know what you're doing here." </p><p>"He was being harassed, so I helped him out."</p><p>Turning around he pointed toward another youth in the distance. Sitting down on the grass in the distance, another blonde male appeared. He appeared to be wiping his shield. </p><p>Donna was once again taken aback. </p><p>'I've also never seen him before.' </p><p>Her brows knit even more tightly.</p><p>Two individuals that she had never seen before.</p><p>Something was oddly wrong with the situation. </p><p>Turning her attention back towards the main blonde male, Donna channeled her mana into her eyes. </p><p>'Let me get a look at who you truly are.'</p><p>Since he wasn't planning on revealing who he was, Donna was planning on using her powers to find out.</p><p>Normally she wouldn't have done this, but since this concerned the fate of humanity, she had no other choice but to. </p><p>"We're with the humans that come from Henlour." </p><p>But before Donna could even use her power, as though he knew about what she was going to do, the blonde male spoke up. </p><p>Instantly the glow in Donna's eyes receded. </p><p>"The humans from Henlour? Isn't that the dwarven city?" </p><p>"It is." </p><p>A sudden look of understanding flashed across Donna's eyes. </p><p>"...Oh." </p><p>'That's right, Monica did tell me that Douglas was there...but why is someone as young as him coming from there too?' </p><p>Donna didn't know much about the dwarven situation, but she was still a bit skeptical.</p><p>She knew that the mission was something that required Douglas's assistance, but why would two people as young as them also go? </p><p>Something didn't add up to her. </p><p>"Okay, for now, I want you guys to stay here so that I can—" </p><p>"Donna it's fine. I can confirm for them." </p><p>Cutting her off, a familiar high-pitched voice rang from the distance. Donna instantly recognized the voice. </p><p>"Monica?" </p><p>"Mhm." </p><p>Calmly nodding her head, with her hands behind her back, Monica stopped right in front of the blonde male.</p><p>Leaning her body forward, the corners of her lips curled upwards before she patted him on the shoulder lightly.</p><p>Throughout the whole exchange, the blonde youth remained indifferent. </p><p>"This guy over here is in fact our little junior." </p><p>Turning her head to look at Donna, Monica smiled even more brightly. </p><p>"A very talented one at that." </p><p></p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-395.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-397.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

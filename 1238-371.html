@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 371 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 371 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-370.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-372.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Staring at Emma who was indifferently staring at him from above, Kevin weakly smiled.</p><p>"Hey."</p><p>"You…"</p><p>Despite how hard Emma tried to keep a straight face, before long, her body trembled. She had a hard time formulating her words as her eyes grew blurry.</p><p>"W..why did you do that?"</p><p>Her voice was faint and weak, but Kevin was able to make out every single word that came out of her mouth.</p><p>"A...re you so desperate to breakthrough that you would reduce your body to that state?...Are you still not over...his death?"</p><p>Lifting his head up, and meeting Emma's eyes, Kevin shook his head.</p><p>"No, it's not that."</p><p>"Then why!"</p><p>She screamed, tears flowing down her cheek.</p><p>"Why would you do that to yourself? Do you not understand how worried everyone was when they saw you in that state in your room!?"</p><p>"You wouldn't understand."</p><p>Kevin replied.</p><p>He couldn't quite bring himself to tell her the truth. That he had done what he did to save Ren.</p><p>He wanted to, but he couldn't.</p><p>Who would believe him in the first place? Ren was dead, he'd only look crazy to Emma if he said those words.</p><p>"You…"</p><p>A hurt look appeared on Emma's face as she heard Kevin's words.</p><p>"Am I that untrustworthy to you?"</p><p>"No, it's not that."</p><p>Shaking his head, Kevin took out the wires that were attached to his body and weakly stood up.</p><p>"What are you doing!"</p><p>This obviously flustered Emma who rushed towards him and tried to put him back on the bed.</p><p>"Got you."</p><p>But just as Emma was about to grab him, extended his hand forward, Kevin grabbed Emma by the arm and pulled her towards the bed, helping himself up in the meantime.</p><p>"Hiak!"</p><p>Falling onto the bed, she screamed in panic.</p><p>Staring at Emma who was on the bed, Kevin teasingly smiled.</p><p>"Thanks for helping me up."</p><p>"You!"</p><p>An enraged looked appeared on Emma's face as she looked up towards Kevin.</p><p>Turning his back in Emma and walking towards the exit of the room, Kevin's smile faded.</p><p>Thinking back at all the things that had happened recently, Kevin felt this sense of urgency rise from within him.</p><p>From the synchronization episodes to the fact that the demon king was going to ascend in eight years' time, Kevin knew that he could no longer take things as easily as before. This recent event was a wake-up call to him.</p><p>He had to put in even more effort. He had been relying on his system too much.</p><p>Now that it wasn't grating him as many quests as before, he knew that he needed to make a change.</p><p>He needed to push himself even more than he ever pushed himself before.</p><p>"Hey Kevin, where are you going?"</p><p>Right as Kevin was about to leave the room, Emma's voice echoed from behind.</p><p>Turning around, Kevin briefly glanced at Emma before answering.</p><p>"I'm going back to the dorm."</p><p>"To do what?"</p><p>Halting his footsteps right at the door, Kevin extended his hand and pushed the door open.</p><p>"To train."</p><p>***</p><p>Eight months later.</p><p>A festive mood enshrouded the Lock as a large banner hung at the entrance of the academy.</p><p>[Lock third-year graduation ceremony.]</p><p>A myriad of people walked below the banner as agents and guild scouts appeared all over the academy campus. Their eyes, which seemed crazed, made everyone around them want to run.</p><p>It was a mess.</p><p>"Haaa...haaa...did I finally manage to run away from them?</p><p>Standing outside of the academy building, in a rather secluded area, Kevin looked back at the academy campus behind him.</p><p>With his arms on his knees, Kevin tried to catch his breath.</p><p>About a month before graduating, a series of guilds crazily started contacting him, in hopes of recruiting him. This was understandable, being the top-ranked guy for three years in a row was without a doubt something that all guilds would crave when recruiting someone.</p><p>But there was a limit to how crazy things could get. But with him constantly being harassed on the phone every day and night, Kevin was forced to change his phone number.</p><p>But even that didn't work as they would somehow find out about his new number immediately.</p><p>"About time you arrived."</p><p>Waiting for Kevin in the area was Emma who was looking at him with her arms crossed. Her foot repeatedly tapped the ground.</p><p>Standing next to her were Jin and Mellisa.</p><p>The three of them all wore long robes with the academy logo engraved on the back. Kevin too wore a similar attire as they were the academy graduation robes, signifying that they had graduated from the academy.</p><p>"Sorry, had to take a small detour."</p><p>Kevin apologized before walking up to them.</p><p>Glancing behind him one more time, Kevin had a nostalgic look on his face.</p><p>'I'm finally leaving this place.'</p><p>After spending over three years at the Lock, it was now finally time for him to leave. It'd be a lie if he said that he wasn't sad. A lot of good memories were made in this place.</p><p>Glancing at the others from the corner of his eyes, Kevin's eyes paused on Melissa.</p><p>Out of the four, she seemed to be the one that cared about leaving the least. In hindsight, she spent most of her time in the lab, therefore, she didn't have any attachment to the academy.</p><p>"You don't seem to care at all about the fact that we're leaving the academy."</p><p>"That's cause I don't." Melissa bluntly replied. "What are we even doing here anyway?"</p><p>"We're waiting for Amanda. Didn't you forget that she wanted to celebrate our graduation with us?"</p><p>Emma replied from the side.</p><p>Brushing her hair behind her ear, she yawned slightly.</p><p>"She said something about, Hm?"</p><p>Sensing something, Emma suddenly turned her head towards her left.</p><p>"Talk about timing. She's already here."</p><p>Pointing towards the left, everyone saw the silhouette of a figure exiting a nice black car.</p><p>Wearing a long one-pieced black dress that perfectly showed off the contour of her body and legs, Amanda stepped out of the car and faintly smiled in their direction.</p><p>"Thank you for waiting."</p><p>She said, walking in their direction.</p><p>"I hope I didn't make you wait for long."</p><p>"So, what did you want us here for?"</p><p>Melissa said, lifting her glasses up. Before even sharing any formalities, she quickly went straight to the point.</p><p>It also had to be said that she was quite comfortable with Amanda, which was why she acted like this.</p><p>"Want to join my guild?"</p><p>Amanda replied back.</p><p>The moment she said those words, Melissa's face alongside the others froze up.</p><p>Only to then relax upon seeing the small smile on Amanda's face.</p><p>"Y-ou…you better not joke about that stuff again."</p><p>Emma said, pointing her finger in her direction.</p><p>"Who said I was joking?" Amanda replied, turning her attention towards Kevin. "My offer still stands. If you're not planning on joining the Union, you can always join my guild."</p><p>"No thank you."</p><p>Kevin kindly declined with a smile.</p><p>"That's too bad."</p><p>Amanda didn't seem too fazed by his rejection.</p><p>She only tried for the sake of it. I mean, who wouldn't want someone as talented as Kevin in their guild?</p><p>Brushing the side of her hair behind her ear, she looked at Kevin and asked.</p><p>"So you've made up your mind into joining the Union?"</p><p>"Yeah."</p><p>Kevin nodded.</p><p>Even though he knew that Ren was alive, he still decided to join the Union.</p><p>It wasn't about getting revenge this time, but more because he decided that this was the best course of action to take in order to further boost his strength.</p><p>Just like they were planning on using him, Kevin was planning on using them.</p><p>Each to their own benefits.</p><p>"So, what should we do now?"</p><p>Emma suddenly asked from the side.</p><p>Rubbing her stomach a little, she looked around and said.</p><p>"Are we going to go eat or anything? I'm kind of hungry."</p><p>With a helpless look on her face, Amanda looked at Emma before she nodded her head.</p><p>"I've booked a good place where we can all stay to celebrate your graduation."</p><p>"That's good, cause I'm starving."</p><p>Without waiting for Amanda to say anything else, she quickly headed in the direction of her car and quickly got in.</p><p>Once she got in, rolling the passenger window down, she shouted.</p><p>"What are you waiting for? Let's go now!"</p><p>Right after she said those words, she sat back in the car and nudged them to hurry up.</p><p>Watching Emma from afar, everyone was left speechless.</p><p>They didn't know what to say.</p><p>"Shall we just go?"</p><p>In the end, it was only after Kevin said those words that everyone finally moved and headed for the car.</p><p>'It wasn't bad.'</p><p>Getting in the car and staring at the academy campus for one last time before the car slowly sped into the distance, Kevin knew that this was the beginning of a new journey.</p><p>***</p><p>[Henlour, elder hall.]</p><p>Seated in the middle of the semi-circular desk where all the other elders sat, Gervis looked around the hall.</p><p>"Have there been any further reports regarding the remains members of Inferno?"</p><p>His solemn voice reached every corner of the hall.</p><p>"We have located a couple surviving members, but that's all. There are still quite a few at large, but let's be honest, they are nothing but cornered rats at this point."</p><p>Alga replied from a couple of seats away from Gervis.</p><p>She was one of the thirteen remaining members of the elder council. There used to be a total of twenty-one before the war.</p><p>A total of eight elders had died during the war.</p><p>Casually nodding at Alga's words, Gervis looked at the others with a serious look.</p><p>"That may be true, but unless all of them are out of the picture, I don't want anyone lowering their guard."</p><p>Although they had taken out most of the high-ranking members of Inferno, quite a few still managed to escape.</p><p>It was fair to say that their main force was gone, but that also didn't mean that they should lower their guard.</p><p>Just because they were not as powerful as before didn't mean that they couldn't cause any trouble.</p><p>Just because someone was cornered didn't mean that they couldn't bite back when you'd least expect it.</p><p>As someone with a lot of experience, Gervis firmly believed in this, hence why he tried to warn all the elders present to keep a lookout at any of the remaining members of Inferno.</p><p>Of course, he also did send out a task force to remove as many of those rats as possible.</p><p>It was only a matter of time before all the remaining members were killed.</p><p>"That matter aside, the reason why I have gathered all of you here is because of the human's request. The one about joining our alliance."</p><p>Instantly, silence descended upon the hall.</p><p>Sweeping the room with his eyes, Gervis continued.</p><p> "I've just received word that the elves and orcs have also managed to defend against their enemy. Of course, that is thanks to our help."</p><p>As they had won the war, the dwarves, being their allies, had to provide assistance to the elves and orcs they naturally did.</p><p>This was part of their agreements as allies. If, and if they had the ability to help, they had to help the alliance member when it was in trouble.</p><p>With troops to spare, the dwarves sent a few elite warriors to help the two other races and in turn, managed to take a huge load off of their shoulders, securing them a victory.</p><p>They were naturally very grateful for this as they had anticipated a very long and tragic war.</p><p>"After having talked to them and having explained how we were able to win our war thanks to the help of the humans, I briefly told them about their request.</p><p>Gervis paused.</p><p>With his eyes locked onto everyone present, as they too looked back at him with their ears wide open, Gervis continued.</p><p>"…and after discussing with them for a while, we decided to host a conference where we will decide whether the humans will join our alliance or not."</p><p>Pressing both palms of his hands on the table, Gervis stood up.</p><p>"The reason why I've gathered you here is to hear your opinion on this matter. What are your thoughts on the conference?"</p><p>"I agree."</p><p>Just ad Gervis finished saying those words, one of the dwarves seated in the hall instantly agreed.</p><p>It was Randur.</p><p>With all eyes drawn towards him, Randur remained calm.</p><p>"Giving the humans a chance to prove themselves is ideal. We have all seen what they are capable of. We don't really lose nothing from giving them a chance."</p><p>Gervis then shrugged his shoulders.</p><p>"But of course, as Gervis said, we are merely giving them a chance to prove themselves. Whether they can convince us to join or not will depend on how convincing they are."</p><p>"And how do you expect them to prove that?"</p><p>Givor, another one of the dwarven elders asked.</p><p>Turning his attention towards Givor, Randur smiled.</p><p>"Easy, why don't we let them fight against some of our warriors?"</p><p>Gervis was quick to catch up to Randur's intentions as he asked.</p><p>"You want to propose a spar to test how far the humans have come?"</p><p>"That's correct," Randur replied. "We may have seen a glimpse of what they can do from Douglas and Waylan. But it also has to be noted that the two of them are the most elite members of humanity. What I truly want to know is whether they are worth investing in."</p><p>Hearing Randur's words, Gervis stroked his beard.</p><p>"You make a good point."</p><p>Then, turning to face the other members, he asked.</p><p>"What do you guys think? Do you agree with what Randur said?"</p><p>"...I agree with the proposal."</p><p>Alga was the first to reply as she stood up and looked at everyone present.</p><p>"They don't even need to fight, but they must at least prove to us that they are worth taking in our alliance. Having one more ally can be beneficial to us in the long-term when fighting against 'him.'"</p><p>"I too agree."</p><p>Another dwarf stood up.</p><p>"Me too."</p><p>Then, one by one, everyone in the room slowly started to agree with the idea.</p><p>It wasn't long before everyone in the hall agreed.</p><p>Staring at the scene with a satisfied look, Gervis clapped his hands once.</p><p>"Okay, since all of you seem to agree, I'll tell you all now that in four months' time, the conference will begin. It will be held in the elven domain."</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-370.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-372.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

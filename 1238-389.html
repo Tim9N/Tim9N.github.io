@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 389 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 389 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-388.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-390.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>His hair may have been longer, and his body was a lot more muscular, but the man before him was indeed Ren.</p><p>Starting at Ren, Kevin did not know what to say, and his feet came to a pause.</p><p>Lowering his head, his eyes continued to look at Ren. Three years? How long was it now? He did not know…it felt like a really long time. He changed so much.</p><p>A chill ran down Kevin's spine as their eyes met.</p><p>He felt this inexplicable sense of terror coming from Ren.</p><p>"Ren…"</p><p>Kevin softly muttered, his brows furrowing together.</p><p>'He's not in the right state of mind.'</p><p>Ren had this blank look on his face, one that seemed to be unable to properly comprehend the situation. Mounting Aaron from above, he had his hands pressed on his throat.</p><p>A tense silence enshrouded the forest.</p><p>Kevin wasn't dumb. He knew exactly what was going on. Ren was trying to kill Aaron.</p><p>Rustle—!</p><p>A rustling sound suddenly came from behind Kevin. Turning around, he realized that it was Emma and the others. Walking out of the bushes, Emma squinted her eyes as she look at Kevin.</p><p>"What's going on h…what?"</p><p>It was then that she suddenly noticed something else. Turning her head, her eyes soon paused on Ren and her face froze.</p><p>"…w…what."</p><p>Out of pure instinct, she took a step back.</p><p>Rustle— Rustle—</p><p>Behind her, Amanda, Jin, and Melissa also walked out and when they noticed Emma's expression, they turned to look in the same direction as where she was looking at.</p><p>Their faces froze too.</p><p>"I…impossible…"</p><p>Emma muttered out loud, breaking the silence. Pointing her hand, which was trembling, in Ren's direction, her mouth opened and closed multiple times.</p><p>"W…what is he doing here?"</p><p>She turned her head and looked at Kevin. Her mouth trembling.</p><p>"Wasn't he supposed to be dead…tell me I'm not seeing things?"</p><p>The presence he gave off scared her. It was this chilling presence that made her hair stand.</p><p>It sort of reminded her of the time back in Hollberg, but…this time it was a lot more extreme. The bloodlust exuding from out of his body felt suffocating.</p><p>She wasn't the only one that felt this way as Jin, Amanda, and Melissa all warily looked in Ren's direction.</p><p>Something was off about him.</p><p>"What are you doing, Ren?"</p><p>Kevin softly said in a calm manner.</p><p>He understood where Ren was coming from. He had read about the things that he had been going through and fully understood that at the moment he wasn't in his right state of mind.</p><p>If possible, Kevin would've turned a blind eye to what was currently happening, but that was impossible.</p><p>If Aaron died, horrible consequences could ensue. He couldn't allow Ren to kill Aaron. At least not today.</p><p>Swallowing a mouthful of saliva, Kevin slowly approached Ren.</p><p>"Ren, it's me, Kevin. I'm sure you know who I am."</p><p>Behind him, the others did not stop him. Worry and many other different emotions flashed across their eyes as they stared at Ren and Kevin. Especially Jin who stood rooted on his spot like a statue.</p><p>Shock dying his entire face. His mind was unable to comprehend the situation before him.</p><p>Soon, Kevin stopped in front of Ren. His eyes paused on the hand that was grabbing onto Aaron's neck.</p><p>"Ren, let go of Aaron."</p><p>His voice was soft, but everyone around him could hear it.</p><p>"You know you can't kill him. Think about the consequences that would happen once you kill him. It won't just be affecting you, but it will affect us too…"</p><p>His words seemed to have an effect on Ren, who slowly loosened the grip of his hand. Kevin sighed in relief once he saw this. A smile appeared on his face.</p><p>"That's good if y—"</p><p>But then, Ren turned his head and his eyes interlocked with Kevin's.</p><p>"Are you trying to stop me?"</p><p>Ren's cold voice echoed throughout the forest.</p><p>Kevin's face froze at his words.</p><p>"…No, I'm not trying to stop you."</p><p>"Then why can't I kill him?"</p><p>"That…I've already explained it."</p><p>Tension slowly grew as Ren continued to stare at Kevin with a face devoid of any emotion and rationality.</p><p>"Explain what?"</p><p>Ren slowly stood up. Taking a step forward, he stopped right in front of Kevin. Their faces about ten centimeters away from each other.</p><p>"Why are you stopping me from killing him?… Do you know what I've gone through because of him?"</p><p>Ren's calm voice rang throughout the forest, as his eyes became even more unfocused.</p><p>Not backing down, Kevin nodded.</p><p>"I know, I know…I know exactly what you've been through."</p><p>'I've seen it in the book.'</p><p>Kevin wanted to add. But of course, he couldn't say that. Would Ren even believe the fact that he could see his life through a book?</p><p>"You understand shit!"</p><p>Ren suddenly shouted out loud, grabbing his head with both hands.</p><p>"You don't understand anything!…haaa….yo…if you truly understood, then why are you stopping me?"</p><p>A heavy pressure suddenly released from Ren's body. The pressure was so powerful that Kevin was forced to take a step back.</p><p>"Ren, calm dow—"</p><p>"Shut up!"</p><p>Ren shouted, his eyes losing all semblance of reason.</p><p>Kevin's heart sank when he saw this.</p><p>'It's too late.'</p><p> The current Ren could no longer be reasoned with.</p><p>"…Ren you really don't want to do this. Don't make me do this."</p><p>Ignoring Kevin, Ren lowered his head and stared at Aaron. Then, pointing his finger at him, he raised his head and stared at everyone.</p><p>"Anyone that stops me from killing him...will be my enemy."</p><p>"Ren, stop."</p><p>It was then that a soft voice rang out. Taking a step forward, Amanda looked at Ren.</p><p>Despite her face being cold, Kevin could see worry hidden within her eyes.</p><p>"Please stop."</p><p>She softly muttered, biting her lower lip.</p><p>"I...may not know what you've gone through, but, I don't want you to suffer more."</p><p>Her voice was quiet, but each word she said rang powerfully inside of Rens's head as his brows trembled slightly.</p><p>Taking a step back, he muttered.</p><p>"Y…you're also against me?"</p><p>Sadness flashed across his eyes.</p><p>"No, th—"</p><p>"Fine, fine, whatever! I don't care!"</p><p>He shouted. His face which remained indifferent throughout the whole time finally broke apart, revealing one riddled with many conflicting emotions.</p><p>Clenching his fist and coating it with mana, Ren raised it and aimed it in Aaron's direction. A heavy bloodlust enshrouded the whole area.</p><p>"I need to kill him…I need to kill…him!"</p><p>He repeatedly muttered before he punched out.</p><p>Bang—!</p><p>But before Ren's fist could even reach Aaron, his body shot in the opposite direction, crashing against the trees in the distance.</p><p>Kevin clenched his teeth.</p><p>"I…you forced me"</p><p>"Hahah…I see…"</p><p>Ren's laugh rang out throughout the forest. Standing up, he glared at Kevin.</p><p>"So you decided to go against me..."</p><p>"No—"</p><p>Bang—!</p><p>The ground beneath Ren suddenly broke apart and he reappeared right in front of Kevin.</p><p>'Fast.'</p><p>Kevin thought as he took a step back, dodging Ren's fist. But just as he had dodged his fist, he suddenly heard a paper like-sound coming from his right side.</p><p>Bang—</p><p>Before he knew it, he felt a tremendous force smash against the right side of his face as his head planted itself on the ground.</p><p>Swoosh—</p><p>Before Kevin's mind could even make out what was happening, a similar sound rang above his head and Kevin rolled over.</p><p>Bang—!</p><p>From the corner of his eyes, Kevin saw Ren's fist smash against the hard ground, tearing it apart.</p><p>Before Ren could follow up, with both hands behind his back, Kevin flexed his core and jumped up. Then, twisting his heal, he kicked toward Ren's heads</p><p>Bang—</p><p>But just as his foot was about to land on Ren's head, raising his left hand, Kevin suddenly felt a powerful grip take hold of his shin.</p><p>Raising his head, Kevin's eyes met with Ren and everything came to a sudden halt.</p><p>"Is this it?"</p><p>Disappointment clouded his face as he increased his grip.</p><p>"Ukh."</p><p>Kevin let out a pained groan. Clenching his teeth, a red hue suddenly sprang forth from Kevin's body.</p><p>Jumping up with his other leg, he twisted his body and kicked toward the other side of Ren's face.</p><p>His movement was so smooth and fast that he left afterimages behind.</p><p>Bang—</p><p>But, just like before, Ren grabbed his other leg, shocking Kevin.</p><p>"How?"</p><p>Clenching onto both of Kevin's legs, Ren coldly stared at Kevin.</p><p>"You want to stop me with this much."</p><p>Then, letting go of Kevin's feet, Ren raised his foot and kicked Kevin right in the middle of his chest with the sole of his foot.</p><p>Bang—</p><p>Like a broken kite, Kevin's body flew towards the other side of the forest, crashing against multiple trees.</p><p>"Kevin!"</p><p>Emma shouted in worry as she ran up to him.</p><p>"Cough…cough…"</p><p>Coughing multiple times, Kevin tasted a sweet sensation inside of his mind as he stared at Ren.</p><p>'He's strong…'</p><p>Although he had still not gone all out yet, Kevin could tell that the current Ren was extremely strong. In fact, he wasn't the only one that noticed this as everyone around him shared the same feeling.</p><p>"Oy, what do you think you're doing!"</p><p>Of course, everyone but Emma took a step forward.</p><p>Taking her eyes off of Ren, Kevin watched as Emma stood up and glared in Ren's direction.</p><p>"You think you're some sort of tragic hero who thinks their whole world is against them." She spoke out loud.</p><p>Taking out her two short swords, Emma pointed them in Ren's direction.</p><p>"I can tell that you've gone through a lot…and there are a lot of things that I want to say…but I can tell that you're not in your right mind…so, let me help you get your sanity back."</p><p>Without further ado, Emma shot in Ren's direction.</p><p>"Fuck, Emma, don't! You're no match for him."</p><p>But it was too late as Emma had already neared Ren.</p><p>Propping his body up with the aid of the tree, Kevin held the side of his chest and ran forward.</p><p>"Haaap!"</p><p>Reappearing right in front of Ren, and letting out a low cry, Emma slashed down with both her short swords.</p><p>Something shocking suddenly happened. Raising his hands, Emma's short swords soon came into contact with Ren's hand and blood spilled on the ground.</p><p>The whole area froze.</p><p>"Y…you…you're crazy!</p><p>A look of shock appeared on her face as she looked at Ren who coldly looked back at her.</p><p>Without saying anything, Ren pulled his head back and prepared to headbutt her. But before he could do that, Jin suddenly appeared from behind and aimed his dagger toward his back.</p><p>He came so fast and unexpectedly that Ren was unable to react in time.</p><p>Spurt—!</p><p>Blood spilled on the ground and Ren's face finally changed as he let go of Emma's shortswords.</p><p>Taking advantage of the moment, Emma distanced herself from Ren. Her face was pale.</p><p>"We've still got a score to settle."</p><p>Jin's cold words suddenly sounded as he removed the dagger off of Ren's back and took a couple</p><p>of steps back.</p><p>"…"</p><p>Lowering his head and staring at the blood that was pouring down from his back, Ren lifted his head and stared at Jin who was standing a couple of meters away from him.</p><p>Without saying anything, extending his hand, a sword suddenly appeared in his hand. Gripping onto its grip, Ren suddenly pulled. A terrifying pressure exuded from his body.</p><p>Click—</p><p>A clicking sound soon rang out.</p><p>Hearing the clicking sound, Jin's eyes opened wide as he took a step back. An unprecedented sense of crisis flashed across his mind as he heard the sound.</p><p>But before he could even react, he felt an inexplicable sharp pain in the right side of his shoulder.</p><p>Following this, his body came tumbling down onto the ground.</p><p>Just as his face was about to land on the ground, placing his other hand onto the ground, he pushed his body up in the air. Twisting his body, he softly landed on the ground.</p><p>"Khh…"</p><p>Grabbing onto his shoulder, Jin looked at his hand which was soaked in blood. Then, turning his head, he stared at Ren. An inexplicable seriousness flashed across his face.</p><p>He like Kevin didn't go all out as he wanted to gauge his strength, but from this exchange, he, and everyone present understood one thing.</p><p>Ren was strong.</p><p>Incredibly strong.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-388.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-390.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

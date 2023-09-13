@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 455 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 455 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-454.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-456.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>"Mhm." </p><p>Hearing her mother's words, Amanda nodded her head. </p><p>Staring at Ren who was lying down on the bed, Amanda turned her head to look at Angelica. A complicated look flashed across her face. </p><p>She still couldn't quite come to terms with the fact that the cat that had been following Ren all the time was in fact the same demon that had cursed her mother, but she felt that there was more to the story than it was let out. </p><p>"Are you sure about this Natasha?" </p><p>Maylin asked while turning to look at Natasha. The icicles in the air trembled slightly. </p><p>"This is the same demon that stopped you from seeing your daughter for fifteen years. Are you sure that you want to let her go just like that?" </p><p>With her eyes locked on her daughter, Natasha sighed. </p><p>"What other choice do I have. Just take a look at my daughter..." </p><p>Waving her hand, all of the icicles that were aiming at Angelica vanished out of thin air. </p><p>"...Okay." </p><p>Giving a cold glance to Angelica, Maylin added. </p><p>"Just because I'm not killing you right now doesn't mean that I won't be doing it later. I'm only doing this for her sake." </p><p>"..." </p><p>Under Maylin's pressure, Angelica kept her cool.</p><p>She wasn't a count-ranked demon for nothing. Despite the fact that she had been subjected to the power of one of the strongest people in the human domain, she was able to remain unfazed. </p><p>"Let her be Maylin." </p><p>Natasha's voice rang throughout the room as she stepped in front of Maylin. Then, turning her attention towards Angelica, she took a deep breath. </p><p>Memories of her past surfaced inside of her mind. </p><p>She could still remember getting chased and threatened by her, and it honestly frightened her. But, for the sake of looking strong for her daughter, she remained composed. </p><p>"...C.can you explain the situation?" </p><p>There was a faint tremble in her voice as she asked Angelica her question, but following that, her words became more concise and the tremble vanished. </p><p>Turning her head, she looked at Ren. </p><p>"What happened for him to turn this way?" </p><p>There was an awkward silence following her words.</p><p>"You don't have to hide anything. I can tell that it is somehow connected with my awakening." </p><p>A complicated look appeared on Angelica's face as she heard her words. It wasn't long before she eventually opened her mouth. </p><p>"You're correct." </p><p>Lowering her head, Angelica lightly glanced in Ren's direction.</p><p>"The reason why he's in that state is indeed due to the fruit that he gave you." </p><p>"I see." </p><p>Rather than being shocked, a look of understanding appeared on Natasha's face. She then turned to look at Kevin. </p><p>"If I don't remember wrongly, you previously said that if something happens to her, the boy over here will die, correct?"</p><p>"...Yes." </p><p>Kevin nodded his head as his brows furrowed. </p><p>Seeing Kevin confirm her words, Natasha pursed her lips before turning her attention back toward Angelica. </p><p>"I think I get the gist of the situation. I'm sure you also have an idea Maylin." </p><p>"Yeah..." </p><p>Maylin nodded from the side before adding.</p><p>"I have enough evidence to believe that Ren and the demoness over here have signed a mana contract." </p><p>"Yes, and in the contract, there was most likely a clause that stated that neither party could harm the other."</p><p>Looking up toward the ceiling of the room, Natasha plucked her lips outwardly. She then crossed her arms together and tapped onto the right side of her arm with her fingers. </p><p>"Since he handed Amanda the fruit, we can conclude that the moment I ate the fruit and the curse broke, 'she', the demoness, suffered from the backlash of the curse and as a result broke the boy broke the contract with 'her' and was thus put into this type of situation." </p><p>Walking toward Ren and staring at his sickly figure, Natasha placed her finger underneath her chin and added. </p><p>"That also explains why his soul is in the state that it is now." </p><p>Listening to the analysis from Maylin and Natasha, Angelica's eyes opened up a bit.</p><p>Before she could even explain the situation, the two of them had already figured everything out. </p><p>She wasn't that surprised by this, however. One was the elven queen while the other was the wife of one of the top executives in the human domain. </p><p>They didn't get their jobs because of luck. They were quite competent in their own right. </p><p>Placing her hand over Ren's forehead, Natasha further analyzed.</p><p>"Since he is still alive, we can already assume that the contract that he signed with..." </p><p>Furrowing her brows, Natasha's words halted mid-sentence as she glimpsed in Angelica's direction. The pause was brief, as she quickly continued. </p><p>"...her, is ranked between [I] and [III]. Since Amanda previously told me that he's made it past the round of sixteen of the tournament we can exclude rank [I] and [II] contracts, leaving me with no choice but to believe that he signed a tier [III] contract."</p><p>Once Natasha's analysis reached this point, her brows proceeded to knit tightly. </p><p>"...But that would mean that he would be ranked around &lt;B+&gt; in order to survive the contract breach." </p><p>Pausing once more, Natasha's head snapped in Ren's direction. This time her face had a little shock in it. </p><p>Having already come up with a proper analysis of the situation, she suddenly realized something. And that was that the only possible way for Ren to have survived the situation was for him to have reached a rank of &lt;B+&gt;. </p><p>But how was that possible? She was already shocked by the fact that her daughter had reached &lt;B-&gt; rank, but &lt;B+&gt; rank? What kind of monster was this youth before her? </p><p>This kind of thought became even more prominent from the fact that she knew that he was around the same age as her own daughter. </p><p>Slowly her mouth hung open as she turned her head to look at Maylin, hoping that perhaps her analysis was wrong, but instead, Maylin's next words caused the shock inside of her body to double. </p><p>"It's exactly like you thought, he indeed rank is &lt;B+&gt;." </p><p>"W...what? How is that possible? Didn't he get eliminated from the tournament already?"</p><p>Maylin's mouth twitched. Turning her head to the side, she softly said. </p><p>"Well, how should I say this...he eliminated himself." </p><p>"Himself? ...Why would he do that?" </p><p>Forcing a smile, Maylin replied. </p><p>"...Because he said that he was bored." </p><p>While Natasha and Maylin were discussing the reasoning behind Ren's elimination, Amanda who had been listening throughout their whole time, powerlessly sat back down on her chair. </p><p>'So everything that happened was because of me...' </p><p>Amanda's emotions were currently a mess as she felt many different things at the moment. </p><p>On one hand, she was grateful and even touched by what Ren did. After all, he did just try to sacrifice his life for the sake of her mother. </p><p>But at the same time, she was also angry. </p><p>She was having trouble putting it into words, but she really hated the way Ren did things. She hated the way that he just did things without caring about himself or what the others felt. </p><p>Amanda understood why Ren acted the way he did, and it was exactly because she understood this that she felt the way she did. </p><p>Had he told her the situation from the start, Amanda would've understood.</p><p>She wasn't unreasonable. Ren had never taken part in her mother's situation. </p><p>Furthermore, although she wasn't exactly sure, she could tell that Ren most likely didn't know about the fact that the demon he had contracted with was the one responsible for her situation. </p><p>Thinking back, Amanda had a feeling that the demon Ren contracted with was in fact the same demon that had contracted with Elijah, the elective representative back at the Lock. </p><p>If so, how he met her made sense. </p><p>She had always wondered why that demon had not targeted her again, but it was only now that she understood that Ren had taken care of it. </p><p>Closing her eyes, Amanda bit her lips. </p><p>It became clear to her that Ren still did not trust her enough.</p><p>The realization saddened her, but it did not discourage her. This was only natural. Especially since they hadn't known each other long enough to develop a full sense of trust between each other. </p><p>"Oy!" </p><p>Snapping Amanda out of her thoughts was her mother's voice.</p><p>Turning her head to look in the direction of where her mother was, she saw her with her back bent and her face a few inches away from Ren's face. </p><p>"M...mom!" </p><p>Amanda immediately became flustered at the sight as she stood up from her seat. However, her mother's following words caused her to freeze on the spot. </p><p>"Boy, I can tell that you're awake. You can stop pretending." </p><p>"Eh?" </p><p>Raising her hand, Natasha flicked Ren's forehead. </p><p>"Ouch!" </p><p>***</p><p>Suddenly having my forehead flicked, my eyes snapped open. </p><p>The moment I opened my eyes, the first thing I saw was a familiar-looking face a couple of inches away from mine. Caught off guard by the sudden situation, I felt my cheeks warm up a little as a bitter smile appeared on my face. </p><p>That was because I was able to instantly recognize the woman before me. She may have looked like Amanda at a first glance, but there was definitely a difference. </p><p>"Looks like you're fine." </p><p>Amanda's mother muttered before finally moving her head away from me. It was then that I was able to see the current situation in the room, and when I did, I almost wished I didn't. </p><p>With almost everyone present in the room, including Angelica. I already knew that the cat was out of the bag. </p><p>The smile on my face became more bitter as I suddenly recalled the other Ren's words. </p><p>'Isn't it fun?' </p><p>'...No, it's not' </p><p>I muttered inside of my head as I silently shook my head. </p><p>'No, it's not fun at all.'</p><p>"Ren, how are you feeling?" </p><p>In the midst of my thoughts, a familiar voice reached my ear. Without turning my head, I already knew who the voice belonged to.</p><p>It was Kevin.</p><p>"Ugh." </p><p>Moving my head, I tried to sit up straight, but a terrifying pain suddenly caused my body to helplessly fall back before I could even move a few inches up. </p><p>My brows knit when I realized this. </p><p>Just as I was about to try again, I suddenly felt a hand touch mine and a sweet voice reached my ear. </p><p>"Sit back down, you're in no condition to move." </p><p>Turning my head, I saw Amanda staring at me with a smile on her face. I was surprised by this. </p><p>Glancing in Angelica's direction, just as I was about to say something, Amanda shook her head. </p><p>"It's fine, I understand what you did. I'm not angry." </p><p>"...Eh?" </p><p>She wasn't? </p><p>"No, I understand why you acted the way you did. You probably didn't want to cause any misunderstandings right?" </p><p>A wry smile appeared on my face when I heard her words. </p><p>She had pretty much read me like a book. Yeah, that was one of the main reasons as to why I never told her the truth. Well, that was until I found out that my memories were being tampered with, and realized that perhaps those may have not really been my true thoughts. </p><p>In hindsight, it was a terrible decision. Staring at Amanda in the eyes, I understood that Amanda would've listened to everything that I had to say with a clear mind. </p><p>Amanda wasn't the type of person that ran away before she heard the full truth. </p><p>"I'm s—" </p><p>Opening my mouth, I tried to apologize to Amanda, but just as I was about to do so, the door of the room burst open and Melissa entered the room.</p><p>She had her usual grumpy look on her face. </p><p>Clank—</p><p>The moment she stepped into the room, her body froze as her eyes landed on the elven queen and Amanda's mother. Once her eyes paused on her, she tilted her head to the side as she had trouble processing the situation. </p><p>Then, turning her head our eyes met. </p><p>For a brief moment, the moment our eyes met, Melissa's eyes flashed as an awkward silence enveloped the room. Soon after, clicking her tongue, she muttered in a disappointed tone. </p><p>"Ah shit, you woke up." </p><p>My mouth twitched when I heard her comments. </p><p>"...Why do you sound so disappointed?" </p><p>Covering her mouth, Melissa laughed. </p><p>"Do I? Must be your imagination." </p><p>Crossing her arms, her eyes soon paused on Kevin. After that, her eyes paused on Amanda as her face slowly turned to one filled with disgust. </p><p>Her next words almost made me want to kill her on the spot. </p><p>"...and here I thought you were only going to stick with Kevin. Looks like you've got yourself quite the decent harem, huh?" </p><p>"Fuck off." </p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-454.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-456.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            

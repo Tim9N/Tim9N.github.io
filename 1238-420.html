@@ -1,0 +1,196 @@
+
+            <!doctype html>
+            <html lang="en" data-bs-theme="light">
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title> Ch. 420 | The Author's POV</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+                    <script>
+                        document.addEventListener('DOMContentLoaded',()=>{
+                            console.log("Loaded")
+                            console.log(document.getElementById("nextTop").href)
+
+                            const urlParams = new URLSearchParams(window.location.search);
+
+                            const sizeInt = urlParams.get('size') || 16;
+                            const darkBool = urlParams.get('dark') || false;
+
+                            console.log(sizeInt)
+                            console.log(darkBool)
+
+                            if (sizeInt == 16) {
+                                set16px()
+                            }
+                            else if (sizeInt == 24) {
+                                set24px()
+                            }
+                            else if (sizeInt == 32) {
+                                set32px()
+                            }
+
+                            if (darkBool == 'true') {
+                                setDark()
+                            }
+                            else if (darkBool == 'false') {
+                                setLight()
+                            }
+
+
+                            document.getElementById('btnSwitch').addEventListener('click',()=>{
+                            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                                setLight()
+                            }
+                            else {
+                                setDark()
+                            }
+                            })
+
+                            function setLight () {
+                                document.documentElement.setAttribute('data-bs-theme','light')
+                                document.getElementById('btnSwitch').innerHTML = "Dark"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-light')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-dark')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=true')) {
+                                    linka = linka.replace('dark=true','dark=false')
+                                    linkb = linkb.replace('dark=true','dark=false')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            function setDark () {
+                                document.documentElement.setAttribute('data-bs-theme','dark')
+                                document.getElementById('btnSwitch').innerHTML = "Light"
+                                document.getElementById('btnSwitch').classList.remove('btn-outline-dark')
+                                document.getElementById('btnSwitch').classList.add('btn-outline-light')
+                                
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('dark=false')) {
+                                    linka = linka.replace('dark=false','dark=true')
+                                    linkb = linkb.replace('dark=false','dark=true')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                            
+                            document.getElementById('s16').addEventListener('click', set16px)
+
+                            function set16px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '16px';
+                                }
+                                document.getElementById('s16').classList.add('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=16')
+                                    linkb = linkb.replace('size=24','size=16')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=16')
+                                    linkb = linkb.replace('size=32','size=16')
+                                }
+                                
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s24').addEventListener('click', set24px)
+
+                            function set24px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '24px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.add('active')
+                                document.getElementById('s32').classList.remove('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=24')
+                                    linkb = linkb.replace('size=16','size=24')
+                                }
+                                if (linka.includes('size=32')) {
+                                    linka = linka.replace('size=32','size=24')
+                                    linkb = linkb.replace('size=32','size=24')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+
+                            document.getElementById('s32').addEventListener('click', set32px) 
+                            
+                            function set32px () {
+                                var ps = document.getElementsByTagName("p");
+
+                                for(var i = 0; i < ps.length; i++) {
+                                    var p = ps[i];
+                                    p.style.fontSize = '32px';
+                                }
+                                document.getElementById('s16').classList.remove('active')
+                                document.getElementById('s24').classList.remove('active')
+                                document.getElementById('s32').classList.add('active')
+
+                                var linka = document.getElementById('nextTop').href
+                                var linkb = document.getElementById('backTop').href
+
+                                if (linka.includes('size=16')) {
+                                    linka = linka.replace('size=16','size=32')
+                                    linkb = linkb.replace('size=16','size=32')
+                                }
+                                if (linka.includes('size=24')) {
+                                    linka = linka.replace('size=24','size=32')
+                                    linkb = linkb.replace('size=24','size=32')
+                                }
+
+                                document.getElementById('nextTop').href = linka
+                                document.getElementById('nextBottom').href = linka
+                                document.getElementById('backTop').href = linkb
+                                document.getElementById('backBottom').href = linkb
+                            }
+                        
+                        })
+                    </script>
+                </head>
+                <body>
+                    <div class="container">
+            <h3 class="pt-4">Chapter 420 | <a href="the-authors-pov-1238.html">The Author's POV</a></h3><hr><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-419.html?dark=false&size=16" id="backTop" type="button" class="btn btn-outline-info">Back</a><a href="1238-421.html?dark=false&size=16" id="nextTop" type="button" class="btn btn-outline-info">Next</a></span>
+                <button id="btnSwitch" type="button" class="btn btn-outline-dark mx-2">Dark</button>
+                    <span class="btn-group my-2" role="group" aria-label="Basic outlined example">
+                        <button id="s16" type="button" class="btn btn-outline-primary active">16px</button>
+                        <button id="s24" type="button" class="btn btn-outline-primary">24px</button>
+                        <button id="s32" type="button" class="btn btn-outline-primary">32px</button>
+                    </span>
+            </p> 
+        <p>Late night.</p><p>Sitting up straight in a patch of grass near his residence, Hein looked towards the sky. Surrounded by the millions of stars in the sky, the moon looked especially beautiful tonight as it slowly drew a bright white blanket on the area around him.</p><p>"Haaa…"</p><p>Sighing out loud, Hein laid down on the grass.</p><p>Covering his eyes with his arm, he bit his trembling lips tightly.</p><p>"…I failed."</p><p>He failed to make it past the round of 64.</p><p>Despite putting everything into his fight, in the end, the result was his inevitable loss.</p><p>His opponent was just too strong.</p><p>Warmth flowed down the side of his cheeks as he tried his best to hold back his tears.</p><p>But, in the end, thinking back about his father and family and realizing that he could no longer get the cure, Hein was no longer able to hold back as more and more tears started to stream down the side of his cheeks.</p><p>Despite all of the hardships he suffered, and his rapid improvement Hein was still unable to make it to the top 10.</p><p>It was now that he realized just how vast the world was.</p><p>Just because he had far outstripped his former schoolmates, it didn't mean that there were others out there that didn't similarly outstrip him.</p><p>"I'm such a failure…"</p><p>He muttered out loud, whilst clenching his fists tightly.</p><p>Had he trained even harder he definitely could've won! He had been too lazy in his training.</p><p>"No, you're not."</p><p>But it was then that he suddenly heard a familiar voice coming from nearby.</p><p>Quickly wiping his eyes, Hein lifted his head and looked in the direction of where the voice came from.</p><p>"Ren?"</p><p>Upon spotting the figure, Hein set up straight.</p><p>"Mhm."</p><p>With a simple nod, Ren sat down next to him.</p><p>Placing both of his hands on his knees, Ren looked towards the moon in the sky and muttered.</p><p>"You did not fail."</p><p>***</p><p>As I muttered those words, I took my eyes away from the moon and gazed in Hein's direction.</p><p>With the side of his eyes red, I could see that he had just been crying.</p><p>I didn't bring this topic up.</p><p>Raising my hand, I patted him on the shoulder.</p><p>"If you're worried about your father, don't worry. I can get you the cure."</p><p>"Bu—"</p><p>Before Hein could say anything, I quickly cut him off.</p><p>"Are you worried that I will waste my winning opportunity to get the elven tears?"</p><p>Surprise flashed across Hein's face as I said those words.</p><p>I smiled at his reaction. His reaction made it quite clear to me that those were his thoughts.</p><p>Leaning back on the grass, I muttered.</p><p>"...You don't have to worry about that. Although elven tears are rare, you don't have to win the tournament to get them."</p><p>There was no way the elves only had one elven tear available. They had multiple of thems. The only issue was getting them to trade them, and I already had a solution long ago.</p><p>"What?"</p><p>Disbelief flashed across Heins's face as he looked at me.</p><p>Pointing at me, his voice shook.</p><p>"…but didn't you tell me that the only way to get them was through getting the top ten spots in the tournament?"</p><p>"That was a lie."</p><p>I softly said.</p><p>Closing my eyes, I feel the nice cold breeze brush past my body.</p><p>"You never had to get top ten to get the elven tear."</p><p>"W…what?!"</p><p>Despite the fact that I had my eyes closed, I could feel the genuine shock in Hein's voice as he heard my words.</p><p>His shock was understandable. I had purposely lied to him about the elven tear so that he would try his best at the tournament.</p><p>He must somehow feel betrayed.</p><p>"Wh—"</p><p>"Don't think too much. I only lied to you so that you would try your best at the tournament."</p><p>Opening my eye, I looked straight into Hein's eyes.</p><p>"If I didn't tell you this, you would've never pushed yourself to the limit and would've never realized just how strong people there are out there."</p><p>Despite his many experiences with me back in Henlour, Hein still did not truly the depth of this world.</p><p>Just because he had been rapidly improving his rank, it didn't mean that he was strong.</p><p>An example would be Kevin, Jin, and I. We all practiced five stars manuals.</p><p>Because we practice five-star sword manuals, we spend most of our time mastering them instead of focusing on our ranks like others do.</p><p>It was partly because of this that the rate of our growth seemed to be on par with some of the other prodigies out there. But it was also because of this that our strength was far beyond theirs.</p><p>If I fought someone with the same rank as me, I would have no trouble getting rid of them.</p><p>Unfortunately the same couldn't be said with Hein who did not practice a five-star sword manual and only focused on his rank.</p><p>"Anyways, you can relax. I promised you long back that I will get you the cure for your father. I'm not going to break that promise."</p><p>Having signed the mana contract, I had to fulfill what I had promised.</p><p>"…I see."</p><p>At my words, Hein's shoulders finally relaxed a little. A visible relief appeared on his face.</p><p>Turning to look at him, I asked.</p><p>"Are you not mad?"</p><p>"Mad?"</p><p>"Yeah, mad about the fact that I lied to you."</p><p>Pursing his lips, Hein shook his head.</p><p>"No."</p><p>Leaning back, Hein lifted his head and looked at the moon in the sky.</p><p>"...Maybe at first, but after listening to what you said, I realized that you were doing this for my own benefit."</p><p>Hein suddenly lowered his head.</p><p>"…and for that, I'm grateful to you."</p><p>Listening to his words, the edges of my lips curled upwards.</p><p>"Is that so?"</p><p>"Yeah."</p><p>Hein nodded his head.</p><p>Stretching my arms, I slowly stood up.</p><p>"That's good."</p><p>"…You leaving?"</p><p>Hein asked with a slightly disappointed look. Massaging my neck, I yawned.</p><p>"Huaammm...yeah, it's quite late. Still got a tournament tomorrow."</p><p>"Then I won't hold you back."</p><p>Waving my hand, I bid Hein goodbye and headed back to my room.</p><p>However, as I headed back to my room, the smile on my face slowly started to disappear.</p><p>Flashbacks of today's incident replayed inside of my mind.</p><p>'Something doesn't add up about today's incident…'</p><p>The way it played out. It felt odd to me.</p><p>Something about the incident just felt very odd to me. Or rather, the feeling that I got when Aaron stabbed Emma in the back.</p><p>Instead of worry or anything else, the first thing that came to mind was. 'Everything is going according to plan.'</p><p>"Odd…"</p><p>What was even crazier was the fact that I felt nothing when I saw Kevin lose himself back then. The feeling was a bit different, but it felt as though I was getting rid of a burden.</p><p>The more I thought about it, the more concerned I became.</p><p>"I have no choice, do I?"</p><p>Halting my steps and closing my eyes, I looked up at the sky and breathed out.</p><p>Ba…thump! Ba…thump!</p><p>My heart unknowingly sped up.</p><p>'If I want an answer, I have no choice but to do this, don't I?'</p><p>For the first time in a while, I felt fear creep inside of my mind as I took another deep breath to calm myself down.</p><p>Then, going back to my room, I threw my bracelet on the bed and headed for the training grounds.</p><p>Ci Clank—!</p><p>Upon entering the training grounds and seeing that there was no one present, I headed for one of the private training rooms.</p><p>Entering the room, I locked the door behind me and sat down crossed-legged in the middle of the room.</p><p>"Huuuu…"</p><p>Taking a deep breath, I channeled out all the mana I had inside of my body. As I channeled my mana, a powerful white hue suddenly sprung outwardly, enveloping the entire room.</p><p>Gritting my teeth, I continued to channel my mana until only a small amount remained. Just about enough to last me five minutes.</p><p>Once my mana reached that level, I looked towards the corner of the room and spoke up.</p><p>"Lock the room for five minutes."</p><p>Ci clank—</p><p>Once my words faded, a loud clicking sound resounded through the room as a timer initiated by the side of the room.</p><p>[5M : 00S]</p><p>Staring at the timer above, I closed my eyes.</p><p>Ba…thump! Ba…thump!</p><p>The repetitive sound of my heart beating resounded throughout the room as I slowly opened my mouth and muttered.</p><p>"Monarch's indifference…"</p><p>***</p><p>In a different room.</p><p>"System."</p><p>Kevin said out loud as he leaned forward and looked at the system interface.</p><p>[Intermediate healing potion] x 8</p><p>[Strength enhancing potion] x 2</p><p>[Advanced healing potion] x 3</p><p>"No, it's not here…"</p><p>Scrolling through his item list, Kevin shook his head.</p><p>After a while, he quickly tapped on the interface and looked through the system shop. He was trying to see if he could find something to help Emma there.</p><p>"Elven tear…elven tear…elven tear…"</p><p>Yet, despite how much he tried to look, he couldn't find what he was looking for nor anything that had similar effects to the elven tear.</p><p>"Fuck…"</p><p>Kevin cursed out loud as he tightly clenched his teeth together.</p><p>'Is the only way to get the elven tear through winning the tournament?'</p><p>He thought with a depressed look on his face. But just as he was about to give up, a thought suddenly flashed into his mind.</p><p>"Wait."</p><p>Kevin's eyes suddenly lit up.</p><p>Scrolling through his system interface once again, his finger soon paused on a certain section.</p><p>[Melandoir]</p><p>Main eleven planet of the past. On this planet resides the world tree which has been corrupted into a devil tree. It is where devil fruits are currently being harvested.</p><p>Difficulty : &lt;S+&gt; rank minimum.</p><p>Time difference : 1/5 human days.</p><p>Expense : &lt;A&gt; rank core.</p><p>"Damn it!"</p><p>Studying the interface, Kevin clenched his fists as all hope quickly dashed away from his mind.</p><p>The requirements were just too high.</p><p>Leaning forward and grabbing onto his head, Kevin's mind became jumbled up with all sorts of different thoughts.</p><p>'…Just how could that incident have happened?'</p><p>Why did Emma have to get injured, and why now? Although Aaron didn't like Emma, why would he suddenly try to kill her? It didn't make sense!</p><p>Taking out his tablet, he started the video and replayed it.</p><p>As he watched the video, his face would repeatedly change. Especially at the exact moment when Aaron stabbed Emma right in the back.</p><p>During that moment, he had to physically force himself to watch and prevent himself from throwing up.</p><p>Watching that clip over and over again, a cracking sound resounded as the tablet slowly started to bend.</p><p>"…hm?"</p><p>It was about the eighth time that he replayed the video, and right as he was about to stop torturing himself, he finally noticed something.</p><p>He quickly brought the tablet near his face to get a better look.</p><p> It was then that Kevin saw it. </p><p>Right after stabbing Emma in the back, Kevin caught a glimpse of Aaron saying something.</p><p>Tapping onto the tablet, Kevin slowed down the video. It was only after he slowed the video by four times that he was finally able to make out what he wanted to say.</p><p>"…I hope you send Ren your greetings for me."</p><p>Kevin muttered out loud as he deciphered the words that came out of Aaron's mouth. When he did, Kevin's face froze slightly.</p><p>'Did he find out about that time?'</p><p>But, how? Ren told him that he had taken care of the situation and that he couldn't have remembered anything.</p><p>How was it possible for him to know that Ren was behind the incident that happened to him?</p><p>Something didn't add up.</p><p>"What if…'"</p><p>Suddenly, flashbacks of his vision replayed inside Kevin's mind. The vision in which someone resembling Ren killed Emma.</p><p>A cold chill suddenly enshrouded Kevin's body as he stood up.</p><p>"It can't be. It's impossible for him to have done it…"</p><p>Kevin repeatedly muttered out loud. But the more he thought about it, the weaker his voice became.</p><p>"Haa…haaa…"</p><p>With heavy breaths, Kevin tried to calm himself down.</p><p>'That's right, this could all be a misunderstanding. I'll go talk to him and resolve this matter now.'</p><p>Rather than just waiting for something to happen, Kevin decided to directly confront Ren.</p><p>He didn't want to live doubting Ren. Someone who he deeply trusted and even shared his deepest secrets.</p><p>"That's right, this may all be just a stupid misunderstanding."</p><p>Grabbing onto his coat, Kevin headed out of his room.</p><br><p><span class="btn-group" role="group" aria-label="Basic outlined example"><a href="1238-419.html?dark=false&size=16" id="backBottom" type="button" class="btn btn-outline-info">Back</a><a href="1238-421.html?dark=false&size=16" id="nextBottom" type="button" class="btn btn-outline-info">Next</a></span></p>
+                </div>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+                </body>
+                </html>
+            
